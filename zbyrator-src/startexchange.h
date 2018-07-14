@@ -1,0 +1,54 @@
+#ifndef STARTEXCHANGE_H
+#define STARTEXCHANGE_H
+
+#include "src/shared/matildaconfwidget.h"
+
+namespace Ui {
+class StartExchange;
+}
+
+class StartExchange : public MatildaConfWidget
+{
+    Q_OBJECT
+
+public:
+    explicit StartExchange(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+    ~StartExchange();
+
+    static QStringList getChListData(QStringList &listIcos, QStringList &chListNames);
+
+
+public slots:
+    void initPage();
+
+
+
+    void showWdgtByName(const QString &wdgtAccessibleName, const QString &wdgtTitle);
+
+    void showWdgtByName(const QString &wdgtAccessibleName, const QString &wdgtTitle, const QIcon &itemIcon);
+
+
+signals:
+    void stopExchange();
+
+
+private slots:
+
+    void on_tbIfaceSett_clicked();
+
+
+    void on_trDevOperation_clicked(const QModelIndex &index);
+
+    void addWdgt2devStack(const QString &realPageName, const QString &wdgtTitle, const QIcon &itemIcon);
+
+private:
+    Ui::StartExchange *ui;
+    MatildaConfWidget *currentMatildaWidget();
+
+
+    QString lastWdgtAccessibleName;
+    QString lastWdgtAccessibleNameInProcess;
+
+};
+
+#endif // STARTEXCHANGE_H
