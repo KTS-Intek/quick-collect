@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network printsupport xml svg charts qml quick positioning location
+QT       += core gui network printsupport xml svg charts qml quick positioning location sql serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -36,6 +36,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 DEFINES += APPLCTN_NAME=\\\"quick-collect\\\"
 DEFINES += IS_ZBYRATORWDGT
 DEFINES += IS_ZBYRATOR
+DEFINES += VERSION_4_PC
+DEFINES += DISABLE_METERSCHEDULER
+DEFINES += HASSERIALLIB
 
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -131,7 +134,48 @@ SOURCES += \
     zbyrator-src/startpagepoll.cpp \
     zbyrator-src/zbyrifacesett.cpp \
     dataconcetrator-pgs/zbyratortasks.cpp \
-    info-pgs/statisticofexchangewdgt.cpp
+    info-pgs/statisticofexchangewdgt.cpp \
+    zbyrator-src/zbyratorprocessmanager.cpp \
+    src/zbyrator-v2/addpolldata2dbobject.cpp \
+    src/zbyrator-v2/dataprocessinghelper.cpp \
+    src/zbyrator-v2/metermanager.cpp \
+    src/zbyrator-v2/meterscheduler.cpp \
+    src/zbyrator-v2/meterschedulerhelper.cpp \
+    src/zbyrator-v2/myucmmeters.cpp \
+    src/zbyrator-v2/quickpollhelper.cpp \
+    src/zbyrator-v2/thelordofmeters.cpp \
+    src/zbyrator-v2/thelordofmetershelper.cpp \
+    src/zbyrator-v2/waterlastschedule.cpp \
+    src/zbyrator-v2/zbyratordatatypehelper.cpp \
+    src/zbyrator-v2/zbyratorstatistichelper.cpp \
+    src/zbyrator-v2/zbyratortasksharedmemo.cpp \
+    src/meter/zbyratorfilesetthelper.cpp \
+    matilda-bbb-src/database/sqlitelocalclient.cpp \
+    matilda-bbb-src/shared/matildadatatypehelper.cpp \
+    sqlite-medium-src/dbfirstquery.cpp \
+    sqlite-medium-src/sqlitemediumlocalserver.cpp \
+    sqlite-medium-src/sqlitemediumlocalsocket.cpp \
+    src/matilda/settloader4matildadefaults.cpp \
+    src/matilda/serialporthelper.cpp \
+    zbyrator-src/settloader4matildaemulator.cpp \
+    zbyrator-src/platformdependclass.cpp \
+    src/meter/add2dbhelper.cpp \
+    src/meter/zbyratorhelper.cpp \
+    src/meter/pollenergyhelper.cpp \
+    src/shared/mytaskhelper.cpp \
+    src/shared/smartscheduletimer.cpp \
+    src/meter/defparams4zbyrator.cpp \
+    matilda-bbb-src/shared/argsdecodehelper.cpp \
+    src/meter/meterpluginhelper.cpp \
+    src/emb/conf2modem.cpp \
+    src/emb/conf2modemhelper.cpp \
+    src/shared/sharedmemowriter.cpp \
+    src/shared/readwriteiodevice.cpp \
+    matilda-bbb-src/database/sharedatabase.cpp \
+    matilda-bbb-src/database/matildasqlhelper.cpp \
+    matilda-bbb-src/database/sqlitemediumerr.cpp \
+    matilda-bbb-src/shared/readjsonhelper.cpp \
+    zbyrator-src/zbyrmeterlistmedium.cpp
 
 
 HEADERS += \
@@ -226,7 +270,52 @@ HEADERS += \
     zbyrator-src/startpagepoll.h \
     zbyrator-src/zbyrifacesett.h \
     dataconcetrator-pgs/zbyratortasks.h \
-    info-pgs/statisticofexchangewdgt.h
+    info-pgs/statisticofexchangewdgt.h \
+    zbyrator-src/zbyratorprocessmanager.h \
+    src/zbyrator-v2/addpolldata2dbobject.h \
+    src/zbyrator-v2/dataprocessinghelper.h \
+    src/zbyrator-v2/metermanager.h \
+    src/zbyrator-v2/metermanagerconstants.h \
+    src/zbyrator-v2/meterscheduler.h \
+    src/zbyrator-v2/meterschedulerhelper.h \
+    src/zbyrator-v2/myucmmeters.h \
+    src/zbyrator-v2/quickpollhelper.h \
+    src/zbyrator-v2/thelordofmeters.h \
+    src/zbyrator-v2/thelordofmetershelper.h \
+    src/zbyrator-v2/waterlastschedule.h \
+    src/zbyrator-v2/zbyratordatatypehelper.h \
+    src/zbyrator-v2/zbyratorstatistichelper.h \
+    src/zbyrator-v2/zbyratortasksharedmemo.h \
+    src/zbyrator-v2/zbyratortypesv2.h \
+    src/meter/zbyratorfilesetthelper.h \
+    matilda-bbb-src/database/sqlitelocalclient.h \
+    matilda-bbb-src/shared/matildadatatypehelper.h \
+    sqlite-medium-src/dbfirstquery.h \
+    sqlite-medium-src/sqlitemediumlocalserver.h \
+    sqlite-medium-src/sqlitemediumlocalsocket.h \
+    src/matilda/settloader4matildadefaults.h \
+    src/matilda/settloader4matildakeys.h \
+    src/matilda/serialporthelper.h \
+    zbyrator-src/settloader4matildaemulator.h \
+    zbyrator-src/platformdependclass.h \
+    src/meter/add2dbhelper.h \
+    src/meter/zbyratorhelper.h \
+    src/meter/pollenergyhelper.h \
+    src/shared/mytaskhelper.h \
+    src/shared/smartscheduletimer.h \
+    src/meter/defparams4zbyrator.h \
+    matilda-bbb-src/shared/argsdecodehelper.h \
+    src/meter/meterpluginhelper.h \
+    src/emb/conf2modem.h \
+    src/emb/conf2modemhelper.h \
+    src/emb/embeelimits.h \
+    src/shared/sharedmemowriter.h \
+    src/shared/readwriteiodevice.h \
+    matilda-bbb-src/database/sharedatabase.h \
+    matilda-bbb-src/database/matildasqlhelper.h \
+    matilda-bbb-src/database/sqlitemediumerr.h \
+    matilda-bbb-src/shared/readjsonhelper.h \
+    zbyrator-src/zbyrmeterlistmedium.h
 
 FORMS += \
         qcmainwindow.ui \

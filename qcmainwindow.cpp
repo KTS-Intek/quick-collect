@@ -18,7 +18,9 @@
 #include "template-pgs/smplptewdgt.h"
 #include "zbyrator-src/ktsconnectwdgt.h"
 #include "zbyrator-src/startexchange.h"
-
+#include "src/zbyrator-v2/metermanager.h"
+#include "zbyrator-src/zbyrmeterlistmedium.h"
+#include "zbyrator-src/zbyratorprocessmanager.h"
 
 QcMainWindow::QcMainWindow(const QFont &font4log, const int &defFontPointSize,  QWidget *parent) :
     QMainWindow(parent),
@@ -38,10 +40,14 @@ QcMainWindow::QcMainWindow(const QFont &font4log, const int &defFontPointSize,  
     QTimer::singleShot(999, this, SLOT(initializeZbyrator())) ;
 }
 
+//---------------------------------------------------------------------
+
 QcMainWindow::~QcMainWindow()
 {
     delete ui;
 }
+
+//---------------------------------------------------------------------
 
 void QcMainWindow::loadMainSett()
 {
@@ -79,6 +85,8 @@ void QcMainWindow::loadMainSett()
     }
 }
 
+//---------------------------------------------------------------------
+
 void QcMainWindow::initializeZbyrator()
 {
     qRegisterMetaType<QHash<QString,QString> >("QHash<QString,QString>");
@@ -107,14 +115,14 @@ void QcMainWindow::initializeZbyrator()
     connect(this, SIGNAL(addWdgt2history()), swh, SLOT(onAddWdgt2history()) );
     connect(ui->stackedWidget, SIGNAL(destroyed(QObject*)), swh, SLOT(onStackKickedOff()));
 
-    CreateToolBar *c = new CreateToolBar(this);
-    connect(c, SIGNAL(onActivateThisWdgt(QString)), this, SLOT(onActivateThisWdgt(QString)) );
-    c->createToolBarItems(ui->mainToolBar);
-
-
+    createToolBar();
+    createZbyrProcManager();
+    createMeterManager();
 
 
 }
+
+//---------------------------------------------------------------------
 
 void QcMainWindow::onLangSelected(QString lang)
 {
@@ -131,6 +139,8 @@ void QcMainWindow::onLangSelected(QString lang)
         qDebug() << "onLang selected" << lang;
 }
 
+//---------------------------------------------------------------------
+
 void QcMainWindow::loadFontSize()
 {
     int fontSize = SettLoader::loadSett(SETT_OPTIONS_APPFONT, guiSett->defFontPointSize).toInt();
@@ -140,6 +150,8 @@ void QcMainWindow::loadFontSize()
         setStyleSheet(QString("font-size:%1pt;").arg(fontSize));
 }
 
+//---------------------------------------------------------------------
+
 void QcMainWindow::onActivateThisWdgt(QString tabData)
 {
     //stackContainsThisWdgt(QStackedWidget *stackedWidget, const QString &wdgtName, const bool andChange, const int indxFrom)
@@ -148,6 +160,8 @@ void QcMainWindow::onActivateThisWdgt(QString tabData)
 
     emit addWdgt2history();
 }
+
+//---------------------------------------------------------------------
 
 void QcMainWindow::addWdgt2stackWdgt(QWidget *w, int wdgtTag, bool oneShot, QString actTxt, QString actIco)
 {
@@ -199,6 +213,8 @@ void QcMainWindow::addWdgt2stackWdgt(QWidget *w, int wdgtTag, bool oneShot, QStr
     emit addWdgt2history();
 }
 
+//---------------------------------------------------------------------
+
 void QcMainWindow::changeEvent(QEvent *event)
 {
     if(event) {
@@ -218,6 +234,8 @@ void QcMainWindow::changeEvent(QEvent *event)
     }
     QWidget::changeEvent(event);
 }
+
+//---------------------------------------------------------------------
 
 void QcMainWindow::loadLanguage(const QString &rLanguage)
 {
@@ -240,6 +258,8 @@ void QcMainWindow::loadLanguage(const QString &rLanguage)
     }
 }
 
+//---------------------------------------------------------------------
+
 void QcMainWindow::createOneOfMainWdgt(const QString &tabData)
 {
     qDebug() << "create " << tabData;
@@ -253,7 +273,7 @@ void QcMainWindow::createOneOfMainWdgt(const QString &tabData)
 
     switch(row){
     case 0: w = new StartExchange(lDevInfo, gHelper, gSett4all, this); break;
-    case 1: w = new MeterListWdgt(lDevInfo, gHelper, gSett4all, this); break;
+    case 1: w = createMeterListWdgt(lDevInfo, gHelper, gSett4all, this); break;
 
     case 2: w = new DataBaseWdgt( lDevInfo, gHelper, gSett4all, this) ; break;  //    l.append( QString("Database") );
     case 3: w = new MeterJournalForm(lDevInfo, gHelper, gSett4all, this) ; break; //    l.append( QString("Meter logs") );
@@ -291,6 +311,90 @@ void QcMainWindow::createOneOfMainWdgt(const QString &tabData)
     }
 }
 
+//---------------------------------------------------------------------
+
+void QcMainWindow::createToolBar()
+{
+
+    CreateToolBar *c = new CreateToolBar(this);
+    connect(c, SIGNAL(onActivateThisWdgt(QString)), this, SLOT(onActivateThisWdgt(QString)) );
+    c->createToolBarItems(ui->mainToolBar);
+}
+
+//---------------------------------------------------------------------
+
+void QcMainWindow::createZbyrProcManager()
+{
+    ZbyratorProcessManager *m = new ZbyratorProcessManager;
+    QThread *t = new QThread;
+
+    m->moveToThread(t);
+
+    connect(this, &QcMainWindow::destroyed, m, &ZbyratorProcessManager::deleteLater);
+    connect(m, &ZbyratorProcessManager::destroyed, t, &QThread::quit);
+    connect(t, &QThread::finished, t, &QThread::deleteLater);
+
+    connect(t, &QThread::started, m, &ZbyratorProcessManager::onThreadStarted);
+
+    QTimer::singleShot(11, t, SLOT(start()));
+
+
+}
+
+//---------------------------------------------------------------------
+
+void QcMainWindow::createMeterManager()
+{
+
+    MeterManager *zbyrator = new MeterManager(true, ZbyrConnSett());
+
+    QThread *thread = new QThread;
+
+    zbyrator->registerMyTypes();
+
+    zbyrator->moveToThread(thread);
+    connect(thread, SIGNAL(started()), zbyrator, SLOT(initObject()));
+
+//    connect(extSocket, &ZbyratorSocket::appendDbgExtData, this, &ZbyratorManager::appendDbgExtData );
+
+    connect(this, &QcMainWindow::onConfigChanged , zbyrator, &MeterManager::onConfigChanged  );
+    connect(this, &QcMainWindow::command4dev     , zbyrator, &MeterManager::command4dev      );
+
+
+    connect(this, &QcMainWindow::onReloadAllMeters, zbyrator, &MeterManager::onReloadAllMeters);
+    connect(zbyrator, &MeterManager::onAllMeters, this, &QcMainWindow::onAllMeters);
+//    connect(zbyrator, &MeterManager::command2extensionClient, extSocket, &ZbyratorSocket::command2extensionClient   );
+//    connect(zbyrator, &MeterManager::onAboutZigBee          , extSocket, &ZbyratorSocket::sendAboutZigBeeModem      );
+
+
+    QTimer::singleShot(1111, thread, SLOT(start()) );
+}
+
+//---------------------------------------------------------------------
+
+MatildaConfWidget *QcMainWindow::createMeterListWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent)
+{
+
+    ZbyrMeterListMedium *metersListMedium = new ZbyrMeterListMedium(this);
+    connect(metersListMedium, &ZbyrMeterListMedium::onConfigChanged, this, &QcMainWindow::onConfigChanged);
+
+
+    MeterListWdgt *w = new MeterListWdgt(lDevInfo, gHelper, gSett4all, parent);
+    connect(w, &MeterListWdgt::onReloadAllMeters, this, &QcMainWindow::onReloadAllMeters);
+
+
+    connect(this, &QcMainWindow::onAllMeters, metersListMedium, &ZbyrMeterListMedium::onAllMeters);
+
+    connect(metersListMedium, &ZbyrMeterListMedium::setPageSett, w, &MeterListWdgt::setPageSett);
+    connect(w, &MeterListWdgt::meterModelChanged, metersListMedium, &ZbyrMeterListMedium::meterModelChanged);
+
+    return w;
+
+
+}
+
+//---------------------------------------------------------------------
+
 void QcMainWindow::onStackedWidgetCurrentChanged(int arg1)
 {
     if(arg1 < 0 || !ui->stackedWidget->currentWidget())
@@ -301,3 +405,5 @@ void QcMainWindow::onStackedWidgetCurrentChanged(int arg1)
         lastWdgtAccessibleName = wdgtAccessibleName;
     }
 }
+
+//---------------------------------------------------------------------

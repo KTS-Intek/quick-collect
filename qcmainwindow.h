@@ -8,6 +8,11 @@
 #include "src/shared/guisett4all.h"
 #include "src/matilda/guihelper.h"
 #include <QLabel>
+#include "src/shared/referencewidgetclass.h"
+#include "src/zbyrator-v2/zbyratordatatypehelper.h"
+
+
+
 
 namespace Ui {
 class QcMainWindow;
@@ -30,6 +35,16 @@ public:
 signals:
     void addWdgt2history();
     void killOldWdgt();
+
+
+    void onConfigChanged(quint16 command, QVariant data);
+
+    void command4dev(quint16 command, QString str);
+
+
+    //meterlistwdgt
+    void onAllMeters(UniversalMeterSettList allMeters);
+    void onReloadAllMeters();
 
 public slots:
     void initializeZbyrator();
@@ -57,6 +72,14 @@ private: //functions
     void createOneOfMainWdgt(const QString &tabData);
 
 private:
+    void createToolBar();
+
+    void createZbyrProcManager();
+
+    void createMeterManager();
+
+    MatildaConfWidget *createMeterListWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+
     Ui::QcMainWindow *ui;
     QTranslator translator;
 
