@@ -19,7 +19,6 @@
 #include "zbyrator-src/ktsconnectwdgt.h"
 #include "zbyrator-src/startexchange.h"
 #include "src/zbyrator-v2/metermanager.h"
-#include "zbyrator-src/zbyrmeterlistmedium.h"
 #include "zbyrator-src/zbyratorprocessmanager.h"
 
 QcMainWindow::QcMainWindow(const QFont &font4log, const int &defFontPointSize,  QWidget *parent) :
@@ -98,6 +97,9 @@ void QcMainWindow::initializeZbyrator()
     guiHelper->guiSett = guiSett;
     guiHelper->lDevInfo = new LastDevInfo(this);
     guiHelper->lDevInfo->matildaDev.protocolVersion = MATILDA_PROTOCOL_VERSION;
+    guiHelper->cacheHelper = new MatildaCacheHelper(this);
+    guiHelper->stackedWidget = ui->stackedWidget;
+    guiHelper->parentWidget = this;
 
     connect(ui->stackedWidget, SIGNAL(currentChanged(int)), this, SLOT(onStackedWidgetCurrentChanged(int)) );
     connect(guiHelper, SIGNAL(addWdgt2stackWdgt(QWidget*,int,bool,QString,QString)), this ,SLOT(addWdgt2stackWdgt(QWidget*,int,bool,QString,QString)) );
@@ -108,7 +110,6 @@ void QcMainWindow::initializeZbyrator()
     connect(guiSett, SIGNAL(changeLanguate(QString)), this, SLOT(onLangSelected(QString)) );
     connect(guiSett, SIGNAL(updateStyle(QString))   , this, SLOT(setStyleSheet(QString))  );
 
-    guiHelper->cacheHelper = new MatildaCacheHelper(this);
 
     StackWidgetHelper *swh = new StackWidgetHelper(this);
     swh->setStackWdgt(ui->stackedWidget);
@@ -272,13 +273,13 @@ void QcMainWindow::createOneOfMainWdgt(const QString &tabData)
     MatildaConfWidget *w = 0;
 
     switch(row){
-    case 0: w = new StartExchange(lDevInfo, gHelper, gSett4all, this); break;
-    case 1: w = createMeterListWdgt(lDevInfo, gHelper, gSett4all, this); break;
+    case 0: w = createStartExchangeWdgt(lDevInfo, gHelper, gSett4all, this); break;
+    case 1: w = createMeterListWdgt(    lDevInfo, gHelper, gSett4all, this); break;
 
-    case 2: w = new DataBaseWdgt( lDevInfo, gHelper, gSett4all, this) ; break;  //    l.append( QString("Database") );
-    case 3: w = new MeterJournalForm(lDevInfo, gHelper, gSett4all, this) ; break; //    l.append( QString("Meter logs") );
-    case 4: w = new KtsConnectWdgt(lDevInfo, gHelper, gSett4all, this); break;
-    case 5: w = new SmplPteWdgt(tr("Log") , true, false,   lDevInfo, gHelper, gSett4all, false, this)  ; break;   //    l.append( QString("State")                   );
+    case 2: w = new DataBaseWdgt(       lDevInfo, gHelper, gSett4all, this) ; break;  //    l.append( QString("Database") );
+    case 3: w = new MeterJournalForm(   lDevInfo, gHelper, gSett4all, this) ; break; //    l.append( QString("Meter logs") );
+    case 4: w = new KtsConnectWdgt(     lDevInfo, gHelper, gSett4all, this); break;
+    case 5: w = new SmplPteWdgt(        tr("Log") , true, false,   lDevInfo, gHelper, gSett4all, false, this)  ; break;   //    l.append( QString("State")                   );
 
     }
 
@@ -357,14 +358,21 @@ void QcMainWindow::createMeterManager()
 
 //    connect(extSocket, &ZbyratorSocket::appendDbgExtData, this, &ZbyratorManager::appendDbgExtData );
 
-    connect(this, &QcMainWindow::onConfigChanged , zbyrator, &MeterManager::onConfigChanged  );
     connect(this, &QcMainWindow::command4dev     , zbyrator, &MeterManager::command4dev      );
 
 
-    connect(this, &QcMainWindow::onReloadAllMeters, zbyrator, &MeterManager::onReloadAllMeters);
-    connect(zbyrator, &MeterManager::onAllMeters, this, &QcMainWindow::onAllMeters);
 //    connect(zbyrator, &MeterManager::command2extensionClient, extSocket, &ZbyratorSocket::command2extensionClient   );
 //    connect(zbyrator, &MeterManager::onAboutZigBee          , extSocket, &ZbyratorSocket::sendAboutZigBeeModem      );
+
+    metersListMedium = new ZbyrMeterListMedium(this);
+    connect(metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters   , zbyrator, &MeterManager::onReloadAllMeters    );
+    connect(metersListMedium, &ZbyrMeterListMedium::onConfigChanged     , zbyrator, &MeterManager::onConfigChanged      );
+    connect(metersListMedium, &ZbyrMeterListMedium::sendMeAlistOfMeters , zbyrator, &MeterManager::sendMeAlistOfMeters  );
+    connect(metersListMedium, &ZbyrMeterListMedium::command4dev         , zbyrator, &MeterManager::command4dev          );
+
+
+    connect(zbyrator, &MeterManager::onAllMeters    , metersListMedium, &ZbyrMeterListMedium::onAllMeters       );
+    connect(zbyrator, &MeterManager::onAlistOfMeters, metersListMedium, &ZbyrMeterListMedium::onAlistOfMeters   );
 
 
     QTimer::singleShot(1111, thread, SLOT(start()) );
@@ -372,21 +380,23 @@ void QcMainWindow::createMeterManager()
 
 //---------------------------------------------------------------------
 
+MatildaConfWidget *QcMainWindow::createStartExchangeWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent)
+{
+    StartExchange *w = new StartExchange(lDevInfo, gHelper, gSett4all, parent);
+    w->metersListMedium = metersListMedium;
+    return w;
+}
+
+//---------------------------------------------------------------------
+
 MatildaConfWidget *QcMainWindow::createMeterListWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent)
 {
 
-    ZbyrMeterListMedium *metersListMedium = new ZbyrMeterListMedium(this);
-    connect(metersListMedium, &ZbyrMeterListMedium::onConfigChanged, this, &QcMainWindow::onConfigChanged);
-
-
     MeterListWdgt *w = new MeterListWdgt(lDevInfo, gHelper, gSett4all, parent);
-    connect(w, &MeterListWdgt::onReloadAllMeters, this, &QcMainWindow::onReloadAllMeters);
-
-
-    connect(this, &QcMainWindow::onAllMeters, metersListMedium, &ZbyrMeterListMedium::onAllMeters);
-
-    connect(metersListMedium, &ZbyrMeterListMedium::setPageSett, w, &MeterListWdgt::setPageSett);
+    connect(w, &MeterListWdgt::onReloadAllMeters, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters);
     connect(w, &MeterListWdgt::meterModelChanged, metersListMedium, &ZbyrMeterListMedium::meterModelChanged);
+//    connect(metersListMedium, &ZbyrMeterListMedium::setMeterListPageSett, w, &MeterListWdgt::setPageSett);
+    connect(metersListMedium, SIGNAL(setMeterListPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)), w, SLOT(setPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)) );
 
     return w;
 

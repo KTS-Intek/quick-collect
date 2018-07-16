@@ -48,8 +48,8 @@
      </property>
      <widget class="QTreeView" name="trDevOperation">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
+       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+        <horstretch>1</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
@@ -79,6 +79,12 @@
       </property>
      </widget>
      <widget class="QWidget" name="widget_2" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>4</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <property name="spacing">
         <number>3</number>
@@ -123,7 +129,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>986</width>
+            <width>818</width>
             <height>49</height>
            </rect>
           </property>

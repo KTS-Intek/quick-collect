@@ -175,7 +175,13 @@ SOURCES += \
     matilda-bbb-src/database/matildasqlhelper.cpp \
     matilda-bbb-src/database/sqlitemediumerr.cpp \
     matilda-bbb-src/shared/readjsonhelper.cpp \
-    zbyrator-src/zbyrmeterlistmedium.cpp
+    zbyrator-src/zbyrmeterlistmedium.cpp \
+    src/matilda/tableviewhelper.cpp \
+    src/matilda/standarditemmodelhelper.cpp \
+    src/matilda/listviewhelper.cpp \
+    zbyrator-src/src/zbyrtableheaders.cpp \
+    src/widgets/selectionchecker.cpp \
+    zbyrator-src/wdgt/defserialdialog.cpp
 
 
 HEADERS += \
@@ -315,7 +321,14 @@ HEADERS += \
     matilda-bbb-src/database/matildasqlhelper.h \
     matilda-bbb-src/database/sqlitemediumerr.h \
     matilda-bbb-src/shared/readjsonhelper.h \
-    zbyrator-src/zbyrmeterlistmedium.h
+    zbyrator-src/zbyrmeterlistmedium.h \
+    src/matilda/tableviewhelper.h \
+    src/matilda/guihelperdefines.h \
+    src/matilda/standarditemmodelhelper.h \
+    src/matilda/listviewhelper.h \
+    zbyrator-src/src/zbyrtableheaders.h \
+    src/widgets/selectionchecker.h \
+    zbyrator-src/wdgt/defserialdialog.h
 
 FORMS += \
         qcmainwindow.ui \
@@ -352,7 +365,8 @@ FORMS += \
     zbyrator-src/startpagepoll.ui \
     zbyrator-src/zbyrifacesett.ui \
     dataconcetrator-pgs/zbyratortasks.ui \
-    info-pgs/statisticofexchangewdgt.ui
+    info-pgs/statisticofexchangewdgt.ui \
+    zbyrator-src/wdgt/defserialdialog.ui
 
 RESOURCES += \
     font.qrc \

@@ -2,6 +2,7 @@
 #define STARTEXCHANGE_H
 
 #include "src/shared/matildaconfwidget.h"
+#include "zbyrator-src/zbyrmeterlistmedium.h"
 
 namespace Ui {
 class StartExchange;
@@ -14,7 +15,9 @@ class StartExchange : public MatildaConfWidget
 public:
     explicit StartExchange(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
     ~StartExchange();
+    GuiHelper *guiHelper;
 
+    ZbyrMeterListMedium *metersListMedium;
     static QStringList getChListData(QStringList &listIcos, QStringList &chListNames);
 
 
@@ -27,10 +30,12 @@ public slots:
 
     void showWdgtByName(const QString &wdgtAccessibleName, const QString &wdgtTitle, const QIcon &itemIcon);
 
+    void showLastWdgt();
 
 signals:
     void stopExchange();
 
+    void onReloadAllMeters();
 
 private slots:
 
@@ -44,6 +49,16 @@ private slots:
 private:
     Ui::StartExchange *ui;
     MatildaConfWidget *currentMatildaWidget();
+
+    MatildaConfWidget *createStartPagePoll(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+
+    MatildaConfWidget *createRelayWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+
+    MatildaConfWidget *createMetersDateTime(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+
+    MatildaConfWidget *createZbyrIfaceSett(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+
+    void showWdgtByNameData(const QString &named);
 
 
     QString lastWdgtAccessibleName;

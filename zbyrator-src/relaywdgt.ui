@@ -211,13 +211,6 @@
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="tbUpDown">
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QToolButton" name="tbFilter">
        <property name="text">
         <string>...</string>

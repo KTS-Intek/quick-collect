@@ -42,7 +42,7 @@ QString PlatformDependClass::getMan()
               "-g \t Depth interval, 0 < g < %2\n"
               "-n \t space separeted NI list. Add model: <model>&<NI>. Add password: <NI>@<password>. Add model and password <model>&<NI>@<password>. If meter NI exists in device memory model and password can be omitted.\n"
               "-m \t Max. tariff. By default 3.\n"
-              "-e \t Space separeted energy keys. Default (A+ A- R+ R-).\n"
+              "-e \t Coma separeted energy keys. Default (A+,A-,R+,R-).\n"
               "-i \t Ignore existing poll data. Default: not ignored.\n"
               "-a \t Enable async mode. Default: disabled.\n").arg(DEV_POLL_EMULATOR_L1).arg(MAX_GLYBYNA);
 }

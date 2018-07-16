@@ -2,6 +2,9 @@
 #include "ui_relaywdgt.h"
 #include "map-pgs/mapwidget.h"
 #include "src/matilda/settloader.h"
+#include "src/widgets/selectionchecker.h"
+#include "src/matilda/showmesshelper.h"
+
 
 RelayWdgt::RelayWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent) :
     ReferenceWidgetClass(lDevInfo, gHelper, gSett4all, parent),
@@ -25,33 +28,23 @@ void RelayWdgt::clearPage()
 
 }
 
-void RelayWdgt::setPageSett(const QVariantHash &h)
+void RelayWdgt::setPageSett(const MyListStringList &listRows, const QVariantMap &col2data, const QStringList &headerH, const QStringList &header, const bool &hasHeader)
 {
-    GuiHelper::modelSetHorizontalHeaderItems(model, h.value("header").toStringList());
+//    const QString currentNI
 
-    if(h.contains("header"))
-        ui->tbFilter->setEnabled(true);
-    const QVariantList meters = h.value("meters").toList();
+    const QString currNi = headerH.contains("NI") ? TableViewHelper::getCellValueOfcurrentRow(ui->tvTable, headerH.indexOf("NI")) : "";
 
+    StandardItemModelHelper::append2model(listRows, col2data, headerH, header, hasHeader, model);
 
-    const int iMax = meters.size();
-    int rowCount =  model->rowCount();
+    if(!currNi.isEmpty())
+        TableViewHelper::selectRowWithThisCell(ui->tvTable, currNi, headerH.indexOf("NI"));
 
-    const int maxRowCount4table = gHelper->checkTable4limit(iMax, rowCount);
+    ui->widget->setDisabled(listRows.isEmpty());
 
-
-    for(int i = 0, colSize = model->columnCount(); i < iMax && rowCount < maxRowCount4table; i++, rowCount++){
-        QList<QStandardItem*> l;
-        int j = 0;
-        const QStringList ll = meters.at(i).toStringList();
-        for(int jMax = ll.size(); j < jMax; j++ )
-            l.append(new QStandardItem(ll.at(j)));
-        for( ; j < colSize; j++)
-            l.append(new QStandardItem("--@-"));
-        model->appendRow(l);
-    }
-    gHelper->resizeTv2content(ui->tvTable);
     setHasDataFromRemoteDevice();
+
+    emit resizeTv2content(ui->tvTable);
+
 }
 
 void RelayWdgt::onModelChanged()
@@ -116,9 +109,15 @@ void RelayWdgt::onModelChanged()
 void RelayWdgt::initPage()
 {
     setupObjects(ui->tvTable, ui->tbFilter, ui->cbFilterMode, ui->leFilter, SETT_FILTERS_RELAYWDGT);
-    GuiHelper::modelSetHorizontalHeaderItems(model, QStringList());
+    StandardItemModelHelper::modelSetHorizontalHeaderItems(model, QStringList());
 
+    ui->widget_2->setEnabled(false);
+    ui->widget->setEnabled(false);
 
+    emit onReloadAllMeters();
+
+    SelectionChecker *tmr = new SelectionChecker(this);
+    tmr->setWatchTable(ui->tvTable, ui->widget_2);
 //    readDefCommandOnUpdate();
 }
 
@@ -169,4 +168,10 @@ void RelayWdgt::on_tbShowMap_clicked()
     }
 
     emit showMapEs(gHelper->getLastLang());
+}
+
+void RelayWdgt::on_tvTable_customContextMenuRequested(const QPoint &pos)
+{
+    gHelper->createCustomMenu(pos, ui->tvTable, (GuiHelper::ShowReset|GuiHelper::ShowExport|GuiHelper::ShowOnlyCopy), CLBRD_SMPL_PRXTBL, ShowMessHelper::matildaFileName(windowTitle()));
+
 }

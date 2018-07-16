@@ -11,6 +11,7 @@
 #include "src/shared/referencewidgetclass.h"
 #include "src/zbyrator-v2/zbyratordatatypehelper.h"
 
+#include "zbyrator-src/zbyrmeterlistmedium.h"
 
 
 
@@ -37,14 +38,10 @@ signals:
     void killOldWdgt();
 
 
-    void onConfigChanged(quint16 command, QVariant data);
-
     void command4dev(quint16 command, QString str);
 
 
-    //meterlistwdgt
-    void onAllMeters(UniversalMeterSettList allMeters);
-    void onReloadAllMeters();
+
 
 public slots:
     void initializeZbyrator();
@@ -78,12 +75,16 @@ private:
 
     void createMeterManager();
 
+    MatildaConfWidget *createStartExchangeWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+
     MatildaConfWidget *createMeterListWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
 
     Ui::QcMainWindow *ui;
     QTranslator translator;
 
     QString lastWdgtAccessibleName;
+
+    ZbyrMeterListMedium *metersListMedium;
 };
 
 #endif // QCMAINWINDOW_H

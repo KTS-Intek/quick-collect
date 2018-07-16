@@ -46,6 +46,22 @@ QStringList StartExchange::getChListData(QStringList &listIcos, QStringList &chL
 void StartExchange::initPage()
 {
 
+    guiHelper = new GuiHelper(this);
+
+    guiHelper->initObj();
+    guiHelper->guiSett = gHelper->guiSett;
+    guiHelper->lDevInfo = gHelper->lDevInfo;
+    guiHelper->cacheHelper = gHelper->cacheHelper;
+
+    guiHelper->stackedWidget = gHelper->stackedWidget;
+    guiHelper->parentWidget = gHelper->parentWidget;
+    connect(guiHelper, SIGNAL(addWdgt2stackWdgt(QWidget*,int,bool,QString,QString)), gHelper, SIGNAL(addWdgt2stackWdgt(QWidget*,int,bool,QString,QString)) );
+    connect(guiHelper, SIGNAL(showMess(QString)), gHelper, SIGNAL(showMess(QString)));
+    connect(guiHelper, SIGNAL(showMessCritical(QString)), gHelper, SIGNAL(showMessCritical(QString)) );
+
+
+    guiHelper->stackedWidget = ui->swDeviceOperations;
+    guiHelper->parentWidget = ui->swDeviceOperations;
     ui->trDevOperation->setContextMenuPolicy(Qt::CustomContextMenu);
 
     TreeModel * modelDevOptTree = new TreeModel(this);
@@ -81,7 +97,7 @@ void StartExchange::showWdgtByName(const QString &wdgtAccessibleName, const QStr
 //-----------------------------------------------------------------------------------------------
 void StartExchange::showWdgtByName(const QString &wdgtAccessibleName, const QString &wdgtTitle, const QIcon &itemIcon)
 {
-    if(wdgtAccessibleName != lastWdgtAccessibleName){
+    if(wdgtAccessibleName != lastWdgtAccessibleName && wdgtAccessibleName != "Interface"){
 //        gHelper->closeYourPopupsSlot();
         lastWdgtAccessibleName = wdgtAccessibleName;
     }
@@ -89,11 +105,17 @@ void StartExchange::showWdgtByName(const QString &wdgtAccessibleName, const QStr
         MatildaConfWidget *w = currentMatildaWidget();
         if(w){
             w->pageActivated();
-            w->setupGlobalLblMessage(ui->lblPageMess);
+//            w->setupGlobalLblMessage(ui->lblPageMess);
         }
     }else{
         addWdgt2devStack(wdgtAccessibleName, wdgtTitle, itemIcon);
     }
+
+}
+
+void StartExchange::showLastWdgt()
+{
+    showWdgtByNameData(lastWdgtAccessibleName);
 
 }
 
@@ -102,25 +124,7 @@ void StartExchange::on_tbIfaceSett_clicked()
 {
     //open iface settings widget
 
-    QStringList listIcos, chListNames;
-
-
-    //, QStringList chListNames, QStringList listIcos, int buttonH)
-
-
-    const QStringList chListData = getChListData(listIcos, chListNames);
-
-    const int row = chListData.indexOf("Interface");
-    if(row < 0)
-        return;
-//QString("Poll;Relay;Queue;Statistic of the exchange;Date and time;Meter address;Check Connection Tool;Other;Interface").split(";");
-
-    showWdgtByName(chListData.at(row), chListNames.at(row), QIcon(listIcos.at(row)));
-//ui->trDevOperation->model()
-    TreeModel *modelDevOptTree { static_cast<TreeModel *>(ui->trDevOperation->model())};
-    if(modelDevOptTree)
-        ui->trDevOperation->setCurrentIndex(modelDevOptTree->index(row,0));
-
+    showWdgtByNameData("Interface");
 
 
 //    TreeModel * modelDevOptTree = new TreeModel(this);
@@ -139,15 +143,80 @@ MatildaConfWidget *StartExchange::currentMatildaWidget()
     return 0;
 }
 //-----------------------------------------------------------------------------------------------
+MatildaConfWidget *StartExchange::createStartPagePoll(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent)
+{
+    StartPagePoll *w = new StartPagePoll(lDevInfo, gHelper, gSett4all, parent);
+    connect(metersListMedium, &ZbyrMeterListMedium::onUpdatedSavedList, w, &StartPagePoll::onUpdatedSavedList);
+    connect(w, &StartPagePoll::onReloadAllMeters, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters);
+    connect(w, &StartPagePoll::command4dev, metersListMedium, &ZbyrMeterListMedium::command4devSlot);
+    return w;
+}
+//-----------------------------------------------------------------------------------------------
+MatildaConfWidget *StartExchange::createRelayWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent)
+{
+    RelayWdgt *w = new RelayWdgt(lDevInfo, gHelper, gSett4all, parent);
+//    connect(metersListMedium, &ZbyrMeterListMedium::setRelayPageSett, w, &RelayWdgt::setp);
+    connect(metersListMedium, SIGNAL(setRelayPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)), w, SLOT(setPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)) );
+    connect(w, &RelayWdgt::onReloadAllMeters, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters);
+    return w;
+}
+
+//-----------------------------------------------------------------------------------------------
+
+MatildaConfWidget *StartExchange::createMetersDateTime(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent)
+{
+    MetersDateTime *w = new MetersDateTime(lDevInfo, gHelper, gSett4all, parent);
+    connect(metersListMedium, SIGNAL(setDateTimePageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)), w, SLOT(setPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)) );
+    connect(w, &MetersDateTime::onReloadAllMeters, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters);
+    return w;
+}
+//-----------------------------------------------------------------------------------------------
+MatildaConfWidget *StartExchange::createZbyrIfaceSett(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent)
+{
+    ZbyrIfaceSett * w = new ZbyrIfaceSett(lDevInfo, gHelper, gSett4all, parent);
+
+    connect(metersListMedium, SIGNAL(setIfaceSett(QVariantHash)), w, SLOT(setPageSett(QVariantHash)) );
+    connect(w, SIGNAL(setNewSettings(QVariantHash)), metersListMedium, SLOT(setNewSettings(QVariantHash)));
+    connect(w, SIGNAL(sendMeIfaceSett()), metersListMedium, SLOT(sendMeIfaceSett()) );
+    connect(w, SIGNAL(setNewSettings(QVariantHash)), this, SLOT(showLastWdgt()) );
+
+    return w;
+}
+//-----------------------------------------------------------------------------------------------
+void StartExchange::showWdgtByNameData(const QString &named)
+{
+    QStringList listIcos, chListNames;
+
+
+    //, QStringList chListNames, QStringList listIcos, int buttonH)
+
+
+    const QStringList chListData = getChListData(listIcos, chListNames);
+
+    const int row = chListData.indexOf(named);
+    if(row < 0)
+        return;
+//QString("Poll;Relay;Queue;Statistic of the exchange;Date and time;Meter address;Check Connection Tool;Other;Interface").split(";");
+
+    showWdgtByName(chListData.at(row), chListNames.at(row), QIcon(listIcos.at(row)));
+//ui->trDevOperation->model()
+    TreeModel *modelDevOptTree { static_cast<TreeModel *>(ui->trDevOperation->model())};
+    if(modelDevOptTree)
+        ui->trDevOperation->setCurrentIndex(modelDevOptTree->index(row,0));
+
+
+}
+
+//-----------------------------------------------------------------------------------------------
 
 void StartExchange::on_trDevOperation_clicked(const QModelIndex &index)
 {
     if(index.isValid()){
-        if(true){
-            MatildaConfWidget *w = currentMatildaWidget();
-            if(w)
-                w->disableGlobalLblMessage(ui->lblPageMess);
-        }
+//        if(true){
+//            MatildaConfWidget *w = currentMatildaWidget();
+//            if(w)
+//                w->disableGlobalLblMessage(ui->lblPageMess);
+//        }
 
 
         const QString s = index.data(Qt::UserRole).toString();
@@ -177,19 +246,19 @@ void StartExchange::addWdgt2devStack(const QString &realPageName, const QString 
 
     const int row = chListData.indexOf(realPageName);
     switch(row){
-    case 0: w = new StartPagePoll( lDevInfo, gHelper, gSett4all, this); break;
-    case 1: w = new RelayWdgt( lDevInfo, gHelper, gSett4all, this); break;
+    case 0: w = createStartPagePoll(    lDevInfo, guiHelper, gSett4all, this); break;
+    case 1: w = createRelayWdgt(        lDevInfo, guiHelper, gSett4all, this); break;
 
-    case 2: w = new ZbyratorTasks( lDevInfo, gHelper, gSett4all, this); break;
-    case 3: w = new StatisticOfExchangeWdgt( lDevInfo, gHelper, gSett4all, this); break;
+    case 2: w = new ZbyratorTasks(      lDevInfo, guiHelper, gSett4all, this); break;
+    case 3: w = new StatisticOfExchangeWdgt( lDevInfo, guiHelper, gSett4all, this); break;
 
-    case 4: w = new MetersDateTime( lDevInfo, gHelper, gSett4all, this); break;
-    case 5: w = new SetMeterAddress( lDevInfo, gHelper, gSett4all, this); break;
+    case 4: w = createMetersDateTime(   lDevInfo, guiHelper, gSett4all, this); break;
+    case 5: w = new SetMeterAddress(    lDevInfo, guiHelper, gSett4all, this); break;
 
-    case 6: w = new CheckConnectionToolWdgt( lDevInfo, gHelper, gSett4all, this); break;
-    case 7: w = new ZbyratorService( lDevInfo, gHelper, gSett4all, this); break;
+    case 6: w = new CheckConnectionToolWdgt( lDevInfo, guiHelper, gSett4all, this); break;
+    case 7: w = new ZbyratorService(    lDevInfo, guiHelper, gSett4all, this); break;
 
-    case 8: w = new ZbyrIfaceSett( lDevInfo, gHelper, gSett4all, this); break;
+    case 8: w = createZbyrIfaceSett(      lDevInfo, guiHelper, gSett4all, this); break;
 
     }
 
@@ -217,7 +286,7 @@ void StartExchange::addWdgt2devStack(const QString &realPageName, const QString 
 
 //        w->setAccessibleName(realPageName);
 
-        w->setupGlobalLblMessage(ui->lblPageMess);
+//        w->setupGlobalLblMessage(ui->lblPageMess);
         QWidget *sa = StackWidgetHelper::addWdgtWithScrollArea(this, w, realPageName);
         ui->swDeviceOperations->addWidget(sa);
         ui->swDeviceOperations->setCurrentWidget(sa);

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>473</width>
-    <height>414</height>
+    <width>530</width>
+    <height>523</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,23 +15,75 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QPushButton" name="pbRestore">
+       <property name="text">
+        <string>Restore</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../res.qrc">
+         <normaloff>:/katynko/svg/view-refresh.svg</normaloff>:/katynko/svg/view-refresh.svg</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbSave">
+       <property name="text">
+        <string>Save</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../res.qrc">
+         <normaloff>:/katynko/svg/document-save.svg</normaloff>:/katynko/svg/document-save.svg</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_7">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <spacer name="horizontalSpacer_8">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QRadioButton" name="radioButton">
+      <widget class="QRadioButton" name="rbSerialPort">
        <property name="text">
         <string>Serial Port</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QRadioButton" name="radioButton_2">
+      <widget class="QRadioButton" name="rbTcpIp">
        <property name="text">
         <string>TCP/IP client</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QRadioButton" name="radioButton_3">
+      <widget class="QRadioButton" name="rbM2mService">
        <property name="text">
         <string>M2M Service</string>
        </property>
@@ -41,6 +93,12 @@
    </item>
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="currentIndex">
       <number>0</number>
      </property>
@@ -54,10 +112,24 @@
         </widget>
        </item>
        <item row="5" column="2" rowspan="2">
-        <widget class="QSpinBox" name="sbUartTimeout"/>
+        <widget class="QSpinBox" name="sbUartTimeout">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>59999</number>
+         </property>
+        </widget>
        </item>
        <item row="7" column="2">
-        <widget class="QSpinBox" name="sbUartblockTimeout"/>
+        <widget class="QSpinBox" name="sbUartblockTimeout">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>59999</number>
+         </property>
+        </widget>
        </item>
        <item row="8" column="2">
         <spacer name="verticalSpacer">
@@ -76,6 +148,10 @@
         <widget class="QToolButton" name="tbUpdateSerial">
          <property name="text">
           <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../res.qrc">
+           <normaloff>:/katynko/svg/view-refresh.svg</normaloff>:/katynko/svg/view-refresh.svg</iconset>
          </property>
         </widget>
        </item>
@@ -104,10 +180,17 @@
          <property name="text">
           <string/>
          </property>
+         <property name="icon">
+          <iconset resource="../res.qrc">
+           <normaloff>:/katynko/svg/view-refresh.svg</normaloff>:/katynko/svg/view-refresh.svg</iconset>
+         </property>
         </widget>
        </item>
        <item row="2" column="2">
         <widget class="QLineEdit" name="leDefaultPort">
+         <property name="maxLength">
+          <number>255</number>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -152,10 +235,21 @@
      <widget class="QWidget" name="page_2">
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="5" column="1">
-        <widget class="QSpinBox" name="sbTcpBlockTimeout"/>
+        <widget class="QSpinBox" name="sbTcpBlockTimeout">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>59999</number>
+         </property>
+        </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QLineEdit" name="leHost"/>
+        <widget class="QLineEdit" name="leHost">
+         <property name="maxLength">
+          <number>255</number>
+         </property>
+        </widget>
        </item>
        <item row="4" column="0">
         <widget class="QLabel" name="label_9">
@@ -165,14 +259,25 @@
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QSpinBox" name="spinBox"/>
+        <widget class="QSpinBox" name="sbTcpPort">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>65534</number>
+         </property>
+        </widget>
        </item>
        <item row="2" column="1">
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="pbTcpHistory">
            <property name="text">
             <string>History</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../res.qrc">
+             <normaloff>:/katynko/svg/edit-find.svg</normaloff>:/katynko/svg/edit-find.svg</iconset>
            </property>
           </widget>
          </item>
@@ -219,7 +324,14 @@
         </widget>
        </item>
        <item row="4" column="1">
-        <widget class="QSpinBox" name="sbTcpTimeout"/>
+        <widget class="QSpinBox" name="sbTcpTimeout">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>59999</number>
+         </property>
+        </widget>
        </item>
        <item row="1" column="0">
         <widget class="QLabel" name="label_7">
@@ -248,23 +360,35 @@
        <item row="1" column="1" colspan="3">
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
-          <widget class="QPushButton" name="pushButton_2">
+          <widget class="QPushButton" name="pbM2mHistory">
            <property name="text">
             <string>History</string>
            </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_3">
-           <property name="text">
-            <string>Edit</string>
+           <property name="icon">
+            <iconset resource="../res.qrc">
+             <normaloff>:/katynko/svg/edit-find.svg</normaloff>:/katynko/svg/edit-find.svg</iconset>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_4">
+          <widget class="QPushButton" name="pbM2mEdit">
+           <property name="text">
+            <string>Edit</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../res.qrc">
+             <normaloff>:/katynko/svg/document-edit.svg</normaloff>:/katynko/svg/document-edit.svg</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pbM2mAdd">
            <property name="text">
             <string>Add</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../res.qrc">
+             <normaloff>:/katynko/svg/draw-cross.svg</normaloff>:/katynko/svg/draw-cross.svg</iconset>
            </property>
           </widget>
          </item>
@@ -284,7 +408,14 @@
         </layout>
        </item>
        <item row="4" column="1" colspan="3">
-        <widget class="QSpinBox" name="sbM2mBlockTimeout"/>
+        <widget class="QSpinBox" name="sbM2mBlockTimeout">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>59999</number>
+         </property>
+        </widget>
        </item>
        <item row="0" column="0">
         <widget class="QLabel" name="label_8">
@@ -328,7 +459,14 @@
         </widget>
        </item>
        <item row="3" column="1" colspan="3">
-        <widget class="QSpinBox" name="sbM2mTimeout"/>
+        <widget class="QSpinBox" name="sbM2mTimeout">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>59999</number>
+         </property>
+        </widget>
        </item>
        <item row="2" column="0" colspan="4">
         <spacer name="horizontalSpacer_3">
@@ -348,6 +486,48 @@
     </widget>
    </item>
    <item>
+    <spacer name="horizontalSpacer_6">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="cbxUnknownPrtcl">
+     <property name="text">
+      <string>unknown protocol: process as data</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="cbxRecoverNI">
+     <property name="text">
+      <string>try to recover NI in an answer </string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widget" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>22</verstretch>
+      </sizepolicy>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_4">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_3"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
     <spacer name="verticalSpacer_2">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -362,6 +542,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../res.qrc"/>
+ </resources>
  <connections/>
 </ui>

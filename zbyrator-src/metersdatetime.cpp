@@ -2,6 +2,8 @@
 #include "ui_metersdatetime.h"
 #include "map-pgs/mapwidget.h"
 #include "src/matilda/settloader.h"
+#include "src/widgets/selectionchecker.h"
+#include "src/matilda/showmesshelper.h"
 
 MetersDateTime::MetersDateTime(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent) :
     ReferenceWidgetClass(lDevInfo, gHelper, gSett4all, parent),
@@ -22,10 +24,23 @@ void MetersDateTime::clearPage()
 
 }
 
-void MetersDateTime::setPageSett(const QVariantHash &h)
+void MetersDateTime::setPageSett(const MyListStringList &listRows, const QVariantMap &col2data, const QStringList &headerH, const QStringList &header, const bool &hasHeader)
 {
 
+    const QString currNi = headerH.contains("NI") ? TableViewHelper::getCellValueOfcurrentRow(ui->tvTable, headerH.indexOf("NI")) : "";
+
+    StandardItemModelHelper::append2model(listRows, col2data, headerH, header, hasHeader, model);
+
+    if(!currNi.isEmpty())
+        TableViewHelper::selectRowWithThisCell(ui->tvTable, currNi, headerH.indexOf("NI"));
+
+    ui->widget->setDisabled(listRows.isEmpty());
+
+    setHasDataFromRemoteDevice();
+
+    emit resizeTv2content(ui->tvTable);
 }
+
 
 void MetersDateTime::onModelChanged()
 {
@@ -34,9 +49,17 @@ void MetersDateTime::onModelChanged()
 
 void MetersDateTime::initPage()
 {
-    setupObjects(ui->tvTable, ui->tbFilter, ui->cbFilterMode, ui->leFilter, SETT_FILTERS_METERDATETIME);
-    GuiHelper::modelSetHorizontalHeaderItems(model, QStringList());
 
+    setupObjects(ui->tvTable, ui->tbFilter, ui->cbFilterMode, ui->leFilter, SETT_FILTERS_METERDATETIME);
+    StandardItemModelHelper::modelSetHorizontalHeaderItems(model, QStringList());
+
+    ui->widget_2->setEnabled(false);
+    ui->widget->setEnabled(false);
+
+    emit onReloadAllMeters();
+
+    SelectionChecker *tmr = new SelectionChecker(this);
+    tmr->setWatchTable(ui->tvTable, ui->widget_2);
 }
 
 void MetersDateTime::on_tbShowList_clicked()
@@ -86,4 +109,10 @@ void MetersDateTime::on_tbShowMap_clicked()
     }
 
     emit showMapEs(gHelper->getLastLang());
+}
+
+void MetersDateTime::on_tvTable_customContextMenuRequested(const QPoint &pos)
+{
+    gHelper->createCustomMenu(pos, ui->tvTable, (GuiHelper::ShowReset|GuiHelper::ShowExport|GuiHelper::ShowOnlyCopy), CLBRD_SMPL_PRXTBL, ShowMessHelper::matildaFileName(windowTitle()));
+
 }
