@@ -20,6 +20,14 @@
 #include "zbyrator-src/startexchange.h"
 #include "src/zbyrator-v2/metermanager.h"
 #include "zbyrator-src/zbyratorprocessmanager.h"
+#include "zbyrator-src/wdgt/addeditmacform.h"
+#include "src/matilda/guihelperdefines.h"
+#include "main-pgs/custommessagewidget.h"
+
+
+#include "main-pgs/scanipwidget.h"
+#include "src/matilda/classmanagerudpscanner.h"
+
 
 QcMainWindow::QcMainWindow(const QFont &font4log, const int &defFontPointSize,  QWidget *parent) :
     QMainWindow(parent),
@@ -104,6 +112,10 @@ void QcMainWindow::initializeZbyrator()
     connect(ui->stackedWidget, SIGNAL(currentChanged(int)), this, SLOT(onStackedWidgetCurrentChanged(int)) );
     connect(guiHelper, SIGNAL(addWdgt2stackWdgt(QWidget*,int,bool,QString,QString)), this ,SLOT(addWdgt2stackWdgt(QWidget*,int,bool,QString,QString)) );
 
+    connect(guiHelper, SIGNAL(showMess(QString)), this, SLOT(showMess(QString)));
+    connect(guiHelper, SIGNAL(showMessCritical(QString)), this, SLOT(showMess(QString)));
+    connect(guiHelper, SIGNAL(showMessExt(QString,int,QVariant)), this, SLOT(showMess(QString,int,QVariant)));
+
 //    connect(guiHelper, SIGNAL(addWdgt2stackWdgt(QWidget*,int)   ), this, SLOT(addWdgt2stackWdgt(QWidget*,int))  );
 //    connect(guiHelper, SIGNAL(loadDevList()                     ), this, SLOT(loadDevList())                    );
 
@@ -168,7 +180,7 @@ void QcMainWindow::addWdgt2stackWdgt(QWidget *w, int wdgtTag, bool oneShot, QStr
 {
     emit killOldWdgt();
 
-    QString wdgtName = QString("Wdgt4stack_%1").arg(wdgtTag);
+    const QString wdgtName = QString("Wdgt4stack_%1").arg(wdgtTag);
     for(int i = 1, iMax = ui->stackedWidget->count(); i < iMax; i++){
         if(ui->stackedWidget->widget(i)->accessibleName() == wdgtName){
             ui->stackedWidget->widget(i)->deleteLater();
@@ -212,6 +224,135 @@ void QcMainWindow::addWdgt2stackWdgt(QWidget *w, int wdgtTag, bool oneShot, QStr
         ui->stackedWidget->setCurrentWidget(sa);
     }
     emit addWdgt2history();
+}
+//---------------------------------------------------------------------
+void QcMainWindow::openEditMacProfileWdgt(bool isEditMode, QLineEdit *le)
+{
+    if(GuiHelper::stackContainsThisWdgtType(ui->stackedWidget, WDGT_TYPE_EDIT_OBJET_CONNECTION, true)){
+        emit setThisObjProfileName( (isEditMode && le) ? le->text() : "");
+
+    }else{
+
+        AddEditMacForm *w = new AddEditMacForm(metersListMedium->ifaceLoader, (le && isEditMode) ? le->text() : "", this);
+//        connect(this, SIGNAL(setThisMacAndObjName(QString,QString)), w, SLOT(setThisMacAndObjName(QString,QString)) );
+//        connect(this, SIGNAL(setThisObjNameIpPort(QString,QString,quint16)), w, SLOT(setThisObjNameIpPort(QString,QString,quint16)) );
+        connect(this, SIGNAL(setThisObjProfileName(QString)), w,SLOT(preapryPage(QString)) );
+
+        connect(w, SIGNAL(showMess(QString)), this, SLOT(showMess(QString)) );
+        connect(w, SIGNAL(openScanWdgt(int,IfaceSettLoader*)), this, SLOT(onScanClicked(int,IfaceSettLoader*)) );
+        if(le)
+            connect(w, SIGNAL(setLblTxt(QString)), le, SLOT(setText(QString)) );
+
+        addWdgt2stackWdgt(w, WDGT_TYPE_EDIT_OBJET_CONNECTION, false, tr("M2M profile"), ":/katynko/svg/irc-voice.svg");
+    }
+}
+
+//---------------------------------------------------------------------
+
+void QcMainWindow::showMess(QString mess)
+{
+    showMess(mess, CSTM_MB_INFORMATION);
+}
+
+//---------------------------------------------------------------------
+
+void QcMainWindow::showMessSmpl(QString mess)
+{
+    showMess(mess, CSTM_MB_INFORMATION);
+}
+
+//---------------------------------------------------------------------
+
+void QcMainWindow::showMessCritical(QString mess)
+{
+    showMess(mess, CSTM_MB_CRITICAL);
+}
+
+//---------------------------------------------------------------------
+
+void QcMainWindow::showMess(QString mess, int messType, const QVariant customData)
+{
+    if(GuiHelper::stackContainsThisWdgtType(ui->stackedWidget, WDGT_TYPE_CUSTOMMESSAGEWIDGET))
+        emit killOldWdgt();
+
+    CustomMessageWidget *w = new CustomMessageWidget(messType, mess, this);
+    if(customData.isValid())
+        w->setCustomData(customData);//:/katynko/svg2/lc_extendedhelp.svg
+    addWdgt2stackWdgt(w, WDGT_TYPE_CUSTOMMESSAGEWIDGET, true, tr("Message"), ":/katynko/svg2/lc_extendedhelp.svg");
+}
+
+//---------------------------------------------------------------------
+
+void QcMainWindow::onScanClicked(const int &mode, IfaceSettLoader *connWdgt)
+{
+    if(!GuiHelper::stackContainsThisWdgtType(ui->stackedWidget, WDGT_TYPE_SCANIPWIDGET)){
+
+        ScanIpWidget *w = new ScanIpWidget(mode, this);// connWdgt->getTabWidget_2(), this);
+        if(connWdgt){
+            connect(w, SIGNAL(setThisIp(QString))       , connWdgt, SLOT(setThisIp(QString)) );
+            connect(w, SIGNAL(setThisObjName(QString))  , connWdgt, SLOT(setThisObjName(QString)) );
+            connect(w, SIGNAL(setThisPort(int))         , connWdgt, SLOT(setThisPort(int)) );
+            connect(w, SIGNAL(setThisMac(QString))      , connWdgt, SLOT(setThisMac(QString)) );
+            connect(w, SIGNAL(setThisObjName_2(QString)), connWdgt, SLOT(setThisObjName_2(QString)) );
+            connect(w, SIGNAL(setThisMode(int))         , connWdgt, SLOT(setThisMode(int)) );
+        }
+
+        connect(w, SIGNAL(showMess(QString))        , this, SLOT(appendShowMess(QString)) );
+
+        ClassManagerUdpScanner *classManager = new ClassManagerUdpScanner;
+
+        QThread *t = new QThread;
+        classManager->moveToThread(t);
+
+        connect(t, SIGNAL(started()) , classManager, SLOT(initializeScanner()) );
+        connect(t, SIGNAL(finished()), t      , SLOT(deleteLater())       );
+        connect(classManager, SIGNAL(destroyed(QObject*)), t, SLOT(quit()) );
+
+
+        connect(w, SIGNAL(startUdpScan(quint16,bool))   , classManager, SIGNAL(startUdpScan(quint16,bool)) );
+        connect(w, SIGNAL(stopUdpScan())                , classManager, SIGNAL(stopUdpScan())              );
+        connect(w, SIGNAL(onCheckTcpChanged(bool))      , classManager, SIGNAL(onCheckTcpChanged(bool))       );
+        connect(w, SIGNAL(destroyed(QObject*))          , classManager, SLOT(kickMe()) );
+
+
+        connect(classManager, SIGNAL(findedDevice(QString,QString,QString)), w, SLOT(findedDevice(QString,QString,QString)) );
+        connect(classManager, SIGNAL(scanStarted()                        ), w, SLOT(onScanStarted())                       );
+        connect(classManager, SIGNAL(scanFinished()                       ), w, SLOT(onScanStopped())                       );
+        connect(classManager, SIGNAL(onUserOnline(QString,QString,QString)), w, SLOT(onUserOnline(QString,QString,QString)) );
+
+        connect(classManager, SIGNAL(showMess(QString)                    ), w, SIGNAL(showMess(QString)) );
+
+
+        t->start();
+
+        addWdgt2stackWdgt(w, WDGT_TYPE_SCANIPWIDGET, false, tr("Scan"), ":/katynko/svg/irc-voice.svg");
+    }else{
+        emit addWdgt2history();
+
+    }
+}
+
+void QcMainWindow::appendShowMess(QString m)
+{
+
+}
+
+void QcMainWindow::appendShowMessPlain(QString m)
+{
+
+}
+
+void QcMainWindow::onActImitatorClck()
+{
+    QAction *a = qobject_cast<QAction*>(sender());
+    if(a && a->data().toInt() > 0){
+        const int wdgtType = a->data().toInt();
+        if(!GuiHelper::stackContainsThisWdgtType(ui->stackedWidget, wdgtType, true))
+            a->deleteLater();
+        else
+            emit addWdgt2history();
+
+    }
 }
 
 //---------------------------------------------------------------------
@@ -370,6 +511,13 @@ void QcMainWindow::createMeterManager()
     connect(metersListMedium, &ZbyrMeterListMedium::sendMeAlistOfMeters , zbyrator, &MeterManager::sendMeAlistOfMeters  );
     connect(metersListMedium, &ZbyrMeterListMedium::command4dev         , zbyrator, &MeterManager::command4dev          );
 
+    connect(metersListMedium, &ZbyrMeterListMedium::setThisIfaceSett    , zbyrator, &MeterManager::setThisIfaceSett     );
+    connect(metersListMedium, &ZbyrMeterListMedium::setPollSaveSettings , zbyrator, &MeterManager::setPollSaveSettings  );
+
+
+    connect(metersListMedium, SIGNAL(showMess(QString)), this, SLOT(showMess(QString)) );
+
+    connect(zbyrator, SIGNAL(checkThisMeterInfo(UniversalMeterSett)), metersListMedium, SIGNAL(onReloadAllMeters()) );
 
     connect(zbyrator, &MeterManager::onAllMeters    , metersListMedium, &ZbyrMeterListMedium::onAllMeters       );
     connect(zbyrator, &MeterManager::onAlistOfMeters, metersListMedium, &ZbyrMeterListMedium::onAlistOfMeters   );
@@ -384,6 +532,9 @@ MatildaConfWidget *QcMainWindow::createStartExchangeWdgt(LastDevInfo *lDevInfo, 
 {
     StartExchange *w = new StartExchange(lDevInfo, gHelper, gSett4all, parent);
     w->metersListMedium = metersListMedium;
+
+    connect(w, SIGNAL(openEditMacProfileWdgt(bool,QLineEdit*)), this, SLOT(openEditMacProfileWdgt(bool,QLineEdit*)));
+
     return w;
 }
 

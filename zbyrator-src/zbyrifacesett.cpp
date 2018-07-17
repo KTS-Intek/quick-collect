@@ -3,6 +3,8 @@
 #include "src/matilda/serialporthelper.h"
 
 #include "zbyrator-src/wdgt/defserialdialog.h"
+#include <QCompleter>
+
 
 ZbyrIfaceSett::ZbyrIfaceSett(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent) :
     MatildaConfWidget(lDevInfo, gHelper, gSett4all, parent),
@@ -38,18 +40,25 @@ QVariantHash ZbyrIfaceSett::getPageSett(bool &ok, QString &mess, const bool &is4
 {
     Q_UNUSED(is4copy);
     QVariantHash h;
-    h.insert("ifaceMode"    , ui->stackedWidget->currentIndex());
-    h.insert("uartManual"   , !ui->cbxAutoUartPort->isChecked());
-    h.insert("lastUart"     , ui->cbxSerialPort->currentText() );
-    h.insert("baudRate"     , ui->cbxBaudRate->currentText());
-    h.insert("uartTimeout"  , ui->sbUartTimeout->value());
-    h.insert("uartBlockTimeout", ui->sbUartblockTimeout->value());
-    h.insert("tcpTimeout"   , ui->sbTcpTimeout->value());
-    h.insert("tcpBlcokTimeout", ui->sbTcpBlockTimeout->value());
-    h.insert("m2mTimeout"   , ui->sbM2mTimeout->value());
-    h.insert("m2mBlockTimeout", ui->sbM2mBlockTimeout->value());
+    h.insert("ifaceMode"        , ui->stackedWidget->currentIndex() );
+    h.insert("uartManual"       , !ui->cbxAutoUartPort->isChecked() );
+    h.insert("lastUart"         , ui->cbxSerialPort->currentText()  );
+    h.insert("baudRate"         , ui->cbxBaudRate->currentText()    );
+    h.insert("uartTimeout"      , ui->sbUartTimeout->value()        );
+    h.insert("uartBlockTimeout" , ui->sbUartblockTimeout->value()   );
+    h.insert("tcpTimeout"       , ui->sbTcpTimeout->value()         );
+    h.insert("tcpBlcokTimeout"  , ui->sbTcpBlockTimeout->value()    );
+    h.insert("m2mTimeout"       , ui->sbM2mTimeout->value()         );
+    h.insert("m2mBlockTimeout"  , ui->sbM2mBlockTimeout->value()    );
     h.insert("unknownProtocolAsData", ui->cbxUnknownPrtcl->isChecked());
-    h.insert("recoverNI"    , ui->cbxRecoverNI->isChecked());
+    h.insert("recoverNI"        , ui->cbxRecoverNI->isChecked());
+
+    h.insert("tcpHost"          , ui->leHost->text()                );
+
+    h.insert("m2mProfile"       , ui->leM2mProfile->text()          );
+
+    h.insert("defUart"          , ui->leDefaultPort->text());
+
 
     mess.clear();
     ok = true;
@@ -70,6 +79,7 @@ void ZbyrIfaceSett::initPage()
     ui->rbSerialPort->setChecked(true);
     ui->stackedWidget->setCurrentIndex(0);
 
+    connect(ui->pbCancel, SIGNAL(clicked(bool)), this, SIGNAL(closeThisPage()) );
 
 
     connect(ui->rbSerialPort    , SIGNAL(clicked(bool)), this, SLOT(onRbClicked()) );
@@ -99,6 +109,7 @@ void ZbyrIfaceSett::setPageSett(QVariantHash h)
 
     setCbxIndx(ui->cbxSerialPort, h.value("lastUart").toString(), "rrr");
     setCbxIndx(ui->cbxBaudRate, h.value("baudRate").toString(), "9600");
+    ui->leDefaultPort->setText(h.value("defUart").toString());
 
     ui->sbUartTimeout->setValue(h.value("uartTimeout", 11000).toInt());
     ui->sbUartblockTimeout->setValue(h.value("uartBlockTimeout", 300).toInt());
@@ -113,8 +124,20 @@ void ZbyrIfaceSett::setPageSett(QVariantHash h)
     ui->cbxUnknownPrtcl->setChecked(h.value("unknownProtocolAsData").toBool());
     ui->cbxRecoverNI->setChecked(h.value("recoverNI").toBool());
 
+    ui->leHost->setText(h.value("tcpHost").toString());
+    ui->leM2mProfile->setText(h.value("m2mProfile").toString());
+
+
     on_cbxAutoUartPort_clicked(ui->cbxAutoUartPort->isChecked());
     onRbClicked();
+
+}
+
+void ZbyrIfaceSett::setTcpClientCompliter(QStringList tcpServers)
+{
+    QCompleter *stringCompl = new QCompleter(tcpServers, this);
+    stringCompl->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->leHost->setCompleter(stringCompl);
 
 }
 
@@ -185,4 +208,26 @@ void ZbyrIfaceSett::on_tbUpdateDefSerial_clicked()
         dialog->exec();
         dialog->deleteLater();
     }
+}
+
+
+void ZbyrIfaceSett::on_pbM2mEdit_clicked()
+{
+    emit openEditMacProfileWdgt(true, ui->leM2mProfile);
+}
+
+void ZbyrIfaceSett::on_pbM2mAdd_clicked()
+{
+    emit openEditMacProfileWdgt(false, ui->leM2mProfile);
+}
+
+
+void ZbyrIfaceSett::on_pbTcpHistory_clicked()
+{
+    emit sendMeTheTcpHistory(ui->leHost);
+}
+
+void ZbyrIfaceSett::on_pbM2mHistory_clicked()
+{
+    emit sendMeTheM2mHistory(ui->leM2mProfile);
 }

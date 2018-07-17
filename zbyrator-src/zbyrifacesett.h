@@ -25,11 +25,21 @@ signals:
 
     void setNewSettings(QVariantHash h);
 
+    void closeThisPage();
+
+    void sendMeTheTcpHistory(QLineEdit *le);
+
+    void sendMeTheM2mHistory(QLineEdit *le);
+
+
+    void openEditMacProfileWdgt(bool isEditMode, QLineEdit *le );
+
 public slots:
     void initPage();
 
     void setPageSett(QVariantHash h);
 
+    void setTcpClientCompliter(QStringList tcpServers);
 
 private slots:
     void on_tbUpdateSerial_clicked();
@@ -43,6 +53,16 @@ private slots:
     void on_cbxAutoUartPort_clicked(bool checked);
 
     void on_tbUpdateDefSerial_clicked();
+
+
+    void on_pbM2mEdit_clicked();
+
+    void on_pbM2mAdd_clicked();
+
+
+    void on_pbTcpHistory_clicked();
+
+    void on_pbM2mHistory_clicked();
 
 private:
     Ui::ZbyrIfaceSett *ui;

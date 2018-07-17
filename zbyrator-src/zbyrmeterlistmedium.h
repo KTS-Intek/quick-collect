@@ -2,14 +2,18 @@
 #define ZBYRMETERLISTMEDIUM_H
 
 #include <QObject>
+#include <QLineEdit>
 #include "src/zbyrator-v2/zbyratordatatypehelper.h"
 #include "src/matilda/classmanagertypes.h"
+#include "zbyrator-src/src/ifacesettloader.h"
 
 class ZbyrMeterListMedium : public QObject
 {
     Q_OBJECT
 public:
     explicit ZbyrMeterListMedium(QObject *parent = nullptr);
+
+    IfaceSettLoader *ifaceLoader;
 
     QVariantHash getActiveIfaceSett() const;
 
@@ -43,6 +47,15 @@ signals:
 
     void command4dev(quint16 command, QString args);//pollCode args
 
+    void setTcpClientCompliter(QStringList tcpServers);
+
+    //to mainwindow
+    void openEditMacProfileWdgt(bool isEditMode, QLineEdit *le );
+    void showMess(QString s);
+
+    void setThisIfaceSett(QVariantMap interfaceSettings);
+    void setPollSaveSettings(quint16 meterRetryMax, quint16 meterRetryMaxFA, bool hardAddrsn, bool enableW4E, bool corDTallow, qint32 messCountBeforeReady, qint32 messCountAfter, qint32 corDTintrvl);
+
 public slots:
     void onAllMeters(UniversalMeterSettList allMeters);
 
@@ -58,9 +71,16 @@ public slots:
 
     void sendMeIfaceSett();
 
+    void openTcpServerDlg(QLineEdit *le);
+
+    void openM2mDlg(QLineEdit *le);
+
+
     void setNewSettings(QVariantHash h);
 
     void command4devSlot(quint16 command, QString args);//pollCode args
+
+    void onListChanged(const QStringList &list, const int &tag);
 
 private:
     struct LastList2pages
@@ -78,6 +98,10 @@ private:
 
     MyListStringList getRowsList(QMap<QString, QStringList> &mapPage, const QStringList &listNiNotchanged, const QMap<QString, QStringList> &mapPageL, const QStringList listNI, const int &rowsCounter);
 
+    void openIpHistoryDlg(const int &dlgMode, QLineEdit *le);
+
+
+    bool updateInterfaceSettings();
 
     QVariantList lastMeterList;
 

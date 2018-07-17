@@ -24,6 +24,7 @@ public:
 public slots:
     void initPage();
 
+    void unlockWdgts();
 
 
     void showWdgtByName(const QString &wdgtAccessibleName, const QString &wdgtTitle);
@@ -36,6 +37,8 @@ signals:
     void stopExchange();
 
     void onReloadAllMeters();
+
+    void openEditMacProfileWdgt(bool isEditMode, QLineEdit *le );
 
 private slots:
 

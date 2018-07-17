@@ -42,6 +42,7 @@ signals:
 
 
 
+    void setThisObjProfileName(QString profileName);
 
 public slots:
     void initializeZbyrator();
@@ -53,6 +54,25 @@ public slots:
     void onActivateThisWdgt(QString tabData);
 
     void addWdgt2stackWdgt(QWidget *w, int wdgtTag, bool oneShot, QString actTxt, QString actIco);
+
+    void openEditMacProfileWdgt(bool isEditMode, QLineEdit *le );
+
+
+    void showMess(QString mess);
+
+    void showMessSmpl(QString mess);
+
+    void showMessCritical(QString mess);
+
+    void showMess(QString mess, int messType, const QVariant customData = QVariant());
+
+    void onScanClicked(const int &mode, IfaceSettLoader *connWdgt);
+
+    void appendShowMess(QString m);
+
+    void appendShowMessPlain(QString m);
+
+    void onActImitatorClck();
 
 private slots:
 

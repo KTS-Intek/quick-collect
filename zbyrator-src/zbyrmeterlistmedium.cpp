@@ -9,6 +9,9 @@
 #include "src/matilda/standarditemmodelhelper.h"
 
 #include "src/matilda/settloader.h"
+#include "zbyrator-src/wdgt/compliterlistdialog.h"
+#include "src/matilda/serialporthelper.h"
+#include "src/shared/networkconverthelper.h"
 
 //---------------------------------------------------------------------
 
@@ -19,6 +22,9 @@ ZbyrMeterListMedium::ZbyrMeterListMedium(QObject *parent) : QObject(parent)
     t->setSingleShot(111);
     connect(this, SIGNAL(startTmrSaveLater()), t, SLOT(start())) ;
     connect(t, SIGNAL(timeout()), this, SLOT(onSaveLater()) );
+
+    ifaceLoader = new IfaceSettLoader(this);
+
 }
 
 //---------------------------------------------------------------------
@@ -158,6 +164,19 @@ void ZbyrMeterListMedium::onAlistOfMeters(quint8 meterType, UniversalMeterSettLi
 void ZbyrMeterListMedium::sendMeIfaceSett()
 {
     emit setIfaceSett(getIfaceSett());
+    emit setTcpClientCompliter(SettLoader::loadSett(SETT_ZBRTR_TCP_HISTORY).toStringList());
+
+}
+//---------------------------------------------------------------------
+void ZbyrMeterListMedium::openTcpServerDlg(QLineEdit *le)
+{
+    openIpHistoryDlg(0, le);
+}
+//---------------------------------------------------------------------
+
+void ZbyrMeterListMedium::openM2mDlg(QLineEdit *le)
+{
+    openIpHistoryDlg(1, le);
 }
 
 //---------------------------------------------------------------------
@@ -166,13 +185,25 @@ void ZbyrMeterListMedium::setNewSettings(QVariantHash h)
 {
     SettLoader::saveSett(SETT_ZBRTR_IFACE_SETT, h);
 }
-
+//---------------------------------------------------------------------
 void ZbyrMeterListMedium::command4devSlot(quint16 command, QString args)
 {
   //reload interface settings
-
+    updateInterfaceSettings();
 
     emit command4dev(command, args);
+}
+
+//---------------------------------------------------------------------
+
+void ZbyrMeterListMedium::onListChanged(const QStringList &list, const int &tag)
+{
+    switch (tag) {
+    case 0: SettLoader::saveSett(SETT_ZBRTR_TCP_HISTORY, list); emit setTcpClientCompliter(list); break;
+    case 1:
+    case 2: IfaceSettLoader::saveOnlyThisProfiles(list);   break;
+
+    }
 }
 
 //---------------------------------------------------------------------
@@ -258,7 +289,9 @@ QStringList ZbyrMeterListMedium::addDateTimeRow(const UniversalMeterSett &m)
     return dateTimeRow;
 
 }
+
 //---------------------------------------------------------------------
+
 MyListStringList ZbyrMeterListMedium::getRowsList(QMap<QString, QStringList> &mapPage, const QStringList &listNiNotchanged, const QMap<QString, QStringList> &mapPageL, const QStringList listNI, const int &rowsCounter)
 {
     MyListStringList listRows;
@@ -269,6 +302,113 @@ MyListStringList ZbyrMeterListMedium::getRowsList(QMap<QString, QStringList> &ma
 
     mapPage = mapPageL;
     return listRows;
+}
+
+//---------------------------------------------------------------------
+
+void ZbyrMeterListMedium::openIpHistoryDlg(const int &dlgMode, QLineEdit *le)
+{
+    QStringList ipListHistory, icoList;
+    int colCount = 1;
+    QString separ = "\t";
+
+    switch(dlgMode){
+    case 0: ipListHistory = SettLoader::loadSett(SETT_ZBRTR_TCP_HISTORY).toStringList(); separ = "\n"; break;
+    case 1: ipListHistory = IfaceSettLoader::getProfileNames(icoList); colCount = 3; break;
+    case 2: ipListHistory = IfaceSettLoader::getProfileNames(icoList); colCount = 3; break;
+
+    }
+
+    CompliterListDialog *dialog = new CompliterListDialog(ipListHistory, dlgMode, icoList, colCount, separ, true);
+
+    if(le)
+        connect(dialog, SIGNAL(selectedString(QString)), le, SLOT(setText(QString)) );
+
+    connect(dialog, SIGNAL(onListChanged(QStringList,int)), SLOT(onListChanged(QStringList,int)) );
+    dialog->exec();
+    dialog->deleteLater();
+}
+
+bool ZbyrMeterListMedium::updateInterfaceSettings()
+{
+    const QVariantHash h = getIfaceSett();
+    ifaceLoader->addThisDev2connPage(IfaceSettLoader::getProfileSett(h.value("m2mProfile").toString()));
+
+//     QStringList listOfAutSerials, QString ipOrUartName, int tcpPortOrBaudRate, int timeoutSec, int blockTimeoutSec, QVariantHash profileSett
+    QVariantMap interfaceSettings;
+
+    interfaceSettings.insert("ifaceMode", h.value("ifaceMode"));
+
+    QString keyTimeout, keyTimeoutBlock;
+    switch(h.value("ifaceMode").toInt()){
+    case 1 :{
+        keyTimeout = "tcpTimeout";
+        keyTimeoutBlock = "tcpBlcokTimeout";
+
+        const HostNamePort host = NetworkConvertHelper::getHostAndPortFromLine(h.value("tcpHost").toString(), 8989);
+        if(host.hostName.isEmpty()){
+            emit showMess(tr("Can't find the host address"));
+            return false;
+        }
+
+        interfaceSettings.insert("hostName", host.hostName);
+        interfaceSettings.insert("port", host.port);
+
+
+        break;}
+    case 2 :{
+        QVariantHash hash = IfaceSettLoader::getProfileSett(h.value("m2mProfile").toString());
+
+        if(hash.isEmpty()){
+            emit showMess(tr("Can't find the M2M profile"));
+            return false;
+        }
+
+        hash.insert("t", h.value("m2mTimeout", 11000).toInt() / 1000 );
+
+        interfaceSettings.insert("m2mProfile", hash);
+        keyTimeout = "m2mTimeout";
+        keyTimeoutBlock = "m2mBlockTimeout";
+         break;}
+    default:{
+        const QStringList uarts = SerialPortHelper::uartList();
+
+        if(uarts.isEmpty()){
+            emit showMess(tr("Can't find any serial port"));
+            return false;
+        }
+
+        if(h.value("uartManual").toBool() && !uarts.contains(h.value("lastUart").toString())){
+            emit showMess(tr("Can't find the serial port"));
+            return false;
+        }
+
+        if(h.value("uartManual").toBool()){
+            if(!uarts.contains(h.value("lastUart").toString())){
+                emit showMess(tr("Can't find the serial port"));
+                return false;
+            }
+            interfaceSettings.insert("uart", h.value("lastUart").toString());
+        }else{
+            interfaceSettings.insert("uarts", uarts);
+            if(uarts.contains(h.value("defUart").toString()))
+                interfaceSettings.insert("uart", h.value("defUart").toString());
+        }
+
+        interfaceSettings.insert("baudRate", h.value("baudRate"));
+
+        keyTimeout = "uartTimeout";
+        keyTimeoutBlock = "uartBlockTimeout";
+        break;}
+    }
+
+    interfaceSettings.insert("timeoutMsec", h.value(keyTimeout, 11000));
+    interfaceSettings.insert("blockTimeout", h.value(keyTimeoutBlock, 300));
+
+    emit setThisIfaceSett(interfaceSettings);
+    emit setPollSaveSettings(3, 2, false, false, true, 11, 55, 33);
+
+    return true;
 }
 
 

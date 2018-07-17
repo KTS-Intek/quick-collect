@@ -82,7 +82,7 @@
           </property>
           <property name="icon">
            <iconset resource="../res.qrc">
-            <normaloff>:/img/img/svg/network-disconnect.svg</normaloff>:/img/img/svg/network-disconnect.svg</iconset>
+            <normaloff>:/katynko/svg/network-disconnect.svg</normaloff>:/katynko/svg/network-disconnect.svg</iconset>
           </property>
          </widget>
         </item>
@@ -93,7 +93,7 @@
           </property>
           <property name="icon">
            <iconset resource="../res.qrc">
-            <normaloff>:/img/img/svg/network-connect.svg</normaloff>:/img/img/svg/network-connect.svg</iconset>
+            <normaloff>:/katynko/svg/network-connect.svg</normaloff>:/katynko/svg/network-connect.svg</iconset>
           </property>
          </widget>
         </item>

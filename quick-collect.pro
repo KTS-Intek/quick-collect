@@ -39,6 +39,9 @@ DEFINES += IS_ZBYRATOR
 DEFINES += VERSION_4_PC
 DEFINES += DISABLE_METERSCHEDULER
 DEFINES += HASSERIALLIB
+DEFINES += ENABLE_EXTSUPPORT_OF_IFACES
+DEFINES += DISABLE_UART_PRIORITY
+
 
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -76,7 +79,6 @@ SOURCES += \
     src/shared/sharedmemoprotocolhelper.cpp \
     src/meter/numberconvertation.cpp \
     matilda-bbb-src/shared/ifacemanagerhelper.cpp \
-    src/shared/networkconverthelper.cpp \
     src/shared/sharedmemohelper.cpp \
     zbyrator-src/createtoolbar.cpp \
     src/shared/stackwidgethelper.cpp \
@@ -181,7 +183,20 @@ SOURCES += \
     src/matilda/listviewhelper.cpp \
     zbyrator-src/src/zbyrtableheaders.cpp \
     src/widgets/selectionchecker.cpp \
-    zbyrator-src/wdgt/defserialdialog.cpp
+    zbyrator-src/wdgt/defserialdialog.cpp \
+    zbyrator-src/wdgt/compliterlistdialog.cpp \
+    zbyrator-src/wdgt/addeditmacform.cpp \
+    zbyrator-src/src/ifacesettloader.cpp \
+    main-pgs/custommessagewidget.cpp \
+    src/shared/escwidget.cpp \
+    main-pgs/scanipwidget.cpp \
+    src/matilda/classmanagerudpscanner.cpp \
+    src/matilda/udpscanner.cpp \
+    src/matilda/udpscannertcpsocket.cpp \
+    src/shared/networkconverthelper.cpp \
+    src/m2m-service/svahaserviceconnector.cpp \
+    src/m2m-service/svahasocket.cpp \
+    src/emb/checkcurrport.cpp
 
 
 HEADERS += \
@@ -215,7 +230,6 @@ HEADERS += \
     src/shared/sharedmemoprotocolhelper.h \
     src/meter/numberconvertation.h \
     matilda-bbb-src/shared/ifacemanagerhelper.h \
-    src/shared/networkconverthelper.h \
     src/shared/sharedmemohelper.h \
     zbyrator-src/createtoolbar.h \
     src/shared/stackwidgethelper.h \
@@ -328,7 +342,20 @@ HEADERS += \
     src/matilda/listviewhelper.h \
     zbyrator-src/src/zbyrtableheaders.h \
     src/widgets/selectionchecker.h \
-    zbyrator-src/wdgt/defserialdialog.h
+    zbyrator-src/wdgt/defserialdialog.h \
+    zbyrator-src/wdgt/compliterlistdialog.h \
+    zbyrator-src/wdgt/addeditmacform.h \
+    zbyrator-src/src/ifacesettloader.h \
+    main-pgs/custommessagewidget.h \
+    src/shared/escwidget.h \
+    main-pgs/scanipwidget.h \
+    src/matilda/classmanagerudpscanner.h \
+    src/matilda/udpscanner.h \
+    src/matilda/udpscannertcpsocket.h \
+    src/shared/networkconverthelper.h \
+    src/m2m-service/svahaserviceconnector.h \
+    src/m2m-service/svahasocket.h \
+    src/emb/checkcurrport.h
 
 FORMS += \
         qcmainwindow.ui \
@@ -366,7 +393,11 @@ FORMS += \
     zbyrator-src/zbyrifacesett.ui \
     dataconcetrator-pgs/zbyratortasks.ui \
     info-pgs/statisticofexchangewdgt.ui \
-    zbyrator-src/wdgt/defserialdialog.ui
+    zbyrator-src/wdgt/defserialdialog.ui \
+    zbyrator-src/wdgt/compliterlistdialog.ui \
+    zbyrator-src/wdgt/addeditmacform.ui \
+    main-pgs/custommessagewidget.ui \
+    main-pgs/scanipwidget.ui
 
 RESOURCES += \
     font.qrc \

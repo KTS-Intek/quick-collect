@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>530</width>
-    <height>523</height>
+    <width>631</width>
+    <height>490</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,6 +16,17 @@
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QPushButton" name="pbCancel">
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../res.qrc">
+         <normaloff>:/katynko/svg/dialog-cancel.svg</normaloff>:/katynko/svg/dialog-cancel.svg</iconset>
+       </property>
+      </widget>
+     </item>
      <item>
       <widget class="QPushButton" name="pbRestore">
        <property name="text">
@@ -100,34 +111,38 @@
       </sizepolicy>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="page">
       <layout class="QGridLayout" name="gridLayout">
        <item row="5" column="0">
         <widget class="QLabel" name="label_2">
          <property name="text">
-          <string>Timeout [msec]</string>
+          <string>Timeout</string>
          </property>
         </widget>
        </item>
-       <item row="5" column="2" rowspan="2">
-        <widget class="QSpinBox" name="sbUartTimeout">
-         <property name="minimum">
-          <number>1</number>
+       <item row="5" column="4" rowspan="2">
+        <spacer name="horizontalSpacer_11">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
          </property>
-         <property name="maximum">
-          <number>59999</number>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
          </property>
-        </widget>
+        </spacer>
        </item>
-       <item row="7" column="2">
-        <widget class="QSpinBox" name="sbUartblockTimeout">
-         <property name="minimum">
-          <number>1</number>
+       <item row="2" column="4">
+        <widget class="QToolButton" name="tbUpdateDefSerial">
+         <property name="text">
+          <string/>
          </property>
-         <property name="maximum">
-          <number>59999</number>
+         <property name="icon">
+          <iconset resource="../res.qrc">
+           <normaloff>:/katynko/svg/view-refresh.svg</normaloff>:/katynko/svg/view-refresh.svg</iconset>
          </property>
         </widget>
        </item>
@@ -144,7 +159,21 @@
          </property>
         </spacer>
        </item>
-       <item row="1" column="3">
+       <item row="3" column="0" colspan="2">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Speed [baud]</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0" rowspan="2">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Block timeout</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="4">
         <widget class="QToolButton" name="tbUpdateSerial">
          <property name="text">
           <string/>
@@ -155,13 +184,20 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="2">
-        <widget class="QComboBox" name="cbxBaudRate"/>
+       <item row="5" column="2" rowspan="2">
+        <widget class="QSpinBox" name="sbUartTimeout">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>59999</number>
+         </property>
+        </widget>
        </item>
-       <item row="6" column="0" rowspan="2">
-        <widget class="QLabel" name="label_3">
+       <item row="0" column="0" colspan="5">
+        <widget class="QCheckBox" name="cbxAutoUartPort">
          <property name="text">
-          <string>Block timeout [msec]</string>
+          <string>Auto detect a coordinator</string>
          </property>
         </widget>
        </item>
@@ -172,34 +208,13 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="2">
-        <widget class="QComboBox" name="cbxSerialPort"/>
-       </item>
-       <item row="2" column="3">
-        <widget class="QToolButton" name="tbUpdateDefSerial">
-         <property name="text">
-          <string/>
+       <item row="7" column="2">
+        <widget class="QSpinBox" name="sbUartblockTimeout">
+         <property name="minimum">
+          <number>1</number>
          </property>
-         <property name="icon">
-          <iconset resource="../res.qrc">
-           <normaloff>:/katynko/svg/view-refresh.svg</normaloff>:/katynko/svg/view-refresh.svg</iconset>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="2">
-        <widget class="QLineEdit" name="leDefaultPort">
-         <property name="maxLength">
-          <number>255</number>
-         </property>
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0" colspan="2">
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>Speed [baud]</string>
+         <property name="maximum">
+          <number>59999</number>
          </property>
         </widget>
        </item>
@@ -210,7 +225,63 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="0" colspan="4">
+       <item row="5" column="3">
+        <widget class="QLabel" name="label_17">
+         <property name="text">
+          <string>[msec]</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="3">
+        <widget class="QLabel" name="label_18">
+         <property name="text">
+          <string>[msec]</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2" colspan="2">
+        <widget class="QComboBox" name="cbxBaudRate">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="sizeAdjustPolicy">
+          <enum>QComboBox::AdjustToContents</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2" colspan="2">
+        <widget class="QLineEdit" name="leDefaultPort">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maxLength">
+          <number>255</number>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2" colspan="2">
+        <widget class="QComboBox" name="cbxSerialPort">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="sizeAdjustPolicy">
+          <enum>QComboBox::AdjustToContents</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0" colspan="5">
         <spacer name="horizontalSpacer_5">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -223,18 +294,11 @@
          </property>
         </spacer>
        </item>
-       <item row="0" column="0" colspan="4">
-        <widget class="QCheckBox" name="cbxAutoUartPort">
-         <property name="text">
-          <string>Auto detect a coordinator</string>
-         </property>
-        </widget>
-       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="page_2">
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="5" column="1">
+       <item row="6" column="1">
         <widget class="QSpinBox" name="sbTcpBlockTimeout">
          <property name="minimum">
           <number>1</number>
@@ -244,31 +308,27 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="leHost">
-         <property name="maxLength">
-          <number>255</number>
+       <item row="7" column="1">
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
          </property>
-        </widget>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>62</height>
+          </size>
+         </property>
+        </spacer>
        </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="label_9">
+       <item row="6" column="2">
+        <widget class="QLabel" name="label_16">
          <property name="text">
-          <string>Timeout [msec]</string>
+          <string>[msec]</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
-        <widget class="QSpinBox" name="sbTcpPort">
-         <property name="minimum">
-          <number>1</number>
-         </property>
-         <property name="maximum">
-          <number>65534</number>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
+       <item row="1" column="1" colspan="3">
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
           <widget class="QPushButton" name="pbTcpHistory">
@@ -296,26 +356,6 @@
          </item>
         </layout>
        </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="label_10">
-         <property name="text">
-          <string>Block timeout [msec]</string>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="1">
-        <spacer name="verticalSpacer_3">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>62</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
        <item row="0" column="0">
         <widget class="QLabel" name="label_6">
          <property name="text">
@@ -323,24 +363,7 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
-        <widget class="QSpinBox" name="sbTcpTimeout">
-         <property name="minimum">
-          <number>1</number>
-         </property>
-         <property name="maximum">
-          <number>59999</number>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_7">
-         <property name="text">
-          <string>Port</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0" colspan="2">
+       <item row="4" column="0" colspan="4">
         <spacer name="horizontalSpacer_4">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -353,11 +376,94 @@
          </property>
         </spacer>
        </item>
+       <item row="5" column="2">
+        <widget class="QLabel" name="label_15">
+         <property name="text">
+          <string>[msec]</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="3" rowspan="2">
+        <spacer name="horizontalSpacer_10">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_10">
+         <property name="text">
+          <string>Block timeout</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" colspan="3">
+        <widget class="QLineEdit" name="leHost">
+         <property name="maxLength">
+          <number>300</number>
+         </property>
+         <property name="placeholderText">
+          <string>&lt;host address&gt;:&lt;port&gt;</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QSpinBox" name="sbTcpTimeout">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>59999</number>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_9">
+         <property name="text">
+          <string>Timeout</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4" rowspan="8">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Format:&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;&amp;lt;IPv4&amp;gt;:&amp;lt;tcp port&amp;gt;&lt;/span&gt; - &lt;span style=&quot; font-style:italic;&quot;&gt;192.168.1.11:7566&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;[&amp;lt;IPv6&amp;gt;]:&amp;lt;tcp port&amp;gt;&lt;/span&gt; - &lt;span style=&quot; font-style:italic;&quot;&gt;[::1]:5445&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;&amp;lt;url&amp;gt;:&amp;lt;tcp port&amp;gt;&lt;/span&gt; - &lt;span style=&quot; font-style:italic;&quot;&gt;example.com:6776&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="textInteractionFlags">
+          <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="page_3">
       <layout class="QGridLayout" name="gridLayout_3">
-       <item row="1" column="1" colspan="3">
+       <item row="3" column="4" rowspan="2">
+        <spacer name="horizontalSpacer_9">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="1" colspan="4">
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
           <widget class="QPushButton" name="pbM2mHistory">
@@ -407,8 +513,30 @@
          </item>
         </layout>
        </item>
-       <item row="4" column="1" colspan="3">
+       <item row="4" column="1" colspan="2">
         <widget class="QSpinBox" name="sbM2mBlockTimeout">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>59999</number>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1" colspan="2">
+        <widget class="QSpinBox" name="sbM2mTimeout">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="minimum">
           <number>1</number>
          </property>
@@ -424,14 +552,41 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="label_12">
-         <property name="text">
-          <string>Block timeout [msec]</string>
+       <item row="0" column="1" colspan="4">
+        <widget class="QLineEdit" name="leM2mProfile">
+         <property name="readOnly">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
-       <item row="5" column="0" colspan="4">
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_11">
+         <property name="text">
+          <string>Timeout</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="5">
+        <spacer name="horizontalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_12">
+         <property name="text">
+          <string>Block timeout</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0" colspan="5">
         <spacer name="verticalSpacer_4">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -444,42 +599,19 @@
          </property>
         </spacer>
        </item>
-       <item row="0" column="1" colspan="3">
-        <widget class="QLineEdit" name="leM2mProfile">
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="label_11">
+       <item row="3" column="3">
+        <widget class="QLabel" name="label_13">
          <property name="text">
-          <string>Timeout [msec]</string>
+          <string>[msec]</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="1" colspan="3">
-        <widget class="QSpinBox" name="sbM2mTimeout">
-         <property name="minimum">
-          <number>1</number>
-         </property>
-         <property name="maximum">
-          <number>59999</number>
+       <item row="4" column="3">
+        <widget class="QLabel" name="label_14">
+         <property name="text">
+          <string>[msec]</string>
          </property>
         </widget>
-       </item>
-       <item row="2" column="0" colspan="4">
-        <spacer name="horizontalSpacer_3">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
        </item>
       </layout>
      </widget>

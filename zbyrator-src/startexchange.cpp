@@ -18,6 +18,8 @@ StartExchange::StartExchange(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4
     ui(new Ui::StartExchange)
 {
     ui->setupUi(this);
+    ui->trDevOperation->setEnabled(false);
+
 }
 //-----------------------------------------------------------------------------------------------
 StartExchange::~StartExchange()
@@ -85,8 +87,19 @@ void StartExchange::initPage()
         modelDevOptTree->appendItem(chListNames.at(i), chListData.at(i), listIcos.at(i));
 
     ui->trDevOperation->setCurrentIndex(modelDevOptTree->index(0,0));
-    showWdgtByName(chListData.first(), chListNames.first(), QIcon(listIcos.first()));
+    lastWdgtAccessibleName = chListData.first();
 
+//    showWdgtByName(chListData.first(), chListNames.first(), QIcon(listIcos.first()));
+    QTimer::singleShot(333, this, SLOT(unlockWdgts()) );
+
+}
+//-----------------------------------------------------------------------------------------------
+void StartExchange::unlockWdgts()
+{
+    ui->trDevOperation->setEnabled(true);
+    const QString named = lastWdgtAccessibleName;
+    lastWdgtAccessibleName.clear();
+    showWdgtByNameData(named);
 }
 //-----------------------------------------------------------------------------------------------
 void StartExchange::showWdgtByName(const QString &wdgtAccessibleName, const QString &wdgtTitle)
@@ -97,6 +110,9 @@ void StartExchange::showWdgtByName(const QString &wdgtAccessibleName, const QStr
 //-----------------------------------------------------------------------------------------------
 void StartExchange::showWdgtByName(const QString &wdgtAccessibleName, const QString &wdgtTitle, const QIcon &itemIcon)
 {
+    if(!ui->trDevOperation->isEnabled())
+        return;
+
     if(wdgtAccessibleName != lastWdgtAccessibleName && wdgtAccessibleName != "Interface"){
 //        gHelper->closeYourPopupsSlot();
         lastWdgtAccessibleName = wdgtAccessibleName;
@@ -179,6 +195,11 @@ MatildaConfWidget *StartExchange::createZbyrIfaceSett(LastDevInfo *lDevInfo, Gui
     connect(w, SIGNAL(setNewSettings(QVariantHash)), metersListMedium, SLOT(setNewSettings(QVariantHash)));
     connect(w, SIGNAL(sendMeIfaceSett()), metersListMedium, SLOT(sendMeIfaceSett()) );
     connect(w, SIGNAL(setNewSettings(QVariantHash)), this, SLOT(showLastWdgt()) );
+    connect(w, SIGNAL(closeThisPage())              , this, SLOT(showLastWdgt()));
+
+    connect(w, SIGNAL(sendMeTheTcpHistory(QLineEdit*))      , metersListMedium, SLOT(openTcpServerDlg(QLineEdit*)) );
+    connect(w, SIGNAL(sendMeTheM2mHistory(QLineEdit*))      , metersListMedium, SLOT(openM2mDlg(QLineEdit*)));
+    connect(w, SIGNAL(openEditMacProfileWdgt(bool,QLineEdit*)), this, SIGNAL(openEditMacProfileWdgt(bool,QLineEdit*)));
 
     return w;
 }
