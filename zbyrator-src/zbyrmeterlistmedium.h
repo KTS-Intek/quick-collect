@@ -56,6 +56,19 @@ signals:
     void setThisIfaceSett(QVariantMap interfaceSettings);
     void setPollSaveSettings(quint16 meterRetryMax, quint16 meterRetryMaxFA, bool hardAddrsn, bool enableW4E, bool corDTallow, qint32 messCountBeforeReady, qint32 messCountAfter, qint32 corDTintrvl);
 
+
+    void giveMeYourCache();//from GUI
+
+    void ifaceLogStr(QString line); //to GUI
+
+    void onAddMeters(quint8 meterType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters, bool checkOffMeters);
+
+    void appendMeterData(QString ni, QString sn, MyListHashString data);
+
+    void appendData2model(QVariantHash h);//to tab
+
+    void onPollStarted(quint8 pollCode, QStringList listEnrg, QString dateMask, bool allowDate2utc);
+
 public slots:
     void onAllMeters(UniversalMeterSettList allMeters);
 
@@ -81,6 +94,8 @@ public slots:
     void command4devSlot(quint16 command, QString args);//pollCode args
 
     void onListChanged(const QStringList &list, const int &tag);
+
+    void createDataCalculator();
 
 private:
     struct LastList2pages

@@ -5,7 +5,7 @@
 #include "src/matilda/moji_defy.h"
 #include "dataconcetrator-pgs/dbdataform.h"
 #include "src/zbyrator-v2/quickpollhelper.h"
-
+#include "src/meter/meterstatehelper.cpp"
 //---------------------------------------------------------------------
 
 StartPagePoll::StartPagePoll(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent) :
@@ -236,6 +236,12 @@ void StartPagePoll::initPage()
 
     QTimer::singleShot(555, this, SIGNAL(onReloadAllMeters()) );
 }
+//---------------------------------------------------------------------
+void StartPagePoll::setPageSett(const QVariantHash &h)
+{
+    emit appendData2model(lastWdgtAccssbltName, h);
+
+}
 
 //---------------------------------------------------------------------
 
@@ -277,7 +283,9 @@ void StartPagePoll::on_pbReadDb_clicked()
     if(ui->rbOneMeter->isChecked()){
         //start poll directly
         QString mess;
-        if(!startPollOneMeterMode(code, mess)){
+        if(startPollOneMeterMode(code, mess)){
+            //create tab
+        }else{
             gHelper->showMess(mess);
         }
         return;
@@ -432,18 +440,138 @@ bool StartPagePoll::startPollOneMeterMode(const quint8 &pollCode, QString &mess)
         dtTo = QDateTime::currentDateTime();
 
 
-
-
     const QString args = QuickPollHelper::createQuickPollLine(ui->leOneMeterNI->text().simplified(),
                                                               (ui->cbxOneMeterModel->currentIndex() > 0) ? ui->cbxOneMeterModel->currentText() : "", ui->leOneMeterPass->text()
-                                                              , ui->cbxOneMeterEnergy->currentText(), ui->sbOneMeterTariff->value(), dtFrom, (int)qMax((qint64)1, dtFrom.daysTo(dtTo)), mess);
+                                                              , ui->cbxOneMeterEnergy->currentText(), ui->sbOneMeterTariff->value(), dtTo, (int)qMax((qint64)1, dtFrom.daysTo(dtTo)), mess);
 
     if(args.isEmpty())
         return false;
 
+
+    createTab(pollCode);
     emit command4dev(pollCode, args);
 
     return true;
 
 }
 //---------------------------------------------------------------------
+void StartPagePoll::createTab(const quint8 &code)
+{
+    QVariantHash hash;
+
+    QString txt = modelProfile4DB->itemData(ui->lvMeterDataProfile->currentIndex()).value(Qt::DisplayRole).toString();
+    QString icon = modelProfile4DB->itemData(ui->lvMeterDataProfile->currentIndex()).value(Qt::UserRole + 4).toString();
+    hash.insert("code", code);
+    bool allowDate2utc = (code == POLL_CODE_READ_TOTAL || code == POLL_CODE_READ_VOLTAGE || code == POLL_CODE_READ_POWER || code == POLL_CODE_READ_METER_STATE);
+
+    dtFromToWdgt->insert2hashDtFromTo(hash, allowDate2utc);
+
+    int lastDbFilterMode = DB_SHOW_MODE_ACTV_REACTV_TRFF_ZBRTR;
+//    QStringList listEnrg;
+
+    switch(code){
+    case POLL_CODE_READ_TOTAL       :
+    case POLL_CODE_READ_END_DAY     :
+    case POLL_CODE_READ_END_MONTH   : lastDbFilterMode = DB_SHOW_MODE_ACTV_REACTV_TRFF_ZBRTR; break;
+    case POLL_CODE_READ_POWER       : lastDbFilterMode = DB_SHOW_MODE_ACTV_REACTV_ZBRTR     ; break;
+    case POLL_CODE_READ_METER_STATE : lastDbFilterMode = DB_SHOW_MODE_METER_STATE_ZBRTR     ; break;// listEnrg = QString("relay,deg,vls,prm").split(","); break;
+    case POLL_CODE_METER_STATUS     : lastDbFilterMode = DB_SHOW_MODE_METERJOURNL_ZBRTR     ; break;
+
+    default: lastDbFilterMode = DB_SHOW_MODE_VOLTAGE_ZBRTR; break;
+    }
+
+    switch(code){
+    case POLL_CODE_READ_VOLTAGE     :
+    case POLL_CODE_READ_TOTAL       :
+    case POLL_CODE_READ_METER_STATE : hash.insert("FromDT", QDateTime::currentDateTime()); hash.remove("ToDT"); break;// listEnrg = QString("relay,deg,vls,prm").split(","); break;
+
+    }
+
+
+    DbDataForm *f = new DbDataForm(lDevInfo,gHelper,gSett4all,this);
+    f->setSelectSett(hash.value("FromDT").toDateTime(), hash.value("ToDT").toDateTime(), hash.value("ToDT").toDateTime().isValid(), txt, code);
+
+    f->setAccessibleName(QString::number(QDateTime::currentMSecsSinceEpoch()));
+    lastWdgtAccssbltName = f->accessibleName();
+
+    connect(f, SIGNAL(disconnectMeFromAppendData()), this, SLOT(disconnectMeFromAppendData()) );
+    connect(this, SIGNAL(appendData2model(QString,QVariantHash)), f, SIGNAL(appendData2model(QString,QVariantHash)) );
+    connect(this, SIGNAL(killTabByName(QString))                , f, SLOT(killTabByName(QString))                 );
+
+
+
+    txt.append(", ");
+    QDateTime dtFrom = hash.value("FromDT").toDateTime().toLocalTime();
+    QDateTime toDt = hash.value("ToDT").toDateTime().toLocalTime();
+    if(code == POLL_CODE_READ_END_DAY || code == POLL_CODE_READ_END_MONTH){
+        dtFrom = dtFrom.toUTC();
+        toDt = toDt.toUTC();
+    }
+
+
+    txt.append(tr("From: %1").arg(dtFrom.toString("yyyy-MM-dd hh:mm:ss")));
+    if(hash.value("ToDT").toDateTime().isValid())
+        txt.append(", " + tr("To: %1").arg(toDt.toString("yyyy-MM-dd hh:mm:ss")));
+    else
+        txt.append(", " + tr("To: *"));
+
+    f->setPageMode(lastDbFilterMode, txt, allowDate2utc);//update child accebl name
+
+
+    emit onPollStarted(code,  getEnrgList4code(code), gHelper->dateMask, allowDate2utc);
+    ui->tabWidget->addTab(f, txt.mid(txt.indexOf(">") + 1));
+    ui->tabWidget->setCurrentWidget(f);
+
+    ui->tabWidget->setTabIcon(ui->tabWidget->indexOf(f), QIcon(icon));
+}
+//---------------------------------------------------------------------
+QStringList StartPagePoll::getEnrgList4code(const quint8 &code)
+{
+    bool hasTariffs = false;
+    QStringList l;
+    switch(code){
+    case POLL_CODE_READ_TOTAL       :
+    case POLL_CODE_READ_END_DAY     :
+    case POLL_CODE_READ_END_MONTH   : hasTariffs = true;
+    case POLL_CODE_READ_POWER       : l = QString("A+ A- R+ R-").split(" ", QString::SkipEmptyParts); break;
+    case POLL_CODE_READ_METER_STATE : l = MeterStateHelper::getEngrKeys4table(); break;// listEnrg = QString("relay,deg,vls,prm").split(","); break;
+    case POLL_CODE_READ_VOLTAGE     : l = QString("UA,UB,UC,IA,IB,IC,PA,PB,PC,QA,QB,QC,cos_fA,cos_fB,cos_fC,F").split(',')  ; break;
+
+    case POLL_CODE_METER_STATUS     :
+    case POLL_CODE_MATILDA_EVNTS    : l = QString("model,evnt_code,comment").split(','); break;
+    }
+
+
+    if(!hasTariffs)
+        return l;
+
+    QStringList listEnrg;
+    for(int i = 0, emax = l.size(); i < 5; i++){
+        for(int e = 0; e < emax; e++)
+            listEnrg.append(QString("T%1_%2").arg(i).arg(l.at(e)));
+    }
+    return listEnrg;
+
+}
+//---------------------------------------------------------------------
+
+void StartPagePoll::on_tabWidget_tabCloseRequested(int index)
+{
+    if(index < 0)
+        return;
+
+    QString name;
+    try{
+        name = ui->tabWidget->widget(index)->accessibleName();
+    }catch(...){
+        name = "0";
+    }
+
+    if(name == "main")
+        return;
+
+    emit killTabByName(name);
+    if(name == lastWdgtAccssbltName && gHelper->managerEnDisBttn.pbReadDis)
+        gHelper->pbStopAnimateClickSlot();
+    ui->tabWidget->removeTab(index);
+}

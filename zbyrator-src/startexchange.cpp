@@ -162,9 +162,14 @@ MatildaConfWidget *StartExchange::currentMatildaWidget()
 MatildaConfWidget *StartExchange::createStartPagePoll(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent)
 {
     StartPagePoll *w = new StartPagePoll(lDevInfo, gHelper, gSett4all, parent);
+
+    connect(metersListMedium, SIGNAL(appendData2model(QVariantHash)), w, SLOT(setPageSett(QVariantHash)) );
+
     connect(metersListMedium, &ZbyrMeterListMedium::onUpdatedSavedList, w, &StartPagePoll::onUpdatedSavedList);
-    connect(w, &StartPagePoll::onReloadAllMeters, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters);
-    connect(w, &StartPagePoll::command4dev, metersListMedium, &ZbyrMeterListMedium::command4devSlot);
+
+    connect(w, &StartPagePoll::onReloadAllMeters, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters );
+    connect(w, &StartPagePoll::command4dev      , metersListMedium, &ZbyrMeterListMedium::command4devSlot   );
+    connect(w, &StartPagePoll::onPollStarted    , metersListMedium, &ZbyrMeterListMedium::onPollStarted     );
     return w;
 }
 //-----------------------------------------------------------------------------------------------

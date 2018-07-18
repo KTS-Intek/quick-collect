@@ -97,7 +97,8 @@ void QcMainWindow::loadMainSett()
 void QcMainWindow::initializeZbyrator()
 {
     qRegisterMetaType<QHash<QString,QString> >("QHash<QString,QString>");
-//    qRegisterMetaType<MyListStringList>("MyListStringList");
+    qRegisterMetaType<MyListStringList>("MyListStringList");
+    qRegisterMetaType<MyListHashString>("MyListHashString");
 
     guiHelper = new GuiHelper(this);
 
@@ -420,7 +421,7 @@ void QcMainWindow::createOneOfMainWdgt(const QString &tabData)
     case 2: w = new DataBaseWdgt(       lDevInfo, gHelper, gSett4all, this) ; break;  //    l.append( QString("Database") );
     case 3: w = new MeterJournalForm(   lDevInfo, gHelper, gSett4all, this) ; break; //    l.append( QString("Meter logs") );
     case 4: w = new KtsConnectWdgt(     lDevInfo, gHelper, gSett4all, this); break;
-    case 5: w = new SmplPteWdgt(        tr("Log") , true, false,   lDevInfo, gHelper, gSett4all, false, this)  ; break;   //    l.append( QString("State")                   );
+    case 5: w = createPageLog(lDevInfo, gHelper, gSett4all, this)  ; break;   //    l.append( QString("State")                   );
 
     }
 
@@ -514,6 +515,7 @@ void QcMainWindow::createMeterManager()
     connect(metersListMedium, &ZbyrMeterListMedium::setThisIfaceSett    , zbyrator, &MeterManager::setThisIfaceSett     );
     connect(metersListMedium, &ZbyrMeterListMedium::setPollSaveSettings , zbyrator, &MeterManager::setPollSaveSettings  );
 
+    connect(metersListMedium, &ZbyrMeterListMedium::giveMeYourCache     , zbyrator, &MeterManager::giveMeYourCache      );
 
     connect(metersListMedium, SIGNAL(showMess(QString)), this, SLOT(showMess(QString)) );
 
@@ -521,6 +523,9 @@ void QcMainWindow::createMeterManager()
 
     connect(zbyrator, &MeterManager::onAllMeters    , metersListMedium, &ZbyrMeterListMedium::onAllMeters       );
     connect(zbyrator, &MeterManager::onAlistOfMeters, metersListMedium, &ZbyrMeterListMedium::onAlistOfMeters   );
+    connect(zbyrator, &MeterManager::ifaceLogStr    , metersListMedium, &ZbyrMeterListMedium::ifaceLogStr       );
+
+    connect(zbyrator, &MeterManager::appendMeterData, metersListMedium, &ZbyrMeterListMedium::appendMeterData   );
 
 
     QTimer::singleShot(1111, thread, SLOT(start()) );
@@ -552,6 +557,14 @@ MatildaConfWidget *QcMainWindow::createMeterListWdgt(LastDevInfo *lDevInfo, GuiH
     return w;
 
 
+}
+
+MatildaConfWidget *QcMainWindow::createPageLog(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent)
+{
+    SmplPteWdgt *w = new SmplPteWdgt(tr("Log") , true, true, lDevInfo, gHelper, gSett4all, false, parent);
+    connect(w, &SmplPteWdgt::giveMeYourCache, metersListMedium, &ZbyrMeterListMedium::giveMeYourCache);
+    connect(metersListMedium, &ZbyrMeterListMedium::ifaceLogStr, w, &SmplPteWdgt::appendPteText);
+    return w;
 }
 
 //---------------------------------------------------------------------

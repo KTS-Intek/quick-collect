@@ -196,7 +196,10 @@ SOURCES += \
     src/shared/networkconverthelper.cpp \
     src/m2m-service/svahaserviceconnector.cpp \
     src/m2m-service/svahasocket.cpp \
-    src/emb/checkcurrport.cpp
+    src/emb/checkcurrport.cpp \
+    src/shared/ifacehelper.cpp \
+    zbyrator-src/src/zbyratordatacalculation.cpp \
+    src/matilda/classmanagerhelper.cpp
 
 
 HEADERS += \
@@ -355,7 +358,12 @@ HEADERS += \
     src/shared/networkconverthelper.h \
     src/m2m-service/svahaserviceconnector.h \
     src/m2m-service/svahasocket.h \
-    src/emb/checkcurrport.h
+    src/emb/checkcurrport.h \
+    src/shared/ifacehelper.h \
+    zbyrator-src/src/zbyratordatacalculation.h \
+    src/matilda-conf/classmanagersharedobjects.h \
+    src/zbyrator-v2/myucmmeterstypes.h \
+    src/matilda/classmanagerhelper.h
 
 FORMS += \
         qcmainwindow.ui \

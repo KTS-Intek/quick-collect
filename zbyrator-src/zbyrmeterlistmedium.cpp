@@ -1,6 +1,6 @@
 #include "zbyrmeterlistmedium.h"
 #include "src/widgets/tableheaders.h"
-#include "src/zbyrator-v2/myucmmeters.h"
+#include "src/zbyrator-v2/myucmmeterstypes.h"
 #include "src/meter/zbyratorfilesetthelper.cpp"
 #include "src/matilda/matildaprotocolhelper.h"
 #include <QDebug>
@@ -12,6 +12,7 @@
 #include "zbyrator-src/wdgt/compliterlistdialog.h"
 #include "src/matilda/serialporthelper.h"
 #include "src/shared/networkconverthelper.h"
+#include "zbyrator-src/src/zbyratordatacalculation.h"
 
 //---------------------------------------------------------------------
 
@@ -24,6 +25,8 @@ ZbyrMeterListMedium::ZbyrMeterListMedium(QObject *parent) : QObject(parent)
     connect(t, SIGNAL(timeout()), this, SLOT(onSaveLater()) );
 
     ifaceLoader = new IfaceSettLoader(this);
+
+    createDataCalculator();
 
 }
 
@@ -59,6 +62,8 @@ void ZbyrMeterListMedium::onAllMeters(UniversalMeterSettList allMeters)
 {
     if(allMeters.isEmpty())
         return;
+
+
 //    QVariantHash h;
 //    h.insert("lHeader", TableHeaders::getColNamesMeterList().split(","));
 //    h.insert("hasHeader", true);
@@ -71,8 +76,15 @@ void ZbyrMeterListMedium::onAllMeters(UniversalMeterSettList allMeters)
 
 
     MyListStringList listRows;
+    QMap<quint8, UniversalMeterSettList> map2meters;
     for(int i = 0, imax = allMeters.size(); i < imax; i++){
         const UniversalMeterSett m = allMeters.at(i);
+
+        if(true){
+            UniversalMeterSettList l = map2meters.value(m.meterType);
+            l.append(m);
+            map2meters.insert(m.meterType, l);
+        }
         if(m.meterType != UC_METER_ELECTRICITY)
             continue;
 
@@ -100,6 +112,9 @@ void ZbyrMeterListMedium::onAllMeters(UniversalMeterSettList allMeters)
 
     //    void setRelayPageSett(MyListStringList listRows, QVariantMap col2data, QStringList headerH, QStringList header, bool hasHeader);
 
+    const QList<quint8> lk = map2meters.keys();
+    for(int i = 0, imax = lk.size(); i < imax; i++)
+        emit onAddMeters(lk.at(i), map2meters.value(lk.at(i)), MyNi2model(), true);
 
     onElectricitylistOfMeters(allMeters, MyNi2model(), true);
 }
@@ -151,6 +166,7 @@ void ZbyrMeterListMedium::doReloadListOfMeters(quint8 meterType)
 
 void ZbyrMeterListMedium::onAlistOfMeters(quint8 meterType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters)
 {
+    emit onAddMeters(meterType, activeMeters, switchedOffMeters, false);
     switch (meterType) {
 
     case UC_METER_ELECTRICITY: onElectricitylistOfMeters(activeMeters, switchedOffMeters, false); break;
@@ -204,6 +220,25 @@ void ZbyrMeterListMedium::onListChanged(const QStringList &list, const int &tag)
     case 2: IfaceSettLoader::saveOnlyThisProfiles(list);   break;
 
     }
+}
+
+//---------------------------------------------------------------------
+
+void ZbyrMeterListMedium::createDataCalculator()
+{
+    ZbyratorDataCalculation *c = new ZbyratorDataCalculation;
+    QThread *t = new QThread;
+    c->moveToThread(t);
+
+    connect(this, SIGNAL(destroyed(QObject*)), t, SLOT(quit()) );
+    connect(t, SIGNAL(started()), c, SLOT(onThreadStarted()) );
+    connect(this, &ZbyrMeterListMedium::onAddMeters, c, &ZbyratorDataCalculation::onAlistOfMeters);
+    connect(this, &ZbyrMeterListMedium::appendMeterData, c, &ZbyratorDataCalculation::appendMeterData);
+    connect(this, &ZbyrMeterListMedium::onPollStarted, c, &ZbyratorDataCalculation::onPollStarted);
+    connect(c, &ZbyratorDataCalculation::appendData2model, this, &ZbyrMeterListMedium::appendData2model);
+
+    t->start();
+
 }
 
 //---------------------------------------------------------------------

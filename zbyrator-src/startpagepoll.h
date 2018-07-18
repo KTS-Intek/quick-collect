@@ -29,14 +29,21 @@ signals:
 
     void command4dev(quint16 command, QString args);//pollCode args
 
+    void onPollStarted(quint8 pollCode, QStringList listEnrg, QString dateMask, bool allowDate2utc);
+
+
 public slots:
     void initPage();
+
+    void setPageSett(const QVariantHash &h);
+
 
     void onUpdatedSavedList(int activeMetersSize, int switchedOffMetersSize);
 
     void disconnectMeFromAppendData();
 
     void setPbReadEnbld();
+
 
 private slots:
     void on_pbReadDb_clicked();
@@ -54,11 +61,16 @@ private slots:
 
     void onLvMeterDataProfile_activated(const QModelIndex &index);
 
+    void on_tabWidget_tabCloseRequested(int index);
+
 private:
     Ui::StartPagePoll *ui;
 
     bool startPollOneMeterMode(const quint8 &pollCode, QString &mess);
 
+    void createTab(const quint8 &code);
+
+    QStringList getEnrgList4code(const quint8 &code);
 
     SelectDtWdgt *dtFromToWdgt;
     QString lastWdgtAccssbltName;
