@@ -14,9 +14,17 @@ public:
     ClassManagerSharedObjects *shrdObjElectricity;
     ClassManagerSharedObjects *shrdObjWater;
 
+
+    QMap<QString, UniverslaMeterOnlyCache > ni2cachedEnrg;
+
 signals:
     void appendData2model(QVariantHash h);
 
+    void uploadProgress(int val, QString txt);
+
+    void setLblWaitTxt(QString s);
+
+    void updateHashSn2meter(QHash<QString,QString> hashMeterSn2memo, QHash<QString,QString> hashMeterSn2ni, QHash<QString, QString> hashMeterNi2memo);
 
 public slots:
     void onThreadStarted();
@@ -25,7 +33,13 @@ public slots:
 
     void appendMeterData(QString ni, QString sn, MyListHashString data);
 
-    void onPollStarted(quint8 pollCode, QStringList listEnrg, QString dateMask, bool allowDate2utc);
+    void onPollStarted(quint8 pollCode, QStringList listEnrg, QString dateMask, int dotPos, bool allowDate2utc);
+
+    void onUconStartPoll(QStringList nis, quint8 meterType);
+
+    void uploadProgressSlot(int val, QString txt);
+
+
 
 private:
     void onAddlistOfMeters2cache(ClassManagerSharedObjects *shrdObj, const UniversalMeterSettList &activeMeters, const MyNi2model &switchedOffMeters, const bool &checkOffMeters);
@@ -34,8 +48,14 @@ private:
     quint8 lastPollCode;
     bool sendHeader;
     QString lastDateMask, lastFullDateTimeMask;
-
+    int dotPos;
     bool allowDate2utc;
+
+    //    gHelper->hashMeterSn2ni;
+    QHash<QString,QString> hashMeterSn2ni;
+    QHash<QString,QString> hashMeterNi2memo;
+    QHash<QString,QString> hashMeterSn2memo;
+
 };
 
 #endif // ZBYRATORDATACALCULATION_H

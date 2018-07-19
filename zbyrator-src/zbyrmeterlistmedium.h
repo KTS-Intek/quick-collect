@@ -67,7 +67,18 @@ signals:
 
     void appendData2model(QVariantHash h);//to tab
 
-    void onPollStarted(quint8 pollCode, QStringList listEnrg, QString dateMask, bool allowDate2utc);
+    void onPollStarted(quint8 pollCode, QStringList listEnrg, QString dateMask, int dotPos, bool allowDate2utc);
+
+    void onConnectionStateChanged(bool isActive);
+
+    void onUconStartPoll(QStringList nis, quint8 meterType);
+
+    void setLblWaitTxt(QString s);
+
+    void killUconTasks();
+
+    void updateHashSn2meter(QHash<QString,QString> hashMeterSn2memo, QHash<QString,QString> hashMeterSn2ni, QHash<QString, QString> hashMeterNi2memo);
+
 
 public slots:
     void onAllMeters(UniversalMeterSettList allMeters);

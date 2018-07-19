@@ -13,6 +13,14 @@ SetMeterAddress::~SetMeterAddress()
     delete ui;
 }
 
+void SetMeterAddress::initPage()
+{
+    ui->pushButton->setEnabled(false);
+
+    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pushButton, SLOT(setDisabled(bool)));
+    ui->pushButton->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
+}
+
 void SetMeterAddress::on_pushButton_clicked()
 {
 

@@ -72,7 +72,19 @@ void StartExchange::initPage()
 
     modelDevOptTree->setDefSize4itms(QSize(ui->trDevOperation->width(), ui->pbStop->height() * 1.2));
 
+    guiHelper->managerEnDisBttn.pbReadDis = false;
+    connect(metersListMedium, &ZbyrMeterListMedium::onConnectionStateChanged, guiHelper, &GuiHelper::setPbReadEnableDisableSlot);
+    connect(metersListMedium, &ZbyrMeterListMedium::setLblWaitTxt, ui->lblOperationInProgress, &QLabel::setText);
 
+    ui->pbStop->setEnabled(guiHelper->managerEnDisBttn.pbReadDis);
+    connect(metersListMedium, &ZbyrMeterListMedium::onConnectionStateChanged, ui->pbStop, &QPushButton::setEnabled);
+    connect(guiHelper, SIGNAL(pbStopAnimateClick()), ui->pbStop, SLOT(animateClick()));
+
+    connect(ui->pbStop, SIGNAL(clicked(bool)), metersListMedium, SIGNAL(killUconTasks()) );
+
+
+    connect(metersListMedium, SIGNAL(setLblWaitTxt(QString)), this, SLOT(updateScrollAreaHeight()) );
+    connect(metersListMedium, &ZbyrMeterListMedium::updateHashSn2meter, guiHelper, &GuiHelper::updateHashSn2meter);
 
     QStringList listIcos, chListNames;
 
@@ -100,6 +112,7 @@ void StartExchange::unlockWdgts()
     const QString named = lastWdgtAccessibleName;
     lastWdgtAccessibleName.clear();
     showWdgtByNameData(named);
+    updateScrollAreaHeight();
 }
 //-----------------------------------------------------------------------------------------------
 void StartExchange::showWdgtByName(const QString &wdgtAccessibleName, const QString &wdgtTitle)
@@ -132,6 +145,12 @@ void StartExchange::showWdgtByName(const QString &wdgtAccessibleName, const QStr
 void StartExchange::showLastWdgt()
 {
     showWdgtByNameData(lastWdgtAccessibleName);
+
+}
+
+void StartExchange::updateScrollAreaHeight()
+{
+    ui->scrollArea->setMaximumHeight( ui->pbStop->height() * 1.3);// (title.isEmpty() ? 1.3 : 2.3));
 
 }
 
@@ -320,3 +339,8 @@ void StartExchange::addWdgt2devStack(const QString &realPageName, const QString 
 
 }
 
+
+void StartExchange::on_pbStop_clicked()
+{
+    ui->pbStop->setEnabled(false);
+}

@@ -75,6 +75,7 @@ void ZbyrMeterListMedium::onAllMeters(UniversalMeterSettList allMeters)
 //    QVariantList meters = h.value("meters").toList();
 
 
+
     MyListStringList listRows;
     QMap<quint8, UniversalMeterSettList> map2meters;
     for(int i = 0, imax = allMeters.size(); i < imax; i++){
@@ -173,6 +174,8 @@ void ZbyrMeterListMedium::onAlistOfMeters(quint8 meterType, UniversalMeterSettLi
     default:
         break;
     }
+
+
 }
 
 //---------------------------------------------------------------------
@@ -232,11 +235,14 @@ void ZbyrMeterListMedium::createDataCalculator()
 
     connect(this, SIGNAL(destroyed(QObject*)), t, SLOT(quit()) );
     connect(t, SIGNAL(started()), c, SLOT(onThreadStarted()) );
-    connect(this, &ZbyrMeterListMedium::onAddMeters, c, &ZbyratorDataCalculation::onAlistOfMeters);
-    connect(this, &ZbyrMeterListMedium::appendMeterData, c, &ZbyratorDataCalculation::appendMeterData);
-    connect(this, &ZbyrMeterListMedium::onPollStarted, c, &ZbyratorDataCalculation::onPollStarted);
-    connect(c, &ZbyratorDataCalculation::appendData2model, this, &ZbyrMeterListMedium::appendData2model);
+    connect(this, &ZbyrMeterListMedium::onAddMeters     , c, &ZbyratorDataCalculation::onAlistOfMeters);
+    connect(this, &ZbyrMeterListMedium::appendMeterData , c, &ZbyratorDataCalculation::appendMeterData);
+    connect(this, &ZbyrMeterListMedium::onPollStarted   , c, &ZbyratorDataCalculation::onPollStarted);
+    connect(this, &ZbyrMeterListMedium::onUconStartPoll , c, &ZbyratorDataCalculation::onUconStartPoll);
 
+    connect(c, &ZbyratorDataCalculation::appendData2model, this, &ZbyrMeterListMedium::appendData2model);
+    connect(c, &ZbyratorDataCalculation::setLblWaitTxt   , this, &ZbyrMeterListMedium::setLblWaitTxt);
+    connect(c, &ZbyratorDataCalculation::updateHashSn2meter, this, &ZbyrMeterListMedium::updateHashSn2meter);
     t->start();
 
 }

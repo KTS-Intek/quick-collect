@@ -34,7 +34,7 @@ void StartPagePoll::setupCbxModel2regExp(QComboBox *cbx, const QVariantHash &has
     const QStringList listModel = hash.value("listModel").toStringList();
     const QStringList listRules = hash.value("listRules").toStringList();
 
-    cbx->addItem("Auto", "^(a-zA-Z0-9 ){500}$");
+    cbx->addItem("Auto", "^(.){255}$");// "^(a-zA-Z0-9\\s){500}$");
     for(int i = 0, imax = listModel.size(); i < imax; i++)
         cbx->addItem(listModel.at(i), listRules.at(i));
 
@@ -179,7 +179,7 @@ void StartPagePoll::initPage()
     modelProfile4DB = new QStandardItemModel(0,1,this);
     ui->lvMeterDataProfile->setModel(modelProfile4DB);
 
-    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->wdgtZbyrator, SLOT(setEnabled(bool)));
+    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->wdgtZbyrator, SLOT(setDisabled(bool)));
     ui->wdgtZbyrator->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
 
     if(true){
@@ -277,7 +277,7 @@ void StartPagePoll::setPbReadEnbld()
 
 void StartPagePoll::on_pbReadDb_clicked()
 {
-
+    gHelper->updateSettDateMaskAndDotPos();
     const quint8 code = modelProfile4DB->itemData(ui->lvMeterDataProfile->currentIndex()).value(Qt::UserRole + 1).toUInt();
 
     if(ui->rbOneMeter->isChecked()){
@@ -442,7 +442,7 @@ bool StartPagePoll::startPollOneMeterMode(const quint8 &pollCode, QString &mess)
 
     const QString args = QuickPollHelper::createQuickPollLine(ui->leOneMeterNI->text().simplified(),
                                                               (ui->cbxOneMeterModel->currentIndex() > 0) ? ui->cbxOneMeterModel->currentText() : "", ui->leOneMeterPass->text()
-                                                              , ui->cbxOneMeterEnergy->currentText(), ui->sbOneMeterTariff->value(), dtTo, (int)qMax((qint64)1, dtFrom.daysTo(dtTo)), mess);
+                                                              , QString(ui->cbxOneMeterEnergy->currentData().toString()).replace(",", " "), ui->sbOneMeterTariff->value(), dtTo, dtFrom, mess);
 
     if(args.isEmpty())
         return false;
@@ -518,7 +518,7 @@ void StartPagePoll::createTab(const quint8 &code)
     f->setPageMode(lastDbFilterMode, txt, allowDate2utc);//update child accebl name
 
 
-    emit onPollStarted(code,  getEnrgList4code(code), gHelper->dateMask, allowDate2utc);
+    emit onPollStarted(code,  getEnrgList4code(code), gHelper->dateMask, gHelper->dotPos, allowDate2utc);
     ui->tabWidget->addTab(f, txt.mid(txt.indexOf(">") + 1));
     ui->tabWidget->setCurrentWidget(f);
 
@@ -533,7 +533,7 @@ QStringList StartPagePoll::getEnrgList4code(const quint8 &code)
     case POLL_CODE_READ_TOTAL       :
     case POLL_CODE_READ_END_DAY     :
     case POLL_CODE_READ_END_MONTH   : hasTariffs = true;
-    case POLL_CODE_READ_POWER       : l = QString("A+ A- R+ R-").split(" ", QString::SkipEmptyParts); break;
+    case POLL_CODE_READ_POWER       : l = QString("intrvl A+ A- R+ R-").split(" ", QString::SkipEmptyParts); break;
     case POLL_CODE_READ_METER_STATE : l = MeterStateHelper::getEngrKeys4table(); break;// listEnrg = QString("relay,deg,vls,prm").split(","); break;
     case POLL_CODE_READ_VOLTAGE     : l = QString("UA,UB,UC,IA,IB,IC,PA,PB,PC,QA,QB,QC,cos_fA,cos_fB,cos_fC,F").split(',')  ; break;
 

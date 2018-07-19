@@ -33,6 +33,8 @@ public slots:
 
     void showLastWdgt();
 
+    void updateScrollAreaHeight();
+
 signals:
     void stopExchange();
 
@@ -48,6 +50,9 @@ private slots:
     void on_trDevOperation_clicked(const QModelIndex &index);
 
     void addWdgt2devStack(const QString &realPageName, const QString &wdgtTitle, const QIcon &itemIcon);
+
+    void on_pbStop_clicked();
+
 
 private:
     Ui::StartExchange *ui;

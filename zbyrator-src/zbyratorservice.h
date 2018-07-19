@@ -15,6 +15,9 @@ public:
     explicit ZbyratorService(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
     ~ZbyratorService();
 
+public slots:
+    void initPage();
+
 private slots:
     void on_pbOpenDa_clicked();
 

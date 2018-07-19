@@ -15,6 +15,9 @@ public:
     explicit SetMeterAddress(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
     ~SetMeterAddress();
 
+public slots:
+    void initPage();
+
 private slots:
     void on_pushButton_clicked();
 

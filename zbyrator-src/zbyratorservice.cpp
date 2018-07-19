@@ -13,6 +13,17 @@ ZbyratorService::~ZbyratorService()
     delete ui;
 }
 
+void ZbyratorService::initPage()
+{
+
+    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pbOpenDa, SLOT(setDisabled(bool)));
+    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pbResetNetwork, SLOT(setDisabled(bool)));
+
+    ui->pbOpenDa->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
+    ui->pbResetNetwork->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
+
+}
+
 void ZbyratorService::on_pbOpenDa_clicked()
 {
 

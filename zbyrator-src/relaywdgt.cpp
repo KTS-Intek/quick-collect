@@ -114,6 +114,16 @@ void RelayWdgt::initPage()
     ui->widget_2->setEnabled(false);
     ui->widget->setEnabled(false);
 
+    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pushButton, SLOT(setDisabled(bool)));
+    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pushButton_2, SLOT(setDisabled(bool)));
+    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pushButton_3, SLOT(setDisabled(bool)));
+    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pushButton_4, SLOT(setDisabled(bool)));
+
+    ui->pushButton->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
+    ui->pushButton_2->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
+    ui->pushButton_3->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
+    ui->pushButton_4->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
+
     emit onReloadAllMeters();
 
     SelectionChecker *tmr = new SelectionChecker(this);

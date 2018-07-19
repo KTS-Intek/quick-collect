@@ -29,7 +29,7 @@ signals:
 
     void command4dev(quint16 command, QString args);//pollCode args
 
-    void onPollStarted(quint8 pollCode, QStringList listEnrg, QString dateMask, bool allowDate2utc);
+    void onPollStarted(quint8 pollCode, QStringList listEnrg, QString dateMask, int dotPos, bool allowDate2utc);
 
 
 public slots:

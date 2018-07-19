@@ -14,6 +14,8 @@ void ZbyratorDataCalculation::onThreadStarted()
     shrdObjElectricity = new ClassManagerSharedObjects(this);
     shrdObjWater = new ClassManagerSharedObjects(this);
 
+    connect(this, &ZbyratorDataCalculation::uploadProgress, this, &ZbyratorDataCalculation::uploadProgressSlot);
+
 }
 
 void ZbyratorDataCalculation::onAlistOfMeters(quint8 meterType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters, bool checkOffMeters)
@@ -38,7 +40,7 @@ void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHash
 
 
     h.insert("itIsGeliks", (lastPollCode == POLL_CODE_READ_VOLTAGE || lastPollCode == POLL_CODE_READ_TOTAL));
-    h.insert("shrdObj->dateMask", lastDateMask);
+    h.insert("shrdObj->dateMask", lastFullDateTimeMask);//lastDateMask);
     h.insert("hasHeader", false);
     h.insert("dateInUtc", allowDate2utc);
 
@@ -48,7 +50,6 @@ void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHash
         sendHeader = false;
         QStringList lHeader, lHeaderData;
 
-        shrdObj->lastPairSn2meterInfo.clear();
         lastPairSn2meterInfoChanged = true;
 
         QStringList columnList = QString("msec meter_sn meter_ni memo").split(" ");
@@ -60,10 +61,11 @@ void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHash
         const QHash<QString,QString> hKeyHuman = ShowMessHelper::columnKey2humanLang();
 
         shrdObj->lastMemoPos = columnList.indexOf("memo");//має бути справа від NI
-
+        shrdObj->komaPos = dotPos;
+        shrdObj->dateMask = lastFullDateTimeMask;
 
         shrdObj->lastSnIndx = columnList.indexOf("meter_sn");
-        shrdObj->lastNiIndx = columnList.indexOf("meter_ni");
+        shrdObj->lastNiIndx = columnList.indexOf("meter_ni");        
         shrdObj->lastDateIsMsec = columnList.contains("msec");
 
         for(int i = 0, iMax = columnList.size(); i < iMax; i++){
@@ -92,9 +94,9 @@ void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHash
     QVariantHash hashRowCol2varData;
 
     //        const Data2listInputSett d2linput(meterSnIndx, niIndx, itIsGeliks, dateTimeMask, colFrom, itIsGeliks ? 1 : 2);
-    int colFrom = 4;// shrdObj->lastDateIsMsec ? 4 : 3;//model before SN & NI
+    int colFrom = (lastPollCode == POLL_CODE_READ_METER_STATE) ? 4 : 3;// shrdObj->lastDateIsMsec ? 4 : 3;//model before SN & NI
 
-    const Data2listInputSett d2linput(shrdObj->lastSnIndx, shrdObj->lastNiIndx, true, lastDateMask, 4, 1);//
+    const Data2listInputSett d2linput(shrdObj->lastSnIndx, shrdObj->lastNiIndx, true, lastFullDateTimeMask, 4, 1);//
     hashRowCol2varData.insert("colFrom", colFrom);
 
     const int columnListSize = shrdObj->lastColumnListSize;//(itIsGeliks) ? shrdObj->lastColumnListSize : (shrdObj->lastColumnListSize - 1);
@@ -102,6 +104,7 @@ void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHash
 
 //    const QStringList leftList = QString("msec meter_sn meter_ni memo").split(" ", QString::SkipEmptyParts);
 //    const int leftListSize = leftList.size();
+
 
     for(int i = 0, imax = data.size(), emax = listEnrg.size(); i < imax; i++){
         const QHash<QString,QString> row = data.at(i);
@@ -115,6 +118,7 @@ void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHash
 
         for(int j = 0; j < emax; j++)
             list.append(row.value(listEnrg.at(j)));
+
 
         list.append(row.value("stts"));
 
@@ -155,6 +159,15 @@ void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHash
         emit appendData2model(h);
     }
 
+    shrdObj->doneTables++;
+    if(shrdObj->totalTables < 1)
+        shrdObj->totalTables = 1;
+    if(shrdObj->doneTables > shrdObj->totalTables)
+        shrdObj->doneTables = shrdObj->totalTables;
+
+    emit uploadProgress( ((shrdObj->doneTables * 100) / shrdObj->totalTables) , tr("Total count: %1.<br>Done: %2")
+                         .arg(shrdObj->totalTables)
+                         .arg(shrdObj->doneTables));
 
 //    h.insert("msec", QString::number(dt.toUTC().toMSecsSinceEpoch()));
 //    h.insert("stts", tr("ok)"));
@@ -162,14 +175,43 @@ void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHash
 
 }
 
-void ZbyratorDataCalculation::onPollStarted(quint8 pollCode, QStringList listEnrg, QString dateMask, bool allowDate2utc)
+void ZbyratorDataCalculation::onPollStarted(quint8 pollCode, QStringList listEnrg, QString dateMask, int dotPos, bool allowDate2utc)
 {
+    emit uploadProgress(0, tr("Starting..."));
     sendHeader = true;
     lastPollCode = pollCode;
+    this->dotPos = dotPos;
     this->listEnrg = listEnrg;
     lastFullDateTimeMask = lastDateMask = dateMask.isEmpty() ? "yyyy-MM-dd" : dateMask;
     lastFullDateTimeMask.append(" hh:mm:ss");
     this->allowDate2utc = allowDate2utc;
+}
+
+
+
+void ZbyratorDataCalculation::onUconStartPoll(QStringList nis, quint8 meterType)
+{
+    ClassManagerSharedObjects *shrdObj = 0;
+
+    switch (meterType) {
+    case UC_METER_WATER         : shrdObj = shrdObjWater        ; break;
+    case UC_METER_ELECTRICITY   : shrdObj = shrdObjElectricity  ; break;
+    }
+
+    if(shrdObj){
+        shrdObj->totalTables = nis.size();
+        shrdObj->doneTables = 0;
+        shrdObj->lastPairSn2meterInfo.clear();
+
+        emit uploadProgress( ((shrdObj->doneTables * 100) / shrdObj->totalTables) , tr("Total: %1.<br>Done: %2")
+                             .arg(shrdObj->totalTables)
+                             .arg(shrdObj->doneTables));
+    }
+}
+
+void ZbyratorDataCalculation::uploadProgressSlot(int val, QString txt)
+{
+    emit setLblWaitTxt(QString("%1, %2 %").arg(txt).arg(val));
 }
 
 
@@ -180,13 +222,25 @@ void ZbyratorDataCalculation::onAddlistOfMeters2cache(ClassManagerSharedObjects 
         shrdObj->clear();
         shrdObj->clearWrite();
     }
-
+    //    gHelper->hashMeterSn2ni;
+//        QHash<QString,QString> hashMeterSn2ni;
+//        QHash<QString,QString> hashMeterNi2memo;
     for(int i = 0, imax = activeMeters.size(); i < imax; i++){
         const UniversalMeterSett m = activeMeters.at(i);
 
-        shrdObj->addMeter2meterNi2info(m.ni, m.memo, m.sn, m.coordinate, m.tariff, m.transformer);
-        if(!m.sn.isEmpty())
-            shrdObj->addMeter2meterSn2info(m.sn, m.memo, m.ni, m.coordinate, m.tariff, m.transformer);
-    }
+        if(!m.ni.isEmpty())
+            ni2cachedEnrg.insert(m.ni, m.cache);
 
+        shrdObj->addMeter2meterNi2info(m.ni, m.memo, m.sn, m.coordinate, m.tariff, m.transformer);
+
+        shrdObj->addMeter2meterSn2info(m.sn, m.memo, m.ni, m.coordinate, m.tariff, m.transformer);
+
+        if(!m.sn.isEmpty()){
+            hashMeterSn2ni.insert(m.sn, m.ni);
+            hashMeterSn2memo.insert(m.sn, m.memo);
+        }
+        hashMeterNi2memo.insert(m.ni, m.memo);
+    }
+    if(!hashMeterNi2memo.isEmpty())
+        emit updateHashSn2meter(hashMeterSn2memo, hashMeterSn2ni, hashMeterNi2memo);
 }

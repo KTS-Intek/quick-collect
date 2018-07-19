@@ -15,6 +15,9 @@ public:
     explicit CheckConnectionToolWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
     ~CheckConnectionToolWdgt();
 
+public slots:
+    void initPage();
+
 private slots:
     void on_pushButton_clicked();
 

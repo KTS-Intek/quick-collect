@@ -507,6 +507,8 @@ void QcMainWindow::createMeterManager()
 //    connect(zbyrator, &MeterManager::onAboutZigBee          , extSocket, &ZbyratorSocket::sendAboutZigBeeModem      );
 
     metersListMedium = new ZbyrMeterListMedium(this);
+    connect(metersListMedium, &ZbyrMeterListMedium::updateHashSn2meter, guiHelper, &GuiHelper::updateHashSn2meter);
+
     connect(metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters   , zbyrator, &MeterManager::onReloadAllMeters    );
     connect(metersListMedium, &ZbyrMeterListMedium::onConfigChanged     , zbyrator, &MeterManager::onConfigChanged      );
     connect(metersListMedium, &ZbyrMeterListMedium::sendMeAlistOfMeters , zbyrator, &MeterManager::sendMeAlistOfMeters  );
@@ -516,6 +518,7 @@ void QcMainWindow::createMeterManager()
     connect(metersListMedium, &ZbyrMeterListMedium::setPollSaveSettings , zbyrator, &MeterManager::setPollSaveSettings  );
 
     connect(metersListMedium, &ZbyrMeterListMedium::giveMeYourCache     , zbyrator, &MeterManager::giveMeYourCache      );
+    connect(metersListMedium, &ZbyrMeterListMedium::killUconTasks       , zbyrator, &MeterManager::killUconsTasks       );
 
     connect(metersListMedium, SIGNAL(showMess(QString)), this, SLOT(showMess(QString)) );
 
@@ -526,7 +529,12 @@ void QcMainWindow::createMeterManager()
     connect(zbyrator, &MeterManager::ifaceLogStr    , metersListMedium, &ZbyrMeterListMedium::ifaceLogStr       );
 
     connect(zbyrator, &MeterManager::appendMeterData, metersListMedium, &ZbyrMeterListMedium::appendMeterData   );
+    connect(zbyrator, &MeterManager::onConnectionStateChanged, metersListMedium, &ZbyrMeterListMedium::onConnectionStateChanged);
+    connect(zbyrator, &MeterManager::onUconStartPoll, metersListMedium, &ZbyrMeterListMedium::onUconStartPoll);
 
+    guiHelper->managerEnDisBttn.pbReadDis = false;
+
+    connect(zbyrator, &MeterManager::onConnectionStateChanged, guiHelper, &GuiHelper::setPbReadEnableDisableSlot);
 
     QTimer::singleShot(1111, thread, SLOT(start()) );
 }
