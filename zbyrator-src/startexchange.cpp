@@ -12,6 +12,8 @@
 #include "zbyrifacesett.h"
 #include "dataconcetrator-pgs/zbyratortasks.h"
 #include "info-pgs/statisticofexchangewdgt.h"
+#include "prepaid-pgs/ifaceindicationwdgt.h"
+
 
 StartExchange::StartExchange(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent) :
     MatildaConfWidget(lDevInfo, gHelper, gSett4all, parent),
@@ -104,6 +106,15 @@ void StartExchange::initPage()
 //    showWdgtByName(chListData.first(), chListNames.first(), QIcon(listIcos.first()));
     QTimer::singleShot(333, this, SLOT(unlockWdgts()) );
 
+
+
+    if(true){
+        IfaceIndicationWdgt *w = new IfaceIndicationWdgt(gSett4all->font4log, this);
+        ui->hl4wdgt->addWidget(w);
+        w->disableLogMode(true);
+        connect(metersListMedium, SIGNAL(onReadWriteOperation(bool)), w, SLOT(onReadWriteOperation(bool)) );
+    }
+
 }
 //-----------------------------------------------------------------------------------------------
 void StartExchange::unlockWdgts()
@@ -150,8 +161,19 @@ void StartExchange::showLastWdgt()
 
 void StartExchange::updateScrollAreaHeight()
 {
-    ui->scrollArea->setMaximumHeight( ui->pbStop->height() * 1.3);// (title.isEmpty() ? 1.3 : 2.3));
+    ui->scrollArea->setMaximumHeight( ui->pbStop->height() * 1.5);// (title.isEmpty() ? 1.3 : 2.3));
 
+}
+
+void StartExchange::appendShowMessPlain(QString m)
+{
+    const QString s = m.split("\n", QString::SkipEmptyParts).last();
+
+    if(!s.isEmpty()){
+        const QStringList l = s.split(": ");
+        if(l.size() > 1)
+            ui->lblCurrentMeter->setText(l.mid(1).join(": "));
+    }
 }
 
 //-----------------------------------------------------------------------------------------------
@@ -181,7 +203,7 @@ MatildaConfWidget *StartExchange::currentMatildaWidget()
 MatildaConfWidget *StartExchange::createStartPagePoll(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent)
 {
     StartPagePoll *w = new StartPagePoll(lDevInfo, gHelper, gSett4all, parent);
-
+    w->metersListMedium = metersListMedium;
     connect(metersListMedium, SIGNAL(appendData2model(QVariantHash)), w, SLOT(setPageSett(QVariantHash)) );
 
     connect(metersListMedium, &ZbyrMeterListMedium::onUpdatedSavedList, w, &StartPagePoll::onUpdatedSavedList);
@@ -189,6 +211,7 @@ MatildaConfWidget *StartExchange::createStartPagePoll(LastDevInfo *lDevInfo, Gui
     connect(w, &StartPagePoll::onReloadAllMeters, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters );
     connect(w, &StartPagePoll::command4dev      , metersListMedium, &ZbyrMeterListMedium::command4devSlot   );
     connect(w, &StartPagePoll::onPollStarted    , metersListMedium, &ZbyrMeterListMedium::onPollStarted     );
+
     return w;
 }
 //-----------------------------------------------------------------------------------------------

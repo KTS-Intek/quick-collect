@@ -58,7 +58,7 @@ QVariantHash ZbyrMeterListMedium::getIfaceSett() const
 
 //---------------------------------------------------------------------
 
-void ZbyrMeterListMedium::onAllMeters(UniversalMeterSettList allMeters)
+void ZbyrMeterListMedium::onAllMetersSlot(UniversalMeterSettList allMeters)
 {
     if(allMeters.isEmpty())
         return;

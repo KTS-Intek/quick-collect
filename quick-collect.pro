@@ -199,7 +199,19 @@ SOURCES += \
     src/emb/checkcurrport.cpp \
     src/shared/ifacehelper.cpp \
     zbyrator-src/src/zbyratordatacalculation.cpp \
-    src/matilda/classmanagerhelper.cpp
+    src/matilda/classmanagerhelper.cpp \
+    prepaid-pgs/ifaceindicationwdgt.cpp \
+    appversion.cpp \
+    zbyrator-src/zbyratoroptions.cpp \
+    zbyrator-src/options/databasesettings.cpp \
+    zbyrator-src/options/ktsconnectmode.cpp \
+    zbyrator-src/options/ucemulator.cpp \
+    dataconcetrator-pgs/pollwdgt.cpp \
+    zbyrator-src/options-src/pollwdgtmom.cpp \
+    main-pgs/optionswdgt.cpp \
+    zbyrator-src/selectmeters4poll.cpp \
+    zbyrator-src/wdgt/selectdialogform.cpp \
+    zbyrator-src/src/getreadymetersdata.cpp
 
 
 HEADERS += \
@@ -363,7 +375,20 @@ HEADERS += \
     zbyrator-src/src/zbyratordatacalculation.h \
     src/matilda-conf/classmanagersharedobjects.h \
     src/zbyrator-v2/myucmmeterstypes.h \
-    src/matilda/classmanagerhelper.h
+    src/matilda/classmanagerhelper.h \
+    prepaid-pgs/ifaceindicationwdgt.h \
+    appversion.h \
+    zbyrator-src/zbyratoroptions.h \
+    zbyrator-src/options/databasesettings.h \
+    zbyrator-src/options/ktsconnectmode.h \
+    zbyrator-src/options/ucemulator.h \
+    dataconcetrator-pgs/pollwdgt.h \
+    zbyrator-src/options-src/pollwdgtmom.h \
+    main-pgs/optionswdgt.h \
+    zbyrator-src/selectmeters4poll.h \
+    zbyrator-src/wdgt/selectdialogform.h \
+    zbyrator-src/src/getreadymetersdata.h \
+    src/zbyrator-v2/meterschedulertypes.h
 
 FORMS += \
         qcmainwindow.ui \
@@ -405,7 +430,16 @@ FORMS += \
     zbyrator-src/wdgt/compliterlistdialog.ui \
     zbyrator-src/wdgt/addeditmacform.ui \
     main-pgs/custommessagewidget.ui \
-    main-pgs/scanipwidget.ui
+    main-pgs/scanipwidget.ui \
+    prepaid-pgs/ifaceindicationwdgt.ui \
+    zbyrator-src/zbyratoroptions.ui \
+    zbyrator-src/options/databasesettings.ui \
+    zbyrator-src/options/ktsconnectmode.ui \
+    zbyrator-src/options/ucemulator.ui \
+    dataconcetrator-pgs/pollwdgt.ui \
+    main-pgs/optionswdgt.ui \
+    zbyrator-src/selectmeters4poll.ui \
+    zbyrator-src/wdgt/selectdialogform.ui
 
 RESOURCES += \
     font.qrc \

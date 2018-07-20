@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1161</width>
-    <height>781</height>
+    <width>640</width>
+    <height>388</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -129,7 +129,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>1045</width>
+            <width>585</width>
             <height>32</height>
            </rect>
           </property>
@@ -195,7 +195,23 @@
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="lblLastIface">
+              <spacer name="verticalSpacer_2">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Ignored</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLabel" name="lblCurrentMeter">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                  <horstretch>0</horstretch>
@@ -205,17 +221,51 @@
                <property name="text">
                 <string/>
                </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+               <property name="wordWrap">
+                <bool>false</bool>
+               </property>
                <property name="textInteractionFlags">
-                <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse</set>
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
                </property>
               </widget>
              </item>
              <item>
+              <spacer name="verticalSpacer">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Ignored</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
               <widget class="QLabel" name="lblOperationInProgress">
                <property name="text">
-                <string>-</string>
+                <string/>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+               <property name="wordWrap">
+                <bool>false</bool>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
                </property>
               </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="hl4wdgt"/>
              </item>
             </layout>
            </item>

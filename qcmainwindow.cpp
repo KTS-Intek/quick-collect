@@ -27,6 +27,9 @@
 
 #include "main-pgs/scanipwidget.h"
 #include "src/matilda/classmanagerudpscanner.h"
+#include "appversion.h"
+
+#include "zbyrator-src/zbyratoroptions.h"
 
 
 QcMainWindow::QcMainWindow(const QFont &font4log, const int &defFontPointSize,  QWidget *parent) :
@@ -39,6 +42,7 @@ QcMainWindow::QcMainWindow(const QFont &font4log, const int &defFontPointSize,  
     guiSett->font4log = font4log;
     guiSett->defFontPointSize = defFontPointSize;
 
+    ui->wdgt4pte->hide();
     loadMainSett();
 
 
@@ -100,6 +104,7 @@ void QcMainWindow::initializeZbyrator()
     qRegisterMetaType<MyListStringList>("MyListStringList");
     qRegisterMetaType<MyListHashString>("MyListHashString");
 
+    ui->statusBar->hide();
     guiHelper = new GuiHelper(this);
 
     guiHelper->initObj();
@@ -124,11 +129,14 @@ void QcMainWindow::initializeZbyrator()
     connect(guiSett, SIGNAL(updateStyle(QString))   , this, SLOT(setStyleSheet(QString))  );
 
 
+
+
     StackWidgetHelper *swh = new StackWidgetHelper(this);
     swh->setStackWdgt(ui->stackedWidget);
     connect(this, SIGNAL(addWdgt2history()), swh, SLOT(onAddWdgt2history()) );
     connect(ui->stackedWidget, SIGNAL(destroyed(QObject*)), swh, SLOT(onStackKickedOff()));
 
+    createAppOutLog();
     createToolBar();
     createZbyrProcManager();
     createMeterManager();
@@ -298,7 +306,7 @@ void QcMainWindow::onScanClicked(const int &mode, IfaceSettLoader *connWdgt)
             connect(w, SIGNAL(setThisMode(int))         , connWdgt, SLOT(setThisMode(int)) );
         }
 
-        connect(w, SIGNAL(showMess(QString))        , this, SLOT(appendShowMess(QString)) );
+        connect(w, SIGNAL(showMess(QString))        , this, SLOT(showMess(QString))) ;
 
         ClassManagerUdpScanner *classManager = new ClassManagerUdpScanner;
 
@@ -333,15 +341,6 @@ void QcMainWindow::onScanClicked(const int &mode, IfaceSettLoader *connWdgt)
     }
 }
 
-void QcMainWindow::appendShowMess(QString m)
-{
-
-}
-
-void QcMainWindow::appendShowMessPlain(QString m)
-{
-
-}
 
 void QcMainWindow::onActImitatorClck()
 {
@@ -463,6 +462,24 @@ void QcMainWindow::createToolBar()
     connect(c, SIGNAL(onActivateThisWdgt(QString)), this, SLOT(onActivateThisWdgt(QString)) );
     c->createToolBarItems(ui->mainToolBar);
 }
+//---------------------------------------------------------------------
+void QcMainWindow::createAppOutLog()
+{
+    connect(ui->actionThe_log_of_the_application, SIGNAL(triggered(bool)), ui->wdgt4pte, SLOT(setVisible(bool)) );
+   ui->actionThe_log_of_the_application->setChecked(SettLoader::loadSett(SETT_MAIN_APP_LOG).toBool());
+   ui->wdgt4pte->setVisible(ui->actionThe_log_of_the_application->isChecked());
+
+   LastDevInfo *lDevInfo = guiHelper->lDevInfo;
+   GuiHelper *gHelper = guiHelper;
+   GuiSett4all *gSett4all = guiSett;
+
+    SmplPteWdgt *w = new SmplPteWdgt("", false, true, lDevInfo, gHelper, gSett4all, false, this);
+    connect(this, SIGNAL(appendShowMess(QString)), w, SLOT(appendHtml(QString)) );
+    connect(this, SIGNAL(appendShowMessPlain(QString)), w, SLOT(appendPteText(QString)));
+    connect(gHelper, SIGNAL(appendShowMess(QString)), w, SLOT(appendHtml(QString)));
+
+    ui->vl4pteWdgt->addWidget(w);
+}
 
 //---------------------------------------------------------------------
 
@@ -524,6 +541,7 @@ void QcMainWindow::createMeterManager()
 
     connect(zbyrator, SIGNAL(checkThisMeterInfo(UniversalMeterSett)), metersListMedium, SIGNAL(onReloadAllMeters()) );
 
+    connect(zbyrator, &MeterManager::onAllMeters    , metersListMedium, &ZbyrMeterListMedium::onAllMetersSlot   );
     connect(zbyrator, &MeterManager::onAllMeters    , metersListMedium, &ZbyrMeterListMedium::onAllMeters       );
     connect(zbyrator, &MeterManager::onAlistOfMeters, metersListMedium, &ZbyrMeterListMedium::onAlistOfMeters   );
     connect(zbyrator, &MeterManager::ifaceLogStr    , metersListMedium, &ZbyrMeterListMedium::ifaceLogStr       );
@@ -531,6 +549,9 @@ void QcMainWindow::createMeterManager()
     connect(zbyrator, &MeterManager::appendMeterData, metersListMedium, &ZbyrMeterListMedium::appendMeterData   );
     connect(zbyrator, &MeterManager::onConnectionStateChanged, metersListMedium, &ZbyrMeterListMedium::onConnectionStateChanged);
     connect(zbyrator, &MeterManager::onUconStartPoll, metersListMedium, &ZbyrMeterListMedium::onUconStartPoll);
+    connect(zbyrator, &MeterManager::onReadWriteOperation, metersListMedium, &ZbyrMeterListMedium::onReadWriteOperation);
+
+    connect(zbyrator, &MeterManager::appendAppOut, this, &QcMainWindow::appendShowMessPlain);
 
     guiHelper->managerEnDisBttn.pbReadDis = false;
 
@@ -548,6 +569,8 @@ MatildaConfWidget *QcMainWindow::createStartExchangeWdgt(LastDevInfo *lDevInfo, 
 
     connect(w, SIGNAL(openEditMacProfileWdgt(bool,QLineEdit*)), this, SLOT(openEditMacProfileWdgt(bool,QLineEdit*)));
 
+    connect(this, &QcMainWindow::appendShowMess, w, &StartExchange::appendShowMessPlain);
+    connect(this, &QcMainWindow::appendShowMessPlain, w, &StartExchange::appendShowMessPlain);
     return w;
 }
 
@@ -589,3 +612,23 @@ void QcMainWindow::onStackedWidgetCurrentChanged(int arg1)
 }
 
 //---------------------------------------------------------------------
+
+void QcMainWindow::on_actionThe_log_of_the_application_triggered(bool checked)
+{
+    SettLoader::saveSett(SETT_MAIN_APP_LOG, checked);
+}
+//---------------------------------------------------------------------
+void QcMainWindow::on_actionOptions_triggered()
+{
+    if(!GuiHelper::stackContainsThisWdgtType(ui->stackedWidget, WDGT_TYPE_OPTIONS, true)){
+
+        ZbyratorOptions *w = new ZbyratorOptions(guiHelper->lDevInfo, guiHelper, guiSett, this);
+
+        addWdgt2stackWdgt(w, WDGT_TYPE_OPTIONS, false, "", "");// tr("Options"), ":/katynko/svg/applications-system.svg");
+    }
+}
+
+void QcMainWindow::on_actionAbout_triggered()
+{
+    showMess(AppVersion::getVersion());
+}

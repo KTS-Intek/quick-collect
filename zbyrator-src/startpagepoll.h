@@ -3,6 +3,8 @@
 
 #include "src/shared/matildaconfwidget.h"
 #include "template-pgs/selectdtwdgt.h"
+//#include "src/zbyrator-v2/zbyratordatatypehelper.h"
+#include "zbyrator-src/zbyrmeterlistmedium.h"
 
 namespace Ui {
 class StartPagePoll;
@@ -15,6 +17,7 @@ class StartPagePoll : public MatildaConfWidget
 public:
     explicit StartPagePoll(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
     ~StartPagePoll();
+    ZbyrMeterListMedium *metersListMedium;
 
     void setupCbxModel2regExp(QComboBox *cbx, const QVariantHash &hash);
 
@@ -31,6 +34,7 @@ signals:
 
     void onPollStarted(quint8 pollCode, QStringList listEnrg, QString dateMask, int dotPos, bool allowDate2utc);
 
+//    void onAllMeters(UniversalMeterSettList allMeters);
 
 public slots:
     void initPage();
@@ -43,6 +47,8 @@ public slots:
     void disconnectMeFromAppendData();
 
     void setPbReadEnbld();
+
+    void command4devSlot(quint16 command, QString args);//pollCode args
 
 
 private slots:
@@ -68,6 +74,9 @@ private:
 
     bool startPollOneMeterMode(const quint8 &pollCode, QString &mess);
 
+    bool startPollAllMetersMode(const quint8 &pollCode, QString &mess);
+
+
     void createTab(const quint8 &code);
 
     QStringList getEnrgList4code(const quint8 &code);
@@ -78,6 +87,7 @@ private:
 
     bool multipleML;
 
+    quint8 lastPollCode;
 
 };
 

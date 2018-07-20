@@ -6,6 +6,8 @@
 #include "dataconcetrator-pgs/dbdataform.h"
 #include "src/zbyrator-v2/quickpollhelper.h"
 #include "src/meter/meterstatehelper.cpp"
+#include "zbyrator-src/wdgt/selectdialogform.h"
+
 //---------------------------------------------------------------------
 
 StartPagePoll::StartPagePoll(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent) :
@@ -231,7 +233,6 @@ void StartPagePoll::initPage()
     connect(ui->lvMeterDataProfile, SIGNAL( clicked(QModelIndex)), this, SLOT(onLvMeterDataProfile_activated(QModelIndex)) );
     ui->lvMeterDataProfile->setCurrentIndex(modelProfile4DB->index(0,0));
 
-
     onLvMeterDataProfile_activated(ui->lvMeterDataProfile->currentIndex());
 
     QTimer::singleShot(555, this, SIGNAL(onReloadAllMeters()) );
@@ -273,16 +274,23 @@ void StartPagePoll::setPbReadEnbld()
     ui->pbReadDb->setEnabled(true);
 }
 
+void StartPagePoll::command4devSlot(quint16 command, QString args)
+{
+    createTab(lastPollCode);
+    emit command4dev(command, args);
+
+}
+
 //---------------------------------------------------------------------
 
 void StartPagePoll::on_pbReadDb_clicked()
 {
     gHelper->updateSettDateMaskAndDotPos();
     const quint8 code = modelProfile4DB->itemData(ui->lvMeterDataProfile->currentIndex()).value(Qt::UserRole + 1).toUInt();
-
+    QString mess;
     if(ui->rbOneMeter->isChecked()){
         //start poll directly
-        QString mess;
+
         if(startPollOneMeterMode(code, mess)){
             //create tab
         }else{
@@ -290,6 +298,15 @@ void StartPagePoll::on_pbReadDb_clicked()
         }
         return;
     }
+
+    if(startPollAllMetersMode(code, mess)){
+
+    }else{
+        gHelper->showMess(mess);
+    }
+
+
+
 
 }
 
@@ -452,6 +469,31 @@ bool StartPagePoll::startPollOneMeterMode(const quint8 &pollCode, QString &mess)
     emit command4dev(pollCode, args);
 
     return true;
+
+}
+
+bool StartPagePoll::startPollAllMetersMode(const quint8 &pollCode, QString &mess)
+{
+    QDateTime dtFrom, dtTo;
+    bool isFromMode;
+    if(!dtFromToWdgt->getDtVal(dtFrom, dtTo, isFromMode, true)){
+        mess = dtFromToWdgt->getLastErr();
+        return false;
+    }
+    lastPollCode = pollCode;
+
+
+    SelectMeters4poll *w = new SelectMeters4poll(lDevInfo, gHelper, gSett4all, this);
+    connect(w, SIGNAL(onReloadAllMeters()), this, SIGNAL(onReloadAllMeters()) );
+    connect(w, SIGNAL(command4dev(quint16,QString)), this, SLOT(command4devSlot(quint16,QString)));
+    connect(this, SIGNAL(command4dev(quint16,QString)), w, SLOT(deleteLater()) );
+    connect(metersListMedium, SIGNAL(onAllMeters(UniversalMeterSettList)), w, SIGNAL(onAllMeters(UniversalMeterSettList)) );
+    connect(ui->pbReadDb, SIGNAL(clicked(bool)), w, SLOT(deleteLater()) );
+    w->setPollSett(dtFrom, dtTo, pollCode);
+
+    gHelper->addWdgt2stackWdgtSlot(w, WDGT_TYPE_ZBYR_SELECT_METERS4POLL);
+    return true;
+
 
 }
 //---------------------------------------------------------------------

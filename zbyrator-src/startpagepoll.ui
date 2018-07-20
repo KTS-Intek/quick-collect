@@ -41,8 +41,12 @@
       <bool>true</bool>
      </property>
      <widget class="QWidget" name="tab">
+      <attribute name="icon">
+       <iconset resource="../res.qrc">
+        <normaloff>:/katynko/svg/edit-table-insert-row-below.svg</normaloff>:/katynko/svg/edit-table-insert-row-below.svg</iconset>
+      </attribute>
       <attribute name="title">
-       <string>Page</string>
+       <string>Poll</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="0" colspan="3">

@@ -35,12 +35,15 @@ public slots:
 
     void updateScrollAreaHeight();
 
+    void appendShowMessPlain(QString m);
+
 signals:
     void stopExchange();
 
     void onReloadAllMeters();
 
     void openEditMacProfileWdgt(bool isEditMode, QLineEdit *le );
+
 
 private slots:
 

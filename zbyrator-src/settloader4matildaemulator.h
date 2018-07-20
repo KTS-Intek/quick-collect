@@ -17,9 +17,14 @@ public:
 
     bool saveOneSett(const int key, const QVariant data2save);
 
+    static QVariant defaultValue4zbyratorKey(const int &key);
+
+    static QVariantHash defaultPollWdgtSett();
 signals:
 
 public slots:
+    void updatePollSett();
+
 };
 
 #endif // SETTLOADER4MATILDAEMULATOR_H

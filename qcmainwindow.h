@@ -44,6 +44,10 @@ signals:
 
     void setThisObjProfileName(QString profileName);
 
+    void appendShowMess(QString m);
+
+    void appendShowMessPlain(QString m);
+
 public slots:
     void initializeZbyrator();
 
@@ -68,9 +72,7 @@ public slots:
 
     void onScanClicked(const int &mode, IfaceSettLoader *connWdgt);
 
-    void appendShowMess(QString m);
 
-    void appendShowMessPlain(QString m);
 
     void onActImitatorClck();
 
@@ -79,6 +81,12 @@ private slots:
 
 
     void onStackedWidgetCurrentChanged(int arg1);
+
+    void on_actionThe_log_of_the_application_triggered(bool checked);
+
+    void on_actionOptions_triggered();
+
+    void on_actionAbout_triggered();
 
 protected:
     void changeEvent(QEvent *event);
@@ -90,6 +98,8 @@ private: //functions
 
 private:
     void createToolBar();
+
+    void createAppOutLog();
 
     void createZbyrProcManager();
 

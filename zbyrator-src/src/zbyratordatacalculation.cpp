@@ -165,7 +165,7 @@ void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHash
     if(shrdObj->doneTables > shrdObj->totalTables)
         shrdObj->doneTables = shrdObj->totalTables;
 
-    emit uploadProgress( ((shrdObj->doneTables * 100) / shrdObj->totalTables) , tr("Total count: %1.<br>Done: %2")
+    emit uploadProgress( ((shrdObj->doneTables * 100) / shrdObj->totalTables) , tr("Total: %1.<br>Done: %2")
                          .arg(shrdObj->totalTables)
                          .arg(shrdObj->doneTables));
 

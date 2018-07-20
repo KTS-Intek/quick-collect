@@ -79,9 +79,12 @@ signals:
 
     void updateHashSn2meter(QHash<QString,QString> hashMeterSn2memo, QHash<QString,QString> hashMeterSn2ni, QHash<QString, QString> hashMeterNi2memo);
 
+    void onReadWriteOperation(bool isRead);
+
+    void onAllMeters(UniversalMeterSettList allMeters);
 
 public slots:
-    void onAllMeters(UniversalMeterSettList allMeters);
+    void onAllMetersSlot(UniversalMeterSettList allMeters);
 
     void meterModelChanged(QVariantList meters);
 
