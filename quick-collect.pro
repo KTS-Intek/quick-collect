@@ -210,8 +210,10 @@ SOURCES += \
     zbyrator-src/options-src/pollwdgtmom.cpp \
     main-pgs/optionswdgt.cpp \
     zbyrator-src/selectmeters4poll.cpp \
-    zbyrator-src/wdgt/selectdialogform.cpp \
-    zbyrator-src/src/getreadymetersdata.cpp
+    zbyrator-src/src/getreadymetersdata.cpp \
+    zbyrator-src/src/zbyratortasksmedium.cpp \
+    matilda-bbb-src/decodematildaprotocolv5helper.cpp \
+    zbyrator-src/src/startexchangehelper.cpp
 
 
 HEADERS += \
@@ -386,9 +388,12 @@ HEADERS += \
     zbyrator-src/options-src/pollwdgtmom.h \
     main-pgs/optionswdgt.h \
     zbyrator-src/selectmeters4poll.h \
-    zbyrator-src/wdgt/selectdialogform.h \
     zbyrator-src/src/getreadymetersdata.h \
-    src/zbyrator-v2/meterschedulertypes.h
+    src/zbyrator-v2/meterschedulertypes.h \
+    zbyrator-src/src/zbyratortasksmedium.h \
+    matilda-bbb-src/decodematildaprotocolv5helper.h \
+    zbyrator-src/src/startexchangehelper.h \
+    src/meter/definedpollcodes.h
 
 FORMS += \
         qcmainwindow.ui \
@@ -438,8 +443,7 @@ FORMS += \
     zbyrator-src/options/ucemulator.ui \
     dataconcetrator-pgs/pollwdgt.ui \
     main-pgs/optionswdgt.ui \
-    zbyrator-src/selectmeters4poll.ui \
-    zbyrator-src/wdgt/selectdialogform.ui
+    zbyrator-src/selectmeters4poll.ui
 
 RESOURCES += \
     font.qrc \

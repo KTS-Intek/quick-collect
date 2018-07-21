@@ -21,7 +21,8 @@ signals:
 
     void onAllMeters(UniversalMeterSettList allMeters);
 
-    void command4dev(quint16 command, QString args);//pollCode args
+//    void command4dev(quint16 command, QString args);//pollCode args
+    void command4dev(quint16 command, QVariantMap mapArgs);//pollCode args
 
 public slots:
     void setPollSett(QDateTime dtFrom, QDateTime dtTo, quint8 pollCode);

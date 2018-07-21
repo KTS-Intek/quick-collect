@@ -26,6 +26,9 @@ signals:
 
     void updateHashSn2meter(QHash<QString,QString> hashMeterSn2memo, QHash<QString,QString> hashMeterSn2ni, QHash<QString, QString> hashMeterNi2memo);
 
+
+    void setCOMMAND_READ_POLL_STATISTIC(QVariantHash h);
+
 public slots:
     void onThreadStarted();
 
@@ -39,7 +42,9 @@ public slots:
 
     void uploadProgressSlot(int val, QString txt);
 
+    void onCOMMAND_READ_POLL_STATISTIC(QStringList list);
 
+    void onMeterPollCancelled(QString ni, QString stts, qint64 msec);
 
 private:
     void onAddlistOfMeters2cache(ClassManagerSharedObjects *shrdObj, const UniversalMeterSettList &activeMeters, const MyNi2model &switchedOffMeters, const bool &checkOffMeters);

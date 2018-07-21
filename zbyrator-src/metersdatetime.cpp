@@ -4,6 +4,9 @@
 #include "src/matilda/settloader.h"
 #include "src/widgets/selectionchecker.h"
 #include "src/matilda/showmesshelper.h"
+#include "src/meter/definedpollcodes.h"
+#include "src/zbyrator-v2/quickpollhelper.h"
+
 
 MetersDateTime::MetersDateTime(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent) :
     ReferenceWidgetClass(lDevInfo, gHelper, gSett4all, parent),
@@ -47,6 +50,27 @@ void MetersDateTime::onModelChanged()
 
 }
 
+void MetersDateTime::meterDateTimeDstStatus(QString ni, QDateTime dtLocal, QString stts)
+{
+    if(ni.isEmpty())
+        return;
+
+    const int row = StandardItemModelHelper::getRowFromNI(4, ni, model);
+    if(row < 0)
+        return;
+
+    stts.append("\n\n");
+    const QStringList l = stts.split("\n");
+
+    model->item(row, 0)->setText(dtLocal.toString(lastDateTimeMask));
+    model->item(row, 1)->setText(l.at(0));
+    model->item(row, 6)->setText(l.at(1));
+
+    TableViewHelper::selectRowWithThisCell(ui->tvTable, ni, 4);
+
+    resizeLastTv2content();
+}
+
 void MetersDateTime::initPage()
 {
 
@@ -56,15 +80,15 @@ void MetersDateTime::initPage()
     ui->widget_2->setEnabled(false);
     ui->widget->setEnabled(false);
 
-    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pushButton, SLOT(setDisabled(bool)));
-    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pushButton_2, SLOT(setDisabled(bool)));
-    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pushButton_3, SLOT(setDisabled(bool)));
-    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pushButton_4, SLOT(setDisabled(bool)));
+    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pbRead, SLOT(setDisabled(bool)));
+    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pbReadAll, SLOT(setDisabled(bool)));
+    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pbWrite, SLOT(setDisabled(bool)));
+    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pbCorrectionAll, SLOT(setDisabled(bool)));
 
-    ui->pushButton->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
-    ui->pushButton_2->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
-    ui->pushButton_3->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
-    ui->pushButton_4->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
+    ui->pbRead->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
+    ui->pbReadAll->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
+    ui->pbWrite->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
+    ui->pbCorrectionAll->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
 
     emit onReloadAllMeters();
 
@@ -125,4 +149,49 @@ void MetersDateTime::on_tvTable_customContextMenuRequested(const QPoint &pos)
 {
     gHelper->createCustomMenu(pos, ui->tvTable, (GuiHelper::ShowReset|GuiHelper::ShowExport|GuiHelper::ShowOnlyCopy), CLBRD_SMPL_PRXTBL, ShowMessHelper::matildaFileName(windowTitle()));
 
+}
+
+void MetersDateTime::on_pbReadAll_clicked()
+{
+    startOperation(TableViewHelper::getRowsText(ui->tvTable, 4), POLL_CODE_READ_DATE_TIME_DST);
+}
+
+void MetersDateTime::on_pbCorrectionAll_clicked()
+{
+    startOperation(TableViewHelper::getRowsText(ui->tvTable, 4), POLL_CODE_WRITE_DATE_TIME);
+}
+
+void MetersDateTime::on_pbRead_clicked()
+{
+    startOperation(TableViewHelper::selectedRowText(ui->tvTable, 4), POLL_CODE_READ_DATE_TIME_DST);
+}
+
+void MetersDateTime::on_pbWrite_clicked()
+{
+    startOperation(TableViewHelper::selectedRowText(ui->tvTable, 4), POLL_CODE_WRITE_DATE_TIME);
+
+}
+
+void MetersDateTime::startOperation(const QStringList &listni, const quint8 &operation)
+{
+    if(gHelper->managerEnDisBttn.pbReadDis)
+        return;
+
+    if(listni.isEmpty()){
+        gHelper->showMessSlot(tr("no meters"));
+        return;
+    }
+
+    QString mess;
+    const QVariantMap map = QuickPollHelper::createPollMap4relay(listni, 0, mess);
+
+    if(map.isEmpty())
+        return;
+
+    ui->tvTable->clearSelection();
+    StandardItemModelHelper::clearCells(listni, 4,QList<int>() << 0 << 1 << 6, model);
+    gHelper->updateSettDateMaskAndDotPos();
+    emit setLastPageId(accessibleName());
+    lastDateTimeMask = gHelper->dateMask + " hh:mm:ss";
+    emit command4dev(operation, map);
 }

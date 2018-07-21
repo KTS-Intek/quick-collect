@@ -517,39 +517,50 @@ void QcMainWindow::createMeterManager()
 
 //    connect(extSocket, &ZbyratorSocket::appendDbgExtData, this, &ZbyratorManager::appendDbgExtData );
 
-    connect(this, &QcMainWindow::command4dev     , zbyrator, &MeterManager::command4dev      );
 
 
 //    connect(zbyrator, &MeterManager::command2extensionClient, extSocket, &ZbyratorSocket::command2extensionClient   );
 //    connect(zbyrator, &MeterManager::onAboutZigBee          , extSocket, &ZbyratorSocket::sendAboutZigBeeModem      );
 
     metersListMedium = new ZbyrMeterListMedium(this);
+    connect(metersListMedium, SIGNAL(command4dev(quint16,QString))    , zbyrator, SIGNAL(command4dev(quint16,QString)) );
+    connect(metersListMedium, SIGNAL(command4dev(quint16,QVariantMap)), zbyrator, SIGNAL(command4dev(quint16,QVariantMap)) );
+
+
     connect(metersListMedium, &ZbyrMeterListMedium::updateHashSn2meter, guiHelper, &GuiHelper::updateHashSn2meter);
+    connect(metersListMedium, &ZbyrMeterListMedium::appendAppLog        , this, &QcMainWindow::appendShowMessPlain );
 
     connect(metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters   , zbyrator, &MeterManager::onReloadAllMeters    );
     connect(metersListMedium, &ZbyrMeterListMedium::onConfigChanged     , zbyrator, &MeterManager::onConfigChanged      );
     connect(metersListMedium, &ZbyrMeterListMedium::sendMeAlistOfMeters , zbyrator, &MeterManager::sendMeAlistOfMeters  );
-    connect(metersListMedium, &ZbyrMeterListMedium::command4dev         , zbyrator, &MeterManager::command4dev          );
 
     connect(metersListMedium, &ZbyrMeterListMedium::setThisIfaceSett    , zbyrator, &MeterManager::setThisIfaceSett     );
     connect(metersListMedium, &ZbyrMeterListMedium::setPollSaveSettings , zbyrator, &MeterManager::setPollSaveSettings  );
 
     connect(metersListMedium, &ZbyrMeterListMedium::giveMeYourCache     , zbyrator, &MeterManager::giveMeYourCache      );
     connect(metersListMedium, &ZbyrMeterListMedium::killUconTasks       , zbyrator, &MeterManager::killUconsTasks       );
+    connect(metersListMedium, &ZbyrMeterListMedium::setIgnoreCycles     , zbyrator, &MeterManager::setIgnoreCycles      );
 
     connect(metersListMedium, SIGNAL(showMess(QString)), this, SLOT(showMess(QString)) );
 
     connect(zbyrator, SIGNAL(checkThisMeterInfo(UniversalMeterSett)), metersListMedium, SIGNAL(onReloadAllMeters()) );
 
-    connect(zbyrator, &MeterManager::onAllMeters    , metersListMedium, &ZbyrMeterListMedium::onAllMetersSlot   );
-    connect(zbyrator, &MeterManager::onAllMeters    , metersListMedium, &ZbyrMeterListMedium::onAllMeters       );
-    connect(zbyrator, &MeterManager::onAlistOfMeters, metersListMedium, &ZbyrMeterListMedium::onAlistOfMeters   );
-    connect(zbyrator, &MeterManager::ifaceLogStr    , metersListMedium, &ZbyrMeterListMedium::ifaceLogStr       );
+    connect(zbyrator, &MeterManager::onAllMeters                , metersListMedium, &ZbyrMeterListMedium::onAllMetersSlot           );
+    connect(zbyrator, &MeterManager::onAllMeters                , metersListMedium, &ZbyrMeterListMedium::onAllMeters               );
+    connect(zbyrator, &MeterManager::onAlistOfMeters            , metersListMedium, &ZbyrMeterListMedium::onAlistOfMeters           );
+    connect(zbyrator, &MeterManager::ifaceLogStr                , metersListMedium, &ZbyrMeterListMedium::ifaceLogStr               );
 
-    connect(zbyrator, &MeterManager::appendMeterData, metersListMedium, &ZbyrMeterListMedium::appendMeterData   );
-    connect(zbyrator, &MeterManager::onConnectionStateChanged, metersListMedium, &ZbyrMeterListMedium::onConnectionStateChanged);
-    connect(zbyrator, &MeterManager::onUconStartPoll, metersListMedium, &ZbyrMeterListMedium::onUconStartPoll);
-    connect(zbyrator, &MeterManager::onReadWriteOperation, metersListMedium, &ZbyrMeterListMedium::onReadWriteOperation);
+    connect(zbyrator, &MeterManager::appendMeterData            , metersListMedium, &ZbyrMeterListMedium::appendMeterData           );
+    connect(zbyrator, &MeterManager::onConnectionStateChanged   , metersListMedium, &ZbyrMeterListMedium::onConnectionStateChanged  );
+    connect(zbyrator, &MeterManager::onUconStartPoll            , metersListMedium, &ZbyrMeterListMedium::onUconStartPoll           );
+    connect(zbyrator, &MeterManager::onReadWriteOperation       , metersListMedium, &ZbyrMeterListMedium::onReadWriteOperation      );
+
+    connect(zbyrator, &MeterManager::onStatisticChanged         , metersListMedium, &ZbyrMeterListMedium::onStatisticChanged        );
+    connect(zbyrator, &MeterManager::onAllStatHash              , metersListMedium, &ZbyrMeterListMedium::onAllStatHash             );
+    connect(zbyrator, &MeterManager::onTaskTableChanged         , metersListMedium, &ZbyrMeterListMedium::onTaskTableChanged        );
+    connect(zbyrator, &MeterManager::onTaskCanceled             , metersListMedium, &ZbyrMeterListMedium::onTaskCanceled            );
+    connect(zbyrator, &MeterManager::meterRelayStatus           , metersListMedium, &ZbyrMeterListMedium::meterRelayStatus          );
+    connect(zbyrator, &MeterManager::meterDateTimeDstStatus     , metersListMedium, &ZbyrMeterListMedium::meterDateTimeDstStatus    );
 
     connect(zbyrator, &MeterManager::appendAppOut, this, &QcMainWindow::appendShowMessPlain);
 

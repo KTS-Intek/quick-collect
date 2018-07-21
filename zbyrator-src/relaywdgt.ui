@@ -55,7 +55,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="pbReadAll">
         <property name="text">
          <string>Read</string>
         </property>
@@ -110,7 +110,7 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QPushButton" name="pushButton_4">
+          <widget class="QPushButton" name="pbRead">
            <property name="text">
             <string>Read</string>
            </property>
@@ -121,24 +121,24 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton">
-           <property name="text">
-            <string>Load off</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../res.qrc">
-             <normaloff>:/katynko/svg3/relay-load-off.svg</normaloff>:/katynko/svg3/relay-load-off.svg</iconset>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_3">
+          <widget class="QPushButton" name="pbLoadOn">
            <property name="text">
             <string>Load on</string>
            </property>
            <property name="icon">
             <iconset resource="../res.qrc">
              <normaloff>:/katynko/svg3/relay-load-on.svg</normaloff>:/katynko/svg3/relay-load-on.svg</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pbLoadOff">
+           <property name="text">
+            <string>Load off</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../res.qrc">
+             <normaloff>:/katynko/svg3/relay-load-off.svg</normaloff>:/katynko/svg3/relay-load-off.svg</iconset>
            </property>
           </widget>
          </item>

@@ -7,12 +7,14 @@
 #include <QTimer>
 #include "zbyrator-src/src/zbyrtableheaders.h"
 #include "src/matilda/standarditemmodelhelper.h"
+#include "src/matilda/moji_defy.h"
 
 #include "src/matilda/settloader.h"
 #include "zbyrator-src/wdgt/compliterlistdialog.h"
 #include "src/matilda/serialporthelper.h"
 #include "src/shared/networkconverthelper.h"
 #include "zbyrator-src/src/zbyratordatacalculation.h"
+#include "zbyrator-src/src/startexchangehelper.h"
 
 //---------------------------------------------------------------------
 
@@ -213,6 +215,13 @@ void ZbyrMeterListMedium::command4devSlot(quint16 command, QString args)
     emit command4dev(command, args);
 }
 
+void ZbyrMeterListMedium::command4devSlot(quint16 command, QVariantMap mapArgs)
+{
+    updateInterfaceSettings();
+
+    emit command4dev(command, mapArgs);
+}
+
 //---------------------------------------------------------------------
 
 void ZbyrMeterListMedium::onListChanged(const QStringList &list, const int &tag)
@@ -240,11 +249,96 @@ void ZbyrMeterListMedium::createDataCalculator()
     connect(this, &ZbyrMeterListMedium::onPollStarted   , c, &ZbyratorDataCalculation::onPollStarted);
     connect(this, &ZbyrMeterListMedium::onUconStartPoll , c, &ZbyratorDataCalculation::onUconStartPoll);
 
+    connect(this, &ZbyrMeterListMedium::onMeterPollCancelled, c, &ZbyratorDataCalculation::onMeterPollCancelled);
+
     connect(c, &ZbyratorDataCalculation::appendData2model, this, &ZbyrMeterListMedium::appendData2model);
     connect(c, &ZbyratorDataCalculation::setLblWaitTxt   , this, &ZbyrMeterListMedium::setLblWaitTxt);
     connect(c, &ZbyratorDataCalculation::updateHashSn2meter, this, &ZbyrMeterListMedium::updateHashSn2meter);
+
+    connect(c, &ZbyratorDataCalculation::setCOMMAND_READ_POLL_STATISTIC, this, &ZbyrMeterListMedium::setStatisticOfExchangePageSett);
+    connect(this, &ZbyrMeterListMedium::onCOMMAND_READ_POLL_STATISTIC, c, &ZbyratorDataCalculation::onCOMMAND_READ_POLL_STATISTIC);
     t->start();
 
+}
+
+void ZbyrMeterListMedium::onAllStatHash(QStringList allstat)
+{
+    liststat = allstat;
+}
+//---------------------------------------------------------------------
+void ZbyrMeterListMedium::onPollCodeChangedStat(QVariantHash hash)
+{
+    const QString pollStr = hash.value("c").toString();
+    QString niStr = hash.value("n").toString();
+    const int mode = hash.value("m", -1).toInt();
+
+
+    if(mode < 0)
+        niStr.clear();
+
+    QStringList rezListStr;
+
+    if(niStr.contains("'"))
+        niStr.replace("'", " ");
+
+    QRegExp regExp(niStr, Qt::CaseInsensitive, QRegExp::RegExp);
+
+    const QStringList ls = liststat;
+    if(!ls.isEmpty())
+        rezListStr.append(ls.first());
+
+
+
+
+//    QHash<QString, OneModemStat> hNi2allData;
+//    QStringList lk2niAllData;
+
+    for(int i = 1, iMax = ls.size(); i < iMax; i++){
+        if(ls.at(i).split("\t", QString::SkipEmptyParts).isEmpty())
+            continue;
+
+        const QString niLine = ls.at(i).split("\t", QString::SkipEmptyParts).first();
+
+        if(niStr.isEmpty() || (mode == 0 && niLine == niStr) || (mode == 1 && niLine.contains(regExp))){
+            //    QString retVal(tr("Modem NI\tModel\tPoll Code\tTime\tMess. Count\tWrite/Read byte\tElapsed (s)\tLast retry\n"));
+            if(pollStr.isEmpty()){
+                rezListStr.append(ls.at(i));
+            }else{
+                const QStringList l = ls.at(i).split("\t", QString::SkipEmptyParts);
+                if(l.size() < 5)
+                    continue;
+                if(l.at(2) == pollStr)
+                    rezListStr.append(ls.at(i));
+
+            }
+        }
+    }
+    emit onCOMMAND_READ_POLL_STATISTIC(rezListStr);
+}
+
+//---------------------------------------------------------------------
+
+void ZbyrMeterListMedium::onTaskCanceled(quint8 pollCode, QString ni, qint64 dtFinished, quint8 rez)
+{
+
+    if(rez == 0) // RD_EXCHANGE_DONE)
+        return;
+    Q_UNUSED(pollCode);
+    const QString stts = StartExchangeHelper::getStts4rez(rez);
+
+    emit appendAppLog(tr("%3: NI: %1, one task removed, rezult is %2").arg(ni).arg(stts).arg(QDateTime::currentDateTime().toString("yyyy/MM/dd hh:mm:ss")));
+
+    switch(lastPageMode){
+    case 0: emit onMeterPollCancelled(ni, stts, dtFinished); break;//poll page
+    case 1: emit meterRelayStatus(ni, QDateTime::fromMSecsSinceEpoch(dtFinished).toLocalTime(), stts); break; //relay
+    }
+
+}
+//---------------------------------------------------------------------
+void ZbyrMeterListMedium::setLastPageId(QString accsblName)
+{
+    //    return QString("Poll;Relay;Queue;Statistic of the exchange;Date and time;Meter address;Check Connection Tool;Other;Interface").split(";");
+     lastPageMode = StartExchangeHelper::getChList().indexOf((accsblName));
 }
 
 //---------------------------------------------------------------------

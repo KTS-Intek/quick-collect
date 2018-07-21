@@ -23,6 +23,10 @@ signals:
 
     void onReloadAllMeters();
 
+    void command4dev(quint16 command, QVariantMap mapArgs);//pollCode args
+
+
+    void setLastPageId(QString name);
 public slots:
     void clearPage();
 
@@ -31,6 +35,8 @@ public slots:
 
 
     void onModelChanged();
+
+    void meterRelayStatus(QString ni, QDateTime dtLocal, QString stts);
 
 
 
@@ -46,9 +52,24 @@ private slots:
 
     void on_tvTable_customContextMenuRequested(const QPoint &pos);
 
+
+    void on_pbReadAll_clicked();
+
+    void on_pbRead_clicked();
+
+    void on_pbLoadOn_clicked();
+
+    void on_pbLoadOff_clicked();
+
 private:
     Ui::RelayWdgt *ui;
+
+    void doRelayOperationSelected(const quint8 &operation);
+
+    void doRelayOperation(const QStringList &listni, const quint8 &operation);
+
     bool isMapReady;
+    QString lastDateTimeMask;
 
 };
 

@@ -18,7 +18,6 @@ public:
     GuiHelper *guiHelper;
 
     ZbyrMeterListMedium *metersListMedium;
-    static QStringList getChListData(QStringList &listIcos, QStringList &chListNames);
 
 
 public slots:
@@ -68,6 +67,11 @@ private:
     MatildaConfWidget *createMetersDateTime(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
 
     MatildaConfWidget *createZbyrIfaceSett(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+
+    MatildaConfWidget *createStatisticWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+
+    MatildaConfWidget *createZbyratorTaskWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+
 
     void showWdgtByNameData(const QString &named);
 

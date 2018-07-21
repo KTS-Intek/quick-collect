@@ -1,7 +1,8 @@
 #include "zbyratordatacalculation.h"
 #include "src/zbyrator-v2/myucmmeterstypes.h"
 #include "src/matilda/showmesshelper.h"
-#include "src/matilda/moji_defy.h"
+//#include "src/matilda/moji_defy.h"
+#include "src/meter/definedpollcodes.h"
 #include "src/matilda/classmanagerhelper.h"
 
 ZbyratorDataCalculation::ZbyratorDataCalculation(QObject *parent) : QObject(parent)
@@ -81,6 +82,9 @@ void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHash
 
         shrdObj->lastPollCode = lastPollCode;
         shrdObj->lastDateIsMsec = true;
+
+        if(lastPollCode == POLL_CODE_METER_STATUS)
+            shrdObj->komaPos = -1;//do not show dots
     }
 
 
@@ -124,7 +128,7 @@ void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHash
 
         QVariantList listOneMeter;
 
-        const Data2listOutSett outsett = (shrdObj->lastPollCode == POLL_CODE_READ_METER_STATE) ?
+        const Data2listOutSett outsett = (lastPollCode == POLL_CODE_READ_METER_STATE) ?
                     ClassManagerHelper::addData2listState(listOneMeter, shrdObj, hashRowCol2varData, list, columnListSize, d2linput, rowCounter) :
                     ClassManagerHelper::addData2list(listOneMeter, shrdObj, hashRowCol2varData, list, columnListSize, d2linput, rowCounter);
 
@@ -212,6 +216,108 @@ void ZbyratorDataCalculation::onUconStartPoll(QStringList nis, quint8 meterType)
 void ZbyratorDataCalculation::uploadProgressSlot(int val, QString txt)
 {
     emit setLblWaitTxt(QString("%1, %2 %").arg(txt).arg(val));
+}
+
+void ZbyratorDataCalculation::onCOMMAND_READ_POLL_STATISTIC(QStringList list)
+{
+
+    if(list.isEmpty())
+        return;
+
+    QStringList header = list.first().split("\t", QString::SkipEmptyParts);
+    if(header.size() < 7)
+        return;
+
+
+    int meterNiIndx = 0;
+
+    if(true){
+        QStringList columnList = header;
+        header.clear();
+
+        columnList.append("crdnts");
+        columnList.append("memo");
+
+        meterNiIndx = columnList.indexOf("Modem NI");
+        if(meterNiIndx < 0)
+            meterNiIndx = 0;
+
+        const QHash<QString,QString> hKeyHuman = ShowMessHelper::columnKey2humanLang();
+
+        for(int i = 0, iMax = columnList.size(); i < iMax; i++)
+            header.append(hKeyHuman.value(columnList.at(i), columnList.at(i)));
+
+    }
+
+    QVariantList meters;
+
+
+    for(int i = 1, iMax = list.size(), colSize = header.size(); i < iMax; i++){
+
+        QStringList ll = list.at(i).split("\t", QString::SkipEmptyParts);
+
+        if(ll.isEmpty() || ll.first().isEmpty())
+            continue;
+
+
+        QString coord, memo;
+        for(quint8 j = 0; j < 3; j++){
+
+            ClassManagerSharedObjects *shrdObj = 0;
+
+            switch (j) {
+            case UC_METER_WATER         : shrdObj = shrdObjWater        ; break;
+            case UC_METER_ELECTRICITY   : shrdObj = shrdObjElectricity  ; break;
+            }
+            if(shrdObj){
+                if(shrdObj->lastMemoPos < ll.size())
+                    coord = shrdObj->meterCoordinatesFromCache("", ll.at(meterNiIndx));
+
+                if(shrdObj->lastMemoPos < ll.size())
+                    memo = shrdObj->meterMemoFromCache("", ll.at(meterNiIndx));
+            }
+
+            if(!coord.isEmpty() || !memo.isEmpty())
+                break;
+        }
+
+        ll.append(coord);
+        ll.append(memo);
+
+
+        for(int j = ll.size() ; j < colSize; j++)
+            ll.append("---");
+        meters.append(ll);
+    }
+
+
+    QVariantHash hash;
+    hash.insert("header", header);
+    hash.insert("meters", meters);
+    emit setCOMMAND_READ_POLL_STATISTIC(hash);
+}
+
+void ZbyratorDataCalculation::onMeterPollCancelled(QString ni, QString stts, qint64 msec)
+{
+//    ClassManagerSharedObjects *shrdObj = shrdObjElectricity;
+    const QString sn = shrdObjElectricity->hashMeterNi2info.value(ni).sn ;
+
+    MyListHashString listHash;
+
+    const QDateTime dt = QDateTime::fromMSecsSinceEpoch(msec);
+
+    qint64 msecMinus = 0;
+    switch(lastPollCode){
+    case POLL_CODE_READ_END_DAY:
+    case POLL_CODE_READ_END_MONTH: msecMinus = (qint64)dt.toLocalTime().offsetFromUtc() * 1000;
+    }
+    QHash<QString,QString> h;
+    h.insert("msec", QString::number(dt.toUTC().toMSecsSinceEpoch() - msecMinus));
+    h.insert("stts", stts);
+
+    listHash.append(h);
+
+    appendMeterData(ni, sn, listHash);
 }
 
 

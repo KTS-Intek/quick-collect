@@ -38,9 +38,6 @@ signals:
     void killOldWdgt();
 
 
-    void command4dev(quint16 command, QString str);
-
-
 
     void setThisObjProfileName(QString profileName);
 

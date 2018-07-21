@@ -4,6 +4,8 @@
 #include "src/matilda/settloader.h"
 #include "src/widgets/selectionchecker.h"
 #include "src/matilda/showmesshelper.h"
+#include "src/meter/definedpollcodes.h"
+#include "src/zbyrator-v2/quickpollhelper.h"
 
 
 RelayWdgt::RelayWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent) :
@@ -44,6 +46,9 @@ void RelayWdgt::setPageSett(const MyListStringList &listRows, const QVariantMap 
     setHasDataFromRemoteDevice();
 
     emit resizeTv2content(ui->tvTable);
+
+
+
 
 }
 
@@ -103,7 +108,24 @@ void RelayWdgt::onModelChanged()
 
 //    const int row = proxy_model->mapToSource(ui->tvWithFilter->currentIndex()).row();
 //    if(row >= 0)
-//        emit showThisDeviceNIEs(model->item(row, 2)->text());
+    //        emit showThisDeviceNIEs(model->item(row, 2)->text());
+}
+
+void RelayWdgt::meterRelayStatus(QString ni, QDateTime dtLocal, QString stts)
+{
+    if(ni.isEmpty())
+        return;
+
+    const int row = StandardItemModelHelper::getRowFromNI(4, ni, model);
+    if(row < 0)
+        return;
+
+    model->item(row, 0)->setText(dtLocal.toString(lastDateTimeMask));
+    model->item(row, 1)->setText(stts);
+
+    TableViewHelper::selectRowWithThisCell(ui->tvTable, ni, 4);
+
+    resizeLastTv2content();
 }
 
 void RelayWdgt::initPage()
@@ -114,15 +136,15 @@ void RelayWdgt::initPage()
     ui->widget_2->setEnabled(false);
     ui->widget->setEnabled(false);
 
-    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pushButton, SLOT(setDisabled(bool)));
-    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pushButton_2, SLOT(setDisabled(bool)));
-    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pushButton_3, SLOT(setDisabled(bool)));
-    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pushButton_4, SLOT(setDisabled(bool)));
+    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pbRead, SLOT(setDisabled(bool)));
+    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pbReadAll, SLOT(setDisabled(bool)));
+    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pbLoadOff, SLOT(setDisabled(bool)));
+    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pbLoadOn, SLOT(setDisabled(bool)));
 
-    ui->pushButton->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
-    ui->pushButton_2->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
-    ui->pushButton_3->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
-    ui->pushButton_4->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
+    ui->pbRead->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
+    ui->pbReadAll->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
+    ui->pbLoadOff->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
+    ui->pbLoadOn->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
 
     emit onReloadAllMeters();
 
@@ -183,5 +205,56 @@ void RelayWdgt::on_tbShowMap_clicked()
 void RelayWdgt::on_tvTable_customContextMenuRequested(const QPoint &pos)
 {
     gHelper->createCustomMenu(pos, ui->tvTable, (GuiHelper::ShowReset|GuiHelper::ShowExport|GuiHelper::ShowOnlyCopy), CLBRD_SMPL_PRXTBL, ShowMessHelper::matildaFileName(windowTitle()));
+}
+
+
+void RelayWdgt::on_pbReadAll_clicked()
+{
+    doRelayOperation(TableViewHelper::getRowsText(ui->tvTable, 4), RELAY_READ);
+}
+
+void RelayWdgt::on_pbRead_clicked()
+{
+    doRelayOperationSelected(RELAY_READ);
+}
+
+void RelayWdgt::on_pbLoadOn_clicked()
+{
+    doRelayOperationSelected(RELAY_LOAD_ON);
+
+}
+
+void RelayWdgt::on_pbLoadOff_clicked()
+{
+    doRelayOperationSelected(RELAY_LOAD_OFF);
+}
+
+void RelayWdgt::doRelayOperationSelected(const quint8 &operation)
+{
+    doRelayOperation(TableViewHelper::selectedRowText(ui->tvTable, 4), operation);
+}
+
+void RelayWdgt::doRelayOperation(const QStringList &listni, const quint8 &operation)
+{
+    if(gHelper->managerEnDisBttn.pbReadDis)
+        return;
+
+    if(listni.isEmpty()){
+        gHelper->showMessSlot(tr("no meters"));
+        return;
+    }
+
+    QString mess;
+    const QVariantMap map = QuickPollHelper::createPollMap4relay(listni,operation, mess);
+
+    if(map.isEmpty())
+        return;
+
+    ui->tvTable->clearSelection();
+    StandardItemModelHelper::clearCells(listni, 4,QList<int>() << 0 << 1, model);
+    gHelper->updateSettDateMaskAndDotPos();
+    emit setLastPageId(accessibleName());
+    lastDateTimeMask = gHelper->dateMask + " hh:mm:ss";
+    emit command4dev(POLL_CODE_RELAY_OPERATIONS, map);
 
 }

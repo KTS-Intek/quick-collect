@@ -31,11 +31,14 @@ signals:
     void killTabByName(QString wdgtAccsbltName);
 
     void command4dev(quint16 command, QString args);//pollCode args
+    void command4dev(quint16 command, QVariantMap mapArgs);//pollCode args
 
     void onPollStarted(quint8 pollCode, QStringList listEnrg, QString dateMask, int dotPos, bool allowDate2utc);
 
+    void killSelectMeters4poll();
 //    void onAllMeters(UniversalMeterSettList allMeters);
 
+    void setIgnoreCycles(bool ignoreCycles);
 public slots:
     void initPage();
 
@@ -48,7 +51,7 @@ public slots:
 
     void setPbReadEnbld();
 
-    void command4devSlot(quint16 command, QString args);//pollCode args
+    void command4devSlot(quint16 command, QVariantMap map);//pollCode args
 
 
 private slots:

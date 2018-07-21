@@ -4,6 +4,8 @@
 #include "src/matilda/settloader.h"
 #include "src/zbyrator-v2/quickpollhelper.h"
 #include "zbyrator-src/src/getreadymetersdata.h"
+#include <QShortcut>
+#include <QKeySequence>
 
 SelectMeters4poll::SelectMeters4poll(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent) :
     ReferenceWidgetClass(lDevInfo, gHelper, gSett4all, parent),
@@ -11,6 +13,8 @@ SelectMeters4poll::SelectMeters4poll(LastDevInfo *lDevInfo, GuiHelper *gHelper, 
 {
     ui->setupUi(this);
     connect(ui->pbCancel, SIGNAL(clicked(bool)), this, SLOT(deleteLater()) );
+    connect(new QShortcut(QKeySequence::Cancel, this), SIGNAL(activated()), this, SLOT(deleteLater()) );
+
 }
 
 SelectMeters4poll::~SelectMeters4poll()
@@ -61,6 +65,8 @@ void SelectMeters4poll::initPage()
     connect(this, SIGNAL(onAllMeters(UniversalMeterSettList)), d, SLOT(setMetersList(UniversalMeterSettList)));
 
     t->start();
+
+    ui->cbxIgnoreExistingData->setChecked(SettLoader::loadSett(SETT_ZBRTR_IGNOREEXISTING, true).toBool());
 
 //    emit onPageCanReceiveData();
 }
@@ -119,12 +125,14 @@ void SelectMeters4poll::sendStartPoll(const QStringList &listni)
         return;
 
     QString mess;
-    const QString args = QuickPollHelper::createQuickPollLine(listni.join(" "), "", "", "", -1, lPollSett.dtTo, lPollSett.dtFrom, mess);
+    const QVariantMap map = QuickPollHelper::createPollMap(listni, lPollSett.dtTo, lPollSett.dtFrom, ui->cbxIgnoreExistingData->isChecked(), mess);
 
-    if(args.isEmpty())
+    if(map.isEmpty())
         return;
 
-    emit command4dev(lPollSett.pollCode, args);
+    emit command4dev(lPollSett.pollCode, map);
+    SettLoader::saveSett(SETT_ZBRTR_IGNOREEXISTING, ui->cbxIgnoreExistingData->isChecked());
+
     QTimer::singleShot(11, this, SLOT(deleteLater()) );
 }
 

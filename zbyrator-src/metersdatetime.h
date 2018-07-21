@@ -25,6 +25,12 @@ signals:
 
     void onReloadAllMeters();
 
+
+    void command4dev(quint16 command, QVariantMap mapArgs);//pollCode args
+
+    void setLastPageId(QString name);
+
+
 public slots:
     void clearPage();
 
@@ -32,6 +38,7 @@ public slots:
 
     void onModelChanged();
 
+    void meterDateTimeDstStatus(QString ni, QDateTime dtLocal, QString stts);
 
 
 private slots:
@@ -47,9 +54,21 @@ private slots:
 
     void on_tvTable_customContextMenuRequested(const QPoint &pos);
 
+    void on_pbReadAll_clicked();
+
+    void on_pbCorrectionAll_clicked();
+
+    void on_pbRead_clicked();
+
+    void on_pbWrite_clicked();
+
 private:
     Ui::MetersDateTime *ui;
+
+    void startOperation(const QStringList &listni, const quint8 &operation);
+
     bool isMapReady;
+    QString lastDateTimeMask;
 };
 
 #endif // METERSDATETIME_H

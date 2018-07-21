@@ -13,7 +13,8 @@
 #include "dataconcetrator-pgs/zbyratortasks.h"
 #include "info-pgs/statisticofexchangewdgt.h"
 #include "prepaid-pgs/ifaceindicationwdgt.h"
-
+#include "src/zbyratortasksmedium.h"
+#include "zbyrator-src/src/startexchangehelper.h"
 
 StartExchange::StartExchange(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent) :
     MatildaConfWidget(lDevInfo, gHelper, gSett4all, parent),
@@ -29,23 +30,6 @@ StartExchange::~StartExchange()
     delete ui;
 }
 
-QStringList StartExchange::getChListData(QStringList &listIcos, QStringList &chListNames)
-{
-    chListNames = tr("Poll;Relay;Queue;Statistic of the exchange;Date and time;Meter address;Check Connection Tool;Other;Interface").split(";");
-    listIcos.clear();
-    listIcos.append(":/katynko/svg/edit-table-insert-row-below.svg");
-    listIcos.append(":/katynko/svg/format-disconnect-node.svg");
-    listIcos.append(":/katynko/svg/format-list-ordered.svg");
-    listIcos.append(":/katynko/svg/view-statistics.svg");
-    listIcos.append(":/katynko/svg/chronometer.svg");
-    listIcos.append(":/katynko/svg/address-book-new.svg");
-    listIcos.append(":/katynko/svg/irc-voice.svg");
-    listIcos.append(":/katynko/svg/irc-voice.svg");
-    listIcos.append(":/katynko/svg/network-disconnect.svg");
-
-    return QString("Poll;Relay;Queue;Statistic of the exchange;Date and time;Meter address;Check Connection Tool;Other;Interface").split(";");
-
-}
 //-----------------------------------------------------------------------------------------------
 void StartExchange::initPage()
 {
@@ -94,7 +78,7 @@ void StartExchange::initPage()
     //, QStringList chListNames, QStringList listIcos, int buttonH)
 
 
-    const QStringList chListData = getChListData(listIcos, chListNames);
+    const QStringList chListData = StartExchangeHelper::getChListData(listIcos, chListNames);
 
 
     for(int i = 0, imax = listIcos.size(); i < imax; i++)
@@ -208,9 +192,14 @@ MatildaConfWidget *StartExchange::createStartPagePoll(LastDevInfo *lDevInfo, Gui
 
     connect(metersListMedium, &ZbyrMeterListMedium::onUpdatedSavedList, w, &StartPagePoll::onUpdatedSavedList);
 
+    connect(w, &StartPagePoll::setIgnoreCycles  , metersListMedium, &ZbyrMeterListMedium::setIgnoreCycles);
+
     connect(w, &StartPagePoll::onReloadAllMeters, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters );
-    connect(w, &StartPagePoll::command4dev      , metersListMedium, &ZbyrMeterListMedium::command4devSlot   );
     connect(w, &StartPagePoll::onPollStarted    , metersListMedium, &ZbyrMeterListMedium::onPollStarted     );
+
+    connect(w, SIGNAL(command4dev(quint16,QString))    , metersListMedium, SLOT(command4devSlot(quint16,QString)) );
+    connect(w, SIGNAL(command4dev(quint16,QVariantMap)), metersListMedium, SLOT(command4devSlot(quint16,QVariantMap)) );
+
 
     return w;
 }
@@ -220,7 +209,11 @@ MatildaConfWidget *StartExchange::createRelayWdgt(LastDevInfo *lDevInfo, GuiHelp
     RelayWdgt *w = new RelayWdgt(lDevInfo, gHelper, gSett4all, parent);
 //    connect(metersListMedium, &ZbyrMeterListMedium::setRelayPageSett, w, &RelayWdgt::setp);
     connect(metersListMedium, SIGNAL(setRelayPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)), w, SLOT(setPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)) );
+    connect(metersListMedium, &ZbyrMeterListMedium::meterRelayStatus, w, &RelayWdgt::meterRelayStatus);
     connect(w, &RelayWdgt::onReloadAllMeters, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters);
+    connect(w, &RelayWdgt::setLastPageId, metersListMedium, &ZbyrMeterListMedium::setLastPageId);
+    connect(w, SIGNAL(command4dev(quint16,QVariantMap)), metersListMedium, SLOT(command4devSlot(quint16,QVariantMap)) );
+
     return w;
 }
 
@@ -231,6 +224,9 @@ MatildaConfWidget *StartExchange::createMetersDateTime(LastDevInfo *lDevInfo, Gu
     MetersDateTime *w = new MetersDateTime(lDevInfo, gHelper, gSett4all, parent);
     connect(metersListMedium, SIGNAL(setDateTimePageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)), w, SLOT(setPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)) );
     connect(w, &MetersDateTime::onReloadAllMeters, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters);
+    connect(w, SIGNAL(command4dev(quint16,QVariantMap)), metersListMedium, SLOT(command4devSlot(quint16,QVariantMap)) );
+    connect(metersListMedium, &ZbyrMeterListMedium::meterDateTimeDstStatus, w, &MetersDateTime::meterDateTimeDstStatus);
+
     return w;
 }
 //-----------------------------------------------------------------------------------------------
@@ -251,6 +247,42 @@ MatildaConfWidget *StartExchange::createZbyrIfaceSett(LastDevInfo *lDevInfo, Gui
     return w;
 }
 //-----------------------------------------------------------------------------------------------
+MatildaConfWidget *StartExchange::createStatisticWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent)
+{
+    StatisticOfExchangeWdgt *w = new StatisticOfExchangeWdgt( lDevInfo, gHelper, gSett4all, parent);
+    connect(w, SIGNAL(onPollCodeChanged(QVariantHash)), metersListMedium, SLOT(onPollCodeChangedStat(QVariantHash)) );
+    connect(metersListMedium, SIGNAL(onStatisticChanged(QString,QStringList))       , w, SLOT(onStatisticChanged(QString,QStringList))  );
+    connect(metersListMedium, SIGNAL(setStatisticOfExchangePageSett(QVariantHash))  , w, SLOT(setPageSett(QVariantHash))                );
+    return w;
+
+}
+
+MatildaConfWidget *StartExchange::createZbyratorTaskWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent)
+{
+
+    ZbyratorTasksMedium *m = new ZbyratorTasksMedium;
+    QThread *t = new QThread;
+    m->moveToThread(t);
+    connect(this, SIGNAL(destroyed(QObject*)), m, SLOT(deleteLater()));
+    connect(m, SIGNAL(destroyed(QObject*)), t, SLOT(quit()) );
+    connect(t, SIGNAL(finished()), t, SLOT(deleteLater()) );
+    connect(t, SIGNAL(started()), m, SLOT(onThreadStarted()) );
+
+    ZbyratorTasks *w = new ZbyratorTasks(      lDevInfo, gHelper, gSett4all, parent);
+    connect(w, SIGNAL(onZbyratorConfigChanged(quint16,QVariant)), metersListMedium, SIGNAL(onConfigChanged(quint16,QVariant)));
+
+    connect(metersListMedium, SIGNAL(onTaskTableChanged()), m, SLOT(onTaskTableChanged()));
+    connect(w, SIGNAL(onPageCanReceiveData()), m, SLOT(onPageReady()));
+
+    connect(m, SIGNAL(setZbyratorTasksPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)), w, SLOT(setPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)));
+
+    t->start();
+
+    return w;
+
+
+}
+//-----------------------------------------------------------------------------------------------
 void StartExchange::showWdgtByNameData(const QString &named)
 {
     QStringList listIcos, chListNames;
@@ -259,7 +291,7 @@ void StartExchange::showWdgtByNameData(const QString &named)
     //, QStringList chListNames, QStringList listIcos, int buttonH)
 
 
-    const QStringList chListData = getChListData(listIcos, chListNames);
+    const QStringList chListData = StartExchangeHelper::getChListData(listIcos, chListNames);
 
     const int row = chListData.indexOf(named);
     if(row < 0)
@@ -307,7 +339,7 @@ void StartExchange::addWdgt2devStack(const QString &realPageName, const QString 
     //, QStringList chListNames, QStringList listIcos, int buttonH)
 
 
-    const QStringList chListData = getChListData(listIcos, chListNames);
+    const QStringList chListData = StartExchangeHelper::getChListData(listIcos, chListNames);
 
 //QString("Poll;Relay;Queue;Statistic of the exchange;Date and time;Meter address;Check Connection Tool;Other;Interface").split(";");
     MatildaConfWidget *w = 0;
@@ -317,8 +349,8 @@ void StartExchange::addWdgt2devStack(const QString &realPageName, const QString 
     case 0: w = createStartPagePoll(    lDevInfo, guiHelper, gSett4all, this); break;
     case 1: w = createRelayWdgt(        lDevInfo, guiHelper, gSett4all, this); break;
 
-    case 2: w = new ZbyratorTasks(      lDevInfo, guiHelper, gSett4all, this); break;
-    case 3: w = new StatisticOfExchangeWdgt( lDevInfo, guiHelper, gSett4all, this); break;
+    case 2: w = createZbyratorTaskWdgt( lDevInfo, guiHelper, gSett4all, this); break;
+    case 3: w = createStatisticWdgt( lDevInfo, guiHelper, gSett4all, this); break;
 
     case 4: w = createMetersDateTime(   lDevInfo, guiHelper, gSett4all, this); break;
     case 5: w = new SetMeterAddress(    lDevInfo, guiHelper, gSett4all, this); break;
@@ -352,6 +384,8 @@ void StartExchange::addWdgt2devStack(const QString &realPageName, const QString 
 //        connect(this, SIGNAL(onOperationNError(int)), w, SLOT(onOperationNError(int)) );
         w->setRwCommand(1, 1);// MatildaDeviceTree::getPageCanRead().at(row), MatildaDeviceTree::getPageCanWrite().at(row));
 
+        w->setAccessibleName(realPageName);
+        qDebug() << "realPageName " << row << realPageName << wdgtTitle ;
 //        w->setAccessibleName(realPageName);
 
 //        w->setupGlobalLblMessage(ui->lblPageMess);

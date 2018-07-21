@@ -2,12 +2,12 @@
 #include "ui_startpagepoll.h"
 #include "src/meter/meterpluginsloadhelper.h"
 #include "src/matilda/settloader.h"
-#include "src/matilda/moji_defy.h"
+//#include "src/matilda/moji_defy.h"
+#include "src/meter/definedpollcodes.h"
 #include "dataconcetrator-pgs/dbdataform.h"
 #include "src/zbyrator-v2/quickpollhelper.h"
 #include "src/meter/meterstatehelper.cpp"
-#include "zbyrator-src/wdgt/selectdialogform.h"
-
+#include "zbyrator-src/selectmeters4poll.h"
 //---------------------------------------------------------------------
 
 StartPagePoll::StartPagePoll(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent) :
@@ -235,6 +235,7 @@ void StartPagePoll::initPage()
 
     onLvMeterDataProfile_activated(ui->lvMeterDataProfile->currentIndex());
 
+    connect(ui->cbxIgnoreRetr, SIGNAL(clicked(bool)), this, SIGNAL(setIgnoreCycles(bool)));
     QTimer::singleShot(555, this, SIGNAL(onReloadAllMeters()) );
 }
 //---------------------------------------------------------------------
@@ -274,10 +275,10 @@ void StartPagePoll::setPbReadEnbld()
     ui->pbReadDb->setEnabled(true);
 }
 
-void StartPagePoll::command4devSlot(quint16 command, QString args)
+void StartPagePoll::command4devSlot(quint16 command, QVariantMap map)
 {
     createTab(lastPollCode);
-    emit command4dev(command, args);
+    emit command4dev(command, map);
 
 }
 
@@ -285,9 +286,12 @@ void StartPagePoll::command4devSlot(quint16 command, QString args)
 
 void StartPagePoll::on_pbReadDb_clicked()
 {
+    emit killSelectMeters4poll();
+    emit setIgnoreCycles(ui->cbxIgnoreRetr->isChecked());
     gHelper->updateSettDateMaskAndDotPos();
     const quint8 code = modelProfile4DB->itemData(ui->lvMeterDataProfile->currentIndex()).value(Qt::UserRole + 1).toUInt();
     QString mess;
+    metersListMedium->setLastPageId(accessibleName());
     if(ui->rbOneMeter->isChecked()){
         //start poll directly
 
@@ -459,7 +463,7 @@ bool StartPagePoll::startPollOneMeterMode(const quint8 &pollCode, QString &mess)
 
     const QString args = QuickPollHelper::createQuickPollLine(ui->leOneMeterNI->text().simplified(),
                                                               (ui->cbxOneMeterModel->currentIndex() > 0) ? ui->cbxOneMeterModel->currentText() : "", ui->leOneMeterPass->text()
-                                                              , QString(ui->cbxOneMeterEnergy->currentData().toString()).replace(",", " "), ui->sbOneMeterTariff->value(), dtTo, dtFrom, mess);
+                                                              , QString(ui->cbxOneMeterEnergy->currentData().toString()).replace(",", " "), ui->sbOneMeterTariff->value(), dtTo, dtFrom, true, mess);
 
     if(args.isEmpty())
         return false;
@@ -484,14 +488,17 @@ bool StartPagePoll::startPollAllMetersMode(const quint8 &pollCode, QString &mess
 
 
     SelectMeters4poll *w = new SelectMeters4poll(lDevInfo, gHelper, gSett4all, this);
+    connect(this, SIGNAL(killSelectMeters4poll()), w, SLOT(deleteLater()) );
     connect(w, SIGNAL(onReloadAllMeters()), this, SIGNAL(onReloadAllMeters()) );
-    connect(w, SIGNAL(command4dev(quint16,QString)), this, SLOT(command4devSlot(quint16,QString)));
+    connect(w, SIGNAL(command4dev(quint16,QVariantMap)), this, SLOT(command4devSlot(quint16,QVariantMap)));
     connect(this, SIGNAL(command4dev(quint16,QString)), w, SLOT(deleteLater()) );
+    connect(this, SIGNAL(command4dev(quint16,QVariantMap)), w, SLOT(deleteLater()) );
+
     connect(metersListMedium, SIGNAL(onAllMeters(UniversalMeterSettList)), w, SIGNAL(onAllMeters(UniversalMeterSettList)) );
     connect(ui->pbReadDb, SIGNAL(clicked(bool)), w, SLOT(deleteLater()) );
     w->setPollSett(dtFrom, dtTo, pollCode);
 
-    gHelper->addWdgt2stackWdgtSlot(w, WDGT_TYPE_ZBYR_SELECT_METERS4POLL);
+    emit gHelper->addWdgt2stackWdgt(w, WDGT_TYPE_ZBYR_SELECT_METERS4POLL, false, tr("Select"), ":/katynko/svg/dialog-ok-apply.svg");
     return true;
 
 
@@ -537,7 +544,12 @@ void StartPagePoll::createTab(const quint8 &code)
     lastWdgtAccssbltName = f->accessibleName();
 
     connect(f, SIGNAL(disconnectMeFromAppendData()), this, SLOT(disconnectMeFromAppendData()) );
-    connect(this, SIGNAL(appendData2model(QString,QVariantHash)), f, SIGNAL(appendData2model(QString,QVariantHash)) );
+
+    if(code == POLL_CODE_METER_STATUS)
+        connect(this, SIGNAL(appendData2model(QString,QVariantHash)), f, SIGNAL(appendEvData2model(QString,QVariantHash)) );
+    else
+        connect(this, SIGNAL(appendData2model(QString,QVariantHash)), f, SIGNAL(appendData2model(QString,QVariantHash)) );
+
     connect(this, SIGNAL(killTabByName(QString))                , f, SLOT(killTabByName(QString))                 );
 
 

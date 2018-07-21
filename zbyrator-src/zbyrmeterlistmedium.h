@@ -26,6 +26,7 @@ signals:
 
     void setDateTimePageSett(MyListStringList listRows, QVariantMap col2data, QStringList headerH, QStringList header, bool hasHeader);
 
+    void setStatisticOfExchangePageSett(QVariantHash h);
 
     void realoadMeters2meterManager();//if changed NI, model, SN, removed meter, added meter,
 
@@ -46,6 +47,9 @@ signals:
     void onUpdatedSavedList(int activeMetersSize, int switchedOffMetersSize);
 
     void command4dev(quint16 command, QString args);//pollCode args
+
+    void command4dev(quint16 command, QVariantMap mapArgs);//pollCode args
+
 
     void setTcpClientCompliter(QStringList tcpServers);
 
@@ -83,6 +87,24 @@ signals:
 
     void onAllMeters(UniversalMeterSettList allMeters);
 
+    void onStatisticChanged(QString pollCodeStr, QStringList oneRow);
+
+    void onCOMMAND_READ_POLL_STATISTIC(QStringList list);
+
+    void onTaskTableChanged();
+
+    void onZbyratorConfigChanged(quint16 command, QVariant dataVar);
+
+    void setIgnoreCycles(bool ignoreCycles);
+
+    void onMeterPollCancelled(QString ni, QString stts, qint64 msec);
+
+    void appendAppLog(QString line);
+
+    void meterRelayStatus(QString ni, QDateTime dtLocal, QString stts);
+
+    void meterDateTimeDstStatus(QString ni, QDateTime dtLocal, QString stts);
+
 public slots:
     void onAllMetersSlot(UniversalMeterSettList allMeters);
 
@@ -107,9 +129,21 @@ public slots:
 
     void command4devSlot(quint16 command, QString args);//pollCode args
 
+    void command4devSlot(quint16 command, QVariantMap mapArgs);//pollCode args
+
     void onListChanged(const QStringList &list, const int &tag);
 
     void createDataCalculator();
+
+
+
+    void onAllStatHash(QStringList allstat);
+
+    void onPollCodeChangedStat(QVariantHash hash);
+
+    void onTaskCanceled(quint8 pollCode, QString ni, qint64 dtFinished, quint8 rez);
+
+    void setLastPageId(QString accsblName);
 
 private:
     struct LastList2pages
@@ -139,7 +173,9 @@ private:
     QMap<QString, QStringList> relayPage;
     QMap<QString, QStringList> dateTimePage;
 
+    QStringList liststat;
 
+    int lastPageMode;//пам'ятає яка сторінка запустила опитування, щоб при скасуванні завдання відправити відповідну команду
 
 };
 

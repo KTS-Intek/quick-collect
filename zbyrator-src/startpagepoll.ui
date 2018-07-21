@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>478</width>
-    <height>562</height>
+    <width>737</width>
+    <height>560</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -206,6 +206,13 @@
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_3">
             <item>
+             <widget class="QCheckBox" name="cbxIgnoreRetr">
+              <property name="text">
+               <string>Ignre retries</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QRadioButton" name="rbSavedList">
               <property name="text">
                <string>Saved list</string>
@@ -225,7 +232,7 @@
             <item>
              <widget class="QStackedWidget" name="swMeterMode">
               <property name="currentIndex">
-               <number>1</number>
+               <number>0</number>
               </property>
               <widget class="QWidget" name="page">
                <layout class="QVBoxLayout" name="verticalLayout_4">
