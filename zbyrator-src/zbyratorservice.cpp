@@ -16,11 +16,11 @@ ZbyratorService::~ZbyratorService()
 void ZbyratorService::initPage()
 {
 
-    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pbOpenDa, SLOT(setDisabled(bool)));
-    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pbResetNetwork, SLOT(setDisabled(bool)));
+    connect(gHelper, SIGNAL(setPbWriteEnableDisable(bool)), ui->pbOpenDa, SLOT(setDisabled(bool)));
+    connect(gHelper, SIGNAL(setPbWriteEnableDisable(bool)), ui->pbResetNetwork, SLOT(setDisabled(bool)));
 
-    ui->pbOpenDa->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
-    ui->pbResetNetwork->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
+    ui->pbOpenDa->setDisabled(gHelper->managerEnDisBttn.pbWriteDis);
+    ui->pbResetNetwork->setDisabled(gHelper->managerEnDisBttn.pbWriteDis);
 
 }
 

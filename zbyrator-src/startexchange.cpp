@@ -225,6 +225,7 @@ MatildaConfWidget *StartExchange::createMetersDateTime(LastDevInfo *lDevInfo, Gu
     connect(metersListMedium, SIGNAL(setDateTimePageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)), w, SLOT(setPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)) );
     connect(w, &MetersDateTime::onReloadAllMeters, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters);
     connect(w, SIGNAL(command4dev(quint16,QVariantMap)), metersListMedium, SLOT(command4devSlot(quint16,QVariantMap)) );
+    connect(w, &MetersDateTime::setLastPageId           , metersListMedium, &ZbyrMeterListMedium::setLastPageId     );
     connect(metersListMedium, &ZbyrMeterListMedium::meterDateTimeDstStatus, w, &MetersDateTime::meterDateTimeDstStatus);
 
     return w;

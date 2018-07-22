@@ -10,6 +10,37 @@ ZbyratorDataCalculation::ZbyratorDataCalculation(QObject *parent) : QObject(pare
 
 }
 
+void ZbyratorDataCalculation::onAddlistOfMeters2cache(ClassManagerSharedObjects *shrdObj, const UniversalMeterSettList &activeMeters, const MyNi2model &switchedOffMeters, const bool &checkOffMeters)
+{
+    Q_UNUSED(switchedOffMeters);
+    if(checkOffMeters){
+        shrdObj->clear();
+        shrdObj->clearWrite();
+    }
+    //    gHelper->hashMeterSn2ni;
+//        QHash<QString,QString> hashMeterSn2ni;
+//        QHash<QString,QString> hashMeterNi2memo;
+    for(int i = 0, imax = activeMeters.size(); i < imax; i++){
+        const UniversalMeterSett m = activeMeters.at(i);
+
+        if(!m.ni.isEmpty())
+            ni2cachedEnrg.insert(m.ni, m.cache);
+
+        shrdObj->addMeter2meterNi2info(m.ni, m.memo, m.sn, m.coordinate, m.tariff, m.transformer);
+
+        shrdObj->addMeter2meterSn2info(m.sn, m.memo, m.ni, m.coordinate, m.tariff, m.transformer);
+
+        if(!m.sn.isEmpty()){
+            hashMeterSn2ni.insert(m.sn, m.ni);
+            hashMeterSn2memo.insert(m.sn, m.memo);
+        }
+        hashMeterNi2memo.insert(m.ni, m.memo);
+    }
+    if(!hashMeterNi2memo.isEmpty())
+        emit updateHashSn2meter(hashMeterSn2memo, hashMeterSn2ni, hashMeterNi2memo);
+}
+
+
 void ZbyratorDataCalculation::onThreadStarted()
 {
     shrdObjElectricity = new ClassManagerSharedObjects(this);
@@ -321,32 +352,3 @@ void ZbyratorDataCalculation::onMeterPollCancelled(QString ni, QString stts, qin
 }
 
 
-void ZbyratorDataCalculation::onAddlistOfMeters2cache(ClassManagerSharedObjects *shrdObj, const UniversalMeterSettList &activeMeters, const MyNi2model &switchedOffMeters, const bool &checkOffMeters)
-{
-    Q_UNUSED(switchedOffMeters);
-    if(checkOffMeters){
-        shrdObj->clear();
-        shrdObj->clearWrite();
-    }
-    //    gHelper->hashMeterSn2ni;
-//        QHash<QString,QString> hashMeterSn2ni;
-//        QHash<QString,QString> hashMeterNi2memo;
-    for(int i = 0, imax = activeMeters.size(); i < imax; i++){
-        const UniversalMeterSett m = activeMeters.at(i);
-
-        if(!m.ni.isEmpty())
-            ni2cachedEnrg.insert(m.ni, m.cache);
-
-        shrdObj->addMeter2meterNi2info(m.ni, m.memo, m.sn, m.coordinate, m.tariff, m.transformer);
-
-        shrdObj->addMeter2meterSn2info(m.sn, m.memo, m.ni, m.coordinate, m.tariff, m.transformer);
-
-        if(!m.sn.isEmpty()){
-            hashMeterSn2ni.insert(m.sn, m.ni);
-            hashMeterSn2memo.insert(m.sn, m.memo);
-        }
-        hashMeterNi2memo.insert(m.ni, m.memo);
-    }
-    if(!hashMeterNi2memo.isEmpty())
-        emit updateHashSn2meter(hashMeterSn2memo, hashMeterSn2ni, hashMeterNi2memo);
-}

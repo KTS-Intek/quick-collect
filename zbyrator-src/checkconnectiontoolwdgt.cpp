@@ -17,8 +17,8 @@ void CheckConnectionToolWdgt::initPage()
 {
     ui->pushButton->setEnabled(false);
 
-    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pushButton, SLOT(setDisabled(bool)));
-    ui->pushButton->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
+    connect(gHelper, SIGNAL(setPbWriteEnableDisable(bool)), ui->pushButton, SLOT(setDisabled(bool)));
+    ui->pushButton->setDisabled(gHelper->managerEnDisBttn.pbWriteDis);
 }
 
 void CheckConnectionToolWdgt::on_pushButton_clicked()

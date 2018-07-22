@@ -80,20 +80,25 @@ void MetersDateTime::initPage()
     ui->widget_2->setEnabled(false);
     ui->widget->setEnabled(false);
 
-    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pbRead, SLOT(setDisabled(bool)));
-    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pbReadAll, SLOT(setDisabled(bool)));
-    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pbWrite, SLOT(setDisabled(bool)));
-    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pbCorrectionAll, SLOT(setDisabled(bool)));
+    connect(gHelper, SIGNAL(setPbWriteEnableDisable(bool)), ui->pbRead, SLOT(setDisabled(bool)));
+    connect(gHelper, SIGNAL(setPbWriteEnableDisable(bool)), ui->pbReadAll, SLOT(setDisabled(bool)));
+    connect(gHelper, SIGNAL(setPbWriteEnableDisable(bool)), ui->pbWrite, SLOT(setDisabled(bool)));
+    connect(gHelper, SIGNAL(setPbWriteEnableDisable(bool)), ui->pbCorrectionAll, SLOT(setDisabled(bool)));
 
-    ui->pbRead->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
-    ui->pbReadAll->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
-    ui->pbWrite->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
-    ui->pbCorrectionAll->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
+    ui->pbRead->setDisabled(gHelper->managerEnDisBttn.pbWriteDis);
+    ui->pbReadAll->setDisabled(gHelper->managerEnDisBttn.pbWriteDis);
+    ui->pbWrite->setDisabled(gHelper->managerEnDisBttn.pbWriteDis);
+    ui->pbCorrectionAll->setDisabled(gHelper->managerEnDisBttn.pbWriteDis);
 
-    emit onReloadAllMeters();
 
     SelectionChecker *tmr = new SelectionChecker(this);
     tmr->setWatchTable(ui->tvTable, ui->widget_2);
+    ui->widget_3->setVisible(false);
+    connect(tmr, &SelectionChecker::setWdgtEnable, ui->widget_3, &QWidget::setVisible);
+
+    emit onReloadAllMeters();
+
+
 }
 
 void MetersDateTime::on_tbShowList_clicked()

@@ -181,8 +181,8 @@ void StartPagePoll::initPage()
     modelProfile4DB = new QStandardItemModel(0,1,this);
     ui->lvMeterDataProfile->setModel(modelProfile4DB);
 
-    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->wdgtZbyrator, SLOT(setDisabled(bool)));
-    ui->wdgtZbyrator->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
+    connect(gHelper, SIGNAL(setPbWriteEnableDisable(bool)), ui->wdgtZbyrator, SLOT(setDisabled(bool)));
+    ui->wdgtZbyrator->setDisabled(gHelper->managerEnDisBttn.pbWriteDis);
 
     if(true){
         //add items 2 modelProfile4DB
@@ -230,10 +230,10 @@ void StartPagePoll::initPage()
 
     dtFromToWdgt->resetDateAndTime();
 
-    connect(ui->lvMeterDataProfile, SIGNAL( clicked(QModelIndex)), this, SLOT(onLvMeterDataProfile_activated(QModelIndex)) );
+//    connect(ui->lvMeterDataProfile, SIGNAL( clicked(QModelIndex)), this, SLOT(onLvMeterDataProfile_activated(QModelIndex)) );
     ui->lvMeterDataProfile->setCurrentIndex(modelProfile4DB->index(0,0));
 
-    onLvMeterDataProfile_activated(ui->lvMeterDataProfile->currentIndex());
+//    onLvMeterDataProfile_activated(ui->lvMeterDataProfile->currentIndex());
 
     connect(ui->cbxIgnoreRetr, SIGNAL(clicked(bool)), this, SIGNAL(setIgnoreCycles(bool)));
     QTimer::singleShot(555, this, SIGNAL(onReloadAllMeters()) );
@@ -432,17 +432,18 @@ void StartPagePoll::on_swMeterMode_currentChanged(int arg1)
 //---------------------------------------------------------------------
 void StartPagePoll::onLvMeterDataProfile_activated(const QModelIndex &index)
 {
-
+    Q_UNUSED(index);
 //    if(gHelper->managerEnDisBttn.pbReadDis)
 //        return;
 
-    const quint8 pollCode = modelProfile4DB->itemData(index).value(Qt::UserRole + 1).toInt();
 
-    if(pollCode == POLL_CODE_READ_TOTAL || pollCode == POLL_CODE_READ_METER_STATE || pollCode == POLL_CODE_READ_VOLTAGE){
-        ui->pbReadDb->setEnabled(!dtFromToWdgt->isTimeIntervalMode());
-    }else{
-        ui->pbReadDb->setEnabled(true);
-    }
+//    const quint8 pollCode = modelProfile4DB->itemData(index).value(Qt::UserRole + 1).toInt();
+
+//    if(pollCode == POLL_CODE_READ_TOTAL || pollCode == POLL_CODE_READ_METER_STATE || pollCode == POLL_CODE_READ_VOLTAGE){
+//        ui->pbReadDb->setEnabled(!dtFromToWdgt->isTimeIntervalMode());
+//    }else{
+//        ui->pbReadDb->setEnabled(true);
+//    }
 
 }
 //---------------------------------------------------------------------

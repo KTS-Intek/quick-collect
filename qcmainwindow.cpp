@@ -417,8 +417,8 @@ void QcMainWindow::createOneOfMainWdgt(const QString &tabData)
     case 0: w = createStartExchangeWdgt(lDevInfo, gHelper, gSett4all, this); break;
     case 1: w = createMeterListWdgt(    lDevInfo, gHelper, gSett4all, this); break;
 
-    case 2: w = new DataBaseWdgt(       lDevInfo, gHelper, gSett4all, this) ; break;  //    l.append( QString("Database") );
-    case 3: w = new MeterJournalForm(   lDevInfo, gHelper, gSett4all, this) ; break; //    l.append( QString("Meter logs") );
+    case 2: w = createDatabasePage(       lDevInfo, gHelper, gSett4all, this) ; break;  //    l.append( QString("Database") );
+    case 3: w = createMeterLogsPage(   lDevInfo, gHelper, gSett4all, this) ; break; //    l.append( QString("Meter logs") );
     case 4: w = new KtsConnectWdgt(     lDevInfo, gHelper, gSett4all, this); break;
     case 5: w = createPageLog(lDevInfo, gHelper, gSett4all, this)  ; break;   //    l.append( QString("State")                   );
 
@@ -526,11 +526,13 @@ void QcMainWindow::createMeterManager()
     connect(metersListMedium, SIGNAL(command4dev(quint16,QString))    , zbyrator, SIGNAL(command4dev(quint16,QString)) );
     connect(metersListMedium, SIGNAL(command4dev(quint16,QVariantMap)), zbyrator, SIGNAL(command4dev(quint16,QVariantMap)) );
 
-
+    connect(metersListMedium, &ZbyrMeterListMedium::setPbReadEnableDisable, guiHelper, &GuiHelper::setPbReadEnableDisableSlot);
     connect(metersListMedium, &ZbyrMeterListMedium::updateHashSn2meter, guiHelper, &GuiHelper::updateHashSn2meter);
+    connect(metersListMedium, &ZbyrMeterListMedium::data2dbMedium      , guiHelper, &GuiHelper::updateSettDateMaskAndDotPos);
+
     connect(metersListMedium, &ZbyrMeterListMedium::appendAppLog        , this, &QcMainWindow::appendShowMessPlain );
 
-    connect(metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters   , zbyrator, &MeterManager::onReloadAllMeters    );
+    connect(metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters2zbyrator, zbyrator, &MeterManager::onReloadAllMeters    );
     connect(metersListMedium, &ZbyrMeterListMedium::onConfigChanged     , zbyrator, &MeterManager::onConfigChanged      );
     connect(metersListMedium, &ZbyrMeterListMedium::sendMeAlistOfMeters , zbyrator, &MeterManager::sendMeAlistOfMeters  );
 
@@ -543,7 +545,7 @@ void QcMainWindow::createMeterManager()
 
     connect(metersListMedium, SIGNAL(showMess(QString)), this, SLOT(showMess(QString)) );
 
-    connect(zbyrator, SIGNAL(checkThisMeterInfo(UniversalMeterSett)), metersListMedium, SIGNAL(onReloadAllMeters()) );
+    connect(zbyrator, SIGNAL(checkThisMeterInfo(UniversalMeterSett)), metersListMedium, SIGNAL(onReloadAllMeters2zbyrator()) );
 
     connect(zbyrator, &MeterManager::onAllMeters                , metersListMedium, &ZbyrMeterListMedium::onAllMetersSlot           );
     connect(zbyrator, &MeterManager::onAllMeters                , metersListMedium, &ZbyrMeterListMedium::onAllMeters               );
@@ -564,11 +566,15 @@ void QcMainWindow::createMeterManager()
 
     connect(zbyrator, &MeterManager::appendAppOut, this, &QcMainWindow::appendShowMessPlain);
 
-    guiHelper->managerEnDisBttn.pbReadDis = false;
+    guiHelper->managerEnDisBttn.pbReadDis = guiHelper->managerEnDisBttn.pbWriteDis =false;
 
-    connect(zbyrator, &MeterManager::onConnectionStateChanged, guiHelper, &GuiHelper::setPbReadEnableDisableSlot);
+    connect(zbyrator, &MeterManager::onConnectionStateChanged, guiHelper, &GuiHelper::setPbWriteEnableDisableSlot);// ReadEnableDisableSlot);
 
     QTimer::singleShot(1111, thread, SLOT(start()) );
+
+
+    connect(guiHelper, &GuiHelper::setDateMask, metersListMedium, &ZbyrMeterListMedium::setDateMask);
+    connect(guiHelper, &GuiHelper::setDotPos, metersListMedium, &ZbyrMeterListMedium::setDotPos);
 }
 
 //---------------------------------------------------------------------
@@ -591,7 +597,7 @@ MatildaConfWidget *QcMainWindow::createMeterListWdgt(LastDevInfo *lDevInfo, GuiH
 {
 
     MeterListWdgt *w = new MeterListWdgt(lDevInfo, gHelper, gSett4all, parent);
-    connect(w, &MeterListWdgt::onReloadAllMeters, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters);
+    connect(w, &MeterListWdgt::onReloadAllMeters, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters2zbyrator);
     connect(w, &MeterListWdgt::meterModelChanged, metersListMedium, &ZbyrMeterListMedium::meterModelChanged);
 //    connect(metersListMedium, &ZbyrMeterListMedium::setMeterListPageSett, w, &MeterListWdgt::setPageSett);
     connect(metersListMedium, SIGNAL(setMeterListPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)), w, SLOT(setPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)) );
@@ -606,6 +612,24 @@ MatildaConfWidget *QcMainWindow::createPageLog(LastDevInfo *lDevInfo, GuiHelper 
     SmplPteWdgt *w = new SmplPteWdgt(tr("Log") , true, true, lDevInfo, gHelper, gSett4all, false, parent);
     connect(w, &SmplPteWdgt::giveMeYourCache, metersListMedium, &ZbyrMeterListMedium::giveMeYourCache);
     connect(metersListMedium, &ZbyrMeterListMedium::ifaceLogStr, w, &SmplPteWdgt::appendPteText);
+    return w;
+}
+
+MatildaConfWidget *QcMainWindow::createDatabasePage(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent)
+{
+    DataBaseWdgt *w = new DataBaseWdgt(lDevInfo, gHelper, gSett4all, parent);
+    connect(w, SIGNAL(data2dbMedium(quint16,QVariant)), metersListMedium, SIGNAL(data2dbMedium(quint16,QVariant)) );
+    connect(metersListMedium, SIGNAL(setLblWaitTxtDatabase(QString)), w, SIGNAL(setLblWaitTxtDatabase(QString)));
+    connect(metersListMedium, SIGNAL(appendDataDatabase(QVariantHash)), w, SLOT(setPageSett(QVariantHash)));
+    return w;
+}
+
+MatildaConfWidget *QcMainWindow::createMeterLogsPage(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent)
+{
+    MeterJournalForm * w = new MeterJournalForm(lDevInfo, gHelper, gSett4all, parent);
+    connect(w, SIGNAL(data2dbMedium(quint16,QVariant)), metersListMedium, SIGNAL(data2dbMedium(quint16,QVariant)) );
+    connect(metersListMedium, SIGNAL(setLblWaitTxtDatabaseMj(QString)), w, SIGNAL(setLblWaitTxtDatabaseMj(QString)));
+    connect(metersListMedium, SIGNAL(appendDataDatabaseMJ(QVariantHash)), w, SLOT(setPageSett(QVariantHash)));
     return w;
 }
 

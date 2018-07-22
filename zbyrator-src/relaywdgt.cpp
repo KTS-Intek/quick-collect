@@ -136,15 +136,15 @@ void RelayWdgt::initPage()
     ui->widget_2->setEnabled(false);
     ui->widget->setEnabled(false);
 
-    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pbRead, SLOT(setDisabled(bool)));
-    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pbReadAll, SLOT(setDisabled(bool)));
-    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pbLoadOff, SLOT(setDisabled(bool)));
-    connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), ui->pbLoadOn, SLOT(setDisabled(bool)));
+    connect(gHelper, SIGNAL(setPbWriteEnableDisable(bool)), ui->pbRead, SLOT(setDisabled(bool)));
+    connect(gHelper, SIGNAL(setPbWriteEnableDisable(bool)), ui->pbReadAll, SLOT(setDisabled(bool)));
+    connect(gHelper, SIGNAL(setPbWriteEnableDisable(bool)), ui->pbLoadOff, SLOT(setDisabled(bool)));
+    connect(gHelper, SIGNAL(setPbWriteEnableDisable(bool)), ui->pbLoadOn, SLOT(setDisabled(bool)));
 
-    ui->pbRead->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
-    ui->pbReadAll->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
-    ui->pbLoadOff->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
-    ui->pbLoadOn->setDisabled(gHelper->managerEnDisBttn.pbReadDis);
+    ui->pbRead->setDisabled(gHelper->managerEnDisBttn.pbWriteDis);
+    ui->pbReadAll->setDisabled(gHelper->managerEnDisBttn.pbWriteDis);
+    ui->pbLoadOff->setDisabled(gHelper->managerEnDisBttn.pbWriteDis);
+    ui->pbLoadOn->setDisabled(gHelper->managerEnDisBttn.pbWriteDis);
 
     emit onReloadAllMeters();
 

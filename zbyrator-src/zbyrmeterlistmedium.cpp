@@ -16,6 +16,8 @@
 #include "zbyrator-src/src/zbyratordatacalculation.h"
 #include "zbyrator-src/src/startexchangehelper.h"
 
+#include "zbyrator-src/src/zbyratordatabasemedium.cpp"
+
 //---------------------------------------------------------------------
 
 ZbyrMeterListMedium::ZbyrMeterListMedium(QObject *parent) : QObject(parent)
@@ -29,7 +31,7 @@ ZbyrMeterListMedium::ZbyrMeterListMedium(QObject *parent) : QObject(parent)
     ifaceLoader = new IfaceSettLoader(this);
 
     createDataCalculator();
-
+    createDatabaseMedium();
 }
 
 //---------------------------------------------------------------------
@@ -261,6 +263,35 @@ void ZbyrMeterListMedium::createDataCalculator()
 
 }
 
+void ZbyrMeterListMedium::createDatabaseMedium()
+{
+    ZbyratorDatabaseMedium *m = new ZbyratorDatabaseMedium;
+    QThread *t = new QThread;
+    m->moveToThread(t);
+
+    connect(this, SIGNAL(destroyed(QObject*)), t, SLOT(quit()) );
+    connect(t, SIGNAL(started()), m, SLOT(onThreadStarted()) );
+    connect(this, &ZbyrMeterListMedium::onAddMeters     , m, &ZbyratorDatabaseMedium::onAlistOfMeters);
+
+
+    connect(this, SIGNAL(data2dbMedium(quint16,QVariant)), m, SLOT(data2matilda4inCMD(quint16,QVariant)));
+    connect(this, SIGNAL(stopReadDatabase()), m, SLOT(stopOperationSlot()) );
+
+    connect(this, &ZbyrMeterListMedium::setDateMask, m, &ZbyratorDatabaseMedium::setDateMask);
+    connect(this, &ZbyrMeterListMedium::setDotPos, m, &ZbyratorDatabaseMedium::setDotPos);
+
+    connect(m, SIGNAL(setPbReadEnableDisable(bool)), this, SIGNAL(setPbReadEnableDisable(bool)));
+
+    connect(m, SIGNAL(appendDataDatabase(QVariantHash)), this, SIGNAL(appendDataDatabase(QVariantHash)));
+    connect(m, SIGNAL(appendDataDatabaseMJ(QVariantHash)), this, SIGNAL(appendDataDatabaseMJ(QVariantHash)));
+
+    connect(m, SIGNAL(setLblWaitTxtDatabase(QString)), this, SIGNAL(setLblWaitTxtDatabase(QString)));
+    connect(m, SIGNAL(setLblWaitTxtDatabaseMj(QString)), this, SIGNAL(setLblWaitTxtDatabaseMj(QString)));
+    t->start();
+
+
+}
+
 void ZbyrMeterListMedium::onAllStatHash(QStringList allstat)
 {
     liststat = allstat;
@@ -331,6 +362,7 @@ void ZbyrMeterListMedium::onTaskCanceled(quint8 pollCode, QString ni, qint64 dtF
     switch(lastPageMode){
     case 0: emit onMeterPollCancelled(ni, stts, dtFinished); break;//poll page
     case 1: emit meterRelayStatus(ni, QDateTime::fromMSecsSinceEpoch(dtFinished).toLocalTime(), stts); break; //relay
+    case 4: emit meterDateTimeDstStatus(ni, QDateTime::fromMSecsSinceEpoch(dtFinished).toLocalTime(), stts); break;
     }
 
 }
@@ -338,7 +370,33 @@ void ZbyrMeterListMedium::onTaskCanceled(quint8 pollCode, QString ni, qint64 dtF
 void ZbyrMeterListMedium::setLastPageId(QString accsblName)
 {
     //    return QString("Poll;Relay;Queue;Statistic of the exchange;Date and time;Meter address;Check Connection Tool;Other;Interface").split(";");
-     lastPageMode = StartExchangeHelper::getChList().indexOf((accsblName));
+    lastPageMode = StartExchangeHelper::getChList().indexOf((accsblName));
+}
+
+void ZbyrMeterListMedium::onReloadAllMeters()
+{
+    QWidget *w = qobject_cast<QWidget *>(QObject::sender());
+    if(w){
+        const QString accessibleName = w->accessibleName();
+        if(StartExchangeHelper::getChList().indexOf((accessibleName)) < 0)
+            return;
+        mapMeters2pages.insert(accessibleName, LastList2pages());
+    }
+    emit onReloadAllMeters2zbyrator();
+}
+//---------------------------------------------------------------------
+bool ZbyrMeterListMedium::metersChanged(QMap<QString, ZbyrMeterListMedium::LastList2pages> &mapMeters2pages, const QString &key, const LastList2pages &lastMeters2pagesL)
+{
+    if(mapMeters2pages.contains(key) && metersChanged(mapMeters2pages.value(key), lastMeters2pagesL)){
+        mapMeters2pages.insert(key, lastMeters2pagesL);
+        return true;
+    }
+    return false;
+}
+//---------------------------------------------------------------------
+bool ZbyrMeterListMedium::metersChanged(const ZbyrMeterListMedium::LastList2pages &lastMeters2pages, const ZbyrMeterListMedium::LastList2pages &lastMeters2pagesL)
+{
+     return (lastMeters2pages.listNI != lastMeters2pagesL.listNI || lastMeters2pages.mainParams != lastMeters2pagesL.mainParams);
 }
 
 //---------------------------------------------------------------------
@@ -354,7 +412,7 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
 
     int pollOnMeters = 0;
     int pollOffMeters = switchedOffMetersSize;
-    QStringList listNiNotchanged;
+//    QStringList listNiNotchanged;
 
     for(int i = 0; i < activeMetersSize; i++){
 
@@ -367,8 +425,8 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
 
         const QString mainParms = QString("%1\t%2\t%3\t%4\t%5").arg(m.model).arg(m.version).arg(m.sn).arg(m.memo).arg(m.coordinate);//model version SN memo
 
-        if(lastMeters2pages.mainParams.contains(mainParms))
-            listNiNotchanged.append(m.ni);
+//        if(lastMeters2pages.mainParams.contains(mainParms))
+//            listNiNotchanged.append(m.ni);
 
         lastMeters2pagesL.listNI.append(m.ni);
         lastMeters2pagesL.mainParams.append(mainParms);
@@ -377,16 +435,24 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
 
     }
 
-    if(checkOffMeters || lastMeters2pages.listNI != lastMeters2pagesL.listNI || lastMeters2pages.mainParams != lastMeters2pagesL.mainParams){
+//    if(mapMeters2pages.contains("relay") && mapMeters2pages)
 
-        emit setRelayPageSett(getRowsList(relayPage, listNiNotchanged, relayPageL, lastMeters2pagesL.listNI, pollOnMeters), QVariantMap(), ZbyrTableHeaders::getRelayPageHeader(), StandardItemModelHelper::getHeaderData(7), true);
+    if(metersChanged(mapMeters2pages, "Relay", lastMeters2pagesL))
+        emit setRelayPageSett(getRowsList(relayPage, QStringList(), relayPageL, lastMeters2pagesL.listNI, pollOnMeters), QVariantMap(), ZbyrTableHeaders::getRelayPageHeader(), StandardItemModelHelper::getHeaderData(7), true);
 
-        emit setDateTimePageSett(getRowsList(dateTimePage, listNiNotchanged, dateTimePageL, lastMeters2pagesL.listNI, pollOnMeters), QVariantMap(), ZbyrTableHeaders::getMeterDateTimePageHeader(), StandardItemModelHelper::getHeaderData(8), true);
 
-        lastMeters2pages.listNI = lastMeters2pagesL.listNI;
-        lastMeters2pages.mainParams = lastMeters2pagesL.mainParams;
+    if(metersChanged(mapMeters2pages, "Date and time", lastMeters2pagesL))
+        emit setDateTimePageSett(getRowsList(dateTimePage, QStringList(), dateTimePageL, lastMeters2pagesL.listNI, pollOnMeters), QVariantMap(), ZbyrTableHeaders::getMeterDateTimePageHeader(), StandardItemModelHelper::getHeaderData(8), true);
 
-    }
+//    if(checkOffMeters || lastMeters2pages.listNI != lastMeters2pagesL.listNI || lastMeters2pages.mainParams != lastMeters2pagesL.mainParams){
+
+
+//        emit setDateTimePageSett(getRowsList(dateTimePage, listNiNotchanged, dateTimePageL, lastMeters2pagesL.listNI, pollOnMeters), QVariantMap(), ZbyrTableHeaders::getMeterDateTimePageHeader(), StandardItemModelHelper::getHeaderData(8), true);
+
+//        lastMeters2pages.listNI = lastMeters2pagesL.listNI;
+//        lastMeters2pages.mainParams = lastMeters2pagesL.mainParams;
+
+//    }
 
     emit onUpdatedSavedList(pollOnMeters, pollOffMeters);
 

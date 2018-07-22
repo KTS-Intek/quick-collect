@@ -213,7 +213,15 @@ SOURCES += \
     zbyrator-src/src/getreadymetersdata.cpp \
     zbyrator-src/src/zbyratortasksmedium.cpp \
     matilda-bbb-src/decodematildaprotocolv5helper.cpp \
-    zbyrator-src/src/startexchangehelper.cpp
+    zbyrator-src/src/startexchangehelper.cpp \
+    zbyrator-src/src/zbyratordatabasemedium.cpp \
+    src/matilda/classmanagerdatabasereader.cpp \
+    zbyrator-src/src/zbyratorucmedium.cpp \
+    matilda-bbb-src/database/ucondatabasereader.cpp \
+    matilda-bbb-src/matildaprotocolinitstep.cpp \
+    matilda-bbb-src/shared/ineedmoretimeobject.cpp \
+    matilda-bbb-src/shared/matildaprotocolhelpersmpl.cpp \
+    matilda-bbb-src/database/sqlitelocalclienthelper.cpp
 
 
 HEADERS += \
@@ -393,7 +401,15 @@ HEADERS += \
     zbyrator-src/src/zbyratortasksmedium.h \
     matilda-bbb-src/decodematildaprotocolv5helper.h \
     zbyrator-src/src/startexchangehelper.h \
-    src/meter/definedpollcodes.h
+    src/meter/definedpollcodes.h \
+    zbyrator-src/src/zbyratordatabasemedium.h \
+    src/matilda/classmanagerdatabasereader.h \
+    zbyrator-src/src/zbyratorucmedium.h \
+    matilda-bbb-src/database/ucondatabasereader.h \
+    matilda-bbb-src/matildaprotocolinitstep.h \
+    matilda-bbb-src/shared/ineedmoretimeobject.h \
+    matilda-bbb-src/shared/matildaprotocolhelpersmpl.h \
+    matilda-bbb-src/database/sqlitelocalclienthelper.h
 
 FORMS += \
         qcmainwindow.ui \

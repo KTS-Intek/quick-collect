@@ -36,7 +36,7 @@ signals:
     void onConfigChanged(quint16 command, QVariant data);
 
     //meterlistwdgt
-    void onReloadAllMeters();
+    void onReloadAllMeters2zbyrator();
 
 
     void sendMeAlistOfMeters(quint8 meterType);
@@ -105,6 +105,20 @@ signals:
 
     void meterDateTimeDstStatus(QString ni, QDateTime dtLocal, QString stts);
 
+//Database and meterjournal
+    void data2dbMedium(quint16 command, QVariant varData);
+    void stopReadDatabase();
+
+    void appendDataDatabase(QVariantHash hash);
+
+    void appendDataDatabaseMJ(QVariantHash hash);
+    void setPbReadEnableDisable(bool disable);
+    void setLblWaitTxtDatabase(QString s);
+    void setLblWaitTxtDatabaseMj(QString s);
+
+
+    void setDateMask(QString dateMask);
+    void setDotPos(int dotPos);
 public slots:
     void onAllMetersSlot(UniversalMeterSettList allMeters);
 
@@ -135,6 +149,7 @@ public slots:
 
     void createDataCalculator();
 
+    void createDatabaseMedium();
 
 
     void onAllStatHash(QStringList allstat);
@@ -145,13 +160,21 @@ public slots:
 
     void setLastPageId(QString accsblName);
 
+    void onReloadAllMeters();
+
 private:
     struct LastList2pages
     {
         QStringList listNI;
         QStringList mainParams; //model version SN
         LastList2pages() {}
-    } lastMeters2pages;
+    } ;
+
+    QMap<QString, LastList2pages> mapMeters2pages;
+
+    bool metersChanged(QMap<QString, LastList2pages> &mapMeters2pages, const QString &key, const LastList2pages &lastMeters2pagesL);
+
+    bool metersChanged(const LastList2pages &lastMeters2pages, const LastList2pages &lastMeters2pagesL);
 
     void onElectricitylistOfMeters(const UniversalMeterSettList &activeMeters, const MyNi2model &switchedOffMeters, const bool &checkOffMeters);
 
@@ -177,6 +200,7 @@ private:
 
     int lastPageMode;//пам'ятає яка сторінка запустила опитування, щоб при скасуванні завдання відправити відповідну команду
 
+    bool isDbReady4read;
 };
 
 #endif // ZBYRMETERLISTMEDIUM_H

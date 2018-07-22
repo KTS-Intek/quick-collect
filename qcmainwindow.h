@@ -108,6 +108,9 @@ private:
 
     MatildaConfWidget *createPageLog(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
 
+    MatildaConfWidget *createDatabasePage(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+
+    MatildaConfWidget *createMeterLogsPage(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
 
     Ui::QcMainWindow *ui;
     QTranslator translator;

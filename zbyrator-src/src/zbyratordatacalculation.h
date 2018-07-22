@@ -16,6 +16,7 @@ public:
 
 
     QMap<QString, UniverslaMeterOnlyCache > ni2cachedEnrg;
+    void onAddlistOfMeters2cache(ClassManagerSharedObjects *shrdObj, const UniversalMeterSettList &activeMeters, const MyNi2model &switchedOffMeters, const bool &checkOffMeters);
 
 signals:
     void appendData2model(QVariantHash h);
@@ -47,7 +48,6 @@ public slots:
     void onMeterPollCancelled(QString ni, QString stts, qint64 msec);
 
 private:
-    void onAddlistOfMeters2cache(ClassManagerSharedObjects *shrdObj, const UniversalMeterSettList &activeMeters, const MyNi2model &switchedOffMeters, const bool &checkOffMeters);
 
     QStringList listEnrg;
     quint8 lastPollCode;
