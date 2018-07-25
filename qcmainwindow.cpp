@@ -415,12 +415,13 @@ void QcMainWindow::createOneOfMainWdgt(const QString &tabData)
 
     switch(row){
     case 0: w = createStartExchangeWdgt(lDevInfo, gHelper, gSett4all, this); break;
-    case 1: w = createMeterListWdgt(    lDevInfo, gHelper, gSett4all, this); break;
+    case 1: w = createElectricityMeterListWdgt(    lDevInfo, gHelper, gSett4all, this); break;
+    case 2: w = createWaterMeterListWdgt(    lDevInfo, gHelper, gSett4all, this); break;
 
-    case 2: w = createDatabasePage(       lDevInfo, gHelper, gSett4all, this) ; break;  //    l.append( QString("Database") );
-    case 3: w = createMeterLogsPage(   lDevInfo, gHelper, gSett4all, this) ; break; //    l.append( QString("Meter logs") );
-    case 4: w = new KtsConnectWdgt(     lDevInfo, gHelper, gSett4all, this); break;
-    case 5: w = createPageLog(lDevInfo, gHelper, gSett4all, this)  ; break;   //    l.append( QString("State")                   );
+    case 3: w = createDatabasePage(       lDevInfo, gHelper, gSett4all, this) ; break;  //    l.append( QString("Database") );
+    case 4: w = createMeterLogsPage(   lDevInfo, gHelper, gSett4all, this) ; break; //    l.append( QString("Meter logs") );
+    case 5: w = new KtsConnectWdgt(     lDevInfo, gHelper, gSett4all, this); break;
+    case 6: w = createPageLog(lDevInfo, gHelper, gSett4all, this)  ; break;   //    l.append( QString("State")                   );
 
     }
 
@@ -593,19 +594,33 @@ MatildaConfWidget *QcMainWindow::createStartExchangeWdgt(LastDevInfo *lDevInfo, 
 
 //---------------------------------------------------------------------
 
-MatildaConfWidget *QcMainWindow::createMeterListWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent)
+MatildaConfWidget *QcMainWindow::createElectricityMeterListWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent)
 {
 
-    MeterListWdgt *w = new MeterListWdgt(lDevInfo, gHelper, gSett4all, parent);
+    MeterListWdgt *w = new MeterListWdgt(MeterListWdgt::elMeter(), lDevInfo, gHelper, gSett4all, parent);
     connect(w, &MeterListWdgt::onReloadAllMeters, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters2zbyrator);
-    connect(w, &MeterListWdgt::meterModelChanged, metersListMedium, &ZbyrMeterListMedium::meterModelChanged);
-//    connect(metersListMedium, &ZbyrMeterListMedium::setMeterListPageSett, w, &MeterListWdgt::setPageSett);
-    connect(metersListMedium, SIGNAL(setMeterListPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)), w, SLOT(setPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)) );
+    connect(w, &MeterListWdgt::meterModelChanged, metersListMedium, &ZbyrMeterListMedium::meterElectricityModelChanged);
+//    connect(metersListMedium, &ZbyrMeterListMedium::setElectricityMeterListPageSett, w, &MeterListWdgt::setPageSett);
+    connect(metersListMedium, SIGNAL(setElectricityMeterListPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)), w, SLOT(setPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)) );
 
     return w;
 
 
 }
+//---------------------------------------------------------------------
+
+MatildaConfWidget *QcMainWindow::createWaterMeterListWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent)
+{
+
+    MeterListWdgt *w = new MeterListWdgt(MeterListWdgt::waterMeter(), lDevInfo, gHelper, gSett4all, parent);
+    connect(w, &MeterListWdgt::onReloadAllMeters, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters2zbyrator);
+    connect(w, &MeterListWdgt::meterModelChanged, metersListMedium, &ZbyrMeterListMedium::meterWaterModelChanged);
+//    connect(metersListMedium, &ZbyrMeterListMedium::setElectricityMeterListPageSett, w, &MeterListWdgt::setPageSett);
+    connect(metersListMedium, SIGNAL(setWaterMeterListPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)), w, SLOT(setPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)) );
+
+    return w;
+}
+//---------------------------------------------------------------------
 
 MatildaConfWidget *QcMainWindow::createPageLog(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent)
 {

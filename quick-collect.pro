@@ -84,7 +84,6 @@ SOURCES += \
     src/shared/stackwidgethelper.cpp \
     dataconcetrator-pgs/meterlistwdgt.cpp \
     map-pgs/mapwidget.cpp \
-    dataconcetrator-pgs/import-from-file/comboboxdelegate.cpp \
     dataconcetrator-pgs/import-from-file/finalcheckwdgt.cpp \
     dataconcetrator-pgs/import-from-file/importfromfilecolumnwdgt.cpp \
     dataconcetrator-pgs/import-from-file/importfromfilemodel2modelwdgt.cpp \
@@ -221,7 +220,13 @@ SOURCES += \
     matilda-bbb-src/matildaprotocolinitstep.cpp \
     matilda-bbb-src/shared/ineedmoretimeobject.cpp \
     matilda-bbb-src/shared/matildaprotocolhelpersmpl.cpp \
-    matilda-bbb-src/database/sqlitelocalclienthelper.cpp
+    matilda-bbb-src/database/sqlitelocalclienthelper.cpp \
+    zbyrator-water/watersleepscheduler.cpp \
+    zbyrator-water/waterprofilewdgt.cpp \
+    template-pgs/comboboxdelegate.cpp \
+    zbyrator-water/editwaterprofile.cpp \
+    src/matilda/matildadatakeys.cpp \
+    src/shared/compressfilehelper.cpp
 
 
 HEADERS += \
@@ -260,7 +265,6 @@ HEADERS += \
     src/shared/stackwidgethelper.h \
     dataconcetrator-pgs/meterlistwdgt.h \
     map-pgs/mapwidget.h \
-    dataconcetrator-pgs/import-from-file/comboboxdelegate.h \
     dataconcetrator-pgs/import-from-file/finalcheckwdgt.h \
     dataconcetrator-pgs/import-from-file/importfromfilecolumnwdgt.h \
     dataconcetrator-pgs/import-from-file/importfromfilemodel2modelwdgt.h \
@@ -284,7 +288,6 @@ HEADERS += \
     src/meter/meternigenerator.h \
     src/meter/meterplugin.h \
     src/meter/meterpluginmanager.h \
-    src/meter/definedmetertypes.h \
     src/meter/meterpluginsloadhelper.h \
     dataconcetrator-pgs/databasewdgt.h \
     dataconcetrator-pgs/dbdataform.h \
@@ -409,7 +412,14 @@ HEADERS += \
     matilda-bbb-src/matildaprotocolinitstep.h \
     matilda-bbb-src/shared/ineedmoretimeobject.h \
     matilda-bbb-src/shared/matildaprotocolhelpersmpl.h \
-    matilda-bbb-src/database/sqlitelocalclienthelper.h
+    matilda-bbb-src/database/sqlitelocalclienthelper.h \
+    zbyrator-water/watersleepscheduler.h \
+    zbyrator-water/waterprofilewdgt.h \
+    template-pgs/comboboxdelegate.h \
+    zbyrator-water/editwaterprofile.h \
+    src/matilda/matildadatakeys.h \
+    src/shared/compressfilehelper.h \
+    src/matilda/mtypeconversion.h
 
 FORMS += \
         qcmainwindow.ui \
@@ -459,7 +469,10 @@ FORMS += \
     zbyrator-src/options/ucemulator.ui \
     dataconcetrator-pgs/pollwdgt.ui \
     main-pgs/optionswdgt.ui \
-    zbyrator-src/selectmeters4poll.ui
+    zbyrator-src/selectmeters4poll.ui \
+    zbyrator-water/watersleepscheduler.ui \
+    zbyrator-water/waterprofilewdgt.ui \
+    zbyrator-water/editwaterprofile.ui
 
 RESOURCES += \
     font.qrc \

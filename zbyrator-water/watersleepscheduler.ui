@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>RelayWdgt</class>
- <widget class="QWidget" name="RelayWdgt">
+ <class>WaterSleepScheduler</class>
+ <widget class="QWidget" name="WaterSleepScheduler">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>966</width>
-    <height>719</height>
+    <width>1049</width>
+    <height>559</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
+  <layout class="QVBoxLayout" name="verticalLayout_4">
    <property name="leftMargin">
     <number>0</number>
    </property>
@@ -55,7 +55,7 @@
         </property>
         <property name="icon">
          <iconset resource="../res.qrc">
-          <normaloff>:/katynko/svg/format-disconnect-node.svg</normaloff>:/katynko/svg/format-disconnect-node.svg</iconset>
+          <normaloff>:/katynko/svg2/dashboard-show.svg</normaloff>:/katynko/svg2/dashboard-show.svg</iconset>
         </property>
        </widget>
       </item>
@@ -98,24 +98,16 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QPushButton" name="pbLoadOff">
+          <widget class="QPushButton" name="pbWrite">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
-            <string>Load off</string>
+            <string>Write</string>
            </property>
            <property name="icon">
             <iconset resource="../res.qrc">
-             <normaloff>:/katynko/svg3/relay-load-off.svg</normaloff>:/katynko/svg3/relay-load-off.svg</iconset>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pbLoadOn">
-           <property name="text">
-            <string>Load on</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../res.qrc">
-             <normaloff>:/katynko/svg3/relay-load-on.svg</normaloff>:/katynko/svg3/relay-load-on.svg</iconset>
+             <normaloff>:/katynko/svg/flag-red.svg</normaloff>:/katynko/svg/flag-red.svg</iconset>
            </property>
           </widget>
          </item>
@@ -126,7 +118,7 @@
            </property>
            <property name="icon">
             <iconset resource="../res.qrc">
-             <normaloff>:/katynko/svg/format-disconnect-node.svg</normaloff>:/katynko/svg/format-disconnect-node.svg</iconset>
+             <normaloff>:/katynko/svg2/configure.svg</normaloff>:/katynko/svg2/configure.svg</iconset>
            </property>
           </widget>
          </item>
@@ -153,6 +145,51 @@
     </widget>
    </item>
    <item>
+    <widget class="QWidget" name="wdgtOperations" native="true">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QToolButton" name="tbAdd">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="../res.qrc">
+            <normaloff>:/katynko/svg/draw-cross.svg</normaloff>:/katynko/svg/draw-cross.svg</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="tbEdit">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="../res.qrc">
+            <normaloff>:/katynko/svg/document-edit.svg</normaloff>:/katynko/svg/document-edit.svg</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="cbxProfile"/>
+        </item>
+        <item>
+         <widget class="QLabel" name="lblCurrentMeter">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="vl4wdgt"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout_61">
      <property name="leftMargin">
       <number>9</number>
@@ -163,6 +200,13 @@
      <property name="rightMargin">
       <number>9</number>
      </property>
+     <item>
+      <widget class="QToolButton" name="tbShowHide">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
      <item>
       <widget class="QToolButton" name="tbShowList">
        <property name="text">

@@ -30,6 +30,8 @@ void ZbyratorDatabaseMedium::data2matilda4inCMD(quint16 command, QVariant dataVa
 {
     operationStatusSlot(true);
 
+    shrdObj->clearWrite();
+
     stopAll = false;
     switch(command){
 

@@ -13,7 +13,9 @@ QList<TabName2icosPaths> CreateToolBar::getTabs()
     QList<TabName2icosPaths> name2icos;
 
     name2icos.append(TabName2icosPaths(tr("Exchange")   , ":/katynko/svg/go-home.svg"   , "Exchange")   );
-    name2icos.append(TabName2icosPaths(tr("Meters")     , ":/katynko/svg2/sx12452.svg"  , "Meters")     );
+    name2icos.append(TabName2icosPaths(tr("Electricity"), ":/katynko/svg4/sc_symbolshapes.lightning.svg"  , "Meters")     );
+    name2icos.append(TabName2icosPaths(tr("Water")      , ":/katynko/svg4/lc_fillcolor.svg"  , "WaterMeters")     );
+
     name2icos.append(TabName2icosPaths(tr("Database")   , ":/katynko/svg2/db.svg"       , "Database")   );
     name2icos.append(TabName2icosPaths(tr("Logbook")    , ":/katynko/svg2/lc_dbqueryedit.svg", "Logbook")   );
 

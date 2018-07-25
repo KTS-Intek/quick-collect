@@ -20,7 +20,9 @@ public:
     QVariantHash getIfaceSett() const;
 
 signals:
-    void setMeterListPageSett(MyListStringList listRows, QVariantMap col2data, QStringList headerH, QStringList header, bool hasHeader);
+    void setElectricityMeterListPageSett(MyListStringList listRows, QVariantMap col2data, QStringList headerH, QStringList header, bool hasHeader);
+
+    void setWaterMeterListPageSett(MyListStringList listRows, QVariantMap col2data, QStringList headerH, QStringList header, bool hasHeader);
 
     void setRelayPageSett(MyListStringList listRows, QVariantMap col2data, QStringList headerH, QStringList header, bool hasHeader);
 
@@ -44,7 +46,7 @@ signals:
 
     void setIfaceSett(QVariantHash h);
 
-    void onUpdatedSavedList(int activeMetersSize, int switchedOffMetersSize);
+    void onUpdatedSavedList(int activeMetersSize, int switchedOffMetersSize, int meterElectricityActive, int metersWaterActive);
 
     void command4dev(quint16 command, QString args);//pollCode args
 
@@ -122,11 +124,10 @@ signals:
 public slots:
     void onAllMetersSlot(UniversalMeterSettList allMeters);
 
-    void meterModelChanged(QVariantList meters);
+    void meterElectricityModelChanged(QVariantList meters);
+    void meterWaterModelChanged(QVariantList meters);
 
     void onSaveLater();
-
-    void doReloadListOfElectricityMeters();
 
     void doReloadListOfMeters(quint8 meterType);
 
@@ -172,6 +173,13 @@ private:
 
     QMap<QString, LastList2pages> mapMeters2pages;
 
+    QStringList universalMeterSett2listRow(const UniversalMeterSett &m);
+
+    QStringList universalMeterSett2listRowElectricity(const UniversalMeterSett &m);
+
+    QStringList universalMeterSett2listRowWater(const UniversalMeterSett &m);
+
+
     bool metersChanged(QMap<QString, LastList2pages> &mapMeters2pages, const QString &key, const LastList2pages &lastMeters2pagesL);
 
     bool metersChanged(const LastList2pages &lastMeters2pages, const LastList2pages &lastMeters2pagesL);
@@ -189,8 +197,15 @@ private:
 
     bool updateInterfaceSettings();
 
-    QVariantList lastMeterList;
 
+
+
+    struct SaveLaterMeters
+    {
+        quint8 meterType;
+        QVariantList lastMeterList;
+        SaveLaterMeters() {}
+    } lastSaveMeterList;
 
 
     QMap<QString, QStringList> relayPage;

@@ -45,7 +45,7 @@ public slots:
     void setPageSett(const QVariantHash &h);
 
 
-    void onUpdatedSavedList(int activeMetersSize, int switchedOffMetersSize);
+    void onUpdatedSavedList(int activeMetersSize, int switchedOffMetersSize, int meterElectricityActive, int metersWaterActive);
 
     void disconnectMeFromAppendData();
 

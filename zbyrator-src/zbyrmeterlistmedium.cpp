@@ -68,19 +68,8 @@ void ZbyrMeterListMedium::onAllMetersSlot(UniversalMeterSettList allMeters)
         return;
 
 
-//    QVariantHash h;
-//    h.insert("lHeader", TableHeaders::getColNamesMeterList().split(","));
-//    h.insert("hasHeader", true);
 
-//    const int icoCol = h.value("ico", -1).toInt();
-//    const QStringList icoList = h.value("icos").toStringList();
-
-//    QStringList listModelSnNiVrsnEnrg
-//    QVariantList meters = h.value("meters").toList();
-
-
-
-    MyListStringList listRows;
+    MyListStringList listRowsEl, listRowWater;
     QMap<quint8, UniversalMeterSettList> map2meters;
     for(int i = 0, imax = allMeters.size(); i < imax; i++){
         const UniversalMeterSett m = allMeters.at(i);
@@ -90,33 +79,21 @@ void ZbyrMeterListMedium::onAllMetersSlot(UniversalMeterSettList allMeters)
             l.append(m);
             map2meters.insert(m.meterType, l);
         }
-        if(m.meterType != UC_METER_ELECTRICITY)
-            continue;
-
-        QStringList l;
-        l.append(m.model);
-        l.append(m.sn);
-        l.append(m.ni);
-        l.append(m.memo);
-        l.append(m.passwd);
-        l.append(m.pollEnbl ? "+" : "-");
-        l.append(m.enrg);
-        l.append(QString::number(m.tariff));
-        l.append(m.coordinate);
-        l.append(m.version);
-        l.append(m.powerin);
-        l.append(MeterOperations::transformerSett2line(m.transformer));
-        l.append(m.disableTimeCorrection ? "+" : "");
-        listRows.append(l);
+        switch(m.meterType){
+        case UC_METER_ELECTRICITY: listRowsEl.append(universalMeterSett2listRow(m)); break;
+        case UC_METER_WATER: listRowWater.append(universalMeterSett2listRow(m)); break;
+        }
     }
-//    h.insert("meters", meters);
-//    emit setMeterListPageSett(h);
 
-    const QStringList headerh = TableHeaders::getColNamesMeterList().split(",");
-    emit setMeterListPageSett(listRows, QVariantMap(), headerh, StandardItemModelHelper::getHeaderData(headerh.size()), true);
+    if(true){
+        const QStringList headerh = TableHeaders::getColNamesMeterList().split(",");
+        emit setElectricityMeterListPageSett(listRowsEl, QVariantMap(), headerh, StandardItemModelHelper::getHeaderData(headerh.size()), true);
+    }
 
-    //    void setRelayPageSett(MyListStringList listRows, QVariantMap col2data, QStringList headerH, QStringList header, bool hasHeader);
-
+    if(true){
+        const QStringList headerh = TableHeaders::getColNamesWaterMeterList().split(",");
+        emit setWaterMeterListPageSett(listRowWater, QVariantMap(), headerh, StandardItemModelHelper::getHeaderData(headerh.size()), true);
+    }
     const QList<quint8> lk = map2meters.keys();
     for(int i = 0, imax = lk.size(); i < imax; i++)
         emit onAddMeters(lk.at(i), map2meters.value(lk.at(i)), MyNi2model(), true);
@@ -126,21 +103,29 @@ void ZbyrMeterListMedium::onAllMetersSlot(UniversalMeterSettList allMeters)
 
 //---------------------------------------------------------------------
 
-void ZbyrMeterListMedium::meterModelChanged(QVariantList meters)
+void ZbyrMeterListMedium::meterElectricityModelChanged(QVariantList meters)
 {
     emit onConfigChanged(MTD_EXT_CUSTOM_COMMAND_2, true);
-
-    lastMeterList = meters;
-
+    lastSaveMeterList.lastMeterList = meters;
+    lastSaveMeterList.meterType = UC_METER_ELECTRICITY;
     emit startTmrSaveLater();
 
+}
+
+void ZbyrMeterListMedium::meterWaterModelChanged(QVariantList meters)
+{
+    emit onConfigChanged(MTD_EXT_CUSTOM_COMMAND_2, true);
+    lastSaveMeterList.lastMeterList = meters;
+    lastSaveMeterList.meterType = UC_METER_WATER;
+    emit startTmrSaveLater();
 }
 
 //---------------------------------------------------------------------
 
 void ZbyrMeterListMedium::onSaveLater()
 {
-    const QString mess = ZbyratorFileSettHelper::saveElectricityMeters(lastMeterList);
+    const quint8 meterType = lastSaveMeterList.meterType;
+    const QString mess = ZbyratorFileSettHelper::saveMeters(meterType, lastSaveMeterList.lastMeterList);
     if(!mess.isEmpty())
         qDebug() << "ZbyrMeterListMedium mess " << mess;
     emit onConfigChanged(MTD_EXT_COMMAND_RELOAD_SETT, true);
@@ -148,17 +133,14 @@ void ZbyrMeterListMedium::onSaveLater()
 
 
     //MTD_EXT_COMMAND_RELOAD_SETT
-    lastMeterList.clear();
+    lastSaveMeterList.lastMeterList.clear();
+    lastSaveMeterList.meterType = UC_METER_UNKNOWN;
 
-    doReloadListOfElectricityMeters();
+//    doReloadListOfElectricityMeters();
+//    doReloadListOfMeters(UC_METER_UNKNOWN);
+    emit onReloadAllMeters2zbyrator();
 }
 
-//---------------------------------------------------------------------
-
-void ZbyrMeterListMedium::doReloadListOfElectricityMeters()
-{
-    doReloadListOfMeters(UC_METER_ELECTRICITY);
-}
 
 //---------------------------------------------------------------------
 
@@ -385,6 +367,52 @@ void ZbyrMeterListMedium::onReloadAllMeters()
     emit onReloadAllMeters2zbyrator();
 }
 //---------------------------------------------------------------------
+QStringList ZbyrMeterListMedium::universalMeterSett2listRow(const UniversalMeterSett &m)
+{
+    QStringList l;
+    switch(m.meterType){
+    case UC_METER_ELECTRICITY: l = universalMeterSett2listRowElectricity(m); break;
+    case UC_METER_WATER: l = universalMeterSett2listRowWater(m); break;
+    }
+    return l;
+
+}
+//---------------------------------------------------------------------
+QStringList ZbyrMeterListMedium::universalMeterSett2listRowElectricity(const UniversalMeterSett &m)
+{
+    QStringList l;
+    l.append(m.model);
+    l.append(m.sn);
+    l.append(m.ni);
+    l.append(m.memo);
+    l.append(m.passwd);
+    l.append(m.pollEnbl ? "+" : "-");
+    l.append(m.enrg);
+    l.append(QString::number(m.tariff));
+    l.append(m.coordinate);
+    l.append(m.version);
+    l.append(m.powerin);
+    l.append(MeterOperations::transformerSett2line(m.transformer));
+    l.append(m.disableTimeCorrection ? "+" : "");
+    return l;
+}
+//---------------------------------------------------------------------
+QStringList ZbyrMeterListMedium::universalMeterSett2listRowWater(const UniversalMeterSett &m)
+{
+    QStringList l;
+    l.append(m.model);
+    l.append(m.sn);
+    l.append(m.ni);
+    l.append(m.memo);
+    l.append(m.enrg);
+    l.append(m.pollEnbl ? "+" : "-");
+    l.append(m.powerin);
+    l.append(m.disableTimeCorrection ? "+" : "");
+    l.append(m.coordinate);
+    l.append(m.version);
+    return l;
+}
+//---------------------------------------------------------------------
 bool ZbyrMeterListMedium::metersChanged(QMap<QString, ZbyrMeterListMedium::LastList2pages> &mapMeters2pages, const QString &key, const LastList2pages &lastMeters2pagesL)
 {
     if(mapMeters2pages.contains(key) && metersChanged(mapMeters2pages.value(key), lastMeters2pagesL)){
@@ -412,6 +440,9 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
 
     int pollOnMeters = 0;
     int pollOffMeters = switchedOffMetersSize;
+
+    int meterElectricityActive = 0;
+    int meterWaterActive = 0;
 //    QStringList listNiNotchanged;
 
     for(int i = 0; i < activeMetersSize; i++){
@@ -423,6 +454,11 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
         }
         pollOnMeters++;
 
+        switch(m.meterType){
+        case UC_METER_ELECTRICITY: meterElectricityActive++; break;
+        case UC_METER_WATER: meterWaterActive++; break;
+        }
+
         const QString mainParms = QString("%1\t%2\t%3\t%4\t%5").arg(m.model).arg(m.version).arg(m.sn).arg(m.memo).arg(m.coordinate);//model version SN memo
 
 //        if(lastMeters2pages.mainParams.contains(mainParms))
@@ -430,7 +466,8 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
 
         lastMeters2pagesL.listNI.append(m.ni);
         lastMeters2pagesL.mainParams.append(mainParms);
-        relayPageL.insert(m.ni, addRelayRow(m));
+//        if(m.ni == UC_METER_ELECTRICITY)
+            relayPageL.insert(m.ni, addRelayRow(m));
         dateTimePageL.insert(m.ni, addDateTimeRow(m));
 
     }
@@ -454,7 +491,7 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
 
 //    }
 
-    emit onUpdatedSavedList(pollOnMeters, pollOffMeters);
+    emit onUpdatedSavedList(pollOnMeters, pollOffMeters, meterElectricityActive, meterWaterActive);
 
 
 }

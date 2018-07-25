@@ -145,7 +145,7 @@ void StartExchange::showLastWdgt()
 
 void StartExchange::updateScrollAreaHeight()
 {
-    ui->scrollArea->setMaximumHeight( ui->pbStop->height() * 1.5);// (title.isEmpty() ? 1.3 : 2.3));
+    ui->scrollArea->setMaximumHeight( ui->pbStop->height() * 2.3);// (title.isEmpty() ? 1.3 : 2.3));
 
 }
 

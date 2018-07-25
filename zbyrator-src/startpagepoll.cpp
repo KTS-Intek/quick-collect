@@ -247,9 +247,11 @@ void StartPagePoll::setPageSett(const QVariantHash &h)
 
 //---------------------------------------------------------------------
 
-void StartPagePoll::onUpdatedSavedList(int activeMetersSize, int switchedOffMetersSize)
+void StartPagePoll::onUpdatedSavedList(int activeMetersSize, int switchedOffMetersSize, int meterElectricityActive, int metersWaterActive)
 {
-    ui->rbSavedList->setText(tr("Saved list (electricity - %1, water - %2)").arg(activeMetersSize).arg(0));
+    Q_UNUSED(activeMetersSize);
+    Q_UNUSED(switchedOffMetersSize);
+    ui->rbSavedList->setText(tr("Saved list (electricity - %1, water - %2)").arg(meterElectricityActive).arg(metersWaterActive));
 }
 
 //---------------------------------------------------------------------
