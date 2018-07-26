@@ -49,13 +49,12 @@ public slots:
 
     void disconnectMeFromAppendData();
 
-    void setPbReadEnbld();
 
     void command4devSlot(quint16 command, QVariantMap map);//pollCode args
 
 
 private slots:
-    void on_pbReadDb_clicked();
+    void onPbReadDb_clicked();
 
 
     void on_rbSavedList_clicked();
@@ -72,6 +71,8 @@ private slots:
 
     void on_tabWidget_tabCloseRequested(int index);
 
+    void on_tbwTypeOfMeter_currentChanged(int index);
+
 private:
     Ui::StartPagePoll *ui;
 
@@ -84,9 +85,15 @@ private:
 
     QStringList getEnrgList4code(const quint8 &code);
 
+    void createModelProfile4electricity();
+
+    void createModelProfile4water();
+
+
     SelectDtWdgt *dtFromToWdgt;
     QString lastWdgtAccssbltName;
-    QStandardItemModel *modelProfile4DB;
+    QStandardItemModel *modelProfile4electricity;
+    QStandardItemModel *modelProfile4water;
 
     bool multipleML;
 

@@ -15,6 +15,7 @@
 #include "prepaid-pgs/ifaceindicationwdgt.h"
 #include "src/zbyratortasksmedium.h"
 #include "zbyrator-src/src/startexchangehelper.h"
+#include "zbyrator-water/watersleepscheduler.h"
 
 StartExchange::StartExchange(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent) :
     MatildaConfWidget(lDevInfo, gHelper, gSett4all, parent),
@@ -46,7 +47,11 @@ void StartExchange::initPage()
     connect(guiHelper, SIGNAL(addWdgt2stackWdgt(QWidget*,int,bool,QString,QString)), gHelper, SIGNAL(addWdgt2stackWdgt(QWidget*,int,bool,QString,QString)) );
     connect(guiHelper, SIGNAL(showMess(QString)), gHelper, SIGNAL(showMess(QString)));
     connect(guiHelper, SIGNAL(showMessCritical(QString)), gHelper, SIGNAL(showMessCritical(QString)) );
+    connect(ui->swDeviceOperations, SIGNAL(currentChanged(int)), this, SLOT(onSwDevicesCurrIndxChanged()) );
+    ui->wdgtReadButton->setEnabled(false);
 
+    connect(gHelper, SIGNAL(setPbWriteEnableDisable(bool)), ui->pbRead, SLOT(setDisabled(bool)));
+    ui->pbRead->setDisabled(gHelper->managerEnDisBttn.pbWriteDis);
 
     guiHelper->stackedWidget = ui->swDeviceOperations;
     guiHelper->parentWidget = ui->swDeviceOperations;
@@ -204,6 +209,20 @@ MatildaConfWidget *StartExchange::createStartPagePoll(LastDevInfo *lDevInfo, Gui
     return w;
 }
 //-----------------------------------------------------------------------------------------------
+MatildaConfWidget *StartExchange::createWaterSleepSchedulerWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent)
+{
+    WaterSleepScheduler *w = new WaterSleepScheduler(lDevInfo, gHelper, gSett4all, parent);
+
+    connect(w, &WaterSleepScheduler::onReloadAllMeters, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters);
+    connect(w, &WaterSleepScheduler::setLastPageId, metersListMedium, &ZbyrMeterListMedium::setLastPageId);
+    connect(w, SIGNAL(command4dev(quint16,QVariantMap)), metersListMedium, SLOT(command4devSlot(quint16,QVariantMap)) );
+
+    connect(metersListMedium, &ZbyrMeterListMedium::waterMeterSchedulerStts, w, &WaterSleepScheduler::waterMeterSchedulerStts);
+    connect(metersListMedium, SIGNAL(setWaterMeterSchedulerPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)), w, SLOT(setPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)) );
+    return w;
+
+}
+//-----------------------------------------------------------------------------------------------
 MatildaConfWidget *StartExchange::createRelayWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent)
 {
     RelayWdgt *w = new RelayWdgt(lDevInfo, gHelper, gSett4all, parent);
@@ -342,24 +361,28 @@ void StartExchange::addWdgt2devStack(const QString &realPageName, const QString 
 
     const QStringList chListData = StartExchangeHelper::getChListData(listIcos, chListNames);
 
-//QString("Poll;Relay;Queue;Statistic of the exchange;Date and time;Meter address;Check Connection Tool;Other;Interface").split(";");
+//    return QString("Poll;Scheduler for water meters;Relay;Queue;Statistic of the exchange;Date and time;Meter address;Check Connection Tool;Other;Interface").split(";");
+
     MatildaConfWidget *w = 0;
 
+    bool hasReadButton = false;
     const int row = chListData.indexOf(realPageName);
     switch(row){
-    case 0: w = createStartPagePoll(    lDevInfo, guiHelper, gSett4all, this); break;
-    case 1: w = createRelayWdgt(        lDevInfo, guiHelper, gSett4all, this); break;
+    case 0: w = createStartPagePoll(    lDevInfo, guiHelper, gSett4all, this); hasReadButton = true; break;
+    case 1: w = createWaterSleepSchedulerWdgt(        lDevInfo, guiHelper, gSett4all, this); hasReadButton = true; break;
 
-    case 2: w = createZbyratorTaskWdgt( lDevInfo, guiHelper, gSett4all, this); break;
-    case 3: w = createStatisticWdgt( lDevInfo, guiHelper, gSett4all, this); break;
+    case 2: w = createRelayWdgt(        lDevInfo, guiHelper, gSett4all, this); hasReadButton = true; break;
 
-    case 4: w = createMetersDateTime(   lDevInfo, guiHelper, gSett4all, this); break;
-    case 5: w = new SetMeterAddress(    lDevInfo, guiHelper, gSett4all, this); break;
+    case 3: w = createZbyratorTaskWdgt( lDevInfo, guiHelper, gSett4all, this); break;
+    case 4: w = createStatisticWdgt( lDevInfo, guiHelper, gSett4all, this); break;
 
-    case 6: w = new CheckConnectionToolWdgt( lDevInfo, guiHelper, gSett4all, this); break;
-    case 7: w = new ZbyratorService(    lDevInfo, guiHelper, gSett4all, this); break;
+    case 5: w = createMetersDateTime(   lDevInfo, guiHelper, gSett4all, this); hasReadButton = true; break;
+    case 6: w = new SetMeterAddress(    lDevInfo, guiHelper, gSett4all, this); break;
 
-    case 8: w = createZbyrIfaceSett(      lDevInfo, guiHelper, gSett4all, this); break;
+    case 7: w = new CheckConnectionToolWdgt( lDevInfo, guiHelper, gSett4all, this); break;
+    case 8: w = new ZbyratorService(    lDevInfo, guiHelper, gSett4all, this); break;
+
+    case 9: w = createZbyrIfaceSett(      lDevInfo, guiHelper, gSett4all, this); break;
 
     }
 
@@ -383,11 +406,10 @@ void StartExchange::addWdgt2devStack(const QString &realPageName, const QString 
 
 //        connect(this, SIGNAL(killMyChild()), w, SLOT(deleteLater()) );
 //        connect(this, SIGNAL(onOperationNError(int)), w, SLOT(onOperationNError(int)) );
-        w->setRwCommand(1, 1);// MatildaDeviceTree::getPageCanRead().at(row), MatildaDeviceTree::getPageCanWrite().at(row));
+        w->setRwCommand( hasReadButton ? (10 + row) : 0, 1);// MatildaDeviceTree::getPageCanRead().at(row), MatildaDeviceTree::getPageCanWrite().at(row));
 
         w->setAccessibleName(realPageName);
         qDebug() << "realPageName " << row << realPageName << wdgtTitle ;
-//        w->setAccessibleName(realPageName);
 
 //        w->setupGlobalLblMessage(ui->lblPageMess);
         QWidget *sa = StackWidgetHelper::addWdgtWithScrollArea(this, w, realPageName);
@@ -401,4 +423,36 @@ void StartExchange::addWdgt2devStack(const QString &realPageName, const QString 
 void StartExchange::on_pbStop_clicked()
 {
     ui->pbStop->setEnabled(false);
+}
+
+void StartExchange::on_pbRead_clicked()
+{
+    MatildaConfWidget *w = currentMatildaWidget();
+
+    if(w){
+        ui->pbRead->setEnabled(false);
+        bool ok;
+        QString mess;
+        w->getPageSett4read(ok, mess);
+
+        QTimer::singleShot(555, this, SLOT(checkPbReadEnabled()));
+    }
+}
+
+void StartExchange::checkPbReadEnabled()
+{
+    ui->pbRead->setDisabled(guiHelper->managerEnDisBttn.pbWriteDis);
+}
+
+void StartExchange::onSwDevicesCurrIndxChanged()
+{
+    MatildaConfWidget *w = currentMatildaWidget();
+
+    if(w){
+        const int readCommand = w->getReadCommand();
+//        const int writeCommand = w->getWriteCommand();
+
+        ui->wdgtReadButton->setEnabled(readCommand > 0);
+
+    }
 }

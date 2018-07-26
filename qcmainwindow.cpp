@@ -118,8 +118,8 @@ void QcMainWindow::initializeZbyrator()
     connect(ui->stackedWidget, SIGNAL(currentChanged(int)), this, SLOT(onStackedWidgetCurrentChanged(int)) );
     connect(guiHelper, SIGNAL(addWdgt2stackWdgt(QWidget*,int,bool,QString,QString)), this ,SLOT(addWdgt2stackWdgt(QWidget*,int,bool,QString,QString)) );
 
-    connect(guiHelper, SIGNAL(showMess(QString)), this, SLOT(showMess(QString)));
-    connect(guiHelper, SIGNAL(showMessCritical(QString)), this, SLOT(showMess(QString)));
+    connect(guiHelper, SIGNAL(showMess(QString))                , this, SLOT(showMess(QString)));
+    connect(guiHelper, SIGNAL(showMessCritical(QString))        , this, SLOT(showMess(QString)));
     connect(guiHelper, SIGNAL(showMessExt(QString,int,QVariant)), this, SLOT(showMess(QString,int,QVariant)));
 
 //    connect(guiHelper, SIGNAL(addWdgt2stackWdgt(QWidget*,int)   ), this, SLOT(addWdgt2stackWdgt(QWidget*,int))  );
@@ -458,7 +458,6 @@ void QcMainWindow::createOneOfMainWdgt(const QString &tabData)
 
 void QcMainWindow::createToolBar()
 {
-
     CreateToolBar *c = new CreateToolBar(this);
     connect(c, SIGNAL(onActivateThisWdgt(QString)), this, SLOT(onActivateThisWdgt(QString)) );
     c->createToolBarItems(ui->mainToolBar);
@@ -486,18 +485,18 @@ void QcMainWindow::createAppOutLog()
 
 void QcMainWindow::createZbyrProcManager()
 {
-    ZbyratorProcessManager *m = new ZbyratorProcessManager;
-    QThread *t = new QThread;
+//    ZbyratorProcessManager *m = new ZbyratorProcessManager;
+//    QThread *t = new QThread;
 
-    m->moveToThread(t);
+//    m->moveToThread(t);
 
-    connect(this, &QcMainWindow::destroyed, m, &ZbyratorProcessManager::deleteLater);
-    connect(m, &ZbyratorProcessManager::destroyed, t, &QThread::quit);
-    connect(t, &QThread::finished, t, &QThread::deleteLater);
+//    connect(this, &QcMainWindow::destroyed, m, &ZbyratorProcessManager::deleteLater);
+//    connect(m, &ZbyratorProcessManager::destroyed, t, &QThread::quit);
+//    connect(t, &QThread::finished, t, &QThread::deleteLater);
 
-    connect(t, &QThread::started, m, &ZbyratorProcessManager::onThreadStarted);
+//    connect(t, &QThread::started, m, &ZbyratorProcessManager::onThreadStarted);
 
-    QTimer::singleShot(11, t, SLOT(start()));
+//    QTimer::singleShot(11, t, SLOT(start()));
 
 
 }
@@ -564,6 +563,7 @@ void QcMainWindow::createMeterManager()
     connect(zbyrator, &MeterManager::onTaskCanceled             , metersListMedium, &ZbyrMeterListMedium::onTaskCanceled            );
     connect(zbyrator, &MeterManager::meterRelayStatus           , metersListMedium, &ZbyrMeterListMedium::meterRelayStatus          );
     connect(zbyrator, &MeterManager::meterDateTimeDstStatus     , metersListMedium, &ZbyrMeterListMedium::meterDateTimeDstStatus    );
+    connect(zbyrator, &MeterManager::waterMeterSchedulerStts    , metersListMedium, &ZbyrMeterListMedium::waterMeterSchedulerStts   );
 
     connect(zbyrator, &MeterManager::appendAppOut, this, &QcMainWindow::appendShowMessPlain);
 

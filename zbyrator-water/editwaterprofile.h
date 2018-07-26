@@ -23,20 +23,35 @@ signals:
 
     void setProfileName(QString name);
 
+    void deleteProfileName();
+
+
 private slots:
 
     void on_pbDefault_clicked();
 
     void on_pbSave_clicked();
 
+
 public slots:
-    void setProfileSlot(const QVariantHash &profile);
+    void setProfileSlot(const QString &name, const QVariantHash &profile);
 
 
     void onNewProfile(const QVariantHash &profile);
 
+
+    void onTbClearPressed();
+
+    void onTbUndoPressed();
+
+    void setupPage();
+
 private:
     Ui::EditWaterProfile *ui;
+
+    QString lastProfileName;
+    QVariantHash lastProfile;
+
 
 };
 

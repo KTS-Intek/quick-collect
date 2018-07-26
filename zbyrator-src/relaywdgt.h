@@ -15,6 +15,8 @@ public:
     explicit RelayWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
     ~RelayWdgt();
 
+    QVariant getPageSett4read(bool &ok, QString &mess);
+
 signals:
     ///map 4 exchange stat
     void setNewDeviceModelEs(QVariantList vl);
@@ -53,7 +55,7 @@ private slots:
     void on_tvTable_customContextMenuRequested(const QPoint &pos);
 
 
-    void on_pbReadAll_clicked();
+    void onPbReadAll_clicked();
 
     void on_pbRead_clicked();
 

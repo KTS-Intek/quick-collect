@@ -24,6 +24,9 @@ signals:
 
     void setWaterMeterListPageSett(MyListStringList listRows, QVariantMap col2data, QStringList headerH, QStringList header, bool hasHeader);
 
+    void setWaterMeterSchedulerPageSett(MyListStringList listRows, QVariantMap col2data, QStringList headerH, QStringList header, bool hasHeader);
+
+
     void setRelayPageSett(MyListStringList listRows, QVariantMap col2data, QStringList headerH, QStringList header, bool hasHeader);
 
     void setDateTimePageSett(MyListStringList listRows, QVariantMap col2data, QStringList headerH, QStringList header, bool hasHeader);
@@ -107,6 +110,8 @@ signals:
 
     void meterDateTimeDstStatus(QString ni, QDateTime dtLocal, QString stts);
 
+    void waterMeterSchedulerStts(QString ni, QDateTime dtLocal, QString stts, QVariantHash sheduler);
+
 //Database and meterjournal
     void data2dbMedium(quint16 command, QVariant varData);
     void stopReadDatabase();
@@ -189,6 +194,9 @@ private:
     QStringList addRelayRow(const UniversalMeterSett &m);
 
     QStringList addDateTimeRow(const UniversalMeterSett &m);
+
+    QStringList addWaterProfileRow(const UniversalMeterSett &m);
+
 
     MyListStringList getRowsList(QMap<QString, QStringList> &mapPage, const QStringList &listNiNotchanged, const QMap<QString, QStringList> &mapPageL, const QStringList listNI, const int &rowsCounter);
 

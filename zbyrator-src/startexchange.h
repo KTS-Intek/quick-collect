@@ -56,11 +56,19 @@ private slots:
     void on_pbStop_clicked();
 
 
+    void on_pbRead_clicked();
+
+    void checkPbReadEnabled();
+
+    void onSwDevicesCurrIndxChanged();
+
 private:
     Ui::StartExchange *ui;
     MatildaConfWidget *currentMatildaWidget();
 
     MatildaConfWidget *createStartPagePoll(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+
+    MatildaConfWidget *createWaterSleepSchedulerWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
 
     MatildaConfWidget *createRelayWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
 

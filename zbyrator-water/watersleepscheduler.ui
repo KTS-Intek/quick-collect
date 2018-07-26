@@ -29,52 +29,18 @@
    <item>
     <widget class="QWidget" name="widget" native="true">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <property name="topMargin">
-       <number>9</number>
+       <number>0</number>
       </property>
       <property name="bottomMargin">
-       <number>3</number>
+       <number>0</number>
       </property>
-      <item>
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>All</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pbReadAll">
-        <property name="text">
-         <string>Read all</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../res.qrc">
-          <normaloff>:/katynko/svg2/dashboard-show.svg</normaloff>:/katynko/svg2/dashboard-show.svg</iconset>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="verticalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Ignored</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>51</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
       <item>
        <widget class="QLabel" name="label_2">
         <property name="text">
@@ -118,7 +84,7 @@
            </property>
            <property name="icon">
             <iconset resource="../res.qrc">
-             <normaloff>:/katynko/svg2/configure.svg</normaloff>:/katynko/svg2/configure.svg</iconset>
+             <normaloff>:/katynko/svg2/dashboard-show.svg</normaloff>:/katynko/svg2/dashboard-show.svg</iconset>
            </property>
           </widget>
          </item>
@@ -147,6 +113,12 @@
    <item>
     <widget class="QWidget" name="wdgtOperations" native="true">
      <layout class="QVBoxLayout" name="verticalLayout_2">
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
@@ -182,9 +154,6 @@
          </widget>
         </item>
        </layout>
-      </item>
-      <item>
-       <layout class="QVBoxLayout" name="vl4wdgt"/>
       </item>
      </layout>
     </widget>
@@ -299,7 +268,7 @@
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
        <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
+       <verstretch>8</verstretch>
       </sizepolicy>
      </property>
      <property name="currentIndex">

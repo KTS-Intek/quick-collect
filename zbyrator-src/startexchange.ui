@@ -129,7 +129,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>585</width>
+            <width>586</width>
             <height>32</height>
            </rect>
           </property>
@@ -163,6 +163,38 @@
              <property name="rightMargin">
               <number>9</number>
              </property>
+             <item>
+              <widget class="QWidget" name="wdgtReadButton" native="true">
+               <layout class="QVBoxLayout" name="verticalLayout_3">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="pbRead">
+                  <property name="text">
+                   <string>Read</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../res.qrc">
+                    <normaloff>:/katynko/svg/flag-green.svg</normaloff>:/katynko/svg/flag-green.svg</iconset>
+                  </property>
+                  <property name="flat">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
              <item>
               <widget class="QPushButton" name="pbStop">
                <property name="enabled">

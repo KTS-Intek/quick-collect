@@ -38,7 +38,7 @@ void CreateToolBar::createToolBarItems(QToolBar *tb)
     this->tb = tb;
     tb->setContextMenuPolicy(Qt::CustomContextMenu);
     emit killAllActions();
-    QTimer::singleShot(11, this, SLOT(addFirstItem()));
+    QTimer::singleShot(333, this, SLOT(addFirstItem()));
 
 }
 
@@ -55,7 +55,7 @@ void CreateToolBar::addNextItem()
         return;
 
     addItem2tb(name2icos.takeFirst(), false);
-    QTimer::singleShot(66, this, SLOT(addNextItem()));
+    QTimer::singleShot(33, this, SLOT(addNextItem()));
 }
 
 void CreateToolBar::onActImitatorClck()
@@ -73,14 +73,16 @@ void CreateToolBar::onActImitatorClck()
 
 void CreateToolBar::addItem2tb(const TabName2icosPaths &item, const bool &activate)
 {
-    QAction *a = new QAction(QIcon(item.path), item.tabName, parent());
-    a->setData(item.tabData);
-    a->setCheckable(true);
-    connect(a, SIGNAL(triggered(bool)), this, SLOT(onActImitatorClck()) );
-    connect(this, SIGNAL(killAllActions()), a, SLOT(deleteLater()) );
-    connect(this, SIGNAL(setCheckedAct(bool)), a, SLOT(setChecked(bool)) );
+    if(tb){
+        QAction *a = new QAction(QIcon(item.path), item.tabName, parent());
+        a->setData(item.tabData);
+        a->setCheckable(true);
+        connect(a, SIGNAL(triggered(bool)), this, SLOT(onActImitatorClck()) );
+        connect(this, SIGNAL(killAllActions()), a, SLOT(deleteLater()) );
+        connect(this, SIGNAL(setCheckedAct(bool)), a, SLOT(setChecked(bool)) );
 
-    tb->addAction(a);
-    if(activate)
-        QTimer::singleShot(10, a, SLOT(trigger()));
+        tb->addAction(a);
+        if(activate)
+            QTimer::singleShot(10, a, SLOT(trigger()));
+    }
 }

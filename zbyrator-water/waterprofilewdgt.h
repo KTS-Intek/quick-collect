@@ -25,11 +25,14 @@ public:
 
 signals:
 
+    void onTableChanged();
+
     void killCbxDelegate();
 
     void onSaveProfile(QString name, QVariantHash profile);
 
     void onNewProfile(QVariantHash profile);
+
 
 public slots:
     void setProfile(const QVariantHash &profile);
@@ -37,6 +40,11 @@ public slots:
     void setDefaultValues();
 
     void saveProfile(QString name);
+
+    void updatePteText();
+
+    void updatePteWidth();
+
 
 
 

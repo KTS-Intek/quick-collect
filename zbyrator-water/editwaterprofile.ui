@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>456</width>
-    <height>247</height>
+    <width>700</width>
+    <height>253</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -83,6 +83,17 @@
         <property name="icon">
          <iconset resource="../res.qrc">
           <normaloff>:/katynko/svg/edit-undo.svg</normaloff>:/katynko/svg/edit-undo.svg</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pbDelete">
+        <property name="text">
+         <string>Delete</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../res.qrc">
+          <normaloff>:/katynko/svg/edit-delete.svg</normaloff>:/katynko/svg/edit-delete.svg</iconset>
         </property>
        </widget>
       </item>

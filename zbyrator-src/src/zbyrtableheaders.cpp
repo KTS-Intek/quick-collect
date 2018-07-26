@@ -15,3 +15,9 @@ QStringList ZbyrTableHeaders::getMeterDateTimePageHeader()
 {
     return tr("Computer,Meter time,Meter,S/N,NI,Memo,DST settings,Coordinate").split(",");
 }
+
+QStringList ZbyrTableHeaders::getWaterMeterSchedulerPageHeader()
+{
+
+    return tr("Time,Profile,Meter,S/N,NI,Memo,Coordinate").split(",");
+}

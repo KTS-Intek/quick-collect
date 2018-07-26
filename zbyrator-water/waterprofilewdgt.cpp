@@ -1,6 +1,7 @@
 #include "waterprofilewdgt.h"
 #include "ui_waterprofilewdgt.h"
 #include "template-pgs/comboboxdelegate.h"
+#include <QTimer>
 
 WaterProfileWdgt::WaterProfileWdgt(const bool &enableEditor, QWidget *parent) :
     QWidget(parent),
@@ -8,6 +9,14 @@ WaterProfileWdgt::WaterProfileWdgt(const bool &enableEditor, QWidget *parent) :
 {
     ui->setupUi(this);
     lProfile.enableEditor = enableEditor;
+
+
+    QTimer *t = new QTimer(this);
+    t->setSingleShot(true);
+    t->setInterval(333);
+
+    connect(ui->tableWidget, SIGNAL(cellChanged(int,int)), t, SLOT(start()) );
+    connect(t, SIGNAL(timeout()), this, SLOT(updatePteText()) );
 }
 
 WaterProfileWdgt::~WaterProfileWdgt()
@@ -45,6 +54,8 @@ QVariantHash WaterProfileWdgt::getProfile()
 
 void WaterProfileWdgt::setProfile(const QVariantHash &profile)
 {
+    disconnect(ui->tableWidget, SIGNAL(cellChanged(int,int)), this, SIGNAL(onTableChanged()) );
+
     ui->tableWidget->clear();
     emit killCbxDelegate();
 
@@ -69,10 +80,15 @@ void WaterProfileWdgt::setProfile(const QVariantHash &profile)
     lProfile.dowNames = getDowNames();
     lProfile.anyLocalTxt = tr("Any");
 
+
+
     const QVariantHash defProfile = getDefault();
 
+    QStringList dowNamesL = lProfile.dowNames;
+    dowNamesL.prepend(lProfile.anyLocalTxt);
+
     QTableWidgetItem *item0 = new QTableWidgetItem( (profile.value("dow", 0xFF).toUInt() > 6) ? lProfile.anyLocalTxt : lProfile.dowNames.at(profile.value("dow").toInt()));
-    item0->setData(Qt::UserRole, lProfile.dowNames);
+    item0->setData(Qt::UserRole, dowNamesL);
     ui->tableWidget->setItem(0, 0, item0);
 
 
@@ -89,9 +105,12 @@ void WaterProfileWdgt::setProfile(const QVariantHash &profile)
     ui->tableWidget->setItem(0, 3, item3);
 
     QTableWidgetItem *item4 = new QTableWidgetItem( (profile.value("actvt", 0).toUInt() == 0) ? defProfile.value("actvt").toString() : profile.value("actvt").toString());
-    item4->setData(Qt::UserRole, ComboBoxDelegate::generateListFromTo(1, 255, ""));
+    item4->setData(Qt::UserRole, ComboBoxDelegate::generateListFromTo(1, 254, ""));
     ui->tableWidget->setItem(0, 4, item4);
 
+    connect(ui->tableWidget, SIGNAL(cellChanged(int,int)), this, SIGNAL(onTableChanged()) );
+
+    QTimer::singleShot(111, this, SLOT(updatePteWidth()) );
     emit onNewProfile(getProfile());
 }
 
@@ -103,6 +122,23 @@ void WaterProfileWdgt::setDefaultValues()
 void WaterProfileWdgt::saveProfile(QString name)
 {
     emit onSaveProfile(name, getProfile());
+}
+
+void WaterProfileWdgt::updatePteText()
+{
+    const QVariantHash h = getProfile();
+    ui->plainTextEdit->clear();
+    const QStringList lk = QString("dow dom hour minute actvt").split(" ", QString::SkipEmptyParts);
+    QStringList l;
+    for(int i = 0, imax = lk.size(); i < imax; i++)
+        l.append(QString("%1: %2").arg(lk.at(i)).arg(h.value(lk.at(i)).toString()));
+    ui->plainTextEdit->appendPlainText(l.join("\n"));
+}
+
+void WaterProfileWdgt::updatePteWidth()
+{
+    ui->plainTextEdit->setMaximumWidth(ui->plainTextEdit->height());
+
 }
 
 

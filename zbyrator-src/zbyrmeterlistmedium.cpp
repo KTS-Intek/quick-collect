@@ -341,10 +341,13 @@ void ZbyrMeterListMedium::onTaskCanceled(quint8 pollCode, QString ni, qint64 dtF
 
     emit appendAppLog(tr("%3: NI: %1, one task removed, rezult is %2").arg(ni).arg(stts).arg(QDateTime::currentDateTime().toString("yyyy/MM/dd hh:mm:ss")));
 
+    const QDateTime dtLocal = QDateTime::fromMSecsSinceEpoch(dtFinished).toLocalTime();
+
     switch(lastPageMode){
     case 0: emit onMeterPollCancelled(ni, stts, dtFinished); break;//poll page
-    case 1: emit meterRelayStatus(ni, QDateTime::fromMSecsSinceEpoch(dtFinished).toLocalTime(), stts); break; //relay
-    case 4: emit meterDateTimeDstStatus(ni, QDateTime::fromMSecsSinceEpoch(dtFinished).toLocalTime(), stts); break;
+    case 1: emit waterMeterSchedulerStts(ni, dtLocal, stts, QVariantHash()); break;
+    case 2: emit meterRelayStatus(ni, dtLocal, stts); break; //relay
+    case 5: emit meterDateTimeDstStatus(ni, dtLocal, stts); break;
     }
 
 }
@@ -435,7 +438,11 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
     const int switchedOffMetersSize = switchedOffMeters.size();
 
 
-    QMap<QString, QStringList> relayPageL, dateTimePageL;
+    QMap<QString, QStringList> relayPageL, dateTimePageL, waterProfiles;
+    LastList2pages lastElectricityMeters2pagesL;
+
+    LastList2pages lastWaterMeters2pagesL;
+
     LastList2pages lastMeters2pagesL;
 
     int pollOnMeters = 0;
@@ -445,6 +452,7 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
     int meterWaterActive = 0;
 //    QStringList listNiNotchanged;
 
+    QMap<quint8, QString> mapMetertype2ni;
     for(int i = 0; i < activeMetersSize; i++){
 
         const UniversalMeterSett m = activeMeters.at(i);
@@ -453,33 +461,58 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
             continue;
         }
         pollOnMeters++;
+        const QString mainParms = QString("%1\t%2\t%3\t%4\t%5").arg(m.model).arg(m.version).arg(m.sn).arg(m.memo).arg(m.coordinate);//model version SN memo
 
         switch(m.meterType){
-        case UC_METER_ELECTRICITY: meterElectricityActive++; break;
-        case UC_METER_WATER: meterWaterActive++; break;
+        case UC_METER_ELECTRICITY:{
+            meterElectricityActive++;
+            lastElectricityMeters2pagesL.listNI.append(m.ni);
+            lastElectricityMeters2pagesL.mainParams.append(mainParms);
+            relayPageL.insert(m.ni, addRelayRow(m));
+            break;}
+
+        case UC_METER_WATER:{
+            meterWaterActive++;
+            lastWaterMeters2pagesL.listNI.append(m.ni);
+            lastWaterMeters2pagesL.mainParams.append(mainParms);
+            waterProfiles.insert(m.ni, addWaterProfileRow(m));
+
+
+            break;}
         }
 
-        const QString mainParms = QString("%1\t%2\t%3\t%4\t%5").arg(m.model).arg(m.version).arg(m.sn).arg(m.memo).arg(m.coordinate);//model version SN memo
+
+        lastMeters2pagesL.listNI.append(m.ni);
+        lastMeters2pagesL.mainParams.append(mainParms);
+        dateTimePageL.insert(m.ni, addDateTimeRow(m));
+
 
 //        if(lastMeters2pages.mainParams.contains(mainParms))
 //            listNiNotchanged.append(m.ni);
 
-        lastMeters2pagesL.listNI.append(m.ni);
-        lastMeters2pagesL.mainParams.append(mainParms);
-//        if(m.ni == UC_METER_ELECTRICITY)
-            relayPageL.insert(m.ni, addRelayRow(m));
-        dateTimePageL.insert(m.ni, addDateTimeRow(m));
 
-    }
+
+
+        mapMetertype2ni.insertMulti(m.meterType, m.ni);
+
+//        if(m.ni == UC_METER_ELECTRICITY)
+
+           }
 
 //    if(mapMeters2pages.contains("relay") && mapMeters2pages)
 
-    if(metersChanged(mapMeters2pages, "Relay", lastMeters2pagesL))
-        emit setRelayPageSett(getRowsList(relayPage, QStringList(), relayPageL, lastMeters2pagesL.listNI, pollOnMeters), QVariantMap(), ZbyrTableHeaders::getRelayPageHeader(), StandardItemModelHelper::getHeaderData(7), true);
+    if(metersChanged(mapMeters2pages, "Relay", lastElectricityMeters2pagesL))
+        emit setRelayPageSett(getRowsList(relayPage, QStringList(), relayPageL, lastElectricityMeters2pagesL.listNI, meterElectricityActive), QVariantMap(), ZbyrTableHeaders::getRelayPageHeader(), StandardItemModelHelper::getHeaderData(7), true);
 
 
     if(metersChanged(mapMeters2pages, "Date and time", lastMeters2pagesL))
         emit setDateTimePageSett(getRowsList(dateTimePage, QStringList(), dateTimePageL, lastMeters2pagesL.listNI, pollOnMeters), QVariantMap(), ZbyrTableHeaders::getMeterDateTimePageHeader(), StandardItemModelHelper::getHeaderData(8), true);
+
+
+    if(metersChanged(mapMeters2pages, "Scheduler for water meters", lastWaterMeters2pagesL))
+        emit setWaterMeterSchedulerPageSett(getRowsList(dateTimePage, QStringList(), waterProfiles, lastWaterMeters2pagesL.listNI, meterWaterActive), QVariantMap(), ZbyrTableHeaders::getWaterMeterSchedulerPageHeader(), StandardItemModelHelper::getHeaderData(7), true);
+
+
 
 //    if(checkOffMeters || lastMeters2pages.listNI != lastMeters2pagesL.listNI || lastMeters2pages.mainParams != lastMeters2pagesL.mainParams){
 
@@ -526,6 +559,19 @@ QStringList ZbyrMeterListMedium::addDateTimeRow(const UniversalMeterSett &m)
     dateTimeRow.append(m.coordinate);
     return dateTimeRow;
 
+}
+
+QStringList ZbyrMeterListMedium::addWaterProfileRow(const UniversalMeterSett &m)
+{
+    QStringList dateTimeRow;
+    dateTimeRow.append("");//time
+    dateTimeRow.append("");//profile
+    dateTimeRow.append(m.version.isEmpty() ? m.model : QString("%1, %2").arg(m.model).arg(m.version));
+    dateTimeRow.append(m.sn);
+    dateTimeRow.append(m.ni);
+    dateTimeRow.append(m.memo);
+    dateTimeRow.append(m.coordinate);
+    return dateTimeRow;
 }
 
 //---------------------------------------------------------------------

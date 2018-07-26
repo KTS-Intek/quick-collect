@@ -37,17 +37,6 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pbReadAll">
-        <property name="text">
-         <string>Read</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../res.qrc">
-          <normaloff>:/katynko/svg/chronometer.svg</normaloff>:/katynko/svg/chronometer.svg</iconset>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QPushButton" name="pbCorrectionAll">
         <property name="text">
          <string>Time correction</string>

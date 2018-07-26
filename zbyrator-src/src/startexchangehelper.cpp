@@ -8,9 +8,10 @@ StartExchangeHelper::StartExchangeHelper(QObject *parent) : QObject(parent)
 
 QStringList StartExchangeHelper::getChListData(QStringList &listIcos, QStringList &chListNames)
 {
-    chListNames = tr("Poll;Relay;Queue;Statistic of the exchange;Date and time;Meter address;Check Connection Tool;Other;Interface").split(";");
+    chListNames = tr("Poll;Water profiles;Relay;Queue;Statistic of the exchange;Date and time;Meter address;Check Connection Tool;Other;Interface").split(";");
     listIcos.clear();
     listIcos.append(":/katynko/svg/edit-table-insert-row-below.svg");
+    listIcos.append(":/katynko/svg/chronometer.svg");
     listIcos.append(":/katynko/svg/format-disconnect-node.svg");
     listIcos.append(":/katynko/svg/format-list-ordered.svg");
     listIcos.append(":/katynko/svg/view-statistics.svg");
@@ -26,7 +27,7 @@ QStringList StartExchangeHelper::getChListData(QStringList &listIcos, QStringLis
 
 QStringList StartExchangeHelper::getChList()
 {
-    return QString("Poll;Relay;Queue;Statistic of the exchange;Date and time;Meter address;Check Connection Tool;Other;Interface").split(";");
+    return QString("Poll;Scheduler for water meters;Relay;Queue;Statistic of the exchange;Date and time;Meter address;Check Connection Tool;Other;Interface").split(";");
 
 }
 

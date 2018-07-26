@@ -22,6 +22,14 @@ RelayWdgt::~RelayWdgt()
     delete ui;
 }
 
+QVariant RelayWdgt::getPageSett4read(bool &ok, QString &mess)
+{
+    Q_UNUSED(ok);
+    Q_UNUSED(mess);
+    QTimer::singleShot(1, this, SLOT(onPbReadAll_clicked()));
+    return QVariantHash();
+}
+
 void RelayWdgt::clearPage()
 {
     model->clear();
@@ -137,12 +145,10 @@ void RelayWdgt::initPage()
     ui->widget->setEnabled(false);
 
     connect(gHelper, SIGNAL(setPbWriteEnableDisable(bool)), ui->pbRead, SLOT(setDisabled(bool)));
-    connect(gHelper, SIGNAL(setPbWriteEnableDisable(bool)), ui->pbReadAll, SLOT(setDisabled(bool)));
     connect(gHelper, SIGNAL(setPbWriteEnableDisable(bool)), ui->pbLoadOff, SLOT(setDisabled(bool)));
     connect(gHelper, SIGNAL(setPbWriteEnableDisable(bool)), ui->pbLoadOn, SLOT(setDisabled(bool)));
 
     ui->pbRead->setDisabled(gHelper->managerEnDisBttn.pbWriteDis);
-    ui->pbReadAll->setDisabled(gHelper->managerEnDisBttn.pbWriteDis);
     ui->pbLoadOff->setDisabled(gHelper->managerEnDisBttn.pbWriteDis);
     ui->pbLoadOn->setDisabled(gHelper->managerEnDisBttn.pbWriteDis);
 
@@ -208,7 +214,7 @@ void RelayWdgt::on_tvTable_customContextMenuRequested(const QPoint &pos)
 }
 
 
-void RelayWdgt::on_pbReadAll_clicked()
+void RelayWdgt::onPbReadAll_clicked()
 {
     doRelayOperation(TableViewHelper::getRowsText(ui->tvTable, 4), RELAY_READ);
 }
