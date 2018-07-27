@@ -18,7 +18,7 @@ quint8 GetReadyMetersData::meterTypeFromPollCode(const quint8 &code)
     switch(code){
     case POLL_CODE_READ_END_MONTH   :
     case POLL_CODE_READ_END_DAY     :
-    case POLL_CODE_METER_STATUS     :
+    case POLL_CODE_READ_METER_LOGBOOK     :
     case POLL_CODE_READ_METER_STATE :
     case POLL_CODE_READ_POWER       :
     case POLL_CODE_READ_VOLTAGE     :
@@ -30,16 +30,21 @@ quint8 GetReadyMetersData::meterTypeFromPollCode(const quint8 &code)
     return meter;
 }
 
-void GetReadyMetersData::setPollSett(QDateTime dtFrom, QDateTime dtTo, quint8 pollCode)
+void GetReadyMetersData::setPollSett(QDateTime dtFrom, QDateTime dtTo, quint8 pollCode, quint8 meterType)
 {
     lPollSett.dtFrom = dtFrom;
     lPollSett.dtTo = dtTo.isValid() ? dtTo : QDateTime::currentDateTime();
     lPollSett.pollCode = pollCode;
+    lPollSett.meterType = meterType;
 }
 
 void GetReadyMetersData::setMetersList(UniversalMeterSettList list)
 {
-    meters = list;
+    meters.clear();
+    for(int i = 0, imax = list.size(); i < imax; i++){
+        if(list.at(i).meterType == lPollSett.meterType)
+            meters.append(list.at(i));
+    }
 }
 
 void GetReadyMetersData::onThreadStarted()
@@ -54,7 +59,13 @@ void GetReadyMetersData::onThreadStarted()
         addAllMeters2table();
 
 
-        OneProfileSett oneprofile = DefParams4zbyrator::defVal4prttProfilesElectricity().profileSett.value(lPollSett.pollCode) ;
+        OneProfileSett oneprofile;
+
+        switch(lPollSett.meterType){
+        case UC_METER_ELECTRICITY: oneprofile = DefParams4zbyrator::defVal4prttProfilesElectricity().profileSett.value(lPollSett.pollCode); break;
+        case UC_METER_WATER: oneprofile = DefParams4zbyrator::defVal4prttProfilesWater().profileSett4WtrMeter.value("default").profileSett; break;
+        }
+
 
         oneprofile.prtt = 0;
         oneprofile.onTrue = true;

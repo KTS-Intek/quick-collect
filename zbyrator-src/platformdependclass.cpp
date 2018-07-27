@@ -59,7 +59,7 @@ QList<quint16> PlatformDependClass::getListCommand()
     QList<quint16> l;
     l.append(POLL_CODE_KILL_PRIORITY_TASKS);
     l.append(POLL_CODE_RESET_NETWORK);
-    l.append(POLL_CODE_METER_STATUS);
+    l.append(POLL_CODE_READ_METER_LOGBOOK);
     l.append(POLL_CODE_READ_VOLTAGE);
     l.append(POLL_CODE_READ_POWER);
     l.append(POLL_CODE_READ_TOTAL);

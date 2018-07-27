@@ -8,6 +8,10 @@
 #include "src/zbyrator-v2/quickpollhelper.h"
 #include "src/meter/meterstatehelper.cpp"
 #include "zbyrator-src/selectmeters4poll.h"
+
+#include "zbyrator-src/wdgt/dbdatafromsmplhelper.h"
+#include "src/widgets/tableheaders.h"
+
 //---------------------------------------------------------------------
 
 StartPagePoll::StartPagePoll(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent) :
@@ -64,6 +68,10 @@ QVariant StartPagePoll::getPageSett4read(bool &ok, QString &mess)
 
 void StartPagePoll::initPage()
 {
+
+    myModelsHlpr = new DbDataFromModelHelper(ui->tbwTypeOfMeter, this);
+
+
     ui->swMeterMode->setCurrentIndex(0);
     ui->rbSavedList->setChecked(true);
 
@@ -128,7 +136,7 @@ void StartPagePoll::disconnectMeFromAppendData()
 
 void StartPagePoll::command4devSlot(quint16 command, QVariantMap map)
 {
-    createTab(lastPollCode);
+    createTab(lastSelsett);
     emit command4dev(command, map);
     SettLoader::saveSett(SETT_ZBRTR_POLLPAGE_MODE, ui->tbwTypeOfMeter->currentIndex());
 
@@ -141,13 +149,16 @@ void StartPagePoll::onPbReadDb_clicked()
     emit killSelectMeters4poll();
     emit setIgnoreCycles(ui->cbxIgnoreRetr->isChecked());
     gHelper->updateSettDateMaskAndDotPos();
-    const quint8 code = modelProfile4electricity->itemData(ui->lvMeterDataProfile->currentIndex()).value(Qt::UserRole + 1).toUInt();
+
+
+    lastSelsett = myModelsHlpr->getPollTabSett();
+
     QString mess;
     metersListMedium->setLastPageId(accessibleName());
     if(ui->rbOneMeter->isChecked()){
         //start poll directly
 
-        if(startPollOneMeterMode(code, mess)){
+        if(startPollOneMeterMode(lastSelsett, mess)){
             //create tab
         }else{
             gHelper->showMess(mess);
@@ -155,7 +166,7 @@ void StartPagePoll::onPbReadDb_clicked()
         return;
     }
 
-    if(startPollAllMetersMode(code, mess)){
+    if(startPollAllMetersMode(lastSelsett.code, mess)){
 
     }else{
         gHelper->showMess(mess);
@@ -304,7 +315,7 @@ void StartPagePoll::onLvMeterDataProfile_activated(const QModelIndex &index)
 
 }
 //---------------------------------------------------------------------
-bool StartPagePoll::startPollOneMeterMode(const quint8 &pollCode, QString &mess)
+bool StartPagePoll::startPollOneMeterMode(const StartPollTabSett &selsett, QString &mess)
 {
     //QString QuickPollHelper::createQuickPollLine(const QString &line, const QString &cbxText, const QString &passwd, const QString &enrgTxt, const int &tariff, const QDateTime &dtFrom, const int &depth, QString &mess)
 
@@ -318,17 +329,20 @@ bool StartPagePoll::startPollOneMeterMode(const quint8 &pollCode, QString &mess)
     if(!dtTo.isValid())
         dtTo = QDateTime::currentDateTime();
 
+    const bool isElectricity = (ui->swMeterMode->currentIndex() == 1);
 
-    const QString args = QuickPollHelper::createQuickPollLine(ui->leOneMeterNI->text().simplified(),
-                                                              (ui->cbxOneMeterModel->currentIndex() > 0) ? ui->cbxOneMeterModel->currentText() : "", ui->leOneMeterPass->text()
-                                                              , QString(ui->cbxOneMeterEnergy->currentData().toString()).replace(",", " "), ui->sbOneMeterTariff->value(), dtTo, dtFrom, true, mess);
+    const QString args = isElectricity ? QuickPollHelper::createQuickPollLine(UC_METER_ELECTRICITY, ui->leOneMeterNI->text().simplified(),
+                                                                              (ui->cbxOneMeterModel->currentIndex() > 0) ? ui->cbxOneMeterModel->currentText() : "", ui->leOneMeterPass->text()
+                                                                              , QString(ui->cbxOneMeterEnergy->currentData().toString()).replace(",", " "), ui->sbOneMeterTariff->value(), dtTo, dtFrom, true, mess) :
 
+                                         QuickPollHelper::createQuickPollLine(UC_METER_WATER, ui->leOneMeterNI_2->text().simplified(),
+                                                                              (ui->cbxOneMeterModel_2->currentIndex() > 0) ? ui->cbxOneMeterModel_2->currentText() : "", ""
+                                                                  , "", 4, dtTo, dtFrom, true, mess);
     if(args.isEmpty())
         return false;
 
-
-    createTab(pollCode);
-    emit command4dev(pollCode, args);
+    createTab(selsett);
+    emit command4dev(selsett.code, args);
 
     return true;
 
@@ -342,7 +356,6 @@ bool StartPagePoll::startPollAllMetersMode(const quint8 &pollCode, QString &mess
         mess = dtFromToWdgt->getLastErr();
         return false;
     }
-    lastPollCode = pollCode;
 
 
     SelectMeters4poll *w = new SelectMeters4poll(lDevInfo, gHelper, gSett4all, this);
@@ -354,7 +367,7 @@ bool StartPagePoll::startPollAllMetersMode(const quint8 &pollCode, QString &mess
 
     connect(metersListMedium, SIGNAL(onAllMeters(UniversalMeterSettList)), w, SIGNAL(onAllMeters(UniversalMeterSettList)) );
 
-    w->setPollSett(dtFrom, dtTo, pollCode);
+    w->setPollSett(dtFrom, dtTo, pollCode, lastSelsett.code, lastSelsett.meterType);
 
     emit gHelper->addWdgt2stackWdgt(w, WDGT_TYPE_ZBYR_SELECT_METERS4POLL, false, tr("Select"), ":/katynko/svg/dialog-ok-apply.svg");
     return true;
@@ -362,48 +375,33 @@ bool StartPagePoll::startPollAllMetersMode(const quint8 &pollCode, QString &mess
 
 }
 //---------------------------------------------------------------------
-void StartPagePoll::createTab(const quint8 &code)
+void StartPagePoll::createTab(const StartPollTabSett &selsett)
 {
     QVariantHash hash;
 
-    QString txt = modelProfile4electricity->itemData(ui->lvMeterDataProfile->currentIndex()).value(Qt::DisplayRole).toString();
-    QString icon = modelProfile4electricity->itemData(ui->lvMeterDataProfile->currentIndex()).value(Qt::UserRole + 4).toString();
+    quint8 code = selsett.code;
+    QString txt = selsett.txt;
+    QString icon = selsett.icon;
+
     hash.insert("code", code);
-    bool allowDate2utc = (code == POLL_CODE_READ_TOTAL || code == POLL_CODE_READ_VOLTAGE || code == POLL_CODE_READ_POWER || code == POLL_CODE_READ_METER_STATE);
+
+    const bool allowDate2utc = DbDataFromSmplHelper::getAllowDate2utc(code);
 
     dtFromToWdgt->insert2hashDtFromTo(hash, allowDate2utc);
 
-    int lastDbFilterMode = DB_SHOW_MODE_ACTV_REACTV_TRFF_ZBRTR;
-//    QStringList listEnrg;
+    const int lastDbFilterMode = DbDataFromSmplHelper::getLastDbModeFromPollCode(code, true, hash);
 
-    switch(code){
-    case POLL_CODE_READ_TOTAL       :
-    case POLL_CODE_READ_END_DAY     :
-    case POLL_CODE_READ_END_MONTH   : lastDbFilterMode = DB_SHOW_MODE_ACTV_REACTV_TRFF_ZBRTR; break;
-    case POLL_CODE_READ_POWER       : lastDbFilterMode = DB_SHOW_MODE_ACTV_REACTV_ZBRTR     ; break;
-    case POLL_CODE_READ_METER_STATE : lastDbFilterMode = DB_SHOW_MODE_METER_STATE_ZBRTR     ; break;// listEnrg = QString("relay,deg,vls,prm").split(","); break;
-    case POLL_CODE_METER_STATUS     : lastDbFilterMode = DB_SHOW_MODE_METERJOURNL_ZBRTR     ; break;
-
-    default: lastDbFilterMode = DB_SHOW_MODE_VOLTAGE_ZBRTR; break;
-    }
-
-    switch(code){
-    case POLL_CODE_READ_VOLTAGE     :
-    case POLL_CODE_READ_TOTAL       :
-    case POLL_CODE_READ_METER_STATE : hash.insert("FromDT", QDateTime::currentDateTime()); hash.remove("ToDT"); break;// listEnrg = QString("relay,deg,vls,prm").split(","); break;
-
-    }
 
 
     DbDataForm *f = new DbDataForm(lDevInfo,gHelper,gSett4all,this);
     f->setSelectSett(hash.value("FromDT").toDateTime(), hash.value("ToDT").toDateTime(), hash.value("ToDT").toDateTime().isValid(), txt, code);
-
     f->setAccessibleName(QString::number(QDateTime::currentMSecsSinceEpoch()));
+
     lastWdgtAccssbltName = f->accessibleName();
 
     connect(f, SIGNAL(disconnectMeFromAppendData()), this, SLOT(disconnectMeFromAppendData()) );
 
-    if(code == POLL_CODE_METER_STATUS)
+    if(code == POLL_CODE_READ_METER_LOGBOOK || code == POLL_CODE_WTR_METER_LOGBOOK)
         connect(this, SIGNAL(appendData2model(QString,QVariantHash)), f, SIGNAL(appendEvData2model(QString,QVariantHash)) );
     else
         connect(this, SIGNAL(appendData2model(QString,QVariantHash)), f, SIGNAL(appendData2model(QString,QVariantHash)) );
@@ -415,7 +413,7 @@ void StartPagePoll::createTab(const quint8 &code)
     txt.append(", ");
     QDateTime dtFrom = hash.value("FromDT").toDateTime().toLocalTime();
     QDateTime toDt = hash.value("ToDT").toDateTime().toLocalTime();
-    if(code == POLL_CODE_READ_END_DAY || code == POLL_CODE_READ_END_MONTH){
+    if(!allowDate2utc){// code == POLL_CODE_READ_END_DAY || code == POLL_CODE_READ_END_MONTH || code == POLL_CODE_WTR_END_DAY || code == POLL_CODE_WTR_END_MONTH){
         dtFrom = dtFrom.toUTC();
         toDt = toDt.toUTC();
     }
@@ -446,11 +444,19 @@ QStringList StartPagePoll::getEnrgList4code(const quint8 &code)
     case POLL_CODE_READ_END_DAY     :
     case POLL_CODE_READ_END_MONTH   : hasTariffs = true;
     case POLL_CODE_READ_POWER       : l = QString("intrvl A+ A- R+ R-").split(" ", QString::SkipEmptyParts); break;
+
+    case POLL_CODE_WTR_METER_STATE  :
     case POLL_CODE_READ_METER_STATE : l = MeterStateHelper::getEngrKeys4table(); break;// listEnrg = QString("relay,deg,vls,prm").split(","); break;
     case POLL_CODE_READ_VOLTAGE     : l = QString("UA,UB,UC,IA,IB,IC,PA,PB,PC,QA,QB,QC,cos_fA,cos_fB,cos_fC,F").split(',')  ; break;
 
-    case POLL_CODE_METER_STATUS     :
+    case POLL_CODE_WTR_METER_LOGBOOK:
+    case POLL_CODE_READ_METER_LOGBOOK:
     case POLL_CODE_MATILDA_EVNTS    : l = QString("model,evnt_code,comment").split(','); break;
+
+
+    case POLL_CODE_WTR_TOTAL        :
+    case POLL_CODE_WTR_END_DAY      :
+    case POLL_CODE_WTR_END_MONTH    : l = TableHeaders::getColDataWaterTotalValues().split(','); break;
     }
 
 
@@ -459,97 +465,32 @@ QStringList StartPagePoll::getEnrgList4code(const quint8 &code)
 
     QStringList listEnrg;
     for(int i = 0, emax = l.size(); i < 5; i++){
-        for(int e = 0; e < emax; e++)
+        for(int e = 1; e < emax; e++)//ignore intrvl
             listEnrg.append(QString("T%1_%2").arg(i).arg(l.at(e)));
     }
     return listEnrg;
 
 }
 
+//---------------------------------------------------------------------
+
 void StartPagePoll::createModelProfile4electricity()
 {
-    modelProfile4electricity = new QStandardItemModel(0,1,this);
-    ui->lvMeterDataProfile->setModel(modelProfile4electricity);
-    if(true){
-        //add items 2 modelProfile4electricity
-        QStringList list;
-        list.append(tr("Current values"));
-        list.append(tr("End of Day"));
-        list.append(tr("End of Month"));
-        list.append(tr("Power"));
-        list.append(tr("Voltage"));
-        //        list.append(tr("State"));
-        list.append(tr("Meter Journal"));
-
-        QList<int> listData;
-        listData.append(POLL_CODE_READ_TOTAL);
-        listData.append(POLL_CODE_READ_END_DAY);
-        listData.append(POLL_CODE_READ_END_MONTH);
-        listData.append(POLL_CODE_READ_POWER);
-        listData.append(POLL_CODE_READ_VOLTAGE);
-        //        listData.append(POLL_CODE_READ_METER_STATE);
-        listData.append(POLL_CODE_METER_STATUS);
-
-
-        QStringList listIco;
-        listIco.append(":/katynko/svg4/db-yellow.svg");
-        listIco.append(":/katynko/svg4/db-blue.svg");
-        listIco.append(":/katynko/svg4/db-violet.svg");
-        listIco.append(":/katynko/svg4/db-red.svg");
-        listIco.append(":/katynko/svg4/db-green.svg");
-        //        listIco.append(":/katynko/svg4/db-gray.svg");
-        listIco.append(":/katynko/svg4/db-gray.svg");
-
-
-        for(int i = 0, iMax = list.size(); i < iMax; i++){
-
-            const QString itemStr = QString("<%1> %2").arg(listData.at(i)).arg(list.at(i));
-            QStandardItem *item = new QStandardItem(QIcon(listIco.at(i)), itemStr);
-            item->setData(listData.at(i), Qt::UserRole + 1);
-            item->setData(listIco.at(i), Qt::UserRole + 4);
-            modelProfile4electricity->appendRow(item);
-        }
-    }
-    ui->lvMeterDataProfile->setCurrentIndex(modelProfile4electricity->index(0,0));
+    myModelsHlpr->modelProfile4electricity = DbDataFromModelHelper::createModelProfile4electricity(false,false, this);
+    ui->lvMeterDataProfile->setModel(myModelsHlpr->modelProfile4electricity);
+    ui->lvMeterDataProfile->setCurrentIndex(myModelsHlpr->modelProfile4electricity->index(0,0));
 
 }
+
+//---------------------------------------------------------------------
 
 void StartPagePoll::createModelProfile4water()
 {
-    modelProfile4water = new QStandardItemModel(0,1,this);
-    ui->lvMeterDataProfile_2->setModel(modelProfile4water);
-    if(true){
-        //add items 2 modelProfile4water
-        QStringList list;
-        list.append(tr("Current values"));
-        list.append(tr("End of Day"));
-        list.append(tr("Meter Journal"));
-
-        QList<int> listData;
-        listData.append(POLL_CODE_WTR_TOTAL);
-        listData.append(POLL_CODE_WTR_END_DAY);
-        //        listData.append(POLL_CODE_READ_METER_STATE);
-        listData.append(POLL_CODE_WTR_METER_STATUS);
-
-
-        QStringList listIco;
-        listIco.append(":/katynko/svg4/db-yellow.svg");
-        listIco.append(":/katynko/svg4/db-blue.svg");
-        listIco.append(":/katynko/svg4/db-gray.svg");
-
-
-        for(int i = 0, iMax = list.size(); i < iMax; i++){
-
-            const QString itemStr = QString("<%1> %2").arg(listData.at(i)).arg(list.at(i));
-            QStandardItem *item = new QStandardItem(QIcon(listIco.at(i)), itemStr);
-            item->setData(listData.at(i), Qt::UserRole + 1);
-            item->setData(listIco.at(i), Qt::UserRole + 4);
-            modelProfile4water->appendRow(item);
-        }
-    }
-    ui->lvMeterDataProfile_2->setCurrentIndex(modelProfile4water->index(0,0));
-
+    myModelsHlpr->modelProfile4water = DbDataFromModelHelper::createModelProfile4water(false, this);
+    ui->lvMeterDataProfile_2->setModel(myModelsHlpr->modelProfile4water);
+    ui->lvMeterDataProfile_2->setCurrentIndex(myModelsHlpr->modelProfile4water->index(0,0));
 }
+
 //---------------------------------------------------------------------
 
 void StartPagePoll::on_tabWidget_tabCloseRequested(int index)
@@ -577,10 +518,10 @@ void StartPagePoll::on_tbwTypeOfMeter_currentChanged(int index)
 {
     if(index == 1){//water
         ui->swMeterMode->setCurrentIndex(ui->rbOneMeter->isChecked() ? 2 : 0);
-
+        ui->cbxPwrManagement->show();
     }else{
         //electricity
         ui->swMeterMode->setCurrentIndex(ui->rbOneMeter->isChecked() ? 1 : 0);
-
+        ui->cbxPwrManagement->hide();
     }
 }

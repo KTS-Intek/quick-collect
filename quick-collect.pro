@@ -226,7 +226,9 @@ SOURCES += \
     template-pgs/comboboxdelegate.cpp \
     zbyrator-water/editwaterprofile.cpp \
     src/matilda/matildadatakeys.cpp \
-    src/shared/compressfilehelper.cpp
+    src/shared/compressfilehelper.cpp \
+    zbyrator-src/wdgt/dbdatafromsmplhelper.cpp \
+    dataconcetrator-pgs/dbdatafrommodelhelper.cpp
 
 
 HEADERS += \
@@ -419,7 +421,9 @@ HEADERS += \
     zbyrator-water/editwaterprofile.h \
     src/matilda/matildadatakeys.h \
     src/shared/compressfilehelper.h \
-    src/matilda/mtypeconversion.h
+    src/matilda/mtypeconversion.h \
+    zbyrator-src/wdgt/dbdatafromsmplhelper.h \
+    dataconcetrator-pgs/dbdatafrommodelhelper.h
 
 FORMS += \
         qcmainwindow.ui \

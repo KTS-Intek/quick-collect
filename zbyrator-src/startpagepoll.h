@@ -5,6 +5,8 @@
 #include "template-pgs/selectdtwdgt.h"
 //#include "src/zbyrator-v2/zbyratordatatypehelper.h"
 #include "zbyrator-src/zbyrmeterlistmedium.h"
+#include "dataconcetrator-pgs/dbdatafrommodelhelper.h"
+
 
 namespace Ui {
 class StartPagePoll;
@@ -76,12 +78,12 @@ private slots:
 private:
     Ui::StartPagePoll *ui;
 
-    bool startPollOneMeterMode(const quint8 &pollCode, QString &mess);
+    bool startPollOneMeterMode(const StartPollTabSett &selsett, QString &mess);
 
     bool startPollAllMetersMode(const quint8 &pollCode, QString &mess);
 
 
-    void createTab(const quint8 &code);
+    void createTab(const StartPollTabSett &selsett);
 
     QStringList getEnrgList4code(const quint8 &code);
 
@@ -92,13 +94,9 @@ private:
 
     SelectDtWdgt *dtFromToWdgt;
     QString lastWdgtAccssbltName;
-    QStandardItemModel *modelProfile4electricity;
-    QStandardItemModel *modelProfile4water;
+    DbDataFromModelHelper *myModelsHlpr;
 
-    bool multipleML;
-
-    quint8 lastPollCode;
-
+    StartPollTabSett lastSelsett;
 };
 
 #endif // STARTPAGEPOLL_H

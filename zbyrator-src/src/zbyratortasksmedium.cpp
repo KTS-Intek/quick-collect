@@ -79,7 +79,7 @@ void ZbyratorTasksMedium::onZbyratorTasksPageSett(QVariantHash h)
         QStringList l = answr.listRows.at(i);
 
         const quint8 pollCode = l.at(2).toUInt();
-        const bool convert2utc = !(pollCode == POLL_CODE_READ_END_DAY || pollCode == POLL_CODE_READ_END_MONTH || pollCode == POLL_CODE_METER_STATUS);
+        const bool convert2utc = !(pollCode == POLL_CODE_READ_END_DAY || pollCode == POLL_CODE_READ_END_MONTH || pollCode == POLL_CODE_READ_METER_LOGBOOK);
 
         for(int j = 0; j < jMax; j++){
             const int c = colsDt.at(j);

@@ -22,12 +22,13 @@ SelectMeters4poll::~SelectMeters4poll()
     delete ui;
 }
 
-void SelectMeters4poll::setPollSett(QDateTime dtFrom, QDateTime dtTo, quint8 pollCode)
+void SelectMeters4poll::setPollSett(QDateTime dtFrom, QDateTime dtTo, quint8 pollCode, quint8 meterType)
 {
     //start select data
     lPollSett.dtFrom = dtFrom;
     lPollSett.dtTo = dtTo;
     lPollSett.pollCode = pollCode;
+    lPollSett.meterType = meterType;
 
     //
 
@@ -47,7 +48,7 @@ void SelectMeters4poll::initPage()
 
     GetReadyMetersData *d = new GetReadyMetersData;
     QThread *t = new QThread;
-    d->setPollSett(lPollSett.dtFrom, lPollSett.dtTo, lPollSett.pollCode);
+    d->setPollSett(lPollSett.dtFrom, lPollSett.dtTo, lPollSett.pollCode, lPollSett.meterType);
 
     d->moveToThread(t);
 
@@ -98,7 +99,7 @@ void SelectMeters4poll::onProcessingEnds(QStringList listMissingData)
          if(listMissingData.contains(model->item(i,1)->text())){
             listMissingData.removeOne(model->item(i,1)->text());
             model->item(i, 3)->setText("+");
-            model->item(i, 4)->setText("!");
+            model->item(i, 4)->setText(tr("not all"));
         }else{
              model->item(i, 3)->setText("-");
              model->item(i, 4)->setText(tr("all"));

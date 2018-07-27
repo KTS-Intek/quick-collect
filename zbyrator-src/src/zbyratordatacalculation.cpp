@@ -68,7 +68,7 @@ void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHash
     ClassManagerSharedObjects *shrdObj = shrdObjElectricity;
     QVariantHash h;
 
-    bool dateInUtc = (lastPollCode == POLL_CODE_READ_VOLTAGE || lastPollCode == POLL_CODE_READ_TOTAL || lastPollCode == POLL_CODE_READ_POWER || lastPollCode == POLL_CODE_METER_STATUS);
+    bool dateInUtc = (lastPollCode == POLL_CODE_READ_VOLTAGE || lastPollCode == POLL_CODE_READ_TOTAL || lastPollCode == POLL_CODE_READ_POWER || lastPollCode == POLL_CODE_READ_METER_LOGBOOK);
 
 
     h.insert("itIsGeliks", (lastPollCode == POLL_CODE_READ_VOLTAGE || lastPollCode == POLL_CODE_READ_TOTAL));
@@ -114,7 +114,7 @@ void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHash
         shrdObj->lastPollCode = lastPollCode;
         shrdObj->lastDateIsMsec = true;
 
-        if(lastPollCode == POLL_CODE_METER_STATUS)
+        if(lastPollCode == POLL_CODE_READ_METER_LOGBOOK)
             shrdObj->komaPos = -1;//do not show dots
     }
 

@@ -25,7 +25,7 @@ signals:
     void command4dev(quint16 command, QVariantMap mapArgs);//pollCode args
 
 public slots:
-    void setPollSett(QDateTime dtFrom, QDateTime dtTo, quint8 pollCode);
+    void setPollSett(QDateTime dtFrom, QDateTime dtTo, quint8 pollCode, quint8 meterType);
 
     void initPage();
 
@@ -50,6 +50,7 @@ private:
         QDateTime dtFrom;
         QDateTime dtTo;
         quint8 pollCode;
+        quint8 meterType;
     } lPollSett;
 
     Ui::SelectMeters4poll *ui;

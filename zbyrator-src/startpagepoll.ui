@@ -280,6 +280,16 @@
              </widget>
             </item>
             <item>
+             <widget class="QCheckBox" name="cbxPwrManagement">
+              <property name="toolTip">
+               <string>Switch off modems after the poll</string>
+              </property>
+              <property name="text">
+               <string>Power management</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QRadioButton" name="rbSavedList">
               <property name="text">
                <string>Saved list</string>
