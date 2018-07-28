@@ -66,6 +66,14 @@ QList<quint16> PlatformDependClass::getListCommand()
     l.append(POLL_CODE_READ_END_DAY);
     l.append(POLL_CODE_READ_END_MONTH);
     l.append(ZBRTR_OPEN_DIRECT_ACCESS);
+
+    l.append(POLL_CODE_WTR_METER_LOGBOOK);
+//    l.append(POLL_CODE_WTR_METER_STATE);
+//    l.append(POLL_CODE_WTR_INSTANT_VLS);
+//    l.append(POLL_CODE_WTR_PERIOD);
+    l.append(POLL_CODE_WTR_TOTAL);
+    l.append(POLL_CODE_WTR_END_DAY);
+//    l.append(POLL_CODE_WTR_END_MONTH);
     return l;
 }
 //========================================================================

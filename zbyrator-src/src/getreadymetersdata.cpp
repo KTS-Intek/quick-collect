@@ -18,12 +18,20 @@ quint8 GetReadyMetersData::meterTypeFromPollCode(const quint8 &code)
     switch(code){
     case POLL_CODE_READ_END_MONTH   :
     case POLL_CODE_READ_END_DAY     :
-    case POLL_CODE_READ_METER_LOGBOOK     :
+    case POLL_CODE_READ_METER_LOGBOOK:
     case POLL_CODE_READ_METER_STATE :
     case POLL_CODE_READ_POWER       :
     case POLL_CODE_READ_VOLTAGE     :
-    case POLL_CODE_READ_TOTAL       : meter = UC_METER_ELECTRICITY;
+    case POLL_CODE_READ_TOTAL       : meter = UC_METER_ELECTRICITY; break;
 
+
+    case POLL_CODE_WTR_END_MONTH    :
+    case POLL_CODE_WTR_END_DAY      :
+    case POLL_CODE_WTR_METER_LOGBOOK:
+    case POLL_CODE_WTR_METER_STATE  :
+    case POLL_CODE_WTR_PERIOD       :
+    case POLL_CODE_WTR_INSTANT_VLS  :
+    case POLL_CODE_WTR_TOTAL        : meter = UC_METER_WATER; break;
 
     }
 
@@ -63,7 +71,7 @@ void GetReadyMetersData::onThreadStarted()
 
         switch(lPollSett.meterType){
         case UC_METER_ELECTRICITY: oneprofile = DefParams4zbyrator::defVal4prttProfilesElectricity().profileSett.value(lPollSett.pollCode); break;
-        case UC_METER_WATER: oneprofile = DefParams4zbyrator::defVal4prttProfilesWater().profileSett4WtrMeter.value("default").profileSett; break;
+        case UC_METER_WATER: oneprofile = DefParams4zbyrator::defVal4prttProfilesWater().profileSett4WtrMeter.value(0).profileSett; break;
         }
 
 

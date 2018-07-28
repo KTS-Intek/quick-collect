@@ -93,6 +93,13 @@ void StartPagePoll::initPage()
 
     dtFromToWdgt->resetDateAndTime();
 
+    connect(ui->lvMeterDataProfile  , SIGNAL( clicked(QModelIndex)), myModelsHlpr, SLOT(onLvMeterDataProfile_activated(QModelIndex)) );
+    connect(ui->lvMeterDataProfile_2, SIGNAL( clicked(QModelIndex)), myModelsHlpr, SLOT(onLvMeterDataProfile_activated(QModelIndex)) );
+
+    myModelsHlpr->onLvInitStep(ui->lvMeterDataProfile->currentIndex(), ui->lvMeterDataProfile_2->currentIndex());
+
+
+
 //    connect(ui->lvMeterDataProfile, SIGNAL( clicked(QModelIndex)), this, SLOT(onLvMeterDataProfile_activated(QModelIndex)) );
 
 //    onLvMeterDataProfile_activated(ui->lvMeterDataProfile->currentIndex());
@@ -367,7 +374,7 @@ bool StartPagePoll::startPollAllMetersMode(const quint8 &pollCode, QString &mess
 
     connect(metersListMedium, SIGNAL(onAllMeters(UniversalMeterSettList)), w, SIGNAL(onAllMeters(UniversalMeterSettList)) );
 
-    w->setPollSett(dtFrom, dtTo, pollCode, lastSelsett.code, lastSelsett.meterType);
+    w->setPollSett(dtFrom, dtTo, pollCode, lastSelsett.meterType);
 
     emit gHelper->addWdgt2stackWdgt(w, WDGT_TYPE_ZBYR_SELECT_METERS4POLL, false, tr("Select"), ":/katynko/svg/dialog-ok-apply.svg");
     return true;

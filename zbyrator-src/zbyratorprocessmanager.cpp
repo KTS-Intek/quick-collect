@@ -27,5 +27,7 @@ void ZbyratorProcessManager::onThreadStarted()
 
 
     SQLiteMediumLocalServer *m = new SQLiteMediumLocalServer(this);
-    m->initObj();
+
+    QTimer::singleShot(1111, m ,SLOT(initObj()) );
+//    m->initObj();
 }

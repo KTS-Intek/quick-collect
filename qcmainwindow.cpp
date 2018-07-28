@@ -485,18 +485,19 @@ void QcMainWindow::createAppOutLog()
 
 void QcMainWindow::createZbyrProcManager()
 {
-//    ZbyratorProcessManager *m = new ZbyratorProcessManager;
-//    QThread *t = new QThread;
+    //It is for the sqlite-medium module
+    ZbyratorProcessManager *m = new ZbyratorProcessManager;
+    QThread *t = new QThread;
 
-//    m->moveToThread(t);
+    m->moveToThread(t);
 
-//    connect(this, &QcMainWindow::destroyed, m, &ZbyratorProcessManager::deleteLater);
-//    connect(m, &ZbyratorProcessManager::destroyed, t, &QThread::quit);
-//    connect(t, &QThread::finished, t, &QThread::deleteLater);
+    connect(this, &QcMainWindow::destroyed, m, &ZbyratorProcessManager::deleteLater);
+    connect(m, &ZbyratorProcessManager::destroyed, t, &QThread::quit);
+    connect(t, &QThread::finished, t, &QThread::deleteLater);
 
-//    connect(t, &QThread::started, m, &ZbyratorProcessManager::onThreadStarted);
+    connect(t, &QThread::started, m, &ZbyratorProcessManager::onThreadStarted);
 
-//    QTimer::singleShot(11, t, SLOT(start()));
+    QTimer::singleShot(11, t, SLOT(start()));
 
 
 }

@@ -68,10 +68,11 @@ void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHash
     ClassManagerSharedObjects *shrdObj = shrdObjElectricity;
     QVariantHash h;
 
-    bool dateInUtc = (lastPollCode == POLL_CODE_READ_VOLTAGE || lastPollCode == POLL_CODE_READ_TOTAL || lastPollCode == POLL_CODE_READ_POWER || lastPollCode == POLL_CODE_READ_METER_LOGBOOK);
+    bool dateInUtc = (lastPollCode == POLL_CODE_READ_VOLTAGE || lastPollCode == POLL_CODE_READ_TOTAL || lastPollCode == POLL_CODE_READ_POWER || lastPollCode == POLL_CODE_READ_METER_LOGBOOK ||
+                      lastPollCode == POLL_CODE_WTR_INSTANT_VLS || lastPollCode == POLL_CODE_WTR_TOTAL || lastPollCode == POLL_CODE_WTR_PERIOD || lastPollCode == POLL_CODE_WTR_METER_LOGBOOK);
 
 
-    h.insert("itIsGeliks", (lastPollCode == POLL_CODE_READ_VOLTAGE || lastPollCode == POLL_CODE_READ_TOTAL));
+    h.insert("itIsGeliks", (lastPollCode == POLL_CODE_READ_VOLTAGE || lastPollCode == POLL_CODE_READ_TOTAL || lastPollCode == POLL_CODE_WTR_INSTANT_VLS || lastPollCode == POLL_CODE_WTR_TOTAL));
     h.insert("shrdObj->dateMask", lastFullDateTimeMask);//lastDateMask);
     h.insert("hasHeader", false);
     h.insert("dateInUtc", allowDate2utc);
@@ -114,7 +115,7 @@ void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHash
         shrdObj->lastPollCode = lastPollCode;
         shrdObj->lastDateIsMsec = true;
 
-        if(lastPollCode == POLL_CODE_READ_METER_LOGBOOK)
+        if(lastPollCode == POLL_CODE_READ_METER_LOGBOOK || lastPollCode == POLL_CODE_WTR_METER_LOGBOOK)
             shrdObj->komaPos = -1;//do not show dots
     }
 
@@ -129,7 +130,7 @@ void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHash
     QVariantHash hashRowCol2varData;
 
     //        const Data2listInputSett d2linput(meterSnIndx, niIndx, itIsGeliks, dateTimeMask, colFrom, itIsGeliks ? 1 : 2);
-    int colFrom = (lastPollCode == POLL_CODE_READ_METER_STATE) ? 4 : 3;// shrdObj->lastDateIsMsec ? 4 : 3;//model before SN & NI
+    int colFrom = (lastPollCode == POLL_CODE_READ_METER_STATE || lastPollCode == POLL_CODE_WTR_METER_STATE) ? 4 : 3;// shrdObj->lastDateIsMsec ? 4 : 3;//model before SN & NI
 
     const Data2listInputSett d2linput(shrdObj->lastSnIndx, shrdObj->lastNiIndx, true, lastFullDateTimeMask, 4, 1);//
     hashRowCol2varData.insert("colFrom", colFrom);
@@ -159,7 +160,7 @@ void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHash
 
         QVariantList listOneMeter;
 
-        const Data2listOutSett outsett = (lastPollCode == POLL_CODE_READ_METER_STATE) ?
+        const Data2listOutSett outsett = (lastPollCode == POLL_CODE_READ_METER_STATE || lastPollCode == POLL_CODE_WTR_METER_STATE) ?
                     ClassManagerHelper::addData2listState(listOneMeter, shrdObj, hashRowCol2varData, list, columnListSize, d2linput, rowCounter) :
                     ClassManagerHelper::addData2list(listOneMeter, shrdObj, hashRowCol2varData, list, columnListSize, d2linput, rowCounter);
 
@@ -339,8 +340,11 @@ void ZbyratorDataCalculation::onMeterPollCancelled(QString ni, QString stts, qin
 
     qint64 msecMinus = 0;
     switch(lastPollCode){
-    case POLL_CODE_READ_END_DAY:
-    case POLL_CODE_READ_END_MONTH: msecMinus = (qint64)dt.toLocalTime().offsetFromUtc() * 1000;
+    case POLL_CODE_WTR_END_DAY      :
+    case POLL_CODE_WTR_END_MONTH    :
+
+    case POLL_CODE_READ_END_DAY     :
+    case POLL_CODE_READ_END_MONTH   : msecMinus = (qint64)dt.toLocalTime().offsetFromUtc() * 1000;
     }
     QHash<QString,QString> h;
     h.insert("msec", QString::number(dt.toUTC().toMSecsSinceEpoch() - msecMinus));
