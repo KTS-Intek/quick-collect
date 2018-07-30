@@ -74,6 +74,7 @@ signals:
 
     void appendMeterData(QString ni, QString sn, MyListHashString data);
 
+
     void appendData2model(QVariantHash h);//to tab
 
     void onPollStarted(quint8 pollCode, QStringList listEnrg, QString dateMask, int dotPos, bool allowDate2utc);

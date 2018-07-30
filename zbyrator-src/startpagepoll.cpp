@@ -9,7 +9,7 @@
 #include "src/meter/meterstatehelper.cpp"
 #include "zbyrator-src/selectmeters4poll.h"
 
-#include "zbyrator-src/wdgt/dbdatafromsmplhelper.h"
+#include "dataconcetrator-pgs/src/dbdatafromsmplhelper.h"
 #include "src/widgets/tableheaders.h"
 
 //---------------------------------------------------------------------

@@ -275,7 +275,7 @@
             <item>
              <widget class="QCheckBox" name="cbxIgnoreRetr">
               <property name="text">
-               <string>Ignre retries</string>
+               <string>Ignore retries</string>
               </property>
              </widget>
             </item>
@@ -309,7 +309,7 @@
             <item>
              <widget class="QStackedWidget" name="swMeterMode">
               <property name="currentIndex">
-               <number>2</number>
+               <number>0</number>
               </property>
               <widget class="QWidget" name="page">
                <layout class="QVBoxLayout" name="verticalLayout_4">

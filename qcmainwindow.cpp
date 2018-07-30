@@ -497,7 +497,7 @@ void QcMainWindow::createZbyrProcManager()
 
     connect(t, &QThread::started, m, &ZbyratorProcessManager::onThreadStarted);
 
-    QTimer::singleShot(11, t, SLOT(start()));
+    QTimer::singleShot(1111, t, SLOT(start()));
 
 
 }

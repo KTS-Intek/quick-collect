@@ -4,6 +4,7 @@
 //#include "src/matilda/moji_defy.h"
 #include "src/meter/definedpollcodes.h"
 #include "src/matilda/classmanagerhelper.h"
+#include "src/meter/meterstatehelper.h"
 
 ZbyratorDataCalculation::ZbyratorDataCalculation(QObject *parent) : QObject(parent)
 {
@@ -65,7 +66,7 @@ void ZbyratorDataCalculation::onAlistOfMeters(quint8 meterType, UniversalMeterSe
 
 void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHashString data)
 {
-    ClassManagerSharedObjects *shrdObj = shrdObjElectricity;
+    ClassManagerSharedObjects *shrdObj = ((lastPollCode%20) == 0) ? shrdObjElectricity : shrdObjWater;
     QVariantHash h;
 
     bool dateInUtc = (lastPollCode == POLL_CODE_READ_VOLTAGE || lastPollCode == POLL_CODE_READ_TOTAL || lastPollCode == POLL_CODE_READ_POWER || lastPollCode == POLL_CODE_READ_METER_LOGBOOK ||
@@ -86,7 +87,17 @@ void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHash
         lastPairSn2meterInfoChanged = true;
 
         QStringList columnList = QString("msec meter_sn meter_ni memo").split(" ");
-        columnList.append(listEnrg);
+
+
+        if(lastPollCode == POLL_CODE_READ_METER_STATE || lastPollCode == POLL_CODE_WTR_METER_STATE){
+            columnList = (lastPollCode == POLL_CODE_READ_METER_STATE) ? MeterStateHelper::getMeterStateHeaderKeys(false) : MeterStateHelper::getWaterMeterStateHeaderKeys(false);
+            columnList.removeFirst();
+            columnList.replace(0, "msec");
+        }else{
+            columnList.append(listEnrg);
+
+        }
+
         columnList.append("stts");
 
         shrdObj->lastHeaderData = columnList;
@@ -117,6 +128,8 @@ void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHash
 
         if(lastPollCode == POLL_CODE_READ_METER_LOGBOOK || lastPollCode == POLL_CODE_WTR_METER_LOGBOOK)
             shrdObj->komaPos = -1;//do not show dots
+
+
     }
 
 
@@ -132,7 +145,7 @@ void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHash
     //        const Data2listInputSett d2linput(meterSnIndx, niIndx, itIsGeliks, dateTimeMask, colFrom, itIsGeliks ? 1 : 2);
     int colFrom = (lastPollCode == POLL_CODE_READ_METER_STATE || lastPollCode == POLL_CODE_WTR_METER_STATE) ? 4 : 3;// shrdObj->lastDateIsMsec ? 4 : 3;//model before SN & NI
 
-    const Data2listInputSett d2linput(shrdObj->lastSnIndx, shrdObj->lastNiIndx, true, lastFullDateTimeMask, 4, 1);//
+    const Data2listInputSett d2linput(shrdObj->lastSnIndx, shrdObj->lastNiIndx, true, lastFullDateTimeMask, colFrom, 1);//
     hashRowCol2varData.insert("colFrom", colFrom);
 
     const int columnListSize = shrdObj->lastColumnListSize;//(itIsGeliks) ? shrdObj->lastColumnListSize : (shrdObj->lastColumnListSize - 1);
@@ -161,7 +174,7 @@ void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHash
         QVariantList listOneMeter;
 
         const Data2listOutSett outsett = (lastPollCode == POLL_CODE_READ_METER_STATE || lastPollCode == POLL_CODE_WTR_METER_STATE) ?
-                    ClassManagerHelper::addData2listState(listOneMeter, shrdObj, hashRowCol2varData, list, columnListSize, d2linput, rowCounter) :
+                    ClassManagerHelper::addData2listState(listOneMeter, shrdObj, hashRowCol2varData, list, columnListSize, d2linput, rowCounter, lastPollCode) :
                     ClassManagerHelper::addData2list(listOneMeter, shrdObj, hashRowCol2varData, list, columnListSize, d2linput, rowCounter);
 
         if(!listOneMeter.isEmpty()){
@@ -210,6 +223,7 @@ void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHash
     //model for MEter Journal
 
 }
+
 
 void ZbyratorDataCalculation::onPollStarted(quint8 pollCode, QStringList listEnrg, QString dateMask, int dotPos, bool allowDate2utc)
 {
