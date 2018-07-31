@@ -111,6 +111,7 @@ void QcMainWindow::initializeZbyrator()
     guiHelper->guiSett = guiSett;
     guiHelper->lDevInfo = new LastDevInfo(this);
     guiHelper->lDevInfo->matildaDev.protocolVersion = MATILDA_PROTOCOL_VERSION;
+    guiHelper->lDevInfo->matildaDev.devVersion = 12;
     guiHelper->cacheHelper = new MatildaCacheHelper(this);
     guiHelper->stackedWidget = ui->stackedWidget;
     guiHelper->parentWidget = this;

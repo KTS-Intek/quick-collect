@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>631</width>
-    <height>490</height>
+    <height>518</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -111,7 +111,7 @@
       </sizepolicy>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="page">
       <layout class="QGridLayout" name="gridLayout">
@@ -197,7 +197,7 @@
        <item row="0" column="0" colspan="5">
         <widget class="QCheckBox" name="cbxAutoUartPort">
          <property name="text">
-          <string>Auto detect a coordinator</string>
+          <string>Automatic detection of the coordinator</string>
          </property>
         </widget>
        </item>

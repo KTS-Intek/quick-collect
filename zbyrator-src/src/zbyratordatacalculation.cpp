@@ -174,7 +174,7 @@ void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHash
         QVariantList listOneMeter;
 
         const Data2listOutSett outsett = (lastPollCode == POLL_CODE_READ_METER_STATE || lastPollCode == POLL_CODE_WTR_METER_STATE) ?
-                    ClassManagerHelper::addData2listState(listOneMeter, shrdObj, hashRowCol2varData, list, columnListSize, d2linput, rowCounter, lastPollCode) :
+                    ClassManagerHelper::addData2listState(listOneMeter, shrdObj, hashRowCol2varData, list, columnListSize, d2linput, rowCounter, lastPollCode, false) :
                     ClassManagerHelper::addData2list(listOneMeter, shrdObj, hashRowCol2varData, list, columnListSize, d2linput, rowCounter);
 
         if(!listOneMeter.isEmpty()){

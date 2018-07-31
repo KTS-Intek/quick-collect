@@ -300,7 +300,7 @@ void WaterSleepScheduler::updatetSleepProfiles(const QVariantHash &profileName2s
     std::sort(listK.begin(), listK.end());
     ui->cbxProfile->clear();
 
-    ui->cbxProfile->addItem(tr("<Currrent Meter>"), currentMeterData);
+    ui->cbxProfile->addItem(tr("<Current Meter>"), currentMeterData);
 
     int indxByTxt = -1, indxByData = -1;
     const int lksize = listK.size();

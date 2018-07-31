@@ -340,11 +340,11 @@ bool StartPagePoll::startPollOneMeterMode(const StartPollTabSett &selsett, QStri
 
     const QString args = isElectricity ? QuickPollHelper::createQuickPollLine(UC_METER_ELECTRICITY, ui->leOneMeterNI->text().simplified(),
                                                                               (ui->cbxOneMeterModel->currentIndex() > 0) ? ui->cbxOneMeterModel->currentText() : "", ui->leOneMeterPass->text()
-                                                                              , QString(ui->cbxOneMeterEnergy->currentData().toString()).replace(",", " "), ui->sbOneMeterTariff->value(), dtTo, dtFrom, true, mess) :
+                                                                              , QString(ui->cbxOneMeterEnergy->currentData().toString()).replace(",", " "), ui->sbOneMeterTariff->value(), dtTo, dtFrom, true, false, mess) :
 
                                          QuickPollHelper::createQuickPollLine(UC_METER_WATER, ui->leOneMeterNI_2->text().simplified(),
                                                                               (ui->cbxOneMeterModel_2->currentIndex() > 0) ? ui->cbxOneMeterModel_2->currentText() : "", ""
-                                                                  , "", 4, dtTo, dtFrom, true, mess);
+                                                                  , "", 4, dtTo, dtFrom, true, ui->cbxPwrManagement->isChecked(), mess);
     if(args.isEmpty())
         return false;
 
@@ -374,7 +374,7 @@ bool StartPagePoll::startPollAllMetersMode(const quint8 &pollCode, QString &mess
 
     connect(metersListMedium, SIGNAL(onAllMeters(UniversalMeterSettList)), w, SIGNAL(onAllMeters(UniversalMeterSettList)) );
 
-    w->setPollSett(dtFrom, dtTo, pollCode, lastSelsett.meterType);
+    w->setPollSett(dtFrom, dtTo, pollCode, lastSelsett.meterType, (lastSelsett.meterType == UC_METER_WATER) ? ui->cbxPwrManagement->isChecked() : false);
 
     emit gHelper->addWdgt2stackWdgt(w, WDGT_TYPE_ZBYR_SELECT_METERS4POLL, false, tr("Select"), ":/katynko/svg/dialog-ok-apply.svg");
     return true;
@@ -384,6 +384,8 @@ bool StartPagePoll::startPollAllMetersMode(const quint8 &pollCode, QString &mess
 //---------------------------------------------------------------------
 void StartPagePoll::createTab(const StartPollTabSett &selsett)
 {
+    gHelper->updateSettDateMaskAndDotPos();
+        gSett4all->updateTableSett();
     QVariantHash hash;
 
     quint8 code = selsett.code;

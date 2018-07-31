@@ -22,14 +22,14 @@ SelectMeters4poll::~SelectMeters4poll()
     delete ui;
 }
 
-void SelectMeters4poll::setPollSett(QDateTime dtFrom, QDateTime dtTo, quint8 pollCode, quint8 meterType)
+void SelectMeters4poll::setPollSett(QDateTime dtFrom, QDateTime dtTo, quint8 pollCode, quint8 meterType, bool enablePowerManagement)
 {
     //start select data
     lPollSett.dtFrom = dtFrom;
     lPollSett.dtTo = dtTo;
     lPollSett.pollCode = pollCode;
     lPollSett.meterType = meterType;
-
+    lPollSett.enablePowerManagement = enablePowerManagement;
     //
 
 
@@ -126,7 +126,7 @@ void SelectMeters4poll::sendStartPoll(const QStringList &listni)
         return;
 
     QString mess;
-    const QVariantMap map = QuickPollHelper::createPollMap(listni, lPollSett.dtTo, lPollSett.dtFrom, ui->cbxIgnoreExistingData->isChecked(), mess);
+    const QVariantMap map = QuickPollHelper::createPollMap(listni, lPollSett.dtTo, lPollSett.dtFrom, ui->cbxIgnoreExistingData->isChecked(), lPollSett.enablePowerManagement, mess);
 
     if(map.isEmpty())
         return;
