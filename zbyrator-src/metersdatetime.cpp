@@ -3,7 +3,7 @@
 #include "map-pgs/mapwidget.h"
 #include "src/matilda/settloader.h"
 #include "src/widgets/selectionchecker.h"
-#include "src/matilda/showmesshelper.h"
+#include "src/matilda/showmesshelper4wdgt.h"
 #include "src/meter/definedpollcodes.h"
 #include "src/zbyrator-v2/quickpollhelper.h"
 
@@ -158,7 +158,7 @@ void MetersDateTime::on_tbShowMap_clicked()
 
 void MetersDateTime::on_tvTable_customContextMenuRequested(const QPoint &pos)
 {
-    gHelper->createCustomMenu(pos, ui->tvTable, (GuiHelper::ShowReset|GuiHelper::ShowExport|GuiHelper::ShowOnlyCopy), CLBRD_SMPL_PRXTBL, ShowMessHelper::matildaFileName(windowTitle()));
+    gHelper->createCustomMenu(pos, ui->tvTable, (GuiHelper::ShowReset|GuiHelper::ShowExport|GuiHelper::ShowOnlyCopy), CLBRD_SMPL_PRXTBL, ShowMessHelper4wdgt::matildaFileName(windowTitle()));
 
 }
 

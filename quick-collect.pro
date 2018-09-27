@@ -66,7 +66,7 @@ SOURCES += \
     src/shared/referencewidgetclass.cpp \
     src/matilda/matildacachehelper.cpp \
     main-pgs/filterwidgetform.cpp \
-    src/matilda/showmesshelper.cpp \
+    src/matilda/showmesshelper4wdgt.cpp \
     src/matilda/matildaprotocolhelper.cpp \
     src/printer/myprintpreviewdlg.cpp \
     src/shared/matildaconfwidget.cpp \
@@ -228,7 +228,12 @@ SOURCES += \
     src/matilda/matildadatakeys.cpp \
     src/shared/compressfilehelper.cpp \
     dataconcetrator-pgs/src/dbdatafromsmplhelper.cpp \
-    dataconcetrator-pgs/dbdatafrommodelhelper.cpp
+    dataconcetrator-pgs/dbdatafrommodelhelper.cpp \
+    src/firefly/fireflyglobal.cpp \
+    src/shared/sharedmemowritelater.cpp \
+    dataconcetrator-pgs/src/getmetersnis.cpp \
+    zbyrator-water/src/watersleepschedulesaver.cpp \
+    zbyrator-water/waterscheduleeditorpro.cpp
 
 
 HEADERS += \
@@ -249,7 +254,7 @@ HEADERS += \
     src/shared/referencewidgetclass.h \
     src/matilda/matildacachehelper.h \
     main-pgs/filterwidgetform.h \
-    src/matilda/showmesshelper.h \
+    src/matilda/showmesshelper4wdgt.h \
     src/matilda/matildaprotocolhelper.h \
     src/printer/myprintpreviewdlg.h \
     src/shared/matildaconfwidget.h \
@@ -423,7 +428,13 @@ HEADERS += \
     src/shared/compressfilehelper.h \
     src/matilda/mtypeconversion.h \
     dataconcetrator-pgs/src/dbdatafromsmplhelper.h \
-    dataconcetrator-pgs/dbdatafrommodelhelper.h
+    dataconcetrator-pgs/dbdatafrommodelhelper.h \
+    src/firefly/fireflyglobal.h \
+    src/shared/sharedmemowritelater.h \
+    dataconcetrator-pgs/src/getmetersnis.h \
+    zbyrator-water/src/watersleepschedulesaver.h \
+    zbyrator-water/waterscheduleeditorpro.h \
+    src/matilda/settloaderdefy.h
 
 FORMS += \
         qcmainwindow.ui \
@@ -476,7 +487,9 @@ FORMS += \
     zbyrator-src/selectmeters4poll.ui \
     zbyrator-water/watersleepscheduler.ui \
     zbyrator-water/waterprofilewdgt.ui \
-    zbyrator-water/editwaterprofile.ui
+    zbyrator-water/editwaterprofile.ui \
+    dataconcetrator-pgs/src/getmetersnis.ui \
+    zbyrator-water/waterscheduleeditorpro.ui
 
 RESOURCES += \
     font.qrc \

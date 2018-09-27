@@ -1,6 +1,6 @@
 #include "zbyratordatacalculation.h"
 #include "src/zbyrator-v2/myucmmeterstypes.h"
-#include "src/matilda/showmesshelper.h"
+#include "src/matilda/showmesshelper4wdgt.h"
 //#include "src/matilda/moji_defy.h"
 #include "src/meter/definedpollcodes.h"
 #include "src/matilda/classmanagerhelper.h"
@@ -21,24 +21,27 @@ void ZbyratorDataCalculation::onAddlistOfMeters2cache(ClassManagerSharedObjects 
     //    gHelper->hashMeterSn2ni;
 //        QHash<QString,QString> hashMeterSn2ni;
 //        QHash<QString,QString> hashMeterNi2memo;
+
+    shrdObj->listnis.clear();
+    shrdObj->hashMeterNi2info.clear();
     for(int i = 0, imax = activeMeters.size(); i < imax; i++){
         const UniversalMeterSett m = activeMeters.at(i);
 
         if(!m.ni.isEmpty())
             ni2cachedEnrg.insert(m.ni, m.cache);
 
-        shrdObj->addMeter2meterNi2info(m.ni, m.memo, m.sn, m.coordinate, m.tariff, m.transformer);
+        shrdObj->addMeter2meterNi2info(m.ni, m.memo, m.sn, m.coordinate, m.tariff, m.transformer, m.model, m.version, m.powerin);
 
-        shrdObj->addMeter2meterSn2info(m.sn, m.memo, m.ni, m.coordinate, m.tariff, m.transformer);
+        shrdObj->addMeter2meterSn2info(m.sn, m.memo, m.ni, m.coordinate, m.tariff, m.transformer, m.model, m.version, m.powerin);
 
         if(!m.sn.isEmpty()){
             hashMeterSn2ni.insert(m.sn, m.ni);
             hashMeterSn2memo.insert(m.sn, m.memo);
         }
-        hashMeterNi2memo.insert(m.ni, m.memo);
+//        hashMeterNi2memo.insert(m.ni, m.memo);
     }
-    if(!hashMeterNi2memo.isEmpty())
-        emit updateHashSn2meter(hashMeterSn2memo, hashMeterSn2ni, hashMeterNi2memo);
+    if(!shrdObj->listnis.isEmpty())
+        emit updateHashSn2meter(hashMeterSn2memo, hashMeterSn2ni, shrdObj->hashMeterNi2info, shrdObj->listnis);
 }
 
 
@@ -102,7 +105,7 @@ void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHash
 
         shrdObj->lastHeaderData = columnList;
 
-        const QHash<QString,QString> hKeyHuman = ShowMessHelper::columnKey2humanLang();
+        const QHash<QString,QString> hKeyHuman = ShowMessHelper4wdgt::columnKey2humanLang();
 
         shrdObj->lastMemoPos = columnList.indexOf("memo");//має бути справа від NI
         shrdObj->komaPos = dotPos;
@@ -288,7 +291,7 @@ void ZbyratorDataCalculation::onCOMMAND_READ_POLL_STATISTIC(QStringList list)
         if(meterNiIndx < 0)
             meterNiIndx = 0;
 
-        const QHash<QString,QString> hKeyHuman = ShowMessHelper::columnKey2humanLang();
+        const QHash<QString,QString> hKeyHuman = ShowMessHelper4wdgt::columnKey2humanLang();
 
         for(int i = 0, iMax = columnList.size(); i < iMax; i++)
             header.append(hKeyHuman.value(columnList.at(i), columnList.at(i)));

@@ -25,6 +25,8 @@ signals:
 
     void deleteProfileName();
 
+    void ready2edit();
+
 
 private slots:
 

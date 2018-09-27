@@ -1,7 +1,7 @@
 #include "zbyratordatabasemedium.h"
 #include "zbyratordatacalculation.h"
 #include "src/matilda/moji_defy.h"
-#include "src/matilda/showmesshelper.h"
+#include "src/matilda/showmesshelper4wdgt.h"
 
 #include "zbyrator-src/src/zbyratorucmedium.cpp"
 
@@ -113,7 +113,7 @@ void ZbyratorDatabaseMedium::data2matildaSlot(const quint16 &command, const QVar
 {
     if(stopAll){
         operationStatusSlot(false);
-        showMessSlot(ShowMessHelper::messFromCode(MESS_OPERATION_ABORTED));
+        showMessSlot(ShowMessHelper4wdgt::messFromCode(MESS_OPERATION_ABORTED));
         return;
     }
     lastCmd.lastcommand = command;
@@ -149,7 +149,7 @@ void ZbyratorDatabaseMedium::data2gui(quint16 command, QVariant dataVar)
      case COMMAND_READ_METER_LOGS_GET_VAL    :{ messCode = dbReader->onCOMMAND_READ_METER_LOGS_GET_VAL(dataVar.toHash(), rezIsGood)            ; break;}
      default:{
          qDebug() << "data2gui unknown command " << command << dataVar;
-         showMessSlot(ShowMessHelper::addWithFontColorRed(tr("Unknown command: 0x%1").arg(QString::number(command, 16).toUpper())));
+         showMessSlot(ShowMessHelper4wdgt::addWithFontColorRed(tr("Unknown command: 0x%1").arg(QString::number(command, 16).toUpper())));
          return;}
      }
 
@@ -161,7 +161,7 @@ void ZbyratorDatabaseMedium::data2gui(quint16 command, QVariant dataVar)
      if(!(rezIsGood && (command == COMMAND_ERROR_CODE || command == COMMAND_ERROR_CODE_EXT))){
 
          if(messCode != MESS_NO_MESS && messCode != MESS_OPERATION_IN_PROGRESS)
-             showMessSlot(ShowMessHelper::messFromCode(messCode));
+             showMessSlot(ShowMessHelper4wdgt::messFromCode(messCode));
          showOperRez(command, rezIsGood);
      }
      if(!(command == COMMAND_AUTHORIZE && rezIsGood)){
@@ -170,7 +170,7 @@ void ZbyratorDatabaseMedium::data2gui(quint16 command, QVariant dataVar)
 
      if(!stopAll){
          if(command != COMMAND_ERROR_CODE_EXT)
-             emit operationStatus4progress(false, ShowMessHelper::name4command(command));
+             emit operationStatus4progress(false, ShowMessHelper4wdgt::name4command(command));
      }
 
 }
@@ -252,15 +252,15 @@ void ZbyratorDatabaseMedium::showOperRez(const QString &mess, const bool &isGood
         qDebug() << "ClassManager::showOperRez " << mess << isGood;
         return;
     }
-    showMessSlot(ShowMessHelper::addRez2endOfLine(mess, isGood));
+    showMessSlot(ShowMessHelper4wdgt::addRez2endOfLine(mess, isGood));
 }
 
 void ZbyratorDatabaseMedium::showOperRez(const quint16 &command, const bool &isGood)
 {
-    if(ShowMessHelper::name4command(command).isEmpty()){
+    if(ShowMessHelper4wdgt::name4command(command).isEmpty()){
         qDebug() << "ClassManager::showOperRez( name is empty" << command << isGood;
     }
-    showOperRez(ShowMessHelper::name4command(command), isGood);
+    showOperRez(ShowMessHelper4wdgt::name4command(command), isGood);
 }
 
 bool ZbyratorDatabaseMedium::checkSqlClientReady(const quint16 &command, const QVariant &dataVar)

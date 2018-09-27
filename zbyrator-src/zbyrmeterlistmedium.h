@@ -6,6 +6,7 @@
 #include "src/zbyrator-v2/zbyratordatatypehelper.h"
 #include "src/matilda/classmanagertypes.h"
 #include "zbyrator-src/src/ifacesettloader.h"
+#include "src/matilda-conf/classmanagersharedobjects.h"
 
 class ZbyrMeterListMedium : public QObject
 {
@@ -87,7 +88,8 @@ signals:
 
     void killUconTasks();
 
-    void updateHashSn2meter(QHash<QString,QString> hashMeterSn2memo, QHash<QString,QString> hashMeterSn2ni, QHash<QString, QString> hashMeterNi2memo);
+//    void updateHashSn2meter(QHash<QString,QString> hashMeterSn2memo, QHash<QString,QString> hashMeterSn2ni, QHash<QString, QString> hashMeterNi2memo);
+    void updateHashSn2meter(QHash<QString,QString> hashMeterSn2memo, QHash<QString,QString> hashMeterSn2ni, QHash<QString, ClassManagerSharedObjects::MeterNi2info> hashMeterNi2info, QStringList listnis);
 
     void onReadWriteOperation(bool isRead);
 

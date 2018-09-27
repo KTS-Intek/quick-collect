@@ -1,7 +1,7 @@
 #include "watersleepscheduler.h"
 #include "ui_watersleepscheduler.h"
 
-#include "src/matilda/settloader.h"
+#include "zbyrator-water/src/watersleepschedulesaver.h"
 #include "waterprofilewdgt.h"
 #include <QMessageBox>
 #include "src/meter/definedpollcodes.h"
@@ -9,6 +9,7 @@
 #include "src/zbyrator-v2/quickpollhelper.h"
 #include <QJsonDocument>
 #include "src/meter/zbyratorhelper.h"
+#include "src/matilda/settloader.h"
 
 //відображення зчитаного розкладу з лічильників
 //запис розкладу до лічильників
@@ -159,7 +160,7 @@ void WaterSleepScheduler::onSaveProfile(QString name, QVariantHash profile)
 
 
     updateSleepProfilesSett();
-    int indx = ui->cbxProfile->findText(name);// Data(QVariant::fromValue(profile));
+    const int indx = ui->cbxProfile->findText(name);// Data(QVariant::fromValue(profile));
 
     if(indx > 0 && (profile2delete.isEmpty() || (!profile2delete.isEmpty() && profile2delete != name))){
 
@@ -180,16 +181,15 @@ void WaterSleepScheduler::onSaveProfile(QString name, QVariantHash profile)
     ui->cbxProfile->addItem(name, profile);
 
 //save to memory
-    saveSleepProfiles();
+    WaterSleepScheduleSaver::addNewProfile(name, profile);
 
 }
 
 
 
 void WaterSleepScheduler::updateSleepProfilesSett()
-{
-    const QVariantHash hsp = SettLoader::loadSett(SETT_METER_WATER_SLEEP).toHash();
-    updatetSleepProfiles(hsp.isEmpty() ? SettLoader::getDefSleepSettt() : hsp);
+{    
+    updatetSleepProfiles(WaterSleepScheduleSaver::getSavedSett());
 }
 
 void WaterSleepScheduler::deleteProfileName()
@@ -207,7 +207,8 @@ void WaterSleepScheduler::deleteProfileName()
 
     ui->cbxProfile->removeItem(indx);
     //save cbx 2 memory
-    saveSleepProfiles();
+    WaterSleepScheduleSaver::removeOneProfile(profile2delete);
+
 }
 
 void WaterSleepScheduler::setSelectedCount(int selectedItems)
@@ -269,7 +270,7 @@ void WaterSleepScheduler::onTvTable_clicked(const QModelIndex &index)
 
     const int indx = ui->cbxProfile->findData(currMeter);
     if(indx < 0){
-        ui->cbxProfile->setItemData(0, currMeter.isValid() ? currMeter : QVariant::fromValue(SettLoader::getDefSleepOneProfile()));
+        ui->cbxProfile->setItemData(0, currMeter.isValid() ? currMeter : WaterSleepScheduleSaver::getDefaultProfileVar());
         ui->cbxProfile->setItemData(0, QString("%1 %2 %3").arg(model->item(row, 4)->text()).arg(model->item(row, 3)->text()).arg(model->item(row, 2)->text()), Qt::UserRole + 2);
     }
     ui->cbxProfile->setCurrentIndex(qMax(0, indx));
@@ -332,17 +333,6 @@ void WaterSleepScheduler::on_tbEdit_clicked()
     emit setProfileEdit((ui->cbxProfile->currentIndex() < 1) ? ui->cbxProfile->currentData(Qt::UserRole + 2).toString() : ui->cbxProfile->currentText(), ui->cbxProfile->currentData().toHash());
 }
 
-void WaterSleepScheduler::saveSleepProfiles()
-{
-    QVariantHash hash;
-    for(int i = 1, imax = ui->cbxProfile->count(); i < imax; i++){
-        const QVariantHash h = ui->cbxProfile->itemData(i).toHash();
-        if(h.isEmpty())
-            continue;
-        hash.insert(ui->cbxProfile->itemText(i), h);
-    }
-    SettLoader::saveSett(SETT_METER_WATER_SLEEP, hash);
-}
 
 void WaterSleepScheduler::onPbReadAll_clicked()
 {

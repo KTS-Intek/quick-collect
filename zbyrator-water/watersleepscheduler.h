@@ -65,7 +65,6 @@ private slots:
     void onShowCurProfileTmr();
     void on_tbEdit_clicked();
 
-    void saveSleepProfiles();
 
     void onPbReadAll_clicked();
 

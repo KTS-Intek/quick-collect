@@ -85,6 +85,7 @@ void EditWaterProfile::setupPage()
     ui->pbDelete->hide();
 
     addMoveHoldTb(ui->verticalLayout, ui->pbSave->height());
+    emit ready2edit();
 }
 
 

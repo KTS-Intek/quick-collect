@@ -62,7 +62,7 @@ QStringList IfaceSettLoader::getProfileNames(QStringList &icoList)
         }
         l.append(QString("%1\t%2%3").arg(oh.value("objN").toString()).arg(oh.value("l").toString()).arg(back));
 //        else
-//            l.append(QString("%1\t%2\t%3").arg(oh.value("objN").toString()).arg(oh.value("l").toString()).arg(ShowMessHelper::prettyIpMatildaView(oh.value("a").toString(), oh.value("p").toInt())));
+//            l.append(QString("%1\t%2\t%3").arg(oh.value("objN").toString()).arg(oh.value("l").toString()).arg(ShowMessHelper4wdgt::prettyIpMatildaView(oh.value("a").toString(), oh.value("p").toInt())));
 
     }
     l.removeDuplicates();
