@@ -25,7 +25,11 @@ signals:
     void command4dev(quint16 command, QVariantMap mapArgs);//pollCode args
 
 public slots:
-    void setPollSett(QDateTime dtFrom, QDateTime dtTo, quint8 pollCode, quint8 meterType, bool enablePowerManagement);
+    void setPollSett(const QDateTime &dtFrom, const QDateTime &dtTo, const quint8 &pollCode, const quint8 &meterType, const int &go2sleepSeconds, const bool &enCheckSleepProfile);
+
+    void setPollSettElectric(const QDateTime &dtFrom, const QDateTime &dtTo, const quint8 &pollCode);
+
+    void setPollSettWater(const QDateTime &dtFrom, const QDateTime &dtTo, const quint8 &pollCode, const bool &enSleepCommand, const int &go2sleepSeconds, const bool &enCheckSleepProfile);
 
     void initPage();
 
@@ -51,7 +55,9 @@ private:
         QDateTime dtTo;
         quint8 pollCode;
         quint8 meterType;
-        bool enablePowerManagement;
+//        bool enablePowerManagement;
+        int go2sleepSeconds;
+        bool enCheckSleepProfile;
     } lPollSett;
 
     Ui::SelectMeters4poll *ui;

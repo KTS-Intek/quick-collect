@@ -17,6 +17,8 @@
 #include "zbyrator-src/src/startexchangehelper.h"
 
 #include "zbyrator-src/src/zbyratordatabasemedium.cpp"
+#include "zbyrator-water/src/watersleepschedulesaver.h"
+#include "src/zbyrator-v2/watermeterhelper.h"
 
 //---------------------------------------------------------------------
 
@@ -68,8 +70,13 @@ void ZbyrMeterListMedium::onAllMetersSlot(UniversalMeterSettList allMeters)
         return;
 
 
+    lastWaterSleepProfile = WaterSleepScheduleSaver::getSavedSett();
+
+    QMap<quint8, QVariantMap> mapRowColDataByMeters;
 
     MyListStringList listRowsEl, listRowWater;
+    QMap<quint8, int> mapRowCounter;
+
     QMap<quint8, UniversalMeterSettList> map2meters;
     for(int i = 0, imax = allMeters.size(); i < imax; i++){
         const UniversalMeterSett m = allMeters.at(i);
@@ -79,20 +86,34 @@ void ZbyrMeterListMedium::onAllMetersSlot(UniversalMeterSettList allMeters)
             l.append(m);
             map2meters.insert(m.meterType, l);
         }
+        QStringList ldata;
+        QList<int> lcols;
+        const QStringList onemeterrow = universalMeterSett2listRow(m, ldata, lcols);
+
         switch(m.meterType){
-        case UC_METER_ELECTRICITY: listRowsEl.append(universalMeterSett2listRow(m)); break;
-        case UC_METER_WATER: listRowWater.append(universalMeterSett2listRow(m)); break;
+        case UC_METER_ELECTRICITY   : listRowsEl.append(onemeterrow)  ; break;
+        case UC_METER_WATER         : listRowWater.append(onemeterrow); break;
+        }
+
+        int meterTypeRow = mapRowCounter.value(m.meterType, 0) ;
+        mapRowCounter.insert( m.meterType,  meterTypeRow + 1);
+        if(!ldata.isEmpty()){
+
+            QVariantMap mapRowColData = mapRowColDataByMeters.value(m.meterType);
+            for(int j = 0, jmax = ldata.size(); j < jmax; j++)
+                mapRowColData.insert(QString("%1;%2").arg(meterTypeRow).arg(lcols.at(j)), ldata.at(j));
+            mapRowColDataByMeters.insert(m.meterType, mapRowColData);
         }
     }
 
     if(true){
         const QStringList headerh = TableHeaders::getColNamesMeterList().split(",");
-        emit setElectricityMeterListPageSett(listRowsEl, QVariantMap(), headerh, StandardItemModelHelper::getHeaderData(headerh.size()), true);
+        emit setElectricityMeterListPageSett(listRowsEl, mapRowColDataByMeters.value(UC_METER_ELECTRICITY), headerh, StandardItemModelHelper::getHeaderData(headerh.size()), true);
     }
 
     if(true){
         const QStringList headerh = TableHeaders::getColNamesWaterMeterList().split(",");
-        emit setWaterMeterListPageSett(listRowWater, QVariantMap(), headerh, StandardItemModelHelper::getHeaderData(headerh.size()), true);
+        emit setWaterMeterListPageSett(listRowWater, mapRowColDataByMeters.value(UC_METER_WATER), headerh, StandardItemModelHelper::getHeaderData(headerh.size()), true);
     }
     const QList<quint8> lk = map2meters.keys();
     for(int i = 0, imax = lk.size(); i < imax; i++)
@@ -370,12 +391,12 @@ void ZbyrMeterListMedium::onReloadAllMeters()
     emit onReloadAllMeters2zbyrator();
 }
 //---------------------------------------------------------------------
-QStringList ZbyrMeterListMedium::universalMeterSett2listRow(const UniversalMeterSett &m)
+QStringList ZbyrMeterListMedium::universalMeterSett2listRow(const UniversalMeterSett &m, QStringList &ldata, QList<int> &lcols)
 {
     QStringList l;
     switch(m.meterType){
     case UC_METER_ELECTRICITY: l = universalMeterSett2listRowElectricity(m); break;
-    case UC_METER_WATER: l = universalMeterSett2listRowWater(m); break;
+    case UC_METER_WATER      : l = universalMeterSett2listRowWater(m, ldata, lcols); break;
     }
     return l;
 
@@ -400,14 +421,21 @@ QStringList ZbyrMeterListMedium::universalMeterSett2listRowElectricity(const Uni
     return l;
 }
 //---------------------------------------------------------------------
-QStringList ZbyrMeterListMedium::universalMeterSett2listRowWater(const UniversalMeterSett &m)
+QStringList ZbyrMeterListMedium::universalMeterSett2listRowWater(const UniversalMeterSett &m, QStringList &ldata, QList<int> &lcols)
 {
     QStringList l;
     l.append(m.model);
     l.append(m.sn);
     l.append(m.ni);
     l.append(m.memo);
-    l.append(m.enrg);
+
+    lcols.append(l.size());
+    ldata.append(m.enrg);
+
+    const QString profname = WaterMeterHelper::oneProfileFromLineName(lastWaterSleepProfile, m.enrg);
+    l.append(profname.isEmpty() ? m.enrg : profname);//change enrg 2 sleep profile name
+
+
     l.append(m.pollEnbl ? "+" : "-");
     l.append(m.powerin);
     l.append(m.disableTimeCorrection ? "+" : "");

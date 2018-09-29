@@ -60,6 +60,9 @@ void WaterScheduleEditorPro::initPage()
     setupTbShowHide(ui->tbShowHidePreview, profileWdgt, false, true);
 
     QTimer::singleShot(333, this, SLOT(createEditWdgt()) );
+
+    connect(this, SIGNAL(updateProfileSett()), gHelper, SIGNAL(waterProfilesChanged()));// this, SLOT(updateSleepProfilesSett()));
+
     //    readDefCommandOnUpdate();
 }
 
@@ -68,11 +71,17 @@ void WaterScheduleEditorPro::onEditorReady2edit()
     updateSleepProfilesSett();
     ui->wdgtAdminButtons->setEnabled(true);// Disabled(gHelper->managerEnDisBttn.pbWriteOnlyRootDis);
 
-    if(!editThisProfileName.isEmpty()){
+    if(!editThisProfileName.isEmpty() && !lastTvHighlight.lastHeaderData.isEmpty()){
         if(TableViewHelper::selectRowWithThisCell(lastTv, editThisProfileName, lastTvHighlight.lastHeaderData.indexOf(lastTvHighlight.key))){
             editThisProfileName.clear();
             onTvTable_doubleclicked(lastTv->currentIndex());
         }
+    }else{
+        if(!editThisProfileSett.isEmpty()){
+            emit setProfileEdit("profile", editThisProfileSett);
+            editThisProfileSett.clear();
+        }
+
     }
     connect(lastTv, &QTableView::doubleClicked, this, &WaterScheduleEditorPro::onTvTable_doubleclicked);
 
@@ -103,6 +112,12 @@ void WaterScheduleEditorPro::openAddEditWdgt(const int &row)
 void WaterScheduleEditorPro::setEditProfileName(QString name)
 {
     editThisProfileName = name;
+}
+
+void WaterScheduleEditorPro::setEditProfileFromMeter(QVariantHash h)
+{
+    editThisProfileSett = h;
+    editThisProfileName.clear();
 }
 
 void WaterScheduleEditorPro::createEditWdgt()
@@ -141,8 +156,11 @@ void WaterScheduleEditorPro::onShowCurProfileTmr()
 {
     //to waterprofilewdgt
     const int row = getModelCurrentRow();
-    if(row >= 0)
+    if(row >= 0){
         emit setProfile(model->item(row, 1)->data().toHash());// ui->cbxProfile->currentData().toHash());
+       if(!ui->tbShowHidePreview->isChecked())
+           ui->tbShowHidePreview->animateClick();
+    }
 }
 
 void WaterScheduleEditorPro::onTvTable_doubleclicked(const QModelIndex &index)

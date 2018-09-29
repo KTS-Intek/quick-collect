@@ -30,7 +30,6 @@ signals:
     void startShowCurrProfileTmr();
 
 
-    void setProfileEdit(QString name, QVariantHash profile);
 
 
 public slots:
@@ -38,19 +37,20 @@ public slots:
 
     void clearPage();
 
-    void setPageSett(const MyListStringList &listRows, const QVariantMap &col2data, const QStringList &headerH, const QStringList &header, const bool &hasHeader);
+//    void setPageSett(const MyListStringList &listRows, const QVariantMap &col2data, const QStringList &headerH, const QStringList &header, const bool &hasHeader);
 
 
     void waterMeterSchedulerStts(QString ni, QDateTime dtLocal, QString stts, QVariantHash sheduler);
 
-    void onSaveProfile(QString name, QVariantHash profile);
 
     void updateSleepProfilesSett();
 
-    void deleteProfileName();
 
     void setSelectedCount(int selectedItems);
 
+    void openEditWidget(const bool &editMode);
+
+    void onSettReceivedWithData();
 
 private slots:
     void on_tbAdd_clicked();
@@ -80,7 +80,6 @@ private:
 
     QString lastDateTimeMask;
 
-    QString profile2delete;
 
 };
 

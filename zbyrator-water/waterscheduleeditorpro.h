@@ -35,6 +35,8 @@ public slots:
 
     void setEditProfileName(QString name);
 
+    void setEditProfileFromMeter(QVariantHash h);
+
 private slots:
     void createEditWdgt();
 
@@ -58,6 +60,7 @@ private:
     Ui::WaterScheduleEditorPro *ui;
     QString profile2delete;
     QString editThisProfileName;
+    QVariantHash editThisProfileSett;
 
 };
 

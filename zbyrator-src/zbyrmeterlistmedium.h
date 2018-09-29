@@ -181,11 +181,11 @@ private:
 
     QMap<QString, LastList2pages> mapMeters2pages;
 
-    QStringList universalMeterSett2listRow(const UniversalMeterSett &m);
+    QStringList universalMeterSett2listRow(const UniversalMeterSett &m, QStringList &ldata, QList<int> &lcols);
 
     QStringList universalMeterSett2listRowElectricity(const UniversalMeterSett &m);
 
-    QStringList universalMeterSett2listRowWater(const UniversalMeterSett &m);
+    QStringList universalMeterSett2listRowWater(const UniversalMeterSett &m, QStringList &ldata, QList<int> &lcols);
 
 
     bool metersChanged(QMap<QString, LastList2pages> &mapMeters2pages, const QString &key, const LastList2pages &lastMeters2pagesL);
@@ -223,6 +223,8 @@ private:
     QMap<QString, QStringList> dateTimePage;
 
     QStringList liststat;
+
+    QVariantHash lastWaterSleepProfile;
 
     int lastPageMode;//пам'ятає яка сторінка запустила опитування, щоб при скасуванні завдання відправити відповідну команду
 

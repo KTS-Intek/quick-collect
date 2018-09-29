@@ -22,19 +22,27 @@ SelectMeters4poll::~SelectMeters4poll()
     delete ui;
 }
 
-void SelectMeters4poll::setPollSett(QDateTime dtFrom, QDateTime dtTo, quint8 pollCode, quint8 meterType, bool enablePowerManagement)
+void SelectMeters4poll::setPollSett(const QDateTime &dtFrom, const QDateTime &dtTo, const quint8 &pollCode, const quint8 &meterType, const int &go2sleepSeconds, const bool &enCheckSleepProfile)
 {
     //start select data
     lPollSett.dtFrom = dtFrom;
     lPollSett.dtTo = dtTo;
     lPollSett.pollCode = pollCode;
     lPollSett.meterType = meterType;
-    lPollSett.enablePowerManagement = enablePowerManagement;
-    //
-
-
-
+    lPollSett.go2sleepSeconds = go2sleepSeconds;
+    lPollSett.enCheckSleepProfile = enCheckSleepProfile;
 }
+
+void SelectMeters4poll::setPollSettElectric(const QDateTime &dtFrom, const QDateTime &dtTo, const quint8 &pollCode)
+{
+    setPollSett(dtFrom, dtTo, pollCode, UC_METER_ELECTRICITY, 0, false);
+}
+
+void SelectMeters4poll::setPollSettWater(const QDateTime &dtFrom, const QDateTime &dtTo, const quint8 &pollCode, const bool &enSleepCommand, const int &go2sleepSeconds, const bool &enCheckSleepProfile)
+{
+    setPollSett(dtFrom, dtTo, pollCode, UC_METER_WATER, enSleepCommand ? go2sleepSeconds : 0, enCheckSleepProfile );
+}
+
 
 void SelectMeters4poll::initPage()
 {
@@ -126,7 +134,7 @@ void SelectMeters4poll::sendStartPoll(const QStringList &listni)
         return;
 
     QString mess;
-    const QVariantMap map = QuickPollHelper::createPollMap(listni, lPollSett.dtTo, lPollSett.dtFrom, ui->cbxIgnoreExistingData->isChecked(), lPollSett.enablePowerManagement, mess);
+    const QVariantMap map = QuickPollHelper::createPollMap(listni, lPollSett.dtTo, lPollSett.dtFrom, ui->cbxIgnoreExistingData->isChecked(), lPollSett.go2sleepSeconds, lPollSett.enCheckSleepProfile, mess);
 
     if(map.isEmpty())
         return;

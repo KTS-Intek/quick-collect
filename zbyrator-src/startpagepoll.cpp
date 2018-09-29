@@ -29,6 +29,22 @@ StartPagePoll::~StartPagePoll()
     delete ui;
 }
 
+QString StartPagePoll::getArgsElectricMeter(const QDateTime &dtTo, const QDateTime &dtFrom, QString &mess)
+{
+    return QuickPollHelper::createQuickPollLineSmpl(UC_METER_ELECTRICITY, ui->leOneMeterNI->text(),
+                                                                                  (ui->cbxOneMeterModel->currentIndex() > 0) ? ui->cbxOneMeterModel->currentText() : "", ui->leOneMeterPass->text()
+                                                    , QString(ui->cbxOneMeterEnergy->currentData().toString()).replace(",", " "), ui->sbOneMeterTariff->value(), dtTo, dtFrom, true, mess);
+}
+//---------------------------------------------------------------------
+QString StartPagePoll::getArgsWaterMeter(const QDateTime &dtTo, const QDateTime &dtFrom, QString &mess)
+{
+    int secs2sleep = ui->cbxPwrManagement->isChecked() ? ui->sbSleepSecsAfter->value() : 0;
+
+    return QuickPollHelper::createQuickPollLine(UC_METER_WATER, ui->leOneMeterNI_2->text(),
+                                         (ui->cbxOneMeterModel_2->currentIndex() > 0) ? ui->cbxOneMeterModel_2->currentText() : "", ""
+                             , "", 4, dtTo, dtFrom, true, secs2sleep, ui->cbxCheckSleepProfile->isChecked(), mess);
+}
+
 //---------------------------------------------------------------------
 
 void StartPagePoll::setupCbxModel2regExp(QComboBox *cbx, const QVariantHash &hash)
@@ -106,6 +122,8 @@ void StartPagePoll::initPage()
 
     connect(ui->cbxIgnoreRetr, SIGNAL(clicked(bool)), this, SIGNAL(setIgnoreCycles(bool)));
     QTimer::singleShot(555, this, SIGNAL(onReloadAllMeters()) );
+
+    on_tbwTypeOfMeter_currentChanged(ui->tbwTypeOfMeter->currentIndex());
 }
 //---------------------------------------------------------------------
 void StartPagePoll::setPageSett(const QVariantHash &h)
@@ -337,14 +355,10 @@ bool StartPagePoll::startPollOneMeterMode(const StartPollTabSett &selsett, QStri
         dtTo = QDateTime::currentDateTime();
 
     const bool isElectricity = (ui->swMeterMode->currentIndex() == 1);
+//const quint8 &meterType, const QString &line, const QString &cbxText, const QString &passwd, const QString &enrgTxt, const int &tariff, const QDateTime &dtTo, const QDateTime &dtFrom, const bool &ignoreExistingData, const int &go2sleepSecs, const QString &sleepProfileLine, QString &mess
+    const QString args = isElectricity ? getArgsElectricMeter(dtTo, dtFrom, mess) :
+                                         getArgsWaterMeter(dtTo, dtFrom, mess);
 
-    const QString args = isElectricity ? QuickPollHelper::createQuickPollLine(UC_METER_ELECTRICITY, ui->leOneMeterNI->text().simplified(),
-                                                                              (ui->cbxOneMeterModel->currentIndex() > 0) ? ui->cbxOneMeterModel->currentText() : "", ui->leOneMeterPass->text()
-                                                                              , QString(ui->cbxOneMeterEnergy->currentData().toString()).replace(",", " "), ui->sbOneMeterTariff->value(), dtTo, dtFrom, true, false, mess) :
-
-                                         QuickPollHelper::createQuickPollLine(UC_METER_WATER, ui->leOneMeterNI_2->text().simplified(),
-                                                                              (ui->cbxOneMeterModel_2->currentIndex() > 0) ? ui->cbxOneMeterModel_2->currentText() : "", ""
-                                                                  , "", 4, dtTo, dtFrom, true, ui->cbxPwrManagement->isChecked(), mess);
     if(args.isEmpty())
         return false;
 
@@ -374,7 +388,13 @@ bool StartPagePoll::startPollAllMetersMode(const quint8 &pollCode, QString &mess
 
     connect(metersListMedium, SIGNAL(onAllMeters(UniversalMeterSettList)), w, SIGNAL(onAllMeters(UniversalMeterSettList)) );
 
-    w->setPollSett(dtFrom, dtTo, pollCode, lastSelsett.meterType, (lastSelsett.meterType == UC_METER_WATER) ? ui->cbxPwrManagement->isChecked() : false);
+    switch(lastSelsett.meterType){
+    case UC_METER_ELECTRICITY: w->setPollSettElectric(dtFrom, dtTo, pollCode); break;
+    case UC_METER_WATER: w->setPollSettWater(dtFrom, dtTo, pollCode, ui->cbxPwrManagement->isChecked(), ui->sbSleepSecsAfter->value(), ui->cbxCheckSleepProfile->isChecked());
+
+    default: qDebug() << "can't set pollSett StartPagePoll lastSelsett.meterType=" << lastSelsett.meterType;
+    }
+//    w->setPollSett(dtFrom, dtTo, pollCode, lastSelsett.meterType, (lastSelsett.meterType == UC_METER_WATER && ui->cbxPwrManagement->isChecked()) ? ui->sbSleepSecsAfter->value() : 0);
 
     emit gHelper->addWdgt2stackWdgt(w, WDGT_TYPE_ZBYR_SELECT_METERS4POLL, false, tr("Select"), ":/katynko/svg/dialog-ok-apply.svg");
     return true;
@@ -528,9 +548,13 @@ void StartPagePoll::on_tbwTypeOfMeter_currentChanged(int index)
     if(index == 1){//water
         ui->swMeterMode->setCurrentIndex(ui->rbOneMeter->isChecked() ? 2 : 0);
         ui->cbxPwrManagement->show();
+        ui->sbSleepSecsAfter->show();
+        ui->cbxCheckSleepProfile->show();
     }else{
         //electricity
         ui->swMeterMode->setCurrentIndex(ui->rbOneMeter->isChecked() ? 1 : 0);
         ui->cbxPwrManagement->hide();
+        ui->sbSleepSecsAfter->hide();
+        ui->cbxCheckSleepProfile->hide();
     }
 }

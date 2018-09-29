@@ -35,6 +35,7 @@ private slots:
     void on_pbSave_clicked();
 
 
+
 public slots:
     void setProfileSlot(const QString &name, const QVariantHash &profile);
 

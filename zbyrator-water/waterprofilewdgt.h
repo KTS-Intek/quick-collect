@@ -18,7 +18,6 @@ public:
 
     static QStringList getDowNames();
 
-    static QVariantHash getDefault();
 
 
     QVariantHash getProfile();

@@ -21,6 +21,11 @@ public:
     ~StartPagePoll();
     ZbyrMeterListMedium *metersListMedium;
 
+    QString getArgsElectricMeter(const QDateTime &dtTo, const QDateTime &dtFrom, QString &mess);
+
+    QString getArgsWaterMeter(const QDateTime &dtTo, const QDateTime &dtFrom, QString &mess);
+
+
     void setupCbxModel2regExp(QComboBox *cbx, const QVariantHash &hash);
 
     QVariant getPageSett4read(bool &ok, QString &mess);

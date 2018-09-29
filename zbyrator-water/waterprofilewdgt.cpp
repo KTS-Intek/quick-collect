@@ -2,6 +2,8 @@
 #include "ui_waterprofilewdgt.h"
 #include "template-pgs/comboboxdelegate.h"
 #include <QTimer>
+#include "zbyrator-water/src/watersleepschedulesaver.h"
+#include "src/meter/meterstatehelper.h"
 
 WaterProfileWdgt::WaterProfileWdgt(const bool &enableEditor, QWidget *parent) :
     QWidget(parent),
@@ -29,16 +31,7 @@ QStringList WaterProfileWdgt::getDowNames()
     return tr("Sunday;Monday;Tuesday;Wednesday;Thursday;Friday;Saturday").split(";");
 }
 
-QVariantHash WaterProfileWdgt::getDefault()
-{
-    QVariantHash h;
-    h.insert("dow", 1);//monday
-    h.insert("dom", 0xFF);//any
-    h.insert("hour", 10);
-    h.insert("minute", 0);
-    h.insert("actvt", 10);
-    return h;
-}
+
 
 QVariantHash WaterProfileWdgt::getProfile()
 {
@@ -82,7 +75,7 @@ void WaterProfileWdgt::setProfile(const QVariantHash &profile)
 
 
 
-    const QVariantHash defProfile = getDefault();
+    const QVariantHash defProfile = WaterSleepScheduleSaver::getDefaultProfile();
 
     QStringList dowNamesL = lProfile.dowNames;
     dowNamesL.prepend(lProfile.anyLocalTxt);
@@ -116,7 +109,7 @@ void WaterProfileWdgt::setProfile(const QVariantHash &profile)
 
 void WaterProfileWdgt::setDefaultValues()
 {
-    setProfile(getDefault());
+    setProfile(WaterSleepScheduleSaver::getDefaultProfile());
 }
 
 void WaterProfileWdgt::saveProfile(QString name)
@@ -128,7 +121,7 @@ void WaterProfileWdgt::updatePteText()
 {
     const QVariantHash h = getProfile();
     ui->plainTextEdit->clear();
-    const QStringList lk = QString("dow dom hour minute actvt").split(" ", QString::SkipEmptyParts);
+    const QStringList lk = MeterStateHelper::waterSleepParamKeys();// QString("dow dom hour minute actvt").split(" ", QString::SkipEmptyParts);
     QStringList l;
     for(int i = 0, imax = lk.size(); i < imax; i++)
         l.append(QString("%1: %2").arg(lk.at(i)).arg(h.value(lk.at(i)).toString()));

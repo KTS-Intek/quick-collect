@@ -2,7 +2,7 @@
 #define WATERSLEEPSCHEDULESAVER_H
 
 #include <QVariantHash>
-
+#include <QMap>
 
 class WaterSleepScheduleSaver
 {
@@ -18,6 +18,9 @@ public:
     static void addNewProfile(const QString &name, const QVariantHash &profile);
 
     static void removeOneProfile(const QString &name);
+
+    static QMap<QString,QString> getSavedSettMap();
+
 
 
 };

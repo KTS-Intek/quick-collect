@@ -1,6 +1,6 @@
 #include "watersleepschedulesaver.h"
 #include "src/matilda/settloader.h"
-
+#include "src/zbyrator-v2/watermeterhelper.h"
 
 
 QVariant WaterSleepScheduleSaver::getDefaultProfileVar()
@@ -10,12 +10,12 @@ QVariant WaterSleepScheduleSaver::getDefaultProfileVar()
 
 QVariantHash WaterSleepScheduleSaver::getDefaultProfile()
 {
-    return SettLoader::getDefSleepOneProfile();
+    return WaterMeterHelper::getDefSleepOneProfile();
 }
 
 QVariantHash WaterSleepScheduleSaver::getDefaultSett()
 {
-    return SettLoader::getDefSleepSettt();
+    return WaterMeterHelper::getDefSleepSettt();
 }
 
 QVariantHash WaterSleepScheduleSaver::getSavedSett()
@@ -36,4 +36,15 @@ void WaterSleepScheduleSaver::removeOneProfile(const QString &name)
     QVariantHash h = getSavedSett();
     h.remove(name);
     SettLoader::saveSett(SETT_METER_WATER_SLEEP, h);
+}
+
+QMap<QString, QString> WaterSleepScheduleSaver::getSavedSettMap()
+{
+    const QVariantHash h = getSavedSett();
+    const QList<QString> lk = h.keys();
+    QMap<QString,QString> map;
+
+    for(int i = 0, imax = lk.size(); i < imax; i++)
+        map.insert(lk.at(i), WaterMeterHelper::oneProfile2lineSmpl(h.value(lk.at(i)).toHash()));
+    return map;
 }

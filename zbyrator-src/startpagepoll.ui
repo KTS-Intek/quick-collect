@@ -280,12 +280,36 @@
              </widget>
             </item>
             <item>
-             <widget class="QCheckBox" name="cbxPwrManagement">
-              <property name="toolTip">
-               <string>Switch off modems after the poll</string>
-              </property>
+             <layout class="QHBoxLayout" name="horizontalLayout">
+              <item>
+               <widget class="QCheckBox" name="cbxPwrManagement">
+                <property name="toolTip">
+                 <string>Switch off modems after the poll</string>
+                </property>
+                <property name="text">
+                 <string>Sleep command [secs]</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="sbSleepSecsAfter">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="minimum">
+                 <number>10</number>
+                </property>
+                <property name="maximum">
+                 <number>250</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="cbxCheckSleepProfile">
               <property name="text">
-               <string>Power management</string>
+               <string>Check profile</string>
               </property>
              </widget>
             </item>
@@ -473,5 +497,22 @@
  <resources>
   <include location="../res.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>cbxPwrManagement</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>sbSleepSecsAfter</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>371</x>
+     <y>76</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>486</x>
+     <y>77</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

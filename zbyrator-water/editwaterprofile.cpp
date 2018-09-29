@@ -2,6 +2,7 @@
 #include "ui_editwaterprofile.h"
 #include "src/matilda/settloader.h"
 #include "waterprofilewdgt.h"
+#include "zbyrator-water/src/watersleepschedulesaver.h"
 
 EditWaterProfile::EditWaterProfile(QWidget *parent) :
     ConfPopupWdgt(SettLoader::getPopupSett(), parent),
@@ -31,7 +32,7 @@ void EditWaterProfile::setProfileSlot(const QString &name, const QVariantHash &p
     if(!name.isEmpty())
         emit setProfile(profile);
     else if(name.isEmpty() && lastProfile.isEmpty())
-        emit setProfile(WaterProfileWdgt::getDefault());
+        emit setProfile(WaterSleepScheduleSaver::getDefaultProfile());
 
 
     lastProfileName = name;
@@ -39,13 +40,12 @@ void EditWaterProfile::setProfileSlot(const QString &name, const QVariantHash &p
 
     showLater();
 
-    ui->pbDelete->setVisible(!name.isEmpty());
 //    ui->pbSave->setEnabled(false);
 }
 
 void EditWaterProfile::onNewProfile(const QVariantHash &profile)
 {
-    ui->pbDefault->setEnabled(profile != WaterProfileWdgt::getDefault());
+    ui->pbDefault->setEnabled(profile != WaterSleepScheduleSaver::getDefaultProfile());
 }
 
 void EditWaterProfile::onTbClearPressed()
@@ -77,12 +77,10 @@ void EditWaterProfile::setupPage()
     connect(profileWdgt, SIGNAL(onSaveProfile(QString,QVariantHash)), this, SLOT(hide()) );
     connect(profileWdgt, SIGNAL(onNewProfile(QVariantHash)), this, SLOT(onNewProfile(QVariantHash)) );
 
-    connect(ui->pbDelete, SIGNAL(clicked(bool)), this, SIGNAL(deleteProfileName()) );
     connect(this, SIGNAL(deleteProfileName()), this, SLOT(hide()) );
 
     ui->pbDefault->setEnabled(true);
     ui->pbSave->setEnabled(true);
-    ui->pbDelete->hide();
 
     addMoveHoldTb(ui->verticalLayout, ui->pbSave->height());
     emit ready2edit();
@@ -95,4 +93,6 @@ void EditWaterProfile::on_pbSave_clicked()
         emit setProfileName(ui->lineEdit->text());
 
 }
+
+
 

@@ -10,6 +10,9 @@
 #include <QJsonDocument>
 #include "src/meter/zbyratorhelper.h"
 #include "src/matilda/settloader.h"
+#include "zbyrator-water/waterscheduleeditorpro.h"
+#include "src/matilda/showmesshelper4wdgt.h"
+#include "src/zbyrator-v2/watermeterhelper.h"
 
 //відображення зчитаного розкладу з лічильників
 //запис розкладу до лічильників
@@ -39,6 +42,7 @@ void WaterSleepScheduler::initPage()
     ui->widget_2->setEnabled(false);
     setupObjects(ui->tvTable, ui->tbFilter, ui->cbFilterMode, ui->leFilter, SETT_FILTERS_ZBYR_WTR_SCHDL);
     emit onReloadAllMeters();
+    lastTvHighlight.key = "Name";
 
 
     WaterProfileWdgt *profileWdgt = new WaterProfileWdgt(false, this);
@@ -50,19 +54,12 @@ void WaterSleepScheduler::initPage()
     profileWdgt->setMaximumHeight(ui->cbxProfile->height() * 4);
 
 
-    EditWaterProfile *editWdgt = new EditWaterProfile(this);
-    connect(this, SIGNAL(setProfileEdit(QString,QVariantHash)), editWdgt, SLOT(setProfileSlot(QString,QVariantHash)));
-    connect(editWdgt, SIGNAL(onSaveProfile(QString,QVariantHash)), this, SLOT(onSaveProfile(QString,QVariantHash)) );
-    connect(editWdgt, SIGNAL(deleteProfileName()), this, SLOT(deleteProfileName()) );
 
     SelectionChecker *tmr = new SelectionChecker(this);
     tmr->setWatchTable(ui->tvTable, ui->widget_2);
 
     connect(tmr, &SelectionChecker::setWdgtEnable, ui->widget_2, &QWidget::setEnabled);
     connect(tmr, &SelectionChecker::setSelectedCount, this, &WaterSleepScheduler::setSelectedCount);
-
-
-    QTimer::singleShot(11, editWdgt, SLOT(setupPage()) );
 
 
     connect(gHelper, SIGNAL(setPbWriteEnableDisable(bool)), ui->pbRead, SLOT(setDisabled(bool)));
@@ -82,7 +79,7 @@ void WaterSleepScheduler::initPage()
 
    updateSleepProfilesSett();
 
-
+   connect(this, SIGNAL(settReceivedWithData()), this, SLOT(onSettReceivedWithData()));
 
 
 }
@@ -92,23 +89,23 @@ void WaterSleepScheduler::clearPage()
 
 }
 
-void WaterSleepScheduler::setPageSett(const MyListStringList &listRows, const QVariantMap &col2data, const QStringList &headerH, const QStringList &header, const bool &hasHeader)
-{//
-    const QString currNi = headerH.contains("NI") ? TableViewHelper::getCellValueOfcurrentRow(ui->tvTable, headerH.indexOf("NI")) : "";
+//void WaterSleepScheduler::setPageSett(const MyListStringList &listRows, const QVariantMap &col2data, const QStringList &headerH, const QStringList &header, const bool &hasHeader)
+//{//
+//    const QString currNi = headerH.contains("NI") ? TableViewHelper::getCellValueOfcurrentRow(ui->tvTable, headerH.indexOf("NI")) : "";
 
-    StandardItemModelHelper::append2model(listRows, col2data, headerH, header, hasHeader, model);
+//    StandardItemModelHelper::append2model(listRows, col2data, headerH, header, hasHeader, model);
 
-    if(!currNi.isEmpty())
-        TableViewHelper::selectRowWithThisCell(ui->tvTable, currNi, headerH.indexOf("NI"));
+//    if(!currNi.isEmpty())
+//        TableViewHelper::selectRowWithThisCell(ui->tvTable, currNi, headerH.indexOf("NI"));
 
-    ui->widget->setDisabled(listRows.isEmpty());
+//    ui->widget->setDisabled(listRows.isEmpty());
 
-    setHasDataFromRemoteDevice();
+//    setHasDataFromRemoteDevice();
 
-    emit resizeTv2content(ui->tvTable);
-    QTimer::singleShot(111, this, SLOT(updateSleepProfilesSett()));
+//    emit resizeTv2content(ui->tvTable);
+//    QTimer::singleShot(111, this, SLOT(updateSleepProfilesSett()));
 
-}
+//}
 
 void WaterSleepScheduler::waterMeterSchedulerStts(QString ni, QDateTime dtLocal, QString stts, QVariantHash sheduler)
 {
@@ -144,88 +141,49 @@ void WaterSleepScheduler::waterMeterSchedulerStts(QString ni, QDateTime dtLocal,
     resizeLastTv2content();
 }
 
-void WaterSleepScheduler::onSaveProfile(QString name, QVariantHash profile)
-{
-    //save profile
-
-    if(name.isEmpty() || ui->cbxProfile->itemText(0) == name ){
-        emit showMess(tr("bad profile name("));
-        return;
-    }
-
-    if(profile.isEmpty()){
-        emit showMess(tr("bad profile settings("));
-        return;
-    }
-
-
-    updateSleepProfilesSett();
-    const int indx = ui->cbxProfile->findText(name);// Data(QVariant::fromValue(profile));
-
-    if(indx > 0 && (profile2delete.isEmpty() || (!profile2delete.isEmpty() && profile2delete != name))){
-
-        if(QMessageBox::question(this, tr("Overwrite"), tr("The profile with the name '%1' is already exists. Do you want to replace it?")) != QMessageBox::Yes)
-            return;
-
-        updateSleepProfilesSett();//to prevent bad situations
-    }
-    if(name == profile2delete)
-        profile2delete.clear();
-
-//    if(!profile2delete.isEmpty()){ I think that it is unusful
-//        indx = ui->cbxProfile->findText(profile2delete);
-//        if(indx > 0)
-//            ui->cbxProfile->removeItem(indx);
-//    }
-
-    ui->cbxProfile->addItem(name, profile);
-
-//save to memory
-    WaterSleepScheduleSaver::addNewProfile(name, profile);
-
-}
-
-
 
 void WaterSleepScheduler::updateSleepProfilesSett()
 {    
     updatetSleepProfiles(WaterSleepScheduleSaver::getSavedSett());
 }
 
-void WaterSleepScheduler::deleteProfileName()
-{
-    if(profile2delete.isEmpty())
-        return;
 
-    if(QMessageBox::question(this, tr("Delete"), tr("Do you want to delete the profile '%1'?").arg(profile2delete)) != QMessageBox::Yes)
-        return;
-
-    updateSleepProfilesSett();
-    const int indx = ui->cbxProfile->findText(profile2delete);
-    if(indx < 1)
-        return;
-
-    ui->cbxProfile->removeItem(indx);
-    //save cbx 2 memory
-    WaterSleepScheduleSaver::removeOneProfile(profile2delete);
-
-}
 
 void WaterSleepScheduler::setSelectedCount(int selectedItems)
 {
     ui->pbWrite->setText( (selectedItems < 1) ? tr("Write") : tr("Write (%1)").arg(selectedItems));
 }
 
+void WaterSleepScheduler::openEditWidget(const bool &editMode)
+{
+    WaterScheduleEditorPro *w = new WaterScheduleEditorPro(lDevInfo, gHelper, gSett4all, this);
+    connect(w, SIGNAL(updateProfileSett()), this, SLOT(updateSleepProfilesSett()));
+    gHelper->addWdgt2stackWdgtSlot(w, WDGT_TYPE_EDITENERGYWIDGET);
+
+    if(editMode){
+        if(ui->cbxProfile->currentIndex() == 0){
+            w->setEditProfileFromMeter(ui->cbxProfile->currentData().toHash().isEmpty() ? WaterSleepScheduleSaver::getDefaultProfile() : ui->cbxProfile->currentData().toHash());
+        }else
+            w->setEditProfileName(ui->cbxProfile->currentText());
+    }else{
+        w->setEditProfileFromMeter(WaterSleepScheduleSaver::getDefaultProfile());
+    }
+}
+
+void WaterSleepScheduler::onSettReceivedWithData()
+{
+    ui->widget->setDisabled(false);
+}
+
 
 void WaterSleepScheduler::on_tbAdd_clicked()
 {
-    profile2delete.clear();
-    emit setProfileEdit(profile2delete, ui->cbxProfile->currentData().toHash());// ui->cbxProfile->currentData().toHash());
+    openEditWidget(false);
 }
 
 void WaterSleepScheduler::on_tvTable_customContextMenuRequested(const QPoint &pos)
 {
-
+    gHelper->createCustomMenu(pos, ui->tvTable, (GuiHelper::ShowReset|GuiHelper::ShowExport|GuiHelper::ShowOnlyCopy), CLBRD_SMPL_PRXTBL, ShowMessHelper4wdgt::matildaFileName(windowTitle()));
 }
 
 void WaterSleepScheduler::startOperation(const QStringList &listni, const quint8 &pollCode)
@@ -245,7 +203,7 @@ void WaterSleepScheduler::startOperation(const QStringList &listni, const quint8
     }
 
     QString mess;
-    const QVariantMap map = QuickPollHelper::createPollMapWithParams(listni, params.isEmpty() ? "-" : ZbyratorHelper::getSleepProfileLine(params), mess);
+    const QVariantMap map = QuickPollHelper::createPollMapWithParams(listni, params.isEmpty() ? "-" : WaterMeterHelper::oneProfile2lineSmpl(params), mess);
 
     if(map.isEmpty())
         return;
@@ -329,8 +287,7 @@ void WaterSleepScheduler::updatetSleepProfiles(const QVariantHash &profileName2s
 
 void WaterSleepScheduler::on_tbEdit_clicked()
 {
-    profile2delete = (ui->cbxProfile->currentIndex() < 1) ? "" : ui->cbxProfile->currentText();
-    emit setProfileEdit((ui->cbxProfile->currentIndex() < 1) ? ui->cbxProfile->currentData(Qt::UserRole + 2).toString() : ui->cbxProfile->currentText(), ui->cbxProfile->currentData().toHash());
+    openEditWidget(true);
 }
 
 
