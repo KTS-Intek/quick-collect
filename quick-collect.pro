@@ -234,7 +234,8 @@ SOURCES += \
     dataconcetrator-pgs/src/getmetersnis.cpp \
     zbyrator-water/src/watersleepschedulesaver.cpp \
     zbyrator-water/waterscheduleeditorpro.cpp \
-    src/zbyrator-v2/watermeterhelper.cpp
+    src/zbyrator-v2/watermeterhelper.cpp \
+    src/zbyrator-v2/activesleepprofiles.cpp
 
 
 HEADERS += \
@@ -436,7 +437,8 @@ HEADERS += \
     zbyrator-water/src/watersleepschedulesaver.h \
     zbyrator-water/waterscheduleeditorpro.h \
     src/matilda/settloaderdefy.h \
-    src/zbyrator-v2/watermeterhelper.h
+    src/zbyrator-v2/watermeterhelper.h \
+    src/zbyrator-v2/activesleepprofiles.h
 
 FORMS += \
         qcmainwindow.ui \

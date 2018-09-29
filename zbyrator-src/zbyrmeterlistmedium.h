@@ -115,6 +115,9 @@ signals:
 
     void waterMeterSchedulerStts(QString ni, QDateTime dtLocal, QString stts, QVariantHash sheduler);
 
+    void reloadSavedSleepProfiles();
+
+
 //Database and meterjournal
     void data2dbMedium(quint16 command, QVariant varData);
     void stopReadDatabase();

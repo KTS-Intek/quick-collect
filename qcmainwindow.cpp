@@ -544,6 +544,7 @@ void QcMainWindow::createMeterManager()
     connect(metersListMedium, &ZbyrMeterListMedium::giveMeYourCache     , zbyrator, &MeterManager::giveMeYourCache      );
     connect(metersListMedium, &ZbyrMeterListMedium::killUconTasks       , zbyrator, &MeterManager::killUconsTasks       );
     connect(metersListMedium, &ZbyrMeterListMedium::setIgnoreCycles     , zbyrator, &MeterManager::setIgnoreCycles      );
+    connect(metersListMedium, &ZbyrMeterListMedium::reloadSavedSleepProfiles, zbyrator, &MeterManager::reloadSavedSleepProfiles      );
 
     connect(metersListMedium, SIGNAL(showMess(QString)), this, SLOT(showMess(QString)) );
 

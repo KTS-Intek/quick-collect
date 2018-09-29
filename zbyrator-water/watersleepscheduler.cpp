@@ -81,6 +81,7 @@ void WaterSleepScheduler::initPage()
 
    connect(this, SIGNAL(settReceivedWithData()), this, SLOT(onSettReceivedWithData()));
 
+   emit reloadSavedSleepProfiles();
 
 }
 
@@ -119,6 +120,10 @@ void WaterSleepScheduler::waterMeterSchedulerStts(QString ni, QDateTime dtLocal,
 //    stts.append("\n\n");
 //    const QStringList l = stts.split("\n");
 
+    if(lastDateTimeMask.isEmpty()){
+        gHelper->updateSettDateMaskAndDotPos();
+        lastDateTimeMask = gHelper->dateMask + " hh:mm:ss";
+    }
 
 
     model->item(row, 0)->setText(dtLocal.toString(lastDateTimeMask));

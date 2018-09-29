@@ -217,6 +217,7 @@ MatildaConfWidget *StartExchange::createWaterSleepSchedulerWdgt(LastDevInfo *lDe
     connect(w, &WaterSleepScheduler::setLastPageId, metersListMedium, &ZbyrMeterListMedium::setLastPageId);
     connect(w, SIGNAL(command4dev(quint16,QVariantMap)), metersListMedium, SLOT(command4devSlot(quint16,QVariantMap)) );
 
+    connect(w, &WaterSleepScheduler::reloadSavedSleepProfiles, metersListMedium, &ZbyrMeterListMedium::reloadSavedSleepProfiles);
     connect(metersListMedium, &ZbyrMeterListMedium::waterMeterSchedulerStts, w, &WaterSleepScheduler::waterMeterSchedulerStts);
     connect(metersListMedium, SIGNAL(setWaterMeterSchedulerPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)), w, SLOT(setPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)) );
     return w;

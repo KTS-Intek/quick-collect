@@ -30,6 +30,7 @@ signals:
     void startShowCurrProfileTmr();
 
 
+    void reloadSavedSleepProfiles();
 
 
 public slots:
