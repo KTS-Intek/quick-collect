@@ -71,7 +71,7 @@ void GetReadyMetersData::onThreadStarted()
 
         switch(lPollSett.meterType){
         case UC_METER_ELECTRICITY: oneprofile = DefParams4zbyrator::defVal4prttProfilesElectricity().profileSett.value(lPollSett.pollCode); break;
-        case UC_METER_WATER: oneprofile = DefParams4zbyrator::defVal4prttProfilesWater().profileSett4WtrMeter.value(0).profileSett; break;
+        case UC_METER_WATER: oneprofile = DefParams4zbyrator::defVal4prttProfilesWater().profileSett.value(lPollSett.pollCode); break;
         }
 
 

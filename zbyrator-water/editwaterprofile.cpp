@@ -3,6 +3,9 @@
 #include "src/matilda/settloader.h"
 #include "waterprofilewdgt.h"
 #include "zbyrator-water/src/watersleepschedulesaver.h"
+#include <QDateTime>
+#include <QTimeZone>
+
 
 EditWaterProfile::EditWaterProfile(QWidget *parent) :
     ConfPopupWdgt(SettLoader::getPopupSett(), parent),
@@ -10,6 +13,28 @@ EditWaterProfile::EditWaterProfile(QWidget *parent) :
 {
     ui->setupUi(this);
 
+
+
+    QDateTime dt = QDateTime::currentDateTime();
+    const int offset = dt.offsetFromUtc();
+    int offset2 = offset;
+    for(int i = 1; i < 12 && offset == offset2; i++)
+        offset2 = dt.addMonths(i).offsetFromUtc();
+
+    const bool hasDst = dt.timeZone().hasDaylightTime();
+    dt = dt.toUTC();
+    dt.setOffsetFromUtc(offset);
+
+    QString user;
+    if(hasDst){
+        const QString now = dt.timeZoneAbbreviation();
+        dt.setOffsetFromUtc(offset2);
+        user = tr("You are in the %1 and %2").arg(now).arg(dt.timeZoneAbbreviation());
+    }else{
+        user = tr("You are in the %1").arg(dt.timeZoneAbbreviation());
+    }
+
+    ui->lblTz->setText(tr("<b>Meters anr schedule are in the UTC±00:00 timezone.<br>%1</b>").arg(user));
 
 }
 

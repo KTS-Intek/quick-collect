@@ -146,7 +146,6 @@ SOURCES += \
     src/zbyrator-v2/quickpollhelper.cpp \
     src/zbyrator-v2/thelordofmeters.cpp \
     src/zbyrator-v2/thelordofmetershelper.cpp \
-    src/zbyrator-v2/waterlastschedule.cpp \
     src/zbyrator-v2/zbyratordatatypehelper.cpp \
     src/zbyrator-v2/zbyratorstatistichelper.cpp \
     src/zbyrator-v2/zbyratortasksharedmemo.cpp \
@@ -235,7 +234,8 @@ SOURCES += \
     zbyrator-water/src/watersleepschedulesaver.cpp \
     zbyrator-water/waterscheduleeditorpro.cpp \
     src/zbyrator-v2/watermeterhelper.cpp \
-    src/zbyrator-v2/activesleepprofiles.cpp
+    src/zbyrator-v2/activesleepprofiles.cpp \
+    src/task/taskmanagerv3.cpp
 
 
 HEADERS += \
@@ -339,7 +339,6 @@ HEADERS += \
     src/zbyrator-v2/quickpollhelper.h \
     src/zbyrator-v2/thelordofmeters.h \
     src/zbyrator-v2/thelordofmetershelper.h \
-    src/zbyrator-v2/waterlastschedule.h \
     src/zbyrator-v2/zbyratordatatypehelper.h \
     src/zbyrator-v2/zbyratorstatistichelper.h \
     src/zbyrator-v2/zbyratortasksharedmemo.h \
@@ -438,7 +437,8 @@ HEADERS += \
     zbyrator-water/waterscheduleeditorpro.h \
     src/matilda/settloaderdefy.h \
     src/zbyrator-v2/watermeterhelper.h \
-    src/zbyrator-v2/activesleepprofiles.h
+    src/zbyrator-v2/activesleepprofiles.h \
+    src/task/taskmanagerv3.h
 
 FORMS += \
         qcmainwindow.ui \
