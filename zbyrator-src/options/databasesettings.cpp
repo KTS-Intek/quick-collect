@@ -1,7 +1,7 @@
 #include "databasesettings.h"
 #include "ui_databasesettings.h"
 
-#include "src/matilda/settloader.h"
+#include "gui-src/settloader.h"
 #include "matilda-bbb-src/shared/pathsresolver.h"
 #include "src/matilda/matildalimits.h"
 #include <QTimer>

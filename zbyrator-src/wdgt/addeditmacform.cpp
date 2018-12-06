@@ -11,7 +11,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 
-#include "src/matilda/guihelperdefines.h"
+#include "gui-src/guihelperdefines.h"
 
 //#define CLBRD_DEV_HISTORY   1005 //обробка окремо, бо містить приховані дані
 

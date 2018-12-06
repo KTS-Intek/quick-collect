@@ -56,17 +56,17 @@ void ZbyratorUcMedium::decodeReadData(QVariant dataVar, const quint16 &command)
     quint16 s_command = command;
     databaseReader->resetStopAll();
     switch (command) {
-    case COMMAND_READ_DATABASE          :{ s_data = databaseReader->onCOMMAND_READ_DATABASE(dataVar, s_command, command, speedStat); break;}
+    case COMMAND_READ_DATABASE          :{ s_data = databaseReader->onCOMMAND_READ_DATABASE(dataVar, s_command, command, speedStat, lastObjSett); break;}
 
     case COMMAND_READ_DATABASE_GET_TABLES:{ s_data = databaseReader->onCOMMAND_READ_DATABASE_GET_TABLES(dataVar, s_command, command); break;}
 
-    case COMMAND_READ_DATABASE_GET_VAL  :{ s_data = databaseReader->onCOMMAND_READ_DATABASE_GET_VAL(dataVar, s_command, command, speedStat)    ; break;}
+    case COMMAND_READ_DATABASE_GET_VAL  :{ s_data = databaseReader->onCOMMAND_READ_DATABASE_GET_VAL(dataVar, s_command, command, speedStat, lastObjSett)    ; break;}
 
-    case COMMAND_READ_METER_LOGS        :{ s_data = databaseReader->onCOMMAND_READ_METER_LOGS(dataVar, s_command, command, speedStat)          ; break;}
+    case COMMAND_READ_METER_LOGS        :{ s_data = databaseReader->onCOMMAND_READ_METER_LOGS(dataVar, s_command, command, speedStat, lastObjSett)          ; break;}
 
     case COMMAND_READ_METER_LOGS_GET_TABLES:{s_data = databaseReader->onCOMMAND_READ_METER_LOGS_GET_TABLES(dataVar, s_command, command); break;}
 
-    case COMMAND_READ_METER_LOGS_GET_VAL:{ s_data = databaseReader->onCOMMAND_READ_METER_LOGS_GET_VAL(dataVar, s_command, command, speedStat)  ; break;}
+    case COMMAND_READ_METER_LOGS_GET_VAL:{ s_data = databaseReader->onCOMMAND_READ_METER_LOGS_GET_VAL(dataVar, s_command, command, speedStat, lastObjSett)  ; break;}
 
     case COMMAND_READ_TABLE_HASH_SUMM:{ s_data = databaseReader->onCOMMAND_READ_TABLE_HASH_SUMM(dataVar, s_command, command)   ; break;}
 

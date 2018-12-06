@@ -7,7 +7,7 @@
 #include <QClipboard>
 #include <QMessageBox>
 
-#include "src/matilda/guihelper.h"
+#include "gui-src/guihelper.h"
 
 //==============================================================================================
 CompliterListDialog::CompliterListDialog(QStringList listModel, int tag, QStringList listPath2ico, int colCount, const QString separ, const bool hideRegister, QWidget *parent) :

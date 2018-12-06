@@ -1,9 +1,9 @@
 #include "metersdatetime.h"
 #include "ui_metersdatetime.h"
 #include "map-pgs/mapwidget.h"
-#include "src/matilda/settloader.h"
+#include "gui-src/settloader.h"
 #include "src/widgets/selectionchecker.h"
-#include "src/matilda/showmesshelper4wdgt.h"
+#include "gui-src/showmesshelper4wdgt.h"
 #include "src/meter/definedpollcodes.h"
 #include "src/zbyrator-v2/quickpollhelper.h"
 

@@ -1,7 +1,7 @@
 #include "startpagepoll.h"
 #include "ui_startpagepoll.h"
 #include "src/meter/meterpluginsloadhelper.h"
-#include "src/matilda/settloader.h"
+#include "gui-src/settloader.h"
 //#include "src/matilda/moji_defy.h"
 #include "src/meter/definedpollcodes.h"
 #include "dataconcetrator-pgs/dbdataform.h"
@@ -390,7 +390,7 @@ bool StartPagePoll::startPollAllMetersMode(const quint8 &pollCode, QString &mess
 
     switch(lastSelsett.meterType){
     case UC_METER_ELECTRICITY: w->setPollSettElectric(dtFrom, dtTo, pollCode); break;
-    case UC_METER_WATER: w->setPollSettWater(dtFrom, dtTo, pollCode, ui->cbxPwrManagement->isChecked(), ui->sbSleepSecsAfter->value(), ui->cbxCheckSleepProfile->isChecked());
+    case UC_METER_WATER: w->setPollSettWater(dtFrom, dtTo, pollCode, ui->cbxPwrManagement->isChecked(), ui->sbSleepSecsAfter->value(), ui->cbxCheckSleepProfile->isChecked()); break;
 
     default: qDebug() << "can't set pollSett StartPagePoll lastSelsett.meterType=" << lastSelsett.meterType;
     }
@@ -418,7 +418,7 @@ void StartPagePoll::createTab(const StartPollTabSett &selsett)
 
     dtFromToWdgt->insert2hashDtFromTo(hash, allowDate2utc);
 
-    const int lastDbFilterMode = DbDataFromSmplHelper::getLastDbModeFromPollCode(code, true, hash);
+    const int lastDbFilterMode = DbDataFromSmplHelper::getLastDbModeFromPollCode(code, true, false, hash);
 
 
 

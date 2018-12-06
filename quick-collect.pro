@@ -52,24 +52,15 @@ DEFINES += DISABLE_UART_PRIORITY
 SOURCES += \
         main.cpp \
         qcmainwindow.cpp \
-    src/matilda/settloader.cpp \
     main-pgs/langdialog.cpp \
-    src/shared/guisett4all.cpp \
-    src/shared/globalhelper.cpp \
-    src/matilda/guihelper.cpp \
-    src/shared/mysortfilterproxymodel.cpp \
     src/meter/zbyratorfilehelper.cpp \
     src/matilda/lastdevinfo.cpp \
     src/geo/coordinateobject.cpp \
     src/widgets/tableheaders.cpp \
     main-pgs/duplicateswdiget.cpp \
-    src/shared/referencewidgetclass.cpp \
-    src/matilda/matildacachehelper.cpp \
     main-pgs/filterwidgetform.cpp \
-    src/matilda/showmesshelper4wdgt.cpp \
     src/matilda/matildaprotocolhelper.cpp \
     src/printer/myprintpreviewdlg.cpp \
-    src/shared/matildaconfwidget.cpp \
     src/meter/meterpluginloader.cpp \
     matilda-bbb-src/shared/pathsresolver.cpp \
     matilda-bbb-src/shared/runprocess.cpp \
@@ -81,7 +72,6 @@ SOURCES += \
     matilda-bbb-src/shared/ifacemanagerhelper.cpp \
     src/shared/sharedmemohelper.cpp \
     zbyrator-src/createtoolbar.cpp \
-    src/shared/stackwidgethelper.cpp \
     dataconcetrator-pgs/meterlistwdgt.cpp \
     map-pgs/mapwidget.cpp \
     dataconcetrator-pgs/import-from-file/finalcheckwdgt.cpp \
@@ -113,9 +103,6 @@ SOURCES += \
     dataconcetrator-pgs/dbdatafromsmpl.cpp \
     dataconcetrator-pgs/meterjournalform.cpp \
     template-pgs/chartcontrols.cpp \
-    src/matilda/dbchartview.cpp \
-    src/matilda/dbzoomchart.cpp \
-    src/matilda/dbzoomchartview.cpp \
     template-pgs/selectdtwdgt.cpp \
     src/matilda/balancemanager.cpp \
     src/firefly/callout.cpp \
@@ -125,8 +112,6 @@ SOURCES += \
     template-pgs/searchwdgt.cpp \
     zbyrator-src/ktsconnectwdgt.cpp \
     zbyrator-src/startexchange.cpp \
-    src/shared/treeitem.cpp \
-    src/shared/treemodel.cpp \
     zbyrator-src/relaywdgt.cpp \
     zbyrator-src/metersdatetime.cpp \
     zbyrator-src/setmeteraddress.cpp \
@@ -134,7 +119,7 @@ SOURCES += \
     zbyrator-src/zbyratorservice.cpp \
     zbyrator-src/startpagepoll.cpp \
     zbyrator-src/zbyrifacesett.cpp \
-    dataconcetrator-pgs/zbyratortasks.cpp \
+    info-pgs/zbyratortasks.cpp \
     info-pgs/statisticofexchangewdgt.cpp \
     zbyrator-src/zbyratorprocessmanager.cpp \
     src/zbyrator-v2/addpolldata2dbobject.cpp \
@@ -148,7 +133,7 @@ SOURCES += \
     src/zbyrator-v2/thelordofmetershelper.cpp \
     src/zbyrator-v2/zbyratordatatypehelper.cpp \
     src/zbyrator-v2/zbyratorstatistichelper.cpp \
-    src/zbyrator-v2/zbyratortasksharedmemo.cpp \
+    src/task/zbyratortasksharedmemo.cpp \
     src/meter/zbyratorfilesetthelper.cpp \
     matilda-bbb-src/database/sqlitelocalclient.cpp \
     matilda-bbb-src/shared/matildadatatypehelper.cpp \
@@ -162,7 +147,7 @@ SOURCES += \
     src/meter/add2dbhelper.cpp \
     src/meter/zbyratorhelper.cpp \
     src/meter/pollenergyhelper.cpp \
-    src/shared/mytaskhelper.cpp \
+    src/task/mytaskhelper.cpp \
     src/shared/smartscheduletimer.cpp \
     src/meter/defparams4zbyrator.cpp \
     matilda-bbb-src/shared/argsdecodehelper.cpp \
@@ -176,9 +161,6 @@ SOURCES += \
     matilda-bbb-src/database/sqlitemediumerr.cpp \
     matilda-bbb-src/shared/readjsonhelper.cpp \
     zbyrator-src/zbyrmeterlistmedium.cpp \
-    src/matilda/tableviewhelper.cpp \
-    src/matilda/standarditemmodelhelper.cpp \
-    src/matilda/listviewhelper.cpp \
     zbyrator-src/src/zbyrtableheaders.cpp \
     src/widgets/selectionchecker.cpp \
     zbyrator-src/wdgt/defserialdialog.cpp \
@@ -186,7 +168,6 @@ SOURCES += \
     zbyrator-src/wdgt/addeditmacform.cpp \
     zbyrator-src/src/ifacesettloader.cpp \
     main-pgs/custommessagewidget.cpp \
-    src/shared/escwidget.cpp \
     main-pgs/scanipwidget.cpp \
     src/matilda/classmanagerudpscanner.cpp \
     src/matilda/udpscanner.cpp \
@@ -235,17 +216,47 @@ SOURCES += \
     zbyrator-water/waterscheduleeditorpro.cpp \
     src/zbyrator-v2/watermeterhelper.cpp \
     src/zbyrator-v2/activesleepprofiles.cpp \
-    src/task/taskmanagerv3.cpp
+    src/task/taskmanagerv3.cpp \
+    src/zbyrator-v2/metersloader.cpp \
+    src/matilda-conf/protocol5togui.cpp \
+    zbyrator-water/watersleepscheduleradder.cpp \
+    src/zbyrator-v2/activesleepprofileshelper.cpp \
+    src/matilda-conf/securecopypast.cpp \
+    src/matilda-conf/uconloginpashelper.cpp \
+    src/task/taskmanagementsett.cpp \
+    gui-src/chart/dbchartview.cpp \
+    gui-src/chart/dbzoomchart.cpp \
+    gui-src/chart/dbzoomchartview.cpp \
+    gui-src/emailhelper.cpp \
+    gui-src/escwidget.cpp \
+    gui-src/globalhelper.cpp \
+    gui-src/guihelper.cpp \
+    gui-src/guisett4all.cpp \
+    gui-src/listviewhelper.cpp \
+    gui-src/matildacachehelper.cpp \
+    gui-src/matildaconfwidget.cpp \
+    gui-src/mtreemodelproxy.cpp \
+    gui-src/mysortfilterproxymodel.cpp \
+    gui-src/printerhelper.cpp \
+    gui-src/printimagehelper.cpp \
+    gui-src/qelidablelabel.cpp \
+    gui-src/referencewidgetclass.cpp \
+    gui-src/settloader.cpp \
+    gui-src/showmesshelper4wdgt.cpp \
+    gui-src/stackwidgethelper.cpp \
+    gui-src/standarditemmodelhelper.cpp \
+    gui-src/tableviewhelper.cpp \
+    gui-src/treeitem.cpp \
+    gui-src/treemodel.cpp \
+    src/widgets/tablevalueinserter.cpp \
+    template-pgs/integereditdlg.cpp \
+    template-pgs/cbxeditdlg.cpp \
+    src/widgets/ifacelabel.cpp
 
 
 HEADERS += \
         qcmainwindow.h \
-    src/matilda/settloader.h \
     main-pgs/langdialog.h \
-    src/shared/guisett4all.h \
-    src/shared/globalhelper.h \
-    src/matilda/guihelper.h \
-    src/shared/mysortfilterproxymodel.h \
     src/meter/zbyratorfilehelper.h \
     src/matilda/lastdevinfo.h \
     src/geo/coordinateobject.h \
@@ -253,13 +264,9 @@ HEADERS += \
     src/matilda/classmanagertypes.h \
     src/widgets/tableheaders.h \
     main-pgs/duplicateswdiget.h \
-    src/shared/referencewidgetclass.h \
-    src/matilda/matildacachehelper.h \
     main-pgs/filterwidgetform.h \
-    src/matilda/showmesshelper4wdgt.h \
     src/matilda/matildaprotocolhelper.h \
     src/printer/myprintpreviewdlg.h \
-    src/shared/matildaconfwidget.h \
     src/meter/meterpluginloader.h \
     matilda-bbb-src/shared/pathsresolver.h \
     matilda-bbb-src/shared/runprocess.h \
@@ -271,7 +278,6 @@ HEADERS += \
     matilda-bbb-src/shared/ifacemanagerhelper.h \
     src/shared/sharedmemohelper.h \
     zbyrator-src/createtoolbar.h \
-    src/shared/stackwidgethelper.h \
     dataconcetrator-pgs/meterlistwdgt.h \
     map-pgs/mapwidget.h \
     dataconcetrator-pgs/import-from-file/finalcheckwdgt.h \
@@ -305,9 +311,6 @@ HEADERS += \
     dataconcetrator-pgs/dbdatafromsmpl.h \
     dataconcetrator-pgs/meterjournalform.h \
     template-pgs/chartcontrols.h \
-    src/matilda/dbchartview.h \
-    src/matilda/dbzoomchart.h \
-    src/matilda/dbzoomchartview.h \
     template-pgs/selectdtwdgt.h \
     src/matilda/balancemanager.h \
     src/firefly/callout.h \
@@ -317,8 +320,6 @@ HEADERS += \
     template-pgs/searchwdgt.h \
     zbyrator-src/ktsconnectwdgt.h \
     zbyrator-src/startexchange.h \
-    src/shared/treeitem.h \
-    src/shared/treemodel.h \
     zbyrator-src/relaywdgt.h \
     zbyrator-src/metersdatetime.h \
     zbyrator-src/setmeteraddress.h \
@@ -326,13 +327,12 @@ HEADERS += \
     zbyrator-src/zbyratorservice.h \
     zbyrator-src/startpagepoll.h \
     zbyrator-src/zbyrifacesett.h \
-    dataconcetrator-pgs/zbyratortasks.h \
+    info-pgs/zbyratortasks.h \
     info-pgs/statisticofexchangewdgt.h \
     zbyrator-src/zbyratorprocessmanager.h \
     src/zbyrator-v2/addpolldata2dbobject.h \
     src/zbyrator-v2/dataprocessinghelper.h \
     src/zbyrator-v2/metermanager.h \
-    src/zbyrator-v2/metermanagerconstants.h \
     src/zbyrator-v2/meterscheduler.h \
     src/zbyrator-v2/meterschedulerhelper.h \
     src/zbyrator-v2/myucmmeters.h \
@@ -341,7 +341,7 @@ HEADERS += \
     src/zbyrator-v2/thelordofmetershelper.h \
     src/zbyrator-v2/zbyratordatatypehelper.h \
     src/zbyrator-v2/zbyratorstatistichelper.h \
-    src/zbyrator-v2/zbyratortasksharedmemo.h \
+    src/task/zbyratortasksharedmemo.h \
     src/zbyrator-v2/zbyratortypesv2.h \
     src/meter/zbyratorfilesetthelper.h \
     matilda-bbb-src/database/sqlitelocalclient.h \
@@ -357,7 +357,7 @@ HEADERS += \
     src/meter/add2dbhelper.h \
     src/meter/zbyratorhelper.h \
     src/meter/pollenergyhelper.h \
-    src/shared/mytaskhelper.h \
+    src/task/mytaskhelper.h \
     src/shared/smartscheduletimer.h \
     src/meter/defparams4zbyrator.h \
     matilda-bbb-src/shared/argsdecodehelper.h \
@@ -372,10 +372,6 @@ HEADERS += \
     matilda-bbb-src/database/sqlitemediumerr.h \
     matilda-bbb-src/shared/readjsonhelper.h \
     zbyrator-src/zbyrmeterlistmedium.h \
-    src/matilda/tableviewhelper.h \
-    src/matilda/guihelperdefines.h \
-    src/matilda/standarditemmodelhelper.h \
-    src/matilda/listviewhelper.h \
     zbyrator-src/src/zbyrtableheaders.h \
     src/widgets/selectionchecker.h \
     zbyrator-src/wdgt/defserialdialog.h \
@@ -383,7 +379,6 @@ HEADERS += \
     zbyrator-src/wdgt/addeditmacform.h \
     zbyrator-src/src/ifacesettloader.h \
     main-pgs/custommessagewidget.h \
-    src/shared/escwidget.h \
     main-pgs/scanipwidget.h \
     src/matilda/classmanagerudpscanner.h \
     src/matilda/udpscanner.h \
@@ -435,10 +430,48 @@ HEADERS += \
     dataconcetrator-pgs/src/getmetersnis.h \
     zbyrator-water/src/watersleepschedulesaver.h \
     zbyrator-water/waterscheduleeditorpro.h \
-    src/matilda/settloaderdefy.h \
     src/zbyrator-v2/watermeterhelper.h \
     src/zbyrator-v2/activesleepprofiles.h \
-    src/task/taskmanagerv3.h
+    src/task/taskmanagerv3.h \
+    src/zbyrator-v2/metersloader.h \
+    src/matilda-conf/protocol5togui.h \
+    zbyrator-water/watersleepscheduleradder.h \
+    src/zbyrator-v2/activesleepprofileshelper.h \
+    src/matilda-conf/securecopypast.h \
+    src/matilda-conf/uconloginpashelper.h \
+    src/task/taskmanagementsett.h \
+    gui-src/chart/dbchartview.h \
+    gui-src/chart/dbzoomchart.h \
+    gui-src/chart/dbzoomchartview.h \
+    gui-src/emailhelper.h \
+    gui-src/escwidget.h \
+    gui-src/globalhelper.h \
+    gui-src/guihelper.h \
+    gui-src/guihelperdefines.h \
+    gui-src/guisett4all.h \
+    gui-src/listviewhelper.h \
+    gui-src/matildacachehelper.h \
+    gui-src/matildaconfwidget.h \
+    gui-src/mtreemodelproxy.h \
+    gui-src/mysortfilterproxymodel.h \
+    gui-src/printerhelper.h \
+    gui-src/printimagehelper.h \
+    gui-src/qelidablelabel.h \
+    gui-src/referencewidgetclass.h \
+    gui-src/settloader.h \
+    gui-src/settloaderdefy.h \
+    gui-src/showmesshelper4wdgt.h \
+    gui-src/showmesshelper4wdgtdef.h \
+    gui-src/stackwidgethelper.h \
+    gui-src/standarditemmodelhelper.h \
+    gui-src/tableviewhelper.h \
+    gui-src/treeitem.h \
+    gui-src/treemodel.h \
+    src/widgets/tablevalueinserter.h \
+    template-pgs/integereditdlg.h \
+    template-pgs/cbxeditdlg.h \
+    src/widgets/ifacelabel.h \
+    src/zbyrator-v2/zbyratorstatistichelperdefs.h
 
 FORMS += \
         qcmainwindow.ui \
@@ -474,7 +507,7 @@ FORMS += \
     zbyrator-src/zbyratorservice.ui \
     zbyrator-src/startpagepoll.ui \
     zbyrator-src/zbyrifacesett.ui \
-    dataconcetrator-pgs/zbyratortasks.ui \
+    info-pgs/zbyratortasks.ui \
     info-pgs/statisticofexchangewdgt.ui \
     zbyrator-src/wdgt/defserialdialog.ui \
     zbyrator-src/wdgt/compliterlistdialog.ui \
@@ -493,7 +526,10 @@ FORMS += \
     zbyrator-water/waterprofilewdgt.ui \
     zbyrator-water/editwaterprofile.ui \
     dataconcetrator-pgs/src/getmetersnis.ui \
-    zbyrator-water/waterscheduleeditorpro.ui
+    zbyrator-water/waterscheduleeditorpro.ui \
+    zbyrator-water/watersleepscheduleradder.ui \
+    template-pgs/integereditdlg.ui \
+    template-pgs/cbxeditdlg.ui
 
 RESOURCES += \
     font.qrc \

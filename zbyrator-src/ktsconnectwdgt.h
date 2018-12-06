@@ -1,7 +1,7 @@
 #ifndef KTSCONNECTWDGT_H
 #define KTSCONNECTWDGT_H
 
-#include "src/shared/matildaconfwidget.h"
+#include "gui-src/matildaconfwidget.h"
 
 namespace Ui {
 class KtsConnectWdgt;

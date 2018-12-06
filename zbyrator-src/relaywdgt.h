@@ -1,7 +1,7 @@
 #ifndef RELAYWDGT_H
 #define RELAYWDGT_H
 
-#include "src/shared/referencewidgetclass.h"
+#include "gui-src/referencewidgetclass.h"
 
 namespace Ui {
 class RelayWdgt;

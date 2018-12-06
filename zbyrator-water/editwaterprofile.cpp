@@ -1,6 +1,6 @@
 #include "editwaterprofile.h"
 #include "ui_editwaterprofile.h"
-#include "src/matilda/settloader.h"
+#include "gui-src/settloader.h"
 #include "waterprofilewdgt.h"
 #include "zbyrator-water/src/watersleepschedulesaver.h"
 #include <QDateTime>
@@ -34,7 +34,7 @@ EditWaterProfile::EditWaterProfile(QWidget *parent) :
         user = tr("You are in the %1").arg(dt.timeZoneAbbreviation());
     }
 
-    ui->lblTz->setText(tr("<b>Meters anr schedule are in the UTC±00:00 timezone.<br>%1</b>").arg(user));
+    ui->lblTz->setText(tr("<b>Meters and schedule are in the UTC±00:00 timezone.<br>%1</b>").arg(user));
 
 }
 

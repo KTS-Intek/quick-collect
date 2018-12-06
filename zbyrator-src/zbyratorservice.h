@@ -1,7 +1,7 @@
 #ifndef ZBYRATORSERVICE_H
 #define ZBYRATORSERVICE_H
 
-#include "src/shared/matildaconfwidget.h"
+#include "gui-src/matildaconfwidget.h"
 
 namespace Ui {
 class ZbyratorService;

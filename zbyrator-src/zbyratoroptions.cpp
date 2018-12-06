@@ -1,7 +1,7 @@
 #include "zbyratoroptions.h"
 #include "ui_zbyratoroptions.h"
-#include "src/matilda/settloader.h"
-#include "src/shared/stackwidgethelper.h"
+#include "gui-src/settloader.h"
+#include "gui-src/stackwidgethelper.h"
 
 #include "zbyrator-src/options/databasesettings.h"
 #include "dataconcetrator-pgs/pollwdgt.h"

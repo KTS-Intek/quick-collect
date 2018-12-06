@@ -1,7 +1,7 @@
 #include "selectmeters4poll.h"
 #include "ui_selectmeters4poll.h"
 #include "src/widgets/selectionchecker.h"
-#include "src/matilda/settloader.h"
+#include "gui-src/settloader.h"
 #include "src/zbyrator-v2/quickpollhelper.h"
 #include "zbyrator-src/src/getreadymetersdata.h"
 #include <QShortcut>

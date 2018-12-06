@@ -2,12 +2,12 @@
 #include "ui_waterscheduleeditorpro.h"
 
 #include "src/widgets/selectionchecker.h"
-#include "src/matilda/settloaderdefy.h"
+#include "gui-src/settloaderdefy.h"
 #include "zbyrator-water/src/watersleepschedulesaver.h"
 #include "zbyrator-water/editwaterprofile.h"
 #include "waterprofilewdgt.h"
 #include <QMessageBox>
-#include "src/matilda/showmesshelper4wdgt.h"
+#include "gui-src/showmesshelper4wdgt.h"
 #include <QShortcut>
 
 WaterScheduleEditorPro::WaterScheduleEditorPro(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent) :

@@ -1,7 +1,7 @@
 #ifndef STARTEXCHANGE_H
 #define STARTEXCHANGE_H
 
-#include "src/shared/matildaconfwidget.h"
+#include "gui-src/matildaconfwidget.h"
 #include "zbyrator-src/zbyrmeterlistmedium.h"
 
 namespace Ui {
@@ -42,6 +42,7 @@ signals:
     void onReloadAllMeters();
 
     void openEditMacProfileWdgt(bool isEditMode, QLineEdit *le );
+
 
 
 private slots:

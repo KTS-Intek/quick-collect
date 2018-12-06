@@ -26,7 +26,8 @@ signals:
     void setLblWaitTxt(QString s);
 
 //    void updateHashSn2meter(QHash<QString,QString> hashMeterSn2memo, QHash<QString,QString> hashMeterSn2ni, QHash<QString, QString> hashMeterNi2memo);
-    void updateHashSn2meter(QHash<QString,QString> hashMeterSn2memo, QHash<QString,QString> hashMeterSn2ni, QHash<QString, ClassManagerSharedObjects::MeterNi2info> hashMeterNi2info, QStringList listnis);
+//    void updateHashSn2meter(QHash<QString,QString> hashMeterSn2memo, QHash<QString,QString> hashMeterSn2ni, QHash<QString, ClassManagerMeterInfo::MeterNi2info> hashMeterNi2info, QStringList listnis);
+    void updateHashSn2meter(QHash<QString,QString> hashMeterSn2memo, QHash<QString,QString> hashMeterSn2ni, QHash<QString, ClassManagerMeterInfo::MeterNi2info> hashMeterNi2info, QStringList listnis, quint8 meterType);
 
 
     void setCOMMAND_READ_POLL_STATISTIC(QVariantHash h);

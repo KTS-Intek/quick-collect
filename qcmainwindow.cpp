@@ -1,6 +1,6 @@
 #include "qcmainwindow.h"
 #include "ui_qcmainwindow.h"
-#include "src/matilda/settloader.h"
+#include "gui-src/settloader.h"
 #include "main-pgs/langdialog.h"
 #include <QDebug>
 #include <QTimer>
@@ -8,7 +8,7 @@
 #include <QDesktopWidget>
 #include <QStyleFactory>
 #include "zbyrator-src/createtoolbar.h"
-#include "src/shared/stackwidgethelper.h"
+#include "gui-src/stackwidgethelper.h"
 
 #include "dataconcetrator-pgs/meterlistwdgt.h"
 #include "src/matilda/moji_defy.h"
@@ -21,7 +21,7 @@
 #include "src/zbyrator-v2/metermanager.h"
 #include "zbyrator-src/zbyratorprocessmanager.h"
 #include "zbyrator-src/wdgt/addeditmacform.h"
-#include "src/matilda/guihelperdefines.h"
+#include "gui-src/guihelperdefines.h"
 #include "main-pgs/custommessagewidget.h"
 
 

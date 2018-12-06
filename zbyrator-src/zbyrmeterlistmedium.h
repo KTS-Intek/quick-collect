@@ -16,9 +16,9 @@ public:
 
     IfaceSettLoader *ifaceLoader;
 
-    QVariantHash getActiveIfaceSett() const;
+    QVariantHash getActiveIfaceSett();
 
-    QVariantHash getIfaceSett() const;
+    QVariantHash getIfaceSett();
 
 signals:
     void setElectricityMeterListPageSett(MyListStringList listRows, QVariantMap col2data, QStringList headerH, QStringList header, bool hasHeader);
@@ -49,6 +49,9 @@ signals:
 
 
     void setIfaceSett(QVariantHash h);
+
+    void onIfaceSett(QVariantHash h);
+
 
     void onUpdatedSavedList(int activeMetersSize, int switchedOffMetersSize, int meterElectricityActive, int metersWaterActive);
 
@@ -89,7 +92,8 @@ signals:
     void killUconTasks();
 
 //    void updateHashSn2meter(QHash<QString,QString> hashMeterSn2memo, QHash<QString,QString> hashMeterSn2ni, QHash<QString, QString> hashMeterNi2memo);
-    void updateHashSn2meter(QHash<QString,QString> hashMeterSn2memo, QHash<QString,QString> hashMeterSn2ni, QHash<QString, ClassManagerSharedObjects::MeterNi2info> hashMeterNi2info, QStringList listnis);
+//    void updateHashSn2meter(QHash<QString,QString> hashMeterSn2memo, QHash<QString,QString> hashMeterSn2ni, QHash<QString, ClassManagerMeterInfo::MeterNi2info> hashMeterNi2info, QStringList listnis);
+    void updateHashSn2meter(QHash<QString,QString> hashMeterSn2memo, QHash<QString,QString> hashMeterSn2ni, QHash<QString, ClassManagerMeterInfo::MeterNi2info> hashMeterNi2info, QStringList listnis, quint8 meterType);
 
     void onReadWriteOperation(bool isRead);
 
@@ -224,10 +228,12 @@ private:
 
     QMap<QString, QStringList> relayPage;
     QMap<QString, QStringList> dateTimePage;
+    QMap<QString, QStringList> waterSchedulerPage;
 
     QStringList liststat;
 
-    QVariantHash lastWaterSleepProfile;
+//    QVariantHash lastWaterSleepProfile;
+    QMap<QString, QString> mapProfLine2profName;
 
     int lastPageMode;//пам'ятає яка сторінка запустила опитування, щоб при скасуванні завдання відправити відповідну команду
 

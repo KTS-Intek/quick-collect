@@ -1,7 +1,7 @@
 #ifndef ZBYRIFACESETT_H
 #define ZBYRIFACESETT_H
 
-#include "src/shared/matildaconfwidget.h"
+#include "gui-src/matildaconfwidget.h"
 #include <QComboBox>
 
 namespace Ui {

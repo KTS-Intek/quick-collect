@@ -1,7 +1,7 @@
 #include "zbyratordatabasemedium.h"
 #include "zbyratordatacalculation.h"
 #include "src/matilda/moji_defy.h"
-#include "src/matilda/showmesshelper4wdgt.h"
+#include "gui-src/showmesshelper4wdgt.h"
 
 #include "zbyrator-src/src/zbyratorucmedium.cpp"
 

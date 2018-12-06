@@ -1,6 +1,6 @@
 #include "zbyratordatacalculation.h"
 #include "src/zbyrator-v2/myucmmeterstypes.h"
-#include "src/matilda/showmesshelper4wdgt.h"
+#include "gui-src/showmesshelper4wdgt.h"
 //#include "src/matilda/moji_defy.h"
 #include "src/meter/definedpollcodes.h"
 #include "src/matilda/classmanagerhelper.h"
@@ -15,24 +15,24 @@ void ZbyratorDataCalculation::onAddlistOfMeters2cache(ClassManagerSharedObjects 
 {
     Q_UNUSED(switchedOffMeters);
     if(checkOffMeters){
-        shrdObj->clear();
+        shrdObj->electricityMeter.clear();
         shrdObj->clearWrite();
     }
     //    gHelper->hashMeterSn2ni;
 //        QHash<QString,QString> hashMeterSn2ni;
 //        QHash<QString,QString> hashMeterNi2memo;
 
-    shrdObj->listnis.clear();
-    shrdObj->hashMeterNi2info.clear();
+    shrdObj->electricityMeter.listnis.clear();
+    shrdObj->electricityMeter.hashMeterNi2info.clear();
     for(int i = 0, imax = activeMeters.size(); i < imax; i++){
         const UniversalMeterSett m = activeMeters.at(i);
 
         if(!m.ni.isEmpty())
             ni2cachedEnrg.insert(m.ni, m.cache);
 
-        shrdObj->addMeter2meterNi2info(m.ni, m.memo, m.sn, m.coordinate, m.tariff, m.transformer, m.model, m.version, m.powerin);
+        shrdObj->electricityMeter.addMeter2meterNi2info(m.ni, m.memo, m.sn, m.coordinate, m.tariff, m.transformer, m.model, m.version, m.powerin);
 
-        shrdObj->addMeter2meterSn2info(m.sn, m.memo, m.ni, m.coordinate, m.tariff, m.transformer, m.model, m.version, m.powerin);
+        shrdObj->electricityMeter.addMeter2meterSn2info(m.sn, m.memo, m.ni, m.coordinate, m.tariff, m.transformer, m.model, m.version, m.powerin);
 
         if(!m.sn.isEmpty()){
             hashMeterSn2ni.insert(m.sn, m.ni);
@@ -40,8 +40,8 @@ void ZbyratorDataCalculation::onAddlistOfMeters2cache(ClassManagerSharedObjects 
         }
 //        hashMeterNi2memo.insert(m.ni, m.memo);
     }
-    if(!shrdObj->listnis.isEmpty())
-        emit updateHashSn2meter(hashMeterSn2memo, hashMeterSn2ni, shrdObj->hashMeterNi2info, shrdObj->listnis);
+    if(!shrdObj->electricityMeter.listnis.isEmpty())
+        emit updateHashSn2meter(hashMeterSn2memo, hashMeterSn2ni, shrdObj->electricityMeter.hashMeterNi2info, shrdObj->electricityMeter.listnis, UC_METER_ELECTRICITY);
 }
 
 
@@ -189,7 +189,7 @@ void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHash
             oneMeterCounter++;
             if(shrdObj->lastSnIndx > 0 && !outsett.meterSN.isEmpty() && !shrdObj->lastPairSn2meterInfo.contains(outsett.meterSN)){
                 h.insert("NI", outsett.meterNi);
-                h.insert("memo", shrdObj->meterMemoFromCache(outsett.meterSN, outsett.meterNi));
+                h.insert("memo", shrdObj->electricityMeter.meterMemoFromCache(outsett.meterSN, outsett.meterNi));
             }
             h.insert("counter", oneMeterCounter);
             shrdObj->lastPairSn2meterInfo.insert(outsett.meterSN, h);
@@ -320,10 +320,10 @@ void ZbyratorDataCalculation::onCOMMAND_READ_POLL_STATISTIC(QStringList list)
             }
             if(shrdObj){
                 if(shrdObj->lastMemoPos < ll.size())
-                    coord = shrdObj->meterCoordinatesFromCache("", ll.at(meterNiIndx));
+                    coord = shrdObj->meterCoordinatesFromCacheAll("", ll.at(meterNiIndx));
 
                 if(shrdObj->lastMemoPos < ll.size())
-                    memo = shrdObj->meterMemoFromCache("", ll.at(meterNiIndx));
+                    memo = shrdObj->meterMemoFromCacheAll("", ll.at(meterNiIndx));
             }
 
             if(!coord.isEmpty() || !memo.isEmpty())
@@ -349,7 +349,7 @@ void ZbyratorDataCalculation::onCOMMAND_READ_POLL_STATISTIC(QStringList list)
 void ZbyratorDataCalculation::onMeterPollCancelled(QString ni, QString stts, qint64 msec)
 {
 //    ClassManagerSharedObjects *shrdObj = shrdObjElectricity;
-    const QString sn = shrdObjElectricity->hashMeterNi2info.value(ni).sn ;
+    const QString sn = shrdObjElectricity->electricityMeter.hashMeterNi2info.value(ni).sn ;
 
     MyListHashString listHash;
 

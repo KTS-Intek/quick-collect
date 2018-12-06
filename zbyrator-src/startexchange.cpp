@@ -1,7 +1,7 @@
 #include "startexchange.h"
 #include "ui_startexchange.h"
-#include "src/shared/stackwidgethelper.h"
-#include "src/shared/treemodel.h"
+#include "gui-src/stackwidgethelper.h"
+#include "gui-src/treemodel.h"
 
 #include "startpagepoll.h"
 #include "relaywdgt.h"
@@ -10,12 +10,13 @@
 #include "checkconnectiontoolwdgt.h"
 #include "zbyratorservice.h"
 #include "zbyrifacesett.h"
-#include "dataconcetrator-pgs/zbyratortasks.h"
+#include "info-pgs/zbyratortasks.h"
 #include "info-pgs/statisticofexchangewdgt.h"
 #include "prepaid-pgs/ifaceindicationwdgt.h"
 #include "src/zbyratortasksmedium.h"
 #include "zbyrator-src/src/startexchangehelper.h"
 #include "zbyrator-water/watersleepscheduler.h"
+#include "src/widgets/ifacelabel.h"
 
 StartExchange::StartExchange(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent) :
     MatildaConfWidget(lDevInfo, gHelper, gSett4all, parent),
@@ -104,6 +105,15 @@ void StartExchange::initPage()
         connect(metersListMedium, SIGNAL(onReadWriteOperation(bool)), w, SLOT(onReadWriteOperation(bool)) );
     }
 
+    if(true){
+        IfaceLabel *l = new IfaceLabel(this);
+        connect(metersListMedium, &ZbyrMeterListMedium::onIfaceSett, l, &IfaceLabel::onIfaceSett);
+        connect(l, &IfaceLabel::onTextChanged, ui->lblIface, &QLabel::setText);
+        ui->lblIface->setText(l->text());
+        QTimer::singleShot(2222, metersListMedium, SLOT(sendMeIfaceSett()));
+    }
+
+
 }
 //-----------------------------------------------------------------------------------------------
 void StartExchange::unlockWdgts()
@@ -164,6 +174,7 @@ void StartExchange::appendShowMessPlain(QString m)
             ui->lblCurrentMeter->setText(l.mid(1).join(": "));
     }
 }
+
 
 //-----------------------------------------------------------------------------------------------
 void StartExchange::on_tbIfaceSett_clicked()

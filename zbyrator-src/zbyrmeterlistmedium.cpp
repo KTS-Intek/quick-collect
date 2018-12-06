@@ -6,10 +6,10 @@
 #include <QDebug>
 #include <QTimer>
 #include "zbyrator-src/src/zbyrtableheaders.h"
-#include "src/matilda/standarditemmodelhelper.h"
+#include "gui-src/standarditemmodelhelper.h"
 #include "src/matilda/moji_defy.h"
 
-#include "src/matilda/settloader.h"
+#include "gui-src/settloader.h"
 #include "zbyrator-src/wdgt/compliterlistdialog.h"
 #include "src/matilda/serialporthelper.h"
 #include "src/shared/networkconverthelper.h"
@@ -19,6 +19,8 @@
 #include "zbyrator-src/src/zbyratordatabasemedium.cpp"
 #include "zbyrator-water/src/watersleepschedulesaver.h"
 #include "src/zbyrator-v2/watermeterhelper.h"
+#include "src/zbyrator-v2/metersloader.h"
+#include "src/matilda-conf/protocol5togui.cpp"
 
 //---------------------------------------------------------------------
 
@@ -38,7 +40,7 @@ ZbyrMeterListMedium::ZbyrMeterListMedium(QObject *parent) : QObject(parent)
 
 //---------------------------------------------------------------------
 
-QVariantHash ZbyrMeterListMedium::getActiveIfaceSett() const
+QVariantHash ZbyrMeterListMedium::getActiveIfaceSett()
 {
     QVariantHash h = getIfaceSett();
 
@@ -57,9 +59,11 @@ QVariantHash ZbyrMeterListMedium::getActiveIfaceSett() const
 
 //---------------------------------------------------------------------
 
-QVariantHash ZbyrMeterListMedium::getIfaceSett() const
+QVariantHash ZbyrMeterListMedium::getIfaceSett()
 {
-    return SettLoader::loadSett(SETT_ZBRTR_IFACE_SETT).toHash();
+    const QVariantHash h = SettLoader::loadSett(SETT_ZBRTR_IFACE_SETT).toHash();
+    emit onIfaceSett(h);
+    return h;
 }
 
 //---------------------------------------------------------------------
@@ -70,7 +74,16 @@ void ZbyrMeterListMedium::onAllMetersSlot(UniversalMeterSettList allMeters)
         return;
 
 
-    lastWaterSleepProfile = WaterSleepScheduleSaver::getSavedSett();
+//    lastWaterSleepProfile = WaterSleepScheduleSaver::getSavedSett();
+
+    if(true){
+        const QMap<QString, QString> map = WaterSleepScheduleSaver::getSavedSettMap();
+        mapProfLine2profName.clear();
+
+        const QList<QString> lk = map.keys();
+        for(int i = 0, imax = lk.size(); i < imax; i++)
+            mapProfLine2profName.insert(map.value(lk.at(i)), lk.at(i));
+    }
 
     QMap<quint8, QVariantMap> mapRowColDataByMeters;
 
@@ -136,6 +149,9 @@ void ZbyrMeterListMedium::meterElectricityModelChanged(QVariantList meters)
 void ZbyrMeterListMedium::meterWaterModelChanged(QVariantList meters)
 {
     emit onConfigChanged(MTD_EXT_CUSTOM_COMMAND_2, true);
+
+
+
     lastSaveMeterList.lastMeterList = meters;
     lastSaveMeterList.meterType = UC_METER_WATER;
     emit startTmrSaveLater();
@@ -146,7 +162,7 @@ void ZbyrMeterListMedium::meterWaterModelChanged(QVariantList meters)
 void ZbyrMeterListMedium::onSaveLater()
 {
     const quint8 meterType = lastSaveMeterList.meterType;
-    const QString mess = ZbyratorFileSettHelper::saveMeters(meterType, lastSaveMeterList.lastMeterList);
+    const QString mess = MetersLoader::saveMetersByType(meterType, lastSaveMeterList.lastMeterList);
     if(!mess.isEmpty())
         qDebug() << "ZbyrMeterListMedium mess " << mess;
     emit onConfigChanged(MTD_EXT_COMMAND_RELOAD_SETT, true);
@@ -210,6 +226,7 @@ void ZbyrMeterListMedium::openM2mDlg(QLineEdit *le)
 void ZbyrMeterListMedium::setNewSettings(QVariantHash h)
 {
     SettLoader::saveSett(SETT_ZBRTR_IFACE_SETT, h);
+    emit onIfaceSett(h);
 }
 //---------------------------------------------------------------------
 void ZbyrMeterListMedium::command4devSlot(quint16 command, QString args)
@@ -432,9 +449,10 @@ QStringList ZbyrMeterListMedium::universalMeterSett2listRowWater(const Universal
     lcols.append(l.size());
     ldata.append(m.enrg);
 
-    const QString profname = WaterMeterHelper::oneProfileFromLineName(lastWaterSleepProfile, m.enrg);
-    l.append(profname.isEmpty() ? m.enrg : profname);//change enrg 2 sleep profile name
+//    const QString profname = WaterMeterHelper::oneProfileFromLineName(lastWaterSleepProfile, m.enrg);
+//    l.append(profname.isEmpty() ? m.enrg : profname);//change enrg 2 sleep profile name
 
+    l.append(Protocol5toGUI::makeSleepProfileLine4waterMeters(m.enrg, mapProfLine2profName));
 
     l.append(m.pollEnbl ? "+" : "-");
     l.append(m.powerin);
@@ -538,7 +556,7 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
 
 
     if(metersChanged(mapMeters2pages, "Scheduler for water meters", lastWaterMeters2pagesL))
-        emit setWaterMeterSchedulerPageSett(getRowsList(dateTimePage, QStringList(), waterProfiles, lastWaterMeters2pagesL.listNI, meterWaterActive), QVariantMap(), ZbyrTableHeaders::getWaterMeterSchedulerPageHeader(), StandardItemModelHelper::getHeaderData(7), true);
+        emit setWaterMeterSchedulerPageSett(getRowsList(waterSchedulerPage, QStringList(), waterProfiles, lastWaterMeters2pagesL.listNI, meterWaterActive), QVariantMap(), ZbyrTableHeaders::getWaterMeterSchedulerPageHeader(), StandardItemModelHelper::getHeaderData(7), true);
 
 
 

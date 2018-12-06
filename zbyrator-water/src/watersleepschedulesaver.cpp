@@ -1,5 +1,5 @@
 #include "watersleepschedulesaver.h"
-#include "src/matilda/settloader.h"
+#include "gui-src/settloader.h"
 #include "src/zbyrator-v2/watermeterhelper.h"
 
 
@@ -9,12 +9,12 @@ QVariant WaterSleepScheduleSaver::getDefaultProfileVar()
 }
 
 QVariantHash WaterSleepScheduleSaver::getDefaultProfile()
-{
+{//only one sleep profile
     return WaterMeterHelper::getDefSleepOneProfile();
 }
 
 QVariantHash WaterSleepScheduleSaver::getDefaultSett()
-{
+{//name to default one sleep profile
     return WaterMeterHelper::getDefSleepSettt();
 }
 

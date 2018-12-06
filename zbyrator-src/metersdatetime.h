@@ -1,7 +1,7 @@
 #ifndef METERSDATETIME_H
 #define METERSDATETIME_H
 
-#include "src/shared/referencewidgetclass.h"
+#include "gui-src/referencewidgetclass.h"
 
 namespace Ui {
 class MetersDateTime;

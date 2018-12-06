@@ -1,5 +1,5 @@
 #include "ifacesettloader.h"
-#include "src/matilda/settloader.h"
+#include "gui-src/settloader.h"
 #include <QDataStream>
 
 IfaceSettLoader::IfaceSettLoader(QObject *parent) : QObject(parent)

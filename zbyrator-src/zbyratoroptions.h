@@ -1,7 +1,7 @@
 #ifndef ZBYRATOROPTIONS_H
 #define ZBYRATOROPTIONS_H
 
-#include "src/shared/referencewidgetclass.h"
+#include "gui-src/referencewidgetclass.h"
 
 namespace Ui {
 class ZbyratorOptions;

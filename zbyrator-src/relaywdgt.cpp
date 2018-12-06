@@ -1,9 +1,9 @@
 #include "relaywdgt.h"
 #include "ui_relaywdgt.h"
 #include "map-pgs/mapwidget.h"
-#include "src/matilda/settloader.h"
+#include "gui-src/settloader.h"
 #include "src/widgets/selectionchecker.h"
-#include "src/matilda/showmesshelper4wdgt.h"
+#include "gui-src/showmesshelper4wdgt.h"
 #include "src/meter/definedpollcodes.h"
 #include "src/zbyrator-v2/quickpollhelper.h"
 
@@ -24,6 +24,10 @@ RelayWdgt::~RelayWdgt()
 
 QVariant RelayWdgt::getPageSett4read(bool &ok, QString &mess)
 {
+    //Ucon read electricity meter list framed ext -> read relay state table,
+    //relay state table -
+    //NI
+    //
     Q_UNUSED(ok);
     Q_UNUSED(mess);
     QTimer::singleShot(1, this, SLOT(onPbReadAll_clicked()));

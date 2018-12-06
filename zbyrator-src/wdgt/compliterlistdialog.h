@@ -6,7 +6,7 @@
 #include <QShortcut>
 #include <QStandardItemModel>
 
-#include "src/shared/mysortfilterproxymodel.h"
+#include "gui-src/mysortfilterproxymodel.h"
 
 namespace Ui {
 class CompliterListDialog;

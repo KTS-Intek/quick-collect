@@ -5,10 +5,10 @@
 #include <QFont>
 #include <QTranslator>
 #include <QTabBar>
-#include "src/shared/guisett4all.h"
-#include "src/matilda/guihelper.h"
+#include "gui-src/guisett4all.h"
+#include "gui-src/guihelper.h"
 #include <QLabel>
-#include "src/shared/referencewidgetclass.h"
+#include "gui-src/referencewidgetclass.h"
 #include "src/zbyrator-v2/zbyratordatatypehelper.h"
 
 #include "zbyrator-src/zbyrmeterlistmedium.h"

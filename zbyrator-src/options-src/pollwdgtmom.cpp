@@ -1,5 +1,5 @@
 #include "pollwdgtmom.h"
-#include "src/matilda/settloader.h"
+#include "gui-src/settloader.h"
 #include "zbyrator-src/settloader4matildaemulator.h"
 
 PollWdgtMom::PollWdgtMom(PollWdgt *pollWdgt, QObject *parent) : QObject(parent), pollWdgt(pollWdgt)

@@ -1,7 +1,7 @@
 #ifndef SELECTMETERS4POLL_H
 #define SELECTMETERS4POLL_H
 
-#include "src/shared/referencewidgetclass.h"
+#include "gui-src/referencewidgetclass.h"
 #include "src/zbyrator-v2/zbyratordatatypehelper.h"
 
 namespace Ui {

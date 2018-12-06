@@ -43,7 +43,7 @@ void ZbyratorTasksMedium::onTaskTableChanged()
         return;
     }
     QStringList header;
-    const QStringList list = DecodeMatildaProtocolV5Helper::preparyCache(header);
+    const QStringList list = DecodeMatildaProtocolV5Helper::preparyCacheTaskTable(header, 0, 0, QList<quint8>(), QList<quint8>(), QStringList());
 
     QVariantHash h;
     h.insert("t", list.size());

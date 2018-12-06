@@ -1,7 +1,7 @@
 #ifndef STARTPAGEPOLL_H
 #define STARTPAGEPOLL_H
 
-#include "src/shared/matildaconfwidget.h"
+#include "gui-src/matildaconfwidget.h"
 #include "template-pgs/selectdtwdgt.h"
 //#include "src/zbyrator-v2/zbyratordatatypehelper.h"
 #include "zbyrator-src/zbyrmeterlistmedium.h"

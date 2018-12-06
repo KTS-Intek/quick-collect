@@ -1,5 +1,5 @@
 #include "startexchangehelper.h"
-#include "src/shared/task_status.h"
+#include "src/task/task_status.h"
 
 StartExchangeHelper::StartExchangeHelper(QObject *parent) : QObject(parent)
 {

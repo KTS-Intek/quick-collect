@@ -1,6 +1,6 @@
 #include "settloader4matildaemulator.h"
 #include "src/matilda/settloader4matildadefaults.h"
-#include "src/matilda/settloader.h"
+#include "gui-src/settloader.h"
 #include "src/matilda/settloader4matildakeys.h"
 
 SettLoader4matildaEmulator::SettLoader4matildaEmulator(QObject *parent) : QObject(parent)

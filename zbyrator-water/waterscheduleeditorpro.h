@@ -1,7 +1,7 @@
 #ifndef WATERSCHEDULEEDITORPRO_H
 #define WATERSCHEDULEEDITORPRO_H
 
-#include "src/shared/referencewidgetclass.h"
+#include "gui-src/referencewidgetclass.h"
 #include "src/matilda/lastdevinfo.h"
 
 namespace Ui {
