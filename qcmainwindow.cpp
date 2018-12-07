@@ -515,7 +515,7 @@ void QcMainWindow::createMeterManager()
     zbyrator->registerMyTypes();
 
     zbyrator->moveToThread(thread);
-    connect(thread, SIGNAL(started()), zbyrator, SLOT(initObject()));
+    connect(thread, SIGNAL(started()), zbyrator, SLOT(onThreadStarted()));
 
 //    connect(extSocket, &ZbyratorSocket::appendDbgExtData, this, &ZbyratorManager::appendDbgExtData );
 

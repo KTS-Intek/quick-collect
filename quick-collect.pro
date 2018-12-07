@@ -251,7 +251,10 @@ SOURCES += \
     src/widgets/tablevalueinserter.cpp \
     template-pgs/integereditdlg.cpp \
     template-pgs/cbxeditdlg.cpp \
-    src/widgets/ifacelabel.cpp
+    src/widgets/ifacelabel.cpp \
+    src/sett/filesettloader.cpp \
+    src/schedule/devicescheduler.cpp \
+    src/schedule/schedulerhelper.cpp
 
 
 HEADERS += \
@@ -471,7 +474,11 @@ HEADERS += \
     template-pgs/integereditdlg.h \
     template-pgs/cbxeditdlg.h \
     src/widgets/ifacelabel.h \
-    src/zbyrator-v2/zbyratorstatistichelperdefs.h
+    src/zbyrator-v2/zbyratorstatistichelperdefs.h \
+    src/meter/zbyratorfilesetthelpertypes.h \
+    src/sett/filesettloader.h \
+    src/schedule/devicescheduler.h \
+    src/schedule/schedulerhelper.h
 
 FORMS += \
         qcmainwindow.ui \

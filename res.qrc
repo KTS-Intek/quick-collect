@@ -244,5 +244,25 @@
         <file>katynko/svg4/transform-move.svg</file>
         <file>katynko/svg4/window-close-smll.svg</file>
         <file>katynko/qrhi.png</file>
+        <file>katynko/svg4/arrow-down-white.svg</file>
+        <file>katynko/svg4/arrow-left-double-white.svg</file>
+        <file>katynko/svg4/edit-select-white.svg</file>
+        <file>katynko/svg4/eye-closed-white.svg</file>
+        <file>katynko/svg4/eye-closed.svg</file>
+        <file>katynko/svg4/eye-white.svg</file>
+        <file>katynko/svg4/eye.svg</file>
+        <file>katynko/svg4/go-home-white.svg</file>
+        <file>katynko/svg4/hlmailtp.svg</file>
+        <file>katynko/svg4/page-resize.svg</file>
+        <file>katynko/svg4/qrcodemode0234-white.svg</file>
+        <file>katynko/svg4/red-frame-slim.svg</file>
+        <file>katynko/svg4/red-frame.svg</file>
+        <file>katynko/svg4/transform-move-red.svg</file>
+        <file>katynko/svg3/dog-white.svg</file>
+        <file>katynko/svg3/edit-select-white.svg</file>
+        <file>katynko/svg3/exinfo-white.svg</file>
+        <file>katynko/svg3/lc_browseview-white.svg</file>
+        <file>katynko/svg3/relay-load-command.svg</file>
+        <file>katynko/svg3/relay-load-norelay.svg</file>
     </qresource>
 </RCC>
