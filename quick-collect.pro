@@ -41,6 +41,8 @@ DEFINES += DISABLE_METERSCHEDULER
 DEFINES += HASSERIALLIB
 DEFINES += ENABLE_EXTSUPPORT_OF_IFACES
 DEFINES += DISABLE_UART_PRIORITY
+DEFINES += HASGUI4USR
+DEFINES += HASSETTLOADEREMUL
 
 
 # You can also make your code fail to compile if you use deprecated APIs.
@@ -254,7 +256,8 @@ SOURCES += \
     src/widgets/ifacelabel.cpp \
     src/sett/filesettloader.cpp \
     src/schedule/devicescheduler.cpp \
-    src/schedule/schedulerhelper.cpp
+    src/schedule/schedulerhelper.cpp \
+    src/emb/thelordofifaces.cpp
 
 
 HEADERS += \
@@ -478,7 +481,9 @@ HEADERS += \
     src/meter/zbyratorfilesetthelpertypes.h \
     src/sett/filesettloader.h \
     src/schedule/devicescheduler.h \
-    src/schedule/schedulerhelper.h
+    src/schedule/schedulerhelper.h \
+    src/meter/defparam4zbyratortypes.h \
+    src/emb/thelordofifaces.h
 
 FORMS += \
         qcmainwindow.ui \
