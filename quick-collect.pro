@@ -11,7 +11,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = quick-collect
 TEMPLATE = app
-
 VERSION = 3
 
 include(../../Matilda-units/device-poll/zbyrator-base/zbyrator-base.pri)
