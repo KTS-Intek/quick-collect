@@ -1,5 +1,5 @@
 #include "zbyratordatacalculation.h"
-#include "src/zbyrator-v2/myucmmeterstypes.h"
+#include "myucmmeterstypes.h"
 #include "gui-src/showmesshelper4wdgt.h"
 //#include "src/matilda/moji_defy.h"
 #include "src/meter/definedpollcodes.h"

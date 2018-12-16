@@ -1,6 +1,6 @@
 #include "zbyrmeterlistmedium.h"
 #include "src/widgets/tableheaders.h"
-#include "src/zbyrator-v2/myucmmeterstypes.h"
+#include "myucmmeterstypes.h"
 #include "src/meter/zbyratorfilesetthelper.cpp"
 #include "src/matilda/matildaprotocolhelper.h"
 #include <QDebug>

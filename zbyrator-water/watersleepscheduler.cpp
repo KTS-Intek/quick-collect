@@ -12,7 +12,6 @@
 #endif
 
 #include <QJsonDocument>
-#include "src/meter/zbyratorhelper.h"
 #include "gui-src/settloader.h"
 #include "zbyrator-water/waterscheduleeditorpro.h"
 #include "gui-src/showmesshelper4wdgt.h"

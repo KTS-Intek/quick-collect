@@ -1,10 +1,13 @@
 #include "getreadymetersdata.h"
 //#include "src/matilda/moji_defy.h"
-#include "src/meter/definedpollcodes.h"
+#include "definedpollcodes.h"
 #include "src/zbyrator-v2/quickpollhelper.h"
-#include "src/meter/zbyratorhelper.h"
-#include "src/matilda/matildalimits.h"
+#include "matildalimits.h"
+#include "myucmmeterstypes.h"
 
+#include "src/base/valuevalidator.h"
+#include "src/conversion/converttasktypes.h"
+#include "src/zbyrator-v2/myucmmeters.h"
 
 GetReadyMetersData::GetReadyMetersData(QObject *parent) : QObject(parent)
 {
@@ -118,9 +121,9 @@ void GetReadyMetersData::doCalculation(const OneProfileSett &oneprofile)
     bool createTables = true;
     bool meterListChanged = true;//if true: search for ni without history
 
-    const qint32 glybokoIntrvl = ZbyratorHelper::getCorrectValue(oneprofile.glbn, MAX_GLYBYNA);
+    const qint32 glybokoIntrvl = ValueValidator::getCorrectValue(oneprofile.glbn, MAX_GLYBYNA);
 
-    const PollDateMemoExt pollDtMemo = ZbyratorHelper::getDateTimeMemo4poll(dtPoll, pollCode, oneprofile.kftnt, intrvl,  glybokoIntrvl, false, lPollSett.dtFrom);
+    const PollDateMemoExt pollDtMemo = ConvertTaskTypes::getDateTimeMemo4poll(dtPoll, pollCode, oneprofile.kftnt, intrvl,  glybokoIntrvl, false, lPollSett.dtFrom);
 
     if(!pollDtMemo.pollDateTime.isValid() || !pollDtMemo.pollDateTimeFirstIntrvl.isValid() || !pollDtMemo.pollDateTimeNextIntrvl.isValid()){
 
