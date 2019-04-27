@@ -5,6 +5,7 @@
 CreateToolBar::CreateToolBar(QObject *parent) : QObject(parent)
 {
     tb = 0;
+    activePageCounter = 0;
 }
 
 QList<TabName2icosPaths> CreateToolBar::getTabs()
@@ -17,9 +18,9 @@ QList<TabName2icosPaths> CreateToolBar::getTabs()
     name2icos.append(TabName2icosPaths(tr("Water")      , ":/katynko/svg4/lc_fillcolor.svg"  , "WaterMeters")     );
 
     name2icos.append(TabName2icosPaths(tr("Database")   , ":/katynko/svg2/db.svg"       , "Database")   );
-    name2icos.append(TabName2icosPaths(tr("Logbook")    , ":/katynko/svg2/lc_dbqueryedit.svg", "Logbook")   );
+//    name2icos.append(TabName2icosPaths(tr("Logbook")    , ":/katynko/svg2/lc_dbqueryedit.svg", "Logbook")   );
 
-    name2icos.append(TabName2icosPaths(tr("KTS Connect"), ":/katynko/svg/document-edit-sign-encrypt.svg", "KTS Connect"));
+//    name2icos.append(TabName2icosPaths(tr("KTS Connect"), ":/katynko/svg/document-edit-sign-encrypt.svg", "KTS Connect"));
     name2icos.append(TabName2icosPaths(tr("Log")        , ":/katynko/svg/view-list-text.svg", "Log"));
     return name2icos;
 }
@@ -38,6 +39,7 @@ void CreateToolBar::createToolBarItems(QToolBar *tb)
     this->tb = tb;
     tb->setContextMenuPolicy(Qt::CustomContextMenu);
     emit killAllActions();
+    activePageCounter = 0;
     QTimer::singleShot(333, this, SLOT(addFirstItem()));
 
 }
@@ -45,8 +47,26 @@ void CreateToolBar::createToolBarItems(QToolBar *tb)
 void CreateToolBar::addFirstItem()
 {
     name2icos = getTabs();
+    firstPageTabData = name2icos.first().tabData;
     addItem2tb(name2icos.takeFirst(), true);
-    QTimer::singleShot(66, this, SLOT(addNextItem()));
+    QTimer::singleShot(66, this, SLOT(addNextActiveItem()));
+}
+
+void CreateToolBar::addNextActiveItem()
+{
+    if(activePageCounter > 2){
+
+
+        addNextItem();
+        QTimer::singleShot(111, this, SLOT(showMainPage()));
+        return;
+    }
+    if(name2icos.isEmpty())
+        return;
+
+    addItem2tb(name2icos.takeFirst(), true);
+    QTimer::singleShot(33, this, SLOT(addNextActiveItem()));
+
 }
 
 void CreateToolBar::addNextItem()
@@ -70,6 +90,15 @@ void CreateToolBar::onActImitatorClck()
 
 }
 
+void CreateToolBar::showMainPage()
+{
+    if(!firstPageTabData.isEmpty())
+        emit animateClckMain();
+//        emit onActivateThisWdgt(firstPageTabData);
+    firstPageTabData.clear();
+
+}
+
 
 void CreateToolBar::addItem2tb(const TabName2icosPaths &item, const bool &activate)
 {
@@ -82,7 +111,12 @@ void CreateToolBar::addItem2tb(const TabName2icosPaths &item, const bool &activa
         connect(this, SIGNAL(setCheckedAct(bool)), a, SLOT(setChecked(bool)) );
 
         tb->addAction(a);
-        if(activate)
+        if(activate){
+            if(activePageCounter == 0)
+                connect(this, SIGNAL(animateClckMain()), a, SLOT(trigger()));
+
+            activePageCounter++;
             QTimer::singleShot(10, a, SLOT(trigger()));
+        }
     }
 }

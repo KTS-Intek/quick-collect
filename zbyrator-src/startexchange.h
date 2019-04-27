@@ -13,9 +13,12 @@ class StartExchange : public MatildaConfWidget
     Q_OBJECT
 
 public:
-    explicit StartExchange(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+    explicit StartExchange(GuiHelper *gHelper, QWidget *parent = 0);
     ~StartExchange();
     GuiHelper *guiHelper;
+
+    bool localPbReadLocker;
+    bool lockByCommandTmp;
 
     ZbyrMeterListMedium *metersListMedium;
 
@@ -36,6 +39,10 @@ public slots:
 
     void appendShowMessPlain(QString m);
 
+    void addWdgt2stackWdgt(QWidget *w, const int &wdgtType, bool oneShot, QString actTxt, QString actIco);
+
+    void lockPbRead(bool disable);
+
 signals:
     void stopExchange();
 
@@ -43,7 +50,11 @@ signals:
 
     void openEditMacProfileWdgt(bool isEditMode, QLineEdit *le );
 
+    void pageReady();
 
+    void killOldWdgtSingleShot();
+
+    void lockButtons(bool disable);
 
 private slots:
 
@@ -54,6 +65,9 @@ private slots:
 
     void addWdgt2devStack(const QString &realPageName, const QString &wdgtTitle, const QIcon &itemIcon);
 
+    void addWdgt2devStackExt(QWidget *w, const QString &realPageName, const QString &wdgtTitle, const QIcon &itemIcon);
+
+
     void on_pbStop_clicked();
 
 
@@ -61,26 +75,34 @@ private slots:
 
     void checkPbReadEnabled();
 
+    void onCommandStarted();
+    void unlockTmpLock();
+
     void onSwDevicesCurrIndxChanged();
+
+
 
 private:
     Ui::StartExchange *ui;
     MatildaConfWidget *currentMatildaWidget();
 
-    MatildaConfWidget *createStartPagePoll(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+    MatildaConfWidget *createStartPagePoll(GuiHelper *gHelper, QWidget *parent = 0);
 
-    MatildaConfWidget *createWaterSleepSchedulerWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+    MatildaConfWidget *createWaterSleepSchedulerWdgt(GuiHelper *gHelper, QWidget *parent = 0);
 
-    MatildaConfWidget *createRelayWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+    MatildaConfWidget *createRelayWdgt(GuiHelper *gHelper, QWidget *parent = 0);
 
-    MatildaConfWidget *createMetersDateTime(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+    MatildaConfWidget *createMetersDateTime(GuiHelper *gHelper, QWidget *parent = 0);
 
-    MatildaConfWidget *createZbyrIfaceSett(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+    MatildaConfWidget *createZbyrIfaceSett(GuiHelper *gHelper, QWidget *parent = 0);
 
-    MatildaConfWidget *createStatisticWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+    MatildaConfWidget *createStatisticWdgt(GuiHelper *gHelper, QWidget *parent = 0);
 
-    MatildaConfWidget *createZbyratorTaskWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+    MatildaConfWidget *createZbyratorTaskWdgt(GuiHelper *gHelper, QWidget *parent = 0);
 
+    MatildaConfWidget *createZbyratorServiceWdgt(GuiHelper *gHelper, QWidget *parent = 0);
+
+    MatildaConfWidget *createQuickDirectAccessWdgt(GuiHelper *gHelper, QWidget *parent = 0);
 
     void showWdgtByNameData(const QString &named);
 

@@ -12,7 +12,7 @@ class ZbyratorOptions : public ReferenceWidgetClass
     Q_OBJECT
 
 public:
-    explicit ZbyratorOptions(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+    explicit ZbyratorOptions(GuiHelper *gHelper, QWidget *parent = 0);
     ~ZbyratorOptions();
 
 
@@ -24,6 +24,7 @@ private slots:
 
     void on_stackedWidget_currentChanged(int arg1);
 
+
 private:
     void addItems2model();
 
@@ -31,6 +32,7 @@ private:
 
     MatildaConfWidget *createPollWdgt();
 
+    MatildaConfWidget *createOptionsWdgt();
 
 
     Ui::ZbyratorOptions *ui;

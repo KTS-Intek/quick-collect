@@ -12,8 +12,12 @@ class SetMeterAddress : public MatildaConfWidget
     Q_OBJECT
 
 public:
-    explicit SetMeterAddress(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+    explicit SetMeterAddress(GuiHelper *gHelper, QWidget *parent = 0);
     ~SetMeterAddress();
+
+signals:
+    void lockButtons(bool disable);
+
 
 public slots:
     void initPage();

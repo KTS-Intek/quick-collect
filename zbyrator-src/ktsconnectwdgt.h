@@ -12,7 +12,7 @@ class KtsConnectWdgt : public MatildaConfWidget
     Q_OBJECT
 
 public:
-    explicit KtsConnectWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+    explicit KtsConnectWdgt(GuiHelper *gHelper, QWidget *parent = 0);
     ~KtsConnectWdgt();
 
 private:

@@ -1,12 +1,9 @@
 #ifndef QCMAINWINDOW_H
 #define QCMAINWINDOW_H
 
-#include <QMainWindow>
-#include <QFont>
-#include <QTranslator>
+
+#include "gui-src/wdgt/mainifacemedium.h"
 #include <QTabBar>
-#include "gui-src/guisett4all.h"
-#include "gui-src/guihelper.h"
 #include <QLabel>
 #include "gui-src/referencewidgetclass.h"
 #include "src/zbyrator-v2/zbyratordatatypehelper.h"
@@ -19,7 +16,7 @@ namespace Ui {
 class QcMainWindow;
 }
 
-class QcMainWindow : public QMainWindow
+class QcMainWindow : public MainIfaceMedium
 {
     Q_OBJECT
 
@@ -28,50 +25,20 @@ public:
     ~QcMainWindow();
 
 
-    GuiSett4all *guiSett;
-    GuiHelper *guiHelper;
-
-    void loadMainSett();
 
 signals:
-    void addWdgt2history();
-    void killOldWdgt();
 
 
-
-    void setThisObjProfileName(QString profileName);
-
-    void appendShowMess(QString m);
-
-    void appendShowMessPlain(QString m);
 
 public slots:
-    void initializeZbyrator();
+    void initPage();
 
-    void onLangSelected(QString lang);
+    void retranslateWidgets();
 
-    void loadFontSize();
 
     void onActivateThisWdgt(QString tabData);
 
-    void addWdgt2stackWdgt(QWidget *w, int wdgtTag, bool oneShot, QString actTxt, QString actIco);
 
-    void openEditMacProfileWdgt(bool isEditMode, QLineEdit *le );
-
-
-    void showMess(QString mess);
-
-    void showMessSmpl(QString mess);
-
-    void showMessCritical(QString mess);
-
-    void showMess(QString mess, int messType, const QVariant customData = QVariant());
-
-    void onScanClicked(const int &mode, IfaceSettLoader *connWdgt);
-
-
-
-    void onActImitatorClck();
 
 private slots:
 
@@ -79,17 +46,14 @@ private slots:
 
     void onStackedWidgetCurrentChanged(int arg1);
 
-    void on_actionThe_log_of_the_application_triggered(bool checked);
 
     void on_actionOptions_triggered();
 
     void on_actionAbout_triggered();
 
-protected:
-    void changeEvent(QEvent *event);
+
 
 private: //functions
-    void loadLanguage(const QString& rLanguage);
 
     void createOneOfMainWdgt(const QString &tabData);
 
@@ -102,20 +66,19 @@ private:
 
     void createMeterManager();
 
-    MatildaConfWidget *createStartExchangeWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+    MatildaConfWidget *createStartExchangeWdgt(GuiHelper *gHelper, QWidget *parent = 0);
 
-    MatildaConfWidget *createElectricityMeterListWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+    MatildaConfWidget *createElectricityMeterListWdgt(GuiHelper *gHelper, QWidget *parent = 0);
 
-    MatildaConfWidget *createWaterMeterListWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+    MatildaConfWidget *createWaterMeterListWdgt(GuiHelper *gHelper, QWidget *parent = 0);
 
-    MatildaConfWidget *createPageLog(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+    MatildaConfWidget *createPageLog(GuiHelper *gHelper, QWidget *parent = 0);
 
-    MatildaConfWidget *createDatabasePage(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+    MatildaConfWidget *createDatabasePage(GuiHelper *gHelper, QWidget *parent = 0);
 
-    MatildaConfWidget *createMeterLogsPage(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+//    MatildaConfWidget *createMeterLogsPage(GuiHelper *gHelper, QWidget *parent = 0); obsolete
 
     Ui::QcMainWindow *ui;
-    QTranslator translator;
 
     QString lastWdgtAccessibleName;
 

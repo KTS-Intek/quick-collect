@@ -1,24 +1,28 @@
 #ifndef ZBYRMETERLISTMEDIUM_H
 #define ZBYRMETERLISTMEDIUM_H
 
-#include <QObject>
-#include <QLineEdit>
-#include "src/zbyrator-v2/zbyratordatatypehelper.h"
-#include "src/matilda/classmanagertypes.h"
-#include "zbyrator-src/src/ifacesettloader.h"
-#include "src/matilda-conf/classmanagersharedobjects.h"
+#include "gui-src/guiifacemedium.h"
 
-class ZbyrMeterListMedium : public QObject
+#include <QLineEdit>
+
+
+#include "src/zbyrator-v2/zbyratordatatypehelper.h"
+
+///[!] guisett-shared
+#include "src/nongui/classmanagermeterinfo.h"
+
+#include "classmanagertypes.h"
+
+//#include "zbyrator-src/src/ifacesettloader.h"
+//#include "src/matilda-conf/classmanagersharedobjects.h"
+
+class ZbyrMeterListMedium : public GuiIfaceMedium
 {
     Q_OBJECT
 public:
     explicit ZbyrMeterListMedium(QObject *parent = nullptr);
 
-    IfaceSettLoader *ifaceLoader;
 
-    QVariantHash getActiveIfaceSett();
-
-    QVariantHash getIfaceSett();
 
 signals:
     void setElectricityMeterListPageSett(MyListStringList listRows, QVariantMap col2data, QStringList headerH, QStringList header, bool hasHeader);
@@ -48,54 +52,25 @@ signals:
     void sendMeAlistOfMeters(quint8 meterType);
 
 
-    void setIfaceSett(QVariantHash h);
-
-    void onIfaceSett(QVariantHash h);
-
 
     void onUpdatedSavedList(int activeMetersSize, int switchedOffMetersSize, int meterElectricityActive, int metersWaterActive);
 
-    void command4dev(quint16 command, QString args);//pollCode args
-
-    void command4dev(quint16 command, QVariantMap mapArgs);//pollCode args
 
 
-    void setTcpClientCompliter(QStringList tcpServers);
 
     //to mainwindow
     void openEditMacProfileWdgt(bool isEditMode, QLineEdit *le );
-    void showMess(QString s);
-
-    void setThisIfaceSett(QVariantMap interfaceSettings);
-    void setPollSaveSettings(quint16 meterRetryMax, quint16 meterRetryMaxFA, bool hardAddrsn, bool enableW4E, bool corDTallow, qint32 messCountBeforeReady, qint32 messCountAfter, qint32 corDTintrvl);
 
 
-    void giveMeYourCache();//from GUI
-
-    void ifaceLogStr(QString line); //to GUI
 
     void onAddMeters(quint8 meterType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters, bool checkOffMeters);
 
-    void appendMeterData(QString ni, QString sn, MyListHashString data);
 
-
-    void appendData2model(QVariantHash h);//to tab
-
-    void onPollStarted(quint8 pollCode, QStringList listEnrg, QString dateMask, int dotPos, bool allowDate2utc);
-
-    void onConnectionStateChanged(bool isActive);
-
-    void onUconStartPoll(QStringList nis, quint8 meterType);
-
-    void setLblWaitTxt(QString s);
-
-    void killUconTasks();
 
 //    void updateHashSn2meter(QHash<QString,QString> hashMeterSn2memo, QHash<QString,QString> hashMeterSn2ni, QHash<QString, QString> hashMeterNi2memo);
 //    void updateHashSn2meter(QHash<QString,QString> hashMeterSn2memo, QHash<QString,QString> hashMeterSn2ni, QHash<QString, ClassManagerMeterInfo::MeterNi2info> hashMeterNi2info, QStringList listnis);
     void updateHashSn2meter(QHash<QString,QString> hashMeterSn2memo, QHash<QString,QString> hashMeterSn2ni, QHash<QString, ClassManagerMeterInfo::MeterNi2info> hashMeterNi2info, QStringList listnis, quint8 meterType);
 
-    void onReadWriteOperation(bool isRead);
 
     void onAllMeters(UniversalMeterSettList allMeters);
 
@@ -103,15 +78,11 @@ signals:
 
     void onCOMMAND_READ_POLL_STATISTIC(QStringList list);
 
-    void onTaskTableChanged();
 
     void onZbyratorConfigChanged(quint16 command, QVariant dataVar);
 
-    void setIgnoreCycles(bool ignoreCycles);
 
-    void onMeterPollCancelled(QString ni, QString stts, qint64 msec);
 
-    void appendAppLog(QString line);
 
     void meterRelayStatus(QString ni, QDateTime dtLocal, QString stts);
 
@@ -136,6 +107,10 @@ signals:
 
     void setDateMask(QString dateMask);
     void setDotPos(int dotPos);
+
+
+    void reloadSettings();
+
 public slots:
     void onAllMetersSlot(UniversalMeterSettList allMeters);
 
@@ -148,20 +123,7 @@ public slots:
 
     void onAlistOfMeters(quint8 meterType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters);
 
-    void sendMeIfaceSett();
 
-    void openTcpServerDlg(QLineEdit *le);
-
-    void openM2mDlg(QLineEdit *le);
-
-
-    void setNewSettings(QVariantHash h);
-
-    void command4devSlot(quint16 command, QString args);//pollCode args
-
-    void command4devSlot(quint16 command, QVariantMap mapArgs);//pollCode args
-
-    void onListChanged(const QStringList &list, const int &tag);
 
     void createDataCalculator();
 
@@ -210,10 +172,7 @@ private:
 
     MyListStringList getRowsList(QMap<QString, QStringList> &mapPage, const QStringList &listNiNotchanged, const QMap<QString, QStringList> &mapPageL, const QStringList listNI, const int &rowsCounter);
 
-    void openIpHistoryDlg(const int &dlgMode, QLineEdit *le);
 
-
-    bool updateInterfaceSettings();
 
 
 

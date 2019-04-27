@@ -2,10 +2,16 @@
 #define ZBYRATORDATABASEMEDIUM_H
 
 #include <QObject>
-#include "src/matilda-conf/classmanagersharedobjects.h"
+///[!] guisett-shared
+#include "src/nongui/classmanagersharedobjects.h"
+#include "src/nongui/classmanagerdatabasereader.h"
+
+///[!] task-types
 #include "src/zbyrator-v2/zbyratordatatypehelper.h"
-#include "src/matilda/classmanagertypes.h"
-#include "src/matilda/classmanagerdatabasereader.h"
+
+
+
+#include "classmanagertypes.h"
 
 class ZbyratorDatabaseMedium : public QObject
 {

@@ -1,21 +1,21 @@
 #include "startpagepoll.h"
 #include "ui_startpagepoll.h"
 #include "src/meter/meterpluginsloadhelper.h"
-#include "gui-src/settloader.h"
+#include "src/nongui/settloader.h"
 //#include "src/matilda/moji_defy.h"
 #include "src/meter/definedpollcodes.h"
-#include "dataconcetrator-pgs/dbdataform.h"
+#include "dataconcentrator-pgs/dbdataform.h"
 #include "src/zbyrator-v2/quickpollhelper.h"
 #include "src/meter/meterstatehelper.cpp"
 #include "zbyrator-src/selectmeters4poll.h"
 
-#include "dataconcetrator-pgs/src/dbdatafromsmplhelper.h"
-#include "src/widgets/tableheaders.h"
+#include "dataconcentrator-pgs/src/dbdatafromsmplhelper.h"
+#include "src/nongui/tableheaders.h"
 
 //---------------------------------------------------------------------
 
-StartPagePoll::StartPagePoll(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent) :
-    MatildaConfWidget(lDevInfo, gHelper, gSett4all, parent),
+StartPagePoll::StartPagePoll(GuiHelper *gHelper, QWidget *parent) :
+    MatildaConfWidget(gHelper,  parent),
     ui(new Ui::StartPagePoll)
 {
     ui->setupUi(this);
@@ -95,7 +95,7 @@ void StartPagePoll::initPage()
     setupCbxModel2regExp(ui->cbxOneMeterModel_2, MeterPluginsLoadHelper::getHashStrPlg(UC_METER_WATER));
 
 
-    dtFromToWdgt = new SelectDtWdgt(this);
+    dtFromToWdgt = new SelectDtWdgt(false, this);
     ui->vl4dtWdgt->addWidget(dtFromToWdgt);
 
 
@@ -378,8 +378,9 @@ bool StartPagePoll::startPollAllMetersMode(const quint8 &pollCode, QString &mess
         return false;
     }
 
+    GetDataFromDbDoneSignalizator *signalizator = new GetDataFromDbDoneSignalizator(this);
 
-    SelectMeters4poll *w = new SelectMeters4poll(lDevInfo, gHelper, gSett4all, this);
+    SelectMeters4poll *w = new SelectMeters4poll(signalizator, gHelper,  this);
     connect(this, SIGNAL(killSelectMeters4poll()), w, SLOT(deleteLater()) );
     connect(w, SIGNAL(onReloadAllMeters()), this, SIGNAL(onReloadAllMeters()) );
     connect(w, SIGNAL(command4dev(quint16,QVariantMap)), this, SLOT(command4devSlot(quint16,QVariantMap)));
@@ -422,7 +423,7 @@ void StartPagePoll::createTab(const StartPollTabSett &selsett)
 
 
 
-    DbDataForm *f = new DbDataForm(lDevInfo,gHelper,gSett4all,this);
+    DbDataForm *f = new DbDataForm(gHelper,this);
     f->setSelectSett(hash.value("FromDT").toDateTime(), hash.value("ToDT").toDateTime(), hash.value("ToDT").toDateTime().isValid(), txt, code);
     f->setAccessibleName(QString::number(QDateTime::currentMSecsSinceEpoch()));
 

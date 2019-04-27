@@ -1,6 +1,10 @@
 #include "zbyratorucmedium.h"
 #include "src/matilda/moji_defy.h"
-#include "matilda-bbb-src/matildaprotocolinitstep.h"
+
+///[!] matilda-bbb-serverside-shared
+#include "matilda-bbb-src/decoders/matildaprotocolinitstep.h"
+
+///[!] Matilda-IO
 #include "src/shared/readwriteiodevice.cpp"
 
 ZbyratorUcMedium::ZbyratorUcMedium(QObject *parent) : QObject(parent)

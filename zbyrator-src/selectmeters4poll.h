@@ -1,8 +1,25 @@
 #ifndef SELECTMETERS4POLL_H
 #define SELECTMETERS4POLL_H
 
+///[!] widgets-shared
 #include "gui-src/referencewidgetclass.h"
+
+///[!] tasks-types
 #include "src/zbyrator-v2/zbyratordatatypehelper.h"
+
+class   GetDataFromDbDoneSignalizator : public QObject
+{
+    Q_OBJECT
+public:
+    explicit  GetDataFromDbDoneSignalizator(QObject *parent = nullptr);
+    virtual ~  GetDataFromDbDoneSignalizator() {}
+
+signals:
+    void onDbSelectorKickedOff();
+    void stopDbSelector();
+
+
+};
 
 namespace Ui {
 class SelectMeters4poll;
@@ -13,9 +30,10 @@ class SelectMeters4poll : public ReferenceWidgetClass
     Q_OBJECT
 
 public:
-    explicit SelectMeters4poll(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+    explicit SelectMeters4poll(GetDataFromDbDoneSignalizator *signalizator, GuiHelper *gHelper, QWidget *parent = nullptr);
     ~SelectMeters4poll();
 
+    GetDataFromDbDoneSignalizator *signalizator;
 signals:
     void onReloadAllMeters();
 
@@ -62,5 +80,7 @@ private:
 
     Ui::SelectMeters4poll *ui;
 };
+
+
 
 #endif // SELECTMETERS4POLL_H

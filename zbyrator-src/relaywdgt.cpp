@@ -1,19 +1,22 @@
 #include "relaywdgt.h"
 #include "ui_relaywdgt.h"
 #include "map-pgs/mapwidget.h"
-#include "gui-src/settloader.h"
+#include "src/nongui/settloader.h"
 #include "src/widgets/selectionchecker.h"
-#include "gui-src/showmesshelper4wdgt.h"
+#include "src/nongui/showmesshelpercore.h"
 #include "src/meter/definedpollcodes.h"
 #include "src/zbyrator-v2/quickpollhelper.h"
 
 
-RelayWdgt::RelayWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent) :
-    ReferenceWidgetClass(lDevInfo, gHelper, gSett4all, parent),
+RelayWdgt::RelayWdgt(GuiHelper *gHelper, QWidget *parent) :
+    ReferenceWidgetClass(gHelper,  parent),
     ui(new Ui::RelayWdgt)
 {
     ui->setupUi(this);
     isMapReady = false;
+    ui->pbLoadOff->setEnabled(false);
+    ui->pbLoadOn->setEnabled(false);
+    ui->pbRead->setEnabled(false);
 //    contextPbRead = hasContxBtn;
 }
 
@@ -60,67 +63,78 @@ void RelayWdgt::setPageSett(const MyListStringList &listRows, const QVariantMap 
     emit resizeTv2content(ui->tvTable);
 
 
-
+    ui->tbFilter->setEnabled(true);
 
 }
 
 void RelayWdgt::onModelChanged()
 {
-//    QVariantList vl;
+    QVariantList vl;
 
-//    //    QStringList l = GuiHelper::getColNamesLedLamp().split(",");
-//    //tr("Model,NI,Group,Last Exchange,Power [%],Start Power [%],NA Power [%],Tna [sec],Coordinate,Poll On/Off,Street,Memo") ;
+//    QStringList l = GuiHelper::getColNamesLedLampV2().split(",");
+    //tr("Model,NI,Group,Last Exchange,Power [%],Start Power [%],NA Power [%],Tna [sec],Coordinate,Poll On/Off,Street,Memo") ;
 
-//    //return tr("Model,Serial Number,NI,Memo,Password,On/Off,Physical values,Tariff Count,Coordinate,Meter Version")
-
-//    const QStringList l4app = QString("ni pos pll img").split(" ");
-//    const QList<int> l4appIndx = QList<int>() << 0 << 8 ; //-1
-
-
-//    for(int i = 0, iMax = proxy_model->rowCount(), lMax = l4appIndx.size(); i < iMax; i++){
-//        int row = proxy_model->mapToSource(proxy_model->index(i, 0)).row();
-//        QVariantHash h;
-//        for(int l = 0; l < lMax; l++)//службова інформація
-//            h.insert(l4app.at(l), model->item(row, l4appIndx.at(l))->text());
-
-//        const QString tltp = QString("NI: <b>%1</b>, %2<br>")
-//                .arg(model->item(row, 0)->text())
-//                .arg(tr("Model: %1, Code %2<br>Time: %3<br>Stat: %4, %5<br>Elapsed: %6 [sec]<br>Last Retry: %7")
-//                     .arg(model->item(row, 1)->text())//model
-//                     .arg(model->item(row, 2)->text())//code
-//                     .arg(model->item(row, 3)->text())//time
-//                     .arg(model->item(row, 4)->text())//stat
-//                     .arg(model->item(row, 5)->text())//stat
-//                     .arg(model->item(row, 6)->text())//elapsed
-//                     .arg(model->item(row, 7)->text()));//last retr
+    //Time Relay Meter S/N NI Memo Coordinate
+    QStringList l4app = QString("ni pos grp pll img").split(" ");
+    QList<int> l4appIndx;
+    l4appIndx << 4 << 6 << 2 << 1 ; //-1
 
 
-//        h.insert("grp", model->item(row, 1)->text() + "\t" + model->item(row, 7)->text());
+    const QList<int> l4tltp = QList<int>() << 0 << 2 << 3 << 5;
 
-//        h.insert("tltp", tltp);
-//        h.insert("rowid", row + 1);
-//        if(h.value("pos").toString().isEmpty())//якщо нема координат, то і нема чого показувать
-//            continue;
-//        vl.append(h);
-//    }
+    for(int i = 0, iMax = proxy_model->rowCount(), lMax = l4appIndx.size(), jmax = l4tltp.size(); i < iMax; i++){
+        int row = proxy_model->mapToSource(proxy_model->index(i, 0)).row();
+        QVariantHash h;
+        for(int l = 0; l < lMax; l++)//службова інформація
+            h.insert(l4app.at(l), model->item(row, l4appIndx.at(l))->text());
 
+        if(h.value("pos").toString().isEmpty())//якщо нема координат, то і нема чого показувать
+            continue;
 
-//    if(!lDevInfo->matildaDev.coordinatesIsDefault){
-//        QVariantHash h;
-//        h.insert("pos", QString("%1,%2").arg(QString::number(lDevInfo->matildaDev.coordinates.x(), 'f', 6)).arg(QString::number(lDevInfo->matildaDev.coordinates.y(), 'f', 6)) );
-//        h.insert("isMatilda", true);
-//        h.insert("rowid", "Z");
-//        h.insert("ni", tr("Universal Communicator"));
-//        h.insert("tltp", h.value("ni").toString() + tr("<br>SN: %1<br>").arg(lDevInfo->matildaDev.lastSerialNumber));
-//        vl.prepend(h);
-//    }
+        QStringList tltp;
+        tltp.append(tr("NI: <b>%1</b>, Relay: <b>%2</b>").arg(model->item(row, 4)->text()).arg(model->item(row, 1)->text()));
 
 
-//    emit setNewDeviceModelEs(vl);
+        for(int j = 0; j < jmax; j++){
+            const QString s = model->item(row, l4tltp.at(j))->text();
+            if(s.isEmpty() || s == "?" || s == "!")
+                continue;
 
-//    const int row = proxy_model->mapToSource(ui->tvWithFilter->currentIndex()).row();
-//    if(row >= 0)
-    //        emit showThisDeviceNIEs(model->item(row, 2)->text());
+
+
+            tltp.append(QString("%1: <b>%2</b>").arg(model->horizontalHeaderItem(l4tltp.at(j))->text()).arg(s));
+
+        }
+
+
+
+
+        h.insert("tltp", tltp.join("<br>") + "<br>");
+        h.insert("rowid", row + 1);
+        const QString img = model->item(row, 0)->data(Qt::UserRole + 23).toString();
+        if(!img.isEmpty())
+            h.insert("img", "qrc" + img );//m.at(icoCol)->setData(icoList.at(i), Qt::UserRole + 23);
+
+        vl.append(h);
+    }
+
+
+    if(!lDevInfo->matildaDev.coordinatesIsDefault){
+        QVariantHash h;
+        h.insert("pos", QString("%1,%2").arg(QString::number(lDevInfo->matildaDev.coordinates.x(), 'f', 6)).arg(QString::number(lDevInfo->matildaDev.coordinates.y(), 'f', 6)) );
+        h.insert("isMatilda", true);
+        h.insert("rowid", "Z");
+        h.insert("ni", tr("Universal Communicator"));
+        h.insert("tltp", h.value("ni").toString() + tr("<br>S/N: %1<br>").arg(lDevInfo->matildaDev.lastSerialNumber));
+        vl.prepend(h);
+    }
+
+
+    emit setNewDeviceModelEs(vl);
+
+    int row = proxy_model->mapToSource(ui->tvTable->currentIndex()).row();
+    if(row >= 0)
+        emit showThisDeviceNIEs(model->item(row, 4)->text());
 }
 
 void RelayWdgt::meterRelayStatus(QString ni, QDateTime dtLocal, QString stts)
@@ -143,18 +157,16 @@ void RelayWdgt::meterRelayStatus(QString ni, QDateTime dtLocal, QString stts)
 void RelayWdgt::initPage()
 {
     setupObjects(ui->tvTable, ui->tbFilter, ui->cbFilterMode, ui->leFilter, SETT_FILTERS_RELAYWDGT);
-    StandardItemModelHelper::modelSetHorizontalHeaderItems(model, QStringList());
+    StandardItemModelHelper::setModelHorizontalHeaderItems(model, QStringList());
 
     ui->widget_2->setEnabled(false);
     ui->widget->setEnabled(false);
 
-    connect(gHelper, SIGNAL(setPbWriteEnableDisable(bool)), ui->pbRead, SLOT(setDisabled(bool)));
-    connect(gHelper, SIGNAL(setPbWriteEnableDisable(bool)), ui->pbLoadOff, SLOT(setDisabled(bool)));
-    connect(gHelper, SIGNAL(setPbWriteEnableDisable(bool)), ui->pbLoadOn, SLOT(setDisabled(bool)));
 
-    ui->pbRead->setDisabled(gHelper->managerEnDisBttn.pbWriteDis);
-    ui->pbLoadOff->setDisabled(gHelper->managerEnDisBttn.pbWriteDis);
-    ui->pbLoadOn->setDisabled(gHelper->managerEnDisBttn.pbWriteDis);
+
+    connect(this, SIGNAL(lockButtons(bool)), ui->pbRead, SLOT(setDisabled(bool)));
+    connect(this, SIGNAL(lockButtons(bool)), ui->pbLoadOff, SLOT(setDisabled(bool)));
+    connect(this, SIGNAL(lockButtons(bool)), ui->pbLoadOn, SLOT(setDisabled(bool)));
 
     emit onReloadAllMeters();
 
@@ -214,7 +226,7 @@ void RelayWdgt::on_tbShowMap_clicked()
 
 void RelayWdgt::on_tvTable_customContextMenuRequested(const QPoint &pos)
 {
-    gHelper->createCustomMenu(pos, ui->tvTable, (GuiHelper::ShowReset|GuiHelper::ShowExport|GuiHelper::ShowOnlyCopy), CLBRD_SMPL_PRXTBL, ShowMessHelper4wdgt::matildaFileName(windowTitle()));
+    gHelper->createCustomMenu(pos, ui->tvTable, (GuiHelper::ShowReset|GuiHelper::ShowExport|GuiHelper::ShowOnlyCopy), CLBRD_SMPL_PRXTBL, ShowMessHelperCore::matildaFileName(windowTitle()));
 }
 
 
@@ -241,12 +253,12 @@ void RelayWdgt::on_pbLoadOff_clicked()
 
 void RelayWdgt::doRelayOperationSelected(const quint8 &operation)
 {
-    doRelayOperation(TableViewHelper::selectedRowText(ui->tvTable, 4), operation);
+    doRelayOperation(TableViewHelper::getSelectedRowsText(ui->tvTable, 4), operation);
 }
 
 void RelayWdgt::doRelayOperation(const QStringList &listni, const quint8 &operation)
 {
-    if(gHelper->managerEnDisBttn.pbReadDis)
+    if(gHelper->managerEnDisBttn.pbWriteDis)
         return;
 
     if(listni.isEmpty()){

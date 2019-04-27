@@ -42,7 +42,7 @@
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="icon">
-       <iconset resource="../res.qrc">
+       <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
         <normaloff>:/katynko/svg/edit-table-insert-row-below.svg</normaloff>:/katynko/svg/edit-table-insert-row-below.svg</iconset>
       </attribute>
       <attribute name="title">
@@ -58,7 +58,7 @@
            </property>
            <widget class="QWidget" name="tab_2">
             <attribute name="icon">
-             <iconset resource="../res.qrc">
+             <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
               <normaloff>:/katynko/svg4/sc_symbolshapes.lightning.svg</normaloff>:/katynko/svg4/sc_symbolshapes.lightning.svg</iconset>
             </attribute>
             <attribute name="title">
@@ -126,7 +126,7 @@
            </widget>
            <widget class="QWidget" name="tab_3">
             <attribute name="icon">
-             <iconset resource="../res.qrc">
+             <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
               <normaloff>:/katynko/svg4/lc_fillcolor.svg</normaloff>:/katynko/svg4/lc_fillcolor.svg</iconset>
             </attribute>
             <attribute name="title">
@@ -495,7 +495,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../res.qrc"/>
+  <include location="../../../Matilda-units/gui/image-and-font/res.qrc"/>
  </resources>
  <connections>
   <connection>

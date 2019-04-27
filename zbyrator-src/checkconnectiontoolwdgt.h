@@ -12,8 +12,12 @@ class CheckConnectionToolWdgt : public ReferenceWidgetClass
     Q_OBJECT
 
 public:
-    explicit CheckConnectionToolWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+    explicit CheckConnectionToolWdgt(GuiHelper *gHelper, QWidget *parent = 0);
     ~CheckConnectionToolWdgt();
+
+signals:
+    void lockButtons(bool disable);
+
 
 public slots:
     void initPage();

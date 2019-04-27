@@ -12,7 +12,7 @@ class RelayWdgt : public ReferenceWidgetClass
     Q_OBJECT
 
 public:
-    explicit RelayWdgt(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+    explicit RelayWdgt(GuiHelper *gHelper, QWidget *parent = 0);
     ~RelayWdgt();
 
     QVariant getPageSett4read(bool &ok, QString &mess);
@@ -29,6 +29,9 @@ signals:
 
 
     void setLastPageId(QString name);
+
+    void lockButtons(bool disable);
+
 public slots:
     void clearPage();
 

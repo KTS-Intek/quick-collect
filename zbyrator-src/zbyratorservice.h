@@ -12,8 +12,16 @@ class ZbyratorService : public MatildaConfWidget
     Q_OBJECT
 
 public:
-    explicit ZbyratorService(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+    explicit ZbyratorService(GuiHelper *gHelper, QWidget *parent = 0);
     ~ZbyratorService();
+
+signals:
+    void lockButtons(bool disable);
+
+
+    void command4dev(quint16 command, QString args);//pollCode args
+    void command4dev(quint16 command, QVariantMap args);//pollCode args
+
 
 public slots:
     void initPage();
@@ -21,8 +29,15 @@ public slots:
 private slots:
     void on_pbOpenDa_clicked();
 
+    void on_pbResetNetwork_clicked();
+
+    void startPollCode(const quint8 &pollCode);
+
 private:
     Ui::ZbyratorService *ui;
+
+    QVariantMap tryStartTheOperation(int pollCode);
+
 };
 
 #endif // ZBYRATORSERVICE_H

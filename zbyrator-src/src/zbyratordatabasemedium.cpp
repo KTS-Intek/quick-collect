@@ -1,10 +1,13 @@
 #include "zbyratordatabasemedium.h"
 #include "zbyratordatacalculation.h"
 #include "src/matilda/moji_defy.h"
-#include "gui-src/showmesshelper4wdgt.h"
+#include "src/nongui/showmesshelpercore.h"
 #include "src/m2m-service/matildamessages.h"
 
 #include "zbyrator-src/src/zbyratorucmedium.cpp"
+
+///[!] type-converter
+#include "src/base/prettyvalues.h"
 
 ZbyratorDatabaseMedium::ZbyratorDatabaseMedium(QObject *parent) : QObject(parent)
 {
@@ -22,9 +25,8 @@ void ZbyratorDatabaseMedium::onThreadStarted()
 
 void ZbyratorDatabaseMedium::onAlistOfMeters(quint8 meterType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters, bool checkOffMeters)
 {
-    Q_UNUSED(meterType);
-    if(shrdObj)
-        ZbyratorDataCalculation().onAddlistOfMeters2cache(shrdObj, activeMeters, switchedOffMeters, checkOffMeters);
+
+        ZbyratorDataCalculation().onAddlistOfMeters2cache(shrdObj, activeMeters, switchedOffMeters, checkOffMeters, meterType);
 }
 
 void ZbyratorDatabaseMedium::data2matilda4inCMD(quint16 command, QVariant dataVar)
@@ -150,7 +152,7 @@ void ZbyratorDatabaseMedium::data2gui(quint16 command, QVariant dataVar)
      case COMMAND_READ_METER_LOGS_GET_VAL    :{ messCode = dbReader->onCOMMAND_READ_METER_LOGS_GET_VAL(dataVar.toHash(), rezIsGood)            ; break;}
      default:{
          qDebug() << "data2gui unknown command " << command << dataVar;
-         showMessSlot(ShowMessHelper4wdgt::addWithFontColorRed(tr("Unknown command: 0x%1").arg(QString::number(command, 16).toUpper())));
+         showMessSlot(PrettyValues::addWithFontColorRed(tr("Unknown command: 0x%1").arg(QString::number(command, 16).toUpper())));
          return;}
      }
 

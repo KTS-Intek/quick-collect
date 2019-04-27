@@ -12,7 +12,7 @@ class UcEmulator : public MatildaConfWidget
     Q_OBJECT
 
 public:
-    explicit UcEmulator(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+    explicit UcEmulator(GuiHelper *gHelper, QWidget *parent = 0);
     ~UcEmulator();
 
 private:

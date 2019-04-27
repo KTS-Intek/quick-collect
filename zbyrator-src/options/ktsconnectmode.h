@@ -12,7 +12,7 @@ class KtsConnectMode : public ReferenceWidgetClass
     Q_OBJECT
 
 public:
-    explicit KtsConnectMode(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+    explicit KtsConnectMode(GuiHelper *gHelper, QWidget *parent = 0);
     ~KtsConnectMode();
 
 private:

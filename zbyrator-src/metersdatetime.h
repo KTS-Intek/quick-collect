@@ -12,7 +12,7 @@ class MetersDateTime : public ReferenceWidgetClass
     Q_OBJECT
 
 public:
-    explicit MetersDateTime(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+    explicit MetersDateTime(GuiHelper *gHelper, QWidget *parent = 0);
     ~MetersDateTime();
 
     QVariant getPageSett4read(bool &ok, QString &mess);
@@ -30,6 +30,7 @@ signals:
     void command4dev(quint16 command, QVariantMap mapArgs);//pollCode args
 
     void setLastPageId(QString name);
+    void lockButtons(bool disable);
 
 
 public slots:

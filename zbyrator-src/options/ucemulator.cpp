@@ -1,8 +1,8 @@
 #include "ucemulator.h"
 #include "ui_ucemulator.h"
 
-UcEmulator::UcEmulator(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent) :
-    MatildaConfWidget(lDevInfo, gHelper, gSett4all, parent),
+UcEmulator::UcEmulator(GuiHelper *gHelper, QWidget *parent) :
+    MatildaConfWidget(gHelper,  parent),
     ui(new Ui::UcEmulator)
 {
     ui->setupUi(this);

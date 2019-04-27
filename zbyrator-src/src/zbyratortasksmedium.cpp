@@ -1,12 +1,21 @@
 #include "zbyratortasksmedium.h"
-#include "src/shared/sharedmemohelper.h"
-#include "matilda-bbb-src/decodematildaprotocolv5helper.h"
-#include "src/matilda/classmanagerhelper.cpp"
-//#include "src/matilda/moji_defy.h"
-#include "src/meter/definedpollcodes.h"
+
 #include <QDateTime>
 
-#include "src/widgets/tableheaders.h"
+///[!] sharedmemory
+#include "src/shared/sharedmemohelper.h"
+
+///[!] matilda-bbb-shared
+#include "matilda-bbb-src/decoders/decodematildaprotocolv5helper.h"
+
+
+///[!] guisett-shared
+#include "src/nongui/tableheaders.h"
+#include "src/nongui/classmanagerhelper.h"
+
+//#include "src/matilda/moji_defy.h"
+#include "definedpollcodes.h"
+
 
 ZbyratorTasksMedium::ZbyratorTasksMedium(QObject *parent) : QObject(parent)
 {
@@ -92,6 +101,6 @@ void ZbyratorTasksMedium::onZbyratorTasksPageSett(QVariantHash h)
         list.append(l);
     }
 
-    emit setZbyratorTasksPageSett(list, answr.col2data, TableHeaders::getColNamesZbyratorTasks().split(","), answr.header, !answr.header.isEmpty());
+    emit setZbyratorTasksPageSett(list, answr.col2data, TableHeaders::getColNamesDeviceTasks().split(","), answr.header, !answr.header.isEmpty());
 
 }

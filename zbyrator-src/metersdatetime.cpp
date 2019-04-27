@@ -1,19 +1,23 @@
 #include "metersdatetime.h"
 #include "ui_metersdatetime.h"
 #include "map-pgs/mapwidget.h"
-#include "gui-src/settloader.h"
+#include "src/nongui/settloader.h"
 #include "src/widgets/selectionchecker.h"
-#include "gui-src/showmesshelper4wdgt.h"
+#include "src/nongui/showmesshelpercore.h"
 #include "src/meter/definedpollcodes.h"
 #include "src/zbyrator-v2/quickpollhelper.h"
 
 
-MetersDateTime::MetersDateTime(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent) :
-    ReferenceWidgetClass(lDevInfo, gHelper, gSett4all, parent),
+MetersDateTime::MetersDateTime(GuiHelper *gHelper, QWidget *parent) :
+    ReferenceWidgetClass(gHelper,  parent),
     ui(new Ui::MetersDateTime)
 {
     ui->setupUi(this);
     isMapReady = false;
+
+    ui->pbCorrectionAll->setEnabled(false);
+    ui->pbRead->setEnabled(false);
+    ui->pbWrite->setEnabled(false);
 
 }
 
@@ -48,6 +52,7 @@ void MetersDateTime::setPageSett(const MyListStringList &listRows, const QVarian
     ui->widget->setDisabled(listRows.isEmpty());
 
     setHasDataFromRemoteDevice();
+    ui->tbFilter->setEnabled(!header.isEmpty());
 
     emit resizeTv2content(ui->tvTable);
 }
@@ -55,7 +60,72 @@ void MetersDateTime::setPageSett(const MyListStringList &listRows, const QVarian
 
 void MetersDateTime::onModelChanged()
 {
+    QVariantList vl;
 
+//    QStringList l = GuiHelper::getColNamesLedLampV2().split(",");
+    //tr("Model,NI,Group,Last Exchange,Power [%],Start Power [%],NA Power [%],Tna [sec],Coordinate,Poll On/Off,Street,Memo") ;
+
+    //Computer Meter time Meter S/N NI Memo DSTsett Coordinate
+    QStringList l4app = QString("ni pos grp pll img").split(" ");
+    QList<int> l4appIndx;
+    l4appIndx << 4 << 7 << 2 << 1 ; //-1
+
+
+    const QList<int> l4tltp = QList<int>() << 0 << 1 << 2 << 5 ;
+
+    for(int i = 0, iMax = proxy_model->rowCount(), lMax = l4appIndx.size(), jmax = l4tltp.size(); i < iMax; i++){
+        int row = proxy_model->mapToSource(proxy_model->index(i, 0)).row();
+        QVariantHash h;
+        for(int l = 0; l < lMax; l++)//службова інформація
+            h.insert(l4app.at(l), model->item(row, l4appIndx.at(l))->text());
+
+        if(h.value("pos").toString().isEmpty())//якщо нема координат, то і нема чого показувать
+            continue;
+
+        QStringList tltp;
+        tltp.append(tr("NI: <b>%1</b>, DST: <b>%2</b>").arg(model->item(row, 4)->text()).arg(model->item(row, 6)->text()));
+
+
+        for(int j = 0; j < jmax; j++){
+            const QString s = model->item(row, l4tltp.at(j))->text();
+            if(s.isEmpty() || s == "?" || s == "!")
+                continue;
+
+
+
+            tltp.append(QString("%1: <b>%2</b>").arg(model->horizontalHeaderItem(l4tltp.at(j))->text()).arg(s));
+
+        }
+
+
+
+
+        h.insert("tltp", tltp.join("<br>") + "<br>");
+        h.insert("rowid", row + 1);
+        const QString img = model->item(row, 0)->data(Qt::UserRole + 23).toString();
+        if(!img.isEmpty())
+            h.insert("img", "qrc" + img );//m.at(icoCol)->setData(icoList.at(i), Qt::UserRole + 23);
+
+        vl.append(h);
+    }
+
+
+    if(!lDevInfo->matildaDev.coordinatesIsDefault){
+        QVariantHash h;
+        h.insert("pos", QString("%1,%2").arg(QString::number(lDevInfo->matildaDev.coordinates.x(), 'f', 6)).arg(QString::number(lDevInfo->matildaDev.coordinates.y(), 'f', 6)) );
+        h.insert("isMatilda", true);
+        h.insert("rowid", "Z");
+        h.insert("ni", tr("Universal Communicator"));
+        h.insert("tltp", h.value("ni").toString() + tr("<br>S/N: %1<br>").arg(lDevInfo->matildaDev.lastSerialNumber));
+        vl.prepend(h);
+    }
+
+
+    emit setNewDeviceModelEs(vl);
+
+    int row = proxy_model->mapToSource(ui->tvTable->currentIndex()).row();
+    if(row >= 0)
+        emit showThisDeviceNIEs(model->item(row, 4)->text());
 }
 
 void MetersDateTime::meterDateTimeDstStatus(QString ni, QDateTime dtLocal, QString stts)
@@ -83,19 +153,14 @@ void MetersDateTime::initPage()
 {
 
     setupObjects(ui->tvTable, ui->tbFilter, ui->cbFilterMode, ui->leFilter, SETT_FILTERS_METERDATETIME);
-    StandardItemModelHelper::modelSetHorizontalHeaderItems(model, QStringList());
+    StandardItemModelHelper::setModelHorizontalHeaderItems(model, QStringList());
 
     ui->widget_2->setEnabled(false);
     ui->widget->setEnabled(false);
 
-    connect(gHelper, SIGNAL(setPbWriteEnableDisable(bool)), ui->pbRead, SLOT(setDisabled(bool)));
-    connect(gHelper, SIGNAL(setPbWriteEnableDisable(bool)), ui->pbWrite, SLOT(setDisabled(bool)));
-    connect(gHelper, SIGNAL(setPbWriteEnableDisable(bool)), ui->pbCorrectionAll, SLOT(setDisabled(bool)));
-
-    ui->pbRead->setDisabled(gHelper->managerEnDisBttn.pbWriteDis);
-    ui->pbWrite->setDisabled(gHelper->managerEnDisBttn.pbWriteDis);
-    ui->pbCorrectionAll->setDisabled(gHelper->managerEnDisBttn.pbWriteDis);
-
+    connect(this, SIGNAL(lockButtons(bool)), ui->pbRead, SLOT(setDisabled(bool)));
+    connect(this, SIGNAL(lockButtons(bool)), ui->pbWrite, SLOT(setDisabled(bool)));
+    connect(this, SIGNAL(lockButtons(bool)), ui->pbCorrectionAll, SLOT(setDisabled(bool)));
 
     SelectionChecker *tmr = new SelectionChecker(this);
     tmr->setWatchTable(ui->tvTable, ui->widget_2);
@@ -158,7 +223,7 @@ void MetersDateTime::on_tbShowMap_clicked()
 
 void MetersDateTime::on_tvTable_customContextMenuRequested(const QPoint &pos)
 {
-    gHelper->createCustomMenu(pos, ui->tvTable, (GuiHelper::ShowReset|GuiHelper::ShowExport|GuiHelper::ShowOnlyCopy), CLBRD_SMPL_PRXTBL, ShowMessHelper4wdgt::matildaFileName(windowTitle()));
+    gHelper->createCustomMenu(pos, ui->tvTable, (GuiHelper::ShowReset|GuiHelper::ShowExport|GuiHelper::ShowOnlyCopy), CLBRD_SMPL_PRXTBL, ShowMessHelperCore::matildaFileName(windowTitle()));
 
 }
 
@@ -174,12 +239,12 @@ void MetersDateTime::on_pbCorrectionAll_clicked()
 
 void MetersDateTime::on_pbRead_clicked()
 {
-    startOperation(TableViewHelper::selectedRowText(ui->tvTable, 4), POLL_CODE_READ_DATE_TIME_DST);
+    startOperation(TableViewHelper::getSelectedRowsText(ui->tvTable, 4), POLL_CODE_READ_DATE_TIME_DST);
 }
 
 void MetersDateTime::on_pbWrite_clicked()
 {
-    startOperation(TableViewHelper::selectedRowText(ui->tvTable, 4), POLL_CODE_WRITE_DATE_TIME);
+    startOperation(TableViewHelper::getSelectedRowsText(ui->tvTable, 4), POLL_CODE_WRITE_DATE_TIME);
 
 }
 

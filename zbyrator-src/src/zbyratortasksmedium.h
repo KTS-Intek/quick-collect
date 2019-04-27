@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include "src/zbyrator-v2/zbyratordatatypehelper.h"
-#include "src/matilda/classmanagertypes.h"
+#include "classmanagertypes.h"
 
 
 class ZbyratorTasksMedium : public QObject

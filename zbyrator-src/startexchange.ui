@@ -184,7 +184,7 @@
                    <string>Read</string>
                   </property>
                   <property name="icon">
-                   <iconset resource="../res.qrc">
+                   <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
                     <normaloff>:/katynko/svg/flag-green.svg</normaloff>:/katynko/svg/flag-green.svg</iconset>
                   </property>
                   <property name="flat">
@@ -204,7 +204,7 @@
                 <string>Stop</string>
                </property>
                <property name="icon">
-                <iconset resource="../res.qrc">
+                <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
                  <normaloff>:/katynko/svg/edit-delete.svg</normaloff>:/katynko/svg/edit-delete.svg</iconset>
                </property>
                <property name="flat">
@@ -218,7 +218,7 @@
                 <string>Interface</string>
                </property>
                <property name="icon">
-                <iconset resource="../res.qrc">
+                <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
                  <normaloff>:/katynko/svg/network-disconnect.svg</normaloff>:/katynko/svg/network-disconnect.svg</iconset>
                </property>
                <property name="flat">
@@ -227,17 +227,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="lblIface">
-               <property name="text">
-                <string/>
-               </property>
-               <property name="wordWrap">
-                <bool>true</bool>
-               </property>
-               <property name="textInteractionFlags">
-                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-               </property>
-              </widget>
+              <layout class="QHBoxLayout" name="hl4lbl"/>
              </item>
              <item>
               <spacer name="verticalSpacer_2">
@@ -345,7 +335,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../res.qrc"/>
+  <include location="../../../Matilda-units/gui/image-and-font/res.qrc"/>
  </resources>
  <connections/>
 </ui>

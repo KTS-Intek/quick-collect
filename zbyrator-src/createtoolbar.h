@@ -33,14 +33,20 @@ signals:
 
     void setCheckedAct(bool checked);
 
+
+    void animateClckMain();
 public slots:
     void createToolBarItems(QToolBar *tb);
 
     void addFirstItem();
 
+    void addNextActiveItem();
+
     void addNextItem();
 
     void onActImitatorClck();
+
+    void showMainPage();
 
 
 private:
@@ -48,7 +54,9 @@ private:
 
     QToolBar *tb;
 
+    int activePageCounter;
     QList<TabName2icosPaths> name2icos;
+    QString firstPageTabData;
 
 };
 

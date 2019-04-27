@@ -10,6 +10,7 @@ class PollWdgtMom : public QObject
 public:
     explicit PollWdgtMom(PollWdgt *pollWdgt, QObject *parent = nullptr);
 
+
     MatildaConfWidget *pollWdgt;
 signals:
 
@@ -19,6 +20,8 @@ public slots:
     void onSavePageSettings();
 
     void unlockIgnore();
+
+    void saveAllForced();
 
 private:
     bool ignoreSave;

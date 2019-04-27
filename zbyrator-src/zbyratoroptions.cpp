@@ -1,6 +1,6 @@
 #include "zbyratoroptions.h"
 #include "ui_zbyratoroptions.h"
-#include "gui-src/settloader.h"
+#include "src/nongui/settloader.h"
 #include "gui-src/stackwidgethelper.h"
 
 #include "zbyrator-src/options/databasesettings.h"
@@ -11,8 +11,8 @@
 #include "main-pgs/optionswdgt.h"
 
 
-ZbyratorOptions::ZbyratorOptions(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent) :
-    ReferenceWidgetClass(lDevInfo, gHelper, gSett4all, parent),
+ZbyratorOptions::ZbyratorOptions(GuiHelper *gHelper, QWidget *parent) :
+    ReferenceWidgetClass(gHelper,  parent),
     ui(new Ui::ZbyratorOptions)
 {
     ui->setupUi(this);
@@ -26,11 +26,12 @@ ZbyratorOptions::~ZbyratorOptions()
 void ZbyratorOptions::initPage()
 {
     setupObjects(0, 0, 0, ui->leFilter, SETT_FILTERS_ZBYROPTSLV);
-    StandardItemModelHelper::modelSetHorizontalHeaderItems(model, tr("Pages").split("\n"));
+    StandardItemModelHelper::setModelHorizontalHeaderItems(model, tr("Pages").split("\n"));
 
 
     addItems2model();
 
+    connect(ui->pushButton, SIGNAL(clicked(bool)), this, SLOT(deleteLater()));
 }
 
 void ZbyratorOptions::onLvOptions_clicked(const QModelIndex &index)
@@ -40,7 +41,7 @@ void ZbyratorOptions::onLvOptions_clicked(const QModelIndex &index)
         return;
 
 
-    if(!GuiHelper::stackContainsThisWdgt(ui->stackedWidget, QString("options_%1").arg(row), true))
+    if(!WidgetsHelper::stackContainsThisWdgt(ui->stackedWidget, QString("options_%1").arg(row), true))
         addThisWdgt2stack(row, model->item(row)->text(), QString("options_%1").arg(row));
 
 
@@ -53,7 +54,7 @@ void ZbyratorOptions::addItems2model()
     list.append(tr("Local database"));
     list.append(tr("Poll settings"));
     list.append(tr("UC Emulator"));
-    list.append(tr("KTS Connect"));
+//    list.append(tr("KTS Connect"));
     list.append(tr("Application"));
 
     const QSize sh = QSize(ui->leFilter->width(), ui->leFilter->height() * 1.2);
@@ -76,11 +77,11 @@ void ZbyratorOptions::addThisWdgt2stack(const int &row, const QString &pageName,
 {
     MatildaConfWidget *w = 0;
     switch(row){
-    case 0: w = new DatabaseSettings(lDevInfo, gHelper, gSett4all, this); break;
+    case 0: w = new DatabaseSettings(gHelper,  this); break;
     case 1: w = createPollWdgt(); break;
-    case 2: w = new UcEmulator(lDevInfo, gHelper, gSett4all, this); break;
-    case 3: w = new KtsConnectMode(lDevInfo, gHelper, gSett4all, this); break;
-    case 4: w = new OptionsWdgt(lDevInfo, gHelper, gSett4all, this); break;
+    case 2: w = new UcEmulator(gHelper,  this); break;
+//    case 3: w = new KtsConnectMode(gHelper,  this); break;
+    case 3: w = createOptionsWdgt(); break;
     }
 
     if(w){
@@ -114,10 +115,19 @@ MatildaConfWidget *ZbyratorOptions::createPollWdgt()
 {
 
 //    PollWdgtMom *m = ;
-    return (new PollWdgtMom(new PollWdgt(lDevInfo, gHelper, gSett4all, this), this))->pollWdgt;
+    return (new PollWdgtMom(new PollWdgt(gHelper,  this), this))->pollWdgt;
+}
+
+MatildaConfWidget *ZbyratorOptions::createOptionsWdgt()
+{
+    OptionsWdgt *w = new OptionsWdgt(gHelper, this);
+    w->hideButtons();    
+
+    return w;
 }
 
 void ZbyratorOptions::on_stackedWidget_currentChanged(int arg1)
 {
 
 }
+

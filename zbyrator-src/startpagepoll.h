@@ -5,7 +5,7 @@
 #include "template-pgs/selectdtwdgt.h"
 //#include "src/zbyrator-v2/zbyratordatatypehelper.h"
 #include "zbyrator-src/zbyrmeterlistmedium.h"
-#include "dataconcetrator-pgs/dbdatafrommodelhelper.h"
+#include "dataconcentrator-pgs/dbdatafrommodelhelper.h"
 
 
 namespace Ui {
@@ -17,7 +17,7 @@ class StartPagePoll : public MatildaConfWidget
     Q_OBJECT
 
 public:
-    explicit StartPagePoll(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent = 0);
+    explicit StartPagePoll(GuiHelper *gHelper, QWidget *parent = 0);
     ~StartPagePoll();
     ZbyrMeterListMedium *metersListMedium;
 

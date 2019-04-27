@@ -1,14 +1,35 @@
 #include "selectmeters4poll.h"
 #include "ui_selectmeters4poll.h"
-#include "src/widgets/selectionchecker.h"
-#include "gui-src/settloader.h"
-#include "src/zbyrator-v2/quickpollhelper.h"
-#include "zbyrator-src/src/getreadymetersdata.h"
+
 #include <QShortcut>
 #include <QKeySequence>
 
-SelectMeters4poll::SelectMeters4poll(LastDevInfo *lDevInfo, GuiHelper *gHelper, GuiSett4all *gSett4all, QWidget *parent) :
-    ReferenceWidgetClass(lDevInfo, gHelper, gSett4all, parent),
+///[!] quick-collect
+#include "zbyrator-src/src/getreadymetersdata.h"
+
+///[!] widgets-shared
+#include "src/widgets/selectionchecker.h"
+
+///[!] guisett-shared
+#include "src/nongui/settloader.h"
+
+///[!] zbyrator-shared
+#include "src/zbyrator-v2/quickpollhelper.h"
+
+#include "myucmmeterstypes.h"
+
+
+GetDataFromDbDoneSignalizator::GetDataFromDbDoneSignalizator(QObject *parent) : QObject(parent)
+{
+    connect(this, SIGNAL(onDbSelectorKickedOff()), this, SLOT(deleteLater()));
+    connect(this, SIGNAL(destroyed(QObject*)), this, SIGNAL(stopDbSelector()));
+}
+
+
+
+SelectMeters4poll::SelectMeters4poll(GetDataFromDbDoneSignalizator *signalizator, GuiHelper *gHelper, QWidget *parent) :
+
+    ReferenceWidgetClass(gHelper,  parent), signalizator(signalizator),
     ui(new Ui::SelectMeters4poll)
 {
     ui->setupUi(this);
@@ -47,7 +68,7 @@ void SelectMeters4poll::setPollSettWater(const QDateTime &dtFrom, const QDateTim
 void SelectMeters4poll::initPage()
 {
     setupObjects(ui->tvTable, ui->tbFilter, ui->cbFilterMode, ui->leFilter, SETT_FILTERS_ZBYR_SELMTRS);
-    StandardItemModelHelper::modelSetHorizontalHeaderItems(model, QStringList());
+    StandardItemModelHelper::setModelHorizontalHeaderItems(model, QStringList());
 
 
     SelectionChecker *tmr = new SelectionChecker(this);
@@ -59,6 +80,9 @@ void SelectMeters4poll::initPage()
     d->setPollSett(lPollSett.dtFrom, lPollSett.dtTo, lPollSett.pollCode, lPollSett.meterType);
 
     d->moveToThread(t);
+
+    connect(signalizator, &GetDataFromDbDoneSignalizator::stopDbSelector, d, &GetReadyMetersData::stopAllDirect, Qt::DirectConnection);
+    connect(t, SIGNAL(destroyed(QObject*)), signalizator, SIGNAL(onDbSelectorKickedOff()));
 
     connect(ui->pbCancel, SIGNAL(clicked(bool)), d, SLOT(stopAllDirect()), Qt::DirectConnection);
     connect(this, SIGNAL(destroyed(QObject*)), d, SLOT(stopAllDirect()), Qt::DirectConnection);
@@ -96,6 +120,7 @@ void SelectMeters4poll::setPageSett(const MyListStringList &listRows, const QVar
     ui->pbCheckedOn->setEnabled(enableBnts);
     ui->pbPollAll->setEnabled(enableBnts);
 
+    ui->tbFilter->setEnabled(!header.isEmpty());
 
     emit resizeTv2content(ui->tvTable);
 }
@@ -147,7 +172,7 @@ void SelectMeters4poll::sendStartPoll(const QStringList &listni)
 
 void SelectMeters4poll::on_pbSelected_clicked()
 {
-    sendStartPoll(TableViewHelper::selectedRowText(ui->tvTable, 1));
+    sendStartPoll(TableViewHelper::getSelectedRowsText(ui->tvTable, 1));
 }
 
 void SelectMeters4poll::on_pbCheckedOn_clicked()
@@ -163,3 +188,4 @@ void SelectMeters4poll::on_pbCheckedOn_clicked()
     }
     sendStartPoll(l);
 }
+

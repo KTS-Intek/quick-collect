@@ -4,11 +4,18 @@
 #include <QObject>
 #include <QStringList>
 #include <QDateTime>
+
+///[!] zbyrator-settings
 #include "src/meter/zbyratorfilesetthelper.h"
+
+///[!] zbyrator-base
 #include "src/zbyrator-v2/meterschedulerhelper.h"
 #include "src/zbyrator-v2/dataprocessinghelper.h"
+
+///[!] task-base
 #include "src/zbyrator-v2/meterschedulertypes.h"
-#include "src/matilda/classmanagertypes.h"
+
+#include "classmanagertypes.h"
 
 class GetReadyMetersData : public QObject
 {
