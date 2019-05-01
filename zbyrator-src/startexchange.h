@@ -104,6 +104,8 @@ private:
 
     MatildaConfWidget *createQuickDirectAccessWdgt(GuiHelper *gHelper, QWidget *parent = 0);
 
+    MatildaConfWidget *createIfaceSett4groupsWdgt(GuiHelper *gHelper, QWidget *parent = 0);
+
     void showWdgtByNameData(const QString &named);
 
 

@@ -79,7 +79,20 @@ void ZbyratorOptions::addThisWdgt2stack(const int &row, const QString &pageName,
     switch(row){
     case 0: w = new DatabaseSettings(gHelper,  this); break;
     case 1: w = createPollWdgt(); break;
-    case 2: w = new UcEmulator(gHelper,  this); break;
+    case 2:{
+
+//        GuiHelper *gHelper = new GuiHelper(this);
+//        gHelper->guiSett = this->gHelper->guiSett;
+//         gHelper->initObj();
+//         gHelper->parentWidget = ui->stackedWidget;
+//        gHelper->lDevInfo = this->gHelper->lDevInfo;
+
+        UcEmulator *e = new UcEmulator(gHelper->guiSett,  this);
+        connect(e, &UcEmulator::reloadSettings2ucEmulator, this, &ZbyratorOptions::reloadSettings2ucEmulator);
+        e->setWindowTitle(pageName);
+        StackWidgetHelper::addWdgtWithScrollArea2stackedWdgt(this, ui->stackedWidget, e, realPageName);
+
+        return;}
 //    case 3: w = new KtsConnectMode(gHelper,  this); break;
     case 3: w = createOptionsWdgt(); break;
     }

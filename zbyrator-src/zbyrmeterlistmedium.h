@@ -1,17 +1,21 @@
 #ifndef ZBYRMETERLISTMEDIUM_H
 #define ZBYRMETERLISTMEDIUM_H
 
+///[!] widgets-shared
 #include "gui-src/guiifacemedium.h"
 
-#include <QLineEdit>
 
-
+///[!] task-types
 #include "src/zbyrator-v2/zbyratordatatypehelper.h"
+
 
 ///[!] guisett-shared
 #include "src/nongui/classmanagermeterinfo.h"
 
+
 #include "classmanagertypes.h"
+
+#include <QLineEdit>
 
 //#include "zbyrator-src/src/ifacesettloader.h"
 //#include "src/matilda-conf/classmanagersharedobjects.h"
@@ -111,6 +115,17 @@ signals:
 
     void reloadSettings();
 
+
+    //zbyrator ipc
+    void command2extensionClient(quint16 command, QVariant dataVar);
+
+    void onAboutZigBee(QVariantHash hash);
+
+    void relayStatusChanged(QVariantMap map);
+
+    void setWaterPowerCenters(const QVariantList &meters);
+    void setElectricityPowerCenters(const QVariantList &meters);
+
 public slots:
     void onAllMetersSlot(UniversalMeterSettList allMeters);
 
@@ -139,6 +154,8 @@ public slots:
     void setLastPageId(QString accsblName);
 
     void onReloadAllMeters();
+
+    void onReloadAllZbyratorSettingsLocalSocket();
 
 private:
     struct LastList2pages
@@ -173,7 +190,7 @@ private:
     MyListStringList getRowsList(QMap<QString, QStringList> &mapPage, const QStringList &listNiNotchanged, const QMap<QString, QStringList> &mapPageL, const QStringList listNI, const int &rowsCounter);
 
 
-
+    void createLocalSocketObject();
 
 
 

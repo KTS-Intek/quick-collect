@@ -1,15 +1,21 @@
 #ifndef QCMAINWINDOW_H
 #define QCMAINWINDOW_H
 
-
+///[!] widgets-shared
 #include "gui-src/wdgt/mainifacemedium.h"
-#include <QTabBar>
-#include <QLabel>
 #include "gui-src/referencewidgetclass.h"
-#include "src/zbyrator-v2/zbyratordatatypehelper.h"
 
+
+///[!] quick-collect
 #include "zbyrator-src/zbyrmeterlistmedium.h"
 
+
+///[!] task-types
+#include "src/zbyrator-v2/zbyratordatatypehelper.h"
+
+
+#include <QTabBar>
+#include <QLabel>
 
 
 namespace Ui {
@@ -27,6 +33,7 @@ public:
 
 
 signals:
+    void reloadSettings2ucEmulator();
 
 
 
@@ -37,6 +44,7 @@ public slots:
 
 
     void onActivateThisWdgt(QString tabData);
+
 
 
 
@@ -65,6 +73,8 @@ private:
     void createZbyrProcManager();
 
     void createMeterManager();
+
+    void createMatildaBBBcover();
 
     MatildaConfWidget *createStartExchangeWdgt(GuiHelper *gHelper, QWidget *parent = 0);
 

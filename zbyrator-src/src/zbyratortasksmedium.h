@@ -24,6 +24,9 @@ public slots:
 
     void onTaskTableChanged();
 
+    void try2sendTaskTable();
+
+
     void onPageReady();
 
     void onZbyratorTasksPageSett(QVariantHash h);
@@ -33,6 +36,9 @@ private:
     bool sendUpdate;
     bool canSendUpdate, pageIsReady;
     QString dateMask;
+
+    MyListStringList lastList;
+    bool allowOnce;
 
 };
 

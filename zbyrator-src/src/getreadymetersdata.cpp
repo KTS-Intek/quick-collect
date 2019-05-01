@@ -212,6 +212,7 @@ void GetReadyMetersData::addAllMeters2table()
     }
     //tr("Meter;NI;Memo;Poll;Has data").split(";"));
 
+    QStringList powergroups;
     MyListStringList list;
     for(int i = 0, imax = meters.size(); i < imax; i++){
         const UniversalMeterSett m = meters.at(i);
@@ -223,10 +224,18 @@ void GetReadyMetersData::addAllMeters2table()
         l.append("-");//poll no
         l.append("?");//has data ? - unknown, + - has all data, ! - not all
 
+        const QString group = (m.powerin == "+") ? m.ni : m.powerin;
+        if(!group.isEmpty() && !powergroups.contains(group))
+            powergroups.append(group);
+        l.append(group);
         list.append(l);
     }
-    const QStringList header = tr("Meter;NI;Memo;Poll;Has data").split(";");
-    emit allMeters2selectWdgt(list, QVariantMap(), header, header, true);
+    const QStringList header = tr("Meter;NI;Memo;Poll;Has data;Group").split(";");
+
+    QVariantMap mapgrps;
+    mapgrps.insert("\r\ngroups\r\n", powergroups);
+
+    emit allMeters2selectWdgt(list, mapgrps, header, header, true);
 
 }
 

@@ -1,25 +1,61 @@
 #include "zbyrmeterlistmedium.h"
-#include "src/nongui/tableheaders.h"
-#include "myucmmeterstypes.h"
-#include "src/meter/zbyratorfilesetthelper.cpp"
+
+
 #include <QDebug>
 #include <QTimer>
-#include "zbyrator-src/src/zbyrtableheaders.h"
-#include "gui-src/standarditemmodelhelper.h"
-#include "src/matilda/moji_defy.h"
 
+
+///[!] guisett-shared-core
+#include "src/nongui/tableheaders.h"
 #include "src/nongui/settloader.h"
-#include "zbyrator-src/wdgt/compliterlistdialog.h"
-#include "src/matilda/serialporthelper.h"
-#include "src/shared/networkconverthelper.h"
+
+
+///[!] device-poll
+#include "src/meter/zbyratorfilesetthelper.cpp"
+
+
+///[!] quick-collect
+#include "zbyrator-src/src/zbyrtableheaders.h"
 #include "zbyrator-src/src/zbyratordatacalculation.h"
+#include "zbyrator-src/src/zbyratordatabasemedium.cpp"
+
+
+///[!] widgets-shared
+#include "gui-src/standarditemmodelhelper.h"
+#include "zbyrator-src/wdgt/compliterlistdialog.h"
+
+
+///[!] matilda-bbb-settings
+#include "src/matilda/serialporthelper.h"
+
+
+///[!] type-converter
+#include "src/shared/networkconverthelper.h"
+
+
+///[!] guisett-shared
 #include "zbyrator-src/src/startexchangehelper.h"
 
-#include "zbyrator-src/src/zbyratordatabasemedium.cpp"
+
+///[!] meters-shared
 #include "zbyrator-water/src/watersleepschedulesaver.h"
-#include "src/zbyrator-v2/watermeterhelper.h"
-#include "src/zbyrator-v2/metersloader.h"
 #include "zbyrator-src/protocol5togui.h"
+
+
+///[!] zbyrator-shared
+#include "src/zbyrator-v2/watermeterhelper.h"
+
+
+///[!] zbyrator-settings
+#include "src/zbyrator-v2/metersloader.h"
+
+
+///[!] zbyrator-base
+#include "src/ipc/zbyratorsocket.h"
+
+
+#include "myucmmeterstypes.h"
+#include "moji_defy.h"
 
 //---------------------------------------------------------------------
 
@@ -35,6 +71,7 @@ ZbyrMeterListMedium::ZbyrMeterListMedium(QObject *parent) : GuiIfaceMedium(paren
 
     createDataCalculator();
     createDatabaseMedium();
+    createLocalSocketObject();
 }
 
 
@@ -328,6 +365,12 @@ void ZbyrMeterListMedium::onReloadAllMeters()
     }
     emit onReloadAllMeters2zbyrator();
 }
+
+void ZbyrMeterListMedium::onReloadAllZbyratorSettingsLocalSocket()
+{
+    emit onReloadAllMeters2zbyrator();
+
+}
 //---------------------------------------------------------------------
 QStringList ZbyrMeterListMedium::universalMeterSett2listRow(const UniversalMeterSett &m, QStringList &ldata, QList<int> &lcols)
 {
@@ -419,16 +462,31 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
     int meterWaterActive = 0;
 //    QStringList listNiNotchanged;
 
+    QMap<quint8, QVariantList> mappowercenters;
     QMap<quint8, QString> mapMetertype2ni;
     for(int i = 0; i < activeMetersSize; i++){
 
         const UniversalMeterSett m = activeMeters.at(i);
+
+        if(m.powerin == "+"){
+            QVariantHash h;
+            h.insert("NI", m.ni);
+            h.insert("memo", m.memo);
+            h.insert("SN", m.sn);
+            h.insert("model", m.model);
+            QVariantList powercenters = mappowercenters.value(m.meterType);
+            powercenters.append(h);
+            mappowercenters.insert(m.meterType, powercenters);
+        }
+
         if(checkOffMeters && !m.pollEnbl){
             pollOffMeters++;
             continue;
         }
         pollOnMeters++;
         const QString mainParms = QString("%1\t%2\t%3\t%4\t%5").arg(m.model).arg(m.version).arg(m.sn).arg(m.memo).arg(m.coordinate);//model version SN memo
+
+
 
         switch(m.meterType){
         case UC_METER_ELECTRICITY:{
@@ -482,6 +540,14 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
     }
 
 
+    const QList<quint8> typelk = mappowercenters.keys();
+    for(int i = 0, imax = typelk.size(); i < imax; i++){
+        const quint8 meterType = typelk.at(i);
+        switch(meterType){
+        case UC_METER_ELECTRICITY   : emit setElectricityPowerCenters(mappowercenters.value(meterType)) ; break;
+        case UC_METER_WATER         : emit setWaterPowerCenters(mappowercenters.value(meterType))       ; break;
+        }
+    }
 
 //    if(checkOffMeters || lastMeters2pages.listNI != lastMeters2pagesL.listNI || lastMeters2pages.mainParams != lastMeters2pagesL.mainParams){
 
@@ -555,5 +621,40 @@ MyListStringList ZbyrMeterListMedium::getRowsList(QMap<QString, QStringList> &ma
 
     mapPage = mapPageL;
     return listRows;
+}
+
+void ZbyrMeterListMedium::createLocalSocketObject()
+{
+
+
+    const bool verboseMode = false;
+    const bool activeDbgMessages = false;
+    ZbyratorSocket *extSocket = new ZbyratorSocket(verboseMode);
+    extSocket->activeDbgMessages = activeDbgMessages;
+
+    extSocket->initializeSocket(MTD_EXT_NAME_ZBYRATOR);
+    QThread *extSocketThrd = new QThread(this);
+    extSocket->moveToThread(extSocketThrd);
+
+//    connect(extSocket, &ZbyratorSocket::appendDbgExtData, this, &ZbyratorManager::appendDbgExtData );
+
+    connect(extSocketThrd, &QThread::started, extSocket, &ZbyratorSocket::onThreadStarted);
+
+    connect(extSocket, &ZbyratorSocket::onConfigChanged , this, &ZbyrMeterListMedium::onConfigChanged  );
+
+    connect(extSocket, SIGNAL(onConfigChanged(quint16,QVariant)), this, SLOT(onReloadAllZbyratorSettingsLocalSocket()));
+
+//    connect(extSocket, &ZbyratorSocket::command4dev     , this, &ZbyrMeterListMedium::command4devSlot);
+
+    connect(extSocket, SIGNAL(command4dev(quint16,QString)), this, SLOT(command4devSlot(quint16,QString)));
+
+    connect(this, &ZbyrMeterListMedium::command2extensionClient, extSocket, &ZbyratorSocket::command2extensionClient   );
+    connect(this, &ZbyrMeterListMedium::onAboutZigBee          , extSocket, &ZbyratorSocket::sendAboutZigBeeModem      );
+    connect(this, &ZbyrMeterListMedium::relayStatusChanged     , extSocket, &ZbyratorSocket::relayStatusChanged        );
+
+
+//    extSocketThrd->start();
+    QTimer::singleShot(7777, extSocketThrd, SLOT(start()));
+
 }
 

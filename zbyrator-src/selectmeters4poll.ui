@@ -46,7 +46,7 @@
         <string>All visible</string>
        </property>
        <property name="icon">
-        <iconset resource="../res.qrc">
+        <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
          <normaloff>:/katynko/svg/table.svg</normaloff>:/katynko/svg/table.svg</iconset>
        </property>
       </widget>
@@ -60,7 +60,7 @@
         <string>Selected</string>
        </property>
        <property name="icon">
-        <iconset resource="../res.qrc">
+        <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
          <normaloff>:/katynko/svg2/sx12452-all.svg</normaloff>:/katynko/svg2/sx12452-all.svg</iconset>
        </property>
       </widget>
@@ -74,7 +74,7 @@
         <string>Checked &quot;On&quot;</string>
        </property>
        <property name="icon">
-        <iconset resource="../res.qrc">
+        <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
          <normaloff>:/katynko/svg/flag-red.svg</normaloff>:/katynko/svg/flag-red.svg</iconset>
        </property>
       </widget>
@@ -85,10 +85,29 @@
         <string>Cancel</string>
        </property>
        <property name="icon">
-        <iconset resource="../res.qrc">
+        <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
          <normaloff>:/katynko/svg/edit-delete.svg</normaloff>:/katynko/svg/edit-delete.svg</iconset>
        </property>
       </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Ignored</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QComboBox" name="cbxGroups"/>
      </item>
      <item>
       <spacer name="horizontalSpacer">
@@ -129,7 +148,7 @@
         <string>...</string>
        </property>
        <property name="icon">
-        <iconset resource="../res.qrc">
+        <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
          <normaloff>:/katynko/svg/view-filter.svg</normaloff>:/katynko/svg/view-filter.svg</iconset>
        </property>
        <property name="checkable">
@@ -206,7 +225,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../res.qrc"/>
+  <include location="../../../Matilda-units/gui/image-and-font/res.qrc"/>
  </resources>
  <connections/>
 </ui>

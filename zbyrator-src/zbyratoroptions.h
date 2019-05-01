@@ -16,6 +16,10 @@ public:
     ~ZbyratorOptions();
 
 
+signals:
+    void reloadSettings2ucEmulator();
+
+
 public slots:
     void initPage();
 

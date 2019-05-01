@@ -115,6 +115,19 @@ void SelectMeters4poll::setPageSett(const MyListStringList &listRows, const QVar
 //    if(!currNi.isEmpty())
 //        TableViewHelper::selectRowWithThisCell(ui->tvTable, currNi, headerH.indexOf("NI"));
 
+    QStringList powerins = col2data.value("\r\ngroups\r\n").toStringList();
+    powerins.prepend("");
+
+    disconnect(ui->cbxGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(onCbxGroups_currentIndexChanged(QString)));
+    proxy_model->setSpecFilter(5, "+");
+    ui->cbxGroups->addItems(powerins);
+    ui->cbxGroups->setCurrentIndex(-1);
+    connect(ui->cbxGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(onCbxGroups_currentIndexChanged(QString)));
+    ui->cbxGroups->setCurrentIndex(0);
+
+
+
+
     const bool enableBnts = !listRows.isEmpty();
 
     ui->pbCheckedOn->setEnabled(enableBnts);
@@ -189,3 +202,9 @@ void SelectMeters4poll::on_pbCheckedOn_clicked()
     sendStartPoll(l);
 }
 
+
+void SelectMeters4poll::onCbxGroups_currentIndexChanged(const QString &arg1)
+{
+    proxy_model->setSpecFilter(5, arg1);
+
+}

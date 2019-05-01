@@ -65,6 +65,8 @@ private slots:
 
     void on_pbCheckedOn_clicked();
 
+    void onCbxGroups_currentIndexChanged(const QString &arg1);
+
 private:
     void sendStartPoll(const QStringList &listni);
 

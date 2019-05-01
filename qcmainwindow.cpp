@@ -1,37 +1,57 @@
 #include "qcmainwindow.h"
 #include "ui_qcmainwindow.h"
+
+///[!] quick-collect
+#include "zbyrator-src/createtoolbar.h"
+#include "zbyrator-src/ktsconnectwdgt.h"
+#include "zbyrator-src/startexchange.h"
+#include "zbyrator-src/zbyratoroptions.h"
+
+
+///[!] quick-collect-gui-core
+#include "quick-collect-gui-core/matilda-bbb-emulator/matildabbbcover.h"
+#include "quick-collect-gui-core/processes/zbyratorprocessmanager.h" //launches SQLiteMediumLocalServer
+
+
+///[!] guisett-shared-core
 #include "src/nongui/settloader.h"
+
+///[!] guisett-shared
+#include "guisett-shared-src/appversion.h"
+
+
+///[!] widgets-shared
 #include "main-pgs/langdialog.h"
+#include "gui-src/stackwidgethelper.h"
+#include "template-pgs/smplptewdgt.h"
+#include "gui-src/guihelperdefines.h"
+#include "main-pgs/custommessagewidget.h"
+#include "main-pgs/scanipwidget.h"
+
+
+///[!] widgets-meters
+#include "dataconcetrator-pgs/meterlistwdgt.h"
+#include "dataconcetrator-pgs/src/databasewdgtv2.h"
+#include "dataconcetrator-pgs/editenergywidget.h"
+
+
+
+
+///[!] zbyrator-base
+#include "src/zbyrator-v2/metermanager.h"
+
+
 #include <QDebug>
 #include <QTimer>
 #include <QLocale>
 #include <QDesktopWidget>
 #include <QStyleFactory>
-#include "zbyrator-src/createtoolbar.h"
-#include "gui-src/stackwidgethelper.h"
 
-#include "dataconcetrator-pgs/meterlistwdgt.h"
-#include "src/matilda/moji_defy.h"
-//#include "dataconcetrator-pgs/databasewdgt.h"
-#include "dataconcetrator-pgs/src/databasewdgtv2.h"
-
-#include "dataconcetrator-pgs/editenergywidget.h"
-#include "dataconcetrator-pgs/meterjournalform.h"
-#include "template-pgs/smplptewdgt.h"
-#include "zbyrator-src/ktsconnectwdgt.h"
-#include "zbyrator-src/startexchange.h"
-#include "src/zbyrator-v2/metermanager.h"
-#include "zbyrator-src/zbyratorprocessmanager.h"
-
-#include "gui-src/guihelperdefines.h"
-#include "main-pgs/custommessagewidget.h"
+#include "moji_defy.h"
 
 
-#include "main-pgs/scanipwidget.h"
 //#include "src/matilda/classmanagerudpscanner.h"
-#include "guisett-shared-src/appversion.h"
 
-#include "zbyrator-src/zbyratoroptions.h"
 
 
 QcMainWindow::QcMainWindow(const QFont &font4log, const int &defFontPointSize,  QWidget *parent) :
@@ -65,6 +85,7 @@ void QcMainWindow::initPage()
     createToolBar();
     createZbyrProcManager();
     createMeterManager();
+    createMatildaBBBcover();
 
 }
 
@@ -206,18 +227,25 @@ void QcMainWindow::createMeterManager()
     connect(metersListMedium, &ZbyrMeterListMedium::updateHashSn2meter, guiHelper, &GuiHelper::updateHashSn2meter);
     connect(metersListMedium, &ZbyrMeterListMedium::data2dbMedium      , guiHelper, &GuiHelper::updateSettDateMaskAndDotPos);
 
+    connect(metersListMedium, &ZbyrMeterListMedium::setElectricityPowerCenters, guiHelper, &GuiHelper::setElectricityPowerCenters);
+    connect(metersListMedium, &ZbyrMeterListMedium::setWaterPowerCenters, guiHelper, &GuiHelper::setWaterPowerCenters);
+    guiHelper->setObjectName("QcMainWindow");
+
     connect(metersListMedium, &ZbyrMeterListMedium::appendAppLog        , this, &QcMainWindow::appendShowMessPlain );
 
-    connect(metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters2zbyrator, zbyrator, &MeterManager::onReloadAllMeters    );
+    connect(metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters2zbyrator, zbyrator, &MeterManager::onReloadAllMetersIgnoreOff    );
     connect(metersListMedium, &ZbyrMeterListMedium::onConfigChanged     , zbyrator, &MeterManager::onConfigChanged      );
     connect(metersListMedium, &ZbyrMeterListMedium::sendMeAlistOfMeters , zbyrator, &MeterManager::sendMeAlistOfMeters  );
 
     connect(metersListMedium, &ZbyrMeterListMedium::setThisIfaceSett    , zbyrator, &MeterManager::setThisIfaceSett     );
-    connect(metersListMedium, &ZbyrMeterListMedium::setPollSaveSettings , zbyrator, &MeterManager::setPollSaveSettings  );
+//    connect(metersListMedium, &ZbyrMeterListMedium::setPollSaveSettings , zbyrator, &MeterManager::setPollSaveSettings  ); zbyrator has it's own
+    connect(metersListMedium, SIGNAL(setPollSaveSettings(quint16,quint16,bool,bool,bool,qint32,qint32,qint32,bool)), zbyrator, SLOT(reloadPollSettings()));
 
     connect(metersListMedium, &ZbyrMeterListMedium::giveMeYourCache     , zbyrator, &MeterManager::giveMeYourCache      );
     connect(metersListMedium, &ZbyrMeterListMedium::killUconTasks       , zbyrator, &MeterManager::killUconsTasks       );
     connect(metersListMedium, &ZbyrMeterListMedium::setIgnoreCycles     , zbyrator, &MeterManager::setIgnoreCycles      );
+    connect(metersListMedium, &ZbyrMeterListMedium::setOnlyGlobalConnection     , zbyrator, &MeterManager::setOnlyGlobalConnection      );
+
     connect(metersListMedium, &ZbyrMeterListMedium::reloadSavedSleepProfiles, zbyrator, &MeterManager::reloadSavedSleepProfiles      );
     connect(metersListMedium, &ZbyrMeterListMedium::reloadSettings, zbyrator, &MeterManager::reloadSettings);
 
@@ -245,11 +273,18 @@ void QcMainWindow::createMeterManager()
 
     connect(zbyrator, &MeterManager::appendAppOut, this, &QcMainWindow::appendShowMessPlain);
 
+
+    connect(zbyrator, &MeterManager::command2extensionClient, metersListMedium, &ZbyrMeterListMedium::command2extensionClient   );
+    connect(zbyrator, &MeterManager::onAboutZigBee          , metersListMedium, &ZbyrMeterListMedium::onAboutZigBee      );
+    connect(zbyrator, &MeterManager::relayStatusChanged     , metersListMedium, &ZbyrMeterListMedium::relayStatusChanged        );
+
     guiHelper->managerEnDisBttn.pbReadDis = guiHelper->managerEnDisBttn.pbWriteDis =false;
 
     connect(zbyrator, &MeterManager::onConnectionStateChanged, guiHelper, &GuiHelper::setPbWriteEnableDisableSlot);// ReadEnableDisableSlot);
 
     QTimer::singleShot(1111, thread, SLOT(start()) );
+
+    connect(this, &QcMainWindow::reloadSettings2ucEmulator, metersListMedium, &ZbyrMeterListMedium::reloadSettings);
 
 
     connect(guiHelper, &GuiHelper::setDateMask, metersListMedium, &ZbyrMeterListMedium::setDateMask);
@@ -258,8 +293,45 @@ void QcMainWindow::createMeterManager()
 
 //---------------------------------------------------------------------
 
+void QcMainWindow::createMatildaBBBcover()
+{
+    const QString nameStr = "Matilda";
+    const bool verbose =
+        #ifdef Q_OS_LINUX
+            true
+        #else
+            false
+        #endif
+            ;
+    MatildaBBBcover *c = new MatildaBBBcover(nameStr, verbose);
+    QThread *t = new QThread;
+    c->moveToThread(t);
+
+    connect(this, SIGNAL(destroyed(QObject*)), c, SLOT(deleteLater()));
+    connect(c, SIGNAL(destroyed(QObject*)), t, SLOT(quit()));
+    connect(t, SIGNAL(finished()), t, SLOT(deleteLater()));
+
+    connect(t, SIGNAL(started()), c, SLOT(onThreadStarted()));
+
+    connect(this, &QcMainWindow::reloadSettings2ucEmulator, c, &MatildaBBBcover::reloadSettings2ucEmulator);
+
+    t->start();
+}
+
+//---------------------------------------------------------------------
+
 MatildaConfWidget *QcMainWindow::createStartExchangeWdgt(GuiHelper *gHelper, QWidget *parent)
 {
+//    GuiHelper *guiHelper = new GuiHelper(this);
+//    guiHelper->initObj();
+//    guiHelper->guiSett = guiSett;
+//    guiHelper->lDevInfo = gHelper->lDevInfo;
+
+//    guiHelper->cacheHelper = gHelper->cacheHelper;
+//    guiHelper->stackedWidget = gHelper->stackedWidget;
+//    guiHelper->parentWidget = this;
+
+
     StartExchange *w = new StartExchange(gHelper,  parent);
     w->metersListMedium = metersListMedium;
     this->lastIfaceLoader4mainwindow = metersListMedium->ifaceLoaderPrimary;
@@ -359,6 +431,8 @@ void QcMainWindow::on_actionOptions_triggered()
         ZbyratorOptions *w = new ZbyratorOptions(guiHelper, this);
 
         connect(w, SIGNAL(destroyed(QObject*)), metersListMedium, SIGNAL(reloadSettings()));
+
+        connect(w, &ZbyratorOptions::reloadSettings2ucEmulator, this, &QcMainWindow::reloadSettings2ucEmulator);
 
         addWdgt2stackWdgt(w, WDGT_TYPE_OPTIONS, false, "", "");// tr("Options"), ":/katynko/svg/applications-system.svg");
     }

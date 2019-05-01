@@ -3,23 +3,39 @@
 #include "gui-src/stackwidgethelper.h"
 #include "gui-src/treemodel.h"
 
+///[!] quick-collect
+#include "src/zbyratortasksmedium.h"
 #include "startpagepollv2.h"
 #include "relaywdgt.h"
 #include "metersdatetime.h"
 #include "setmeteraddress.h"
 #include "checkconnectiontoolwdgt.h"
 #include "zbyratorservice.h"
-#include "zbyrator-src/zbyrifacesett.h"
+#include "ifacesett4groups.h"
+
+
+///[!] matilda-conf-shared-widgets
 #include "info-pgs/zbyratortasks.h"
 #include "info-pgs/statisticofexchangewdgt.h"
+
+
+///[!] widgets-shared
 #include "prepaid-pgs/ifaceindicationwdgt.h"
-#include "src/zbyratortasksmedium.h"
-#include "zbyrator-src/src/startexchangehelper.h"
-#include "zbyrator-water/watersleepscheduler.h"
 #include "src/widgets/ifacelabel.h"
+#include "zbyrator-src/zbyrifacesett.h"
+
+
+///[!] guisett-shared
+#include "zbyrator-src/src/startexchangehelper.h"
+
+
+///[!] widgets-meters
+#include "zbyrator-water/watersleepscheduler.h"
+
 
 ///[!] matilda-conf-shared-widgets
 #include "global-pgs/directaccessviamatilda.h"
+
 
 StartExchange::StartExchange(GuiHelper *gHelper, QWidget *parent) :
     MatildaConfWidget(gHelper,  parent),
@@ -55,6 +71,8 @@ void StartExchange::initPage()
     connect(ui->swDeviceOperations, SIGNAL(currentChanged(int)), this, SLOT(onSwDevicesCurrIndxChanged()) );
     ui->wdgtReadButton->setEnabled(false);
 
+    connect(guiHelper, SIGNAL(showMessExt(QString,int,QVariant)), gHelper, SIGNAL(showMessExt(QString,int,QVariant)));
+
     connect(gHelper, SIGNAL(setPbWriteEnableDisable(bool)), this, SLOT(checkPbReadEnabled()));// ui->pbRead, SLOT(setDisabled(bool)));
     checkPbReadEnabled();
 //    ui->pbRead->setDisabled(gHelper->managerEnDisBttn.pbWriteDis);
@@ -82,6 +100,10 @@ void StartExchange::initPage()
 
     connect(metersListMedium, SIGNAL(setLblWaitTxt(QString)), this, SLOT(updateScrollAreaHeight()) );
     connect(metersListMedium, &ZbyrMeterListMedium::updateHashSn2meter, guiHelper, &GuiHelper::updateHashSn2meter);
+
+//    connect(metersListMedium, &ZbyrMeterListMedium::setElectricityPowerCenters, guiHelper, &GuiHelper::setElectricityPowerCenters);
+//    connect(metersListMedium, &ZbyrMeterListMedium::setWaterPowerCenters, guiHelper, &GuiHelper::setWaterPowerCenters);
+    guiHelper->setObjectName("StartExchange");
 
     QStringList listIcos, chListNames;
 
@@ -199,6 +221,7 @@ void StartExchange::addWdgt2stackWdgt(QWidget *w, const int &wdgtType, bool oneS
     if(oneShot)
         connect(this, &StartExchange::killOldWdgtSingleShot, w, &QWidget::deleteLater);
 
+    connect(w, SIGNAL(destroyed(QObject*)), this, SLOT(showLastWdgt()));
 
     if(!oneShot && WidgetsHelper::stackContainsThisWdgt(ui->swDeviceOperations, wdgtAccessibleName, true, 0)){
         MatildaConfWidget *ww = currentMatildaWidget();
@@ -226,8 +249,8 @@ void StartExchange::on_tbIfaceSett_clicked()
 {
     //open iface settings widget
 
-    showWdgtByNameData("Interface");
-
+//    showWdgtByNameData("Interface");
+    showWdgtByName("Interface", tr("Interface"));
 
 //    TreeModel * modelDevOptTree = new TreeModel(this);
 
@@ -255,6 +278,7 @@ MatildaConfWidget *StartExchange::createStartPagePoll(GuiHelper *gHelper, QWidge
 
     connect(w, &StartPagePollV2::lockPbRead, this, &StartExchange::lockPbRead);
     connect(w, &StartPagePollV2::onCbxIgnoreRetr  , metersListMedium, &ZbyrMeterListMedium::setIgnoreCycles);
+    connect(w, &StartPagePollV2::onCbxOnlyGlobalConnection  , metersListMedium, &ZbyrMeterListMedium::setOnlyGlobalConnection);
 
     connect(w, &StartPagePollV2::onReloadAllMeters, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters );
     connect(w, &StartPagePollV2::onPollStarted    , metersListMedium, &ZbyrMeterListMedium::onPollStarted     );
@@ -314,7 +338,7 @@ connect(this, SIGNAL(lockButtons(bool)), w, SIGNAL(lockButtons(bool)));
 //-----------------------------------------------------------------------------------------------
 MatildaConfWidget *StartExchange::createZbyrIfaceSett(GuiHelper *gHelper, QWidget *parent)
 {
-    ZbyrIfaceSett * w = new ZbyrIfaceSett(gHelper,  parent);
+    ZbyrIfaceSett * w = new ZbyrIfaceSett(tr("Global interface settings"), gHelper,  parent);
 
     connect(metersListMedium, SIGNAL(setIfaceSett(QVariantHash)), w, SLOT(setPageSett(QVariantHash)) );
     connect(w, SIGNAL(setNewSettings(QVariantHash)), metersListMedium, SLOT(setNewSettings(QVariantHash)));
@@ -354,7 +378,7 @@ MatildaConfWidget *StartExchange::createZbyratorTaskWdgt(GuiHelper *gHelper, QWi
     connect(w, SIGNAL(onZbyratorConfigChanged(quint16,QVariant)), metersListMedium, SIGNAL(onConfigChanged(quint16,QVariant)));
 
     connect(metersListMedium, SIGNAL(onTaskTableChanged()), m, SLOT(onTaskTableChanged()));
-    connect(w, SIGNAL(onPageCanReceiveData()), m, SLOT(onPageReady()));
+    connect(w, SIGNAL(pageEndInit()), m, SLOT(onPageReady()));
 
     connect(m, SIGNAL(setZbyratorTasksPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)), w, SLOT(setPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)));
 
@@ -380,6 +404,20 @@ MatildaConfWidget *StartExchange::createQuickDirectAccessWdgt(GuiHelper *gHelper
 {
     DirectAccessViaMatilda *w = new DirectAccessViaMatilda(gHelper, parent);
 
+    return w;
+
+}
+//-----------------------------------------------------------------------------------------------
+MatildaConfWidget *StartExchange::createIfaceSett4groupsWdgt(GuiHelper *gHelper, QWidget *parent)
+{
+    IfaceSett4groups * w = new IfaceSett4groups(gHelper, parent);
+
+
+    connect(w, SIGNAL(sendMeTheTcpHistory(QLineEdit*))      , metersListMedium, SLOT(openTcpServerDlg(QLineEdit*)) );
+    connect(w, SIGNAL(sendMeTheM2mHistory(QLineEdit*))      , metersListMedium, SLOT(openM2mDlg(QLineEdit*)));
+    connect(w, SIGNAL(openEditMacProfileWdgt(bool,QLineEdit*)), this, SIGNAL(openEditMacProfileWdgt(bool,QLineEdit*)));
+
+    connect(w, SIGNAL(addIfaceSett2history(QVariantHash)), metersListMedium, SLOT(addIfaceSett2history(QVariantHash)));
     return w;
 
 }
@@ -450,21 +488,22 @@ void StartExchange::addWdgt2devStack(const QString &realPageName, const QString 
     bool hasReadButton = false;
     const int row = chListData.indexOf(realPageName);
     switch(row){
-    case 0: w = createStartPagePoll(    guiHelper,  this); hasReadButton = true; break;
-    case 1: w = createWaterSleepSchedulerWdgt(        guiHelper,  this); hasReadButton = true; break;
+    case 0: w = createStartPagePoll(            guiHelper, this); hasReadButton = true; break;
+    case 1: w = createWaterSleepSchedulerWdgt(  guiHelper, this); hasReadButton = true; break;
 
-    case 2: w = createRelayWdgt(        guiHelper,  this); hasReadButton = true; break;
+    case 2: w = createRelayWdgt(                guiHelper, this); hasReadButton = true; break;
 
-    case 3: w = createZbyratorTaskWdgt( guiHelper,  this); break;
-    case 4: w = createStatisticWdgt( guiHelper,  this); break;
+    case 3: w = createZbyratorTaskWdgt(         guiHelper, this); break;
+    case 4: w = createStatisticWdgt(            guiHelper, this); break;
 
-    case 5: w = createMetersDateTime(   guiHelper,  this); hasReadButton = true; break;
-    case 6: w = new SetMeterAddress(    guiHelper,  this); break;
+    case 5: w = createMetersDateTime(           guiHelper, this); hasReadButton = true; break;
+    case 6: w = new SetMeterAddress(            guiHelper, this); break;
 
-    case 7: w = new CheckConnectionToolWdgt( guiHelper,  this); break;
-    case 9: w = createZbyratorServiceWdgt(guiHelper, this); break;
-    case 8: w = createQuickDirectAccessWdgt(guiHelper, this); break;
-    case 10: w = createZbyrIfaceSett(      guiHelper,  this); break;
+    case 7: w = new CheckConnectionToolWdgt(    guiHelper, this); break;
+    case 8: w = createQuickDirectAccessWdgt(    guiHelper, this); break;
+    case 9: w = createZbyratorServiceWdgt(      guiHelper, this); break;
+    case 10: w = createIfaceSett4groupsWdgt(    guiHelper, this); break;
+    case 11: w = createZbyrIfaceSett(           guiHelper, this); break;
 
     }
 

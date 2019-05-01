@@ -42,6 +42,9 @@ DEFINES += HASGUI4USR
 DEFINES += HASSETTLOADEREMUL
 DEFINES += DONOTINCLUDEFIREFLY
 
+# it reduces matilda-bbb-core functionality
+DEFINES += DISABLE_WATCHDOG_TIMER
+DEFINES += DISABLE_PROC_MANAGER
 
 #appversion.cpp
 VERSION = 0.2.1
@@ -54,7 +57,11 @@ DEFINES += "MYAPPOWNERSITE=\"\\\"http://kts-intek.com.ua\\\"\""
 #defines that disable some modules, that I don't want to use
 DEFINES += DISABLEVPNMANAGER
 DEFINES += DISABLECOMMANDONUPDATE
+DEFINES += DISABLE_RUN_PROCESS
 
+
+# I need some functionality
+DEFINES += IS_USESTARTDEV
 
 
 # You can also make your code fail to compile if you use deprecated APIs.
@@ -113,6 +120,19 @@ include(../../Matilda-units/firefly/firefly-shared/firefly-shared.pri)
 
 include(../../Matilda-units/gui/quick-collect-gui-core/quick-collect-gui-core.pri)
 
+include(../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-core.pri)
+
+include(../../Matilda-units/ipc/localsockets/localsockets.pri)
+
+include(../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon.pri)
+
+include(../../Matilda-units/qtwidgetonly/matilda-conf-widgets/matilda-conf-widgets.pri)
+
+include(../../Matilda-units/qtwidgetonly/prepaid-shared/prepaid-shared.pri)
+
+include(../../Matilda-units/matilda-bbb/matilda-bbb-clientside/matilda-bbb-clientside.pri)
+
+
 SOURCES += \
         main.cpp \
         qcmainwindow.cpp \
@@ -125,7 +145,6 @@ SOURCES += \
     zbyrator-src/checkconnectiontoolwdgt.cpp \
     zbyrator-src/zbyratorservice.cpp \
     zbyrator-src/startpagepoll.cpp \
-    zbyrator-src/zbyratorprocessmanager.cpp \
     zbyrator-src/zbyrmeterlistmedium.cpp \
     zbyrator-src/src/zbyrtableheaders.cpp \
     zbyrator-src/src/zbyratordatacalculation.cpp \
@@ -141,7 +160,9 @@ SOURCES += \
     zbyrator-src/src/zbyratorucmedium.cpp \
     zbyrator-src/startpagepollv2.cpp \
     zbyrator-src/waterstartpollsleepdlg.cpp \
-    zbyrator-src/src/startpollsetmetermodeldialog.cpp
+    zbyrator-src/src/startpollsetmetermodeldialog.cpp \
+    zbyrator-src/ifacesett4groups.cpp \
+    zbyrator-src/ifacesett4groupseditor.cpp
 
 
 HEADERS += \
@@ -155,7 +176,6 @@ HEADERS += \
     zbyrator-src/checkconnectiontoolwdgt.h \
     zbyrator-src/zbyratorservice.h \
     zbyrator-src/startpagepoll.h \
-    zbyrator-src/zbyratorprocessmanager.h \
     zbyrator-src/zbyrmeterlistmedium.h \
     zbyrator-src/src/zbyrtableheaders.h \
     zbyrator-src/src/zbyratordatacalculation.h \
@@ -171,7 +191,9 @@ HEADERS += \
     zbyrator-src/src/zbyratorucmedium.h \
     zbyrator-src/startpagepollv2.h \
     zbyrator-src/waterstartpollsleepdlg.h \
-    zbyrator-src/src/startpollsetmetermodeldialog.h
+    zbyrator-src/src/startpollsetmetermodeldialog.h \
+    zbyrator-src/ifacesett4groups.h \
+    zbyrator-src/ifacesett4groupseditor.h
 
 
 FORMS += \
@@ -190,7 +212,8 @@ FORMS += \
     zbyrator-src/options/ktsconnectmode.ui \
     zbyrator-src/selectmeters4poll.ui \
     zbyrator-src/waterstartpollsleepdlg.ui \
-    zbyrator-src/src/startpollsetmetermodeldialog.ui
+    zbyrator-src/src/startpollsetmetermodeldialog.ui \
+    zbyrator-src/ifacesett4groupseditor.ui
 
 
 RESOURCES +=
