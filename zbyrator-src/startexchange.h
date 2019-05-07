@@ -43,6 +43,7 @@ public slots:
 
     void lockPbRead(bool disable);
 
+
 signals:
     void stopExchange();
 

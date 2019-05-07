@@ -64,35 +64,119 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QPushButton" name="pbLoadOff">
+          <widget class="QPushButton" name="pbRead">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="text">
-            <string>Load off</string>
+            <string>Read</string>
            </property>
            <property name="icon">
-            <iconset resource="../res.qrc">
+            <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
+             <normaloff>:/katynko/svg/format-disconnect-node.svg</normaloff>:/katynko/svg/format-disconnect-node.svg</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Ignored</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pbLoadOff">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Main Load off</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
              <normaloff>:/katynko/svg3/relay-load-off.svg</normaloff>:/katynko/svg3/relay-load-off.svg</iconset>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QPushButton" name="pbLoadOn">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="text">
-            <string>Load on</string>
+            <string>Main Load on</string>
            </property>
            <property name="icon">
-            <iconset resource="../res.qrc">
+            <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
              <normaloff>:/katynko/svg3/relay-load-on.svg</normaloff>:/katynko/svg3/relay-load-on.svg</iconset>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pbRead">
+          <spacer name="verticalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Ignored</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pbLoadOff_2">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="text">
-            <string>Read</string>
+            <string>Second Load off</string>
            </property>
            <property name="icon">
-            <iconset resource="../res.qrc">
-             <normaloff>:/katynko/svg/format-disconnect-node.svg</normaloff>:/katynko/svg/format-disconnect-node.svg</iconset>
+            <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
+             <normaloff>:/katynko/svg3/relay-load-off.svg</normaloff>:/katynko/svg3/relay-load-off.svg</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pbLoadOn_2">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Second Load on</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
+             <normaloff>:/katynko/svg3/relay-load-on.svg</normaloff>:/katynko/svg3/relay-load-on.svg</iconset>
            </property>
           </widget>
          </item>
@@ -135,7 +219,7 @@
         <string>...</string>
        </property>
        <property name="icon">
-        <iconset resource="../res.qrc">
+        <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
          <normaloff>:/katynko/svg2/lc_dbtableedit.svg</normaloff>:/katynko/svg2/lc_dbtableedit.svg</iconset>
        </property>
        <property name="checkable">
@@ -152,7 +236,7 @@
         <string>...</string>
        </property>
        <property name="icon">
-        <iconset resource="../res.qrc">
+        <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
          <normaloff>:/katynko/svg2/lc_browseview.svg</normaloff>:/katynko/svg2/lc_browseview.svg</iconset>
        </property>
        <property name="checkable">
@@ -173,7 +257,7 @@
         <string>...</string>
        </property>
        <property name="icon">
-        <iconset resource="../res.qrc">
+        <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
          <normaloff>:/katynko/svg/view-filter.svg</normaloff>:/katynko/svg/view-filter.svg</iconset>
        </property>
        <property name="checkable">
@@ -291,7 +375,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../res.qrc"/>
+  <include location="../../../Matilda-units/gui/image-and-font/res.qrc"/>
  </resources>
  <connections/>
 </ui>

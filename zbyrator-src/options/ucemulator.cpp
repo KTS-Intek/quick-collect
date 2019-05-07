@@ -114,6 +114,11 @@ void UcEmulator::createClassManager()
     manager->protocolVersionSlot(getDefProtocolVersion());
 
 
+//    connect(this, SIGNAL(startDaServer(qint8,quint16))      , manager, SIGNAL(startDaServer(qint8,quint16))   );
+//    connect(this, SIGNAL(stopDaServer())                    , manager, SIGNAL(stopDaServer())                 );
+//    connect(this, SIGNAL(setDaForwardNI(QByteArray))        , manager, SIGNAL(setDaForwardNI(QByteArray))     );
+
+
 }
 
 void UcEmulator::onNewMatildaWidgetAdded(MatildaConfWidget *w)

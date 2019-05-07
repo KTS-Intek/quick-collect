@@ -47,7 +47,7 @@ DEFINES += DISABLE_WATCHDOG_TIMER
 DEFINES += DISABLE_PROC_MANAGER
 
 #appversion.cpp
-VERSION = 0.2.1
+VERSION = 0.3.0
 
 DEFINES += APPLCTN_NAME=\\\"quick-collect\\\"
 DEFINES += "MYAPPNAME=\"\\\"Quick Collect\\\"\""
@@ -132,6 +132,8 @@ include(../../Matilda-units/qtwidgetonly/prepaid-shared/prepaid-shared.pri)
 
 include(../../Matilda-units/matilda-bbb/matilda-bbb-clientside/matilda-bbb-clientside.pri)
 
+include(../../Matilda-units/ifaces/peredavator-core/peredavator-core.pri)
+
 
 SOURCES += \
         main.cpp \
@@ -162,7 +164,8 @@ SOURCES += \
     zbyrator-src/waterstartpollsleepdlg.cpp \
     zbyrator-src/src/startpollsetmetermodeldialog.cpp \
     zbyrator-src/ifacesett4groups.cpp \
-    zbyrator-src/ifacesett4groupseditor.cpp
+    zbyrator-src/ifacesett4groupseditor.cpp \
+    zbyrator-src/src/watersleepschedulermom.cpp
 
 
 HEADERS += \
@@ -193,7 +196,8 @@ HEADERS += \
     zbyrator-src/waterstartpollsleepdlg.h \
     zbyrator-src/src/startpollsetmetermodeldialog.h \
     zbyrator-src/ifacesett4groups.h \
-    zbyrator-src/ifacesett4groupseditor.h
+    zbyrator-src/ifacesett4groupseditor.h \
+    zbyrator-src/src/watersleepschedulermom.h
 
 
 FORMS += \

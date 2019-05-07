@@ -12,6 +12,7 @@
 #include "checkconnectiontoolwdgt.h"
 #include "zbyratorservice.h"
 #include "ifacesett4groups.h"
+#include "src/watersleepschedulermom.h"
 
 
 ///[!] matilda-conf-shared-widgets
@@ -29,9 +30,6 @@
 #include "zbyrator-src/src/startexchangehelper.h"
 
 
-///[!] widgets-meters
-#include "zbyrator-water/watersleepscheduler.h"
-
 
 ///[!] matilda-conf-shared-widgets
 #include "global-pgs/directaccessviamatilda.h"
@@ -44,6 +42,7 @@ StartExchange::StartExchange(GuiHelper *gHelper, QWidget *parent) :
     ui->setupUi(this);
     localPbReadLocker = false;
     ui->trDevOperation->setEnabled(false);
+
 
 }
 //-----------------------------------------------------------------------------------------------
@@ -89,7 +88,7 @@ void StartExchange::initPage()
 
     guiHelper->managerEnDisBttn.pbWriteDis = false;
     connect(metersListMedium, &ZbyrMeterListMedium::onConnectionStateChanged, guiHelper, &GuiHelper::setPbWriteEnableDisableSlot);
-    connect(metersListMedium, &ZbyrMeterListMedium::setLblWaitTxt, ui->lblOperationInProgress, &QLabel::setText);
+//    connect(metersListMedium, &ZbyrMeterListMedium::setLblWaitTxt, ui->lblOperationInProgress, &QLabel::setText);
 
     ui->pbStop->setEnabled(guiHelper->managerEnDisBttn.pbWriteDis);
     connect(metersListMedium, &ZbyrMeterListMedium::onConnectionStateChanged, ui->pbStop, &QPushButton::setEnabled);
@@ -100,7 +99,6 @@ void StartExchange::initPage()
 
     connect(metersListMedium, SIGNAL(setLblWaitTxt(QString)), this, SLOT(updateScrollAreaHeight()) );
     connect(metersListMedium, &ZbyrMeterListMedium::updateHashSn2meter, guiHelper, &GuiHelper::updateHashSn2meter);
-
 //    connect(metersListMedium, &ZbyrMeterListMedium::setElectricityPowerCenters, guiHelper, &GuiHelper::setElectricityPowerCenters);
 //    connect(metersListMedium, &ZbyrMeterListMedium::setWaterPowerCenters, guiHelper, &GuiHelper::setWaterPowerCenters);
     guiHelper->setObjectName("StartExchange");
@@ -147,6 +145,7 @@ void StartExchange::initPage()
     connect(metersListMedium, SIGNAL(command4dev(quint16,QString)), this, SLOT(onCommandStarted()));
     connect(metersListMedium, SIGNAL(command4dev(quint16,QVariantMap)), this, SLOT(onCommandStarted()));
 
+     unlockTmpLock();//init state
 //    emit pageReady();
     QTimer::singleShot(555, this, SIGNAL(pageReady()));
 
@@ -244,6 +243,7 @@ void StartExchange::lockPbRead(bool disable)
 }
 
 
+
 //-----------------------------------------------------------------------------------------------
 void StartExchange::on_tbIfaceSett_clicked()
 {
@@ -275,6 +275,7 @@ MatildaConfWidget *StartExchange::createStartPagePoll(GuiHelper *gHelper, QWidge
     connect(metersListMedium, SIGNAL(appendData2model(QVariantHash)), w, SLOT(setPageSett(QVariantHash)) );
 
     connect(metersListMedium, &ZbyrMeterListMedium::onUpdatedSavedList, w, &StartPagePollV2::onUpdatedSavedList);
+    connect(metersListMedium, &ZbyrMeterListMedium::onExternalCommandProcessed, w, &StartPagePollV2::onExternalCommandProcessed);
 
     connect(w, &StartPagePollV2::lockPbRead, this, &StartExchange::lockPbRead);
     connect(w, &StartPagePollV2::onCbxIgnoreRetr  , metersListMedium, &ZbyrMeterListMedium::setIgnoreCycles);
@@ -285,23 +286,28 @@ MatildaConfWidget *StartExchange::createStartPagePoll(GuiHelper *gHelper, QWidge
 
     connect(w, SIGNAL(command4dev(quint16,QString))    , metersListMedium, SLOT(command4devSlot(quint16,QString)) );
     connect(w, SIGNAL(command4dev(quint16,QVariantMap)), metersListMedium, SLOT(command4devSlot(quint16,QVariantMap)) );
-
-
     connect(w, &StartPagePollV2::addWdgt2stackWdgt, this, &StartExchange::addWdgt2stackWdgt);
+    connect(this, &StartExchange::lockButtons, w, &StartPagePollV2::lockButtons);
 
+    connect(w, &StartPagePollV2::pageEndInit, this, &StartExchange::checkPbReadEnabled);
+    connect(w, &StartPagePollV2::checkPbStartPollEnabled, this, &StartExchange::checkPbReadEnabled);
+    connect(w, &StartPagePollV2::onPbStartPoll, this, &StartExchange::on_pbRead_clicked);
+
+
+    connect(w, SIGNAL(killCurrentTask()), ui->pbStop, SLOT(animateClick()));
     return w;
 }
 //-----------------------------------------------------------------------------------------------
 MatildaConfWidget *StartExchange::createWaterSleepSchedulerWdgt(GuiHelper *gHelper, QWidget *parent)
 {
-    WaterSleepScheduler *w = new WaterSleepScheduler(gHelper,  parent);
+    WaterSleepSchedulerMom *w = new WaterSleepSchedulerMom(gHelper,  parent);
 
-    connect(w, &WaterSleepScheduler::onReloadAllMeters, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters);
-    connect(w, &WaterSleepScheduler::setLastPageId, metersListMedium, &ZbyrMeterListMedium::setLastPageId);
+    connect(w, &WaterSleepSchedulerMom::onReloadAllMeters, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters);
+    connect(w, &WaterSleepSchedulerMom::setLastPageId, metersListMedium, &ZbyrMeterListMedium::setLastPageId);
     connect(w, SIGNAL(command4dev(quint16,QVariantMap)), metersListMedium, SLOT(command4devSlot(quint16,QVariantMap)) );
 
-    connect(w, &WaterSleepScheduler::reloadSavedSleepProfiles, metersListMedium, &ZbyrMeterListMedium::reloadSavedSleepProfiles);
-    connect(metersListMedium, &ZbyrMeterListMedium::waterMeterSchedulerStts, w, &WaterSleepScheduler::waterMeterSchedulerStts);
+    connect(w, &WaterSleepSchedulerMom::reloadSavedSleepProfiles, metersListMedium, &ZbyrMeterListMedium::reloadSavedSleepProfiles);
+    connect(metersListMedium, &ZbyrMeterListMedium::waterMeterSchedulerStts, w, &WaterSleepSchedulerMom::waterMeterSchedulerStts);
     connect(metersListMedium, SIGNAL(setWaterMeterSchedulerPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)), w, SLOT(setPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)) );
 
     connect(this, SIGNAL(lockButtons(bool)), w, SIGNAL(lockButtons(bool)));
@@ -403,6 +409,23 @@ MatildaConfWidget *StartExchange::createZbyratorServiceWdgt(GuiHelper *gHelper, 
 MatildaConfWidget *StartExchange::createQuickDirectAccessWdgt(GuiHelper *gHelper, QWidget *parent)
 {
     DirectAccessViaMatilda *w = new DirectAccessViaMatilda(gHelper, parent);
+
+    connect(metersListMedium, &ZbyrMeterListMedium::onQuickCollectDaStateChanged    , w, &DirectAccessViaMatilda::onDaServiceState  );
+    connect(metersListMedium, &ZbyrMeterListMedium::onQuickCollectDaStateChangedStr , w, &DirectAccessViaMatilda::onStateChanged    );
+    connect(metersListMedium, &ZbyrMeterListMedium::onDasStopped                    , w, &DirectAccessViaMatilda::onDasStopped      );
+    connect(metersListMedium, &ZbyrMeterListMedium::onDasStarted                    , w, &DirectAccessViaMatilda::onDasStarted      );
+    connect(metersListMedium, &ZbyrMeterListMedium::append2logDirectAccess          , w, &DirectAccessViaMatilda::append2log        );
+
+
+
+    connect(w, &DirectAccessViaMatilda::startDaServer   , metersListMedium, &ZbyrMeterListMedium::startApiAddressatorSlot   );
+    connect(w, &DirectAccessViaMatilda::stopDaServer    , metersListMedium, &ZbyrMeterListMedium::stopApiAddressator    );
+    connect(w, &DirectAccessViaMatilda::setDaForwardNI  , metersListMedium, &ZbyrMeterListMedium::setDaForwardNI        );
+
+    connect(w, &DirectAccessViaMatilda::pageEndInit , [=]{
+        metersListMedium->sendForcedQuickCollectDaChangingState();
+        metersListMedium->sendForcedQuickCollectDaState();
+    });
 
     return w;
 
@@ -559,6 +582,11 @@ void StartExchange::on_pbStop_clicked()
 
 void StartExchange::on_pbRead_clicked()
 {
+    if(!ui->pbRead->isEnabled()){
+        checkPbReadEnabled();
+        return;
+    }
+
     MatildaConfWidget *w = currentMatildaWidget();
 
     if(w){

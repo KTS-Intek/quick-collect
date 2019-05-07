@@ -220,6 +220,7 @@ void QcMainWindow::createMeterManager()
 //    connect(zbyrator, &MeterManager::onAboutZigBee          , extSocket, &ZbyratorSocket::sendAboutZigBeeModem      );
 
     metersListMedium = new ZbyrMeterListMedium(this);
+
     connect(metersListMedium, SIGNAL(command4dev(quint16,QString))    , zbyrator, SIGNAL(command4devStr(quint16,QString)) );
     connect(metersListMedium, SIGNAL(command4dev(quint16,QVariantMap)), zbyrator, SIGNAL(command4dev(quint16,QVariantMap)) );
 
@@ -229,6 +230,7 @@ void QcMainWindow::createMeterManager()
 
     connect(metersListMedium, &ZbyrMeterListMedium::setElectricityPowerCenters, guiHelper, &GuiHelper::setElectricityPowerCenters);
     connect(metersListMedium, &ZbyrMeterListMedium::setWaterPowerCenters, guiHelper, &GuiHelper::setWaterPowerCenters);
+    connect(metersListMedium, &ZbyrMeterListMedium::pbStopAnimateClick, guiHelper, &GuiHelper::pbStopAnimateClick);
     guiHelper->setObjectName("QcMainWindow");
 
     connect(metersListMedium, &ZbyrMeterListMedium::appendAppLog        , this, &QcMainWindow::appendShowMessPlain );
@@ -257,6 +259,7 @@ void QcMainWindow::createMeterManager()
     connect(zbyrator, &MeterManager::onAllMeters                , metersListMedium, &ZbyrMeterListMedium::onAllMeters               );
     connect(zbyrator, &MeterManager::onAlistOfMeters            , metersListMedium, &ZbyrMeterListMedium::onAlistOfMeters           );
     connect(zbyrator, &MeterManager::ifaceLogStr                , metersListMedium, &ZbyrMeterListMedium::ifaceLogStr               );
+    connect(zbyrator, &MeterManager::ifaceLogStrNonBuf    , metersListMedium, &ZbyrMeterListMedium::ifaceLogStrFromZbyrator               );
 
     connect(zbyrator, &MeterManager::appendMeterData            , metersListMedium, &ZbyrMeterListMedium::appendMeterData           );
     connect(zbyrator, &MeterManager::onConnectionStateChanged   , metersListMedium, &ZbyrMeterListMedium::onConnectionStateChanged  );
@@ -268,6 +271,8 @@ void QcMainWindow::createMeterManager()
     connect(zbyrator, &MeterManager::onTaskTableChanged         , metersListMedium, &ZbyrMeterListMedium::onTaskTableChanged        );
     connect(zbyrator, &MeterManager::onTaskCanceled             , metersListMedium, &ZbyrMeterListMedium::onTaskCanceled            );
     connect(zbyrator, &MeterManager::meterRelayStatus           , metersListMedium, &ZbyrMeterListMedium::meterRelayStatus          );
+    connect(zbyrator, &MeterManager::meterRelayStatus           , metersListMedium, &ZbyrMeterListMedium::add2fileMeterRelayStatus  );
+
     connect(zbyrator, &MeterManager::meterDateTimeDstStatus     , metersListMedium, &ZbyrMeterListMedium::meterDateTimeDstStatus    );
     connect(zbyrator, &MeterManager::waterMeterSchedulerStts    , metersListMedium, &ZbyrMeterListMedium::waterMeterSchedulerStts   );
 
@@ -282,13 +287,17 @@ void QcMainWindow::createMeterManager()
 
     connect(zbyrator, &MeterManager::onConnectionStateChanged, guiHelper, &GuiHelper::setPbWriteEnableDisableSlot);// ReadEnableDisableSlot);
 
-    QTimer::singleShot(1111, thread, SLOT(start()) );
 
     connect(this, &QcMainWindow::reloadSettings2ucEmulator, metersListMedium, &ZbyrMeterListMedium::reloadSettings);
 
 
     connect(guiHelper, &GuiHelper::setDateMask, metersListMedium, &ZbyrMeterListMedium::setDateMask);
     connect(guiHelper, &GuiHelper::setDotPos, metersListMedium, &ZbyrMeterListMedium::setDotPos);
+
+
+    metersListMedium->importGroups2metersFile();
+    QTimer::singleShot(1111, thread, SLOT(start()) );
+
 }
 
 //---------------------------------------------------------------------

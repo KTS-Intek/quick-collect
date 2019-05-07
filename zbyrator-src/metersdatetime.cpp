@@ -164,6 +164,8 @@ void MetersDateTime::initPage()
 
     SelectionChecker *tmr = new SelectionChecker(this);
     tmr->setWatchTable(ui->tvTable, ui->widget_2);
+    tmr->setTextLbl4disp(ui->label_2, tr("Selected [%1]"), tr("Selected"));
+
     ui->widget_3->setVisible(false);
     connect(tmr, &SelectionChecker::setWdgtEnable, ui->widget_3, &QWidget::setVisible);
 

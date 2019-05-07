@@ -52,8 +52,13 @@ signals:
 
     void addWdgt2stackWdgt(QWidget *w, const int &wdgtType, bool oneShot, QString actTxt, QString actIco);
 
-    void lockPbRead(bool disable);
 
+    void lockPbRead(bool disable); //to startexchange
+
+
+    void lockButtons(bool disable);//from StartExchange
+
+    void killCurrentTask();
 public slots:
     void disconnectMeFromAppendData();
 
@@ -70,6 +75,10 @@ public slots:
     void command4devSlot(quint16 command, QVariantMap map);//pollCode args
 
     void onSelectMeters4pollKickedOff();
+
+    void onCurrentProcessingTabKilledSlot();
+    void onLockButtons(bool disable);//from StartExchange
+
 private:
     bool startPollOneMeterMode(const StartPollTabSettExt &selsett, QString &mess);
 
@@ -84,6 +93,7 @@ private:
     {
         QString lastLineModelNiPasswd;
         bool isSelectMeters4pollProcessing;
+        QString lastWdgtActive;
         TempStartPollLastSett() : isSelectMeters4pollProcessing(false){}
     } lTempPollSett;
 

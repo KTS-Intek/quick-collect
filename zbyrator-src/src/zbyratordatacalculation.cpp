@@ -294,6 +294,9 @@ void ZbyratorDataCalculation::appendMeterDataV2(QString ni, QString sn, MyListHa
 //    ClassManagerSharedObjects *shrdObj = ((lastPollCode%20) == 0) ? shrdObjElectricity : shrdObjWater;
 //    dbReader->setSharedObject(shrdObj);
 
+    if(ni.simplified().trimmed().isEmpty())
+        return;
+
     QVariantHash h;
 
 //    bool dateInUtc = (lastPollCode == POLL_CODE_READ_VOLTAGE || lastPollCode == POLL_CODE_READ_TOTAL || lastPollCode == POLL_CODE_READ_POWER || lastPollCode == POLL_CODE_READ_METER_LOGBOOK ||

@@ -1,11 +1,26 @@
 #include "relaywdgt.h"
 #include "ui_relaywdgt.h"
+
+///[!] map-widget
 #include "map-pgs/mapwidget.h"
-#include "src/nongui/settloader.h"
+
+
+///[!] widgets-shared
 #include "src/widgets/selectionchecker.h"
-#include "src/nongui/showmesshelpercore.h"
-#include "src/meter/definedpollcodes.h"
+#include "src/meter/relaystatehelper.h"
+
+
+///[!] zbyrator-shared
 #include "src/zbyrator-v2/quickpollhelper.h"
+
+
+///[!] guisett-shared-core
+#include "src/nongui/meterstatehelper4gui.h"
+#include "src/nongui/showmesshelpercore.h"
+#include "src/nongui/settloader.h"
+
+
+#include "definedpollcodes.h"
 
 
 RelayWdgt::RelayWdgt(GuiHelper *gHelper, QWidget *parent) :
@@ -77,10 +92,10 @@ void RelayWdgt::onModelChanged()
     //Time Relay Meter S/N NI Memo Coordinate
     QStringList l4app = QString("ni pos grp pll img").split(" ");
     QList<int> l4appIndx;
-    l4appIndx << 4 << 6 << 2 << 1 ; //-1
+    l4appIndx << 5 << 7 << 2 << 1 ; //-1
 
 
-    const QList<int> l4tltp = QList<int>() << 0 << 2 << 3 << 5;
+    const QList<int> l4tltp = QList<int>() << 0 << 2 << 3 << 4 << 6;
 
     for(int i = 0, iMax = proxy_model->rowCount(), lMax = l4appIndx.size(), jmax = l4tltp.size(); i < iMax; i++){
         int row = proxy_model->mapToSource(proxy_model->index(i, 0)).row();
@@ -92,7 +107,7 @@ void RelayWdgt::onModelChanged()
             continue;
 
         QStringList tltp;
-        tltp.append(tr("NI: <b>%1</b>, Relay: <b>%2</b>").arg(model->item(row, 4)->text()).arg(model->item(row, 1)->text()));
+        tltp.append(tr("NI: <b>%1</b>, Relay: <b>%2</b>").arg(model->item(row, 5)->text()).arg(model->item(row, 1)->text()));
 
 
         for(int j = 0; j < jmax; j++){
@@ -134,22 +149,26 @@ void RelayWdgt::onModelChanged()
 
     int row = proxy_model->mapToSource(ui->tvTable->currentIndex()).row();
     if(row >= 0)
-        emit showThisDeviceNIEs(model->item(row, 4)->text());
+        emit showThisDeviceNIEs(model->item(row, 5)->text());
 }
 
-void RelayWdgt::meterRelayStatus(QString ni, QDateTime dtLocal, QString stts)
+void RelayWdgt::meterRelayStatus(QString ni, QDateTime dtLocal, quint8 mainstts, quint8 secondarystts)
 {
     if(ni.isEmpty())
         return;
 
-    const int row = StandardItemModelHelper::getRowFromNI(4, ni, model);
+    const int row = StandardItemModelHelper::getRowFromNI(5, ni, model);
     if(row < 0)
         return;
 
     model->item(row, 0)->setText(dtLocal.toString(lastDateTimeMask));
-    model->item(row, 1)->setText(stts);
+    model->item(row, 1)->setText(RelayStateHelper::getRelayStatusHuman(mainstts));
+    model->item(row, 2)->setText(RelayStateHelper::getRelayStatusHuman(secondarystts));
 
-    TableViewHelper::selectRowWithThisCell(ui->tvTable, ni, 4);
+    model->item(row, 1)->setIcon(QIcon(MeterStateHelper4gui::getRelayIcostr4status(mainstts)));
+    model->item(row, 2)->setIcon(QIcon(MeterStateHelper4gui::getRelayIcostr4status(secondarystts)));
+
+    TableViewHelper::selectRowWithThisCell(ui->tvTable, ni, 5);
 
     resizeLastTv2content();
 }
@@ -168,10 +187,16 @@ void RelayWdgt::initPage()
     connect(this, SIGNAL(lockButtons(bool)), ui->pbLoadOff, SLOT(setDisabled(bool)));
     connect(this, SIGNAL(lockButtons(bool)), ui->pbLoadOn, SLOT(setDisabled(bool)));
 
+    connect(this, SIGNAL(lockButtons(bool)), ui->pbLoadOff_2, SLOT(setDisabled(bool)));
+    connect(this, SIGNAL(lockButtons(bool)), ui->pbLoadOn_2, SLOT(setDisabled(bool)));
+
+    lastDateTimeMask = gHelper->getDateTimeMask();
+
     emit onReloadAllMeters();
 
     SelectionChecker *tmr = new SelectionChecker(this);
     tmr->setWatchTable(ui->tvTable, ui->widget_2);
+    tmr->setTextLbl4disp(ui->label_2, tr("Selected [%1]"), tr("Selected"));
 //    readDefCommandOnUpdate();
 }
 
@@ -232,7 +257,7 @@ void RelayWdgt::on_tvTable_customContextMenuRequested(const QPoint &pos)
 
 void RelayWdgt::onPbReadAll_clicked()
 {
-    doRelayOperation(TableViewHelper::getRowsText(ui->tvTable, 4), RELAY_READ);
+    doRelayOperation(TableViewHelper::getRowsText(ui->tvTable, 5), RELAY_READ);
 }
 
 void RelayWdgt::on_pbRead_clicked()
@@ -253,7 +278,7 @@ void RelayWdgt::on_pbLoadOff_clicked()
 
 void RelayWdgt::doRelayOperationSelected(const quint8 &operation)
 {
-    doRelayOperation(TableViewHelper::getSelectedRowsText(ui->tvTable, 4), operation);
+    doRelayOperation(TableViewHelper::getSelectedRowsText(ui->tvTable, 5), operation);
 }
 
 void RelayWdgt::doRelayOperation(const QStringList &listni, const quint8 &operation)
@@ -273,10 +298,22 @@ void RelayWdgt::doRelayOperation(const QStringList &listni, const quint8 &operat
         return;
 
     ui->tvTable->clearSelection();
-    StandardItemModelHelper::clearCells(listni, 4,QList<int>() << 0 << 1, model);
-    gHelper->updateSettDateMaskAndDotPos();
+    StandardItemModelHelper::clearCells(listni, 5,QList<int>() << 0 << 1 << 2, model);
+
     emit setLastPageId(accessibleName());
-    lastDateTimeMask = gHelper->dateMask + " hh:mm:ss";
+    lastDateTimeMask = gHelper->getDateTimeMask();
     emit command4dev(POLL_CODE_RELAY_OPERATIONS, map);
+
+}
+
+void RelayWdgt::on_pbLoadOff_2_clicked()
+{
+    doRelayOperationSelected(RELAY2_LOAD_ON);
+
+}
+
+void RelayWdgt::on_pbLoadOn_2_clicked()
+{
+    doRelayOperationSelected(RELAY2_LOAD_OFF);
 
 }

@@ -15,7 +15,6 @@ public:
 
     static QStringList getMeterDateTimePageHeader();
 
-    static QStringList getWaterMeterSchedulerPageHeader();
 
 signals:
 

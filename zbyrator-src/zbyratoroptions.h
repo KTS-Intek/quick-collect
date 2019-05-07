@@ -19,6 +19,8 @@ public:
 signals:
     void reloadSettings2ucEmulator();
 
+    void stopDaServer();
+    void startDaServer(qint8,quint16); //mode , port
 
 public slots:
     void initPage();

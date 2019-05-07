@@ -1,7 +1,10 @@
 #ifndef RELAYWDGT_H
 #define RELAYWDGT_H
 
+
+///[!] widgets-shared
 #include "gui-src/referencewidgetclass.h"
+
 
 namespace Ui {
 class RelayWdgt;
@@ -41,7 +44,8 @@ public slots:
 
     void onModelChanged();
 
-    void meterRelayStatus(QString ni, QDateTime dtLocal, QString stts);
+//    void meterRelayStatus(QString ni, QDateTime dtLocal, QString stts, QString stts2, QString icostts, QString icostts2);
+    void meterRelayStatus(QString ni, QDateTime dtLocal, quint8 mainstts, quint8 secondarystts);
 
 
 
@@ -65,6 +69,10 @@ private slots:
     void on_pbLoadOn_clicked();
 
     void on_pbLoadOff_clicked();
+
+    void on_pbLoadOff_2_clicked();
+
+    void on_pbLoadOn_2_clicked();
 
 private:
     Ui::RelayWdgt *ui;

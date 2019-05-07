@@ -36,6 +36,9 @@ StartPagePollV2::StartPagePollV2(GuiHelper *gHelper, QWidget *parent) : SelectFr
     setPbReadStopVisible(false);
 
     connect(this, &StartPagePollV2::pageEndInit, this, &StartPagePollV2::getMetersLater);
+    connect(this, &StartPagePollV2::lockButtons, this, &StartPagePollV2::lockPushbuttonsRead);
+    connect(this, &StartPagePollV2::lockButtons, this, &StartPagePollV2::onLockButtons);
+    connect(this, &StartPagePollV2::onCurrentProcessingTabKilled, this, &StartPagePollV2::onCurrentProcessingTabKilledSlot);
 
 }
 
@@ -145,7 +148,7 @@ QString StartPagePollV2::getTabIconPath()
 LvIconTextCommandList StartPagePollV2::getLvIconsAndTexts(const int &version)
 {
     Q_UNUSED(version);
-    return DevicePollCodeSelectorHelper::getLvIconsAndTexts(MATILDA_PROTOCOL_VERSION_V5);
+    return DevicePollCodeSelectorHelper::getLvIconsAndTexts(MATILDA_PROTOCOL_VERSION_V5, DEV_POLL_EMULATOR_L2);
 }
 
 //---------------------------------------------------------------------------
@@ -293,6 +296,22 @@ void StartPagePollV2::onSelectMeters4pollKickedOff()
     lTempPollSett.isSelectMeters4pollProcessing = false;
     emit lockPbRead(lTempPollSett.isSelectMeters4pollProcessing);
 
+}
+
+void StartPagePollV2::onCurrentProcessingTabKilledSlot()
+{
+    if(lTempPollSett.lastWdgtActive.isEmpty())
+        return;
+
+    emit killCurrentTask();
+
+
+}
+//---------------------------------------------------------------------------
+void StartPagePollV2::onLockButtons(bool disable)
+{
+    if(!disable)
+        lTempPollSett.lastWdgtActive.clear();
 }
 
 //---------------------------------------------------------------------------
@@ -449,7 +468,7 @@ void StartPagePollV2::createTab(const StartPollTabSettExt &sett)
 
         addThisWidget2tab(f, txt.mid(txt.indexOf(">") + 1), sett.icon);
 
-
+        lTempPollSett.lastWdgtActive = lastWdgtAccssbltName;
         emit onPollStarted(sett.code, getEnrgList4code(sett.code), gHelper->dateMask, isMeterEvent ? 0 : gHelper->dotPos, sett.allowDate2utc);
 
     }

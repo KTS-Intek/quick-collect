@@ -13,6 +13,11 @@
 #include "src/nongui/classmanagermeterinfo.h"
 
 
+///[!] quick-collect-gui-core
+#include "quick-collect-gui-core/meters/lastmetersstatusesmanager.h"
+
+
+
 #include "classmanagertypes.h"
 
 #include <QLineEdit>
@@ -26,8 +31,11 @@ class ZbyrMeterListMedium : public GuiIfaceMedium
 public:
     explicit ZbyrMeterListMedium(QObject *parent = nullptr);
 
+    void importGroups2metersFile();
 
+    LastMetersStatusesManager *metersStatusManager;
 
+    void resetVariables4pollStarted();
 signals:
     void setElectricityMeterListPageSett(MyListStringList listRows, QVariantMap col2data, QStringList headerH, QStringList header, bool hasHeader);
 
@@ -88,13 +96,18 @@ signals:
 
 
 
-    void meterRelayStatus(QString ni, QDateTime dtLocal, QString stts);
+//    void meterRelayStatus(QString ni, QDateTime dtLocal, QString stts);
+    void meterRelayStatus(QString ni, QDateTime dtLocal, quint8 mainstts, quint8 secondarystts);
+    void add2fileMeterRelayStatus(QString ni, QDateTime dtLocal, quint8 mainstts, quint8 secondarystts);//2 cache
+
 
     void meterDateTimeDstStatus(QString ni, QDateTime dtLocal, QString stts);
 
-    void waterMeterSchedulerStts(QString ni, QDateTime dtLocal, QString stts, QVariantHash sheduler);
+    void waterMeterSchedulerStts(QString ni, QDateTime dtLocal, QString stts, QVariantHash sheduler, QString src);
 
     void reloadSavedSleepProfiles();
+
+
 
 
 //Database and meterjournal
@@ -126,6 +139,10 @@ signals:
     void setWaterPowerCenters(const QVariantList &meters);
     void setElectricityPowerCenters(const QVariantList &meters);
 
+
+    void pbStopAnimateClick();
+    void onExternalCommandProcessed();
+
 public slots:
     void onAllMetersSlot(UniversalMeterSettList allMeters);
 
@@ -156,6 +173,12 @@ public slots:
     void onReloadAllMeters();
 
     void onReloadAllZbyratorSettingsLocalSocket();
+
+    void createPeredavatorEmbeeManagerLater();
+
+    void command4devSlotLocalSocket(quint16 command, QString args);//pollCode args
+
+    void sendCachedDataAboutRelays(const QStringList &niswithoutsttses);
 
 private:
     struct LastList2pages
@@ -192,6 +215,8 @@ private:
 
     void createLocalSocketObject();
 
+    void createPeredavatorEmbeeManager();
+
 
 
     struct SaveLaterMeters
@@ -212,6 +237,7 @@ private:
     QMap<QString, QString> mapProfLine2profName;
 
     int lastPageMode;//пам'ятає яка сторінка запустила опитування, щоб при скасуванні завдання відправити відповідну команду
+    bool pageModeUpdated;
 
     bool isDbReady4read;
 };

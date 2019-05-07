@@ -8,6 +8,7 @@
 ///[!] guisett-shared-core
 #include "src/nongui/tableheaders.h"
 #include "src/nongui/settloader.h"
+#include "src/nongui/tableheaders.h"
 
 
 ///[!] device-poll
@@ -54,6 +55,11 @@
 #include "src/ipc/zbyratorsocket.h"
 
 
+///[!] quick-collect-gui-core
+#include "quick-collect-gui-core/emulator/peredavatorcover.h"
+
+
+
 #include "myucmmeterstypes.h"
 #include "moji_defy.h"
 
@@ -72,6 +78,34 @@ ZbyrMeterListMedium::ZbyrMeterListMedium(QObject *parent) : GuiIfaceMedium(paren
     createDataCalculator();
     createDatabaseMedium();
     createLocalSocketObject();
+    metersStatusManager = new LastMetersStatusesManager(this);
+    connect(this, &ZbyrMeterListMedium::add2fileMeterRelayStatus, metersStatusManager, &LastMetersStatusesManager::add2fileMeterRelayStatus);
+
+    pageModeUpdated = false;
+
+    QTimer::singleShot(3333, this, SLOT(createPeredavatorEmbeeManagerLater()));
+
+}
+
+void ZbyrMeterListMedium::importGroups2metersFile()
+{
+    QString err;
+    const qint64 count = MetersLoader::importElectricityMetersGroupsAsMeters(err);
+    MetersLoader::removeGroupsFile();
+    if(count > 0){
+        emit showMess(tr("Electricity meter groups were imported as electricity power centers"));
+    }
+
+}
+
+void ZbyrMeterListMedium::resetVariables4pollStarted()
+{
+    if(pageModeUpdated){
+        pageModeUpdated = false;
+        return;
+    }
+    lastPageMode = -1;//reset
+
 }
 
 
@@ -341,8 +375,8 @@ void ZbyrMeterListMedium::onTaskCanceled(quint8 pollCode, QString ni, qint64 dtF
 
     switch(lastPageMode){
     case 0: emit onMeterPollCancelled(ni, stts, dtFinished); break;//poll page
-    case 1: emit waterMeterSchedulerStts(ni, dtLocal, stts, QVariantHash()); break;
-    case 2: emit meterRelayStatus(ni, dtLocal, stts); break; //relay
+    case 1: emit waterMeterSchedulerStts(ni, dtLocal, stts, QVariantHash(), ""); break;
+    case 2: emit meterRelayStatus(ni, dtLocal,  RELAY_STATE_UNKN, RELAY_STATE_UNKN); break; //relay
     case 5: emit meterDateTimeDstStatus(ni, dtLocal, stts); break;
     }
 
@@ -352,6 +386,7 @@ void ZbyrMeterListMedium::setLastPageId(QString accsblName)
 {
     //    return QString("Poll;Relay;Queue;Statistic of the exchange;Date and time;Meter address;Check Connection Tool;Other;Interface").split(";");
     lastPageMode = StartExchangeHelper::getChList().indexOf((accsblName));
+    pageModeUpdated = true;
 }
 
 void ZbyrMeterListMedium::onReloadAllMeters()
@@ -365,10 +400,45 @@ void ZbyrMeterListMedium::onReloadAllMeters()
     }
     emit onReloadAllMeters2zbyrator();
 }
-
+//---------------------------------------------------------------------
 void ZbyrMeterListMedium::onReloadAllZbyratorSettingsLocalSocket()
 {
+    mapMeters2pages.insert("Scheduler for water meters", LastList2pages());
     emit onReloadAllMeters2zbyrator();
+    emit reloadSavedSleepProfiles();
+
+}
+//---------------------------------------------------------------------
+void ZbyrMeterListMedium::createPeredavatorEmbeeManagerLater()
+{
+    createPeredavatorEmbeeManager();
+}
+//---------------------------------------------------------------------
+void ZbyrMeterListMedium::command4devSlotLocalSocket(quint16 command, QString args)
+{
+    qDebug() << "a command from the local socket " << command << args;
+    switch(command){
+    case 0: emit pbStopAnimateClick(); emit stopApiAddressator(); return;//stop all
+    case ZBRTR_OPEN_DIRECT_ACCESS: startApiAddressatorSlot(quickcollectstate.lastTcpMode, quickcollectstate.lastTcpPort); return; //open da
+    }
+    emit onExternalCommandProcessed();
+
+    command4devSlot(command, args);
+
+}
+
+void ZbyrMeterListMedium::sendCachedDataAboutRelays(const QStringList &niswithoutsttses)
+{
+    QString errmess;
+    const QMap<QString,LastMetersStatusesManager::MyMeterRelayStatus> relaysttsmap = LastMetersStatusesManager::getLastRelayStatusesMap(errmess);
+
+    for(int i = 0, imax = niswithoutsttses.size(); i < imax; i++){
+        const LastMetersStatusesManager::MyMeterRelayStatus stts = relaysttsmap.value(niswithoutsttses.at(i));
+        if(!stts.dtLocal.isValid())
+            continue;
+
+        emit meterRelayStatus(niswithoutsttses.at(i), stts.dtLocal, stts.mainstts, stts.secondarystts);
+    }
 
 }
 //---------------------------------------------------------------------
@@ -464,6 +534,9 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
 
     QMap<quint8, QVariantList> mappowercenters;
     QMap<quint8, QString> mapMetertype2ni;
+
+    QStringList meternisWithoutRelaySttses;
+
     for(int i = 0; i < activeMetersSize; i++){
 
         const UniversalMeterSett m = activeMeters.at(i);
@@ -494,6 +567,7 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
             lastElectricityMeters2pagesL.listNI.append(m.ni);
             lastElectricityMeters2pagesL.mainParams.append(mainParms);
             relayPageL.insert(m.ni, addRelayRow(m));
+            meternisWithoutRelaySttses.append(m.ni);
             break;}
 
         case UC_METER_WATER:{
@@ -527,7 +601,9 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
 //    if(mapMeters2pages.contains("relay") && mapMeters2pages)
 
     if(metersChanged(mapMeters2pages, "Relay", lastElectricityMeters2pagesL))
-        emit setRelayPageSett(getRowsList(relayPage, QStringList(), relayPageL, lastElectricityMeters2pagesL.listNI, meterElectricityActive), QVariantMap(), ZbyrTableHeaders::getRelayPageHeader(), StandardItemModelHelper::getHeaderData(7), true);
+        emit setRelayPageSett(getRowsList(relayPage, QStringList(), relayPageL, lastElectricityMeters2pagesL.listNI, meterElectricityActive), QVariantMap(), ZbyrTableHeaders::getRelayPageHeader(), StandardItemModelHelper::getHeaderData(ZbyrTableHeaders::getRelayPageHeader().size()), true);
+    else
+        meternisWithoutRelaySttses.clear();
 
 
     if(metersChanged(mapMeters2pages, "Date and time", lastMeters2pagesL))
@@ -535,7 +611,8 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
 
 
     if(metersChanged(mapMeters2pages, "Scheduler for water meters", lastWaterMeters2pagesL)){
-        emit setWaterMeterSchedulerPageSett(getRowsList(waterSchedulerPage, QStringList(), waterProfiles, lastWaterMeters2pagesL.listNI, meterWaterActive), QVariantMap(), ZbyrTableHeaders::getWaterMeterSchedulerPageHeader(), StandardItemModelHelper::getHeaderData(7), true);
+        emit setWaterMeterSchedulerPageSett(getRowsList(waterSchedulerPage, QStringList(), waterProfiles, lastWaterMeters2pagesL.listNI, meterWaterActive), QVariantMap(), TableHeaders::getColNames4wtrLastProfile().split(","),
+                                            StandardItemModelHelper::getHeaderData(TableHeaders::getColNames4wtrLastProfile().split(",").size()), true);
         QTimer::singleShot(11, this, SIGNAL(reloadSavedSleepProfiles()));
     }
 
@@ -561,6 +638,8 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
 
     emit onUpdatedSavedList(pollOnMeters, pollOffMeters, meterElectricityActive, meterWaterActive);
 
+    if(!meternisWithoutRelaySttses.isEmpty())
+        sendCachedDataAboutRelays(meternisWithoutRelaySttses);
 
 }
 
@@ -569,8 +648,11 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
 QStringList ZbyrMeterListMedium::addRelayRow(const UniversalMeterSett &m)
 {
     QStringList relayRow;
-    relayRow.append("");//datetime
-    relayRow.append("");//relay
+
+        relayRow.append("");//datetime
+        relayRow.append("");//relay
+        relayRow.append("");//second relay
+
     relayRow.append(m.version.isEmpty() ? m.model : QString("%1, %2").arg(m.model).arg(m.version));
     relayRow.append(m.sn);
     relayRow.append(m.ni);
@@ -606,6 +688,7 @@ QStringList ZbyrMeterListMedium::addWaterProfileRow(const UniversalMeterSett &m)
     dateTimeRow.append(m.ni);
     dateTimeRow.append(m.memo);
     dateTimeRow.append(m.coordinate);
+    dateTimeRow.append("");//source
     return dateTimeRow;
 }
 
@@ -646,7 +729,7 @@ void ZbyrMeterListMedium::createLocalSocketObject()
 
 //    connect(extSocket, &ZbyratorSocket::command4dev     , this, &ZbyrMeterListMedium::command4devSlot);
 
-    connect(extSocket, SIGNAL(command4dev(quint16,QString)), this, SLOT(command4devSlot(quint16,QString)));
+    connect(extSocket, SIGNAL(command4dev(quint16,QString)), this, SLOT(command4devSlotLocalSocket(quint16,QString)));
 
     connect(this, &ZbyrMeterListMedium::command2extensionClient, extSocket, &ZbyratorSocket::command2extensionClient   );
     connect(this, &ZbyrMeterListMedium::onAboutZigBee          , extSocket, &ZbyratorSocket::sendAboutZigBeeModem      );
@@ -655,6 +738,50 @@ void ZbyrMeterListMedium::createLocalSocketObject()
 
 //    extSocketThrd->start();
     QTimer::singleShot(7777, extSocketThrd, SLOT(start()));
+
+}
+
+//---------------------------------------------------------------------
+
+void ZbyrMeterListMedium::createPeredavatorEmbeeManager()
+{
+    PeredavatorCover *cover = new PeredavatorCover;
+    QThread *t = new QThread;
+
+    cover->moveToThread(t);
+
+    connect(this, SIGNAL(destroyed(QObject*)), cover, SLOT(deleteLater()));
+    connect(cover, SIGNAL(destroyed(QObject*)), t, SLOT(quit()));
+    connect(t, SIGNAL(finished()), t, SLOT(deleteLater()));
+    connect(t, SIGNAL(started()), cover, SLOT(onThreadStarted()) );
+
+    sendForcedQuickCollectDaState();
+    connect(cover, &PeredavatorCover::onDirectAccessModuleReady , this, &ZbyrMeterListMedium::onQuickCollectDaObjectReady);
+    connect(cover, &PeredavatorCover::onConnectionOpened        , this, &ZbyrMeterListMedium::setQuickCollectObjectState);
+    connect(cover, &PeredavatorCover::onConnectionStateChanging , this, &ZbyrMeterListMedium::setQuickCollectObjectChangingState);
+
+
+    connect(cover, &PeredavatorCover::giveMeIfaceSett           , this, &ZbyrMeterListMedium::sendIfaceSettings);
+    connect(cover, &PeredavatorCover::append2logDirectAccess    , this, &ZbyrMeterListMedium::append2logDirectAccess);
+
+    connect(cover, &PeredavatorCover::showMess                  , this, &ZbyrMeterListMedium::showMess);
+    connect(cover, &PeredavatorCover::showMessCritical          , this, &ZbyrMeterListMedium::showMess);
+    connect(cover, &PeredavatorCover::appendMess                , this, &ZbyrMeterListMedium::appendAppLog);
+    connect(cover, &PeredavatorCover::appendMessHtml            , this, &ZbyrMeterListMedium::appendAppLog);
+    connect(cover, &PeredavatorCover::onStateChangedStr         , this, &ZbyrMeterListMedium::onQuickCollectDaStateChangedStr);
+    connect(cover, &PeredavatorCover::onDasStopped              , this, &ZbyrMeterListMedium::onDasStopped);
+    connect(cover, &PeredavatorCover::onDasStarted              , this, &ZbyrMeterListMedium::onDasStarted);
+
+    connect(cover, &PeredavatorCover::ifaceLogStr, this, &ZbyrMeterListMedium::ifaceLogStr);
+
+    connect(this, &ZbyrMeterListMedium::startApiAddressator , cover, &PeredavatorCover::startApiAddressator );
+    connect(this, &ZbyrMeterListMedium::stopApiAddressator  , cover, &PeredavatorCover::stopApiAddressator  );
+    connect(this, &ZbyrMeterListMedium::setDaForwardNI      , cover, &PeredavatorCover::setDaForwardNI      );
+    connect(this, &ZbyrMeterListMedium::setThisIfaceSett    , cover, &PeredavatorCover::setThisIfaceSett    );
+    connect(this, &ZbyrMeterListMedium::ifaceLogStrFromZbyrator, cover, &PeredavatorCover::ifaceLogStrFromZbyrator);
+
+
+    QTimer::singleShot(555, t, SLOT(start()));
 
 }
 
