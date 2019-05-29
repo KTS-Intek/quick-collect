@@ -2,10 +2,10 @@
 #include "ui_qcmainwindow.h"
 
 ///[!] quick-collect
-#include "zbyrator-src/createtoolbar.h"
 #include "zbyrator-src/ktsconnectwdgt.h"
 #include "zbyrator-src/startexchange.h"
 #include "zbyrator-src/zbyratoroptions.h"
+#include "zbyrator-src/createtoolbar4quickcollect.h"
 
 
 ///[!] quick-collect-gui-core
@@ -15,6 +15,7 @@
 
 ///[!] guisett-shared-core
 #include "src/nongui/settloader.h"
+#include "src/nongui/oneinstancewatcher.h"
 
 ///[!] guisett-shared
 #include "guisett-shared-src/appversion.h"
@@ -61,6 +62,7 @@ QcMainWindow::QcMainWindow(const QFont &font4log, const int &defFontPointSize,  
     ui->setupUi(this);
 
 
+
 }
 
 //---------------------------------------------------------------------
@@ -83,9 +85,11 @@ void QcMainWindow::initPage()
 
 
     createToolBar();
-    createZbyrProcManager();
-    createMeterManager();
-    createMatildaBBBcover();
+    createMeterListManager();
+    createOneInstanceChecker();
+
+
+
 
 }
 
@@ -108,6 +112,30 @@ void QcMainWindow::onActivateThisWdgt(QString tabData)
     emit addWdgt2history();
 }
 
+void QcMainWindow::continueCreatingObjects()
+{
+    connect(this, &QcMainWindow::receivedKillSignal, this, &QcMainWindow::onAppIsKilling);
+    currWidgetSett.allow2close = false;
+    createZbyrProcManager();
+    createMeterManager();
+    createMatildaBBBcover();
+    setEnabled(true);
+
+}
+//---------------------------------------------------------------------
+void QcMainWindow::onAppIsKilling()
+{
+    saveAllSettBeforeExitIfWidgetWasReady();
+    setEnabled(false);
+    hide();
+    qDebug() << "onAppIsKilling ";
+#ifdef Q_OS_LINUX
+    QTimer::singleShot(1111, this, SLOT(allow2closeTheWindowAndClose()));
+#else
+    QTimer::singleShot(11111, this, SLOT(allow2closeTheWindowAndClose()));
+#endif
+}
+
 
 
 //---------------------------------------------------------------------
@@ -118,7 +146,7 @@ void QcMainWindow::createOneOfMainWdgt(const QString &tabData)
 
     GuiHelper *gHelper = guiHelper;
 
-    const int row = CreateToolBar::getTabsData().indexOf(tabData);
+    const int row = CreateToolBar4quickCollect::getTabsData().indexOf(tabData);
     MatildaConfWidget *w = 0;
     int readCommand = 1, writeCommand = 0xFFFE;
 
@@ -144,7 +172,7 @@ void QcMainWindow::createOneOfMainWdgt(const QString &tabData)
     }
 
     if(w){
-        const TabName2icosPaths ttn = CreateToolBar::getTabs().at(row);
+        const TabName2icosPaths ttn = CreateToolBar4quickCollect::getTabs4quickCollect().at(row);
 
         w->setWindowTitle(ttn.tabName);
         w->setWindowIcon(QIcon(ttn.path));
@@ -167,7 +195,7 @@ void QcMainWindow::createOneOfMainWdgt(const QString &tabData)
 
 void QcMainWindow::createToolBar()
 {
-    CreateToolBar *c = new CreateToolBar(this);
+    CreateToolBar4quickCollect *c = new CreateToolBar4quickCollect(this);
     connect(c, SIGNAL(onActivateThisWdgt(QString)), this, SLOT(onActivateThisWdgt(QString)) );
     c->createToolBarItems(ui->mainToolBar);
 }
@@ -188,7 +216,9 @@ void QcMainWindow::createZbyrProcManager()
 
     m->moveToThread(t);
 
-    connect(this, &QcMainWindow::destroyed, m, &ZbyratorProcessManager::deleteLater);
+//    connect(this, &QcMainWindow::destroyed, m, &ZbyratorProcessManager::deleteLater);
+    connect(this, &QcMainWindow::receivedKillSignal, m, &ZbyratorProcessManager::kickOffAllObjects);
+
     connect(m, &ZbyratorProcessManager::destroyed, t, &QThread::quit);
     connect(t, &QThread::finished, t, &QThread::deleteLater);
 
@@ -210,6 +240,12 @@ void QcMainWindow::createMeterManager()
 
 
     zbyrator->moveToThread(thread);
+
+    connect(this, &QcMainWindow::receivedKillSignal, zbyrator, &MeterManager::kickOffAllObjects);
+    connect(zbyrator, SIGNAL(destroyed(QObject*)), thread, SLOT(quit()));
+    connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
+
+
     connect(thread, SIGNAL(started()), zbyrator, SLOT(onThreadStarted()));
 
 //    connect(extSocket, &ZbyratorSocket::appendDbgExtData, this, &ZbyratorManager::appendDbgExtData );
@@ -219,21 +255,11 @@ void QcMainWindow::createMeterManager()
 //    connect(zbyrator, &MeterManager::command2extensionClient, extSocket, &ZbyratorSocket::command2extensionClient   );
 //    connect(zbyrator, &MeterManager::onAboutZigBee          , extSocket, &ZbyratorSocket::sendAboutZigBeeModem      );
 
-    metersListMedium = new ZbyrMeterListMedium(this);
 
     connect(metersListMedium, SIGNAL(command4dev(quint16,QString))    , zbyrator, SIGNAL(command4devStr(quint16,QString)) );
     connect(metersListMedium, SIGNAL(command4dev(quint16,QVariantMap)), zbyrator, SIGNAL(command4dev(quint16,QVariantMap)) );
 
-    connect(metersListMedium, &ZbyrMeterListMedium::setPbReadEnableDisable, guiHelper, &GuiHelper::setPbReadEnableDisableSlot);
-    connect(metersListMedium, &ZbyrMeterListMedium::updateHashSn2meter, guiHelper, &GuiHelper::updateHashSn2meter);
-    connect(metersListMedium, &ZbyrMeterListMedium::data2dbMedium      , guiHelper, &GuiHelper::updateSettDateMaskAndDotPos);
 
-    connect(metersListMedium, &ZbyrMeterListMedium::setElectricityPowerCenters, guiHelper, &GuiHelper::setElectricityPowerCenters);
-    connect(metersListMedium, &ZbyrMeterListMedium::setWaterPowerCenters, guiHelper, &GuiHelper::setWaterPowerCenters);
-    connect(metersListMedium, &ZbyrMeterListMedium::pbStopAnimateClick, guiHelper, &GuiHelper::pbStopAnimateClick);
-    guiHelper->setObjectName("QcMainWindow");
-
-    connect(metersListMedium, &ZbyrMeterListMedium::appendAppLog        , this, &QcMainWindow::appendShowMessPlain );
 
     connect(metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters2zbyrator, zbyrator, &MeterManager::onReloadAllMetersIgnoreOff    );
     connect(metersListMedium, &ZbyrMeterListMedium::onConfigChanged     , zbyrator, &MeterManager::onConfigChanged      );
@@ -283,20 +309,39 @@ void QcMainWindow::createMeterManager()
     connect(zbyrator, &MeterManager::onAboutZigBee          , metersListMedium, &ZbyrMeterListMedium::onAboutZigBee      );
     connect(zbyrator, &MeterManager::relayStatusChanged     , metersListMedium, &ZbyrMeterListMedium::relayStatusChanged        );
 
-    guiHelper->managerEnDisBttn.pbReadDis = guiHelper->managerEnDisBttn.pbWriteDis =false;
 
     connect(zbyrator, &MeterManager::onConnectionStateChanged, guiHelper, &GuiHelper::setPbWriteEnableDisableSlot);// ReadEnableDisableSlot);
 
 
+
+
+    metersListMedium->importGroups2metersFile();
+    QTimer::singleShot(1111, thread, SLOT(start()) );
+
+}
+
+void QcMainWindow::createMeterListManager()
+{
+    metersListMedium = new ZbyrMeterListMedium(this);
+
+    connect(metersListMedium, &ZbyrMeterListMedium::setPbReadEnableDisable, guiHelper, &GuiHelper::setPbReadEnableDisableSlot);
+    connect(metersListMedium, &ZbyrMeterListMedium::updateHashSn2meter, guiHelper, &GuiHelper::updateHashSn2meter);
+    connect(metersListMedium, &ZbyrMeterListMedium::data2dbMedium      , guiHelper, &GuiHelper::updateSettDateMaskAndDotPos);
+
+    connect(metersListMedium, &ZbyrMeterListMedium::setElectricityPowerCenters, guiHelper, &GuiHelper::setElectricityPowerCenters);
+    connect(metersListMedium, &ZbyrMeterListMedium::setWaterPowerCenters, guiHelper, &GuiHelper::setWaterPowerCenters);
+    connect(metersListMedium, &ZbyrMeterListMedium::pbStopAnimateClick, guiHelper, &GuiHelper::pbStopAnimateClick);
+    guiHelper->setObjectName("QcMainWindow");
+
+    connect(metersListMedium, &ZbyrMeterListMedium::appendAppLog        , this, &QcMainWindow::appendShowMessPlain );
+
+    guiHelper->managerEnDisBttn.pbReadDis = guiHelper->managerEnDisBttn.pbWriteDis =false;
     connect(this, &QcMainWindow::reloadSettings2ucEmulator, metersListMedium, &ZbyrMeterListMedium::reloadSettings);
 
 
     connect(guiHelper, &GuiHelper::setDateMask, metersListMedium, &ZbyrMeterListMedium::setDateMask);
     connect(guiHelper, &GuiHelper::setDotPos, metersListMedium, &ZbyrMeterListMedium::setDotPos);
 
-
-    metersListMedium->importGroups2metersFile();
-    QTimer::singleShot(1111, thread, SLOT(start()) );
 
 }
 
@@ -316,15 +361,39 @@ void QcMainWindow::createMatildaBBBcover()
     QThread *t = new QThread;
     c->moveToThread(t);
 
-    connect(this, SIGNAL(destroyed(QObject*)), c, SLOT(deleteLater()));
+//    connect(this, SIGNAL(destroyed(QObject*)), c, SLOT(deleteLater()));
+    connect(this, &QcMainWindow::receivedKillSignal, c, &MatildaBBBcover::itIsTime2kickOff);
+
+
     connect(c, SIGNAL(destroyed(QObject*)), t, SLOT(quit()));
     connect(t, SIGNAL(finished()), t, SLOT(deleteLater()));
 
     connect(t, SIGNAL(started()), c, SLOT(onThreadStarted()));
 
     connect(this, &QcMainWindow::reloadSettings2ucEmulator, c, &MatildaBBBcover::reloadSettings2ucEmulator);
+    QTimer::singleShot(4444, t, SLOT(start()));// t->start();
 
+//    t->start();
+}
+
+void QcMainWindow::createOneInstanceChecker()
+{
+    setEnabled(false);
+    OneInstanceWatcher *watcher = new OneInstanceWatcher("ktsintek.com.ua.zbyrator", "kts-intek.com.ua");
+    QThread *t = new QThread;
+    watcher->moveToThread(t);
+
+    connect(this, &QcMainWindow::receivedKillSignal, watcher, &OneInstanceWatcher::kickOffAllObjects);
+    connect(watcher, SIGNAL(destroyed(QObject*)), t, SLOT(quit()));
+    connect(t, &QThread::finished, t, &QThread::deleteLater);
+
+    connect(t, SIGNAL(started()), watcher, SLOT(onThrdStarted()));
+
+    connect(watcher, &OneInstanceWatcher::iAmAlone, this, &QcMainWindow::continueCreatingObjects);
+    connect(watcher, &OneInstanceWatcher::onNeed2setFocus, this, &QcMainWindow::onNeed2setFocus);
+    connect(watcher, &OneInstanceWatcher::iAmNotAlone, this, &QcMainWindow::killThisInstanceOfTheAppWithoutSaving);
     t->start();
+
 }
 
 //---------------------------------------------------------------------

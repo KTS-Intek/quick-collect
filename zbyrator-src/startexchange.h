@@ -1,7 +1,10 @@
 #ifndef STARTEXCHANGE_H
 #define STARTEXCHANGE_H
 
+///[!] widgets-shared
 #include "gui-src/matildaconfwidget.h"
+
+///[!] quick-collect
 #include "zbyrator-src/zbyrmeterlistmedium.h"
 
 namespace Ui {

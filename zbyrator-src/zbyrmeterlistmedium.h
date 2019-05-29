@@ -143,6 +143,8 @@ signals:
     void pbStopAnimateClick();
     void onExternalCommandProcessed();
 
+    void killAllObjects();
+
 public slots:
     void onAllMetersSlot(UniversalMeterSettList allMeters);
 

@@ -43,6 +43,7 @@ signals:
     void setLblWaitTxtDatabase(QString s);
     void setLblWaitTxtDatabaseMj(QString s);
 
+    void killAllObjects();
 
 public slots:
     void onThreadStarted();
@@ -70,6 +71,7 @@ public slots:
     void setDateMask(QString dateMask);
     void setDotPos(int dotPos);
 
+    void kickOffObject();
 private:
 
     bool iNeed2cacheInfoAboutMeter(const quint16 &command, const QVariant &sendVar);

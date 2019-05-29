@@ -33,6 +33,8 @@ public slots:
     void data2matilda(quint16 command, QVariant var);
 
 
+    void killAllObjects();
+
 private slots:
     void decodeReadData(QVariant dataVar, const quint16 &command);
 

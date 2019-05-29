@@ -48,6 +48,12 @@ public slots:
 
 
 
+
+    void continueCreatingObjects();
+
+
+    void onAppIsKilling();
+
 private slots:
 
 
@@ -73,8 +79,12 @@ private:
     void createZbyrProcManager();
 
     void createMeterManager();
+    void createMeterListManager();
 
     void createMatildaBBBcover();
+
+    void createOneInstanceChecker();
+
 
     MatildaConfWidget *createStartExchangeWdgt(GuiHelper *gHelper, QWidget *parent = 0);
 

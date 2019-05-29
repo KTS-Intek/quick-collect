@@ -9,11 +9,15 @@ QT       += core gui network printsupport xml svg charts qml quick positioning l
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 #unix:documentation.extra = create_docs; mv master.doc toc.doc
 
+DEFINES += QZXING_QML QZXING_MULTIMEDIA DISABLE_LIBRARY_FEATURES
+CONFIG += c++11 qzxing_multimedia
+
 TARGET = quick-collect
 TEMPLATE = app
-VERSION = 3
 
-
+win32 {
+QT += axcontainer
+}
 android:{
 QT += androidextras
 #SOURCES += snif-android-src/qtandroidftdi.cpp
@@ -27,15 +31,14 @@ QT += androidextras
 # any feature of Qt which has been marked as deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
 # deprecated API in order to know how to port your code away from it.
-DEFINES += QT_DEPRECATED_WARNINGS
-DEFINES += APPLCTN_NAME=\\\"quick-collect\\\"
+#DEFINES += QT_DEPRECATED_WARNINGS
+
 DEFINES += IS_ZBYRATORWDGT
 DEFINES += IS_ZBYRATOR
 #deprecated, it is better to use HASGUI4USR
 DEFINES += VERSION_4_PC
 
 DEFINES += DISABLE_METERSCHEDULER
-DEFINES += HASSERIALLIB
 DEFINES += ENABLE_EXTSUPPORT_OF_IFACES
 DEFINES += DISABLE_UART_PRIORITY
 DEFINES += HASGUI4USR
@@ -47,7 +50,7 @@ DEFINES += DISABLE_WATCHDOG_TIMER
 DEFINES += DISABLE_PROC_MANAGER
 
 #appversion.cpp
-VERSION = 0.3.0
+VERSION = 0.3.1
 
 DEFINES += APPLCTN_NAME=\\\"quick-collect\\\"
 DEFINES += "MYAPPNAME=\"\\\"Quick Collect\\\"\""
@@ -135,10 +138,10 @@ include(../../Matilda-units/matilda-bbb/matilda-bbb-clientside/matilda-bbb-clien
 include(../../Matilda-units/ifaces/peredavator-core/peredavator-core.pri)
 
 
+
 SOURCES += \
         main.cpp \
         qcmainwindow.cpp \
-    zbyrator-src/createtoolbar.cpp \
     zbyrator-src/ktsconnectwdgt.cpp \
     zbyrator-src/startexchange.cpp \
     zbyrator-src/relaywdgt.cpp \
@@ -146,7 +149,6 @@ SOURCES += \
     zbyrator-src/setmeteraddress.cpp \
     zbyrator-src/checkconnectiontoolwdgt.cpp \
     zbyrator-src/zbyratorservice.cpp \
-    zbyrator-src/startpagepoll.cpp \
     zbyrator-src/zbyrmeterlistmedium.cpp \
     zbyrator-src/src/zbyrtableheaders.cpp \
     zbyrator-src/src/zbyratordatacalculation.cpp \
@@ -165,12 +167,12 @@ SOURCES += \
     zbyrator-src/src/startpollsetmetermodeldialog.cpp \
     zbyrator-src/ifacesett4groups.cpp \
     zbyrator-src/ifacesett4groupseditor.cpp \
-    zbyrator-src/src/watersleepschedulermom.cpp
+    zbyrator-src/src/watersleepschedulermom.cpp \
+    zbyrator-src/createtoolbar4quickcollect.cpp
 
 
 HEADERS += \
         qcmainwindow.h \
-    zbyrator-src/createtoolbar.h \
     zbyrator-src/ktsconnectwdgt.h \
     zbyrator-src/startexchange.h \
     zbyrator-src/relaywdgt.h \
@@ -178,7 +180,6 @@ HEADERS += \
     zbyrator-src/setmeteraddress.h \
     zbyrator-src/checkconnectiontoolwdgt.h \
     zbyrator-src/zbyratorservice.h \
-    zbyrator-src/startpagepoll.h \
     zbyrator-src/zbyrmeterlistmedium.h \
     zbyrator-src/src/zbyrtableheaders.h \
     zbyrator-src/src/zbyratordatacalculation.h \
@@ -197,7 +198,8 @@ HEADERS += \
     zbyrator-src/src/startpollsetmetermodeldialog.h \
     zbyrator-src/ifacesett4groups.h \
     zbyrator-src/ifacesett4groupseditor.h \
-    zbyrator-src/src/watersleepschedulermom.h
+    zbyrator-src/src/watersleepschedulermom.h \
+    zbyrator-src/createtoolbar4quickcollect.h
 
 
 FORMS += \
@@ -209,7 +211,6 @@ FORMS += \
     zbyrator-src/setmeteraddress.ui \
     zbyrator-src/checkconnectiontoolwdgt.ui \
     zbyrator-src/zbyratorservice.ui \
-    zbyrator-src/startpagepoll.ui \
     zbyrator-src/zbyratoroptions.ui \
     zbyrator-src/options/databasesettings.ui \
     zbyrator-src/options/ucemulator.ui \
@@ -220,7 +221,6 @@ FORMS += \
     zbyrator-src/ifacesett4groupseditor.ui
 
 
-RESOURCES +=
 
 
 RC_FILE += file.rc

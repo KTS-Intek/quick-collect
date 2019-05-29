@@ -65,6 +65,8 @@ public slots:
 
     void onCOMMAND2GUIslot(quint16 command, QVariantHash varHash);
 
+    void kickOffObject();
+
 private:
 
     QStringList listEnrg;

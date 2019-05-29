@@ -214,6 +214,8 @@ void GetReadyMetersData::addAllMeters2table()
 
     QStringList powergroups;
     MyListStringList list;
+
+    QMap<QString,QString> nipwr2memo;
     for(int i = 0, imax = meters.size(); i < imax; i++){
         const UniversalMeterSett m = meters.at(i);
         QStringList l;
@@ -224,9 +226,13 @@ void GetReadyMetersData::addAllMeters2table()
         l.append("-");//poll no
         l.append("?");//has data ? - unknown, + - has all data, ! - not all
 
+        if(m.powerin == "+")
+            nipwr2memo.insert(m.ni, m.memo);
         const QString group = (m.powerin == "+") ? m.ni : m.powerin;
         if(!group.isEmpty() && !powergroups.contains(group))
             powergroups.append(group);
+
+
         l.append(group);
         list.append(l);
     }
@@ -234,6 +240,13 @@ void GetReadyMetersData::addAllMeters2table()
 
     QVariantMap mapgrps;
     mapgrps.insert("\r\ngroups\r\n", powergroups);
+
+    QStringList powergroupsext;
+    for(int i = 0, imax = powergroups.size(); i < imax; i++){
+        powergroupsext.append(QString("%1 - %2").arg(powergroups.at(i)).arg(nipwr2memo.value(powergroups.at(i), " ")));
+    }
+
+    mapgrps.insert("\r\ngroupsext\r\n", powergroupsext);
 
     emit allMeters2selectWdgt(list, mapgrps, header, header, true);
 

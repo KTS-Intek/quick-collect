@@ -28,7 +28,7 @@ public slots:
 private slots:
     void onLvOptions_clicked(const QModelIndex &index);
 
-    void on_stackedWidget_currentChanged(int arg1);
+//    void on_stackedWidget_currentChanged(int arg1);
 
 
 private:

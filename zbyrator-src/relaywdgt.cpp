@@ -175,7 +175,8 @@ void RelayWdgt::meterRelayStatus(QString ni, QDateTime dtLocal, quint8 mainstts,
 
 void RelayWdgt::initPage()
 {
-    setupObjects(ui->tvTable, ui->tbFilter, ui->cbFilterMode, ui->leFilter, SETT_FILTERS_RELAYWDGT);
+    setupObjects(ui->horizontalLayout_61, ui->tvTable, ui->tbFilter, ui->cbFilterMode, ui->leFilter, SETT_FILTERS_RELAYWDGT);
+    connect(this, SIGNAL(openContextMenu(QPoint)), this, SLOT(on_tvTable_customContextMenuRequested(QPoint)));
     StandardItemModelHelper::setModelHorizontalHeaderItems(model, QStringList());
 
     ui->widget_2->setEnabled(false);

@@ -72,6 +72,7 @@ void StartExchange::initPage()
 
     connect(guiHelper, SIGNAL(showMessExt(QString,int,QVariant)), gHelper, SIGNAL(showMessExt(QString,int,QVariant)));
 
+    //check the next: 'guiHelper or gHelper is here?'
     connect(gHelper, SIGNAL(setPbWriteEnableDisable(bool)), this, SLOT(checkPbReadEnabled()));// ui->pbRead, SLOT(setDisabled(bool)));
     checkPbReadEnabled();
 //    ui->pbRead->setDisabled(gHelper->managerEnDisBttn.pbWriteDis);
@@ -308,7 +309,8 @@ MatildaConfWidget *StartExchange::createWaterSleepSchedulerWdgt(GuiHelper *gHelp
 
     connect(w, &WaterSleepSchedulerMom::reloadSavedSleepProfiles, metersListMedium, &ZbyrMeterListMedium::reloadSavedSleepProfiles);
     connect(metersListMedium, &ZbyrMeterListMedium::waterMeterSchedulerStts, w, &WaterSleepSchedulerMom::waterMeterSchedulerStts);
-    connect(metersListMedium, SIGNAL(setWaterMeterSchedulerPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)), w, SLOT(setPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)) );
+    connect(metersListMedium, SIGNAL(setWaterMeterSchedulerPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)),
+            w, SLOT(setPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)) );
 
     connect(this, SIGNAL(lockButtons(bool)), w, SIGNAL(lockButtons(bool)));
     return w;

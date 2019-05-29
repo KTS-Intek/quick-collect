@@ -229,6 +229,12 @@ void ZbyratorDatabaseMedium::setDotPos(int dotPos)
         shrdObj->komaPos = dotPos;
 }
 
+void ZbyratorDatabaseMedium::kickOffObject()
+{
+    emit killAllObjects();
+    deleteLater();
+}
+
 bool ZbyratorDatabaseMedium::iNeed2cacheInfoAboutMeter(const quint16 &command, const QVariant &sendVar)
 {
     Q_UNUSED(command);
@@ -282,7 +288,8 @@ bool ZbyratorDatabaseMedium::checkSqlClientReady(const quint16 &command, const Q
 
     m->moveToThread(t);
 
-    connect(this, SIGNAL(destroyed(QObject*)), m, SLOT(deleteLater()) );
+    connect(this, &ZbyratorDatabaseMedium::killAllObjects, m, &ZbyratorUcMedium::killAllObjects);
+
     connect(m, SIGNAL(destroyed(QObject*)), t, SLOT(quit()) );
     connect(t, SIGNAL(finished()), t, SLOT(deleteLater()) );
     connect(t, SIGNAL(started()), m, SLOT(onThreadStarted()) );

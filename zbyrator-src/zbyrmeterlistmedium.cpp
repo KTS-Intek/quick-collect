@@ -8,7 +8,6 @@
 ///[!] guisett-shared-core
 #include "src/nongui/tableheaders.h"
 #include "src/nongui/settloader.h"
-#include "src/nongui/tableheaders.h"
 
 
 ///[!] device-poll
@@ -256,8 +255,15 @@ void ZbyrMeterListMedium::createDataCalculator()
     QThread *t = new QThread;
     c->moveToThread(t);
 
-    connect(this, SIGNAL(destroyed(QObject*)), t, SLOT(quit()) );
+//    connect(this, SIGNAL(destroyed(QObject*)), t, SLOT(quit()) );
+
+    connect(this, &ZbyrMeterListMedium::killAllObjects, c, &ZbyratorDataCalculation::kickOffObject);
+    connect(c, SIGNAL(destroyed(QObject*)), t, SLOT(quit()));
+    connect(t, SIGNAL(finished()), t, SLOT(deleteLater()));
+
     connect(t, SIGNAL(started()), c, SLOT(onThreadStarted()) );
+
+
     connect(this, &ZbyrMeterListMedium::onAddMeters     , c, &ZbyratorDataCalculation::onAlistOfMeters  );
     connect(this, &ZbyrMeterListMedium::appendMeterData , c, &ZbyratorDataCalculation::appendMeterData  );
     connect(this, &ZbyrMeterListMedium::onPollStarted   , c, &ZbyratorDataCalculation::onPollStarted    );
@@ -281,7 +287,12 @@ void ZbyrMeterListMedium::createDatabaseMedium()
     QThread *t = new QThread;
     m->moveToThread(t);
 
-    connect(this, SIGNAL(destroyed(QObject*)), t, SLOT(quit()) );
+    connect(this, &ZbyrMeterListMedium::killAllObjects, m, &ZbyratorDatabaseMedium::kickOffObject);
+
+
+    connect(m, SIGNAL(destroyed(QObject*)), t, SLOT(quit()) );
+    connect(t, SIGNAL(finished()), t, SLOT(deleteLater()));
+
     connect(t, SIGNAL(started()), m, SLOT(onThreadStarted()) );
     connect(this, &ZbyrMeterListMedium::onAddMeters     , m, &ZbyratorDatabaseMedium::onAlistOfMeters);
 
@@ -498,7 +509,7 @@ QStringList ZbyrMeterListMedium::universalMeterSett2listRowWater(const Universal
 //---------------------------------------------------------------------
 bool ZbyrMeterListMedium::metersChanged(QMap<QString, ZbyrMeterListMedium::LastList2pages> &mapMeters2pages, const QString &key, const LastList2pages &lastMeters2pagesL)
 {
-    if(mapMeters2pages.contains(key) && metersChanged(mapMeters2pages.value(key), lastMeters2pagesL)){
+    if((mapMeters2pages.contains(key) && metersChanged(mapMeters2pages.value(key), lastMeters2pagesL)) ){ //|| !mapMeters2pages.contains(key)){
         mapMeters2pages.insert(key, lastMeters2pagesL);
         return true;
     }
@@ -716,8 +727,13 @@ void ZbyrMeterListMedium::createLocalSocketObject()
     extSocket->activeDbgMessages = activeDbgMessages;
 
     extSocket->initializeSocket(MTD_EXT_NAME_ZBYRATOR);
-    QThread *extSocketThrd = new QThread(this);
+    QThread *extSocketThrd = new QThread;
+
     extSocket->moveToThread(extSocketThrd);
+
+    connect(this, &ZbyrMeterListMedium::killAllObjects, extSocket, &ZbyratorSocket::killAllObjects);
+    connect(extSocket, SIGNAL(destroyed(QObject*)), extSocketThrd, SLOT(quit()));
+    connect(extSocketThrd, SIGNAL(finished()), extSocketThrd, SLOT(deleteLater()));
 
 //    connect(extSocket, &ZbyratorSocket::appendDbgExtData, this, &ZbyratorManager::appendDbgExtData );
 
@@ -750,7 +766,9 @@ void ZbyrMeterListMedium::createPeredavatorEmbeeManager()
 
     cover->moveToThread(t);
 
-    connect(this, SIGNAL(destroyed(QObject*)), cover, SLOT(deleteLater()));
+    connect(this, &ZbyrMeterListMedium::killAllObjects, cover, &PeredavatorCover::kickOffAllObjects);
+
+
     connect(cover, SIGNAL(destroyed(QObject*)), t, SLOT(quit()));
     connect(t, SIGNAL(finished()), t, SLOT(deleteLater()));
     connect(t, SIGNAL(started()), cover, SLOT(onThreadStarted()) );

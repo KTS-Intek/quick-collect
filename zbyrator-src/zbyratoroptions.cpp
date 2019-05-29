@@ -25,7 +25,7 @@ ZbyratorOptions::~ZbyratorOptions()
 
 void ZbyratorOptions::initPage()
 {
-    setupObjects(0, 0, 0, ui->leFilter, SETT_FILTERS_ZBYROPTSLV);
+    setupObjects(0, 0, 0, 0, ui->leFilter, SETT_FILTERS_ZBYROPTSLV);
     StandardItemModelHelper::setModelHorizontalHeaderItems(model, tr("Pages").split("\n"));
 
 
@@ -137,13 +137,18 @@ MatildaConfWidget *ZbyratorOptions::createPollWdgt()
 MatildaConfWidget *ZbyratorOptions::createOptionsWdgt()
 {
     OptionsWdgt *w = new OptionsWdgt(gHelper, this);
-    w->hideButtons();    
+//    w->hideButtons();
+    QPushButton *p = w->getPbClose();
+    p->setText(tr("Reload"));
+    p->setIcon(QIcon(":/katynko/svg/view-refresh.svg"));
+    disconnect(p, SIGNAL(clicked(bool)), w, SLOT(deleteLater()));
+    connect(p, SIGNAL(clicked(bool)), w, SLOT(loadSettPageOptions()));
 
     return w;
 }
 
-void ZbyratorOptions::on_stackedWidget_currentChanged(int arg1)
-{
+//void ZbyratorOptions::on_stackedWidget_currentChanged(int arg1)
+//{
 
-}
+//}
 

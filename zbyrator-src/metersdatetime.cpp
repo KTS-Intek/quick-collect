@@ -152,7 +152,9 @@ void MetersDateTime::meterDateTimeDstStatus(QString ni, QDateTime dtLocal, QStri
 void MetersDateTime::initPage()
 {
 
-    setupObjects(ui->tvTable, ui->tbFilter, ui->cbFilterMode, ui->leFilter, SETT_FILTERS_METERDATETIME);
+    setupObjects(ui->horizontalLayout_61, ui->tvTable, ui->tbFilter, ui->cbFilterMode, ui->leFilter, SETT_FILTERS_METERDATETIME);
+    connect(this, SIGNAL(openContextMenu(QPoint)), this, SLOT(on_tvTable_customContextMenuRequested(QPoint)));
+
     StandardItemModelHelper::setModelHorizontalHeaderItems(model, QStringList());
 
     ui->widget_2->setEnabled(false);

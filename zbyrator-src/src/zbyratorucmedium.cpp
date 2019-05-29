@@ -54,6 +54,11 @@ void ZbyratorUcMedium::data2matilda(quint16 command, QVariant var)
     decodeReadData(var, command);
 }
 
+void ZbyratorUcMedium::killAllObjects()
+{
+    deleteLater();
+}
+
 void ZbyratorUcMedium::decodeReadData(QVariant dataVar, const quint16 &command)
 {
     QVariant s_data;

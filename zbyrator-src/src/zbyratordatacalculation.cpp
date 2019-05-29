@@ -556,4 +556,11 @@ void ZbyratorDataCalculation::onCOMMAND2GUIslot(quint16 command, QVariantHash va
 
 }
 
+void ZbyratorDataCalculation::kickOffObject()
+{
+
+    deleteLater();
+
+}
+
 

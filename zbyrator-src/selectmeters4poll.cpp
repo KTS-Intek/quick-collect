@@ -67,7 +67,8 @@ void SelectMeters4poll::setPollSettWater(const QDateTime &dtFrom, const QDateTim
 
 void SelectMeters4poll::initPage()
 {
-    setupObjects(ui->tvTable, ui->tbFilter, ui->cbFilterMode, ui->leFilter, SETT_FILTERS_ZBYR_SELMTRS);
+    setupObjects(0, ui->tvTable, ui->tbFilter, ui->cbFilterMode, ui->leFilter, SETT_FILTERS_ZBYR_SELMTRS);
+//    connect(this, SIGNAL(openContextMenu(QPoint)), this, SLOT(on_tvTable_customContextMenuRequested(QPoint)));
     StandardItemModelHelper::setModelHorizontalHeaderItems(model, QStringList());
 
 
@@ -115,7 +116,7 @@ void SelectMeters4poll::setPageSett(const MyListStringList &listRows, const QVar
 //    if(!currNi.isEmpty())
 //        TableViewHelper::selectRowWithThisCell(ui->tvTable, currNi, headerH.indexOf("NI"));
 
-    QStringList powerins = col2data.value("\r\ngroups\r\n").toStringList();
+    QStringList powerins = col2data.value("\r\ngroupsext\r\n").toStringList();//<NI> - <memo>
     powerins.prepend("");
 
     disconnect(ui->cbxGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(onCbxGroups_currentIndexChanged(QString)));
@@ -205,6 +206,6 @@ void SelectMeters4poll::on_pbCheckedOn_clicked()
 
 void SelectMeters4poll::onCbxGroups_currentIndexChanged(const QString &arg1)
 {
-    proxy_model->setSpecFilter(5, arg1);
+    proxy_model->setSpecFilter(5, arg1.split(" ").first());
 
 }
