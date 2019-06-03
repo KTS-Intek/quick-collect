@@ -46,7 +46,7 @@ void ZbyratorDatabaseMedium::data2matilda4inCMD(quint16 command, QVariant dataVa
         hash.remove("gcl");
         shrdObj->lastPollCode = hash.value("code").toUInt();
         shrdObj->hashMemoWrite.insert(COMMAND_READ_DATABASE, hash);
-
+shrdObj->updateMeterType();
         iNeed2cacheInfoAboutMeter(command, dataVar);
         break; }
 
@@ -247,6 +247,7 @@ bool ZbyratorDatabaseMedium::iNeed2cacheInfoAboutMeter(const quint16 &command, c
 void ZbyratorDatabaseMedium::createDatabaseReader()
 {
     dbReader = new ClassManagerDatabaseReader(shrdObj, this);
+    shrdObj->setObjectName("ZbyratorDatabaseMedium");
 
      connect(dbReader, &ClassManagerDatabaseReader::data2matildaSlot, this, &ZbyratorDatabaseMedium::data2matildaSlot);
      connect(dbReader, SIGNAL(onCOMMAND2GUI(quint16,QVariantHash)), this, SLOT(onCOMMAND2GUI(quint16,QVariantHash)));

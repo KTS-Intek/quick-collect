@@ -60,6 +60,9 @@ signals:
 
     void lockButtons(bool disable);
 
+
+    void onRequest2pollThese(QStringList nis, quint8 metertype);
+
 private slots:
 
     void on_tbIfaceSett_clicked();
@@ -84,6 +87,8 @@ private slots:
 
     void onSwDevicesCurrIndxChanged();
 
+
+    void activateStartPollWdgt();
 
 
 private:

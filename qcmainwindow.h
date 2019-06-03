@@ -36,6 +36,9 @@ signals:
     void reloadSettings2ucEmulator();
 
 
+    void onRequest2pollThese(QStringList nis, quint8 metertype);
+    void onRequest2GetDataThese(QStringList nis, quint8 metertype);
+    void tryToActivateThisPage(QString page);
 
 public slots:
     void initPage();
@@ -43,7 +46,7 @@ public slots:
     void retranslateWidgets();
 
 
-    void onActivateThisWdgt(QString tabData);
+    void onActivateThisWdgt(QString tabData, bool andShowIt);
 
 
 
@@ -53,6 +56,13 @@ public slots:
 
 
     void onAppIsKilling();
+
+    void checkDbPageIsReady();
+
+    void activatePageDb();
+    void activatePageHome();
+    void checkProxySett();
+
 
 private slots:
 
@@ -67,9 +77,16 @@ private slots:
 
 
 
+    void on_actionExchange_triggered();
+
+    void on_actionProxy_settings_triggered();
+
+    void checkProxySettLater();
+
+
 private: //functions
 
-    void createOneOfMainWdgt(const QString &tabData);
+    void createOneOfMainWdgt(const QString &tabData, const bool &andActivateIt);
 
 private:
     void createToolBar();

@@ -146,6 +146,7 @@ void StartExchange::initPage()
     connect(metersListMedium, SIGNAL(command4dev(quint16,QString)), this, SLOT(onCommandStarted()));
     connect(metersListMedium, SIGNAL(command4dev(quint16,QVariantMap)), this, SLOT(onCommandStarted()));
 
+    connect(this, SIGNAL(onRequest2pollThese(QStringList,quint8)), this, SLOT(activateStartPollWdgt()));
      unlockTmpLock();//init state
 //    emit pageReady();
     QTimer::singleShot(555, this, SIGNAL(pageReady()));
@@ -295,6 +296,7 @@ MatildaConfWidget *StartExchange::createStartPagePoll(GuiHelper *gHelper, QWidge
     connect(w, &StartPagePollV2::onPbStartPoll, this, &StartExchange::on_pbRead_clicked);
 
 
+    connect(this, &StartExchange::onRequest2pollThese, w, &StartPagePollV2::onRequest2pollThese);
     connect(w, SIGNAL(killCurrentTask()), ui->pbStop, SLOT(animateClick()));
     return w;
 }
@@ -321,12 +323,14 @@ MatildaConfWidget *StartExchange::createRelayWdgt(GuiHelper *gHelper, QWidget *p
 {
     RelayWdgt *w = new RelayWdgt(gHelper,  parent);
 //    connect(metersListMedium, &ZbyrMeterListMedium::setRelayPageSett, w, &RelayWdgt::setp);
+
     connect(metersListMedium, SIGNAL(setRelayPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)), w, SLOT(setPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)) );
     connect(metersListMedium, &ZbyrMeterListMedium::meterRelayStatus, w, &RelayWdgt::meterRelayStatus);
+
     connect(w, &RelayWdgt::onReloadAllMeters, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters);
     connect(w, &RelayWdgt::setLastPageId, metersListMedium, &ZbyrMeterListMedium::setLastPageId);
     connect(w, SIGNAL(command4dev(quint16,QVariantMap)), metersListMedium, SLOT(command4devSlot(quint16,QVariantMap)) );
-connect(this, SIGNAL(lockButtons(bool)), w, SIGNAL(lockButtons(bool)));
+    connect(this, SIGNAL(lockButtons(bool)), w, SIGNAL(lockButtons(bool)));
     return w;
 }
 
@@ -637,4 +641,16 @@ void StartExchange::onSwDevicesCurrIndxChanged()
         ui->wdgtReadButton->setEnabled(readCommand > 0);
 
     }
+}
+
+void StartExchange::activateStartPollWdgt()
+{
+    if(lastWdgtAccessibleName == "Poll")
+        return;
+    lastWdgtAccessibleName = "Poll";
+    showLastWdgt();
+
+//    lastWdgtAccessibleName
+
+
 }

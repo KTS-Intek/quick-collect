@@ -144,6 +144,10 @@ signals:
     void onExternalCommandProcessed();
 
     void killAllObjects();
+    void onElMeterRelayChanged(QVariantHash h);
+
+
+    void startTmrUpdateRelayStatuses(int msec);
 
 public slots:
     void onAllMetersSlot(UniversalMeterSettList allMeters);
@@ -182,6 +186,16 @@ public slots:
 
     void sendCachedDataAboutRelays(const QStringList &niswithoutsttses);
 
+
+    void mWrite2RemoteDev(quint16 command, QVariant dataVar);//from guihelper
+
+
+    void setDateMaskSlot(QString dateMask);
+
+
+    void updateRelayStatuses4meterlist();
+
+    void setPbWriteDis(bool disabled);
 private:
     struct LastList2pages
     {
@@ -219,6 +233,8 @@ private:
 
     void createPeredavatorEmbeeManager();
 
+    void createTmrMeterRelayStts();
+    void updateRelayStatuses4meterlistExt(const QMap<QString,LastMetersStatusesManager::MyMeterRelayStatus> &relaysttsmap);
 
 
     struct SaveLaterMeters
@@ -242,6 +258,16 @@ private:
     bool pageModeUpdated;
 
     bool isDbReady4read;
+    QString dateMask;
+    bool pbWriteDis;
+
+    struct LastRelayState
+    {
+        QVariantHash lastMeterRelay;
+        QStringList meternis;
+        bool hasRequestFromMeterList;
+        LastRelayState() : hasRequestFromMeterList(false) {}
+    } lrelay;
 };
 
 #endif // ZBYRMETERLISTMEDIUM_H

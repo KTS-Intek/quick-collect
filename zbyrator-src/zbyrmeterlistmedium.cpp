@@ -44,6 +44,8 @@
 
 ///[!] zbyrator-shared
 #include "src/zbyrator-v2/watermeterhelper.h"
+#include "src/meter/relaystatehelper.h"
+#include "src/zbyrator-v2/quickpollhelper.h"
 
 
 ///[!] zbyrator-settings
@@ -56,6 +58,10 @@
 
 ///[!] quick-collect-gui-core
 #include "quick-collect-gui-core/emulator/peredavatorcover.h"
+
+
+///[!] guisett-shared-core
+#include "src/nongui/meterstatehelper4gui.h"
 
 
 
@@ -79,8 +85,14 @@ ZbyrMeterListMedium::ZbyrMeterListMedium(QObject *parent) : GuiIfaceMedium(paren
     createLocalSocketObject();
     metersStatusManager = new LastMetersStatusesManager(this);
     connect(this, &ZbyrMeterListMedium::add2fileMeterRelayStatus, metersStatusManager, &LastMetersStatusesManager::add2fileMeterRelayStatus);
+    connect(metersStatusManager, &LastMetersStatusesManager::onFileSaved, [=]{
+        emit startTmrUpdateRelayStatuses(1111);
+    });
 
+    connect(this, &ZbyrMeterListMedium::setDateMask, this, &ZbyrMeterListMedium::setDateMaskSlot);
     pageModeUpdated = false;
+
+    createTmrMeterRelayStts();
 
     QTimer::singleShot(3333, this, SLOT(createPeredavatorEmbeeManagerLater()));
 
@@ -437,11 +449,12 @@ void ZbyrMeterListMedium::command4devSlotLocalSocket(quint16 command, QString ar
     command4devSlot(command, args);
 
 }
-
+//---------------------------------------------------------------------
 void ZbyrMeterListMedium::sendCachedDataAboutRelays(const QStringList &niswithoutsttses)
 {
     QString errmess;
     const QMap<QString,LastMetersStatusesManager::MyMeterRelayStatus> relaysttsmap = LastMetersStatusesManager::getLastRelayStatusesMap(errmess);
+
 
     for(int i = 0, imax = niswithoutsttses.size(); i < imax; i++){
         const LastMetersStatusesManager::MyMeterRelayStatus stts = relaysttsmap.value(niswithoutsttses.at(i));
@@ -449,8 +462,57 @@ void ZbyrMeterListMedium::sendCachedDataAboutRelays(const QStringList &niswithou
             continue;
 
         emit meterRelayStatus(niswithoutsttses.at(i), stts.dtLocal, stts.mainstts, stts.secondarystts);
-    }
 
+    }
+    emit startTmrUpdateRelayStatuses(1111);
+
+
+
+}
+//---------------------------------------------------------------------
+void ZbyrMeterListMedium::mWrite2RemoteDev(quint16 command, QVariant dataVar)
+{
+    switch(command){
+    case COMMAND_WRITE_ELMTRRELAY_OPERATION:{
+        if(pbWriteDis)
+            return;
+
+        const QStringList listni = dataVar.toHash().value("nis").toStringList();
+        if(listni.isEmpty()){
+            emit showMess(tr("no meters"));
+            return;
+        }
+        const int operation = dataVar.toHash().value("mode").toInt();
+        QString mess;
+        const QVariantMap map = QuickPollHelper::createPollMap4relay(listni, operation, mess);
+
+        if(map.isEmpty())
+            return;
+
+        setLastPageId("Relay");
+
+        command4devSlot(POLL_CODE_RELAY_OPERATIONS, map);
+        lrelay.hasRequestFromMeterList = true;
+        break;}//realy operations, main relay
+    case COMMAND_READ_ELMTRRELAY_TABLE: lrelay.hasRequestFromMeterList = true; emit startTmrUpdateRelayStatuses(111); break; //send last realy statuses
+    }
+}
+//---------------------------------------------------------------------
+void ZbyrMeterListMedium::setDateMaskSlot(QString dateMask)
+{
+    this->dateMask = dateMask;
+}
+//---------------------------------------------------------------------
+void ZbyrMeterListMedium::updateRelayStatuses4meterlist()
+{
+    QString errmess;
+    const QMap<QString,LastMetersStatusesManager::MyMeterRelayStatus> relaysttsmap = LastMetersStatusesManager::getLastRelayStatusesMap(errmess);
+    updateRelayStatuses4meterlistExt(relaysttsmap);
+}
+
+void ZbyrMeterListMedium::setPbWriteDis(bool disabled)
+{
+    pbWriteDis = disabled;
 }
 //---------------------------------------------------------------------
 QStringList ZbyrMeterListMedium::universalMeterSett2listRow(const UniversalMeterSett &m, QStringList &ldata, QList<int> &lcols)
@@ -547,6 +609,7 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
     QMap<quint8, QString> mapMetertype2ni;
 
     QStringList meternisWithoutRelaySttses;
+    QStringList allElectricMeters;
 
     for(int i = 0; i < activeMetersSize; i++){
 
@@ -561,6 +624,17 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
             QVariantList powercenters = mappowercenters.value(m.meterType);
             powercenters.append(h);
             mappowercenters.insert(m.meterType, powercenters);
+        }
+
+        switch(m.meterType){
+        case UC_METER_ELECTRICITY:{
+            allElectricMeters.append(m.ni);
+            break;}
+
+        case UC_METER_WATER:{
+
+
+            break;}
         }
 
         if(checkOffMeters && !m.pollEnbl){
@@ -607,7 +681,12 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
 
 //        if(m.ni == UC_METER_ELECTRICITY)
 
-           }
+    }
+
+    if(!allElectricMeters.isEmpty()){
+        lrelay.meternis = allElectricMeters;
+        emit startTmrUpdateRelayStatuses(3333);
+    }
 
 //    if(mapMeters2pages.contains("relay") && mapMeters2pages)
 
@@ -615,6 +694,7 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
         emit setRelayPageSett(getRowsList(relayPage, QStringList(), relayPageL, lastElectricityMeters2pagesL.listNI, meterElectricityActive), QVariantMap(), ZbyrTableHeaders::getRelayPageHeader(), StandardItemModelHelper::getHeaderData(ZbyrTableHeaders::getRelayPageHeader().size()), true);
     else
         meternisWithoutRelaySttses.clear();
+
 
 
     if(metersChanged(mapMeters2pages, "Date and time", lastMeters2pagesL))
@@ -802,4 +882,73 @@ void ZbyrMeterListMedium::createPeredavatorEmbeeManager()
     QTimer::singleShot(555, t, SLOT(start()));
 
 }
+
+//---------------------------------------------------------------------
+
+void ZbyrMeterListMedium::createTmrMeterRelayStts()
+{
+    QTimer *t = new QTimer(this);
+    t->setSingleShot(true);
+    t->setInterval(1111);
+    connect(t, SIGNAL(timeout()), this, SLOT(updateRelayStatuses4meterlist()));
+    connect(this, SIGNAL(startTmrUpdateRelayStatuses(int)), t, SLOT(start(int)));
+
+}
+
+//---------------------------------------------------------------------
+
+void ZbyrMeterListMedium::updateRelayStatuses4meterlistExt(const QMap<QString, LastMetersStatusesManager::MyMeterRelayStatus> &relaysttsmap)
+{
+    QVariantHash lastMeterRelay;
+    const QString mask = dateMask + " hh:mm:ss";
+//    const qint64 currmsec = QDateTime::currentMSecsSinceEpoch();
+    const QStringList niswithoutsttses = lrelay.meternis;
+
+    if(niswithoutsttses.isEmpty())
+        return;//nothing to update
+
+    for(int i = 0, imax = niswithoutsttses.size(); i < imax; i++){
+        const LastMetersStatusesManager::MyMeterRelayStatus stts = relaysttsmap.value(niswithoutsttses.at(i));
+        if(!stts.dtLocal.isValid())
+            continue;
+
+
+        const qint64 msec = stts.dtLocal.toMSecsSinceEpoch();
+        QString dt = QDateTime::fromMSecsSinceEpoch(msec).toLocalTime().toString(mask);
+
+        const QString ni = niswithoutsttses.at(i);
+        const quint16 mainstts = stts.mainstts;
+        const quint16 secondarystts = stts.secondarystts;
+
+
+
+        QVariantMap map;
+        map.insert("stts", RelayStateHelper::getRelayStatusHuman(mainstts));
+        map.insert("dt", dt);
+        map.insert("msec", msec);
+        map.insert("ico", MeterStateHelper4gui::getRelayIcostr4status(mainstts));
+
+        map.insert("stts2", RelayStateHelper::getRelayStatusHuman(secondarystts));
+        map.insert("ico2", MeterStateHelper4gui::getRelayIcostr4status(secondarystts));
+
+
+
+
+        lastMeterRelay.insert(ni, map);
+
+    }
+
+
+    if(true){
+        QVariantMap map;
+        map.insert("ico", ":/katynko/svg3/relay-load-unknown.svg");
+        lastMeterRelay.insert("\r\ndefault\r\n", map);
+    }
+    if(lrelay.lastMeterRelay != lastMeterRelay || !lrelay.hasRequestFromMeterList){
+        lrelay.lastMeterRelay = lastMeterRelay;
+        emit onElMeterRelayChanged(lrelay.lastMeterRelay);
+    }
+}
+
+//---------------------------------------------------------------------
 

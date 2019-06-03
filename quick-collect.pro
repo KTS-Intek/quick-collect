@@ -50,7 +50,7 @@ DEFINES += DISABLE_WATCHDOG_TIMER
 DEFINES += DISABLE_PROC_MANAGER
 
 #appversion.cpp
-VERSION = 0.3.1
+VERSION = 1.1.0
 
 DEFINES += APPLCTN_NAME=\\\"quick-collect\\\"
 DEFINES += "MYAPPNAME=\"\\\"Quick Collect\\\"\""
@@ -163,8 +163,6 @@ SOURCES += \
     zbyrator-src/src/zbyratordatabasemedium.cpp \
     zbyrator-src/src/zbyratorucmedium.cpp \
     zbyrator-src/startpagepollv2.cpp \
-    zbyrator-src/waterstartpollsleepdlg.cpp \
-    zbyrator-src/src/startpollsetmetermodeldialog.cpp \
     zbyrator-src/ifacesett4groups.cpp \
     zbyrator-src/ifacesett4groupseditor.cpp \
     zbyrator-src/src/watersleepschedulermom.cpp \
@@ -194,8 +192,6 @@ HEADERS += \
     zbyrator-src/src/zbyratordatabasemedium.h \
     zbyrator-src/src/zbyratorucmedium.h \
     zbyrator-src/startpagepollv2.h \
-    zbyrator-src/waterstartpollsleepdlg.h \
-    zbyrator-src/src/startpollsetmetermodeldialog.h \
     zbyrator-src/ifacesett4groups.h \
     zbyrator-src/ifacesett4groupseditor.h \
     zbyrator-src/src/watersleepschedulermom.h \
@@ -216,8 +212,6 @@ FORMS += \
     zbyrator-src/options/ucemulator.ui \
     zbyrator-src/options/ktsconnectmode.ui \
     zbyrator-src/selectmeters4poll.ui \
-    zbyrator-src/waterstartpollsleepdlg.ui \
-    zbyrator-src/src/startpollsetmetermodeldialog.ui \
     zbyrator-src/ifacesett4groupseditor.ui
 
 

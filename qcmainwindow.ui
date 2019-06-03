@@ -126,13 +126,15 @@
      <x>0</x>
      <y>0</y>
      <width>991</width>
-     <height>19</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionExchange"/>
+    <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuView">
@@ -146,6 +148,7 @@
      <string>Settings</string>
     </property>
     <addaction name="actionOptions"/>
+    <addaction name="actionProxy_settings"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -186,26 +189,66 @@
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionExit">
+   <property name="icon">
+    <iconset resource="../../Matilda-units/gui/image-and-font/res.qrc">
+     <normaloff>:/katynko/svg/application-exit.svg</normaloff>:/katynko/svg/application-exit.svg</iconset>
+   </property>
    <property name="text">
     <string>Exit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
    </property>
   </action>
   <action name="actionThe_log_of_the_application">
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="icon">
+    <iconset resource="../../Matilda-units/gui/image-and-font/res.qrc">
+     <normaloff>:/katynko/svg/view-list-text.svg</normaloff>:/katynko/svg/view-list-text.svg</iconset>
+   </property>
    <property name="text">
     <string>The log of the application</string>
    </property>
   </action>
   <action name="actionOptions">
+   <property name="icon">
+    <iconset resource="../../Matilda-units/gui/image-and-font/res.qrc">
+     <normaloff>:/katynko/svg/applications-system.svg</normaloff>:/katynko/svg/applications-system.svg</iconset>
+   </property>
    <property name="text">
     <string>Options</string>
    </property>
   </action>
   <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="../../Matilda-units/gui/image-and-font/res.qrc">
+     <normaloff>:/katynko/svg2/lc_extendedhelp.svg</normaloff>:/katynko/svg2/lc_extendedhelp.svg</iconset>
+   </property>
    <property name="text">
     <string>About</string>
+   </property>
+  </action>
+  <action name="actionExchange">
+   <property name="icon">
+    <iconset resource="../../Matilda-units/gui/image-and-font/res.qrc">
+     <normaloff>:/katynko/svg/go-home.svg</normaloff>:/katynko/svg/go-home.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Exchange</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
+   </property>
+  </action>
+  <action name="actionProxy_settings">
+   <property name="icon">
+    <iconset resource="../../Matilda-units/gui/image-and-font/res.qrc">
+     <normaloff>:/katynko/svg2/lc_browseview.svg</normaloff>:/katynko/svg2/lc_browseview.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Proxy settings</string>
    </property>
   </action>
  </widget>
@@ -213,5 +256,22 @@
  <resources>
   <include location="../../Matilda-units/gui/image-and-font/res.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>actionExit</sender>
+   <signal>triggered()</signal>
+   <receiver>QcMainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>495</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

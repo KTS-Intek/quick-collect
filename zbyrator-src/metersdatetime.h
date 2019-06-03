@@ -32,6 +32,8 @@ signals:
     void setLastPageId(QString name);
     void lockButtons(bool disable);
 
+    void lockActions(bool disable);
+
 
 public slots:
     void clearPage();
@@ -42,6 +44,15 @@ public slots:
 
     void meterDateTimeDstStatus(QString ni, QDateTime dtLocal, QString stts);
 
+
+    void showThisDev(QString ni);
+    void showContextMenu4thisDev(QString ni);
+    void showThisDevInSource(QString ni);
+
+    void onWdgtLock(bool disable);
+    void onButtonLock(bool disable);
+
+    void sendActLock(const bool &isWdgtDisabled, const bool &isButtonDisabled);
 
 private slots:
 
@@ -68,6 +79,9 @@ private:
     Ui::MetersDateTime *ui;
 
     void startOperation(const QStringList &listni, const quint8 &operation);
+
+    QList<QAction*> getDateTimeActions();
+
 
     bool isMapReady;
     QString lastDateTimeMask;

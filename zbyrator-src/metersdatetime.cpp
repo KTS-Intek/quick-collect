@@ -149,6 +149,39 @@ void MetersDateTime::meterDateTimeDstStatus(QString ni, QDateTime dtLocal, QStri
     resizeLastTv2content();
 }
 
+void MetersDateTime::showThisDev(QString ni)
+{
+    TableViewHelper::selectRowWithThisCell(lastTv, ni, 4);
+
+}
+
+void MetersDateTime::showContextMenu4thisDev(QString ni)
+{
+    showThisDev(ni);
+    emit request2showContextMenuAnimated();
+}
+
+void MetersDateTime::showThisDevInSource(QString ni)
+{
+    showThisDev(ni);
+    ui->tbShowList->animateClick();
+}
+
+void MetersDateTime::onWdgtLock(bool disable)
+{
+    sendActLock(disable, !ui->pbRead->isEnabled());
+}
+
+void MetersDateTime::onButtonLock(bool disable)
+{
+    sendActLock(!ui->widget_2->isEnabled(), disable);
+}
+
+void MetersDateTime::sendActLock(const bool &isWdgtDisabled, const bool &isButtonDisabled)
+{
+    emit lockActions((isWdgtDisabled || isButtonDisabled));
+}
+
 void MetersDateTime::initPage()
 {
 
@@ -170,6 +203,7 @@ void MetersDateTime::initPage()
 
     ui->widget_3->setVisible(false);
     connect(tmr, &SelectionChecker::setWdgtEnable, ui->widget_3, &QWidget::setVisible);
+    connect(tmr, &SelectionChecker::setWdgtDisable, this, &MetersDateTime::onWdgtLock);// ui->widget_3, &QWidget::setVisible);
 
     emit onReloadAllMeters();
 
@@ -210,7 +244,10 @@ void MetersDateTime::on_tbShowMap_clicked()
         connect(this, SIGNAL(showThisDeviceNIEs(QString))      , w, SIGNAL(showThisDeviceNI(QString)) );
         //        connect(this, SIGNAL(showThisCoordinatesEs(QString))   , w, SIGNAL(showThisCoordinates(QString)) );
 
-        //        connect(w, SIGNAL(showThisDev(QString)), this, SLOT(showThisDev(QString)) );
+                connect(w, SIGNAL(showThisDev(QString)), this, SLOT(showThisDev(QString)) );
+                connect(w, SIGNAL(showContextMenu4thisDev(QString)), this, SLOT(showContextMenu4thisDev(QString)));
+                connect(w, SIGNAL(showThisDevInSource(QString)), this, SLOT(showThisDevInSource(QString)));
+
         //        connect(w, SIGNAL(addDevice(QString))  , this, SLOT(addDevice(QString))   );
         //        connect(w, SIGNAL(updateModel4ls())    , this, SLOT(onModelChanged())     );
         //        connect(w, SIGNAL(removeDevice(QString)), this, SLOT(removeDevice(QString)));
@@ -227,7 +264,7 @@ void MetersDateTime::on_tbShowMap_clicked()
 
 void MetersDateTime::on_tvTable_customContextMenuRequested(const QPoint &pos)
 {
-    gHelper->createCustomMenu(pos, ui->tvTable, (GuiHelper::ShowReset|GuiHelper::ShowExport|GuiHelper::ShowOnlyCopy), CLBRD_SMPL_PRXTBL, ShowMessHelperCore::matildaFileName(windowTitle()));
+    gHelper->createCustomMenu(pos, ui->tvTable, (GuiHelper::ShowReset|GuiHelper::ShowExport|GuiHelper::ShowOnlyCopy), CLBRD_SMPL_PRXTBL, ShowMessHelperCore::matildaFileName(windowTitle()), getDateTimeActions());
 
 }
 
@@ -274,4 +311,22 @@ void MetersDateTime::startOperation(const QStringList &listni, const quint8 &ope
     emit setLastPageId(accessibleName());
     lastDateTimeMask = gHelper->dateMask + " hh:mm:ss";
     emit command4dev(operation, map);
+}
+
+QList<QAction *> MetersDateTime::getDateTimeActions()
+{
+    QList<QAction*> la;
+    la.append(createActionFromButton(ui->pbCorrectionAll));
+
+    la.append(createActionFromButton(ui->pbRead));
+      la.append(createActionFromButton(ui->pbWrite));
+
+
+
+      const bool enbl = (ui->pbRead->isEnabled() && ui->widget_2->isEnabled());
+        for(int i = 0, imax = la.size(); i < imax; i++){
+            connect(this, SIGNAL(lockActions(bool)), la.at(i), SLOT(setDisabled(bool)));
+            la.at(i)->setEnabled(enbl);
+        }
+        return la;
 }

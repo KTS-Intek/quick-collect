@@ -34,6 +34,8 @@ signals:
     void setLastPageId(QString name);
 
     void lockButtons(bool disable);
+    void lockActions(bool disable);
+
 
 public slots:
     void clearPage();
@@ -47,7 +49,15 @@ public slots:
 //    void meterRelayStatus(QString ni, QDateTime dtLocal, QString stts, QString stts2, QString icostts, QString icostts2);
     void meterRelayStatus(QString ni, QDateTime dtLocal, quint8 mainstts, quint8 secondarystts);
 
+    void showThisDev(QString ni);
+    void showContextMenu4thisDev(QString ni);
+    void showThisDevInSource(QString ni);
 
+
+    void onWdgtLock(bool disable);
+    void onButtonLock(bool disable);
+
+    void sendActLock(const bool &isWdgtDisabled, const bool &isButtonDisabled);
 
 private slots:
 
@@ -80,6 +90,10 @@ private:
     void doRelayOperationSelected(const quint8 &operation);
 
     void doRelayOperation(const QStringList &listni, const quint8 &operation);
+
+
+    QList<QAction*> getRelayActions();
+
 
     bool isMapReady;
     QString lastDateTimeMask;

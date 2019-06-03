@@ -39,10 +39,10 @@
       <item>
        <widget class="QPushButton" name="pbCorrectionAll">
         <property name="text">
-         <string>Time correction</string>
+         <string>Time correction for all</string>
         </property>
         <property name="icon">
-         <iconset resource="../res.qrc">
+         <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
           <normaloff>:/katynko/svg3/chronometer-err.svg</normaloff>:/katynko/svg3/chronometer-err.svg</iconset>
         </property>
        </widget>
@@ -91,7 +91,7 @@
             <string>Read</string>
            </property>
            <property name="icon">
-            <iconset resource="../res.qrc">
+            <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
              <normaloff>:/katynko/svg/chronometer.svg</normaloff>:/katynko/svg/chronometer.svg</iconset>
            </property>
           </widget>
@@ -102,7 +102,7 @@
             <string>Time correction</string>
            </property>
            <property name="icon">
-            <iconset resource="../res.qrc">
+            <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
              <normaloff>:/katynko/svg3/chronometer-err.svg</normaloff>:/katynko/svg3/chronometer-err.svg</iconset>
            </property>
           </widget>
@@ -143,7 +143,7 @@
         <string>...</string>
        </property>
        <property name="icon">
-        <iconset resource="../res.qrc">
+        <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
          <normaloff>:/katynko/svg2/lc_dbtableedit.svg</normaloff>:/katynko/svg2/lc_dbtableedit.svg</iconset>
        </property>
        <property name="checkable">
@@ -160,7 +160,7 @@
         <string>...</string>
        </property>
        <property name="icon">
-        <iconset resource="../res.qrc">
+        <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
          <normaloff>:/katynko/svg2/lc_browseview.svg</normaloff>:/katynko/svg2/lc_browseview.svg</iconset>
        </property>
        <property name="checkable">
@@ -181,7 +181,7 @@
         <string>...</string>
        </property>
        <property name="icon">
-        <iconset resource="../res.qrc">
+        <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
          <normaloff>:/katynko/svg/view-filter.svg</normaloff>:/katynko/svg/view-filter.svg</iconset>
        </property>
        <property name="checkable">
@@ -318,7 +318,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../res.qrc"/>
+  <include location="../../../Matilda-units/gui/image-and-font/res.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -73,7 +73,7 @@ private:
     quint8 lastPollCode;
     bool sendHeader;
     QString lastDateMask, lastFullDateTimeMask;
-    int dotPos;
+
     bool allowDate2utc;
 
     //    gHelper->hashMeterSn2ni;

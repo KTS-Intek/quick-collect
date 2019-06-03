@@ -31,6 +31,8 @@ RelayWdgt::RelayWdgt(GuiHelper *gHelper, QWidget *parent) :
     isMapReady = false;
     ui->pbLoadOff->setEnabled(false);
     ui->pbLoadOn->setEnabled(false);
+    ui->pbLoadOff_2->setEnabled(false);
+    ui->pbLoadOn_2->setEnabled(false);
     ui->pbRead->setEnabled(false);
 //    contextPbRead = hasContxBtn;
 }
@@ -173,6 +175,41 @@ void RelayWdgt::meterRelayStatus(QString ni, QDateTime dtLocal, quint8 mainstts,
     resizeLastTv2content();
 }
 
+void RelayWdgt::showThisDev(QString ni)
+{
+    TableViewHelper::selectRowWithThisCell(lastTv, ni, 5);
+
+}
+
+void RelayWdgt::showContextMenu4thisDev(QString ni)
+{
+    showThisDev(ni);
+    emit request2showContextMenuAnimated();
+
+}
+
+void RelayWdgt::showThisDevInSource(QString ni)
+{
+    showThisDev(ni);
+    ui->tbShowList->animateClick();
+}
+
+void RelayWdgt::onWdgtLock(bool disable)
+{
+    sendActLock(disable, !ui->pbRead->isEnabled());
+}
+
+void RelayWdgt::onButtonLock(bool disable)
+{
+    sendActLock(!ui->widget_2->isEnabled(), disable);
+}
+
+void RelayWdgt::sendActLock(const bool &isWdgtDisabled, const bool &isButtonDisabled)
+{
+    emit lockActions((isWdgtDisabled || isButtonDisabled));
+
+}
+
 void RelayWdgt::initPage()
 {
     setupObjects(ui->horizontalLayout_61, ui->tvTable, ui->tbFilter, ui->cbFilterMode, ui->leFilter, SETT_FILTERS_RELAYWDGT);
@@ -198,6 +235,9 @@ void RelayWdgt::initPage()
     SelectionChecker *tmr = new SelectionChecker(this);
     tmr->setWatchTable(ui->tvTable, ui->widget_2);
     tmr->setTextLbl4disp(ui->label_2, tr("Selected [%1]"), tr("Selected"));
+
+    connect(tmr, &SelectionChecker::setWdgtDisable, this, &RelayWdgt::onWdgtLock);// ui->widget_3, &QWidget::setVisible);
+
 //    readDefCommandOnUpdate();
 }
 
@@ -235,7 +275,10 @@ void RelayWdgt::on_tbShowMap_clicked()
         connect(this, SIGNAL(showThisDeviceNIEs(QString))      , w, SIGNAL(showThisDeviceNI(QString)) );
         //        connect(this, SIGNAL(showThisCoordinatesEs(QString))   , w, SIGNAL(showThisCoordinates(QString)) );
 
-        //        connect(w, SIGNAL(showThisDev(QString)), this, SLOT(showThisDev(QString)) );
+                connect(w, SIGNAL(showThisDev(QString)), this, SLOT(showThisDev(QString)) );
+                connect(w, SIGNAL(showContextMenu4thisDev(QString)), this, SLOT(showContextMenu4thisDev(QString)));
+                connect(w, SIGNAL(showThisDevInSource(QString)), this, SLOT(showThisDevInSource(QString)));
+
         //        connect(w, SIGNAL(addDevice(QString))  , this, SLOT(addDevice(QString))   );
         //        connect(w, SIGNAL(updateModel4ls())    , this, SLOT(onModelChanged())     );
         //        connect(w, SIGNAL(removeDevice(QString)), this, SLOT(removeDevice(QString)));
@@ -252,7 +295,7 @@ void RelayWdgt::on_tbShowMap_clicked()
 
 void RelayWdgt::on_tvTable_customContextMenuRequested(const QPoint &pos)
 {
-    gHelper->createCustomMenu(pos, ui->tvTable, (GuiHelper::ShowReset|GuiHelper::ShowExport|GuiHelper::ShowOnlyCopy), CLBRD_SMPL_PRXTBL, ShowMessHelperCore::matildaFileName(windowTitle()));
+    gHelper->createCustomMenu(pos, ui->tvTable, (GuiHelper::ShowReset|GuiHelper::ShowExport|GuiHelper::ShowOnlyCopy), CLBRD_SMPL_PRXTBL, ShowMessHelperCore::matildaFileName(windowTitle()), getRelayActions());
 }
 
 
@@ -306,6 +349,27 @@ void RelayWdgt::doRelayOperation(const QStringList &listni, const quint8 &operat
     emit command4dev(POLL_CODE_RELAY_OPERATIONS, map);
 
 }
+
+QList<QAction *> RelayWdgt::getRelayActions()
+{
+    QList<QAction*> la;
+    la.append(createActionFromButton(ui->pbRead));
+
+     la.append(createActionFromButton(ui->pbLoadOff));
+      la.append(createActionFromButton(ui->pbLoadOff_2));
+
+       la.append(createActionFromButton(ui->pbLoadOn));
+        la.append(createActionFromButton(ui->pbLoadOn_2));
+
+        const bool enbl = (ui->pbRead->isEnabled() && ui->widget_2->isEnabled());
+        for(int i = 0, imax = la.size(); i < imax; i++){
+            connect(this, SIGNAL(lockActions(bool)), la.at(i), SLOT(setDisabled(bool)));
+            la.at(i)->setEnabled(enbl);
+        }
+        return la;
+}
+
+
 
 void RelayWdgt::on_pbLoadOff_2_clicked()
 {
