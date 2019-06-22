@@ -89,11 +89,13 @@ void ZbyratorOptions::addThisWdgt2stack(const int &row, const QString &pageName,
 
         UcEmulator *e = new UcEmulator(gHelper->guiSett,  this);
         connect(e, &UcEmulator::reloadSettings2ucEmulator, this, &ZbyratorOptions::reloadSettings2ucEmulator);
+        connect(e, &UcEmulator::command2extension           , this, &ZbyratorOptions::command2extension);
         e->setWindowTitle(pageName);
         StackWidgetHelper::addWdgtWithScrollArea2stackedWdgt(this, ui->stackedWidget, e, realPageName);
 
         connect(e, SIGNAL(startDaServer(qint8,quint16))      , this, SIGNAL(startDaServer(qint8,quint16))   );
         connect(e, SIGNAL(stopDaServer())                    , this, SIGNAL(stopDaServer())                 );
+
 
         return;}
 //    case 3: w = new KtsConnectMode(gHelper,  this); break;

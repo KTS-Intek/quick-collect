@@ -114,6 +114,18 @@ void UcEmulator::createClassManager()
     manager->protocolVersionSlot(getDefProtocolVersion());
 
 
+    clientdecoder = new MatildaClient(true, this);
+//    clientdecoder->onThreadStarted();
+    connect(clientdecoder, SIGNAL(showMess(QString)), manager, SIGNAL(showMess(QString)));
+    connect(clientdecoder, &MatildaClient::uploadProgress, manager, &ClassManagerProcessor::uploadProgress);
+
+    connect(gHelper, &GuiHelper::setThisSaveFileName, clientdecoder, &MatildaClient::setThisSaveFileName);
+    connect(gHelper, &GuiHelper::addVarHash2arrAnd2writeCache, clientdecoder, &MatildaClient::addVarHash2arrAnd2writeCache);
+//    connect(this, SIGNAL(addVarHash2arrAnd2writeCache(QVariantHash,quint16)), client, SLOT( addVarHash2arrAnd2writeCache(QVariantHash,quint16)) );
+
+//    connect(clientdecoder, &MatildaClient::operationFinished, manager, &ClassManagerProcessor::o)
+
+
 //    connect(this, SIGNAL(startDaServer(qint8,quint16))      , manager, SIGNAL(startDaServer(qint8,quint16))   );
 //    connect(this, SIGNAL(stopDaServer())                    , manager, SIGNAL(stopDaServer())                 );
 //    connect(this, SIGNAL(setDaForwardNI(QByteArray))        , manager, SIGNAL(setDaForwardNI(QByteArray))     );
@@ -140,8 +152,20 @@ void UcEmulator::data2matildaExtSlot(quint16 command, QVariant varData, int secs
     setPbWriteDisabled(true);
 
     Q_UNUSED(secs4loop);
+
+//    if(clientdecoder->isBackupsCommand(command)){
+//        clientdecoder->addData2cache(command, varData);
+//    }
+
+    data2matildaNextSlot(command, varData);
+
+}
+
+void UcEmulator::data2matildaNextSlot(quint16 command, QVariant varData)
+{
     writelater.command.append(command);
     writelater.varData.append(varData);
+
 
     QTimer::singleShot(111, this, SLOT(mWriteLater()));
 }
@@ -164,7 +188,21 @@ void UcEmulator::disconnLater(qint64 msec)
 
 void UcEmulator::mWriteToSocket(const QVariant &s_data, const quint16 &s_command)
 {
+    if(clientdecoder->isBackupsCommand(s_command)){
+        FunctionRezult sresult;
+        switch(s_command){
+        case COMMAND_GET_BACKUP_FILE            : sresult = clientdecoder->onCOMMAND_GET_BACKUP_FILE(s_data, s_command)             ; break;
+        case COMMAND_PUSH_BACKUP_FILE_AND_APPLY : sresult = clientdecoder->onCOMMAND_PUSH_BACKUP_FILE_AND_APPLY(s_data, s_command)  ; break;
+        case COMMAND_WRITE_GET_BACKUPFILE       : sresult = clientdecoder->onCOMMAND_WRITE_GET_BACKUPFILE(s_data, s_command)        ; break;
+        }
+
+        if(!sresult.nothing2write)
+            data2matildaNextSlot(sresult.s_command, sresult.s_data);
+        return;
+    }
     manager->data2gui(s_command, s_data);
+    //some data decodes in matildaclient
+
 }
 
 void UcEmulator::onDisconnByDecoder()
@@ -358,6 +396,10 @@ void UcEmulator::mWriteLater()
     if(!writelater.command.isEmpty()){
         if(writelater.command.first() > COMMAND_WRITE_FIRST_4_OPERATOR)
             emit startRealodSettLater();
+
+
+
+
 
         decoder->decodeReadData(writelater.varData.takeFirst(), writelater.command.takeFirst());
         if(!writelater.command.isEmpty())

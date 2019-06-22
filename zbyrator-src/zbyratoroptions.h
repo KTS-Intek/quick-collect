@@ -22,6 +22,8 @@ signals:
     void stopDaServer();
     void startDaServer(qint8,quint16); //mode , port
 
+    void command2extension(quint16 extName, quint16 command, QVariant data);
+
 public slots:
     void initPage();
 

@@ -392,7 +392,7 @@ void ZbyrMeterListMedium::onTaskCanceled(quint8 pollCode, QString ni, qint64 dtF
     Q_UNUSED(pollCode);
     const QString stts = StartExchangeHelper::getStts4rez(rez);
 
-    emit appendAppLog(tr("%3: NI: %1, one task removed, rezult is %2").arg(ni).arg(stts).arg(QDateTime::currentDateTime().toString("yyyy/MM/dd hh:mm:ss")));
+    emit appendAppLog(tr("%3: IN: %1, one task removed, result is %2").arg(ni).arg(stts).arg(QDateTime::currentDateTime().toString("yyyy/MM/dd hh:mm:ss")));
 
     const QDateTime dtLocal = QDateTime::fromMSecsSinceEpoch(dtFinished).toLocalTime();
 
@@ -513,6 +513,13 @@ void ZbyrMeterListMedium::updateRelayStatuses4meterlist()
 void ZbyrMeterListMedium::setPbWriteDis(bool disabled)
 {
     pbWriteDis = disabled;
+}
+
+void ZbyrMeterListMedium::command2extension(quint16 extName, quint16 command, QVariant data)
+{
+    qDebug() << "Extname " << extName << command;
+    emit onConfigChanged(command, data);
+    onReloadAllZbyratorSettingsLocalSocket();
 }
 //---------------------------------------------------------------------
 QStringList ZbyrMeterListMedium::universalMeterSett2listRow(const UniversalMeterSett &m, QStringList &ldata, QList<int> &lcols)

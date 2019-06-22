@@ -131,7 +131,7 @@ signals:
 
     //zbyrator ipc
     void command2extensionClient(quint16 command, QVariant dataVar);
-
+//
     void onAboutZigBee(QVariantHash hash);
 
     void relayStatusChanged(QVariantMap map);
@@ -196,6 +196,9 @@ public slots:
     void updateRelayStatuses4meterlist();
 
     void setPbWriteDis(bool disabled);
+
+    void command2extension(quint16 extName, quint16 command, QVariant data);
+
 private:
     struct LastList2pages
     {

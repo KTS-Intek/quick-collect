@@ -20,7 +20,7 @@
 
 ///[!] matilda-bbb-clientside
 #include "src/matilda/classmanagerprocessor.h"
-
+#include "src/matilda/matildaclient.h"
 
 class UcEmulator : public StartDevWdgt
 {
@@ -30,6 +30,9 @@ public:
     explicit UcEmulator(GuiSett4all *gSett4all, QWidget *parent = 0);
     ~UcEmulator();
     CachedWriteSett socketcache;
+
+    MatildaClient *clientdecoder;
+
 
     QStringList realPageNameByDev(const int &devType, const int &protocolVersion);//en_GB
 
@@ -83,11 +86,16 @@ signals:
     void startRealodSettLater();
     void reloadSettings2ucEmulator();
 
+
+
+    void setThisSaveFileName(QString);
+
 public slots:
     void activatePageLater();
 
     void data2matildaExtSlot(quint16 command, QVariant varData, int secs4loop);
 
+    void data2matildaNextSlot(quint16 command, QVariant varData);
 
 
     void mWriteIneedMoreTime(const quint16 &command, const qint32 &elTime, const qint64 &someData);

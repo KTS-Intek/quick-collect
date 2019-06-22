@@ -290,7 +290,7 @@ void RelayWdgt::on_tbShowMap_clicked()
         QTimer::singleShot(11, this, SLOT(onModelChanged()) );
     }
 
-    emit showMapEs(gHelper->getLastLang());
+    emit showMapEs(gHelper->guiSett->currLang);
 }
 
 void RelayWdgt::on_tvTable_customContextMenuRequested(const QPoint &pos)

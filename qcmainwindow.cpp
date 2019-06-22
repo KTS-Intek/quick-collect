@@ -580,6 +580,8 @@ void QcMainWindow::on_actionOptions_triggered()
 
         connect(w, SIGNAL(destroyed(QObject*)), metersListMedium, SIGNAL(reloadSettings()));
 
+        connect(w, &ZbyratorOptions::command2extension, metersListMedium, &ZbyrMeterListMedium::command2extension);
+
         connect(w, &ZbyratorOptions::reloadSettings2ucEmulator, this, &QcMainWindow::reloadSettings2ucEmulator);
 
         addWdgt2stackWdgt(w, WDGT_TYPE_OPTIONS, false, "", "");// tr("Options"), ":/katynko/svg/applications-system.svg");
