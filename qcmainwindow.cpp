@@ -355,6 +355,7 @@ void QcMainWindow::createMeterManager()
 
     connect(zbyrator, &MeterManager::onConnectionStateChanged, guiHelper, &GuiHelper::setPbWriteEnableDisableSlot);// ReadEnableDisableSlot);
 
+    connect(zbyrator, &MeterManager::requestToSwitchIgnoreCycles, metersListMedium, &ZbyrMeterListMedium::requestToSwitchIgnoreCycles);
 
 
     connect(guiHelper, SIGNAL(mWrite2RemoteDev(quint16,QVariant,QWidget*)), metersListMedium, SLOT(mWrite2RemoteDev(quint16,QVariant)));

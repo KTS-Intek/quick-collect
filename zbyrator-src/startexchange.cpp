@@ -278,6 +278,7 @@ MatildaConfWidget *StartExchange::createStartPagePoll(GuiHelper *gHelper, QWidge
 
     connect(metersListMedium, &ZbyrMeterListMedium::onUpdatedSavedList, w, &StartPagePollV2::onUpdatedSavedList);
     connect(metersListMedium, &ZbyrMeterListMedium::onExternalCommandProcessed, w, &StartPagePollV2::onExternalCommandProcessed);
+    connect(metersListMedium, &ZbyrMeterListMedium::requestToSwitchIgnoreCycles, w, &StartPagePollV2::requestToSwitchIgnoreCycles);
 
     connect(w, &StartPagePollV2::lockPbRead, this, &StartExchange::lockPbRead);
     connect(w, &StartPagePollV2::onCbxIgnoreRetr  , metersListMedium, &ZbyrMeterListMedium::setIgnoreCycles);

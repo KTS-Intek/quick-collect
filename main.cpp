@@ -11,7 +11,5 @@ int main(int argc, char *argv[])
     const AppFontLoader::LoadFontMemo m = AppFontLoader::loadFontAndSett();
     QcMainWindow w(m.font4log, m.defFontPointSize);
     w.showSplash();
-//    w.show();
-
     return a.exec();
 }
