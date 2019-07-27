@@ -355,30 +355,30 @@ QList<QAction *> RelayWdgt::getRelayActions()
     QList<QAction*> la;
     la.append(createActionFromButton(ui->pbRead));
 
-     la.append(createActionFromButton(ui->pbLoadOff));
-      la.append(createActionFromButton(ui->pbLoadOff_2));
+    la.append(createActionFromButton(ui->pbLoadOff));
+    la.append(createActionFromButton(ui->pbLoadOff_2));
 
-       la.append(createActionFromButton(ui->pbLoadOn));
-        la.append(createActionFromButton(ui->pbLoadOn_2));
+    la.append(createActionFromButton(ui->pbLoadOn));
+    la.append(createActionFromButton(ui->pbLoadOn_2));
 
-        const bool enbl = (ui->pbRead->isEnabled() && ui->widget_2->isEnabled());
-        for(int i = 0, imax = la.size(); i < imax; i++){
-            connect(this, SIGNAL(lockActions(bool)), la.at(i), SLOT(setDisabled(bool)));
-            la.at(i)->setEnabled(enbl);
-        }
-        return la;
+    const bool enbl = (ui->pbRead->isEnabled() && ui->widget_2->isEnabled());
+    for(int i = 0, imax = la.size(); i < imax; i++){
+        connect(this, SIGNAL(lockActions(bool)), la.at(i), SLOT(setDisabled(bool)));
+        la.at(i)->setEnabled(enbl);
+    }
+    return la;
 }
 
 
 
 void RelayWdgt::on_pbLoadOff_2_clicked()
 {
-    doRelayOperationSelected(RELAY2_LOAD_ON);
+    doRelayOperationSelected(RELAY2_LOAD_OFF);
 
 }
 
 void RelayWdgt::on_pbLoadOn_2_clicked()
 {
-    doRelayOperationSelected(RELAY2_LOAD_OFF);
+    doRelayOperationSelected(RELAY2_LOAD_ON);
 
 }

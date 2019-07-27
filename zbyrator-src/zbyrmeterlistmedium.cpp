@@ -494,8 +494,15 @@ void ZbyrMeterListMedium::mWrite2RemoteDev(quint16 command, QVariant dataVar)
         command4devSlot(POLL_CODE_RELAY_OPERATIONS, map);
         lrelay.hasRequestFromMeterList = true;
         break;}//realy operations, main relay
-    case COMMAND_READ_ELMTRRELAY_TABLE: lrelay.hasRequestFromMeterList = true; emit startTmrUpdateRelayStatuses(111); break; //send last realy statuses
+    case COMMAND_READ_ELMTRRELAY_TABLE:{
+        lrelay.hasRequestFromMeterList = true;
+        emit startTmrUpdateRelayStatuses(111);
+
+        break;} //send last realy statuses
     }
+
+    qDebug() << "onElMeterRelayChanged mWrite2RemoteDev " << lrelay.hasRequestFromMeterList << command;
+
 }
 //---------------------------------------------------------------------
 void ZbyrMeterListMedium::setDateMaskSlot(QString dateMask)
@@ -505,8 +512,13 @@ void ZbyrMeterListMedium::setDateMaskSlot(QString dateMask)
 //---------------------------------------------------------------------
 void ZbyrMeterListMedium::updateRelayStatuses4meterlist()
 {
+
+
     QString errmess;
     const QMap<QString,LastMetersStatusesManager::MyMeterRelayStatus> relaysttsmap = LastMetersStatusesManager::getLastRelayStatusesMap(errmess);
+
+    qDebug() << "onElMeterRelayChanged updateRelayStatuses4meterlist " << relaysttsmap.size() << errmess;
+
     updateRelayStatuses4meterlistExt(relaysttsmap);
 }
 
@@ -911,6 +923,8 @@ void ZbyrMeterListMedium::updateRelayStatuses4meterlistExt(const QMap<QString, L
 //    const qint64 currmsec = QDateTime::currentMSecsSinceEpoch();
     const QStringList niswithoutsttses = lrelay.meternis;
 
+    qDebug() << "onElMeterRelayChanged updateRelayStatuses4meterlistExt " << niswithoutsttses.size() << lrelay.hasRequestFromMeterList;
+
     if(niswithoutsttses.isEmpty())
         return;//nothing to update
 
@@ -951,8 +965,11 @@ void ZbyrMeterListMedium::updateRelayStatuses4meterlistExt(const QMap<QString, L
         map.insert("ico", ":/katynko/svg3/relay-load-unknown.svg");
         lastMeterRelay.insert("\r\ndefault\r\n", map);
     }
-    if(lrelay.lastMeterRelay != lastMeterRelay || !lrelay.hasRequestFromMeterList){
+
+
+    if(lrelay.lastMeterRelay != lastMeterRelay || lrelay.hasRequestFromMeterList){
         lrelay.lastMeterRelay = lastMeterRelay;
+        lrelay.hasRequestFromMeterList = false;
         emit onElMeterRelayChanged(lrelay.lastMeterRelay);
     }
 }
