@@ -90,6 +90,9 @@ void QcMainWindow::initPage()
     createMeterListManager();
     createOneInstanceChecker();
 
+    connect(this, SIGNAL(onRequest2pollThese(QStringList,quint8)), this, SLOT(activatePageHome()));
+    connect(this, SIGNAL(onRequest2GetDataThese(QStringList,quint8)), this, SLOT(activatePageDb()));
+
 
 
 }
@@ -469,6 +472,7 @@ MatildaConfWidget *QcMainWindow::createStartExchangeWdgt(GuiHelper *gHelper, QWi
 
 
     connect(w, SIGNAL(pageReady()), this, SIGNAL(initDone()));
+    connect(w, &StartExchange::onRequest2GetDataThese, this, &QcMainWindow::onRequest2GetDataThese);
 
     return w;
 }
@@ -513,9 +517,6 @@ MatildaConfWidget *QcMainWindow::createWaterMeterListWdgt(GuiHelper *gHelper, QW
     connect(w, &MeterListWdgt::onRequest2GetDataThese, this, &QcMainWindow::onRequest2GetDataThese);
     connect(w, &MeterListWdgt::checkDbPageIsReady, this, &QcMainWindow::checkDbPageIsReady);
 
-    connect(w, SIGNAL(onRequest2pollThese(QStringList,quint8)), this, SLOT(activatePageHome()));
-    connect(w, SIGNAL(onRequest2GetDataThese(QStringList,quint8)), this, SLOT(activatePageDb()));
-
 
     return w;
 }
@@ -545,6 +546,13 @@ MatildaConfWidget *QcMainWindow::createDatabasePage(GuiHelper *gHelper, QWidget 
 
     connect(this, &QcMainWindow::onRequest2GetDataThese, w, &DatabaseWdgtV2::onRequest2pollThese);
 
+    connect(w, &DatabaseWdgtV2::onRequest2GetDataTheseFromDb, this, &QcMainWindow::onRequest2GetDataThese);//get date
+    connect(w, &DatabaseWdgtV2::onRequest2pollTheseFromDb, this, &QcMainWindow::onRequest2pollThese );//start a new poll
+
+
+//    connect(w, &DatabaseWdgtV2::onRequest2pollTheseFromDb, [=](QStringList nis, quint8 metertype){
+//        qDebug() << "onRequest2pollTheseFromDb QcMainWindow " << metertype << nis ;
+//    });
     return w;
 }
 

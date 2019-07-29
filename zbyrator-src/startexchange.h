@@ -62,6 +62,7 @@ signals:
 
 
     void onRequest2pollThese(QStringList nis, quint8 metertype);
+    void onRequest2GetDataThese(QStringList nis, quint8 metertype);
 
 private slots:
 

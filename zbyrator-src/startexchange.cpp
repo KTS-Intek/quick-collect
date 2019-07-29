@@ -299,6 +299,11 @@ MatildaConfWidget *StartExchange::createStartPagePoll(GuiHelper *gHelper, QWidge
 
     connect(this, &StartExchange::onRequest2pollThese, w, &StartPagePollV2::onRequest2pollThese);
     connect(w, SIGNAL(killCurrentTask()), ui->pbStop, SLOT(animateClick()));
+
+
+    connect(w, &StartPagePollV2::onRequest2GetDataTheseFromDb, this, &StartExchange::onRequest2GetDataThese);
+    connect(w, &StartPagePollV2::onRequest2pollTheseFromDb, this, &StartExchange::onRequest2pollThese);
+
     return w;
 }
 //-----------------------------------------------------------------------------------------------

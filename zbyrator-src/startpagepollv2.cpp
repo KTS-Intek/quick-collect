@@ -110,7 +110,7 @@ void StartPagePollV2::createTab(const StartPollTabSettExt &sett)
         DbDataForm *f = new DbDataForm(gHelper,this);
         connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), f, SIGNAL(checkBlncStateEnNow(bool)) );
 
-        f->setSelectSett(hash.value("FromDT").toDateTime(), hash.value("ToDT").toDateTime(), hash.value("ToDT").toDateTime().isValid(), txt, sett.code);
+        f->setSelectSett(hash.value("FromDT").toDateTime(), hash.value("ToDT").toDateTime(), hash.value("ToDT").toDateTime().isValid(), txt, sett.code, sett.meterType);
 
         f->setAccessibleName(QString::number(QDateTime::currentMSecsSinceEpoch()));
         lastWdgtAccssbltName = f->accessibleName();
@@ -149,6 +149,11 @@ void StartPagePollV2::createTab(const StartPollTabSettExt &sett)
 
         lTempPollSett.lastWdgtActive = lastWdgtAccssbltName;
         emit onPollStarted(sett.code, getEnrgList4code(sett.code), gHelper->dateMask, isMeterEvent ? 0 : gHelper->dotPos, sett.allowDate2utc);
+
+
+        connect(f, &DbDataForm::onRequest2GetDataTheseFromDb, this, &StartPagePollV2::onRequest2GetDataTheseFromDb);
+        connect(f, &DbDataForm::onRequest2pollTheseFromDb, this, &StartPagePollV2::onRequest2pollTheseFromDb);
+
 
     }
     QTimer::singleShot(1, this, SIGNAL(killSelectMeters4poll()));
