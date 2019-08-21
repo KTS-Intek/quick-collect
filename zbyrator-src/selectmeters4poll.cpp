@@ -43,13 +43,13 @@ SelectMeters4poll::~SelectMeters4poll()
     delete ui;
 }
 
-void SelectMeters4poll::setPollSett(const QDateTime &dtFrom, const QDateTime &dtTo, const quint8 &pollCode, const quint8 &meterType, const int &go2sleepSeconds, const bool &enCheckSleepProfile)
+void SelectMeters4poll::setPollSett(const QDateTime &dtFrom, const QDateTime &dtTo, const quint8 &pollCode, const quint8 &deviceType, const int &go2sleepSeconds, const bool &enCheckSleepProfile)
 {
     //start select data
     lPollSett.dtFrom = dtFrom;
     lPollSett.dtTo = dtTo;
     lPollSett.pollCode = pollCode;
-    lPollSett.meterType = meterType;
+    lPollSett.deviceType = deviceType;
     lPollSett.go2sleepSeconds = go2sleepSeconds;
     lPollSett.enCheckSleepProfile = enCheckSleepProfile;
 }
@@ -78,7 +78,7 @@ void SelectMeters4poll::initPage()
 
     GetReadyMetersData *d = new GetReadyMetersData;
     QThread *t = new QThread;
-    d->setPollSett(lPollSett.dtFrom, lPollSett.dtTo, lPollSett.pollCode, lPollSett.meterType);
+    d->setPollSett(lPollSett.dtFrom, lPollSett.dtTo, lPollSett.pollCode, lPollSett.deviceType);
 
     d->moveToThread(t);
 

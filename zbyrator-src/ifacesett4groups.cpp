@@ -38,7 +38,9 @@ QString IfaceSett4groups::getPrettyIfaceSettings(const QVariantHash &h)
     const QString line = IfaceSett2human::getIfaceSettName(h);
 
     QString errstr;
+    //для UC користуюсь кешем, для інших беру з пам'яті
     GuiIfaceMediumCore::convertHashSett2varMap(h, errstr);
+
     if(!errstr.isEmpty()){
         return tr("%1, error '%2'").arg(line).arg(errstr);
     }
@@ -96,6 +98,9 @@ void IfaceSett4groups::onEditClick(int srcrow)
      h.insert("sett", map.value(h.value("groupni").toString()).toHash());
 
     emit startEditPageSett(h);
+
+     getMiddleLayout()->setEnabled(false);
+
      getStackedWidget()->setCurrentIndex(1);
 
 }
@@ -145,6 +150,7 @@ void IfaceSett4groups::onEditorReady()
 void IfaceSett4groups::setIfaceSettOneGroup2parent(QString groupni, QVariantHash sett)
 {
     const int row = StandardItemModelHelper::getRowFromNI(0, groupni, model);
+    getMiddleLayout()->setEnabled(true);
     getStackedWidget()->setCurrentIndex(0);
 
     if(row < 0)
@@ -187,10 +193,12 @@ void IfaceSett4groups::createEditor()
     connect(w, SIGNAL(openEditMacProfileWdgt(bool,QLineEdit*)), this, SIGNAL(openEditMacProfileWdgt(bool,QLineEdit*)));
 
     connect(w, &IfaceSett4groupsEditor::hideEditor, [=]{
+        getMiddleLayout()->setEnabled(true);
         getStackedWidget()->setCurrentIndex(0);
     });
 
     getStackedWidget()->addWidget(w);
+    getMiddleLayout()->setEnabled(true);
     getStackedWidget()->setCurrentIndex(0);
 
 }

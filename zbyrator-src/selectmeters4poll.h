@@ -43,7 +43,7 @@ signals:
     void command4dev(quint16 command, QVariantMap mapArgs);//pollCode args
 
 public slots:
-    void setPollSett(const QDateTime &dtFrom, const QDateTime &dtTo, const quint8 &pollCode, const quint8 &meterType, const int &go2sleepSeconds, const bool &enCheckSleepProfile);
+    void setPollSett(const QDateTime &dtFrom, const QDateTime &dtTo, const quint8 &pollCode, const quint8 &deviceType, const int &go2sleepSeconds, const bool &enCheckSleepProfile);
 
     void setPollSettElectric(const QDateTime &dtFrom, const QDateTime &dtTo, const quint8 &pollCode);
 
@@ -74,7 +74,7 @@ private:
         QDateTime dtFrom;
         QDateTime dtTo;
         quint8 pollCode;
-        quint8 meterType;
+        quint8 deviceType;
 //        bool enablePowerManagement;
         int go2sleepSeconds;
         bool enCheckSleepProfile;

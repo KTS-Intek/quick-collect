@@ -23,10 +23,10 @@ void ZbyratorDatabaseMedium::onThreadStarted()
 
 }
 
-void ZbyratorDatabaseMedium::onAlistOfMeters(quint8 meterType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters, bool checkOffMeters)
+void ZbyratorDatabaseMedium::onAlistOfMeters(quint8 deviceType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters, bool checkOffMeters)
 {
 
-        ZbyratorDataCalculation().onAddlistOfMeters2cache(shrdObj, activeMeters, switchedOffMeters, checkOffMeters, meterType);
+        ZbyratorDataCalculation().onAddlistOfMeters2cache(shrdObj, activeMeters, switchedOffMeters, checkOffMeters, deviceType);
 }
 
 void ZbyratorDatabaseMedium::data2matilda4inCMD(quint16 command, QVariant dataVar)

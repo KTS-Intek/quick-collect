@@ -48,7 +48,7 @@ signals:
 public slots:
     void onThreadStarted();
 
-    void onAlistOfMeters(quint8 meterType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters, bool checkOffMeters);
+    void onAlistOfMeters(quint8 deviceType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters, bool checkOffMeters);
 
     void data2matilda4inCMD(quint16 command, QVariant dataVar);
 

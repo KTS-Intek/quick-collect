@@ -150,27 +150,27 @@ void ZbyrMeterListMedium::onAllMetersSlot(UniversalMeterSettList allMeters)
         const UniversalMeterSett m = allMeters.at(i);
 
         if(true){
-            UniversalMeterSettList l = map2meters.value(m.meterType);
+            UniversalMeterSettList l = map2meters.value(m.deviceType);
             l.append(m);
-            map2meters.insert(m.meterType, l);
+            map2meters.insert(m.deviceType, l);
         }
         QStringList ldata;
         QList<int> lcols;
         const QStringList onemeterrow = universalMeterSett2listRow(m, ldata, lcols);
 
-        switch(m.meterType){
+        switch(m.deviceType){
         case UC_METER_ELECTRICITY   : listRowsEl.append(onemeterrow)  ; break;
         case UC_METER_WATER         : listRowWater.append(onemeterrow); break;
         }
 
-        int meterTypeRow = mapRowCounter.value(m.meterType, 0) ;
-        mapRowCounter.insert( m.meterType,  meterTypeRow + 1);
+        int meterTypeRow = mapRowCounter.value(m.deviceType, 0) ;
+        mapRowCounter.insert( m.deviceType,  meterTypeRow + 1);
         if(!ldata.isEmpty()){
 
-            QVariantMap mapRowColData = mapRowColDataByMeters.value(m.meterType);
+            QVariantMap mapRowColData = mapRowColDataByMeters.value(m.deviceType);
             for(int j = 0, jmax = ldata.size(); j < jmax; j++)
                 mapRowColData.insert(QString("%1;%2").arg(meterTypeRow).arg(lcols.at(j)), ldata.at(j));
-            mapRowColDataByMeters.insert(m.meterType, mapRowColData);
+            mapRowColDataByMeters.insert(m.deviceType, mapRowColData);
         }
     }
 
@@ -196,7 +196,7 @@ void ZbyrMeterListMedium::meterElectricityModelChanged(QVariantList meters)
 {
     emit onConfigChanged(MTD_EXT_CUSTOM_COMMAND_2, true);
     lastSaveMeterList.lastMeterList = meters;
-    lastSaveMeterList.meterType = UC_METER_ELECTRICITY;
+    lastSaveMeterList.deviceType = UC_METER_ELECTRICITY;
     emit startTmrSaveLater();
 
 }
@@ -208,7 +208,7 @@ void ZbyrMeterListMedium::meterWaterModelChanged(QVariantList meters)
 
 
     lastSaveMeterList.lastMeterList = meters;
-    lastSaveMeterList.meterType = UC_METER_WATER;
+    lastSaveMeterList.deviceType = UC_METER_WATER;
     emit startTmrSaveLater();
 }
 
@@ -216,8 +216,8 @@ void ZbyrMeterListMedium::meterWaterModelChanged(QVariantList meters)
 
 void ZbyrMeterListMedium::onSaveLater()
 {
-    const quint8 meterType = lastSaveMeterList.meterType;
-    const QString mess = MetersLoader::saveMetersByType(meterType, lastSaveMeterList.lastMeterList);
+    const quint8 deviceType = lastSaveMeterList.deviceType;
+    const QString mess = MetersLoader::saveMetersByType(deviceType, lastSaveMeterList.lastMeterList);
     if(!mess.isEmpty())
         qDebug() << "ZbyrMeterListMedium mess " << mess;
     emit onConfigChanged(MTD_EXT_COMMAND_RELOAD_SETT, true);
@@ -226,7 +226,7 @@ void ZbyrMeterListMedium::onSaveLater()
 
     //MTD_EXT_COMMAND_RELOAD_SETT
     lastSaveMeterList.lastMeterList.clear();
-    lastSaveMeterList.meterType = UC_METER_UNKNOWN;
+    lastSaveMeterList.deviceType = UC_METER_UNKNOWN;
 
 //    doReloadListOfElectricityMeters();
 //    doReloadListOfMeters(UC_METER_UNKNOWN);
@@ -236,17 +236,17 @@ void ZbyrMeterListMedium::onSaveLater()
 
 //---------------------------------------------------------------------
 
-void ZbyrMeterListMedium::doReloadListOfMeters(quint8 meterType)
+void ZbyrMeterListMedium::doReloadListOfMeters(quint8 deviceType)
 {
-    emit sendMeAlistOfMeters(meterType);
+    emit sendMeAlistOfMeters(deviceType);
 }
 
 //---------------------------------------------------------------------
 
-void ZbyrMeterListMedium::onAlistOfMeters(quint8 meterType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters)
+void ZbyrMeterListMedium::onAlistOfMeters(quint8 deviceType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters)
 {
-    emit onAddMeters(meterType, activeMeters, switchedOffMeters, false);
-    switch (meterType) {
+    emit onAddMeters(deviceType, activeMeters, switchedOffMeters, false);
+    switch (deviceType) {
 
     case UC_METER_ELECTRICITY: onElectricitylistOfMeters(activeMeters, switchedOffMeters, false); break;
 
@@ -537,7 +537,7 @@ void ZbyrMeterListMedium::command2extension(quint16 extName, quint16 command, QV
 QStringList ZbyrMeterListMedium::universalMeterSett2listRow(const UniversalMeterSett &m, QStringList &ldata, QList<int> &lcols)
 {
     QStringList l;
-    switch(m.meterType){
+    switch(m.deviceType){
     case UC_METER_ELECTRICITY: l = universalMeterSett2listRowElectricity(m); break;
     case UC_METER_WATER      : l = universalMeterSett2listRowWater(m, ldata, lcols); break;
     }
@@ -640,12 +640,12 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
             h.insert("memo", m.memo);
             h.insert("SN", m.sn);
             h.insert("model", m.model);
-            QVariantList powercenters = mappowercenters.value(m.meterType);
+            QVariantList powercenters = mappowercenters.value(m.deviceType);
             powercenters.append(h);
-            mappowercenters.insert(m.meterType, powercenters);
+            mappowercenters.insert(m.deviceType, powercenters);
         }
 
-        switch(m.meterType){
+        switch(m.deviceType){
         case UC_METER_ELECTRICITY:{
             allElectricMeters.append(m.ni);
             break;}
@@ -665,7 +665,7 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
 
 
 
-        switch(m.meterType){
+        switch(m.deviceType){
         case UC_METER_ELECTRICITY:{
             meterElectricityActive++;
             lastElectricityMeters2pagesL.listNI.append(m.ni);
@@ -696,7 +696,7 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
 
 
 
-        mapMetertype2ni.insertMulti(m.meterType, m.ni);
+        mapMetertype2ni.insertMulti(m.deviceType, m.ni);
 
 //        if(m.ni == UC_METER_ELECTRICITY)
 
@@ -729,10 +729,10 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
 
     const QList<quint8> typelk = mappowercenters.keys();
     for(int i = 0, imax = typelk.size(); i < imax; i++){
-        const quint8 meterType = typelk.at(i);
-        switch(meterType){
-        case UC_METER_ELECTRICITY   : emit setElectricityPowerCenters(mappowercenters.value(meterType)) ; break;
-        case UC_METER_WATER         : emit setWaterPowerCenters(mappowercenters.value(meterType))       ; break;
+        const quint8 deviceType = typelk.at(i);
+        switch(deviceType){
+        case UC_METER_ELECTRICITY   : emit setElectricityPowerCenters(mappowercenters.value(deviceType)) ; break;
+        case UC_METER_WATER         : emit setWaterPowerCenters(mappowercenters.value(deviceType))       ; break;
         }
     }
 

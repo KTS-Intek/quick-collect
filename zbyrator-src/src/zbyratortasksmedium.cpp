@@ -101,7 +101,7 @@ void ZbyratorTasksMedium::onZbyratorTasksPageSett(QVariantHash h)
 
 //    MyListStringList list;
 ////   tr("NI,ID,Poll code,Priority,Created,Changed,Counter,Counter Total,Meter type,Status,Source,Ignore data,Data from,Data to,Days of the weak,Days of the month, Time from,Time to");
-//// ni id pollCode prtt4pollCode dtCreated dtFinished counter counterTotal   meterType stts rez srcId     ignorePrevData      pollDateTimeFirstIntrvl pollDateTime dow dom timtFrom timeTo
+//// ni id pollCode prtt4pollCode dtCreated dtFinished counter counterTotal   deviceType stts rez srcId     ignorePrevData      pollDateTimeFirstIntrvl pollDateTime dow dom timtFrom timeTo
 
 
 //    const QList<int> colsDt = QList<int>() << 4 << 5 << 13 << 14; //dtCreated dtFinished  //pollDateTimeFirstIntrvl pollDateTime

@@ -61,7 +61,7 @@ signals:
     void onReloadAllMeters2zbyrator();
 
 
-    void sendMeAlistOfMeters(quint8 meterType);
+    void sendMeAlistOfMeters(quint8 deviceType);
 
 
 
@@ -75,13 +75,13 @@ signals:
 
 
 
-    void onAddMeters(quint8 meterType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters, bool checkOffMeters);
+    void onAddMeters(quint8 deviceType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters, bool checkOffMeters);
 
 
 
 //    void updateHashSn2meter(QHash<QString,QString> hashMeterSn2memo, QHash<QString,QString> hashMeterSn2ni, QHash<QString, QString> hashMeterNi2memo);
 //    void updateHashSn2meter(QHash<QString,QString> hashMeterSn2memo, QHash<QString,QString> hashMeterSn2ni, QHash<QString, ClassManagerMeterInfo::MeterNi2info> hashMeterNi2info, QStringList listnis);
-    void updateHashSn2meter(QHash<QString,QString> hashMeterSn2memo, QHash<QString,QString> hashMeterSn2ni, QHash<QString, ClassManagerMeterInfo::MeterNi2info> hashMeterNi2info, QStringList listnis, quint8 meterType);
+    void updateHashSn2meter(QHash<QString,QString> hashMeterSn2memo, QHash<QString,QString> hashMeterSn2ni, QHash<QString, ClassManagerMeterInfo::MeterNi2info> hashMeterNi2info, QStringList listnis, quint8 deviceType);
 
 
     void onAllMeters(UniversalMeterSettList allMeters);
@@ -157,9 +157,9 @@ public slots:
 
     void onSaveLater();
 
-    void doReloadListOfMeters(quint8 meterType);
+    void doReloadListOfMeters(quint8 deviceType);
 
-    void onAlistOfMeters(quint8 meterType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters);
+    void onAlistOfMeters(quint8 deviceType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters);
 
 
 
@@ -242,7 +242,7 @@ private:
 
     struct SaveLaterMeters
     {
-        quint8 meterType;
+        quint8 deviceType;
         QVariantList lastMeterList;
         SaveLaterMeters() {}
     } lastSaveMeterList;

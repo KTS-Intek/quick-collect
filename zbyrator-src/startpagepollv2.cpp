@@ -110,7 +110,7 @@ void StartPagePollV2::createTab(const StartPollTabSettExt &sett)
         DbDataForm *f = new DbDataForm(gHelper,this);
         connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), f, SIGNAL(checkBlncStateEnNow(bool)) );
 
-        f->setSelectSett(hash.value("FromDT").toDateTime(), hash.value("ToDT").toDateTime(), hash.value("ToDT").toDateTime().isValid(), txt, sett.code, sett.meterType);
+        f->setSelectSett(hash.value("FromDT").toDateTime(), hash.value("ToDT").toDateTime(), hash.value("ToDT").toDateTime().isValid(), txt, sett.code, sett.deviceType);
 
         f->setAccessibleName(QString::number(QDateTime::currentMSecsSinceEpoch()));
         lastWdgtAccssbltName = f->accessibleName();
@@ -198,7 +198,7 @@ bool StartPagePollV2::createObjectsForPollAllMetersMode(const StartPollTabSettEx
     const quint8 pollCode = selsett.code;
 
 
-    switch(lastSelsett.meterType){
+    switch(lastSelsett.deviceType){
 
     case UC_METER_ELECTRICITY:{
         w->setPollSettElectric(dtFrom, dtTo, pollCode);
@@ -208,8 +208,8 @@ bool StartPagePollV2::createObjectsForPollAllMetersMode(const StartPollTabSettEx
         w->setPollSettWater(dtFrom, dtTo, pollCode, lastWtrSett.sendSleepCommand, lastWtrSett.secs, lastWtrSett.checkProfile);
         break;}
 
-    default: qDebug() << "can't set pollSett StartPagePoll lastSelsett.meterType=" << lastSelsett.meterType;
-        mess = tr("Couldn't start the poll. The unknown device type '%1'").arg(int(lastSelsett.meterType)); return false;
+    default: qDebug() << "can't set pollSett StartPagePoll lastSelsett.deviceType=" << lastSelsett.deviceType;
+        mess = tr("Couldn't start the poll. The unknown device type '%1'").arg(int(lastSelsett.deviceType)); return false;
     }
     emit addWdgt2stackWdgt(w, WDGT_TYPE_ZBYR_SELECT_METERS4POLL, true, tr("Select"), ":/katynko/svg/dialog-ok-apply.svg");
 

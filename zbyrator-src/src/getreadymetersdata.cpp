@@ -41,19 +41,19 @@ quint8 GetReadyMetersData::meterTypeFromPollCode(const quint8 &code)
     return meter;
 }
 
-void GetReadyMetersData::setPollSett(QDateTime dtFrom, QDateTime dtTo, quint8 pollCode, quint8 meterType)
+void GetReadyMetersData::setPollSett(QDateTime dtFrom, QDateTime dtTo, quint8 pollCode, quint8 deviceType)
 {
     lPollSett.dtFrom = dtFrom;
     lPollSett.dtTo = dtTo.isValid() ? dtTo : QDateTime::currentDateTime();
     lPollSett.pollCode = pollCode;
-    lPollSett.meterType = meterType;
+    lPollSett.deviceType = deviceType;
 }
 
 void GetReadyMetersData::setMetersList(UniversalMeterSettList list)
 {
     meters.clear();
     for(int i = 0, imax = list.size(); i < imax; i++){
-        if(list.at(i).meterType == lPollSett.meterType)
+        if(list.at(i).deviceType == lPollSett.deviceType)
             meters.append(list.at(i));
     }
 }
@@ -72,7 +72,7 @@ void GetReadyMetersData::onThreadStarted()
 
         OneProfileSett oneprofile;
 
-        switch(lPollSett.meterType){
+        switch(lPollSett.deviceType){
         case UC_METER_ELECTRICITY: oneprofile = DefParams4zbyrator::defVal4prttProfilesElectricity().profileSett.value(lPollSett.pollCode); break;
         case UC_METER_WATER: oneprofile = DefParams4zbyrator::defVal4prttProfilesWater().profileSett4wtrMeters.value(lPollSett.pollCode); break;
         }
@@ -199,12 +199,12 @@ bool GetReadyMetersData::checkDbIsOpen()
 
 void GetReadyMetersData::addAllMeters2table()
 {
-    const quint8 meterType = meterTypeFromPollCode(lPollSett.pollCode);
+    const quint8 deviceType = meterTypeFromPollCode(lPollSett.pollCode);
     if(true){
         UniversalMeterSettList list;
 
         for(int i = 0, imax = meters.size(); i < imax; i++){
-            if(meters.at(i).meterType == meterType && meters.at(i).pollEnbl)
+            if(meters.at(i).deviceType == deviceType && meters.at(i).pollEnbl)
                 list.append(meters.at(i));
         }
 

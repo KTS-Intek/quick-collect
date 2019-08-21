@@ -24,7 +24,7 @@ public:
 
 
     QMap<QString, UniverslaMeterOnlyCache > ni2cachedEnrg;
-    void onAddlistOfMeters2cache(ClassManagerSharedObjects *shrdObj, const UniversalMeterSettList &activeMeters, const MyNi2model &switchedOffMeters, const bool &checkOffMeters, const quint8 &meterType);
+    void onAddlistOfMeters2cache(ClassManagerSharedObjects *shrdObj, const UniversalMeterSettList &activeMeters, const MyNi2model &switchedOffMeters, const bool &checkOffMeters, const quint8 &deviceType);
 
 signals:
     void appendData2model(QVariantHash h);
@@ -35,7 +35,7 @@ signals:
 
 //    void updateHashSn2meter(QHash<QString,QString> hashMeterSn2memo, QHash<QString,QString> hashMeterSn2ni, QHash<QString, QString> hashMeterNi2memo);
 //    void updateHashSn2meter(QHash<QString,QString> hashMeterSn2memo, QHash<QString,QString> hashMeterSn2ni, QHash<QString, ClassManagerMeterInfo::MeterNi2info> hashMeterNi2info, QStringList listnis);
-    void updateHashSn2meter(QHash<QString,QString> hashMeterSn2memo, QHash<QString,QString> hashMeterSn2ni, QHash<QString, ClassManagerMeterInfo::MeterNi2info> hashMeterNi2info, QStringList listnis, quint8 meterType);
+    void updateHashSn2meter(QHash<QString,QString> hashMeterSn2memo, QHash<QString,QString> hashMeterSn2ni, QHash<QString, ClassManagerMeterInfo::MeterNi2info> hashMeterNi2info, QStringList listnis, quint8 deviceType);
 
 
     void setCOMMAND_READ_POLL_STATISTIC(QVariantHash h);
@@ -43,7 +43,7 @@ signals:
 public slots:
     void onThreadStarted();
 
-    void onAlistOfMeters(quint8 meterType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters, bool checkOffMeters);
+    void onAlistOfMeters(quint8 deviceType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters, bool checkOffMeters);
 
     void appendMeterData(QString ni, QString sn, MyListHashString data);
 
@@ -53,7 +53,7 @@ public slots:
 
     void onPollStarted(quint8 pollCode, QStringList listEnrg, QString dateMask, int dotPos, bool allowDate2utc);
 
-    void onUconStartPoll(QStringList nis, quint8 meterType);
+    void onUconStartPoll(QStringList nis, quint8 deviceType);
 
     void uploadProgressSlot(int val, QString txt);
 

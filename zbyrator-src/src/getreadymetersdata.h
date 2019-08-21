@@ -35,7 +35,7 @@ signals:
     void closeDbConnection();
 
 public slots:
-    void setPollSett(QDateTime dtFrom, QDateTime dtTo, quint8 pollCode, quint8 meterType);
+    void setPollSett(QDateTime dtFrom, QDateTime dtTo, quint8 pollCode, quint8 deviceType);
 
     void setMetersList(UniversalMeterSettList list);
 
@@ -63,7 +63,7 @@ private:
         QDateTime dtFrom;
         QDateTime dtTo;
         quint8 pollCode;
-        quint8 meterType;
+        quint8 deviceType;
     } lPollSett;
 
 };

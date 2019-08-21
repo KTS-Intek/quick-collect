@@ -32,12 +32,12 @@ ZbyratorDataCalculation::ZbyratorDataCalculation(QObject *parent) : QObject(pare
 
 }
 
-void ZbyratorDataCalculation::onAddlistOfMeters2cache(ClassManagerSharedObjects *shrdObj, const UniversalMeterSettList &activeMeters, const MyNi2model &switchedOffMeters, const bool &checkOffMeters, const quint8 &meterType)
+void ZbyratorDataCalculation::onAddlistOfMeters2cache(ClassManagerSharedObjects *shrdObj, const UniversalMeterSettList &activeMeters, const MyNi2model &switchedOffMeters, const bool &checkOffMeters, const quint8 &deviceType)
 {
     Q_UNUSED(switchedOffMeters);
 
     if(checkOffMeters){
-        switch (meterType) {
+        switch (deviceType) {
         case UC_METER_ELECTRICITY: shrdObj->electricityMeter.clear(); break;
         case UC_METER_WATER      : shrdObj->waterMeter.clear(); break;
         }
@@ -49,7 +49,7 @@ void ZbyratorDataCalculation::onAddlistOfMeters2cache(ClassManagerSharedObjects 
 //        QHash<QString,QString> hashMeterSn2ni;
 //        QHash<QString,QString> hashMeterNi2memo;
 
-    switch (meterType) {
+    switch (deviceType) {
     case UC_METER_ELECTRICITY: shrdObj->electricityMeter.listnis.clear(); shrdObj->electricityMeter.hashMeterNi2info.clear(); break;
     case UC_METER_WATER      : shrdObj->waterMeter.listnis.clear(); shrdObj->waterMeter.hashMeterNi2info.clear(); break;
     }
@@ -63,7 +63,7 @@ void ZbyratorDataCalculation::onAddlistOfMeters2cache(ClassManagerSharedObjects 
 
 
 
-        switch (meterType) {
+        switch (deviceType) {
         case UC_METER_ELECTRICITY:{
             shrdObj->electricityMeter.addMeter2meterNi2info(m.ni, m.memo, m.sn, m.coordinate, m.tariff, m.transformer, m.model, m.version, m.powerin, m.pollEnbl);
             shrdObj->electricityMeter.addMeter2meterSn2info(m.sn, m.memo, m.ni, m.coordinate, m.tariff, m.transformer, m.model, m.version, m.powerin, m.pollEnbl);
@@ -88,7 +88,7 @@ void ZbyratorDataCalculation::onAddlistOfMeters2cache(ClassManagerSharedObjects 
     QHash<QString, ClassManagerMeterInfo::MeterNi2info> hashMeterNi2info;
 
 
-    switch (meterType) {
+    switch (deviceType) {
     case UC_METER_ELECTRICITY:{
         listnis = shrdObj->electricityMeter.listnis;
         hashMeterNi2info = shrdObj->electricityMeter.hashMeterNi2info;
@@ -100,7 +100,7 @@ void ZbyratorDataCalculation::onAddlistOfMeters2cache(ClassManagerSharedObjects 
     }
 
     if(!listnis.isEmpty())
-        emit updateHashSn2meter(hashMeterSn2memo, hashMeterSn2ni, hashMeterNi2info, listnis, meterType);
+        emit updateHashSn2meter(hashMeterSn2memo, hashMeterSn2ni, hashMeterNi2info, listnis, deviceType);
 }
 
 
@@ -115,17 +115,17 @@ void ZbyratorDataCalculation::onThreadStarted()
 
 }
 
-void ZbyratorDataCalculation::onAlistOfMeters(quint8 meterType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters, bool checkOffMeters)
+void ZbyratorDataCalculation::onAlistOfMeters(quint8 deviceType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters, bool checkOffMeters)
 {
 //    ClassManagerSharedObjects *shrdObj = 0;
 
-//    switch (meterType) {
+//    switch (deviceType) {
 //    case UC_METER_WATER         : shrdObj = shrdObjWater        ; break;
 //    case UC_METER_ELECTRICITY   : shrdObj = shrdObjElectricity  ; break;
 //    }
 
 //    if(shrdObj)
-        onAddlistOfMeters2cache(shrdObj, activeMeters, switchedOffMeters, checkOffMeters, meterType);
+        onAddlistOfMeters2cache(shrdObj, activeMeters, switchedOffMeters, checkOffMeters, deviceType);
 }
 
 void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHashString data)
@@ -267,12 +267,12 @@ shrdObj->updateMeterType();
 
 
 
-void ZbyratorDataCalculation::onUconStartPoll(QStringList nis, quint8 meterType)
+void ZbyratorDataCalculation::onUconStartPoll(QStringList nis, quint8 deviceType)
 {
-    Q_UNUSED(meterType);
+    Q_UNUSED(deviceType);
 //    ClassManagerSharedObjects *shrdObj = 0;
 
-//    switch (meterType) {
+//    switch (deviceType) {
 //    case UC_METER_WATER         : shrdObj = shrdObjWater        ; break;
 //    case UC_METER_ELECTRICITY   : shrdObj = shrdObjElectricity  ; break;
 //    }
