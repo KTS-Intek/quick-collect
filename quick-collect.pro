@@ -163,8 +163,6 @@ SOURCES += \
     zbyrator-src/src/zbyratordatabasemedium.cpp \
     zbyrator-src/src/zbyratorucmedium.cpp \
     zbyrator-src/startpagepollv2.cpp \
-    zbyrator-src/ifacesett4groups.cpp \
-    zbyrator-src/ifacesett4groupseditor.cpp \
     zbyrator-src/src/watersleepschedulermom.cpp \
     zbyrator-src/createtoolbar4quickcollect.cpp
 
@@ -192,8 +190,6 @@ HEADERS += \
     zbyrator-src/src/zbyratordatabasemedium.h \
     zbyrator-src/src/zbyratorucmedium.h \
     zbyrator-src/startpagepollv2.h \
-    zbyrator-src/ifacesett4groups.h \
-    zbyrator-src/ifacesett4groupseditor.h \
     zbyrator-src/src/watersleepschedulermom.h \
     zbyrator-src/createtoolbar4quickcollect.h
 
@@ -211,8 +207,7 @@ FORMS += \
     zbyrator-src/options/databasesettings.ui \
     zbyrator-src/options/ucemulator.ui \
     zbyrator-src/options/ktsconnectmode.ui \
-    zbyrator-src/selectmeters4poll.ui \
-    zbyrator-src/ifacesett4groupseditor.ui
+    zbyrator-src/selectmeters4poll.ui
 
 
 

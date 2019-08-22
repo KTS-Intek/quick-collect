@@ -11,13 +11,13 @@
 #include "setmeteraddress.h"
 #include "checkconnectiontoolwdgt.h"
 #include "zbyratorservice.h"
-#include "ifacesett4groups.h"
 #include "src/watersleepschedulermom.h"
 
 
 ///[!] matilda-conf-shared-widgets
 #include "info-pgs/zbyratortasks.h"
 #include "info-pgs/statisticofexchangewdgt.h"
+#include "global-pgs/directaccessviamatilda.h"
 
 
 ///[!] widgets-shared
@@ -31,9 +31,8 @@
 
 
 
-///[!] matilda-conf-shared-widgets
-#include "global-pgs/directaccessviamatilda.h"
-
+///[!] matilda-conf-widgets
+#include "network-pgs/ifacesett4groups.h"
 
 StartExchange::StartExchange(GuiHelper *gHelper, QWidget *parent) :
     MatildaConfWidget(gHelper,  parent),

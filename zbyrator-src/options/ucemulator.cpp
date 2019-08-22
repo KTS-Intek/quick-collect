@@ -48,7 +48,7 @@ int UcEmulator::getDefDevType()
 
 int UcEmulator::getDefProtocolVersion()
 {
-    return MATILDA_PROTOCOL_VERSION_V6;
+    return MATILDA_PROTOCOL_VERSION_V7;
 }
 
 void UcEmulator::createDashBoardWidget()
@@ -376,7 +376,7 @@ void UcEmulator::makeAuthorization()
 
     QVariantHash hash;
     hash.insert("QDS", QString::number(QDataStream::Qt_5_6));
-    hash.insert("version", MATILDA_PROTOCOL_VERSION_V6);
+    hash.insert("version", MATILDA_PROTOCOL_VERSION_V7);
 
     hash.insert("hsh", MatildaProtocolCore::calclLoginHash(lh, ph, decoder->lastObjSett.tmpStamp, defhash).toBase64());//QString(QCryptographicHash::hash(lh + "\n" + decoder->lastObjSett.tmpStamp + "\n" + ph, QCryptographicHash::Keccak_256).toBase64()));
 
