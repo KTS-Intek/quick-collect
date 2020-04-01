@@ -43,7 +43,7 @@ SelectMeters4poll::~SelectMeters4poll()
     delete ui;
 }
 
-void SelectMeters4poll::setPollSett(const QDateTime &dtFrom, const QDateTime &dtTo, const quint8 &pollCode, const quint8 &deviceType, const int &go2sleepSeconds, const bool &enCheckSleepProfile)
+void SelectMeters4poll::setPollSett(const QDateTime &dtFrom, const QDateTime &dtTo, const quint8 &pollCode, const quint8 &deviceType, const int &go2sleepSeconds, const bool &enCheckSleepProfile, const bool &ignoreRetr)
 {
     //start select data
     lPollSett.dtFrom = dtFrom;
@@ -52,16 +52,19 @@ void SelectMeters4poll::setPollSett(const QDateTime &dtFrom, const QDateTime &dt
     lPollSett.deviceType = deviceType;
     lPollSett.go2sleepSeconds = go2sleepSeconds;
     lPollSett.enCheckSleepProfile = enCheckSleepProfile;
+    lPollSett.ignoreRetr = ignoreRetr;
 }
 
-void SelectMeters4poll::setPollSettElectric(const QDateTime &dtFrom, const QDateTime &dtTo, const quint8 &pollCode)
+void SelectMeters4poll::setPollSettElectric(const QDateTime &dtFrom, const QDateTime &dtTo
+                                            , const quint8 &pollCode, const bool &ignoreRetr)
 {
-    setPollSett(dtFrom, dtTo, pollCode, UC_METER_ELECTRICITY, 0, false);
+    setPollSett(dtFrom, dtTo, pollCode, UC_METER_ELECTRICITY, 0, false, ignoreRetr);
 }
 
-void SelectMeters4poll::setPollSettWater(const QDateTime &dtFrom, const QDateTime &dtTo, const quint8 &pollCode, const bool &enSleepCommand, const int &go2sleepSeconds, const bool &enCheckSleepProfile)
+void SelectMeters4poll::setPollSettWater(const QDateTime &dtFrom, const QDateTime &dtTo, const quint8 &pollCode
+                                         , const bool &enSleepCommand, const int &go2sleepSeconds, const bool &enCheckSleepProfile, const bool &ignoreRetr)
 {
-    setPollSett(dtFrom, dtTo, pollCode, UC_METER_WATER, enSleepCommand ? go2sleepSeconds : 0, enCheckSleepProfile );
+    setPollSett(dtFrom, dtTo, pollCode, UC_METER_WATER, enSleepCommand ? go2sleepSeconds : 0, enCheckSleepProfile, ignoreRetr );
 }
 
 
@@ -173,10 +176,12 @@ void SelectMeters4poll::sendStartPoll(const QStringList &listni)
         return;
 
     QString mess;
-    const QVariantMap map = QuickPollHelper::createPollMap(listni, lPollSett.dtTo, lPollSett.dtFrom, ui->cbxIgnoreExistingData->isChecked(), lPollSett.go2sleepSeconds, lPollSett.enCheckSleepProfile, mess);
+    const QVariantMap map = QuickPollHelper::createPollMap(listni, lPollSett.dtTo, lPollSett.dtFrom, ui->cbxIgnoreExistingData->isChecked()
+                                                           , lPollSett.go2sleepSeconds, lPollSett.enCheckSleepProfile, lPollSett.ignoreRetr, mess);
 
     if(map.isEmpty())
         return;
+
 
     emit command4dev(lPollSett.pollCode, map);
     SettLoader::saveSett(SETT_ZBRTR_IGNOREEXISTING, ui->cbxIgnoreExistingData->isChecked());

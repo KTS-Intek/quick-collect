@@ -27,9 +27,10 @@ class UcEmulator : public StartDevWdgt
     Q_OBJECT
 
 public:
-    explicit UcEmulator(GuiSett4all *gSett4all, QWidget *parent = 0);
+    explicit UcEmulator(const bool &enableTestFeatures, GuiSett4all *gSett4all, QWidget *parent = 0);
     ~UcEmulator();
     CachedWriteSett socketcache;
+    bool enableTestFeatures;
 
     MatildaClient *clientdecoder;
 

@@ -27,7 +27,7 @@ class QcMainWindow : public MainIfaceMedium
     Q_OBJECT
 
 public:
-    explicit QcMainWindow(const QFont &font4log, const int &defFontPointSize, QWidget *parent = 0);
+    explicit QcMainWindow(const QFont &font4log, const int &defFontPointSize, QWidget *parent = nullptr);
     ~QcMainWindow();
 
 
@@ -39,6 +39,9 @@ signals:
     void onRequest2pollThese(QStringList nis, quint8 metertype);
     void onRequest2GetDataThese(QStringList nis, quint8 metertype);
     void tryToActivateThisPage(QString page);
+
+    void command2extensionBBB( quint16 extName, quint16 extCommand, QVariant data);//extId command data, the same as matilda-bbb
+
 
 public slots:
     void initPage();

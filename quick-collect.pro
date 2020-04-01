@@ -50,12 +50,12 @@ DEFINES += DISABLE_WATCHDOG_TIMER
 DEFINES += DISABLE_PROC_MANAGER
 
 #appversion.cpp
-VERSION = 1.1.2
+VERSION = 1.1.4
 
 DEFINES += APPLCTN_NAME=\\\"quick-collect\\\"
 DEFINES += "MYAPPNAME=\"\\\"Quick Collect\\\"\""
 DEFINES += "MYAPPOWNER=\"\\\"KTS Intek Ltd\\\"\""
-DEFINES += "MYAPPOWNERSITE=\"\\\"http://kts-intek.com.ua\\\"\""
+DEFINES += "MYAPPOWNERSITE=\"\\\"http://kts-intek.com\\\"\""
 
 #defines that disable some modules, that I don't want to use
 DEFINES += DISABLEVPNMANAGER
@@ -66,6 +66,8 @@ DEFINES += DISABLE_RUN_PROCESS
 # I need some functionality
 DEFINES += IS_USESTARTDEV
 
+#tells sqlite-server to use IPC for configuration
+DEFINES += ENBL_IPC_4_CONFIG
 
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.

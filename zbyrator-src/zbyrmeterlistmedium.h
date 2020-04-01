@@ -149,6 +149,9 @@ signals:
 
     void startTmrUpdateRelayStatuses(int msec);
 
+//to zbyrator
+    void reloadIfaceChannels();
+
 public slots:
     void onAllMetersSlot(UniversalMeterSettList allMeters);
 

@@ -180,9 +180,11 @@ void ZbyratorDatabaseMedium::data2gui(quint16 command, QVariant dataVar)
 
 void ZbyratorDatabaseMedium::onCOMMAND2GUI(quint16 command, QVariantHash varHash)
 {    
-    if(command == COMMAND_READ_METER_LOGS)
-        emit appendDataDatabaseMJ(varHash);
-    else
+//    if(command == COMMAND_READ_METER_LOGS)
+//        emit appendDataDatabaseMJ(varHash);
+//    else
+    Q_UNUSED(command);
+
         emit appendDataDatabase(varHash);
 }
 

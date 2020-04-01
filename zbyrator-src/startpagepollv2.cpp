@@ -201,11 +201,11 @@ bool StartPagePollV2::createObjectsForPollAllMetersMode(const StartPollTabSettEx
     switch(lastSelsett.deviceType){
 
     case UC_METER_ELECTRICITY:{
-        w->setPollSettElectric(dtFrom, dtTo, pollCode);
+        w->setPollSettElectric(dtFrom, dtTo, pollCode, getIgnoreRetries());
         break;}
 
     case UC_METER_WATER      :{
-        w->setPollSettWater(dtFrom, dtTo, pollCode, lastWtrSett.sendSleepCommand, lastWtrSett.secs, lastWtrSett.checkProfile);
+        w->setPollSettWater(dtFrom, dtTo, pollCode, lastWtrSett.sendSleepCommand, lastWtrSett.secs, lastWtrSett.checkProfile, getIgnoreRetries());
         break;}
 
     default: qDebug() << "can't set pollSett StartPagePoll lastSelsett.deviceType=" << lastSelsett.deviceType;

@@ -22,8 +22,8 @@
 #include "moji_defy.h"
 #include "matildausertypes.h"
 
-UcEmulator::UcEmulator(GuiSett4all *gSett4all, QWidget *parent) :
-    StartDevWdgt(true, gSett4all,  parent)
+UcEmulator::UcEmulator(const bool &enableTestFeatures, GuiSett4all *gSett4all, QWidget *parent) :
+    StartDevWdgt(true, gSett4all,  parent), enableTestFeatures(enableTestFeatures)
 
 {
 
@@ -48,7 +48,7 @@ int UcEmulator::getDefDevType()
 
 int UcEmulator::getDefProtocolVersion()
 {
-    return MATILDA_PROTOCOL_VERSION_V7;
+    return MATILDA_PROTOCOL_VERSION_V9;
 }
 
 void UcEmulator::createDashBoardWidget()
@@ -89,7 +89,7 @@ void UcEmulator::createClassManager()
 {
     createDecoder();
 
-    manager = new ClassManagerProcessor(this);
+    manager = new ClassManagerProcessor(enableTestFeatures, this);
     manager->initObjects();
     manager->accessLevel = MTD_USER_ADMIN;
 
@@ -114,7 +114,7 @@ void UcEmulator::createClassManager()
     manager->protocolVersionSlot(getDefProtocolVersion());
 
 
-    clientdecoder = new MatildaClient(true, this);
+    clientdecoder = new MatildaClient(enableTestFeatures, true, this);//const bool &enableTestFeatures, const bool &ignoreProtocolVersion, QObject *parent = 0);
 //    clientdecoder->onThreadStarted();
     connect(clientdecoder, SIGNAL(showMess(QString)), manager, SIGNAL(showMess(QString)));
     connect(clientdecoder, &MatildaClient::uploadProgress, manager, &ClassManagerProcessor::uploadProgress);
@@ -163,6 +163,22 @@ void UcEmulator::data2matildaExtSlot(quint16 command, QVariant varData, int secs
 
 void UcEmulator::data2matildaNextSlot(quint16 command, QVariant varData)
 {
+
+
+    switch(command){
+    case COMMAND_READ_ELMETER_POLL_CHANNELS: data2matildaNextSlot(COMMAND_READ_METER_LIST, true); break;
+
+    case COMMAND_READ_IFACESETT_4_CHANNELS:
+    case COMMAND_READ_IFACESETT_4_GROUPS:{
+        if(manager->shrdObj->lastUcSavedM2Mprofiles.isEmpty() && (manager->accessLevel == MTD_USER_ADMIN || manager->accessLevel == MTD_USER_OPER))
+            data2matildaNextSlot(COMMAND_GET_SAVED_M2M_PROFILES, QVariant());//data2matilda4inCMD(COMMAND_GET_SAVED_M2M_PROFILES, QVariant());
+        break;}
+
+    case COMMAND_WRITE_ELMETER_POLL_CHANNELS: varData = manager->cManagerV7->preparyCOMMAND_WRITE_ELMETER_POLL_CHANNELS(varData); break;
+
+    }
+
+
     writelater.command.append(command);
     writelater.varData.append(varData);
 
@@ -293,7 +309,7 @@ void UcEmulator::createDecoder()
 {
     socketcache = CachedWriteSett(qAppName(), getDefDevType(), true);
 
-    decoder = new DecodeMatildaProtocolWithJSON(this);
+    decoder = new DecodeMatildaProtocolWithJSON(socketcache.verboseMode, this);
 
     connect(decoder, &DecodeMatildaProtocolWithJSON::addThisIPToBlackList   , this, &UcEmulator::addThisIPToBlackList );
     connect(decoder, &DecodeMatildaProtocolWithJSON::removeThisIpFromBlackList, this, &UcEmulator::removeThisIpFromBlackList);
@@ -376,7 +392,7 @@ void UcEmulator::makeAuthorization()
 
     QVariantHash hash;
     hash.insert("QDS", QString::number(QDataStream::Qt_5_6));
-    hash.insert("version", MATILDA_PROTOCOL_VERSION_V7);
+    hash.insert("version", MATILDA_PROTOCOL_VERSION_V9);
 
     hash.insert("hsh", MatildaProtocolCore::calclLoginHash(lh, ph, decoder->lastObjSett.tmpStamp, defhash).toBase64());//QString(QCryptographicHash::hash(lh + "\n" + decoder->lastObjSett.tmpStamp + "\n" + ph, QCryptographicHash::Keccak_256).toBase64()));
 

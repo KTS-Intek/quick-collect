@@ -65,12 +65,12 @@ void ZbyratorDataCalculation::onAddlistOfMeters2cache(ClassManagerSharedObjects 
 
         switch (deviceType) {
         case UC_METER_ELECTRICITY:{
-            shrdObj->electricityMeter.addMeter2meterNi2info(m.ni, m.memo, m.sn, m.coordinate, m.tariff, m.transformer, m.model, m.version, m.powerin, m.pollEnbl);
-            shrdObj->electricityMeter.addMeter2meterSn2info(m.sn, m.memo, m.ni, m.coordinate, m.tariff, m.transformer, m.model, m.version, m.powerin, m.pollEnbl);
+            shrdObj->electricityMeter.addMeter2meterNi2info(m.ni, m.memo, m.sn, m.coordinate, m.tariff, m.transformer, m.model, m.version, m.powerin, m.pollEnbl, 0, 0);
+            shrdObj->electricityMeter.addMeter2meterSn2info(m.sn, m.memo, m.ni, m.coordinate, m.tariff, m.transformer, m.model, m.version, m.powerin, m.pollEnbl, 0, 0);
             break;}
         case UC_METER_WATER      :{
-            shrdObj->waterMeter.addMeter2meterNi2info(m.ni, m.memo, m.sn, m.coordinate, m.tariff, m.transformer, m.model, m.version, m.powerin, m.pollEnbl);
-            shrdObj->waterMeter.addMeter2meterSn2info(m.sn, m.memo, m.ni, m.coordinate, m.tariff, m.transformer, m.model, m.version, m.powerin, m.pollEnbl);
+            shrdObj->waterMeter.addMeter2meterNi2info(m.ni, m.memo, m.sn, m.coordinate, m.tariff, m.transformer, m.model, m.version, m.powerin, m.pollEnbl, 0, 0);
+            shrdObj->waterMeter.addMeter2meterSn2info(m.sn, m.memo, m.ni, m.coordinate, m.tariff, m.transformer, m.model, m.version, m.powerin, m.pollEnbl, 0, 0);
             break;}
         }
 
@@ -227,10 +227,12 @@ if(lastColumnlist.isEmpty())
 
                      for(int j = 0, jmax = lk.size(), jmax2 = listOneMeter.size(); j < jmax && j < jmax2; j++)
                          strhash.insert(lk.at(j), listOneMeter.at(j).toString());
-                     strhash.insert("meter_model", strhash.take("model"));
-                     strhash.insert("params", strhash.value("prm"));
-                     insertSnNiCorrection =1;
+
                  }
+                 strhash.insert("meter_model", strhash.take("model"));
+                 strhash.insert("params", strhash.value("prm"));
+                 insertSnNiCorrection = 1;
+
              }
         }
 

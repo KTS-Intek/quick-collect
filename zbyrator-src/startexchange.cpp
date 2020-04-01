@@ -355,7 +355,7 @@ connect(this, SIGNAL(lockButtons(bool)), w, SIGNAL(lockButtons(bool)));
 //-----------------------------------------------------------------------------------------------
 MatildaConfWidget *StartExchange::createZbyrIfaceSett(GuiHelper *gHelper, QWidget *parent)
 {
-    ZbyrIfaceSett * w = new ZbyrIfaceSett(tr("Global interface settings"), gHelper,  parent);
+    ZbyrIfaceSett * w = new ZbyrIfaceSett(false, tr("Global interface settings"), gHelper,  parent);
 
     connect(metersListMedium, SIGNAL(setIfaceSett(QVariantHash)), w, SLOT(setPageSett(QVariantHash)) );
     connect(w, SIGNAL(setNewSettings(QVariantHash)), metersListMedium, SLOT(setNewSettings(QVariantHash)));
@@ -444,7 +444,7 @@ MatildaConfWidget *StartExchange::createQuickDirectAccessWdgt(GuiHelper *gHelper
 //-----------------------------------------------------------------------------------------------
 MatildaConfWidget *StartExchange::createIfaceSett4groupsWdgt(GuiHelper *gHelper, QWidget *parent)
 {
-    IfaceSett4groups * w = new IfaceSett4groups(gHelper, parent);
+    IfaceSett4groups * w = new IfaceSett4groups(false, gHelper, parent);
 
 
     connect(w, SIGNAL(sendMeTheTcpHistory(QLineEdit*))      , metersListMedium, SLOT(openTcpServerDlg(QLineEdit*)) );
@@ -452,6 +452,11 @@ MatildaConfWidget *StartExchange::createIfaceSett4groupsWdgt(GuiHelper *gHelper,
     connect(w, SIGNAL(openEditMacProfileWdgt(bool,QLineEdit*)), this, SIGNAL(openEditMacProfileWdgt(bool,QLineEdit*)));
 
     connect(w, SIGNAL(addIfaceSett2history(QVariantHash)), metersListMedium, SLOT(addIfaceSett2history(QVariantHash)));
+
+
+    //there is no signal to tell to update NI channels
+    connect(w, SIGNAL(addIfaceSett2history(QVariantHash)), metersListMedium, SIGNAL(reloadIfaceChannels()));
+
     return w;
 
 }

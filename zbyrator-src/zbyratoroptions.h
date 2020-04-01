@@ -24,6 +24,8 @@ signals:
 
     void command2extension(quint16 extName, quint16 command, QVariant data);
 
+    void command2extensionBBB( quint16 extName, quint16 extCommand, QVariant data);//extId command data
+
 public slots:
     void initPage();
 

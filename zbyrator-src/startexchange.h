@@ -16,7 +16,7 @@ class StartExchange : public MatildaConfWidget
     Q_OBJECT
 
 public:
-    explicit StartExchange(GuiHelper *gHelper, QWidget *parent = 0);
+    explicit StartExchange(GuiHelper *gHelper, QWidget *parent = nullptr);
     ~StartExchange();
     GuiHelper *guiHelper;
 

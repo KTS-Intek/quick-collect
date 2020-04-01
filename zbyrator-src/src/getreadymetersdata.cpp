@@ -9,6 +9,10 @@
 #include "src/conversion/converttasktypes.h"
 #include "src/zbyrator-v2/myucmmeters.h"
 
+///[!] zbyrator-base
+#include "src/zbyrator-v2/addpolldata2dbobject.h"
+
+
 GetReadyMetersData::GetReadyMetersData(QObject *parent) : QObject(parent)
 {
     stopAll = false;
@@ -143,7 +147,8 @@ void GetReadyMetersData::doCalculation(const OneProfileSett &oneprofile)
         if(!listNi4poll.isEmpty()){
 
             if(createTables)
-                createTables = !dbProcessingHelper->createTableFromOld2New(pollCode, pollDtMemo.pollDateTime, pollDtMemo.depth, currDateTime, pollDtMemo.tableName);
+                createTables = !dbProcessingHelper->createTableFromOld2New(pollCode, pollDtMemo.pollDateTime, pollDtMemo.depth,
+                                                                           currDateTime, pollDtMemo.tableName, AddPollData2dbObject::isInstantenousPollCode(pollCode));
 
             if(!stopAll){
 //                const QStringList memo = listNi4poll;
@@ -176,7 +181,8 @@ void GetReadyMetersData::doCalculation(const OneProfileSett &oneprofile)
 
         //можливо краще почати створювати таблиці тут, що опитування тоді швидше почалось
         if(createTables)
-            dbProcessingHelper->createTableFromOld2New(pollCode, pollDtMemo.pollDateTime, pollDtMemo.depth, currDateTime, pollDtMemo.tableName);
+            dbProcessingHelper->createTableFromOld2New(pollCode, pollDtMemo.pollDateTime, pollDtMemo.depth,
+                                                       currDateTime, pollDtMemo.tableName, AddPollData2dbObject::isInstantenousPollCode(pollCode));
 
 
     }

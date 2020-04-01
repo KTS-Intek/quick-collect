@@ -77,7 +77,15 @@ void ZbyratorOptions::addThisWdgt2stack(const int &row, const QString &pageName,
 {
     MatildaConfWidget *w = 0;
     switch(row){
-    case 0: w = new DatabaseSettings(gHelper,  this); break;
+    case 0:{
+
+        DatabaseSettings *dw = new DatabaseSettings(gHelper,  this);
+
+        connect(dw, &DatabaseSettings::command2extension, this, &ZbyratorOptions::command2extensionBBB);
+
+        w = dw;
+        break;}
+
     case 1: w = createPollWdgt(); break;
     case 2:{
 
@@ -87,7 +95,7 @@ void ZbyratorOptions::addThisWdgt2stack(const int &row, const QString &pageName,
 //         gHelper->parentWidget = ui->stackedWidget;
 //        gHelper->lDevInfo = this->gHelper->lDevInfo;
 
-        UcEmulator *e = new UcEmulator(gHelper->guiSett,  this);
+        UcEmulator *e = new UcEmulator(gHelper->guiSett->enableTestFeatures, gHelper->guiSett,  this);
         connect(e, &UcEmulator::reloadSettings2ucEmulator, this, &ZbyratorOptions::reloadSettings2ucEmulator);
         connect(e, &UcEmulator::command2extension           , this, &ZbyratorOptions::command2extension);
         e->setWindowTitle(pageName);

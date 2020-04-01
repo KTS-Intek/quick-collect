@@ -78,7 +78,7 @@ void QcMainWindow::initPage()
 {
     lastToolBar = ui->mainToolBar;
     ui->statusBar->hide();
-    createGuiHelper(ui->stackedWidget, 12, 5);
+    createGuiHelper(ui->stackedWidget, 12, MATILDA_PROTOCOL_VERSION);
     createStackWidgetHelper();
     createAppOutLog();
 
@@ -314,6 +314,7 @@ void QcMainWindow::createMeterManager()
     connect(metersListMedium, &ZbyrMeterListMedium::setThisIfaceSett    , zbyrator, &MeterManager::setThisIfaceSett     );
 //    connect(metersListMedium, &ZbyrMeterListMedium::setPollSaveSettings , zbyrator, &MeterManager::setPollSaveSettings  ); zbyrator has it's own
     connect(metersListMedium, SIGNAL(setPollSaveSettings(quint16,quint16,bool,bool,bool,qint32,qint32,qint32,bool)), zbyrator, SLOT(reloadPollSettings()));
+    connect(metersListMedium, &ZbyrMeterListMedium::reloadIfaceChannels, zbyrator, &MeterManager::reloadIfaceChannels); // SIGNAL(setPollSaveSettings(quint16,quint16,bool,bool,bool,qint32,qint32,qint32,bool)), zbyrator, SLOT(reloadIfaceChannels()));
 
     connect(metersListMedium, &ZbyrMeterListMedium::giveMeYourCache     , zbyrator, &MeterManager::giveMeYourCache      );
     connect(metersListMedium, &ZbyrMeterListMedium::killUconTasks       , zbyrator, &MeterManager::killUconsTasks       );
@@ -392,6 +393,8 @@ void QcMainWindow::createMeterListManager()
     connect(guiHelper, &GuiHelper::setDotPos, metersListMedium, &ZbyrMeterListMedium::setDotPos);
 
 
+    connect(metersListMedium, SIGNAL(setPollSaveSettings(quint16,quint16,bool,bool,bool,qint32,qint32,qint32,bool)), metersListMedium, SIGNAL(reloadIfaceChannels()));
+
 }
 
 //---------------------------------------------------------------------
@@ -413,7 +416,7 @@ void QcMainWindow::createMatildaBBBcover()
 //    connect(this, SIGNAL(destroyed(QObject*)), c, SLOT(deleteLater()));
     connect(this, &QcMainWindow::receivedKillSignal, c, &MatildaBBBcover::itIsTime2kickOff);
 
-
+    connect(this, &QcMainWindow::command2extensionBBB, c, &MatildaBBBcover::command2extension);
     connect(c, SIGNAL(destroyed(QObject*)), t, SLOT(quit()));
     connect(t, SIGNAL(finished()), t, SLOT(deleteLater()));
 
@@ -589,9 +592,13 @@ void QcMainWindow::on_actionOptions_triggered()
 
         connect(w, SIGNAL(destroyed(QObject*)), metersListMedium, SIGNAL(reloadSettings()));
 
+        //it has the same name that matilda-bbb uses, but the usage is different
         connect(w, &ZbyratorOptions::command2extension, metersListMedium, &ZbyrMeterListMedium::command2extension);
 
         connect(w, &ZbyratorOptions::reloadSettings2ucEmulator, this, &QcMainWindow::reloadSettings2ucEmulator);
+
+        //it has not the same name that matilda-bbb uses, but the usage is the same
+        connect(w, &ZbyratorOptions::command2extensionBBB, this, &QcMainWindow::command2extensionBBB);
 
         addWdgt2stackWdgt(w, WDGT_TYPE_OPTIONS, false, "", "");// tr("Options"), ":/katynko/svg/applications-system.svg");
     }
