@@ -54,6 +54,15 @@ QVariant RelayWdgt::getPageSett4read(bool &ok, QString &mess)
     return QVariantHash();
 }
 
+QStringList RelayWdgt::getAvRelayStatuses()
+{
+    QStringList l;
+    for(quint8 i = RELAY_STATE_UNKN; i <= RELAY_STATE_OFF_PRSBTTN; i++){
+        l.append(RelayStateHelper::getRelayStatusHuman(i));
+    }
+    return l;
+}
+
 void RelayWdgt::clearPage()
 {
     model->clear();
@@ -86,72 +95,100 @@ void RelayWdgt::setPageSett(const MyListStringList &listRows, const QVariantMap 
 
 void RelayWdgt::onModelChanged()
 {
-    QVariantList vl;
+    const QList<int> hiddenCols = QList<int>();
+    const QList<int> rowsList = StandardItemModelHelper::getSourceRows(WidgetsHelper::getRowsListTo(proxy_model->rowCount()), proxy_model);//  ;
+    int valCounter;///unused
 
-//    QStringList l = GuiHelper::getColNamesLedLampV2().split(",");
-    //tr("Model,NI,Group,Last Exchange,Power [%],Start Power [%],NA Power [%],Tna [sec],Coordinate,Poll On/Off,Street,Memo") ;
+    const QStringList headerlist = StandardItemModelHelper::modelHeaderListWithRowID(model, hiddenCols);
 
-    //Time Relay Meter S/N NI Memo Coordinate
-    QStringList l4app = QString("ni pos grp pll img").split(" ");
-    QList<int> l4appIndx;
-    l4appIndx << 5 << 7 << 2 << 1 ; //-1
+    QStringList heaaderroles;
+    for(int i = 0, imax = headerlist.size(); i < imax; i++)
+        heaaderroles.append(0);
 
+    if(!heaaderroles.isEmpty()){
+       heaaderroles.replace(0, QString::number(BaseMapMarkersModel::itmmarkertxt));
 
-    const QList<int> l4tltp = QList<int>() << 0 << 2 << 3 << 4 << 6;
-
-    for(int i = 0, iMax = proxy_model->rowCount(), lMax = l4appIndx.size(), jmax = l4tltp.size(); i < iMax; i++){
-        int row = proxy_model->mapToSource(proxy_model->index(i, 0)).row();
-        QVariantHash h;
-        for(int l = 0; l < lMax; l++)//службова інформація
-            h.insert(l4app.at(l), model->item(row, l4appIndx.at(l))->text());
-
-        if(h.value("pos").toString().isEmpty())//якщо нема координат, то і нема чого показувать
-            continue;
-
-        QStringList tltp;
-        tltp.append(tr("NI: <b>%1</b>, Relay: <b>%2</b>").arg(model->item(row, 5)->text()).arg(model->item(row, 1)->text()));
-
-
-        for(int j = 0; j < jmax; j++){
-            const QString s = model->item(row, l4tltp.at(j))->text();
-            if(s.isEmpty() || s == "?" || s == "!")
-                continue;
-
-
-
-            tltp.append(QString("%1: <b>%2</b>").arg(model->horizontalHeaderItem(l4tltp.at(j))->text()).arg(s));
-
-        }
-
-
-
-
-        h.insert("tltp", tltp.join("<br>") + "<br>");
-        h.insert("rowid", row + 1);
-        const QString img = model->item(row, 0)->data(Qt::UserRole + 23).toString();
-        if(!img.isEmpty())
-            h.insert("img", "qrc" + img );//m.at(icoCol)->setData(icoList.at(i), Qt::UserRole + 23);
-
-        vl.append(h);
+       heaaderroles.replace(6, QString::number(BaseMapMarkersModel::itmkeyvaluetxt));//NI
+       heaaderroles.replace(8, QString::number(BaseMapMarkersModel::coordinatevar));
+   //    heaaderroles.replace(3, QString::number(BaseMapMarkersModel::itmvalueTxt));
     }
 
+    emit setModelHeaderDataRoles(heaaderroles.join("\n"));
+    const MPrintTableOut out = StandardItemModelHelper::getModelAsVector(model, proxy_model, hiddenCols, rowsList, true, valCounter);
 
-    if(!lDevInfo->matildaDev.coordinatesIsDefault){
-        QVariantHash h;
-        h.insert("pos", QString("%1,%2").arg(QString::number(lDevInfo->matildaDev.coordinates.x(), 'f', 6)).arg(QString::number(lDevInfo->matildaDev.coordinates.y(), 'f', 6)) );
-        h.insert("isMatilda", true);
-        h.insert("rowid", "Z");
-        h.insert("ni", tr("Universal Communicator"));
-        h.insert("tltp", h.value("ni").toString() + tr("<br>S/N: %1<br>").arg(lDevInfo->matildaDev.lastSerialNumber));
-        vl.prepend(h);
-    }
+    emit setTableDataExt(out, headerlist, 6);
+
+    const int row = proxy_model->mapToSource(ui->tvTable->currentIndex()).row();
+    if(row < 0)
+        return;
+    emit showThisDeviceKeyValue(model->item(row, 5)->text());
+
+//    QVariantList vl;
+
+////    QStringList l = GuiHelper::getColNamesLedLampV2().split(",");
+//    //tr("Model,NI,Group,Last Exchange,Power [%],Start Power [%],NA Power [%],Tna [sec],Coordinate,Poll On/Off,Street,Memo") ;
+
+//    //Time Relay Meter S/N NI Memo Coordinate
+//    QStringList l4app = QString("ni pos grp pll img").split(" ");
+//    QList<int> l4appIndx;
+//    l4appIndx << 5 << 7 << 2 << 1 ; //-1
 
 
-    emit setNewDeviceModelEs(vl);
+//    const QList<int> l4tltp = QList<int>() << 0 << 2 << 3 << 4 << 6;
 
-    int row = proxy_model->mapToSource(ui->tvTable->currentIndex()).row();
-    if(row >= 0)
-        emit showThisDeviceNIEs(model->item(row, 5)->text());
+//    for(int i = 0, iMax = proxy_model->rowCount(), lMax = l4appIndx.size(), jmax = l4tltp.size(); i < iMax; i++){
+//        int row = proxy_model->mapToSource(proxy_model->index(i, 0)).row();
+//        QVariantHash h;
+//        for(int l = 0; l < lMax; l++)//службова інформація
+//            h.insert(l4app.at(l), model->item(row, l4appIndx.at(l))->text());
+
+//        if(h.value("pos").toString().isEmpty())//якщо нема координат, то і нема чого показувать
+//            continue;
+
+//        QStringList tltp;
+//        tltp.append(tr("NI: <b>%1</b>, Relay: <b>%2</b>").arg(model->item(row, 5)->text()).arg(model->item(row, 1)->text()));
+
+
+//        for(int j = 0; j < jmax; j++){
+//            const QString s = model->item(row, l4tltp.at(j))->text();
+//            if(s.isEmpty() || s == "?" || s == "!")
+//                continue;
+
+
+
+//            tltp.append(QString("%1: <b>%2</b>").arg(model->horizontalHeaderItem(l4tltp.at(j))->text()).arg(s));
+
+//        }
+
+
+
+
+//        h.insert("tltp", tltp.join("<br>") + "<br>");
+//        h.insert("rowid", row + 1);
+//        const QString img = model->item(row, 0)->data(Qt::UserRole + 23).toString();
+//        if(!img.isEmpty())
+//            h.insert("img", "qrc" + img );//m.at(icoCol)->setData(icoList.at(i), Qt::UserRole + 23);
+
+//        vl.append(h);
+//    }
+
+
+//    if(!lDevInfo->matildaDev.coordinatesIsDefault){
+//        QVariantHash h;
+//        h.insert("pos", QString("%1,%2").arg(QString::number(lDevInfo->matildaDev.coordinates.x(), 'f', 6)).arg(QString::number(lDevInfo->matildaDev.coordinates.y(), 'f', 6)) );
+//        h.insert("isMatilda", true);
+//        h.insert("rowid", "Z");
+//        h.insert("ni", tr("Universal Communicator"));
+//        h.insert("tltp", h.value("ni").toString() + tr("<br>S/N: %1<br>").arg(lDevInfo->matildaDev.lastSerialNumber));
+//        vl.prepend(h);
+//    }
+
+
+//    emit setNewDeviceModelEs(vl);
+
+//    int row = proxy_model->mapToSource(ui->tvTable->currentIndex()).row();
+//    if(row >= 0)
+//        emit showThisDeviceNIEs(model->item(row, 5)->text());
 }
 
 void RelayWdgt::meterRelayStatus(QString ni, QDateTime dtLocal, quint8 mainstts, quint8 secondarystts)
@@ -271,8 +308,12 @@ void RelayWdgt::on_tbShowMap_clicked()
 
         connect(this, SIGNAL(showMapEs(QString))  , w, SLOT(showMap(QString)) );
 
-        connect(this, SIGNAL(setNewDeviceModelEs(QVariantList)), w, SIGNAL(setNewDeviceModel(QVariantList)) );
-        connect(this, SIGNAL(showThisDeviceNIEs(QString))      , w, SIGNAL(showThisDeviceNI(QString)) );
+        connect(this, &RelayWdgt::setTableDataExt, w, &MapWidget::setTableDataExt);
+        connect(this, &RelayWdgt::setModelHeaderDataRoles, w, &MapWidget::setModelHeaderDataRoles);
+        connect(this, &RelayWdgt::setDefaultDataFilterSettings, w, &MapWidget::setDefaultDataFilterSettings);
+        connect(this, &RelayWdgt::showThisDeviceKeyValue, w, &MapWidget::showThisDeviceKeyValue);
+
+
         //        connect(this, SIGNAL(showThisCoordinatesEs(QString))   , w, SIGNAL(showThisCoordinates(QString)) );
 
                 connect(w, SIGNAL(showThisDev(QString)), this, SLOT(showThisDev(QString)) );
@@ -287,7 +328,34 @@ void RelayWdgt::on_tbShowMap_clicked()
 
 //        connect(ui->tbShowMap, SIGNAL(toggled(bool)), w, SLOT(isParentWidgetVisible(bool)) );
 
-        QTimer::singleShot(11, this, SLOT(onModelChanged()) );
+//        QTimer::singleShot(11, this, SLOT(onModelChanged()) );
+
+                connect(w, &MapWidget::mapIsReady, this, &RelayWdgt::onModelChanged);
+
+    }
+
+    if(true){
+        const QStringList lk = getAvRelayStatuses();
+
+        QVariantMap mapdefaultgrouppingsett;
+        QVariantMap mapdata;
+
+        for(int i = 0, imax = lk.size(); i < imax; i++){
+            const QString model = lk.at(i);
+
+            mapdata.insert(model,   QCryptographicHash::hash(model.toLocal8Bit(), QCryptographicHash::Md5).right(3).toHex().toUpper());//model 2 color RRGGBB
+
+            qDebug() << "mapdata" << model << mapdata.value(model);
+        }
+
+
+
+        mapdefaultgrouppingsett.insert("cols", QString::number(1).split(" "));
+        mapdefaultgrouppingsett.insert("data", mapdata);
+        mapdefaultgrouppingsett.insert("en", true);
+
+
+        emit setDefaultDataFilterSettings(mapdefaultgrouppingsett, QString("relaysV0"));
     }
 
     emit showMapEs(gHelper->guiSett->currLang);

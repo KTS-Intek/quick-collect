@@ -17,7 +17,7 @@ ZbyratorDatabaseMedium::ZbyratorDatabaseMedium(QObject *parent) : QObject(parent
 
 void ZbyratorDatabaseMedium::onThreadStarted()
 {
-    shrdObj = new ClassManagerSharedObjects(this);
+    shrdObj = new ClassManagerSharedObjects(true, this);
 
     connect(this, &ZbyratorDatabaseMedium::uploadProgress, this, &ZbyratorDatabaseMedium::uploadProgressSlot);
 
@@ -26,7 +26,13 @@ void ZbyratorDatabaseMedium::onThreadStarted()
 void ZbyratorDatabaseMedium::onAlistOfMeters(quint8 deviceType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters, bool checkOffMeters)
 {
 
-        ZbyratorDataCalculation().onAddlistOfMeters2cache(shrdObj, activeMeters, switchedOffMeters, checkOffMeters, deviceType);
+    ZbyratorDataCalculation().onAddlistOfMeters2cache(shrdObj, activeMeters, switchedOffMeters, checkOffMeters, deviceType);
+}
+
+void ZbyratorDatabaseMedium::setVirtualMetersSett(NI2vmGSNsett vmsett)
+{
+    ZbyratorDataCalculation().setVirtualMetersSettExt(shrdObj, vmsett);
+
 }
 
 void ZbyratorDatabaseMedium::data2matilda4inCMD(quint16 command, QVariant dataVar)

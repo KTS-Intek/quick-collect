@@ -76,6 +76,7 @@ signals:
 
 
     void onAddMeters(quint8 deviceType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters, bool checkOffMeters);
+    void setVirtualMetersSett(NI2vmGSNsett vmsett);
 
 
 

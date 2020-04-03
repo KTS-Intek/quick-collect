@@ -289,6 +289,9 @@ void ZbyrMeterListMedium::createDataCalculator()
 
     connect(c, &ZbyratorDataCalculation::setCOMMAND_READ_POLL_STATISTIC, this, &ZbyrMeterListMedium::setStatisticOfExchangePageSett);
     connect(this, &ZbyrMeterListMedium::onCOMMAND_READ_POLL_STATISTIC, c, &ZbyratorDataCalculation::onCOMMAND_READ_POLL_STATISTIC);
+
+    connect(this, &ZbyrMeterListMedium::setVirtualMetersSett, c, &ZbyratorDataCalculation::setVirtualMetersSett);
+
     t->start();
 
 }
@@ -322,6 +325,9 @@ void ZbyrMeterListMedium::createDatabaseMedium()
 
     connect(m, SIGNAL(setLblWaitTxtDatabase(QString)), this, SIGNAL(setLblWaitTxtDatabase(QString)));
     connect(m, SIGNAL(setLblWaitTxtDatabaseMj(QString)), this, SIGNAL(setLblWaitTxtDatabaseMj(QString)));
+
+    connect(this, &ZbyrMeterListMedium::setVirtualMetersSett, m, &ZbyratorDatabaseMedium::setVirtualMetersSett);
+
     t->start();
 
 

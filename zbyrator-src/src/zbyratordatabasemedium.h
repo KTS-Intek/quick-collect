@@ -50,6 +50,9 @@ public slots:
 
     void onAlistOfMeters(quint8 deviceType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters, bool checkOffMeters);
 
+    void setVirtualMetersSett(NI2vmGSNsett vmsett);
+
+
     void data2matilda4inCMD(quint16 command, QVariant dataVar);
 
     void data2matildaSlot(const quint16 &command, const QVariant &dataVar);

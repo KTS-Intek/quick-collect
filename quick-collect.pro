@@ -50,7 +50,7 @@ DEFINES += DISABLE_WATCHDOG_TIMER
 DEFINES += DISABLE_PROC_MANAGER
 
 #appversion.cpp
-VERSION = 1.1.4
+VERSION = 1.1.5
 
 DEFINES += APPLCTN_NAME=\\\"quick-collect\\\"
 DEFINES += "MYAPPNAME=\"\\\"Quick Collect\\\"\""

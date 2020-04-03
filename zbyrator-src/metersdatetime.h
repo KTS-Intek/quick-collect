@@ -19,8 +19,15 @@ public:
 
 signals:
     ///map 4 exchange stat
-    void setNewDeviceModelEs(QVariantList vl);
-    void showThisDeviceNIEs(QString ni);
+    void setTableDataExt(const MPrintTableOut &table, const QStringList &header, const int &keycol);
+
+    void setModelHeaderDataRoles(QString columnroles);// list joined with '\n'
+
+    void showThisDeviceKeyValue(QString keyvalue);
+
+    void setDefaultDataFilterSettings(QVariantMap maponeprofile, QString profilename);
+
+
     void showMapEs(QString lastLang);
 
 

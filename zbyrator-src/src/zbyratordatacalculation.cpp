@@ -108,7 +108,7 @@ void ZbyratorDataCalculation::onThreadStarted()
 {
 //    shrdObjElectricity = new ClassManagerSharedObjects(this);
 //    shrdObjWater = new ClassManagerSharedObjects(this);
-    shrdObj = new ClassManagerSharedObjects(this);
+    shrdObj = new ClassManagerSharedObjects(true, this);
 
     createDatabaseReader();
     connect(this, &ZbyratorDataCalculation::uploadProgress, this, &ZbyratorDataCalculation::uploadProgressSlot);
@@ -125,7 +125,63 @@ void ZbyratorDataCalculation::onAlistOfMeters(quint8 deviceType, UniversalMeterS
 //    }
 
 //    if(shrdObj)
-        onAddlistOfMeters2cache(shrdObj, activeMeters, switchedOffMeters, checkOffMeters, deviceType);
+    onAddlistOfMeters2cache(shrdObj, activeMeters, switchedOffMeters, checkOffMeters, deviceType);
+}
+
+void ZbyratorDataCalculation::setVirtualMetersSett(NI2vmGSNsett vmsett)
+{
+
+//    if(!listnis.isEmpty())
+//        emit updateHashSn2meter(hashMeterSn2memo, hashMeterSn2ni, hashMeterNi2info, listnis, deviceType);
+
+    bool updatesharedsettings = false;
+    const QList<QString> lk = vmsett.keys();
+    for(int i = 0, imax = lk.size(); i < imax; i++){
+        const QString ni = lk.at(i);
+
+        QString snPrefix = shrdObj->electricityMeter.hashMeterNi2info.value(ni).sn;
+        if(snPrefix.isEmpty())
+            snPrefix = ni.rightJustified(4, '0');
+
+
+        const ClassManagerMeterInfo::MeterInfo ininfo = shrdObj->electricityMeter.hashMeterNi2info.value(ni).minfo;
+
+
+        const ZVirtualMeters vmeters = vmsett.value(ni);
+        const QList<QString> vmetersgsn = vmeters.keys();
+
+
+          for(int j = 0, jmax = vmetersgsn.size(); j < jmax; j++){
+
+              const QString GSN = vmetersgsn.at(j);
+
+
+              const QString SN = snPrefix + GSN;
+
+              if(!updatesharedsettings)
+                  updatesharedsettings =  true;
+              ClassManagerMeterInfo::MeterInfo info = ininfo;
+
+              info.memo = vmeters.value(GSN).memo;
+
+
+              shrdObj->electricityMeter.addMeter2meterSn2info(SN, ni, info, MeterTransformer());
+
+              hashMeterSn2memo.insert(SN, info.memo);
+          }
+
+    }
+
+    if(updatesharedsettings)
+        emit updateHashSn2meter(hashMeterSn2memo, hashMeterSn2ni, shrdObj->electricityMeter.hashMeterNi2info, shrdObj->electricityMeter.listnis, UC_METER_ELECTRICITY);
+
+}
+
+void ZbyratorDataCalculation::setVirtualMetersSettExt(ClassManagerSharedObjects *shrdObj, NI2vmGSNsett vmsett)
+{
+    this->shrdObj = shrdObj;
+    setVirtualMetersSett(vmsett);
+
 }
 
 void ZbyratorDataCalculation::appendMeterData(QString ni, QString sn, MyListHashString data)
@@ -189,8 +245,8 @@ void ZbyratorDataCalculation::appendMeterDataV2(QString ni, QString sn, MyListHa
         hh.insert("stts", tr("no data"));
         data.append(hh);
     }
-if(lastColumnlist.isEmpty())
-    return;
+    if(lastColumnlist.isEmpty())
+        return;
     QVariantList varlist;
     int insertSnNiCorrection = 0;
     for(int i = 0, imax = data.size(); i < imax; i++){

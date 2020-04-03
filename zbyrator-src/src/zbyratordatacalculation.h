@@ -45,6 +45,10 @@ public slots:
 
     void onAlistOfMeters(quint8 deviceType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters, bool checkOffMeters);
 
+    void setVirtualMetersSett(NI2vmGSNsett vmsett);
+
+    void setVirtualMetersSettExt(ClassManagerSharedObjects *shrdObj, NI2vmGSNsett vmsett);
+
     void appendMeterData(QString ni, QString sn, MyListHashString data);
 
 

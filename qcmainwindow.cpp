@@ -331,6 +331,7 @@ void QcMainWindow::createMeterManager()
     connect(zbyrator, &MeterManager::onAllMeters                , metersListMedium, &ZbyrMeterListMedium::onAllMetersSlot           );
     connect(zbyrator, &MeterManager::onAllMeters                , metersListMedium, &ZbyrMeterListMedium::onAllMeters               );
     connect(zbyrator, &MeterManager::onAlistOfMeters            , metersListMedium, &ZbyrMeterListMedium::onAlistOfMeters           );
+    connect(zbyrator, &MeterManager::setVirtualMetersSett       , metersListMedium, &ZbyrMeterListMedium::setVirtualMetersSett      );
     connect(zbyrator, &MeterManager::ifaceLogStr                , metersListMedium, &ZbyrMeterListMedium::ifaceLogStr               );
     connect(zbyrator, &MeterManager::ifaceLogStrNonBuf    , metersListMedium, &ZbyrMeterListMedium::ifaceLogStrFromZbyrator               );
 
