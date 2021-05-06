@@ -3,7 +3,7 @@
 
 
 ///[!] matilda-conf-shared-widgets
-#include "main-pgs/startdevwdgt.h"
+#include "main-pgs/startdevwdgt4ucon.h"
 
 
 ///[!] widgets-shared
@@ -19,10 +19,13 @@
 
 
 ///[!] matilda-bbb-clientside
-#include "src/matilda/classmanagerprocessor.h"
+//#include "src/matilda/classmanagerprocessor.h"
 #include "src/matilda/matildaclient.h"
 
-class UcEmulator : public StartDevWdgt
+
+//ZbyratorOptions uses it
+
+class UcEmulator : public StartDevWdgt4ucon
 {
     Q_OBJECT
 
@@ -136,7 +139,7 @@ private:
         MyWriteLater() {}
     } writelater;
 
-    ClassManagerProcessor *manager;
+//    ClassManagerProcessor *manager;
 
 };
 

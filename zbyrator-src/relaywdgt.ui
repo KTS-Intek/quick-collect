@@ -76,7 +76,7 @@
            </property>
            <property name="icon">
             <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
-             <normaloff>:/katynko/svg/format-disconnect-node.svg</normaloff>:/katynko/svg/format-disconnect-node.svg</iconset>
+             <normaloff>:/katynko/svg3/relay-load-unknown.svg</normaloff>:/katynko/svg3/relay-load-unknown.svg</iconset>
            </property>
           </widget>
          </item>

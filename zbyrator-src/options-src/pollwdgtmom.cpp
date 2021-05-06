@@ -19,7 +19,7 @@ void PollWdgtMom::onReloadPageSettings()
 {
     const QVariantHash h = DecodeMatildaProtocolV1::readCOMMAND_READ_POLL_SETT().toHash();// SettLoader::loadSett(SETT_ZBRTR_POLLPAGE).toHash();
     ignoreSave = true;
-     pollWdgt->setPageSett( h.isEmpty() ? SettLoader4matildaEmulator::defaultPollWdgtSett() : h );
+//     pollWdgt->setPageSett( h.isEmpty() ? SettLoader4matildaEmulator::defaultPollWdgtSett() : h );
     QTimer::singleShot(333, this, SLOT(unlockIgnore()));
 }
 
@@ -30,7 +30,7 @@ void PollWdgtMom::onSavePageSettings()
     const QVariantHash h = DecodeMatildaProtocolV1::readCOMMAND_READ_POLL_SETT().toHash();// SettLoader::loadSett(SETT_ZBRTR_POLLPAGE).toHash();
     bool ok;
     QString mess;
-    const QVariantHash hh = pollWdgt->getPageSett(ok, mess, false);
+    const QVariantHash hh;// = pollWdgt->getPageSett(ok, mess, false);
     if(ok && h != hh){
 //        SettLoader::saveSett(SETT_ZBRTR_POLLPAGE, hh);
 

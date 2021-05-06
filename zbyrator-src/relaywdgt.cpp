@@ -16,7 +16,7 @@
 
 ///[!] guisett-shared-core
 #include "src/nongui/meterstatehelper4gui.h"
-#include "src/nongui/showmesshelpercore.h"
+#include "src/nongui/showmessagehelpercore.h"
 #include "src/nongui/settloader.h"
 
 
@@ -71,27 +71,27 @@ void RelayWdgt::clearPage()
 
 }
 
-void RelayWdgt::setPageSett(const MyListStringList &listRows, const QVariantMap &col2data, const QStringList &headerH, const QStringList &header, const bool &hasHeader)
-{
-//    const QString currentNI
+//void RelayWdgt::setPageSett(const MyListStringList &listRows, const QVariantMap &col2data, const QStringList &headerH, const QStringList &header, const bool &hasHeader)
+//{
+////    const QString currentNI
 
-    const QString currNi = headerH.contains("NI") ? TableViewHelper::getCellValueOfcurrentRow(ui->tvTable, headerH.indexOf("NI")) : "";
+//    const QString currNi = headerH.contains("NI") ? TableViewHelper::getCellValueOfcurrentRow(ui->tvTable, headerH.indexOf("NI")) : "";
 
-    StandardItemModelHelper::append2model(listRows, col2data, headerH, header, hasHeader, model);
+//    StandardItemModelHelper::append2model(listRows, col2data, headerH, header, hasHeader, model);
 
-    if(!currNi.isEmpty())
-        TableViewHelper::selectRowWithThisCell(ui->tvTable, currNi, headerH.indexOf("NI"));
+//    if(!currNi.isEmpty())
+//        TableViewHelper::selectRowWithThisCell(ui->tvTable, currNi, headerH.indexOf("NI"));
 
-    ui->widget->setDisabled(listRows.isEmpty());
+//    ui->widget->setDisabled(listRows.isEmpty());
 
-    setHasDataFromRemoteDevice();
+//    setHasDataFromRemoteDevice();
 
-    emit resizeTv2content(ui->tvTable);
+//    emit resizeTv2content(ui->tvTable);
 
 
-    ui->tbFilter->setEnabled(true);
+//    ui->tbFilter->setEnabled(true);
 
-}
+//}
 
 void RelayWdgt::onModelChanged()
 {
@@ -363,7 +363,9 @@ void RelayWdgt::on_tbShowMap_clicked()
 
 void RelayWdgt::on_tvTable_customContextMenuRequested(const QPoint &pos)
 {
-    gHelper->createCustomMenu(pos, ui->tvTable, (GuiHelper::ShowReset|GuiHelper::ShowExport|GuiHelper::ShowOnlyCopy), CLBRD_SMPL_PRXTBL, ShowMessHelperCore::matildaFileName(windowTitle()), getRelayActions());
+//    gHelper->createCustomMenu(pos, ui->tvTable,
+//                              (GuiHelper::ShowReset|GuiHelper::ShowExport|GuiHelper::ShowOnlyCopy), CLBRD_SMPL_PRXTBL,
+//                              ShowMessageHelperCore::matildaFileName(windowTitle()), getRelayActions());
 }
 
 
@@ -399,7 +401,7 @@ void RelayWdgt::doRelayOperation(const QStringList &listni, const quint8 &operat
         return;
 
     if(listni.isEmpty()){
-        gHelper->showMessSlot(tr("no meters"));
+        gHelper->showMessageSlot(tr("no meters"));
         return;
     }
 

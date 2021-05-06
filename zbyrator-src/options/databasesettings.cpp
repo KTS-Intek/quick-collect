@@ -90,7 +90,7 @@ void DatabaseSettings::reloadSettings()
      h.insert("dbd", -1);
 
 
-     dblimitswdgt->setPageSett(h);
+//     dblimitswdgt->setPageSett(h);
 
 
 }
@@ -105,7 +105,7 @@ void DatabaseSettings::saveSettings()
 
     bool ok;
     QString message;
-    const QVariantHash h = dblimitswdgt->getPageSett(ok, message, false);
+    const QVariantHash h ;// = dblimitswdgt->getPageSett(ok, message, false);
     if(ok && savedh != h){
         SettLoader4matilda().saveOneSett(SETT_DB_LIMITS, h);
 
@@ -143,7 +143,7 @@ void DatabaseSettings::onTableCountingDone(qint64 count)
 {
     lDropSett.len = count;
     if(count < 1){
-        gHelper->showMessSlot(tr("There is nothing to delete"));
+        gHelper->showMessageSlot(tr("There is nothing to delete"));
         return;
     }
 
@@ -162,7 +162,7 @@ void DatabaseSettings::onTableCountingDone(qint64 count)
 
 void DatabaseSettings::onTableDeletingDone(QString mess)
 {
-    gHelper->showMessSlot(mess);
+    gHelper->showMessageSlot(mess);
 }
 
 //-----------------------------------------------------------------
@@ -181,7 +181,7 @@ void DatabaseSettings::setDbSizeBytes(qint64 bytes)
      QFileInfo fi(QString(PathsResolver::path2database()));
      h.insert("dbf", fi.size());
      h.insert("dbd", bytes);
-     dblimitswdgt->setPageDbSize(h);
+//     dblimitswdgt->setPageDbSize(h);
 }
 
 //-----------------------------------------------------------------

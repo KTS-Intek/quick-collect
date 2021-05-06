@@ -17,13 +17,17 @@
 #include "dataconcentrator-pgs/dbdataform.h"
 
 
+///[!] widgets-meters
+#include "dataconcetrator-pgs/templates/quickcollectstartpollparamswdgt.h"
+
+
 ///[!] zbyrator-shared
 #include "src/meter/meterstatehelper.h"
 
 
 
 #include "definedpollcodes.h"
-#include "myucmmeterstypes.h"
+#include "myucdevicetypes.h"
 #include "matildaprotocolcommands.h"
 
 
@@ -33,6 +37,7 @@ StartPagePollV2::StartPagePollV2(GuiHelper *gHelper, QWidget *parent) : StartQui
 {
     connect(this, &StartPagePollV2::onCurrentProcessingTabKilled, this, &StartPagePollV2::onCurrentProcessingTabKilledSlot);
 
+    addQuickPollPanel();
 }
 
 
@@ -79,7 +84,7 @@ QStringList StartPagePollV2::getEnrgList4code(const quint8 &code)
 
 //---------------------------------------------------------------------------
 
-LvIconTextCommandList StartPagePollV2::getLvIconsAndTexts(const int &version)
+MyPollCodeList StartPagePollV2::getLvIconsAndTexts(const int &version)
 {
     Q_UNUSED(version);
     return DevicePollCodeSelectorHelper::getLvIconsAndTexts(MATILDA_PROTOCOL_VERSION_V5, DEV_POLL_EMULATOR_L2);
@@ -92,70 +97,16 @@ LvIconTextCommandList StartPagePollV2::getLvIconsAndTexts(const int &version)
 
 void StartPagePollV2::createTab(const StartPollTabSettExt &sett)
 {
-    gHelper->updateSettDateMaskAndDotPos();
-    gSett4all->updateTableSett();
 
 
-    QVariantHash hash = sett.hashSelSett;
-
-    if(true){
-
-        gHelper->updateSettDateMaskAndDotPos();
-        gSett4all->updateTableSett();
-
-        QString txt = sett.txt;
-
-        const bool isMeterEvent = (sett.code >= POLL_CODE_READ_METER_LOGBOOK && sett.code <= POLL_CODE_WTR_METER_LOGBOOK);
-
-        DbDataForm *f = new DbDataForm(gHelper,this);
-        connect(gHelper, SIGNAL(setPbReadEnableDisable(bool)), f, SIGNAL(checkBlncStateEnNow(bool)) );
-
-        f->setSelectSett(hash.value("FromDT").toDateTime(), hash.value("ToDT").toDateTime(), hash.value("ToDT").toDateTime().isValid(), txt, sett.code, sett.deviceType);
-
-        f->setAccessibleName(QString::number(QDateTime::currentMSecsSinceEpoch()));
-        lastWdgtAccssbltName = f->accessibleName();
-
-        connect(f, SIGNAL(disconnectMeFromAppendData()), this, SLOT(disconnectMeFromAppendData()) );
-        if(isMeterEvent)
-            connect(this, SIGNAL(appendData2model(QString,QVariantHash)), f, SIGNAL(appendEvData2model(QString,QVariantHash)) );
-        else
-            connect(this, SIGNAL(appendData2model(QString,QVariantHash)), f, SIGNAL(appendData2model(QString,QVariantHash)) );
-        connect(this, SIGNAL(killTabByName(QString))                , f, SLOT(killTabByName(QString))                 );
+    DbDataForm *dbData = createTemplateDataForm(sett);
+    lTempPollSett.lastWdgtActive = lastWdgtAccssbltName;
+    emit onPollStarted(sett.select.pollCode, getEnrgList4code(sett.select.pollCode), gHelper->dateMask, gHelper->dotPos, true);// sett.allowDate2utc);
 
 
-
-        txt.append(", ");
-        QDateTime dtFrom = hash.value("FromDT").toDateTime().toLocalTime();
-        QDateTime toDt = hash.value("ToDT").toDateTime().toLocalTime();
-        if(!sett.allowDate2utc){// code == POLL_CODE_READ_END_DAY || code == POLL_CODE_READ_END_MONTH){
-            dtFrom = dtFrom.toUTC();
-            toDt = toDt.toUTC();
-        }
+    //you must create some class that can process data from zbyrator to GUI
 
 
-        txt.append(tr("From: %1").arg(dtFrom.toString("yyyy-MM-dd hh:mm:ss")));
-        if(hash.value("ToDT").toDateTime().isValid())
-            txt.append(", " + tr("To: %1").arg(toDt.toString("yyyy-MM-dd hh:mm:ss")));
-        else
-            txt.append(", " + tr("To: *"));
-
-        QVariantHash somehash;
-        const int lastDbFilterMode = ViewDataHelper::getLastDbModeFromPollCode(sett.code, true, false, somehash) ;//ViewDataHelper::getLastDbModeFromPollCode(sett.code, false);
-
-        f->setPageMode(lastDbFilterMode, txt, sett.allowDate2utc);//update child accebl name
-
-
-        addThisWidget2tab(f, txt.mid(txt.indexOf(">") + 1), sett.icon);
-
-        lTempPollSett.lastWdgtActive = lastWdgtAccssbltName;
-        emit onPollStarted(sett.code, getEnrgList4code(sett.code), gHelper->dateMask, isMeterEvent ? 0 : gHelper->dotPos, sett.allowDate2utc);
-
-
-        connect(f, &DbDataForm::onRequest2GetDataTheseFromDb, this, &StartPagePollV2::onRequest2GetDataTheseFromDb);
-        connect(f, &DbDataForm::onRequest2pollTheseFromDb, this, &StartPagePollV2::onRequest2pollTheseFromDb);
-
-
-    }
     QTimer::singleShot(1, this, SIGNAL(killSelectMeters4poll()));
 
 
@@ -193,19 +144,19 @@ bool StartPagePollV2::createObjectsForPollAllMetersMode(const StartPollTabSettEx
 
     connect(metersListMedium, SIGNAL(onAllMeters(UniversalMeterSettList)), w, SIGNAL(onAllMeters(UniversalMeterSettList)) );
 
-    const QDateTime dtFrom = selsett.hashSelSett.value("FromDT").toDateTime();
-    const QDateTime dtTo = selsett.hashSelSett.value("ToDT").toDateTime();
-    const quint8 pollCode = selsett.code;
+    const QDateTime dtFrom = QDateTime::fromMSecsSinceEpoch(selsett.select.timeRange.msecFrom);// selsett.hashSelSett.value("FromDT").toDateTime();
+    const QDateTime dtTo = QDateTime::fromMSecsSinceEpoch(selsett.select.timeRange.msecTo);// selsett.hashSelSett.value("ToDT").toDateTime();
+    const quint8 pollCode = selsett.select.pollCode;
 
 
     switch(lastSelsett.deviceType){
 
     case UC_METER_ELECTRICITY:{
-        w->setPollSettElectric(dtFrom, dtTo, pollCode, getIgnoreRetries());
+//        w->setPollSettElectric(dtFrom, dtTo, pollCode, getIgnoreRetries());
         break;}
 
     case UC_METER_WATER      :{
-        w->setPollSettWater(dtFrom, dtTo, pollCode, lastWtrSett.sendSleepCommand, lastWtrSett.secs, lastWtrSett.checkProfile, getIgnoreRetries());
+//        w->setPollSettWater(dtFrom, dtTo, pollCode, lastWtrSett.sendSleepCommand, lastWtrSett.secs, lastWtrSett.checkProfile, getIgnoreRetries());
         break;}
 
     default: qDebug() << "can't set pollSett StartPagePoll lastSelsett.deviceType=" << lastSelsett.deviceType;
@@ -263,6 +214,24 @@ void StartPagePollV2::onCurrentProcessingTabKilledSlot()
 
     emit killCurrentTask();
 
+
+}
+
+//---------------------------------------------------------------------------
+
+void StartPagePollV2::addQuickPollPanel()
+{
+    startTab->disconnectLblWaitTxtDataBase();
+
+    QuickCollectStartPollParamsWdgt *w = new QuickCollectStartPollParamsWdgt(this);
+    startTab->addTopWidget(w);
+
+    connect(startTab, &SelectFromDatabaseTemplateStartTab::setLblWaitTxtDatabase, w, &QuickCollectStartPollParamsWdgt::setLblWaitTxtDatabase);
+    connect(w, &QuickCollectStartPollParamsWdgt::onCbxIgnoreRetr, this ,&StartPagePollV2::onCbxIgnoreRetr);
+    connect(w, &QuickCollectStartPollParamsWdgt::onCbxOnlyGlobalConnection, this, &StartPagePollV2::onCbxOnlyGlobalConnection);
+
+    connect(this, &StartPagePollV2::requestToSwitchIgnoreCycles, w, &QuickCollectStartPollParamsWdgt::requestToSwitchIgnoreCycles);
+    QTimer::singleShot(3333, w, SLOT(sendYourCbxStates()));
 
 }
 

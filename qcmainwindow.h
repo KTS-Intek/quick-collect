@@ -31,7 +31,6 @@ public:
     ~QcMainWindow();
 
 
-
 signals:
     void reloadSettings2ucEmulator();
 

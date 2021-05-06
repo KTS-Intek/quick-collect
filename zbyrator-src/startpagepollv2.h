@@ -10,6 +10,8 @@
 #include "zbyrator-src/zbyrmeterlistmedium.h"
 
 
+//StartExchange Quick Collect use this as end class to show to users
+
 class StartPagePollV2 : public StartQuickPollWdgt
 {
     Q_OBJECT
@@ -25,7 +27,7 @@ public:
     //main tab section
 
 
-    LvIconTextCommandList getLvIconsAndTexts(const int &version);//device types
+    MyPollCodeList getLvIconsAndTexts(const int &version);//device types
 
 
 
@@ -37,6 +39,12 @@ public:
 
 
 signals:
+    void onCbxIgnoreRetr(bool ischecked);
+
+    void onCbxOnlyGlobalConnection(bool ischecked);
+
+    void requestToSwitchIgnoreCycles(bool enable);
+
 
 
 
@@ -48,6 +56,11 @@ signals:
 
 
     void killCurrentTask();
+
+
+
+    void command4dev(quint16 command, QVariantMap args);//pollCode args
+
 public slots:
     void disconnectMeFromAppendData();
 
@@ -64,6 +77,7 @@ public slots:
 
 private:
 
+    void addQuickPollPanel();
 
 
 

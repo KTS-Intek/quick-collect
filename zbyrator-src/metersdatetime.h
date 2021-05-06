@@ -45,7 +45,7 @@ signals:
 public slots:
     void clearPage();
 
-    void setPageSett(const MyListStringList &listRows, const QVariantMap &col2data, const QStringList &headerH, const QStringList &header, const bool &hasHeader);
+//    void setPageSett(const MyListStringList &listRows, const QVariantMap &col2data, const QStringList &headerH, const QStringList &header, const bool &hasHeader);
 
     void onModelChanged();
 

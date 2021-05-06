@@ -17,7 +17,7 @@
 ///[!] quick-collect
 #include "zbyrator-src/src/zbyrtableheaders.h"
 #include "zbyrator-src/src/zbyratordatacalculation.h"
-#include "zbyrator-src/src/zbyratordatabasemedium.cpp"
+#include "zbyrator-src/src/zbyratordatabasemedium.h"
 
 
 ///[!] widgets-shared
@@ -37,9 +37,6 @@
 #include "zbyrator-src/src/startexchangehelper.h"
 
 
-///[!] meters-shared
-#include "zbyrator-water/src/watersleepschedulesaver.h"
-#include "zbyrator-src/protocol5togui.h"
 
 
 ///[!] zbyrator-shared
@@ -55,6 +52,10 @@
 ///[!] zbyrator-base
 #include "src/ipc/zbyratorsocket.h"
 
+///[!] zbyrator-meters
+#include "src/meter/meterpluginloader.h"
+
+
 
 ///[!] quick-collect-gui-core
 #include "quick-collect-gui-core/emulator/peredavatorcover.h"
@@ -64,8 +65,11 @@
 #include "src/nongui/meterstatehelper4gui.h"
 
 
+///[!] matilda-bbb-clientside
+#include "src/matilda-conf/classmanagerv1.cpp"
+#include "src/matilda-conf/classmanagerv5.h"
 
-#include "myucmmeterstypes.h"
+#include "myucdevicetypes.h"
 #include "moji_defy.h"
 
 //---------------------------------------------------------------------
@@ -79,23 +83,29 @@ ZbyrMeterListMedium::ZbyrMeterListMedium(QObject *parent) : GuiIfaceMedium(paren
     connect(t, SIGNAL(timeout()), this, SLOT(onSaveLater()) );
 
 //    ifaceLoaderPrimary - is already created
-
+    createUcDevTree();
     createDataCalculator();
     createDatabaseMedium();
     createLocalSocketObject();
     metersStatusManager = new LastMetersStatusesManager(this);
     connect(this, &ZbyrMeterListMedium::add2fileMeterRelayStatus, metersStatusManager, &LastMetersStatusesManager::add2fileMeterRelayStatus);
-    connect(metersStatusManager, &LastMetersStatusesManager::onFileSaved, [=]{
-        emit startTmrUpdateRelayStatuses(1111);
-    });
+//    connect(metersStatusManager, &LastMetersStatusesManager::onFileSaved, [=]{
+//        emit startTmrUpdateRelayStatuses(1111);
+//    });
 
-    connect(this, &ZbyrMeterListMedium::setDateMask, this, &ZbyrMeterListMedium::setDateMaskSlot);
     pageModeUpdated = false;
 
-    createTmrMeterRelayStts();
 
     QTimer::singleShot(3333, this, SLOT(createPeredavatorEmbeeManagerLater()));
 
+}
+
+UCDataState ZbyrMeterListMedium::getTemplateValidator()
+{
+    UCDataState validator;
+    validator.allDataIsReceived = true;
+    validator.dtlastupdate = QDateTime::currentDateTimeUtc();
+    return validator;
 }
 
 void ZbyrMeterListMedium::importGroups2metersFile()
@@ -104,7 +114,7 @@ void ZbyrMeterListMedium::importGroups2metersFile()
     const qint64 count = MetersLoader::importElectricityMetersGroupsAsMeters(err);
     MetersLoader::removeGroupsFile();
     if(count > 0){
-        emit showMess(tr("Electricity meter groups were imported as electricity power centers"));
+        emit showMessage(tr("Electricity meter groups were imported as electricity power centers"));
     }
 
 }
@@ -128,61 +138,36 @@ void ZbyrMeterListMedium::onAllMetersSlot(UniversalMeterSettList allMeters)
     if(allMeters.isEmpty())
         return;
 
+    UCEMeterSettings emeter;
+    UCWMeterSettings wmeter;
 
-//    lastWaterSleepProfile = WaterSleepScheduleSaver::getSavedSett();
-
-    if(true){
-        const QMap<QString, QString> map = WaterSleepScheduleSaver::getSavedSettMap();
-        mapProfLine2profName.clear();
-
-        const QList<QString> lk = map.keys();
-        for(int i = 0, imax = lk.size(); i < imax; i++)
-            mapProfLine2profName.insert(map.value(lk.at(i)), lk.at(i));
-    }
-
-    QMap<quint8, QVariantMap> mapRowColDataByMeters;
-
-    MyListStringList listRowsEl, listRowWater;
-    QMap<quint8, int> mapRowCounter;
 
     QMap<quint8, UniversalMeterSettList> map2meters;
     for(int i = 0, imax = allMeters.size(); i < imax; i++){
         const UniversalMeterSett m = allMeters.at(i);
+
+        switch(m.deviceType){
+        case UC_METER_ELECTRICITY   : emeter.eMeterContainer.append(universalMeterSett2emeterSettings(m))  ; break;
+        case UC_METER_WATER         : wmeter.wMeterContainer.append(universalMeterSett2wmeterSettings(m)); break;
+        }
 
         if(true){
             UniversalMeterSettList l = map2meters.value(m.deviceType);
             l.append(m);
             map2meters.insert(m.deviceType, l);
         }
-        QStringList ldata;
-        QList<int> lcols;
-        const QStringList onemeterrow = universalMeterSett2listRow(m, ldata, lcols);
 
-        switch(m.deviceType){
-        case UC_METER_ELECTRICITY   : listRowsEl.append(onemeterrow)  ; break;
-        case UC_METER_WATER         : listRowWater.append(onemeterrow); break;
-        }
-
-        int meterTypeRow = mapRowCounter.value(m.deviceType, 0) ;
-        mapRowCounter.insert( m.deviceType,  meterTypeRow + 1);
-        if(!ldata.isEmpty()){
-
-            QVariantMap mapRowColData = mapRowColDataByMeters.value(m.deviceType);
-            for(int j = 0, jmax = ldata.size(); j < jmax; j++)
-                mapRowColData.insert(QString("%1;%2").arg(meterTypeRow).arg(lcols.at(j)), ldata.at(j));
-            mapRowColDataByMeters.insert(m.deviceType, mapRowColData);
-        }
     }
 
-    if(true){
-        const QStringList headerh = TableHeaders::getColNamesMeterList().split(",");
-        emit setElectricityMeterListPageSett(listRowsEl, mapRowColDataByMeters.value(UC_METER_ELECTRICITY), headerh, StandardItemModelHelper::getHeaderData(headerh.size()), true);
-    }
 
-    if(true){
-        const QStringList headerh = TableHeaders::getColNamesWaterMeterList().split(",");
-        emit setWaterMeterListPageSett(listRowWater, mapRowColDataByMeters.value(UC_METER_WATER), headerh, StandardItemModelHelper::getHeaderData(headerh.size()), true);
-    }
+
+    emeter.validator = wmeter.validator = getTemplateValidator();
+
+    ucDeviceTreeW->setUCEMeterSettings(emeter);
+    ucDeviceTreeW->setUCWMeterSettings(wmeter);
+
+
+
     const QList<quint8> lk = map2meters.keys();
     for(int i = 0, imax = lk.size(); i < imax; i++)
         emit onAddMeters(lk.at(i), map2meters.value(lk.at(i)), MyNi2model(), true);
@@ -231,6 +216,8 @@ void ZbyrMeterListMedium::onSaveLater()
 //    doReloadListOfElectricityMeters();
 //    doReloadListOfMeters(UC_METER_UNKNOWN);
     emit onReloadAllMeters2zbyrator();
+
+    onGetUCEMeterRelayState("ZbyrMeterListMedium::onSaveLater");
 }
 
 
@@ -284,7 +271,7 @@ void ZbyrMeterListMedium::createDataCalculator()
     connect(this, &ZbyrMeterListMedium::onMeterPollCancelled, c, &ZbyratorDataCalculation::onMeterPollCancelled);
 
     connect(c, &ZbyratorDataCalculation::appendData2model, this, &ZbyrMeterListMedium::appendData2model);
-    connect(c, &ZbyratorDataCalculation::setLblWaitTxt   , this, &ZbyrMeterListMedium::setLblWaitTxt);
+//    connect(c, &ZbyratorDataCalculation::setLblWaitTxt   , this, &ZbyrMeterListMedium::setLblWaitTxt);
     connect(c, &ZbyratorDataCalculation::updateHashSn2meter, this, &ZbyrMeterListMedium::updateHashSn2meter);
 
     connect(c, &ZbyratorDataCalculation::setCOMMAND_READ_POLL_STATISTIC, this, &ZbyrMeterListMedium::setStatisticOfExchangePageSett);
@@ -405,7 +392,7 @@ void ZbyrMeterListMedium::onTaskCanceled(quint8 pollCode, QString ni, qint64 dtF
     switch(lastPageMode){
     case 0: emit onMeterPollCancelled(ni, stts, dtFinished); break;//poll page
     case 1: emit waterMeterSchedulerStts(ni, dtLocal, stts, QVariantHash(), ""); break;
-    case 2: emit meterRelayStatus(ni, dtLocal,  RELAY_STATE_UNKN, RELAY_STATE_UNKN); break; //relay
+    case 2: meterRelayStatus(ni, dtLocal,  RELAY_STATE_UNKN, RELAY_STATE_UNKN); break; //relay
     case 5: emit meterDateTimeDstStatus(ni, dtLocal, stts); break;
     }
 
@@ -418,17 +405,7 @@ void ZbyrMeterListMedium::setLastPageId(QString accsblName)
     pageModeUpdated = true;
 }
 
-void ZbyrMeterListMedium::onReloadAllMeters()
-{
-    QWidget *w = qobject_cast<QWidget *>(QObject::sender());
-    if(w){
-        const QString accessibleName = w->accessibleName();
-        if(StartExchangeHelper::getChList().indexOf((accessibleName)) < 0)
-            return;
-        mapMeters2pages.insert(accessibleName, LastList2pages());
-    }
-    emit onReloadAllMeters2zbyrator();
-}
+
 //---------------------------------------------------------------------
 void ZbyrMeterListMedium::onReloadAllZbyratorSettingsLocalSocket()
 {
@@ -459,18 +436,18 @@ void ZbyrMeterListMedium::command4devSlotLocalSocket(quint16 command, QString ar
 void ZbyrMeterListMedium::sendCachedDataAboutRelays(const QStringList &niswithoutsttses)
 {
     QString errmess;
-    const QMap<QString,LastMetersStatusesManager::MyMeterRelayStatus> relaysttsmap = LastMetersStatusesManager::getLastRelayStatusesMap(errmess);
+    const QMap<QString,UCEMeterRelayStateOneRelay> relaysttsmap = LastMetersStatusesManager::getLastRelayStatusesMap(errmess);
 
 
     for(int i = 0, imax = niswithoutsttses.size(); i < imax; i++){
-        const LastMetersStatusesManager::MyMeterRelayStatus stts = relaysttsmap.value(niswithoutsttses.at(i));
-        if(!stts.dtLocal.isValid())
-            continue;
+        const UCEMeterRelayStateOneRelay stts = relaysttsmap.value(niswithoutsttses.at(i));
+//        if(!stts.dtLocal.isValid())
+//            continue;
 
-        emit meterRelayStatus(niswithoutsttses.at(i), stts.dtLocal, stts.mainstts, stts.secondarystts);
+//        emit meterRelayStatus(niswithoutsttses.at(i), stts.dtLocal, stts.mainstts, stts.secondarystts);
 
     }
-    emit startTmrUpdateRelayStatuses(1111);
+//    emit startTmrUpdateRelayStatuses(1111);
 
 
 
@@ -485,7 +462,7 @@ void ZbyrMeterListMedium::mWrite2RemoteDev(quint16 command, QVariant dataVar)
 
         const QStringList listni = dataVar.toHash().value("nis").toStringList();
         if(listni.isEmpty()){
-            emit showMess(tr("no meters"));
+            emit showMessage(tr("no meters"));
             return;
         }
         const int operation = dataVar.toHash().value("mode").toInt();
@@ -502,7 +479,7 @@ void ZbyrMeterListMedium::mWrite2RemoteDev(quint16 command, QVariant dataVar)
         break;}//realy operations, main relay
     case COMMAND_READ_ELMTRRELAY_TABLE:{
         lrelay.hasRequestFromMeterList = true;
-        emit startTmrUpdateRelayStatuses(111);
+//        emit startTmrUpdateRelayStatuses(111);
 
         break;} //send last realy statuses
     }
@@ -510,20 +487,17 @@ void ZbyrMeterListMedium::mWrite2RemoteDev(quint16 command, QVariant dataVar)
     qDebug() << "onElMeterRelayChanged mWrite2RemoteDev " << lrelay.hasRequestFromMeterList << command;
 
 }
-//---------------------------------------------------------------------
-void ZbyrMeterListMedium::setDateMaskSlot(QString dateMask)
-{
-    this->dateMask = dateMask;
-}
+
 //---------------------------------------------------------------------
 void ZbyrMeterListMedium::updateRelayStatuses4meterlist()
 {
 
 
-    QString errmess;
-    const QMap<QString,LastMetersStatusesManager::MyMeterRelayStatus> relaysttsmap = LastMetersStatusesManager::getLastRelayStatusesMap(errmess);
 
-    qDebug() << "onElMeterRelayChanged updateRelayStatuses4meterlist " << relaysttsmap.size() << errmess;
+    QString errmessage;
+    const QMap<QString,UCEMeterRelayStateOneRelay> relaysttsmap = LastMetersStatusesManager::getLastRelayStatusesMap(errmessage);
+
+    qDebug() << "onElMeterRelayChanged updateRelayStatuses4meterlist " << relaysttsmap.size() << errmessage;
 
     updateRelayStatuses4meterlistExt(relaysttsmap);
 }
@@ -539,60 +513,222 @@ void ZbyrMeterListMedium::command2extension(quint16 extName, quint16 command, QV
     emit onConfigChanged(command, data);
     onReloadAllZbyratorSettingsLocalSocket();
 }
-//---------------------------------------------------------------------
-QStringList ZbyrMeterListMedium::universalMeterSett2listRow(const UniversalMeterSett &m, QStringList &ldata, QList<int> &lcols)
+
+
+void ZbyrMeterListMedium::onGetUCEMeterSettings(QString senderName)
 {
-    QStringList l;
-    switch(m.deviceType){
-    case UC_METER_ELECTRICITY: l = universalMeterSett2listRowElectricity(m); break;
-    case UC_METER_WATER      : l = universalMeterSett2listRowWater(m, ldata, lcols); break;
+//    Q_UNUSED(senderName);
+    onGetUCSupportedMetersInfo(senderName);
+    QTimer::singleShot(111, this, SIGNAL(onReloadAllMeters2zbyrator()));
+}
+
+void ZbyrMeterListMedium::onPutUCEMeterSettings(UCEMeterSettings settings, QString senderName)
+{
+    QStringList errl;
+    const QVariantList varl = ClassManagerV1::fromUCEMeterSettings(settings, errl);
+
+    if(!errl.isEmpty()){
+        qDebug() << "onPutUCEMeterSettings " << senderName << errl;
+        emit showMessage(errl.join("<br>"));
+        return;
     }
-    return l;
+
+    meterElectricityModelChanged(varl);//the old method looks ok
+
+}
+
+void ZbyrMeterListMedium::onPutUCWMeterSettings(UCWMeterSettings settings, QString senderName)
+{
+    QStringList errl;
+    const QVariantList varl = ClassManagerV5::fromUCWMeterSettings(settings, errl);
+
+    if(!errl.isEmpty()){
+        qDebug() << "fromUCWMeterSettings " << senderName << errl;
+        emit showMessage(errl.join("<br>"));
+        return;
+    }
+
+    meterWaterModelChanged(varl);//the old method looks ok
+}
+
+void ZbyrMeterListMedium::onGetUCEMeterRelayState(QString senderName)
+{
+    Q_UNUSED(senderName);
+    QTimer::singleShot(111, this, SLOT(updateRelayStatuses4meterlist()));
+}
+
+void ZbyrMeterListMedium::meterRelayStatus(QString ni, QDateTime dtLocal, quint8 mainstts, quint8 secondarystts)
+{
+    //this method is only for cancelled tasks
+//    if(dtLocal.isValid())
+//        return;//wait until the file is saved,
+    UCEMeterRelayState erelay = ucDeviceTreeW->getCachedUCEMeterRelayState();
+    UCEMeterRelayStateOneRelay onerelay = erelay.ni2relay.value(ni);
+
+    onerelay.main = mainstts;
+    onerelay.secondary = secondarystts;
+    onerelay.msec = dtLocal.toMSecsSinceEpoch();
+
+    erelay.ni2relay.insert(ni, onerelay);
+    erelay.validator = getTemplateValidator();
+    ucDeviceTreeW->setUCEMeterRelayState(erelay);
+
+}
+
+void ZbyrMeterListMedium::onGetUCSupportedMetersInfo(QString senderName)
+{
+
+    Q_UNUSED(senderName);
+    UCSupportedMetersInfo emeter = ucDeviceTreeW->getCachedUCSupportedMetersInfoElectricity();
+    UCSupportedMetersInfo wmeter = ucDeviceTreeW->getCachedUCSupportedMetersInfoWater();
+
+    if(emeter.validator.dtlastupdate.isValid() && wmeter.validator.dtlastupdate.isValid())
+        return;
+
+    emeter = wmeter = UCSupportedMetersInfo();//reset all
+
+
+    const MeterPluginInfo info = MeterPluginLoader::loadAboutPlugin(PathsResolver::path2pluginsDir());// hash;
+
+    for(int i = 0, imax = info.allModels.size(); i < imax; i++){
+
+        const QString plgname = info.allModels.at(i);
+        const MeterPluginOneMeterInfo oneplg = info.model2info.value(plgname);
+
+
+        UCMPlgParams plgparam;
+        plgparam.supportedMeters = oneplg.suppMeters.split(",");
+        if(plgparam.supportedMeters.isEmpty() || plgparam.supportedMeters.first().isEmpty()){
+            plgparam.supportedMeters.clear();
+            plgparam.supportedMeters.append(plgname);
+        }
+
+        const QString regStr = oneplg.regExpRules;
+
+        if(regStr.split("$^").length() == 2 && regStr.left(1) == "^" && regStr.right(1) == "$"){
+            plgparam.niRule = regStr.split("$^").first() + "$";
+            plgparam.passwordRule = "^" + regStr.split("$^").last();
+        }
+
+        if(plgparam.niRule.isEmpty())
+            plgparam.niRule = regStr.isEmpty() ? "^(.){32}$" : regStr;
+
+        if(plgparam.passwordRule.isEmpty())
+            plgparam.passwordRule = regStr.isEmpty() ? "^(.){32}$" : regStr;
+
+
+        switch(oneplg.deviceType){
+        case UC_METER_ELECTRICITY: emeter.pluginNames.append(plgname); emeter.pluginParams.insert(plgname, plgparam); break;
+        case UC_METER_WATER: wmeter.pluginNames.append(plgname); wmeter.pluginParams.insert(plgname, plgparam); break;
+
+        }
+    }
+
+
+    emeter.validator = wmeter.validator = getTemplateValidator();
+
+    ucDeviceTreeW->setUCSupportedMetersInfoEMeter(emeter);
+    ucDeviceTreeW->setUCSupportedMetersInfoWMeter(wmeter);
+
+
+}
+
+void ZbyrMeterListMedium::onGetUCWMeterSettings(QString senderName)
+{
+    onGetUCEMeterSettings(senderName);//it reloads all meters;
+}
+
+void ZbyrMeterListMedium::createUcDevTree()
+{
+    ucDeviceTreeW = new UCDeviceTreeWatcher(true, true, this);
+        ucDeviceTreeW->setConnectionState(UCCONNECT_STATE_CONNECTIONREADY);
+        ucDeviceTreeW->setAccessLevel(MTD_USER_ADMIN);
+        ucDeviceTreeW->setProtocolVersion(MATILDA_PROTOCOL_VERSION);
+    //    ucDeviceTreeW->setDirectAccessChannelState(UCDA_CHANNEL_STATE_CLOSED);
+    //9.31
+    connect(ucDeviceTreeW, &UCDeviceTreeWatcher::onGetUCEMeterSettings, this, &ZbyrMeterListMedium::onGetUCEMeterSettings);
+    connect(ucDeviceTreeW, &UCDeviceTreeWatcher::onGetUCEMeterRelayState, this, &ZbyrMeterListMedium::onGetUCEMeterRelayState);
+    connect(ucDeviceTreeW, &UCDeviceTreeWatcher::onPutUCEMeterSettings, this, &ZbyrMeterListMedium::onPutUCEMeterSettings);
+
+    //9.61
+    connect(ucDeviceTreeW, &UCDeviceTreeWatcher::onGetUCWMeterSettings, this, &ZbyrMeterListMedium::onGetUCWMeterSettings);
+    connect(ucDeviceTreeW, &UCDeviceTreeWatcher::onPutUCWMeterSettings, this, &ZbyrMeterListMedium::onPutUCWMeterSettings);
+
+
+
+
+//    connect(ucDeviceTreeW, &UCDeviceTreeWatcher::ongetucs)
+
+//ucDeviceTreeW->setUCSupportedMetersInfoEMeter();
+
+
+
 
 }
 //---------------------------------------------------------------------
-QStringList ZbyrMeterListMedium::universalMeterSett2listRowElectricity(const UniversalMeterSett &m)
+UCEMeterSettingsOneRow ZbyrMeterListMedium::universalMeterSett2emeterSettings(const UniversalMeterSett &m)
 {
-    QStringList l;
-    l.append(m.model);
-    l.append(m.sn);
-    l.append(m.ni);
-    l.append(m.memo);
-    l.append(m.passwd);
-    l.append(m.pollEnbl ? "+" : "-");
-    l.append(m.enrg);
-    l.append(QString::number(m.tariff));
-    l.append(m.coordinate);
-    l.append(m.version);
-    l.append(m.powerin);
-    l.append(MeterOperations::transformerSett2line(m.transformer));
-    l.append(m.disableTimeCorrection ? "+" : "");
-    return l;
+    UCEMeterSettingsOneRow onerow;
+    onerow.baseSettings = universalMeterSett2baseSettings(m);
+    onerow.meterSettings = universalMeterSett2meterSettings(m);
+
+    onerow.tariff = m.tariff;
+    onerow.enrg = m.enrg;
+
+
+    onerow.transformerSettings.hasTransformer = m.transformer.hasTransformer;
+    onerow.transformerSettings.only4display = m.transformer.only4display;
+    onerow.transformerSettings.ucDividend = m.transformer.ucDividend;
+    onerow.transformerSettings.ucDivisor = m.transformer.ucDivisor;
+    onerow.transformerSettings.icDividend = m.transformer.icDividend;
+    onerow.transformerSettings.icDivisor = m.transformer.icDivisor;
+    onerow.transformerSettings.endUcoefitient = m.transformer.endUcoefitient;
+    onerow.transformerSettings.endIcoefitient = m.transformer.endIcoefitient;
+    onerow.transformerSettings.endCoefitient = m.transformer.endCoefitient;
+
+    return onerow;
 }
 //---------------------------------------------------------------------
-QStringList ZbyrMeterListMedium::universalMeterSett2listRowWater(const UniversalMeterSett &m, QStringList &ldata, QList<int> &lcols)
+UCWMeterSettingsOneRow ZbyrMeterListMedium::universalMeterSett2wmeterSettings(const UniversalMeterSett &m)
 {
-    QStringList l;
-    l.append(m.model);
-    l.append(m.sn);
-    l.append(m.ni);
-    l.append(m.memo);
+    UCWMeterSettingsOneRow onerow;
+    onerow.baseSettings = universalMeterSett2baseSettings(m);
+    onerow.meterSettings = universalMeterSett2meterSettings(m);
+    onerow.sleepProfileLine = m.enrg;
+    return onerow;
 
-    lcols.append(l.size());
-    ldata.append(m.enrg);
-
-//    const QString profname = WaterMeterHelper::oneProfileFromLineName(lastWaterSleepProfile, m.enrg);
-//    l.append(profname.isEmpty() ? m.enrg : profname);//change enrg 2 sleep profile name
-
-    l.append(Protocol5toGUI::makeSleepProfileLine4waterMeters(m.enrg, mapProfLine2profName));
-
-    l.append(m.pollEnbl ? "+" : "-");
-    l.append(m.powerin);
-    l.append(m.disableTimeCorrection ? "+" : "");
-    l.append(m.coordinate);
-    l.append(m.version);
-    return l;
 }
+//---------------------------------------------------------------------
+UCPollDeviceSettings ZbyrMeterListMedium::universalMeterSett2baseSettings(const UniversalMeterSett &m)
+{
+//    QPointF coordinate;
+//    QString memo;
+
+
+    UCPollDeviceSettings baseSettings;
+    baseSettings.ni = m.ni;
+    baseSettings.sn = m.sn;
+    baseSettings.model = m.model;
+    baseSettings.vrsn = m.version;
+    baseSettings.isPollEn = m.pollEnbl;
+    bool ok;
+    baseSettings.coordinate = ConvertAtype::coordinateFromStr(m.coordinate, ok);
+    baseSettings.memo = m.memo;
+
+    return baseSettings;
+}
+//---------------------------------------------------------------------
+UCMeterDeviceSettings ZbyrMeterListMedium::universalMeterSett2meterSettings(const UniversalMeterSett &m)
+{
+    UCMeterDeviceSettings meterSettings;
+
+    meterSettings.dta = m.disableTimeCorrection;
+    meterSettings.input = m.powerin;
+    meterSettings.password = m.passwd;
+
+    return meterSettings;
+}
+
 //---------------------------------------------------------------------
 bool ZbyrMeterListMedium::metersChanged(QMap<QString, ZbyrMeterListMedium::LastList2pages> &mapMeters2pages, const QString &key, const LastList2pages &lastMeters2pagesL)
 {
@@ -630,7 +766,6 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
     int meterWaterActive = 0;
 //    QStringList listNiNotchanged;
 
-    QMap<quint8, QVariantList> mappowercenters;
     QMap<quint8, QString> mapMetertype2ni;
 
     QStringList meternisWithoutRelaySttses;
@@ -640,16 +775,7 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
 
         const UniversalMeterSett m = activeMeters.at(i);
 
-        if(m.powerin == "+"){
-            QVariantHash h;
-            h.insert("NI", m.ni);
-            h.insert("memo", m.memo);
-            h.insert("SN", m.sn);
-            h.insert("model", m.model);
-            QVariantList powercenters = mappowercenters.value(m.deviceType);
-            powercenters.append(h);
-            mappowercenters.insert(m.deviceType, powercenters);
-        }
+
 
         switch(m.deviceType){
         case UC_METER_ELECTRICITY:{
@@ -710,7 +836,7 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
 
     if(!allElectricMeters.isEmpty()){
         lrelay.meternis = allElectricMeters;
-        emit startTmrUpdateRelayStatuses(3333);
+//        emit startTmrUpdateRelayStatuses(3333);
     }
 
 //    if(mapMeters2pages.contains("relay") && mapMeters2pages)
@@ -727,20 +853,12 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
 
 
     if(metersChanged(mapMeters2pages, "Scheduler for water meters", lastWaterMeters2pagesL)){
-        emit setWaterMeterSchedulerPageSett(getRowsList(waterSchedulerPage, QStringList(), waterProfiles, lastWaterMeters2pagesL.listNI, meterWaterActive), QVariantMap(), TableHeaders::getColNames4wtrLastProfile().split(","),
-                                            StandardItemModelHelper::getHeaderData(TableHeaders::getColNames4wtrLastProfile().split(",").size()), true);
+//        emit setWaterMeterSchedulerPageSett(getRowsList(waterSchedulerPage, QStringList(), waterProfiles, lastWaterMeters2pagesL.listNI, meterWaterActive), QVariantMap(), TableHeaders::getColNames4wtrLastProfile().split(","),
+//                                            StandardItemModelHelper::getHeaderData(TableHeaders::getColNames4wtrLastProfile().split(",").size()), true);
         QTimer::singleShot(11, this, SIGNAL(reloadSavedSleepProfiles()));
     }
 
 
-    const QList<quint8> typelk = mappowercenters.keys();
-    for(int i = 0, imax = typelk.size(); i < imax; i++){
-        const quint8 deviceType = typelk.at(i);
-        switch(deviceType){
-        case UC_METER_ELECTRICITY   : emit setElectricityPowerCenters(mappowercenters.value(deviceType)) ; break;
-        case UC_METER_WATER         : emit setWaterPowerCenters(mappowercenters.value(deviceType))       ; break;
-        }
-    }
 
 //    if(checkOffMeters || lastMeters2pages.listNI != lastMeters2pagesL.listNI || lastMeters2pages.mainParams != lastMeters2pagesL.mainParams){
 
@@ -887,8 +1005,8 @@ void ZbyrMeterListMedium::createPeredavatorEmbeeManager()
     connect(cover, &PeredavatorCover::giveMeIfaceSett           , this, &ZbyrMeterListMedium::sendIfaceSettings);
     connect(cover, &PeredavatorCover::append2logDirectAccess    , this, &ZbyrMeterListMedium::append2logDirectAccess);
 
-    connect(cover, &PeredavatorCover::showMess                  , this, &ZbyrMeterListMedium::showMess);
-    connect(cover, &PeredavatorCover::showMessCritical          , this, &ZbyrMeterListMedium::showMess);
+    connect(cover, &PeredavatorCover::showMess                  , this, &ZbyrMeterListMedium::showMessage);
+    connect(cover, &PeredavatorCover::showMessCritical          , this, &ZbyrMeterListMedium::showMessage);
     connect(cover, &PeredavatorCover::appendMess                , this, &ZbyrMeterListMedium::appendAppLog);
     connect(cover, &PeredavatorCover::appendMessHtml            , this, &ZbyrMeterListMedium::appendAppLog);
     connect(cover, &PeredavatorCover::onStateChangedStr         , this, &ZbyrMeterListMedium::onQuickCollectDaStateChangedStr);
@@ -908,76 +1026,71 @@ void ZbyrMeterListMedium::createPeredavatorEmbeeManager()
 
 }
 
-//---------------------------------------------------------------------
 
-void ZbyrMeterListMedium::createTmrMeterRelayStts()
-{
-    QTimer *t = new QTimer(this);
-    t->setSingleShot(true);
-    t->setInterval(1111);
-    connect(t, SIGNAL(timeout()), this, SLOT(updateRelayStatuses4meterlist()));
-    connect(this, SIGNAL(startTmrUpdateRelayStatuses(int)), t, SLOT(start(int)));
-
-}
 
 //---------------------------------------------------------------------
 
-void ZbyrMeterListMedium::updateRelayStatuses4meterlistExt(const QMap<QString, LastMetersStatusesManager::MyMeterRelayStatus> &relaysttsmap)
+void ZbyrMeterListMedium::updateRelayStatuses4meterlistExt(const QMap<QString, UCEMeterRelayStateOneRelay> &relaysttsmap)
 {
-    QVariantHash lastMeterRelay;
-    const QString mask = dateMask + " hh:mm:ss";
-//    const qint64 currmsec = QDateTime::currentMSecsSinceEpoch();
-    const QStringList niswithoutsttses = lrelay.meternis;
+    UCEMeterRelayState erelay(getTemplateValidator());
+    erelay.ni2relay = relaysttsmap;
 
-    qDebug() << "onElMeterRelayChanged updateRelayStatuses4meterlistExt " << niswithoutsttses.size() << lrelay.hasRequestFromMeterList;
+    ucDeviceTreeW->setUCEMeterRelayState(erelay);
 
-    if(niswithoutsttses.isEmpty())
-        return;//nothing to update
+//    QVariantHash lastMeterRelay;
+//    const QString mask = dateMask + " hh:mm:ss";
+////    const qint64 currmsec = QDateTime::currentMSecsSinceEpoch();
+//    const QStringList niswithoutsttses = lrelay.meternis;
 
-    for(int i = 0, imax = niswithoutsttses.size(); i < imax; i++){
-        const LastMetersStatusesManager::MyMeterRelayStatus stts = relaysttsmap.value(niswithoutsttses.at(i));
-        if(!stts.dtLocal.isValid())
-            continue;
+//    qDebug() << "onElMeterRelayChanged updateRelayStatuses4meterlistExt " << niswithoutsttses.size() << lrelay.hasRequestFromMeterList;
 
+//    if(niswithoutsttses.isEmpty())
+//        return;//nothing to update
 
-        const qint64 msec = stts.dtLocal.toMSecsSinceEpoch();
-        QString dt = QDateTime::fromMSecsSinceEpoch(msec).toLocalTime().toString(mask);
-
-        const QString ni = niswithoutsttses.at(i);
-        const quint16 mainstts = stts.mainstts;
-        const quint16 secondarystts = stts.secondarystts;
+//    for(int i = 0, imax = niswithoutsttses.size(); i < imax; i++){
+//        const LastMetersStatusesManager::MyMeterRelayStatus stts = relaysttsmap.value(niswithoutsttses.at(i));
+//        if(!stts.dtLocal.isValid())
+//            continue;
 
 
+//        const qint64 msec = stts.dtLocal.toMSecsSinceEpoch();
+//        QString dt = QDateTime::fromMSecsSinceEpoch(msec).toLocalTime().toString(mask);
 
-        QVariantMap map;
-        map.insert("stts", RelayStateHelper::getRelayStatusHuman(mainstts));
-        map.insert("dt", dt);
-        map.insert("msec", msec);
-        map.insert("ico", MeterStateHelper4gui::getRelayIcostr4status(mainstts));
-
-        map.insert("stts2", RelayStateHelper::getRelayStatusHuman(secondarystts));
-        map.insert("ico2", MeterStateHelper4gui::getRelayIcostr4status(secondarystts));
+//        const QString ni = niswithoutsttses.at(i);
+//        const quint16 mainstts = stts.mainstts;
+//        const quint16 secondarystts = stts.secondarystts;
 
 
 
+//        QVariantMap map;
+//        map.insert("stts", RelayStateHelper::getRelayStatusHuman(mainstts));
+//        map.insert("dt", dt);
+//        map.insert("msec", msec);
+//        map.insert("ico", MeterStateHelper4gui::getRelayIcostr4status(mainstts));
 
-        lastMeterRelay.insert(ni, map);
-
-    }
-
-
-    if(true){
-        QVariantMap map;
-        map.insert("ico", ":/katynko/svg3/relay-load-unknown.svg");
-        lastMeterRelay.insert("\r\ndefault\r\n", map);
-    }
+//        map.insert("stts2", RelayStateHelper::getRelayStatusHuman(secondarystts));
+//        map.insert("ico2", MeterStateHelper4gui::getRelayIcostr4status(secondarystts));
 
 
-    if(lrelay.lastMeterRelay != lastMeterRelay || lrelay.hasRequestFromMeterList){
-        lrelay.lastMeterRelay = lastMeterRelay;
-        lrelay.hasRequestFromMeterList = false;
-        emit onElMeterRelayChanged(lrelay.lastMeterRelay);
-    }
+
+
+//        lastMeterRelay.insert(ni, map);
+
+//    }
+
+
+//    if(true){
+//        QVariantMap map;
+//        map.insert("ico", ":/katynko/svg3/relay-load-unknown.svg");
+//        lastMeterRelay.insert("\r\ndefault\r\n", map);
+//    }
+
+
+//    if(lrelay.lastMeterRelay != lastMeterRelay || lrelay.hasRequestFromMeterList){
+//        lrelay.lastMeterRelay = lastMeterRelay;
+//        lrelay.hasRequestFromMeterList = false;
+//        emit onElMeterRelayChanged(lrelay.lastMeterRelay);
+//    }
 }
 
 //---------------------------------------------------------------------

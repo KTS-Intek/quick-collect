@@ -9,9 +9,9 @@
 #include "src/zbyrator-v2/zbyratordatatypehelper.h"
 
 
-///[!] guisett-shared
+///[!] guisett-shared-core
 #include "src/nongui/classmanagermeterinfo.h"
-
+#include "src/ucdev/ucdevicetreewatcher.h"
 
 ///[!] quick-collect-gui-core
 #include "quick-collect-gui-core/meters/lastmetersstatusesmanager.h"
@@ -31,15 +31,17 @@ class ZbyrMeterListMedium : public GuiIfaceMedium
 public:
     explicit ZbyrMeterListMedium(QObject *parent = nullptr);
 
+    UCDeviceTreeWatcher *ucDeviceTreeW;
+
+    UCDataState getTemplateValidator();
+
     void importGroups2metersFile();
 
     LastMetersStatusesManager *metersStatusManager;
 
     void resetVariables4pollStarted();
 signals:
-    void setElectricityMeterListPageSett(MyListStringList listRows, QVariantMap col2data, QStringList headerH, QStringList header, bool hasHeader);
 
-    void setWaterMeterListPageSett(MyListStringList listRows, QVariantMap col2data, QStringList headerH, QStringList header, bool hasHeader);
 
     void setWaterMeterSchedulerPageSett(MyListStringList listRows, QVariantMap col2data, QStringList headerH, QStringList header, bool hasHeader);
 
@@ -75,7 +77,7 @@ signals:
 
 
 
-    void onAddMeters(quint8 deviceType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters, bool checkOffMeters);
+    void onAddMeters(quint8 deviceType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters, bool checkOffMeters);//obsolete
     void setVirtualMetersSett(NI2vmGSNsett vmsett);
 
 
@@ -98,7 +100,6 @@ signals:
 
 
 //    void meterRelayStatus(QString ni, QDateTime dtLocal, QString stts);
-    void meterRelayStatus(QString ni, QDateTime dtLocal, quint8 mainstts, quint8 secondarystts);
     void add2fileMeterRelayStatus(QString ni, QDateTime dtLocal, quint8 mainstts, quint8 secondarystts);//2 cache
 
 
@@ -135,20 +136,19 @@ signals:
 //
     void onAboutZigBee(QVariantHash hash);
 
-    void relayStatusChanged(QVariantMap map);
+    void relayStatusChanged(QVariantMap map);//to ZbyratorSocket
 
-    void setWaterPowerCenters(const QVariantList &meters);
-    void setElectricityPowerCenters(const QVariantList &meters);
+//    void setWaterPowerCenters(const QVariantList &meters); do not use it
+//    void setElectricityPowerCenters(const QVariantList &meters); do not use it
 
 
     void pbStopAnimateClick();
     void onExternalCommandProcessed();
 
     void killAllObjects();
-    void onElMeterRelayChanged(QVariantHash h);
+//    void onElMeterRelayChanged(QVariantHash h); do not use it
 
 
-    void startTmrUpdateRelayStatuses(int msec);
 
 //to zbyrator
     void reloadIfaceChannels();
@@ -180,7 +180,7 @@ public slots:
 
     void setLastPageId(QString accsblName);
 
-    void onReloadAllMeters();
+//    void onReloadAllMeters();  do not uset it , it has deviceTree
 
     void onReloadAllZbyratorSettingsLocalSocket();
 
@@ -194,7 +194,6 @@ public slots:
     void mWrite2RemoteDev(quint16 command, QVariant dataVar);//from guihelper
 
 
-    void setDateMaskSlot(QString dateMask);
 
 
     void updateRelayStatuses4meterlist();
@@ -202,6 +201,32 @@ public slots:
     void setPbWriteDis(bool disabled);
 
     void command2extension(quint16 extName, quint16 command, QVariant data);
+
+
+
+
+
+    //ucDeviceTree, It is better to add some delay before execution
+    //9.31
+    void onGetUCEMeterSettings(QString senderName);
+
+    void onPutUCEMeterSettings(UCEMeterSettings settings, QString senderName);
+    void onPutUCWMeterSettings(UCWMeterSettings settings, QString senderName);
+
+
+    void onGetUCEMeterRelayState(QString senderName);
+
+    void meterRelayStatus(QString ni, QDateTime dtLocal, quint8 mainstts, quint8 secondarystts); //zbyrator-bbb sends it directly, use it for canceled tasks
+
+    //9.31, 9.61
+
+
+    void onGetUCSupportedMetersInfo(QString senderName);
+
+    void onGetUCWMeterSettings(QString senderName);
+
+
+
 
 private:
     struct LastList2pages
@@ -211,7 +236,22 @@ private:
         LastList2pages() {}
     } ;
 
+    void createUcDevTree();
+
     QMap<QString, LastList2pages> mapMeters2pages;
+
+
+    UCEMeterSettingsOneRow universalMeterSett2emeterSettings(const UniversalMeterSett &m);
+
+    UCWMeterSettingsOneRow universalMeterSett2wmeterSettings(const UniversalMeterSett &m);
+
+
+    UCPollDeviceSettings universalMeterSett2baseSettings(const UniversalMeterSett &m);
+
+    UCMeterDeviceSettings universalMeterSett2meterSettings(const UniversalMeterSett &m);
+
+
+
 
     QStringList universalMeterSett2listRow(const UniversalMeterSett &m, QStringList &ldata, QList<int> &lcols);
 
@@ -240,8 +280,7 @@ private:
 
     void createPeredavatorEmbeeManager();
 
-    void createTmrMeterRelayStts();
-    void updateRelayStatuses4meterlistExt(const QMap<QString,LastMetersStatusesManager::MyMeterRelayStatus> &relaysttsmap);
+    void updateRelayStatuses4meterlistExt(const QMap<QString, UCEMeterRelayStateOneRelay> &relaysttsmap);
 
 
     struct SaveLaterMeters
@@ -259,13 +298,13 @@ private:
     QStringList liststat;
 
 //    QVariantHash lastWaterSleepProfile;
-    QMap<QString, QString> mapProfLine2profName;
+//    QMap<QString, QString> mapProfLine2profName; do not use it
 
     int lastPageMode;//пам'ятає яка сторінка запустила опитування, щоб при скасуванні завдання відправити відповідну команду
     bool pageModeUpdated;
 
     bool isDbReady4read;
-    QString dateMask;
+
     bool pbWriteDis;
 
     struct LastRelayState

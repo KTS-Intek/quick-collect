@@ -7,7 +7,7 @@
 ///[!] sharedmemory
 #include "src/shared/sharedmemohelper.h"
 
-///[!] matilda-bbb-shared
+///[!] matilda-bbb-serverside-shared
 #include "matilda-bbb-src/decoders/decodematildaprotocolv5helper.h"
 
 
@@ -17,9 +17,10 @@
 
 
 ///[!] matilda-bbb-clientside
-#include "src/matilda-conf/classmanagerframeddataiotypes.h"
-#include "src/matilda-conf/processtasktablereadout.h"
+//#include "src/matilda-conf/classmanagerframeddataiotypes.h"
 
+///[!] guisett-shared-core
+#include "src/nongui/processtasktablereadout.h"
 
 //#include "src/matilda/moji_defy.h"
 #include "definedpollcodes.h"
@@ -90,13 +91,13 @@ void ZbyratorTasksMedium::onPageReady()
 
 void ZbyratorTasksMedium::onZbyratorTasksPageSett(QVariantHash h)
 {
-    const FramedHashAnswr answr = ClassManagerHelper::readFromHashFramed(h);
+//    const FramedHashAnswr answr = ClassManagerHelper::readFromHashFramed(h);
 
 
-    QStringList headerh;
-    const MyListStringList list = ProcessTaskTableReadout::getHumanViewTasks(answr,
-                                                                             answr.header,
-                                                                             Tasks2human::getDefaultStatusesList(answr.header), dateMask, headerh);
+//    QStringList headerh;
+//    const MyListStringList list = ProcessTaskTableReadout::getHumanViewTasks(answr,
+//                                                                             answr.header,
+//                                                                             Tasks2human::getDefaultStatusesList(answr.header), dateMask, headerh);
 
 
 //    MyListStringList list;
@@ -125,10 +126,10 @@ void ZbyratorTasksMedium::onZbyratorTasksPageSett(QVariantHash h)
 //    }
 
 
-    if(!allowOnce && lastList == list)
-        return;
-    allowOnce = false;
-    lastList = list;
-    emit setZbyratorTasksPageSett(list, answr.col2data, TableHeaders::getColNamesDeviceTasks().split(","), answr.header, !answr.header.isEmpty());
+//    if(!allowOnce && lastList == list)
+//        return;
+//    allowOnce = false;
+//    lastList = list;
+//    emit setZbyratorTasksPageSett(list, answr.col2data, TableHeaders::getColNamesDeviceTasks().split(","), answr.header, !answr.header.isEmpty());
 
 }

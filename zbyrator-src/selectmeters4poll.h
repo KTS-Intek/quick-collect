@@ -52,7 +52,7 @@ public slots:
     void initPage();
 
 
-    void setPageSett(const MyListStringList &listRows, const QVariantMap &col2data, const QStringList &headerH, const QStringList &header, const bool &hasHeader);
+//    void setPageSett(const MyListStringList &listRows, const QVariantMap &col2data, const QStringList &headerH, const QStringList &header, const bool &hasHeader);
 
     void onProcessingEnds(QStringList listMissingData);
 
@@ -66,6 +66,8 @@ private slots:
     void on_pbCheckedOn_clicked();
 
     void onCbxGroups_currentIndexChanged(const QString &arg1);
+
+    void on_tvTable_doubleClicked(const QModelIndex &index);
 
 private:
     void sendStartPoll(const QStringList &listni);

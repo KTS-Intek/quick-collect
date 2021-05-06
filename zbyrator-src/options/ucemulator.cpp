@@ -18,12 +18,15 @@
 ///[!] matilda-bbb-serverside-shared
 #include "matilda-bbb-src/decoders/matildaprotocolcore.h"
 
+///[!] matilda-base
+#include "matilda-bbb-src/shared/pathsresolver.h"
+
 
 #include "moji_defy.h"
 #include "matildausertypes.h"
 
 UcEmulator::UcEmulator(const bool &enableTestFeatures, GuiSett4all *gSett4all, QWidget *parent) :
-    StartDevWdgt(true, gSett4all,  parent), enableTestFeatures(enableTestFeatures)
+    StartDevWdgt4ucon(true, gSett4all,  parent), enableTestFeatures(enableTestFeatures)
 
 {
 
@@ -48,12 +51,12 @@ int UcEmulator::getDefDevType()
 
 int UcEmulator::getDefProtocolVersion()
 {
-    return MATILDA_PROTOCOL_VERSION_V9;
+    return MATILDA_PROTOCOL_VERSION_V10;
 }
 
 void UcEmulator::createDashBoardWidget()
 {
-    protocolVersion(getDefProtocolVersion());
+//    protocolVersion(getDefProtocolVersion());
     dashBoardW = new SmplPteWdgt("Events", true, true, gHelper, false, this);
     dashBoardSa = StackWidgetHelper::addWdgtWithScrollArea(this, dashBoardW, "dashboard");
 
@@ -89,46 +92,39 @@ void UcEmulator::createClassManager()
 {
     createDecoder();
 
-    manager = new ClassManagerProcessor(enableTestFeatures, this);
-    manager->initObjects();
-    manager->accessLevel = MTD_USER_ADMIN;
+//    manager = new ClassManagerProcessor(enableTestFeatures, this);
+//    manager->initObjects();
+//    manager->accessLevel = MTD_USER_ADMIN;
 
 
-    connect(manager, SIGNAL(onCOMMAND2GUI(quint16,MyListStringList,QVariantMap,QStringList,QStringList,bool)), this, SLOT(onCOMMAND2GUI(quint16,MyListStringList,QVariantMap,QStringList,QStringList,bool)));
-    connect(manager, SIGNAL(onCOMMAND2GUI(quint16,QString)), this, SLOT(onCOMMAND2GUI(quint16,QString)));
-    connect(manager, SIGNAL(onCOMMAND2GUI(quint16,QVariantHash)), this, SLOT(onCOMMAND2GUI(quint16,QVariantHash)));
+//    connect(manager, SIGNAL(onCOMMAND2GUI(quint16,MyListStringList,QVariantMap,QStringList,QStringList,bool)), this, SLOT(onCOMMAND2GUI(quint16,MyListStringList,QVariantMap,QStringList,QStringList,bool)));
+//    connect(manager, SIGNAL(onCOMMAND2GUI(quint16,QString)), this, SLOT(onCOMMAND2GUI(quint16,QString)));
+//    connect(manager, SIGNAL(onCOMMAND2GUI(quint16,QVariantHash)), this, SLOT(onCOMMAND2GUI(quint16,QVariantHash)));
 
-    connect(manager, &ClassManagerProcessor::onOperationNError, this, &UcEmulator::onOperationNError);
-
-
-    getPbLogin()->hide();
-    getPbLogOut()->hide();
+//    connect(manager, &ClassManagerProcessor::onOperationNError, this, &UcEmulator::onOperationNError);
 
 
-    connect(manager, SIGNAL(showMess(QString)), this, SLOT(onCOMMAND2GUIreadySlot()));
+//    getPbLogin()->hide();
+//    getPbLogOut()->hide();
 
 
-    connect(this, &UcEmulator::data2matildaExt, this, &UcEmulator::data2matildaExtSlot);
+//    connect(manager, SIGNAL(showMess(QString)), this, SLOT(onCOMMAND2GUIreadySlot()));
 
 
-    manager->protocolVersionSlot(getDefProtocolVersion());
+//    connect(this, &UcEmulator::data2matildaExt, this, &UcEmulator::data2matildaExtSlot);
 
 
-    clientdecoder = new MatildaClient(enableTestFeatures, true, this);//const bool &enableTestFeatures, const bool &ignoreProtocolVersion, QObject *parent = 0);
-//    clientdecoder->onThreadStarted();
-    connect(clientdecoder, SIGNAL(showMess(QString)), manager, SIGNAL(showMess(QString)));
-    connect(clientdecoder, &MatildaClient::uploadProgress, manager, &ClassManagerProcessor::uploadProgress);
-
-    connect(gHelper, &GuiHelper::setThisSaveFileName, clientdecoder, &MatildaClient::setThisSaveFileName);
-    connect(gHelper, &GuiHelper::addVarHash2arrAnd2writeCache, clientdecoder, &MatildaClient::addVarHash2arrAnd2writeCache);
-//    connect(this, SIGNAL(addVarHash2arrAnd2writeCache(QVariantHash,quint16)), client, SLOT( addVarHash2arrAnd2writeCache(QVariantHash,quint16)) );
-
-//    connect(clientdecoder, &MatildaClient::operationFinished, manager, &ClassManagerProcessor::o)
+//    manager->protocolVersionSlot(getDefProtocolVersion());
 
 
-//    connect(this, SIGNAL(startDaServer(qint8,quint16))      , manager, SIGNAL(startDaServer(qint8,quint16))   );
-//    connect(this, SIGNAL(stopDaServer())                    , manager, SIGNAL(stopDaServer())                 );
-//    connect(this, SIGNAL(setDaForwardNI(QByteArray))        , manager, SIGNAL(setDaForwardNI(QByteArray))     );
+//    clientdecoder = new MatildaClient(enableTestFeatures, true, this);//const bool &enableTestFeatures, const bool &ignoreProtocolVersion, QObject *parent = 0);
+////    clientdecoder->onThreadStarted();
+//    connect(clientdecoder, SIGNAL(showMess(QString)), manager, SIGNAL(showMess(QString)));
+//    connect(clientdecoder, &MatildaClient::uploadProgress, manager, &ClassManagerProcessor::uploadProgress);
+
+//    connect(gHelper, &GuiHelper::setThisSaveFileName, clientdecoder, &MatildaClient::setThisSaveFileName);
+//    connect(gHelper, &GuiHelper::addVarHash2arrAnd2writeCache, clientdecoder, &MatildaClient::addVarHash2arrAnd2writeCache);
+
 
 
 }
@@ -148,8 +144,8 @@ void UcEmulator::activatePageLater()
 
 void UcEmulator::data2matildaExtSlot(quint16 command, QVariant varData, int secs4loop)
 {
-    setPbReadDisabled(true) ;
-    setPbWriteDisabled(true);
+//    setPbReadDisabled(true) ;
+//    setPbWriteDisabled(true);
 
     Q_UNUSED(secs4loop);
 
@@ -165,25 +161,25 @@ void UcEmulator::data2matildaNextSlot(quint16 command, QVariant varData)
 {
 
 
-    switch(command){
-    case COMMAND_READ_ELMETER_POLL_CHANNELS: data2matildaNextSlot(COMMAND_READ_METER_LIST, true); break;
+//    switch(command){
+//    case COMMAND_READ_ELMETER_POLL_CHANNELS: data2matildaNextSlot(COMMAND_READ_METER_LIST, true); break;
 
-    case COMMAND_READ_IFACESETT_4_CHANNELS:
-    case COMMAND_READ_IFACESETT_4_GROUPS:{
-        if(manager->shrdObj->lastUcSavedM2Mprofiles.isEmpty() && (manager->accessLevel == MTD_USER_ADMIN || manager->accessLevel == MTD_USER_OPER))
-            data2matildaNextSlot(COMMAND_GET_SAVED_M2M_PROFILES, QVariant());//data2matilda4inCMD(COMMAND_GET_SAVED_M2M_PROFILES, QVariant());
-        break;}
+//    case COMMAND_READ_IFACESETT_4_CHANNELS:
+//    case COMMAND_READ_IFACESETT_4_GROUPS:{
+//        if(manager->shrdObj->lastUcSavedM2Mprofiles.isEmpty() && (manager->accessLevel == MTD_USER_ADMIN || manager->accessLevel == MTD_USER_OPER))
+//            data2matildaNextSlot(COMMAND_GET_SAVED_M2M_PROFILES, QVariant());//data2matilda4inCMD(COMMAND_GET_SAVED_M2M_PROFILES, QVariant());
+//        break;}
 
-    case COMMAND_WRITE_ELMETER_POLL_CHANNELS: varData = manager->cManagerV7->preparyCOMMAND_WRITE_ELMETER_POLL_CHANNELS(varData); break;
+//    case COMMAND_WRITE_ELMETER_POLL_CHANNELS: varData = manager->cManagerV7->preparyCOMMAND_WRITE_ELMETER_POLL_CHANNELS(varData); break;
 
-    }
-
-
-    writelater.command.append(command);
-    writelater.varData.append(varData);
+//    }
 
 
-    QTimer::singleShot(111, this, SLOT(mWriteLater()));
+//    writelater.command.append(command);
+//    writelater.varData.append(varData);
+
+
+//    QTimer::singleShot(111, this, SLOT(mWriteLater()));
 }
 
 void UcEmulator::mWriteIneedMoreTime(const quint16 &command, const qint32 &elTime, const qint64 &someData)
@@ -204,19 +200,19 @@ void UcEmulator::disconnLater(qint64 msec)
 
 void UcEmulator::mWriteToSocket(const QVariant &s_data, const quint16 &s_command)
 {
-    if(clientdecoder->isBackupsCommand(s_command)){
-        FunctionRezult sresult;
-        switch(s_command){
-        case COMMAND_GET_BACKUP_FILE            : sresult = clientdecoder->onCOMMAND_GET_BACKUP_FILE(s_data, s_command)             ; break;
-        case COMMAND_PUSH_BACKUP_FILE_AND_APPLY : sresult = clientdecoder->onCOMMAND_PUSH_BACKUP_FILE_AND_APPLY(s_data, s_command)  ; break;
-        case COMMAND_WRITE_GET_BACKUPFILE       : sresult = clientdecoder->onCOMMAND_WRITE_GET_BACKUPFILE(s_data, s_command)        ; break;
-        }
+//    if(clientdecoder->isBackupsCommand(s_command)){
+//        FunctionRezult sresult;
+//        switch(s_command){
+//        case COMMAND_GET_BACKUP_FILE            : sresult = clientdecoder->onCOMMAND_GET_BACKUP_FILE(s_data, s_command)             ; break;
+//        case COMMAND_PUSH_BACKUP_FILE_AND_APPLY : sresult = clientdecoder->onCOMMAND_PUSH_BACKUP_FILE_AND_APPLY(s_data, s_command)  ; break;
+//        case COMMAND_WRITE_GET_BACKUPFILE       : sresult = clientdecoder->onCOMMAND_WRITE_GET_BACKUPFILE(s_data, s_command)        ; break;
+//        }
 
-        if(!sresult.nothing2write)
-            data2matildaNextSlot(sresult.s_command, sresult.s_data);
-        return;
-    }
-    manager->data2gui(s_command, s_data);
+//        if(!sresult.nothing2write)
+//            data2matildaNextSlot(sresult.s_command, sresult.s_data);
+//        return;
+//    }
+//    manager->data2gui(s_command, s_data);
     //some data decodes in matildaclient
 
 }
@@ -255,8 +251,8 @@ void UcEmulator::onDisconnExt(const bool &allowdecoder)
 
 void UcEmulator::onCOMMAND2GUIreadySlot()
 {
-    setPbReadDisabled(false) ;
-    setPbWriteDisabled(false);
+//    setPbReadDisabled(false) ;
+//    setPbWriteDisabled(false);
 
 }
 
@@ -292,9 +288,9 @@ void UcEmulator::activatePage()
     getStackedWdgt()->setCurrentIndex(1);
     devTypeChanged(getDefDevType(), getDefProtocolVersion());// defaultDevType, defaultProtocolVersion);
 
-    pbManager.pbReadVisible = pbManager.pbWriteVisible = true;
+//    pbManager.pbReadVisible = pbManager.pbWriteVisible = true;
 
-    authrizeAccess(MTD_USER_ADMIN);
+//    authrizeAccess(MTD_USER_ADMIN);
 
     connect(this, SIGNAL(onCOMMAND2GUIready()), this, SLOT(onCOMMAND2GUIreadySlot()));
 }
@@ -309,7 +305,7 @@ void UcEmulator::createDecoder()
 {
     socketcache = CachedWriteSett(qAppName(), getDefDevType(), true);
 
-    decoder = new DecodeMatildaProtocolWithJSON(socketcache.verboseMode, this);
+    decoder = new DecodeMatildaProtocolWithJSON(PathsResolver::defSqliteMediumLocalServerName(), socketcache.verboseMode, this);
 
     connect(decoder, &DecodeMatildaProtocolWithJSON::addThisIPToBlackList   , this, &UcEmulator::addThisIPToBlackList );
     connect(decoder, &DecodeMatildaProtocolWithJSON::removeThisIpFromBlackList, this, &UcEmulator::removeThisIpFromBlackList);
@@ -369,42 +365,42 @@ void UcEmulator::createDecoder()
 void UcEmulator::makeAuthorization()
 {
 //    decoder->authorizeF()
-    disconnect(manager, SIGNAL(showMess(QString)), gHelper, SLOT(appendShowMessSlot(QString)));
-    disconnect(manager, SIGNAL(showMessCritical(QString)), gHelper, SLOT(showMessSlot(QString)));
+//    disconnect(manager, SIGNAL(showMess(QString)), gHelper, SLOT(appendShowMessSlot(QString)));
+//    disconnect(manager, SIGNAL(showMessCritical(QString)), gHelper, SLOT(showMessSlot(QString)));
 
-    decoder->lastObjSett.tmpStamp = "localhost";
+//    decoder->lastObjSett.tmpStamp = "localhost";
 
-    const QVariantHash savedHash = SettLoader4matilda().loadOneSett(SETT_SOME_SETT).toHash();
+//    const QVariantHash savedHash = SettLoader4matilda().loadOneSett(SETT_SOME_SETT).toHash();
 
-    const QString leftPartOfKey = "root";
-    const QString l = QString("%1_l").arg(leftPartOfKey);
-    const QString p = QString("%1_p").arg(leftPartOfKey);
-    const QCryptographicHash::Algorithm defhash = MatildaProtocolCore::getDefAlgorithm();
-
-
-    const QByteArray lh = (savedHash.value(l).toByteArray().isEmpty()) ?  QCryptographicHash::hash("admin", defhash) : savedHash.value(l).toByteArray();
-    const QByteArray ph = (savedHash.value(p).toByteArray().isEmpty()) ?  QCryptographicHash::hash(QByteArray(""), defhash) : savedHash.value(p).toByteArray();
-
-    MatildaProtocolCore::calclLoginHash(lh, ph, decoder->lastObjSett.tmpStamp, defhash);
+//    const QString leftPartOfKey = "root";
+//    const QString l = QString("%1_l").arg(leftPartOfKey);
+//    const QString p = QString("%1_p").arg(leftPartOfKey);
+//    const QCryptographicHash::Algorithm defhash = MatildaProtocolCore::getDefAlgorithm();
 
 
+//    const QByteArray lh = (savedHash.value(l).toByteArray().isEmpty()) ?  QCryptographicHash::hash("admin", defhash) : savedHash.value(l).toByteArray();
+//    const QByteArray ph = (savedHash.value(p).toByteArray().isEmpty()) ?  QCryptographicHash::hash(QByteArray(""), defhash) : savedHash.value(p).toByteArray();
+
+//    MatildaProtocolCore::calclLoginHash(lh, ph, decoder->lastObjSett.tmpStamp, defhash);
 
 
-    QVariantHash hash;
-    hash.insert("QDS", QString::number(QDataStream::Qt_5_6));
-    hash.insert("version", MATILDA_PROTOCOL_VERSION_V9);
 
-    hash.insert("hsh", MatildaProtocolCore::calclLoginHash(lh, ph, decoder->lastObjSett.tmpStamp, defhash).toBase64());//QString(QCryptographicHash::hash(lh + "\n" + decoder->lastObjSett.tmpStamp + "\n" + ph, QCryptographicHash::Keccak_256).toBase64()));
 
-    bool doAfter;
-    const FunctionRezultJSON r = decoder->onCOMMAND_AUTHORIZE_JSON(hash, doAfter);
+//    QVariantHash hash;
+//    hash.insert("QDS", QString::number(QDataStream::Qt_5_6));
+//    hash.insert("version", MATILDA_PROTOCOL_VERSION_V10);
 
-    qDebug() << "rez " << r.s_data << r.s_data;
+//    hash.insert("hsh", MatildaProtocolCore::calclLoginHash(lh, ph, decoder->lastObjSett.tmpStamp, defhash).toBase64());//QString(QCryptographicHash::hash(lh + "\n" + decoder->lastObjSett.tmpStamp + "\n" + ph, QCryptographicHash::Keccak_256).toBase64()));
 
-    qDebug() << "access level " << decoder->accessLevel;
+//    bool doAfter;
+//    const FunctionRezultJSON r = decoder->onCOMMAND_AUTHORIZE_JSON(hash, doAfter);
 
-    connect(manager, SIGNAL(showMess(QString)), gHelper, SLOT(appendShowMessSlot(QString)));
-    connect(manager, SIGNAL(showMessCritical(QString)), gHelper, SLOT(showMessSlot(QString)));
+//    qDebug() << "rez " << r.s_data << r.s_data;
+
+//    qDebug() << "access level " << decoder->accessLevel;
+
+//    connect(manager, SIGNAL(showMess(QString)), gHelper, SLOT(appendShowMessSlot(QString)));
+//    connect(manager, SIGNAL(showMessCritical(QString)), gHelper, SLOT(showMessSlot(QString)));
 }
 
 void UcEmulator::mWriteLater()

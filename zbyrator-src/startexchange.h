@@ -40,7 +40,7 @@ public slots:
 
     void updateScrollAreaHeight();
 
-    void appendShowMessPlain(QString m);
+    void appendShowMessagePlain(QString m);
 
     void addWdgt2stackWdgt(QWidget *w, const int &wdgtType, bool oneShot, QString actTxt, QString actIco);
 

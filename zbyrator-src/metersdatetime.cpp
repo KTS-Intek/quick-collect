@@ -3,7 +3,7 @@
 #include "map-pgs/mapwidget.h"
 #include "src/nongui/settloader.h"
 #include "src/widgets/selectionchecker.h"
-#include "src/nongui/showmesshelpercore.h"
+#include "src/nongui/showmessagehelpercore.h"
 #include "src/meter/definedpollcodes.h"
 #include "src/zbyrator-v2/quickpollhelper.h"
 
@@ -39,23 +39,23 @@ void MetersDateTime::clearPage()
 
 }
 
-void MetersDateTime::setPageSett(const MyListStringList &listRows, const QVariantMap &col2data, const QStringList &headerH, const QStringList &header, const bool &hasHeader)
-{
+//void MetersDateTime::setPageSett(const MyListStringList &listRows, const QVariantMap &col2data, const QStringList &headerH, const QStringList &header, const bool &hasHeader)
+//{
 
-    const QString currNi = headerH.contains("NI") ? TableViewHelper::getCellValueOfcurrentRow(ui->tvTable, headerH.indexOf("NI")) : "";
+//    const QString currNi = headerH.contains("NI") ? TableViewHelper::getCellValueOfcurrentRow(ui->tvTable, headerH.indexOf("NI")) : "";
 
-    StandardItemModelHelper::append2model(listRows, col2data, headerH, header, hasHeader, model);
+//    StandardItemModelHelper::append2model(listRows, col2data, headerH, header, hasHeader, model);
 
-    if(!currNi.isEmpty())
-        TableViewHelper::selectRowWithThisCell(ui->tvTable, currNi, headerH.indexOf("NI"));
+//    if(!currNi.isEmpty())
+//        TableViewHelper::selectRowWithThisCell(ui->tvTable, currNi, headerH.indexOf("NI"));
 
-    ui->widget->setDisabled(listRows.isEmpty());
+//    ui->widget->setDisabled(listRows.isEmpty());
 
-    setHasDataFromRemoteDevice();
-    ui->tbFilter->setEnabled(!header.isEmpty());
+//    setHasDataFromRemoteDevice();
+//    ui->tbFilter->setEnabled(!header.isEmpty());
 
-    emit resizeTv2content(ui->tvTable);
-}
+//    emit resizeTv2content(ui->tvTable);
+//}
 
 
 void MetersDateTime::onModelChanged()
@@ -259,7 +259,7 @@ void MetersDateTime::on_tbShowMap_clicked()
 
 void MetersDateTime::on_tvTable_customContextMenuRequested(const QPoint &pos)
 {
-    gHelper->createCustomMenu(pos, ui->tvTable, (GuiHelper::ShowReset|GuiHelper::ShowExport|GuiHelper::ShowOnlyCopy), CLBRD_SMPL_PRXTBL, ShowMessHelperCore::matildaFileName(windowTitle()), getDateTimeActions());
+//    gHelper->createCustomMenu(pos, ui->tvTable, (GuiHelper::ShowReset|GuiHelper::ShowExport|GuiHelper::ShowOnlyCopy), CLBRD_SMPL_PRXTBL, ShowMessageHelperCore::matildaFileName(windowTitle()), getDateTimeActions());
 
 }
 
@@ -290,7 +290,7 @@ void MetersDateTime::startOperation(const QStringList &listni, const quint8 &ope
         return;
 
     if(listni.isEmpty()){
-        gHelper->showMessSlot(tr("no meters"));
+        gHelper->showMessageSlot(tr("no meters"));
         return;
     }
 

@@ -16,7 +16,7 @@
 ///[!] zbyrator-shared
 #include "src/zbyrator-v2/quickpollhelper.h"
 
-#include "myucmmeterstypes.h"
+#include "myucdevicetypes.h"
 
 
 GetDataFromDbDoneSignalizator::GetDataFromDbDoneSignalizator(QObject *parent) : QObject(parent)
@@ -77,7 +77,7 @@ void SelectMeters4poll::initPage()
 
     SelectionChecker *tmr = new SelectionChecker(this);
     tmr->setWatchTable(ui->tvTable, ui->pbSelected);
-    setHasDataFromRemoteDevice();
+//    setHasDataFromRemoteDevice();
 
     GetReadyMetersData *d = new GetReadyMetersData;
     QThread *t = new QThread;
@@ -108,39 +108,39 @@ void SelectMeters4poll::initPage()
 //    emit onPageCanReceiveData();
 }
 
-void SelectMeters4poll::setPageSett(const MyListStringList &listRows, const QVariantMap &col2data, const QStringList &headerH, const QStringList &header, const bool &hasHeader)
-{
+//void SelectMeters4poll::setPageSett(const MyListStringList &listRows, const QVariantMap &col2data, const QStringList &headerH, const QStringList &header, const bool &hasHeader)
+//{
 
-//    const QString currNi = headerH.contains("NI") ? TableViewHelper::getCellValueOfcurrentRow(ui->tvTable, headerH.indexOf("NI")) : "";
+////    const QString currNi = headerH.contains("NI") ? TableViewHelper::getCellValueOfcurrentRow(ui->tvTable, headerH.indexOf("NI")) : "";
 
-    StandardItemModelHelper::append2model(listRows, col2data, headerH, header, hasHeader, model);
-
-
-//    if(!currNi.isEmpty())
-//        TableViewHelper::selectRowWithThisCell(ui->tvTable, currNi, headerH.indexOf("NI"));
-
-    QStringList powerins = col2data.value("\r\ngroupsext\r\n").toStringList();//<NI> - <memo>
-    powerins.prepend("");
-
-    disconnect(ui->cbxGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(onCbxGroups_currentIndexChanged(QString)));
-    proxy_model->setSpecFilter(5, "+");
-    ui->cbxGroups->addItems(powerins);
-    ui->cbxGroups->setCurrentIndex(-1);
-    connect(ui->cbxGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(onCbxGroups_currentIndexChanged(QString)));
-    ui->cbxGroups->setCurrentIndex(0);
+//    StandardItemModelHelper::append2model(listRows, col2data, headerH, header, hasHeader, model);
 
 
+////    if(!currNi.isEmpty())
+////        TableViewHelper::selectRowWithThisCell(ui->tvTable, currNi, headerH.indexOf("NI"));
+
+//    QStringList powerins = col2data.value("\r\ngroupsext\r\n").toStringList();//<NI> - <memo>
+//    powerins.prepend("");
+
+//    disconnect(ui->cbxGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(onCbxGroups_currentIndexChanged(QString)));
+//    proxy_model->setSpecFilter(5, "+");
+//    ui->cbxGroups->addItems(powerins);
+//    ui->cbxGroups->setCurrentIndex(-1);
+//    connect(ui->cbxGroups, SIGNAL(currentIndexChanged(QString)), this, SLOT(onCbxGroups_currentIndexChanged(QString)));
+//    ui->cbxGroups->setCurrentIndex(0);
 
 
-    const bool enableBnts = !listRows.isEmpty();
 
-    ui->pbCheckedOn->setEnabled(enableBnts);
-    ui->pbPollAll->setEnabled(enableBnts);
 
-    ui->tbFilter->setEnabled(!header.isEmpty());
+//    const bool enableBnts = !listRows.isEmpty();
 
-    emit resizeTv2content(ui->tvTable);
-}
+//    ui->pbCheckedOn->setEnabled(enableBnts);
+//    ui->pbPollAll->setEnabled(enableBnts);
+
+//    ui->tbFilter->setEnabled(!header.isEmpty());
+
+//    emit resizeTv2content(ui->tvTable);
+//}
 
 void SelectMeters4poll::onProcessingEnds(QStringList listMissingData)
 {//    //tr("Meter;NI;Memo;Poll;Has data").split(";"));
@@ -212,5 +212,15 @@ void SelectMeters4poll::on_pbCheckedOn_clicked()
 void SelectMeters4poll::onCbxGroups_currentIndexChanged(const QString &arg1)
 {
     proxy_model->setSpecFilter(5, arg1.split(" ").first());
+
+}
+
+void SelectMeters4poll::on_tvTable_doubleClicked(const QModelIndex &index)
+{
+    if(index.isValid()){
+        ui->pbSelected->setEnabled(true);
+        ui->pbSelected->animateClick();
+
+    }
 
 }

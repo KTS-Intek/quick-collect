@@ -130,8 +130,8 @@ void ZbyratorOptions::addThisWdgt2stack(const int &row, const QString &pageName,
 //        connect(this, SIGNAL(onOperationNError(int)), w, SLOT(onOperationNError(int)) );
 //        w->setRwCommand(MatildaDeviceTree::getPageCanRead().at(row), MatildaDeviceTree::getPageCanWrite().at(row));
 
-        w->setRwCommand(1, 0xFFFE);
-        w->setHasDataFromRemoteDevice();
+//        w->setRwCommand(1, 0xFFFE);
+//        w->setHasDataFromRemoteDevice();
 //        w->setupGlobalLblMessage(ui->lblPageMess);
         StackWidgetHelper::addWdgtWithScrollArea2stackedWdgt(this, ui->stackedWidget, w, realPageName);
     }

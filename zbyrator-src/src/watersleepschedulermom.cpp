@@ -18,7 +18,7 @@ void WaterSleepSchedulerMom::onSettChangedSlot()
 {
     bool ok;
     QString mess;
-    const QVariantHash h = Protocol5toGUI::getProfLinesFromTableCell(getPageSett(ok, mess, false));
+    const QVariantHash h;// = Protocol5toGUI::getProfLinesFromTableCell(getPageSett(ok, mess, false));
 
 //    QVariant ClassManagerV5::preparyCOMMAND_WRITE_WMETER_LAST_PROFILES(const QVariant &dataVar)
 

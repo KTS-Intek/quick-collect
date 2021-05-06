@@ -3,7 +3,7 @@
 #include "definedpollcodes.h"
 #include "src/zbyrator-v2/quickpollhelper.h"
 #include "matildalimits.h"
-#include "myucmmeterstypes.h"
+#include "myucdevicetypes.h"
 
 #include "src/base/valuevalidator.h"
 #include "src/conversion/converttasktypes.h"
@@ -194,7 +194,7 @@ bool GetReadyMetersData::checkDbIsOpen()
 {
     if(!dbProcessingHelper){
 
-        dbProcessingHelper = new DataProcessingHelper(false, this);
+        dbProcessingHelper = new DataProcessingHelper(PathsResolver::defSqliteMediumLocalServerName(), false, this);
 
         connect(this, SIGNAL(closeDbConnection()), dbProcessingHelper, SIGNAL(closeDbConnection()) );
 //        connect(this, SIGNAL(allowDatabase()), dbProcessingHelper, SLOT(allowDatabase()) );

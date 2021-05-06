@@ -127,7 +127,7 @@ include(../../Matilda-units/gui/quick-collect-gui-core/quick-collect-gui-core.pr
 
 include(../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-core.pri)
 
-include(../../Matilda-units/ipc/localsockets/localsockets.pri)
+#include(../../Matilda-units/ipc/localsockets/localsockets.pri)
 
 include(../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon.pri)
 
@@ -139,6 +139,7 @@ include(../../Matilda-units/matilda-bbb/matilda-bbb-clientside/matilda-bbb-clien
 
 include(../../Matilda-units/ifaces/peredavator-core/peredavator-core.pri)
 
+include(../../Matilda-units/device-poll/parametryzator-base/parametryzator-base.pri)
 
 
 SOURCES += \
