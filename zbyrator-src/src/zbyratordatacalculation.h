@@ -27,7 +27,6 @@ public:
 signals:
 
 
-    void setCOMMAND_READ_POLL_STATISTIC(QVariantHash h);
 
 public slots:
 
@@ -41,8 +40,6 @@ public slots:
 
 
 
-
-    void onCOMMAND_READ_POLL_STATISTIC(QStringList list);
 
     void onMeterPollCancelled(QString ni, QString stts, qint64 msec);
 

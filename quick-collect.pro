@@ -151,9 +151,11 @@ SOURCES += \
     zbyrator-src/metersdatetime.cpp \
     zbyrator-src/setmeteraddress.cpp \
     zbyrator-src/checkconnectiontoolwdgt.cpp \
+    zbyrator-src/templates/metersdatetimebuttonswdgt.cpp \
+    zbyrator-src/templates/relaybuttonswdgt.cpp \
+    zbyrator-src/templates/watersleepschedulermombuttonswdgt.cpp \
     zbyrator-src/zbyratorservice.cpp \
     zbyrator-src/zbyrmeterlistmedium.cpp \
-    zbyrator-src/src/zbyrtableheaders.cpp \
     zbyrator-src/src/zbyratordatacalculation.cpp \
     zbyrator-src/zbyratoroptions.cpp \
     zbyrator-src/options/databasesettings.cpp \
@@ -178,9 +180,11 @@ HEADERS += \
     zbyrator-src/metersdatetime.h \
     zbyrator-src/setmeteraddress.h \
     zbyrator-src/checkconnectiontoolwdgt.h \
+    zbyrator-src/templates/metersdatetimebuttonswdgt.h \
+    zbyrator-src/templates/relaybuttonswdgt.h \
+    zbyrator-src/templates/watersleepschedulermombuttonswdgt.h \
     zbyrator-src/zbyratorservice.h \
     zbyrator-src/zbyrmeterlistmedium.h \
-    zbyrator-src/src/zbyrtableheaders.h \
     zbyrator-src/src/zbyratordatacalculation.h \
     zbyrator-src/zbyratoroptions.h \
     zbyrator-src/options/databasesettings.h \
@@ -201,10 +205,11 @@ FORMS += \
         qcmainwindow.ui \
     zbyrator-src/ktsconnectwdgt.ui \
     zbyrator-src/startexchange.ui \
-    zbyrator-src/relaywdgt.ui \
-    zbyrator-src/metersdatetime.ui \
     zbyrator-src/setmeteraddress.ui \
     zbyrator-src/checkconnectiontoolwdgt.ui \
+    zbyrator-src/templates/metersdatetimebuttonswdgt.ui \
+    zbyrator-src/templates/relaybuttonswdgt.ui \
+    zbyrator-src/templates/watersleepschedulermombuttonswdgt.ui \
     zbyrator-src/zbyratorservice.ui \
     zbyrator-src/zbyratoroptions.ui \
     zbyrator-src/options/databasesettings.ui \

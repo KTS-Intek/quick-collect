@@ -1,12 +1,7 @@
 #include "relaywdgt.h"
-#include "ui_relaywdgt.h"
-
-///[!] map-widget
-#include "map-pgs/mapwidget.h"
 
 
 ///[!] widgets-shared
-#include "src/widgets/selectionchecker.h"
 #include "src/meter/relaystatehelper.h"
 
 
@@ -15,44 +10,130 @@
 
 
 ///[!] guisett-shared-core
-#include "src/nongui/meterstatehelper4gui.h"
-#include "src/nongui/showmessagehelpercore.h"
-#include "src/nongui/settloader.h"
+//#include "src/nongui/meterstatehelper4gui.h"
+
+
+
+///[!] type-converter
+#include "src/base/convertatype.h"
 
 
 #include "definedpollcodes.h"
 
 
+//-----------------------------------------------------------------------------
+
 RelayWdgt::RelayWdgt(GuiHelper *gHelper, QWidget *parent) :
-    ReferenceWidgetClass(gHelper,  parent),
-    ui(new Ui::RelayWdgt)
+    ReferenceWidgetClassGui(gHelper,  parent)
 {
-    ui->setupUi(this);
-    isMapReady = false;
-    ui->pbLoadOff->setEnabled(false);
-    ui->pbLoadOn->setEnabled(false);
-    ui->pbLoadOff_2->setEnabled(false);
-    ui->pbLoadOn_2->setEnabled(false);
-    ui->pbRead->setEnabled(false);
-//    contextPbRead = hasContxBtn;
+    hidePbAdd();
+
+    createTopWidget();
+    setHasReadButton(true);
+    //    contextPbRead = hasContxBtn;
 }
 
-RelayWdgt::~RelayWdgt()
+//-----------------------------------------------------------------------------
+
+void RelayWdgt::replaceHeaderRoles4map(QStringList &heaaderroles, int &colKey, int &colPos)
 {
-    delete ui;
+    if(heaaderroles.size() > 7){
+#ifdef HAS_MAP_WIDGETS
+        heaaderroles.replace(0, QString::number(BaseMapMarkersModel::itmmarkertxt));//row number
+        heaaderroles.replace(6, QString::number(BaseMapMarkersModel::itmkeyvaluetxt));//NI
+        heaaderroles.replace(8, QString::number(BaseMapMarkersModel::coordinatevar));//gps
+#endif
+    }
+    colKey = 5; //ni
+    colPos = 7; //gps
 }
 
-QVariant RelayWdgt::getPageSett4read(bool &ok, QString &mess)
+//-----------------------------------------------------------------------------
+
+void RelayWdgt::updateMapGroupingSettings()
 {
-    //Ucon read electricity meter list framed ext -> read relay state table,
-    //relay state table -
-    //NI
-    //
-    Q_UNUSED(ok);
-    Q_UNUSED(mess);
-    QTimer::singleShot(1, this, SLOT(onPbReadAll_clicked()));
-    return QVariantHash();
+
+    const QStringList lk = getAvRelayStatuses();
+
+    QVariantMap mapdefaultgrouppingsett;
+    QVariantMap mapdata;
+
+    for(int i = 0, imax = lk.size(); i < imax; i++){
+        const QString model = lk.at(i);
+
+        mapdata.insert(model,   QCryptographicHash::hash(model.toLocal8Bit(), QCryptographicHash::Md5).right(3).toHex().toUpper());//model 2 color RRGGBB
+
+        qDebug() << "mapdata" << model << mapdata.value(model);
+    }
+
+
+
+    mapdefaultgrouppingsett.insert("cols", QString::number(1).split(" "));
+    mapdefaultgrouppingsett.insert("data", mapdata);
+    mapdefaultgrouppingsett.insert("en", true);
+
+
+
+    emit setDefaultDataFilterSettings(mapdefaultgrouppingsett, QString("metertype-%1-relay").arg(int(UC_METER_ELECTRICITY)));
 }
+
+//-----------------------------------------------------------------------------
+
+QString RelayWdgt::updatePageContent(QString &errorStr)
+{
+    return gHelper->ucDeviceTreeW->getUCEMeterSettings(accessibleName(), errorStr) ? accessibleName() : "";
+
+}
+
+//-----------------------------------------------------------------------------
+
+MTableFullHouse RelayWdgt::fromUCEMeterSettings(const UCEMeterSettings &settings)
+{
+    MTableFullHouse outt;
+
+//    MNPrintableOut ntable;
+
+    for(int i = 0, imax = settings.eMeterContainer.size(); i < imax; i++){
+        const UCEMeterSettingsOneRow onerow = settings.eMeterContainer.at(i);
+
+
+        //r("Time,Main Relay,Second Relay,Meter,S/N,NI,Memo,Coordinate").split(",");
+        QStringList list;
+
+        list.append(""); //time
+        list.append(""); //main
+        list.append("");//secondary
+
+
+        QStringList meterl;
+        meterl.append(onerow.baseSettings.model);
+        meterl.append(onerow.baseSettings.vrsn);
+        list.append(meterl.join(", "));
+
+        list.append(onerow.baseSettings.sn);
+        list.append(onerow.baseSettings.ni);
+        list.append(onerow.baseSettings.memo);
+
+        list.append(ConvertAtype::coordinateToStr(onerow.baseSettings.coordinate));
+
+
+        outt.table.append(list);
+
+    }
+    return outt;
+}
+
+//-----------------------------------------------------------------------------
+
+QStringList RelayWdgt::getHeader()
+{
+    return tr("Time,Main Relay,Second Relay,Meter,S/N,NI,Memo,Coordinate").split(",");
+
+}
+
+
+
+//-----------------------------------------------------------------------------
 
 QStringList RelayWdgt::getAvRelayStatuses()
 {
@@ -63,13 +144,149 @@ QStringList RelayWdgt::getAvRelayStatuses()
     return l;
 }
 
-void RelayWdgt::clearPage()
+QStringList RelayWdgt::getSelectedNIs()
 {
-    model->clear();
-    ui->tbFilter->setEnabled(false);
-    ui->tbShowList->animateClick();
+    return TableViewHelper::getSelectedRowsText(lastTv, 5);
+}
+
+QStringList RelayWdgt::getVisibleNIs()
+{
+    return TableViewHelper::getRowsText(lastTv, 5);
 
 }
+
+//-----------------------------------------------------------------------------
+
+void RelayWdgt::clearPage()
+{
+    lastDateTimeMask = gHelper->getDateTimeMask();
+    setTableHeaderWithData(getHeader());
+
+}
+
+//-----------------------------------------------------------------------------
+
+void RelayWdgt::onUCEMeterSettingsChanged(UCEMeterSettings settings)
+{
+    //use EMeterListWdgt methods
+    const MTableFullHouse outt = fromUCEMeterSettings(settings);
+//    setTableData4amodelExt(outt.table, outt.ntable, getHeader4meterType(), getHeaderKeys4meterType().split(",") );
+    setTableData4amodelExt4(outt, getHeader(), settings.validator);
+
+    buttonsWidget->setEnabled(!outt.table.isEmpty());
+
+    getLastRelayStateSmart(settings.validator);
+}
+
+//-----------------------------------------------------------------------------
+
+void RelayWdgt::onUCEMeterRelayStateChanged(UCEMeterRelayState info)
+{
+    const QStringList nil = StandardItemModelHelper::getColText(5, -1, model);
+
+    lastDateTimeMask = gHelper->getDateTimeMask();
+
+    lRelayUpdate = EMeterListWdgt::fromUCEMeterRelayState(info, nil, lastDateTimeMask);
+
+    emit updateRelayStatusTmr();
+}
+
+//-----------------------------------------------------------------------------
+
+void RelayWdgt::getLastRelayStateSmart(const UCDataState &validator)
+{
+    if(validator.allDataIsReceived){
+        const UCEMeterRelayState relaystate = gHelper->ucDeviceTreeW->getCachedUCEMeterRelayState();
+
+        if(!relaystate.validator.dtlastupdate.isValid() || validator.dtlastupdate > relaystate.validator.dtlastupdate)
+            getLastRelayState();
+        else
+            onUCEMeterRelayStateChanged(relaystate);
+    }
+
+}
+
+//-----------------------------------------------------------------------------
+
+void RelayWdgt::getLastRelayState()
+{
+    QString m;
+    if(!gHelper->ucDeviceTreeW->getUCEMeterRelayState(accessibleName(), m))
+        emit showMessage(m);
+}
+
+//-----------------------------------------------------------------------------
+
+void RelayWdgt::updateRelayStatus()
+{
+
+
+    QTime time;
+    time.start();
+    QStringList nichanged;
+
+    const int imax = model->rowCount();
+    int i = 0;
+
+
+    for( ; i < imax; i++){
+
+        const QString ni = model->item(i, 5)->text();
+        if(lRelayUpdate.checkednis.contains(ni))
+            continue;
+
+        lRelayUpdate.checkednis.append(ni);
+
+        const EMeterListWdgt::LRelayState relay = lRelayUpdate.relaytable.value(ni);
+
+//        return tr("Time,Main Relay,Second Relay,Meter,S/N,NI,Memo,Coordinate").split(",");
+
+
+        model->item(i,0)->setText( (relay.msec > 0) ?
+                                       QDateTime::fromMSecsSinceEpoch(relay.msec).toLocalTime().toString(lastDateTimeMask) :
+                                       "");
+        model->item(i,1)->setText(relay.stts);
+        model->item(i,2)->setText(relay.stts2);
+
+        model->item(i, 1)->setData(relay.icon, Qt::DecorationRole);
+
+        if(relay.hasSecondary)
+            model->item(i, 2)->setData(relay.icon2, Qt::DecorationRole);
+
+
+        model->item(i, 1)->setToolTip(EMeterListWdgt::getPrettyRelayState(relay).join("<br>"));
+
+        if(relay.hasSecondary)
+            model->item(i, 2)->setToolTip(EMeterListWdgt::getPrettyRelayState(relay).join("<br>"));
+
+        if(relay.msec > 0 && model->item(i, 1)->data(Qt::UserRole + 11).isValid() && model->item(i, 1)->data(Qt::UserRole + 11).toLongLong() != relay.msec){
+            nichanged.append(ni);
+        }
+        model->item(i, 1)->setData(relay.msec, Qt::UserRole + 11);//data changed watcher
+
+
+
+
+        if(time.elapsed() > 333)
+            break;
+    }
+
+    if(i < imax)
+        emit updateRelayStatusTmr();
+    else
+        resizeLastTv2content();
+
+
+    if(!nichanged.isEmpty()){
+        const QModelIndex lastindx = TableViewHelper::selectTheseCells(nichanged, 2, false, lastTv);
+
+        if(lastindx.isValid())
+            lastTv->scrollTo(lastindx);
+    }
+    qDebug() << "onElMeterRelayChanged updateRelayStatus " << imax << lRelayUpdate.checkednis.size();
+}
+
+//-----------------------------------------------------------------------------
 
 //void RelayWdgt::setPageSett(const MyListStringList &listRows, const QVariantMap &col2data, const QStringList &headerH, const QStringList &header, const bool &hasHeader)
 //{
@@ -93,103 +310,7 @@ void RelayWdgt::clearPage()
 
 //}
 
-void RelayWdgt::onModelChanged()
-{
-    const QList<int> hiddenCols = QList<int>();
-    const QList<int> rowsList = StandardItemModelHelper::getSourceRows(WidgetsHelper::getRowsListTo(proxy_model->rowCount()), proxy_model);//  ;
-    int valCounter;///unused
-
-    const QStringList headerlist = StandardItemModelHelper::modelHeaderListWithRowID(model, hiddenCols);
-
-    QStringList heaaderroles;
-    for(int i = 0, imax = headerlist.size(); i < imax; i++)
-        heaaderroles.append(0);
-
-    if(!heaaderroles.isEmpty()){
-       heaaderroles.replace(0, QString::number(BaseMapMarkersModel::itmmarkertxt));
-
-       heaaderroles.replace(6, QString::number(BaseMapMarkersModel::itmkeyvaluetxt));//NI
-       heaaderroles.replace(8, QString::number(BaseMapMarkersModel::coordinatevar));
-   //    heaaderroles.replace(3, QString::number(BaseMapMarkersModel::itmvalueTxt));
-    }
-
-    emit setModelHeaderDataRoles(heaaderroles.join("\n"));
-    const MPrintTableOut out = StandardItemModelHelper::getModelAsVector(model, proxy_model, hiddenCols, rowsList, true, valCounter);
-
-    emit setTableDataExt(out, headerlist, 6);
-
-    const int row = proxy_model->mapToSource(ui->tvTable->currentIndex()).row();
-    if(row < 0)
-        return;
-    emit showThisDeviceKeyValue(model->item(row, 5)->text());
-
-//    QVariantList vl;
-
-////    QStringList l = GuiHelper::getColNamesLedLampV2().split(",");
-//    //tr("Model,NI,Group,Last Exchange,Power [%],Start Power [%],NA Power [%],Tna [sec],Coordinate,Poll On/Off,Street,Memo") ;
-
-//    //Time Relay Meter S/N NI Memo Coordinate
-//    QStringList l4app = QString("ni pos grp pll img").split(" ");
-//    QList<int> l4appIndx;
-//    l4appIndx << 5 << 7 << 2 << 1 ; //-1
-
-
-//    const QList<int> l4tltp = QList<int>() << 0 << 2 << 3 << 4 << 6;
-
-//    for(int i = 0, iMax = proxy_model->rowCount(), lMax = l4appIndx.size(), jmax = l4tltp.size(); i < iMax; i++){
-//        int row = proxy_model->mapToSource(proxy_model->index(i, 0)).row();
-//        QVariantHash h;
-//        for(int l = 0; l < lMax; l++)//службова інформація
-//            h.insert(l4app.at(l), model->item(row, l4appIndx.at(l))->text());
-
-//        if(h.value("pos").toString().isEmpty())//якщо нема координат, то і нема чого показувать
-//            continue;
-
-//        QStringList tltp;
-//        tltp.append(tr("NI: <b>%1</b>, Relay: <b>%2</b>").arg(model->item(row, 5)->text()).arg(model->item(row, 1)->text()));
-
-
-//        for(int j = 0; j < jmax; j++){
-//            const QString s = model->item(row, l4tltp.at(j))->text();
-//            if(s.isEmpty() || s == "?" || s == "!")
-//                continue;
-
-
-
-//            tltp.append(QString("%1: <b>%2</b>").arg(model->horizontalHeaderItem(l4tltp.at(j))->text()).arg(s));
-
-//        }
-
-
-
-
-//        h.insert("tltp", tltp.join("<br>") + "<br>");
-//        h.insert("rowid", row + 1);
-//        const QString img = model->item(row, 0)->data(Qt::UserRole + 23).toString();
-//        if(!img.isEmpty())
-//            h.insert("img", "qrc" + img );//m.at(icoCol)->setData(icoList.at(i), Qt::UserRole + 23);
-
-//        vl.append(h);
-//    }
-
-
-//    if(!lDevInfo->matildaDev.coordinatesIsDefault){
-//        QVariantHash h;
-//        h.insert("pos", QString("%1,%2").arg(QString::number(lDevInfo->matildaDev.coordinates.x(), 'f', 6)).arg(QString::number(lDevInfo->matildaDev.coordinates.y(), 'f', 6)) );
-//        h.insert("isMatilda", true);
-//        h.insert("rowid", "Z");
-//        h.insert("ni", tr("Universal Communicator"));
-//        h.insert("tltp", h.value("ni").toString() + tr("<br>S/N: %1<br>").arg(lDevInfo->matildaDev.lastSerialNumber));
-//        vl.prepend(h);
-//    }
-
-
-//    emit setNewDeviceModelEs(vl);
-
-//    int row = proxy_model->mapToSource(ui->tvTable->currentIndex()).row();
-//    if(row >= 0)
-//        emit showThisDeviceNIEs(model->item(row, 5)->text());
-}
+//-----------------------------------------------------------------------------
 
 void RelayWdgt::meterRelayStatus(QString ni, QDateTime dtLocal, quint8 mainstts, quint8 secondarystts)
 {
@@ -200,169 +321,87 @@ void RelayWdgt::meterRelayStatus(QString ni, QDateTime dtLocal, quint8 mainstts,
     if(row < 0)
         return;
 
-    model->item(row, 0)->setText(dtLocal.toString(lastDateTimeMask));
-    model->item(row, 1)->setText(RelayStateHelper::getRelayStatusHuman(mainstts));
-    model->item(row, 2)->setText(RelayStateHelper::getRelayStatusHuman(secondarystts));
 
-    model->item(row, 1)->setIcon(QIcon(MeterStateHelper4gui::getRelayIcostr4status(mainstts)));
-    model->item(row, 2)->setIcon(QIcon(MeterStateHelper4gui::getRelayIcostr4status(secondarystts)));
+    UCEMeterRelayStateOneRelay onerelay;
+    onerelay.msec = dtLocal.toMSecsSinceEpoch();
+    onerelay.main = mainstts;
+    onerelay.secondary = secondarystts;
 
-    TableViewHelper::selectRowWithThisCell(ui->tvTable, ni, 5);
 
-    resizeLastTv2content();
-}
+    lRelayUpdate.checkednis.removeOne(ni);
+    lRelayUpdate.relaytable.insert(ni, EMeterListWdgt::fromUCEMeterRelayStateOneRelay(onerelay, lastDateTimeMask));
 
-void RelayWdgt::showThisDev(QString ni)
-{
+    emit stopTmrRelyaStatusTmr();
+
+    updateRelayStatus();
     TableViewHelper::selectRowWithThisCell(lastTv, ni, 5);
 
 }
 
-void RelayWdgt::showContextMenu4thisDev(QString ni)
-{
-    showThisDev(ni);
-    emit request2showContextMenuAnimated();
+//void RelayWdgt::onButtonLock(bool disable)
+//{
+//    sendActLock(!ui->widget_2->isEnabled(), disable);
+//}
 
+void RelayWdgt::doRelayOperationSelected(const quint8 &operation)
+{
+    doRelayOperation(getSelectedNIs(), operation);
 }
 
-void RelayWdgt::showThisDevInSource(QString ni)
-{
-    showThisDev(ni);
-    ui->tbShowList->animateClick();
-}
-
-void RelayWdgt::onWdgtLock(bool disable)
-{
-    sendActLock(disable, !ui->pbRead->isEnabled());
-}
-
-void RelayWdgt::onButtonLock(bool disable)
-{
-    sendActLock(!ui->widget_2->isEnabled(), disable);
-}
-
-void RelayWdgt::sendActLock(const bool &isWdgtDisabled, const bool &isButtonDisabled)
-{
-    emit lockActions((isWdgtDisabled || isButtonDisabled));
-
-}
 
 void RelayWdgt::initPage()
 {
-    setupObjects(ui->horizontalLayout_61, ui->tvTable, ui->tbFilter, ui->cbFilterMode, ui->leFilter, SETT_FILTERS_RELAYWDGT);
-    connect(this, SIGNAL(openContextMenu(QPoint)), this, SLOT(on_tvTable_customContextMenuRequested(QPoint)));
-    StandardItemModelHelper::setModelHorizontalHeaderItems(model, QStringList());
-
-    ui->widget_2->setEnabled(false);
-    ui->widget->setEnabled(false);
+    createModelsV2("RelayWdgt", true);
+    connectMessageSignal();
 
 
+    QTimer *tmrrelay = new QTimer(this);
+    tmrrelay->setInterval(333);
+    tmrrelay->setSingleShot(true);
+    connect(this, SIGNAL(stopTmrRelyaStatusTmr()), tmrrelay, SLOT(stop()));
+    connect(this, SIGNAL(updateRelayStatusTmr()), tmrrelay, SLOT(start()));
 
-    connect(this, SIGNAL(lockButtons(bool)), ui->pbRead, SLOT(setDisabled(bool)));
-    connect(this, SIGNAL(lockButtons(bool)), ui->pbLoadOff, SLOT(setDisabled(bool)));
-    connect(this, SIGNAL(lockButtons(bool)), ui->pbLoadOn, SLOT(setDisabled(bool)));
+    connect(tmrrelay, SIGNAL(timeout()), this, SLOT(updateRelayStatus()));
 
-    connect(this, SIGNAL(lockButtons(bool)), ui->pbLoadOff_2, SLOT(setDisabled(bool)));
-    connect(this, SIGNAL(lockButtons(bool)), ui->pbLoadOn_2, SLOT(setDisabled(bool)));
 
-    lastDateTimeMask = gHelper->getDateTimeMask();
+    connect(this, &RelayWdgt::openContextMenu, this, &RelayWdgt::onTvTableCustomContextMenuRequested);
+    connect(lastTv, &QTableView::customContextMenuRequested, this, &RelayWdgt::onTvTableCustomContextMenuRequested);
 
-    emit onReloadAllMeters();
+    clearPage();
 
-    SelectionChecker *tmr = new SelectionChecker(this);
-    tmr->setWatchTable(ui->tvTable, ui->widget_2);
-    tmr->setTextLbl4disp(ui->label_2, tr("Selected [%1]"), tr("Selected"));
+    connect(gHelper->ucDeviceTreeW, &UCDeviceTreeWatcher::onUCEMeterRelayStateChanged, this, &RelayWdgt::onUCEMeterRelayStateChanged);
+    connect(gHelper->ucDeviceTreeW, &UCDeviceTreeWatcher::onUCEMeterSettingsChanged, this, &RelayWdgt::onUCEMeterSettingsChanged);
 
-    connect(tmr, &SelectionChecker::setWdgtDisable, this, &RelayWdgt::onWdgtLock);// ui->widget_3, &QWidget::setVisible);
+
+    QString m;
+    if(gHelper->ucDeviceTreeW->getCachedUCEMeterSettings().validator.dtlastupdate.isValid())
+         onUCEMeterSettingsChanged(gHelper->ucDeviceTreeW->getCachedUCEMeterSettings());
+    else
+        updatePageContent(m);
+
+
+    connect(this, &RelayWdgt::lockButtons, buttonsWidget, &RelayButtonsWdgt::lockButtons);
+    connect(buttonsWidget, &RelayButtonsWdgt::onDoRelayOperationSelected, this ,&RelayWdgt::doRelayOperationSelected);
+
+    buttonsWidget->createSelectionChecker(lastTv);
+
+
+    QTimer::singleShot(11, this, SLOT(createMapWidgetLaterReadOnly()));
+    emit onPageCanReceiveData();
 
 //    readDefCommandOnUpdate();
 }
 
-void RelayWdgt::on_tbShowList_clicked()
+
+void RelayWdgt::onTvTableCustomContextMenuRequested(const QPoint &pos)
 {
-    ui->tbShowList->setChecked(true);
-    ui->stackedWidget->setCurrentIndex(0);
-    ui->tbShowMap->setChecked(false);
-}
+    QList<QAction*> la = getRelayActions();
 
-void RelayWdgt::on_tbShowMap_clicked()
-{
-    ui->tbShowList->setChecked(false);
-    ui->stackedWidget->setCurrentIndex(1);
-    ui->tbShowMap->setChecked(true);
-
-    if(!isMapReady){
-        isMapReady = true;
-
-        QTimer *tmrModelChanged = new QTimer(this);
-        tmrModelChanged->setInterval(555);
-        tmrModelChanged->setSingleShot(true);
+    createCustomMenu4tv(pos,
+                        (GuiHelper::ShowReset|GuiHelper::ShowAdd2Filter|GuiHelper::ShowExport|GuiHelper::ShowOnlyCopy),
+                        getCopyPastTag(), la);
 
 
-        proxy_model->enableModelChangedSignal();
-        connect(proxy_model, SIGNAL(onModelChanged()), tmrModelChanged, SLOT(start()) );
-        connect(tmrModelChanged, SIGNAL(timeout()), this, SLOT(onModelChanged()) );
-
-        MapWidget *w = new MapWidget(true);
-        ui->vlQmlMap->addWidget(w);
-
-        connect(this, SIGNAL(showMapEs(QString))  , w, SLOT(showMap(QString)) );
-
-        connect(this, &RelayWdgt::setTableDataExt, w, &MapWidget::setTableDataExt);
-        connect(this, &RelayWdgt::setModelHeaderDataRoles, w, &MapWidget::setModelHeaderDataRoles);
-        connect(this, &RelayWdgt::setDefaultDataFilterSettings, w, &MapWidget::setDefaultDataFilterSettings);
-        connect(this, &RelayWdgt::showThisDeviceKeyValue, w, &MapWidget::showThisDeviceKeyValue);
-
-
-        //        connect(this, SIGNAL(showThisCoordinatesEs(QString))   , w, SIGNAL(showThisCoordinates(QString)) );
-
-                connect(w, SIGNAL(showThisDev(QString)), this, SLOT(showThisDev(QString)) );
-                connect(w, SIGNAL(showContextMenu4thisDev(QString)), this, SLOT(showContextMenu4thisDev(QString)));
-                connect(w, SIGNAL(showThisDevInSource(QString)), this, SLOT(showThisDevInSource(QString)));
-
-        //        connect(w, SIGNAL(addDevice(QString))  , this, SLOT(addDevice(QString))   );
-        //        connect(w, SIGNAL(updateModel4ls())    , this, SLOT(onModelChanged())     );
-        //        connect(w, SIGNAL(removeDevice(QString)), this, SLOT(removeDevice(QString)));
-        //        connect(w, SIGNAL(moveDevice(QVariantHash)), this, SLOT(moveDevice(QVariantHash)));
-        //        connect(w, SIGNAL(addDeviceStreet(QVariantHash)), this, SLOT(addDeviceStreet(QVariantHash)));
-
-//        connect(ui->tbShowMap, SIGNAL(toggled(bool)), w, SLOT(isParentWidgetVisible(bool)) );
-
-//        QTimer::singleShot(11, this, SLOT(onModelChanged()) );
-
-                connect(w, &MapWidget::mapIsReady, this, &RelayWdgt::onModelChanged);
-
-    }
-
-    if(true){
-        const QStringList lk = getAvRelayStatuses();
-
-        QVariantMap mapdefaultgrouppingsett;
-        QVariantMap mapdata;
-
-        for(int i = 0, imax = lk.size(); i < imax; i++){
-            const QString model = lk.at(i);
-
-            mapdata.insert(model,   QCryptographicHash::hash(model.toLocal8Bit(), QCryptographicHash::Md5).right(3).toHex().toUpper());//model 2 color RRGGBB
-
-            qDebug() << "mapdata" << model << mapdata.value(model);
-        }
-
-
-
-        mapdefaultgrouppingsett.insert("cols", QString::number(1).split(" "));
-        mapdefaultgrouppingsett.insert("data", mapdata);
-        mapdefaultgrouppingsett.insert("en", true);
-
-
-        emit setDefaultDataFilterSettings(mapdefaultgrouppingsett, QString("relaysV0"));
-    }
-
-    emit showMapEs(gHelper->guiSett->currLang);
-}
-
-void RelayWdgt::on_tvTable_customContextMenuRequested(const QPoint &pos)
-{
 //    gHelper->createCustomMenu(pos, ui->tvTable,
 //                              (GuiHelper::ShowReset|GuiHelper::ShowExport|GuiHelper::ShowOnlyCopy), CLBRD_SMPL_PRXTBL,
 //                              ShowMessageHelperCore::matildaFileName(windowTitle()), getRelayActions());
@@ -371,29 +410,16 @@ void RelayWdgt::on_tvTable_customContextMenuRequested(const QPoint &pos)
 
 void RelayWdgt::onPbReadAll_clicked()
 {
-    doRelayOperation(TableViewHelper::getRowsText(ui->tvTable, 5), RELAY_READ);
+    doRelayOperation(getVisibleNIs(), RELAY_READ);
 }
 
-void RelayWdgt::on_pbRead_clicked()
+void RelayWdgt::createTopWidget()
 {
-    doRelayOperationSelected(RELAY_READ);
+    buttonsWidget = new RelayButtonsWdgt(this);
+    getTopLayout()->insertWidget(0, buttonsWidget);
+    buttonsWidget->setEnabled(false);
 }
 
-void RelayWdgt::on_pbLoadOn_clicked()
-{
-    doRelayOperationSelected(RELAY_LOAD_ON);
-
-}
-
-void RelayWdgt::on_pbLoadOff_clicked()
-{
-    doRelayOperationSelected(RELAY_LOAD_OFF);
-}
-
-void RelayWdgt::doRelayOperationSelected(const quint8 &operation)
-{
-    doRelayOperation(TableViewHelper::getSelectedRowsText(ui->tvTable, 5), operation);
-}
 
 void RelayWdgt::doRelayOperation(const QStringList &listni, const quint8 &operation)
 {
@@ -411,11 +437,11 @@ void RelayWdgt::doRelayOperation(const QStringList &listni, const quint8 &operat
     if(map.isEmpty())
         return;
 
-    ui->tvTable->clearSelection();
+    lastTv->clearSelection();
     StandardItemModelHelper::clearCells(listni, 5,QList<int>() << 0 << 1 << 2, model);
 
     emit setLastPageId(accessibleName());
-    lastDateTimeMask = gHelper->getDateTimeMask();
+
     emit command4dev(POLL_CODE_RELAY_OPERATIONS, map);
 
 }
@@ -423,32 +449,15 @@ void RelayWdgt::doRelayOperation(const QStringList &listni, const quint8 &operat
 QList<QAction *> RelayWdgt::getRelayActions()
 {
     QList<QAction*> la;
-    la.append(createActionFromButton(ui->pbRead));
+    foreach (QPushButton *pb, buttonsWidget->gimmeYourButtons()) {
+        la.append(createActionFromButton(pb));
+    }
 
-    la.append(createActionFromButton(ui->pbLoadOff));
-    la.append(createActionFromButton(ui->pbLoadOff_2));
-
-    la.append(createActionFromButton(ui->pbLoadOn));
-    la.append(createActionFromButton(ui->pbLoadOn_2));
-
-    const bool enbl = (ui->pbRead->isEnabled() && ui->widget_2->isEnabled());
+    const bool enbl = buttonsWidget->gimmeYourEnabled();
     for(int i = 0, imax = la.size(); i < imax; i++){
-        connect(this, SIGNAL(lockActions(bool)), la.at(i), SLOT(setDisabled(bool)));
+        connect(buttonsWidget, SIGNAL(lockActions(bool)), la.at(i), SLOT(setDisabled(bool)));
         la.at(i)->setEnabled(enbl);
     }
     return la;
 }
 
-
-
-void RelayWdgt::on_pbLoadOff_2_clicked()
-{
-    doRelayOperationSelected(RELAY2_LOAD_OFF);
-
-}
-
-void RelayWdgt::on_pbLoadOn_2_clicked()
-{
-    doRelayOperationSelected(RELAY2_LOAD_ON);
-
-}

@@ -15,7 +15,9 @@
 
 
 ///[!] matilda-conf-shared-widgets
-#include "info-pgs/zbyratortasks.h"
+#include "info-pgs/devicetasks.h"
+
+
 #include "info-pgs/statisticofexchangewdgt.h"
 #include "global-pgs/directaccessviamatilda.h"
 
@@ -65,7 +67,7 @@ void StartExchange::initPage()
     guiHelper->stackedWidget = gHelper->stackedWidget;
     guiHelper->parentWidget = gHelper->parentWidget;
     connect(guiHelper, SIGNAL(addWdgt2stackWdgt(QWidget*,int,bool,QString,QString)), gHelper, SIGNAL(addWdgt2stackWdgt(QWidget*,int,bool,QString,QString)) );
-    connect(guiHelper, SIGNAL(showMess(QString)), gHelper, SIGNAL(showMess(QString)));
+    connect(guiHelper, SIGNAL(showMessage(QString)), gHelper, SIGNAL(showMessage(QString)));
     connect(guiHelper, SIGNAL(showMessCritical(QString)), gHelper, SIGNAL(showMessCritical(QString)) );
     connect(ui->swDeviceOperations, SIGNAL(currentChanged(int)), this, SLOT(onSwDevicesCurrIndxChanged()) );
     ui->wdgtReadButton->setEnabled(false);
@@ -317,15 +319,14 @@ MatildaConfWidget *StartExchange::createWaterSleepSchedulerWdgt(GuiHelper *gHelp
     WaterSleepSchedulerMom *w = new WaterSleepSchedulerMom(gHelper,  parent);
 
 //    connect(w, &WaterSleepSchedulerMom::onReloadAllMeters, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters);
-//    connect(w, &WaterSleepSchedulerMom::setLastPageId, metersListMedium, &ZbyrMeterListMedium::setLastPageId);
-//    connect(w, SIGNAL(command4dev(quint16,QVariantMap)), metersListMedium, SLOT(command4devSlot(quint16,QVariantMap)) );
+    connect(w, &WaterSleepSchedulerMom::setLastPageId, metersListMedium, &ZbyrMeterListMedium::setLastPageId);
+    connect(w, SIGNAL(command4dev(quint16,QVariantMap)), metersListMedium, SLOT(command4devSlot(quint16,QVariantMap)) );
 
-//    connect(w, &WaterSleepSchedulerMom::reloadSavedSleepProfiles, metersListMedium, &ZbyrMeterListMedium::reloadSavedSleepProfiles);
-//    connect(metersListMedium, &ZbyrMeterListMedium::waterMeterSchedulerStts, w, &WaterSleepSchedulerMom::waterMeterSchedulerStts);
+    connect(w, &WaterSleepSchedulerMom::reloadSavedSleepProfiles, metersListMedium, &ZbyrMeterListMedium::reloadSavedSleepProfiles);
 //    connect(metersListMedium, SIGNAL(setWaterMeterSchedulerPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)),
 //            w, SLOT(setPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)) );
 
-//    connect(this, SIGNAL(lockButtons(bool)), w, SIGNAL(lockButtons(bool)));
+    connect(this, SIGNAL(lockButtons(bool)), w, SIGNAL(lockButtons(bool)));
     return w;
 
 }
@@ -349,12 +350,11 @@ MatildaConfWidget *StartExchange::createRelayWdgt(GuiHelper *gHelper, QWidget *p
 MatildaConfWidget *StartExchange::createMetersDateTime(GuiHelper *gHelper, QWidget *parent)
 {
     MetersDateTime *w = new MetersDateTime(gHelper,  parent);
-    connect(metersListMedium, SIGNAL(setDateTimePageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)), w, SLOT(setPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)) );
 
     connect(w, SIGNAL(command4dev(quint16,QVariantMap)), metersListMedium, SLOT(command4devSlot(quint16,QVariantMap)) );
     connect(w, &MetersDateTime::setLastPageId           , metersListMedium, &ZbyrMeterListMedium::setLastPageId     );
     connect(metersListMedium, &ZbyrMeterListMedium::meterDateTimeDstStatus, w, &MetersDateTime::meterDateTimeDstStatus);
-connect(this, SIGNAL(lockButtons(bool)), w, SIGNAL(lockButtons(bool)));
+    connect(this, SIGNAL(lockButtons(bool)), w, SIGNAL(lockButtons(bool)));
     return w;
 }
 //-----------------------------------------------------------------------------------------------
@@ -378,38 +378,67 @@ MatildaConfWidget *StartExchange::createZbyrIfaceSett(GuiHelper *gHelper, QWidge
 MatildaConfWidget *StartExchange::createStatisticWdgt(GuiHelper *gHelper, QWidget *parent)
 {
     StatisticOfExchangeWdgt *w = new StatisticOfExchangeWdgt( gHelper,  parent);
-    connect(w, SIGNAL(onPollCodeChanged(QVariantHash)), metersListMedium, SLOT(onPollCodeChangedStat(QVariantHash)) );
-    connect(metersListMedium, SIGNAL(onStatisticChanged(QString,QStringList))       , w, SLOT(onStatisticChanged(QString,QStringList))  );
-    connect(metersListMedium, SIGNAL(setStatisticOfExchangePageSett(QVariantHash))  , w, SLOT(setPageSett(QVariantHash))                );
+
+//    connect(w, SIGNAL(onRequest2pollThese(QStringList,quint8)), this, SIGNAL(killOldWdgtStartPoll()) );
+
+    connect(w, &StatisticOfExchangeWdgt::onRequest2pollThese, this, &StartExchange::onRequest2pollThese);
+    connect(w, &StatisticOfExchangeWdgt::onRequest2GetDataThese, this, &StartExchange::onRequest2GetDataThese);
+//    connect(w, &StatisticOfExchangeWdgt::checkDbPageIsReady, this, &StartExchange::checkDbPageIsReady);
+
+//    connect(w, SIGNAL(onRequest2GetDataThese(QStringList,quint8)), this, SLOT(activatePageDb()));
+
     return w;
 
 }
-
+//-----------------------------------------------------------------------------------------------
 MatildaConfWidget *StartExchange::createZbyratorTaskWdgt(GuiHelper *gHelper, QWidget *parent)
 {
 
     ZbyratorTasksMedium *m = new ZbyratorTasksMedium;
     QThread *t = new QThread;
+    t->setObjectName("ZbyratorTasksMediumT");
+
     m->moveToThread(t);
     connect(this, SIGNAL(destroyed(QObject*)), m, SLOT(deleteLater()));
     connect(m, SIGNAL(destroyed(QObject*)), t, SLOT(quit()) );
     connect(t, SIGNAL(finished()), t, SLOT(deleteLater()) );
     connect(t, SIGNAL(started()), m, SLOT(onThreadStarted()) );
 
-    ZbyratorTasks *w = new ZbyratorTasks(      gHelper,  parent);
-    connect(w, SIGNAL(onZbyratorConfigChanged(quint16,QVariant)), metersListMedium, SIGNAL(onConfigChanged(quint16,QVariant)));
+    DeviceTasks *f = new DeviceTasks(      gHelper,  parent);
+    f->setAccessibleName("DeviceTasksMeter");
 
-    connect(metersListMedium, SIGNAL(onTaskTableChanged()), m, SLOT(onTaskTableChanged()));
-    connect(w, SIGNAL(pageEndInit()), m, SLOT(onPageReady()));
+    connect(f, &DeviceTasks::onPageCanReceiveData, [=](){
+        connect(gHelper->ucDeviceTreeW, &UCDeviceTreeWatcher::onUCTaskTableStateMeterChanged, f, &DeviceTasks::onUCTaskTableStateChanged);
 
-    connect(m, SIGNAL(setZbyratorTasksPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)), w, SLOT(setPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)));
+        if(gHelper->ucDeviceTreeW->getCachedUCTaskTableStateMeters().validator.dtlastupdate.isValid())
+             f->onUCTaskTableStateChanged(gHelper->ucDeviceTreeW->getCachedUCTaskTableStateMeters());
 
-    t->start();
+        f->onCanIkillTasks(true);
+    });
 
-    return w;
+
+    connect(f, &DeviceTasks::killTheseIDs, [=](const QList<quint32> &taskIdDecimal){
+
+        QString m;
+        if(!gHelper->ucDeviceTreeW->command2killMeterTasks(taskIdDecimal, f->accessibleName(), m))
+            gHelper->showMessageSlot(m);
+    });
+
+    connect(f, &DeviceTasks::vanishFinishedTasks, metersListMedium, &ZbyrMeterListMedium::vanishFinishedTasks);
+
+
+    connect(metersListMedium, &ZbyrMeterListMedium::onTaskTableChanged, m, &ZbyratorTasksMedium::onTaskTableChanged);
+
+
+    connect(m, &ZbyratorTasksMedium::setUCTaskTableStateMeter, gHelper->ucDeviceTreeW, &UCDeviceTreeWatcher::setUCTaskTableStateMeter);
+    connect(f, SIGNAL(pageEndInit()), t, SLOT(start()));
+
+    return f;
 
 
 }
+
+//-----------------------------------------------------------------------------------------------
 
 MatildaConfWidget *StartExchange::createZbyratorServiceWdgt(GuiHelper *gHelper, QWidget *parent)
 {

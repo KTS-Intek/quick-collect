@@ -1,43 +1,151 @@
 #include "metersdatetime.h"
-#include "ui_metersdatetime.h"
-#include "map-pgs/mapwidget.h"
-#include "src/nongui/settloader.h"
-#include "src/widgets/selectionchecker.h"
-#include "src/nongui/showmessagehelpercore.h"
-#include "src/meter/definedpollcodes.h"
+
+
+
+///[!] zbyrator-shared
 #include "src/zbyrator-v2/quickpollhelper.h"
 
+///[!] type-converter
+#include "src/base/convertatype.h"
+
+
+#include "definedpollcodes.h"
+
+
+//---------------------------------------------------------------------------------------
 
 MetersDateTime::MetersDateTime(GuiHelper *gHelper, QWidget *parent) :
-    ReferenceWidgetClass(gHelper,  parent),
-    ui(new Ui::MetersDateTime)
+    ReferenceWidgetClassGui(gHelper,  parent)
 {
-    ui->setupUi(this);
-    isMapReady = false;
+    hidePbAdd();
 
-    ui->pbCorrectionAll->setEnabled(false);
-    ui->pbRead->setEnabled(false);
-    ui->pbWrite->setEnabled(false);
+    createTopWidget();
+    setHasReadButton(true);
+}
+
+//---------------------------------------------------------------------------------------
+
+void MetersDateTime::replaceHeaderRoles4map(QStringList &heaaderroles, int &colKey, int &colPos)
+{
+    if(heaaderroles.size() > 7){
+#ifdef HAS_MAP_WIDGETS
+        heaaderroles.replace(0, QString::number(BaseMapMarkersModel::itmmarkertxt));//row number
+        heaaderroles.replace(5, QString::number(BaseMapMarkersModel::itmkeyvaluetxt));//NI
+        heaaderroles.replace(8, QString::number(BaseMapMarkersModel::coordinatevar));//gps
+#endif
+    }
+    colKey = 4; //ni
+    colPos = 7; //gps
+}
+
+//---------------------------------------------------------------------------------------
+
+void MetersDateTime::updateMapGroupingSettings()
+{//    return tr("Computer,Meter time,Meter,S/N,NI,Memo,DST settings,Coordinate").split(",");
+
+    const QStringList lk = StandardItemModelHelper::getColText(2, -1, model);
+
+    QVariantMap mapdefaultgrouppingsett;
+    QVariantMap mapdata;
+
+    for(int i = 0, imax = lk.size(); i < imax; i++){
+        const QString model = lk.at(i);
+
+        mapdata.insert(model,   QCryptographicHash::hash(model.toLocal8Bit(), QCryptographicHash::Md5).right(3).toHex().toUpper());//model 2 color RRGGBB
+
+        qDebug() << "mapdata" << model << mapdata.value(model);
+    }
+
+
+
+    mapdefaultgrouppingsett.insert("cols", QString::number(4).split(" "));//model
+    mapdefaultgrouppingsett.insert("data", mapdata);
+    mapdefaultgrouppingsett.insert("en", true);
+
+
+    emit setDefaultDataFilterSettings(mapdefaultgrouppingsett, QString("MetersDateTime"));
+
+
 
 }
 
-MetersDateTime::~MetersDateTime()
+//---------------------------------------------------------------------------------------
+
+QString MetersDateTime::updatePageContent(QString &errorStr)
 {
-    delete ui;
+    //quick collect sends wmeter and emeter at the same time
+    return gHelper->ucDeviceTreeW->getUCEMeterSettings(accessibleName(), errorStr) ? accessibleName() : "";
+
 }
 
-QVariant MetersDateTime::getPageSett4read(bool &ok, QString &mess)
+//---------------------------------------------------------------------------------------
+
+MTableFullHouse MetersDateTime::fromUCPollDeviceSettingsList(const QList<UCPollDeviceSettings> &settings)
 {
-    Q_UNUSED(ok);
-    Q_UNUSED(mess);
-    QTimer::singleShot(1, this, SLOT(onPbReadAll_clicked()));
-    return QVariantHash();
+    MTableFullHouse outt;
+
+    //    MNPrintableOut ntable;
+
+    for(int i = 0, imax = settings.size(); i < imax; i++){
+        const UCPollDeviceSettings onerow = settings.at(i);
+
+
+        // tr("Computer,Meter time,Meter,S/N,NI,Memo,DST settings,Coordinate").split(",");
+        QStringList list;
+
+        list.append(""); //pc time
+        list.append(""); //meter time
+
+        QStringList meterl;
+        meterl.append(onerow.model);
+        meterl.append(onerow.vrsn);
+        list.append(meterl.join(", "));
+
+        list.append(onerow.sn);
+        list.append(onerow.ni);
+        list.append(onerow.memo);
+
+        list.append(""); //meter dst
+
+
+        list.append(ConvertAtype::coordinateToStr(onerow.coordinate));
+
+
+        outt.table.append(list);
+
+    }
+    return outt;
 }
+
+//---------------------------------------------------------------------------------------
+
+QStringList MetersDateTime::getHeader()
+{
+    return tr("Computer,Meter time,Meter,S/N,NI,Memo,DST settings,Coordinate").split(",");
+}
+
+//---------------------------------------------------------------------------------------
+
+QStringList MetersDateTime::getVisibleNIs()
+{
+    return TableViewHelper::getSelectedRowsText(lastTv, 4);
+}
+
+//---------------------------------------------------------------------------------------
+
+QStringList MetersDateTime::getSelectedNIs()
+{
+    return TableViewHelper::getSelectedRowsText(lastTv, 4);
+}
+
+//---------------------------------------------------------------------------------------
 
 void MetersDateTime::clearPage()
 {
 
 }
+
+//---------------------------------------------------------------------------------------
 
 //void MetersDateTime::setPageSett(const MyListStringList &listRows, const QVariantMap &col2data, const QStringList &headerH, const QStringList &header, const bool &hasHeader)
 //{
@@ -58,39 +166,7 @@ void MetersDateTime::clearPage()
 //}
 
 
-void MetersDateTime::onModelChanged()
-{
-
-    const QList<int> hiddenCols = QList<int>();
-    const QList<int> rowsList = StandardItemModelHelper::getSourceRows(WidgetsHelper::getRowsListTo(proxy_model->rowCount()), proxy_model);//  ;
-    int valCounter;///unused
-
-    const QStringList headerlist = StandardItemModelHelper::modelHeaderListWithRowID(model, hiddenCols);
-
-    QStringList heaaderroles;
-    for(int i = 0, imax = headerlist.size(); i < imax; i++)
-        heaaderroles.append(0);
-
-    if(!heaaderroles.isEmpty()){
-       heaaderroles.replace(0, QString::number(BaseMapMarkersModel::itmmarkertxt));
-
-       heaaderroles.replace(5, QString::number(BaseMapMarkersModel::itmkeyvaluetxt));//NI
-       heaaderroles.replace(8, QString::number(BaseMapMarkersModel::coordinatevar));
-   //    heaaderroles.replace(3, QString::number(BaseMapMarkersModel::itmvalueTxt));
-    }
-
-    emit setModelHeaderDataRoles(heaaderroles.join("\n"));
-    const MPrintTableOut out = StandardItemModelHelper::getModelAsVector(model, proxy_model, hiddenCols, rowsList, true, valCounter);
-
-    emit setTableDataExt(out, headerlist, 5);
-
-    const int row = proxy_model->mapToSource(ui->tvTable->currentIndex()).row();
-    if(row < 0)
-        return;
-    emit showThisDeviceKeyValue(model->item(row, 5)->text());
-
-
-}
+//---------------------------------------------------------------------------------------
 
 void MetersDateTime::meterDateTimeDstStatus(QString ni, QDateTime dtLocal, QString stts)
 {
@@ -104,185 +180,198 @@ void MetersDateTime::meterDateTimeDstStatus(QString ni, QDateTime dtLocal, QStri
     stts.append("\n\n");
     const QStringList l = stts.split("\n");
 
-    model->item(row, 0)->setText(dtLocal.toString(lastDateTimeMask));
-    model->item(row, 1)->setText(l.at(0));
-    model->item(row, 6)->setText(l.at(1));
+    LastMetersDateTimeDst onedev;
+    onedev.msecpc = dtLocal.toMSecsSinceEpoch();
+    onedev.dtmeterstr = l.at(0);
+    onedev.dstmeter = l.at(1);
 
-    TableViewHelper::selectRowWithThisCell(ui->tvTable, ni, 4);
+    lDateTimeDst.checkednis.removeOne(ni);
+    lDateTimeDst.dttable.insert(ni, onedev);
 
-    resizeLastTv2content();
-}
+    emit stopTmrRelyaStatusTmr();
+    updateDateTimeDst();
 
-void MetersDateTime::showThisDev(QString ni)
-{
     TableViewHelper::selectRowWithThisCell(lastTv, ni, 4);
 
 }
 
-void MetersDateTime::showContextMenu4thisDev(QString ni)
+void MetersDateTime::updateDateTimeDst()
 {
-    showThisDev(ni);
-    emit request2showContextMenuAnimated();
+
+    QTime time;
+    time.start();
+    QStringList nichanged;
+
+    const int imax = model->rowCount();
+    int i = 0;
+
+
+    for( ; i < imax; i++){
+
+        const QString ni = model->item(i, 5)->text();
+        if(lDateTimeDst.checkednis.contains(ni))
+            continue;
+
+        lDateTimeDst.checkednis.append(ni);
+
+        const LastMetersDateTimeDst relay = lDateTimeDst.dttable.value(ni);
+
+//        return tr("Time,Main Relay,Second Relay,Meter,S/N,NI,Memo,Coordinate").split(",");
+
+
+        model->item(i,0)->setText( (relay.msecpc > 0) ?
+                                       QDateTime::fromMSecsSinceEpoch(relay.msecpc).toLocalTime().toString(lastDateTimeMask) :
+                                       "");
+        model->item(i,1)->setText(relay.dtmeterstr);
+        model->item(i,6)->setText(relay.dstmeter);
+
+
+
+
+
+
+        if(time.elapsed() > 333)
+            break;
+    }
+
+    if(i < imax)
+        emit updateRelayStatusTmr();
+    else
+        resizeLastTv2content();
+
+
+    if(!nichanged.isEmpty()){
+        const QModelIndex lastindx = TableViewHelper::selectTheseCells(nichanged, 2, false, lastTv);
+
+        if(lastindx.isValid())
+            lastTv->scrollTo(lastindx);
+    }
+    qDebug() << "MetersDateTime updateRelayStatus " << imax << lDateTimeDst.checkednis.size();
 }
 
-void MetersDateTime::showThisDevInSource(QString ni)
+//---------------------------------------------------------------------------------------
+
+void MetersDateTime::onStartOperation(bool selectedOnly, quint8 operation)
 {
-    showThisDev(ni);
-    ui->tbShowList->animateClick();
+    startOperation(selectedOnly ? getSelectedNIs() : getVisibleNIs(), operation);
 }
 
-void MetersDateTime::onWdgtLock(bool disable)
+//---------------------------------------------------------------------------------------
+
+void MetersDateTime::onUCEMeterSettingsChanged(UCEMeterSettings settings)
 {
-    sendActLock(disable, !ui->pbRead->isEnabled());
+    Q_UNUSED(settings);
+    //do not do anything , wait until wmeter settins are here
 }
 
-void MetersDateTime::onButtonLock(bool disable)
+//---------------------------------------------------------------------------------------
+
+void MetersDateTime::onUCWMeterSettingsChanged(UCWMeterSettings settings)
 {
-    sendActLock(!ui->widget_2->isEnabled(), disable);
+
+    QList<UCPollDeviceSettings> baseSettingsL;
+    const UCEMeterSettings emeterSettings = gHelper->ucDeviceTreeW->getCachedUCEMeterSettings();
+    for(int i = 0, imax = emeterSettings.eMeterContainer.size(); i < imax; i++)
+        baseSettingsL.append(emeterSettings.eMeterContainer.at(i).baseSettings);
+
+
+    for(int i = 0, imax = settings.wMeterContainer.size(); i < imax; i++)
+        baseSettingsL.append(settings.wMeterContainer.at(i).baseSettings);
+
+    const MTableFullHouse outt = fromUCPollDeviceSettingsList(baseSettingsL);
+    setTableData4amodelExt4(outt, getHeader(), settings.validator);
+
+    buttonsWidget->setEnabled(!outt.table.isEmpty());
+    //    getLastRelayStateSmart(settings.validator);
+    emit updateRelayStatusTmr();
+
 }
 
-void MetersDateTime::sendActLock(const bool &isWdgtDisabled, const bool &isButtonDisabled)
-{
-    emit lockActions((isWdgtDisabled || isButtonDisabled));
-}
+//---------------------------------------------------------------------------------------
 
 void MetersDateTime::initPage()
 {
 
-    setupObjects(ui->horizontalLayout_61, ui->tvTable, ui->tbFilter, ui->cbFilterMode, ui->leFilter, SETT_FILTERS_METERDATETIME);
-    connect(this, SIGNAL(openContextMenu(QPoint)), this, SLOT(on_tvTable_customContextMenuRequested(QPoint)));
 
-    StandardItemModelHelper::setModelHorizontalHeaderItems(model, QStringList());
+    createModelsV2("MetersDateTime", true);
+    connectMessageSignal();
 
-    ui->widget_2->setEnabled(false);
-    ui->widget->setEnabled(false);
 
-    connect(this, SIGNAL(lockButtons(bool)), ui->pbRead, SLOT(setDisabled(bool)));
-    connect(this, SIGNAL(lockButtons(bool)), ui->pbWrite, SLOT(setDisabled(bool)));
-    connect(this, SIGNAL(lockButtons(bool)), ui->pbCorrectionAll, SLOT(setDisabled(bool)));
+    QTimer *tmrrelay = new QTimer(this);
+    tmrrelay->setInterval(333);
+    tmrrelay->setSingleShot(true);
+    connect(this, SIGNAL(stopTmrRelyaStatusTmr()), tmrrelay, SLOT(stop()));
+    connect(this, SIGNAL(updateRelayStatusTmr()), tmrrelay, SLOT(start()));
 
-    SelectionChecker *tmr = new SelectionChecker(this);
-    tmr->setWatchTable(ui->tvTable, ui->widget_2);
-    tmr->setTextLbl4disp(ui->label_2, tr("Selected [%1]"), tr("Selected"));
+    connect(tmrrelay, SIGNAL(timeout()), this, SLOT(updateDateTimeDst()));
 
-    ui->widget_3->setVisible(false);
-    connect(tmr, &SelectionChecker::setWdgtEnable, ui->widget_3, &QWidget::setVisible);
-    connect(tmr, &SelectionChecker::setWdgtDisable, this, &MetersDateTime::onWdgtLock);// ui->widget_3, &QWidget::setVisible);
 
-    emit onReloadAllMeters();
+    connect(this, &MetersDateTime::openContextMenu, this, &MetersDateTime::onTvTableCustomContextMenuRequested);
+    connect(lastTv, &QTableView::customContextMenuRequested, this, &MetersDateTime::onTvTableCustomContextMenuRequested);
+
+    clearPage();
+
+    connect(gHelper->ucDeviceTreeW, &UCDeviceTreeWatcher::onUCWMeterSettingsChanged, this, &MetersDateTime::onUCWMeterSettingsChanged);
+    connect(gHelper->ucDeviceTreeW, &UCDeviceTreeWatcher::onUCEMeterSettingsChanged, this, &MetersDateTime::onUCEMeterSettingsChanged);
+
+
+
+    //    QString m; all data must be in the memory
+        if(gHelper->ucDeviceTreeW->getCachedUCEMeterSettings().validator.dtlastupdate.isValid()){
+             onUCEMeterSettingsChanged(gHelper->ucDeviceTreeW->getCachedUCEMeterSettings());
+             onUCWMeterSettingsChanged(gHelper->ucDeviceTreeW->getCachedUCWMeterSettings());
+
+
+        }
+    //    else
+    //        updatePageContent(m);
+
+
+
+    connect(this, &MetersDateTime::lockButtons, buttonsWidget, &MetersDateTimeButtonsWdgt::lockButtons);
+    connect(buttonsWidget, &MetersDateTimeButtonsWdgt::onStartOperation, this ,&MetersDateTime::onStartOperation);
+
+    buttonsWidget->createSelectionChecker(lastTv);
+
+    QTimer::singleShot(11, this, SLOT(createMapWidgetLaterReadOnly()));
+    emit onPageCanReceiveData();
+
+
 
 
 }
 
-void MetersDateTime::on_tbShowList_clicked()
+//---------------------------------------------------------------------------------------
+
+void MetersDateTime::onTvTableCustomContextMenuRequested(const QPoint &pos)
 {
-    ui->tbShowList->setChecked(true);
-    ui->stackedWidget->setCurrentIndex(0);
-    ui->tbShowMap->setChecked(false);
+    QList<QAction*> la = getDateTimeActions();
+
+    createCustomMenu4tv(pos,
+                        (GuiHelper::ShowReset|GuiHelper::ShowAdd2Filter|GuiHelper::ShowExport|GuiHelper::ShowOnlyCopy),
+                        getCopyPastTag(), la);
+
+
+
 }
 
-void MetersDateTime::on_tbShowMap_clicked()
-{
-    ui->tbShowList->setChecked(false);
-    ui->stackedWidget->setCurrentIndex(1);
-    ui->tbShowMap->setChecked(true);
-
-    if(!isMapReady){
-        isMapReady = true;
-
-        QTimer *tmrModelChanged = new QTimer(this);
-        tmrModelChanged->setInterval(555);
-        tmrModelChanged->setSingleShot(true);
-
-
-        proxy_model->enableModelChangedSignal();
-        connect(proxy_model, SIGNAL(onModelChanged()), tmrModelChanged, SLOT(start()) );
-        connect(tmrModelChanged, SIGNAL(timeout()), this, SLOT(onModelChanged()) );
-
-        MapWidget *w = new MapWidget(true);
-        ui->vlQmlMap->addWidget(w);
-
-        connect(this, SIGNAL(showMapEs(QString))  , w, SLOT(showMap(QString)) );
-
-        connect(this, &MetersDateTime::setTableDataExt, w, &MapWidget::setTableDataExt);
-        connect(this, &MetersDateTime::setModelHeaderDataRoles, w, &MapWidget::setModelHeaderDataRoles);
-        connect(this, &MetersDateTime::setDefaultDataFilterSettings, w, &MapWidget::setDefaultDataFilterSettings);
-        connect(this, &MetersDateTime::showThisDeviceKeyValue, w, &MapWidget::showThisDeviceKeyValue);
-
-
-
-        //        connect(this, SIGNAL(showThisCoordinatesEs(QString))   , w, SIGNAL(showThisCoordinates(QString)) );
-
-                connect(w, SIGNAL(showThisDev(QString)), this, SLOT(showThisDev(QString)) );
-                connect(w, SIGNAL(showContextMenu4thisDev(QString)), this, SLOT(showContextMenu4thisDev(QString)));
-                connect(w, SIGNAL(showThisDevInSource(QString)), this, SLOT(showThisDevInSource(QString)));
-
-        //        connect(w, SIGNAL(addDevice(QString))  , this, SLOT(addDevice(QString))   );
-        //        connect(w, SIGNAL(updateModel4ls())    , this, SLOT(onModelChanged())     );
-        //        connect(w, SIGNAL(removeDevice(QString)), this, SLOT(removeDevice(QString)));
-        //        connect(w, SIGNAL(moveDevice(QVariantHash)), this, SLOT(moveDevice(QVariantHash)));
-        //        connect(w, SIGNAL(addDeviceStreet(QVariantHash)), this, SLOT(addDeviceStreet(QVariantHash)));
-
-//        connect(ui->tbShowMap, SIGNAL(toggled(bool)), w, SLOT(isParentWidgetVisible(bool)) );
-
-                connect(w, &MapWidget::mapIsReady, this, &MetersDateTime::onModelChanged);
-
-    }
-
-    if(true){
-//        const QStringList lk = getAvRelayStatuses();
-
-        QVariantMap mapdefaultgrouppingsett;
-        QVariantMap mapdata;
-
-//        for(int i = 0, imax = lk.size(); i < imax; i++){
-//            const QString model = lk.at(i);
-
-//            mapdata.insert(model,   QCryptographicHash::hash(model.toLocal8Bit(), QCryptographicHash::Md5).right(3).toHex().toUpper());//model 2 color RRGGBB
-
-//            qDebug() << "mapdata" << model << mapdata.value(model);
-//        }
-
-
-
-        mapdefaultgrouppingsett.insert("cols", QString::number(1).split(" "));
-        mapdefaultgrouppingsett.insert("data", mapdata);
-        mapdefaultgrouppingsett.insert("en", true);
-
-
-        emit setDefaultDataFilterSettings(mapdefaultgrouppingsett, QString("relaysV0"));
-    }
-
-
-    emit showMapEs(gHelper->guiSett->currLang);
-}
-
-void MetersDateTime::on_tvTable_customContextMenuRequested(const QPoint &pos)
-{
-//    gHelper->createCustomMenu(pos, ui->tvTable, (GuiHelper::ShowReset|GuiHelper::ShowExport|GuiHelper::ShowOnlyCopy), CLBRD_SMPL_PRXTBL, ShowMessageHelperCore::matildaFileName(windowTitle()), getDateTimeActions());
-
-}
+//---------------------------------------------------------------------------------------
 
 void MetersDateTime::onPbReadAll_clicked()
 {
-    startOperation(TableViewHelper::getRowsText(ui->tvTable, 4), POLL_CODE_READ_DATE_TIME_DST);
+    onStartOperation(false, POLL_CODE_READ_DATE_TIME_DST);
 }
 
-void MetersDateTime::on_pbCorrectionAll_clicked()
+//---------------------------------------------------------------------------------------
+
+void MetersDateTime::createTopWidget()
 {
-    startOperation(TableViewHelper::getRowsText(ui->tvTable, 4), POLL_CODE_WRITE_DATE_TIME);
+    buttonsWidget = new MetersDateTimeButtonsWdgt(this);
+    getTopLayout()->insertWidget(0, buttonsWidget);
+    buttonsWidget->setEnabled(false);
 }
 
-void MetersDateTime::on_pbRead_clicked()
-{
-    startOperation(TableViewHelper::getSelectedRowsText(ui->tvTable, 4), POLL_CODE_READ_DATE_TIME_DST);
-}
-
-void MetersDateTime::on_pbWrite_clicked()
-{
-    startOperation(TableViewHelper::getSelectedRowsText(ui->tvTable, 4), POLL_CODE_WRITE_DATE_TIME);
-
-}
+//---------------------------------------------------------------------------------------
 
 void MetersDateTime::startOperation(const QStringList &listni, const quint8 &operation)
 {
@@ -300,28 +389,30 @@ void MetersDateTime::startOperation(const QStringList &listni, const quint8 &ope
     if(map.isEmpty())
         return;
 
-    ui->tvTable->clearSelection();
+    lastTv->clearSelection();
     StandardItemModelHelper::clearCells(listni, 4,QList<int>() << 0 << 1 << 6, model);
     gHelper->updateSettDateMaskAndDotPos();
     emit setLastPageId(accessibleName());
-    lastDateTimeMask = gHelper->dateMask + " hh:mm:ss";
+    lastDateTimeMask = gHelper->getDateTimeMask();
     emit command4dev(operation, map);
 }
+
+//---------------------------------------------------------------------------------------
 
 QList<QAction *> MetersDateTime::getDateTimeActions()
 {
     QList<QAction*> la;
-    la.append(createActionFromButton(ui->pbCorrectionAll));
+    foreach (QPushButton *pb, buttonsWidget->gimmeYourButtons()) {
+        la.append(createActionFromButton(pb));
+    }
 
-    la.append(createActionFromButton(ui->pbRead));
-      la.append(createActionFromButton(ui->pbWrite));
+    const bool enbl = buttonsWidget->gimmeYourEnabled();
 
-
-
-      const bool enbl = (ui->pbRead->isEnabled() && ui->widget_2->isEnabled());
-        for(int i = 0, imax = la.size(); i < imax; i++){
-            connect(this, SIGNAL(lockActions(bool)), la.at(i), SLOT(setDisabled(bool)));
-            la.at(i)->setEnabled(enbl);
-        }
-        return la;
+    for(int i = 0, imax = la.size(); i < imax; i++){
+        connect(buttonsWidget, SIGNAL(lockActions(bool)), la.at(i), SLOT(setDisabled(bool)));
+        la.at(i)->setEnabled(enbl);
+    }
+    return la;
 }
+
+//---------------------------------------------------------------------------------------

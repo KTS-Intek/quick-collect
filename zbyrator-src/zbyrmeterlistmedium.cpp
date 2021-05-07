@@ -15,7 +15,6 @@
 
 
 ///[!] quick-collect
-#include "zbyrator-src/src/zbyrtableheaders.h"
 #include "zbyrator-src/src/zbyratordatacalculation.h"
 #include "zbyrator-src/src/zbyratordatabasemedium.h"
 
@@ -163,8 +162,8 @@ void ZbyrMeterListMedium::onAllMetersSlot(UniversalMeterSettList allMeters)
 
     emeter.validator = wmeter.validator = getTemplateValidator();
 
-    ucDeviceTreeW->setUCEMeterSettings(emeter);
-    ucDeviceTreeW->setUCWMeterSettings(wmeter);
+    ucDeviceTreeW->setUCEMeterSettings(emeter);//first
+    ucDeviceTreeW->setUCWMeterSettings(wmeter);//second
 
 
 
@@ -274,8 +273,6 @@ void ZbyrMeterListMedium::createDataCalculator()
 //    connect(c, &ZbyratorDataCalculation::setLblWaitTxt   , this, &ZbyrMeterListMedium::setLblWaitTxt);
     connect(c, &ZbyratorDataCalculation::updateHashSn2meter, this, &ZbyrMeterListMedium::updateHashSn2meter);
 
-    connect(c, &ZbyratorDataCalculation::setCOMMAND_READ_POLL_STATISTIC, this, &ZbyrMeterListMedium::setStatisticOfExchangePageSett);
-    connect(this, &ZbyrMeterListMedium::onCOMMAND_READ_POLL_STATISTIC, c, &ZbyratorDataCalculation::onCOMMAND_READ_POLL_STATISTIC);
 
     connect(this, &ZbyrMeterListMedium::setVirtualMetersSett, c, &ZbyratorDataCalculation::setVirtualMetersSett);
 
@@ -320,59 +317,19 @@ void ZbyrMeterListMedium::createDatabaseMedium()
 
 }
 
+//---------------------------------------------------------------------
+
 void ZbyrMeterListMedium::onAllStatHash(QStringList allstat)
 {
-    liststat = allstat;
-}
-//---------------------------------------------------------------------
-void ZbyrMeterListMedium::onPollCodeChangedStat(QVariantHash hash)
-{
-    const QString pollStr = hash.value("c").toString();
-    QString niStr = hash.value("n").toString();
-    const int mode = hash.value("m", -1).toInt();
+    UCExchangeOfTheMetersInfo statistictable;
+    statistictable.validator = getTemplateValidator();
+    bool isBroken;
+    statistictable.stattable = ClassManagerV1::fromList2UCStatTable(allstat, isBroken);
 
+    if(isBroken)
+        return;
 
-    if(mode < 0)
-        niStr.clear();
-
-    QStringList rezListStr;
-
-    if(niStr.contains("'"))
-        niStr.replace("'", " ");
-
-    QRegExp regExp(niStr, Qt::CaseInsensitive, QRegExp::RegExp);
-
-    const QStringList ls = liststat;
-    if(!ls.isEmpty())
-        rezListStr.append(ls.first());
-
-
-
-
-//    QHash<QString, OneModemStat> hNi2allData;
-//    QStringList lk2niAllData;
-
-    for(int i = 1, iMax = ls.size(); i < iMax; i++){
-        if(ls.at(i).split("\t", QString::SkipEmptyParts).isEmpty())
-            continue;
-
-        const QString niLine = ls.at(i).split("\t", QString::SkipEmptyParts).first();
-
-        if(niStr.isEmpty() || (mode == 0 && niLine == niStr) || (mode == 1 && niLine.contains(regExp))){
-            //    QString retVal(tr("Modem NI\tModel\tPoll Code\tTime\tMess. Count\tWrite/Read byte\tElapsed (s)\tLast retry\n"));
-            if(pollStr.isEmpty()){
-                rezListStr.append(ls.at(i));
-            }else{
-                const QStringList l = ls.at(i).split("\t", QString::SkipEmptyParts);
-                if(l.size() < 5)
-                    continue;
-                if(l.at(2) == pollStr)
-                    rezListStr.append(ls.at(i));
-
-            }
-        }
-    }
-    emit onCOMMAND_READ_POLL_STATISTIC(rezListStr);
+    ucDeviceTreeW->setUCExchangeOfTheMetersInfo(statistictable);
 }
 
 //---------------------------------------------------------------------
@@ -391,11 +348,12 @@ void ZbyrMeterListMedium::onTaskCanceled(quint8 pollCode, QString ni, qint64 dtF
 
     switch(lastPageMode){
     case 0: emit onMeterPollCancelled(ni, stts, dtFinished); break;//poll page
-    case 1: emit waterMeterSchedulerStts(ni, dtLocal, stts, QVariantHash(), ""); break;
+    case 1: waterMeterSchedulerStts(ni, dtLocal, stts, QVariantHash(), ""); break;
     case 2: meterRelayStatus(ni, dtLocal,  RELAY_STATE_UNKN, RELAY_STATE_UNKN); break; //relay
     case 5: emit meterDateTimeDstStatus(ni, dtLocal, stts); break;
     }
 
+    emit onTaskTableChanged();
 }
 //---------------------------------------------------------------------
 void ZbyrMeterListMedium::setLastPageId(QString accsblName)
@@ -432,26 +390,7 @@ void ZbyrMeterListMedium::command4devSlotLocalSocket(quint16 command, QString ar
     command4devSlot(command, args);
 
 }
-//---------------------------------------------------------------------
-void ZbyrMeterListMedium::sendCachedDataAboutRelays(const QStringList &niswithoutsttses)
-{
-    QString errmess;
-    const QMap<QString,UCEMeterRelayStateOneRelay> relaysttsmap = LastMetersStatusesManager::getLastRelayStatusesMap(errmess);
 
-
-    for(int i = 0, imax = niswithoutsttses.size(); i < imax; i++){
-        const UCEMeterRelayStateOneRelay stts = relaysttsmap.value(niswithoutsttses.at(i));
-//        if(!stts.dtLocal.isValid())
-//            continue;
-
-//        emit meterRelayStatus(niswithoutsttses.at(i), stts.dtLocal, stts.mainstts, stts.secondarystts);
-
-    }
-//    emit startTmrUpdateRelayStatuses(1111);
-
-
-
-}
 //---------------------------------------------------------------------
 void ZbyrMeterListMedium::mWrite2RemoteDev(quint16 command, QVariant dataVar)
 {
@@ -475,16 +414,16 @@ void ZbyrMeterListMedium::mWrite2RemoteDev(quint16 command, QVariant dataVar)
         setLastPageId("Relay");
 
         command4devSlot(POLL_CODE_RELAY_OPERATIONS, map);
-        lrelay.hasRequestFromMeterList = true;
+
         break;}//realy operations, main relay
     case COMMAND_READ_ELMTRRELAY_TABLE:{
-        lrelay.hasRequestFromMeterList = true;
-//        emit startTmrUpdateRelayStatuses(111);
+
+        //        emit startTmrUpdateRelayStatuses(111);
 
         break;} //send last realy statuses
     }
 
-    qDebug() << "onElMeterRelayChanged mWrite2RemoteDev " << lrelay.hasRequestFromMeterList << command;
+    qDebug() << "onElMeterRelayChanged mWrite2RemoteDev "  << command;
 
 }
 
@@ -492,20 +431,22 @@ void ZbyrMeterListMedium::mWrite2RemoteDev(quint16 command, QVariant dataVar)
 void ZbyrMeterListMedium::updateRelayStatuses4meterlist()
 {
 
-
-
     QString errmessage;
-    const QMap<QString,UCEMeterRelayStateOneRelay> relaysttsmap = LastMetersStatusesManager::getLastRelayStatusesMap(errmessage);
+    const QMap<QString,UCEMeterRelayStateOneRelay> relaysttsmap = LastMetersStatusesManager::getLastRelayStatusesMap(errmessage);//it saves the file automatically
 
     qDebug() << "onElMeterRelayChanged updateRelayStatuses4meterlist " << relaysttsmap.size() << errmessage;
 
     updateRelayStatuses4meterlistExt(relaysttsmap);
 }
 
+//---------------------------------------------------------------------
+
 void ZbyrMeterListMedium::setPbWriteDis(bool disabled)
 {
     pbWriteDis = disabled;
 }
+
+//---------------------------------------------------------------------
 
 void ZbyrMeterListMedium::command2extension(quint16 extName, quint16 command, QVariant data)
 {
@@ -515,12 +456,16 @@ void ZbyrMeterListMedium::command2extension(quint16 extName, quint16 command, QV
 }
 
 
+//---------------------------------------------------------------------
+
 void ZbyrMeterListMedium::onGetUCEMeterSettings(QString senderName)
 {
 //    Q_UNUSED(senderName);
     onGetUCSupportedMetersInfo(senderName);
     QTimer::singleShot(111, this, SIGNAL(onReloadAllMeters2zbyrator()));
 }
+
+//---------------------------------------------------------------------
 
 void ZbyrMeterListMedium::onPutUCEMeterSettings(UCEMeterSettings settings, QString senderName)
 {
@@ -537,6 +482,8 @@ void ZbyrMeterListMedium::onPutUCEMeterSettings(UCEMeterSettings settings, QStri
 
 }
 
+//---------------------------------------------------------------------
+
 void ZbyrMeterListMedium::onPutUCWMeterSettings(UCWMeterSettings settings, QString senderName)
 {
     QStringList errl;
@@ -551,11 +498,15 @@ void ZbyrMeterListMedium::onPutUCWMeterSettings(UCWMeterSettings settings, QStri
     meterWaterModelChanged(varl);//the old method looks ok
 }
 
+//---------------------------------------------------------------------
+
 void ZbyrMeterListMedium::onGetUCEMeterRelayState(QString senderName)
 {
     Q_UNUSED(senderName);
     QTimer::singleShot(111, this, SLOT(updateRelayStatuses4meterlist()));
 }
+
+//---------------------------------------------------------------------
 
 void ZbyrMeterListMedium::meterRelayStatus(QString ni, QDateTime dtLocal, quint8 mainstts, quint8 secondarystts)
 {
@@ -574,6 +525,8 @@ void ZbyrMeterListMedium::meterRelayStatus(QString ni, QDateTime dtLocal, quint8
     ucDeviceTreeW->setUCEMeterRelayState(erelay);
 
 }
+
+//---------------------------------------------------------------------
 
 void ZbyrMeterListMedium::onGetUCSupportedMetersInfo(QString senderName)
 {
@@ -633,10 +586,111 @@ void ZbyrMeterListMedium::onGetUCSupportedMetersInfo(QString senderName)
 
 }
 
+//---------------------------------------------------------------------
+
 void ZbyrMeterListMedium::onGetUCWMeterSettings(QString senderName)
 {
     onGetUCEMeterSettings(senderName);//it reloads all meters;
 }
+
+//---------------------------------------------------------------------
+
+void ZbyrMeterListMedium::onCommand2killMeterTasks(QList<quint32> lDecimalTaskIDs, QString senderName)
+{
+    Q_UNUSED(senderName);
+
+    QStringList lIdsHex;
+
+    for(int i = 0, imax = lDecimalTaskIDs.size(); i < imax; i++){
+        lIdsHex.append(QString::number(lDecimalTaskIDs.at(i), 16));
+    }
+
+    if(lIdsHex.isEmpty()){
+        qDebug() << "ZbyrMeterListMedium::onCommand2killMeterTasks " << senderName;
+        return;
+    }
+
+
+    emit onZbyratorConfigChanged(MTD_EXT_CUSTOM_COMMAND_13, lIdsHex.join("|"));
+
+}
+
+void ZbyrMeterListMedium::vanishFinishedTasks()
+{
+    emit onZbyratorConfigChanged(MTD_EXT_CUSTOM_COMMAND_14, true);
+
+}
+
+void ZbyrMeterListMedium::onUCWMeterSettingsChanged(UCWMeterSettings settings)
+{
+    waterNi2sn.clear();
+    for(int i = 0, imax = settings.wMeterContainer.size(); i < imax; i++){
+        const UCPollDeviceSettings onerow = settings.wMeterContainer.at(i).baseSettings;
+        waterNi2sn.insert(onerow.ni, onerow.sn);
+    }
+}
+
+void ZbyrMeterListMedium::waterMeterSchedulerStts(QString ni, QDateTime dtLocal, QString stts, QVariantHash sheduler, QString src)
+{
+
+    Q_UNUSED(stts);
+    if(ni.isEmpty())
+        return;
+
+
+    UCWMeterLastProfileOneRow onerow;
+    onerow.src = src.toUInt();
+    onerow.sleepProfileLine = WaterMeterHelper::oneProfile2lineSmpl(sheduler);
+    onerow.dtmsec = dtLocal.toMSecsSinceEpoch();
+    onerow.sn = waterNi2sn.value(ni);
+
+    UCWMeterLastProfilesSettings settings = ucDeviceTreeW->getCachedUCWMeterLastProfilesSettings();
+    settings.lastWaterMeterProfiles.insert(ni, onerow);
+    settings.validator.allDataIsReceived = true;
+    settings.validator.dtlastupdate = dtLocal;
+
+    ucDeviceTreeW->setUCWMeterLastProfilesSettings(settings);
+}
+
+void ZbyrMeterListMedium::onCommandOpenDirectAccess(UCOpenDirectAccessCommand request, QString senderName)
+{
+    Q_UNUSED(senderName);
+
+    resetStopDirectAccess();
+
+    emit setUCDirectAccessServiceParams(request.ipmode, request.defport); //it tells to stop daservice
+//    ucDeviceTreeW->setDirectAccessChannelState(UCDA_CHANNEL_STATE_CLOSED);
+
+    if(request.openmode != COMMAND_DA_CLOSE){
+        sendIfaceSettings();
+        ucDeviceTreeW->setDirectAccessChannelState(UCDA_CHANNEL_STATE_OPENNING);
+        //    sendThisCommand(COMMAND_WRITE_DA_OPEN_CLOSE, request.openmode, senderName);
+
+        emit startStopDirectAccessService(true);
+        ucDeviceTreeW->setDirectAccessChannelState(UCDA_CHANNEL_STATE_OPEN);
+
+    }
+
+//    if(request.openmode == COMMAND_DA_CLOSE){
+//        emit stopApiAddressator();
+//    }else{
+//        emit startApiAddressatorSlot(request.ipmode, request.defport);
+//    }
+}
+
+void ZbyrMeterListMedium::resetStopDirectAccess()
+{
+    //please stop DA service correctly, it is called when onConnectionStateChanged
+    const quint8 state = ucDeviceTreeW->getDirectAccessChannelState();
+    if(state == UCDA_CHANNEL_STATE_OPEN || state == UCDA_CHANNEL_STATE_OPENNING){
+        ucDeviceTreeW->setDirectAccessChannelState(UCDA_CHANNEL_STATE_CLOSING);
+    }
+    emit startStopDirectAccessService(false);
+    ucDeviceTreeW->setDirectAccessChannelState(UCDA_CHANNEL_STATE_CLOSED);
+}
+
+
+//---------------------------------------------------------------------
 
 void ZbyrMeterListMedium::createUcDevTree()
 {
@@ -654,8 +708,23 @@ void ZbyrMeterListMedium::createUcDevTree()
     connect(ucDeviceTreeW, &UCDeviceTreeWatcher::onGetUCWMeterSettings, this, &ZbyrMeterListMedium::onGetUCWMeterSettings);
     connect(ucDeviceTreeW, &UCDeviceTreeWatcher::onPutUCWMeterSettings, this, &ZbyrMeterListMedium::onPutUCWMeterSettings);
 
+    //6.60 View tasks of the meter
+    connect(ucDeviceTreeW, &UCDeviceTreeWatcher::onCommand2killMeterTasks, this, &ZbyrMeterListMedium::onCommand2killMeterTasks);
 
 
+    //5.5
+    connect(ucDeviceTreeW, &UCDeviceTreeWatcher::onCommandOpenDirectAccess, this, &ZbyrMeterListMedium::onCommandOpenDirectAccess);
+    connect(ucDeviceTreeW, &UCDeviceTreeWatcher::onSetDaForwardintSettings, this, &ZbyrMeterListMedium::onSetDaForwardintSettings);
+
+
+
+
+
+
+
+    connect(ucDeviceTreeW, &UCDeviceTreeWatcher::onUCWMeterSettingsChanged, this, &ZbyrMeterListMedium::onUCWMeterSettingsChanged);
+
+    QTimer::singleShot(3333, this, SIGNAL(reloadSavedSleepProfiles()));//zbyrator starts in 1111 msec, so it must be after
 
 //    connect(ucDeviceTreeW, &UCDeviceTreeWatcher::ongetucs)
 
@@ -752,13 +821,6 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
     const int switchedOffMetersSize = switchedOffMeters.size();
 
 
-    QMap<QString, QStringList> relayPageL, dateTimePageL, waterProfiles;
-    LastList2pages lastElectricityMeters2pagesL;
-
-    LastList2pages lastWaterMeters2pagesL;
-
-    LastList2pages lastMeters2pagesL;
-
     int pollOnMeters = 0;
     int pollOffMeters = switchedOffMetersSize;
 
@@ -766,165 +828,45 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
     int meterWaterActive = 0;
 //    QStringList listNiNotchanged;
 
-    QMap<quint8, QString> mapMetertype2ni;
 
-    QStringList meternisWithoutRelaySttses;
-    QStringList allElectricMeters;
 
     for(int i = 0; i < activeMetersSize; i++){
 
         const UniversalMeterSett m = activeMeters.at(i);
 
 
-
-        switch(m.deviceType){
-        case UC_METER_ELECTRICITY:{
-            allElectricMeters.append(m.ni);
-            break;}
-
-        case UC_METER_WATER:{
-
-
-            break;}
-        }
-
         if(checkOffMeters && !m.pollEnbl){
             pollOffMeters++;
             continue;
         }
         pollOnMeters++;
-        const QString mainParms = QString("%1\t%2\t%3\t%4\t%5").arg(m.model).arg(m.version).arg(m.sn).arg(m.memo).arg(m.coordinate);//model version SN memo
 
 
 
         switch(m.deviceType){
         case UC_METER_ELECTRICITY:{
             meterElectricityActive++;
-            lastElectricityMeters2pagesL.listNI.append(m.ni);
-            lastElectricityMeters2pagesL.mainParams.append(mainParms);
-            relayPageL.insert(m.ni, addRelayRow(m));
-            meternisWithoutRelaySttses.append(m.ni);
+
             break;}
 
         case UC_METER_WATER:{
             meterWaterActive++;
-            lastWaterMeters2pagesL.listNI.append(m.ni);
-            lastWaterMeters2pagesL.mainParams.append(mainParms);
-            waterProfiles.insert(m.ni, addWaterProfileRow(m));
-
-
             break;}
         }
 
-
-        lastMeters2pagesL.listNI.append(m.ni);
-        lastMeters2pagesL.mainParams.append(mainParms);
-        dateTimePageL.insert(m.ni, addDateTimeRow(m));
-
-
-//        if(lastMeters2pages.mainParams.contains(mainParms))
-//            listNiNotchanged.append(m.ni);
-
-
-
-
-        mapMetertype2ni.insertMulti(m.deviceType, m.ni);
-
-//        if(m.ni == UC_METER_ELECTRICITY)
-
-    }
-
-    if(!allElectricMeters.isEmpty()){
-        lrelay.meternis = allElectricMeters;
-//        emit startTmrUpdateRelayStatuses(3333);
-    }
-
-//    if(mapMeters2pages.contains("relay") && mapMeters2pages)
-
-    if(metersChanged(mapMeters2pages, "Relay", lastElectricityMeters2pagesL))
-        emit setRelayPageSett(getRowsList(relayPage, QStringList(), relayPageL, lastElectricityMeters2pagesL.listNI, meterElectricityActive), QVariantMap(), ZbyrTableHeaders::getRelayPageHeader(), StandardItemModelHelper::getHeaderData(ZbyrTableHeaders::getRelayPageHeader().size()), true);
-    else
-        meternisWithoutRelaySttses.clear();
-
-
-
-    if(metersChanged(mapMeters2pages, "Date and time", lastMeters2pagesL))
-        emit setDateTimePageSett(getRowsList(dateTimePage, QStringList(), dateTimePageL, lastMeters2pagesL.listNI, pollOnMeters), QVariantMap(), ZbyrTableHeaders::getMeterDateTimePageHeader(), StandardItemModelHelper::getHeaderData(8), true);
-
-
-    if(metersChanged(mapMeters2pages, "Scheduler for water meters", lastWaterMeters2pagesL)){
-//        emit setWaterMeterSchedulerPageSett(getRowsList(waterSchedulerPage, QStringList(), waterProfiles, lastWaterMeters2pagesL.listNI, meterWaterActive), QVariantMap(), TableHeaders::getColNames4wtrLastProfile().split(","),
-//                                            StandardItemModelHelper::getHeaderData(TableHeaders::getColNames4wtrLastProfile().split(",").size()), true);
-        QTimer::singleShot(11, this, SIGNAL(reloadSavedSleepProfiles()));
     }
 
 
 
-//    if(checkOffMeters || lastMeters2pages.listNI != lastMeters2pagesL.listNI || lastMeters2pages.mainParams != lastMeters2pagesL.mainParams){
-
-
-//        emit setDateTimePageSett(getRowsList(dateTimePage, listNiNotchanged, dateTimePageL, lastMeters2pagesL.listNI, pollOnMeters), QVariantMap(), ZbyrTableHeaders::getMeterDateTimePageHeader(), StandardItemModelHelper::getHeaderData(8), true);
-
-//        lastMeters2pages.listNI = lastMeters2pagesL.listNI;
-//        lastMeters2pages.mainParams = lastMeters2pagesL.mainParams;
-
-//    }
 
     emit onUpdatedSavedList(pollOnMeters, pollOffMeters, meterElectricityActive, meterWaterActive);
 
-    if(!meternisWithoutRelaySttses.isEmpty())
-        sendCachedDataAboutRelays(meternisWithoutRelaySttses);
+
 
 }
 
-//---------------------------------------------------------------------
 
-QStringList ZbyrMeterListMedium::addRelayRow(const UniversalMeterSett &m)
-{
-    QStringList relayRow;
 
-        relayRow.append("");//datetime
-        relayRow.append("");//relay
-        relayRow.append("");//second relay
-
-    relayRow.append(m.version.isEmpty() ? m.model : QString("%1, %2").arg(m.model).arg(m.version));
-    relayRow.append(m.sn);
-    relayRow.append(m.ni);
-    relayRow.append(m.memo);
-    relayRow.append(m.coordinate);
-    return relayRow;
-}
-
-//---------------------------------------------------------------------
-
-QStringList ZbyrMeterListMedium::addDateTimeRow(const UniversalMeterSett &m)
-{
-    QStringList dateTimeRow;
-    dateTimeRow.append("");//datetime PC
-    dateTimeRow.append("");//dateTime Meter
-    dateTimeRow.append(m.version.isEmpty() ? m.model : QString("%1, %2").arg(m.model).arg(m.version));
-    dateTimeRow.append(m.sn);
-    dateTimeRow.append(m.ni);
-    dateTimeRow.append(m.memo);
-    dateTimeRow.append("");//DST profile
-    dateTimeRow.append(m.coordinate);
-    return dateTimeRow;
-
-}
-
-QStringList ZbyrMeterListMedium::addWaterProfileRow(const UniversalMeterSett &m)
-{
-    QStringList dateTimeRow;
-    dateTimeRow.append("");//time
-    dateTimeRow.append("");//profile
-    dateTimeRow.append(m.version.isEmpty() ? m.model : QString("%1, %2").arg(m.model).arg(m.version));
-    dateTimeRow.append(m.sn);
-    dateTimeRow.append(m.ni);
-    dateTimeRow.append(m.memo);
-    dateTimeRow.append(m.coordinate);
-    dateTimeRow.append("");//source
-    return dateTimeRow;
-}
 
 //---------------------------------------------------------------------
 
@@ -1005,21 +947,39 @@ void ZbyrMeterListMedium::createPeredavatorEmbeeManager()
     connect(cover, &PeredavatorCover::giveMeIfaceSett           , this, &ZbyrMeterListMedium::sendIfaceSettings);
     connect(cover, &PeredavatorCover::append2logDirectAccess    , this, &ZbyrMeterListMedium::append2logDirectAccess);
 
-    connect(cover, &PeredavatorCover::showMess                  , this, &ZbyrMeterListMedium::showMessage);
+//    connect(cover, &PeredavatorCover::showMessage                  , this, &ZbyrMeterListMedium::showMessage);
     connect(cover, &PeredavatorCover::showMessCritical          , this, &ZbyrMeterListMedium::showMessage);
     connect(cover, &PeredavatorCover::appendMess                , this, &ZbyrMeterListMedium::appendAppLog);
     connect(cover, &PeredavatorCover::appendMessHtml            , this, &ZbyrMeterListMedium::appendAppLog);
-    connect(cover, &PeredavatorCover::onStateChangedStr         , this, &ZbyrMeterListMedium::onQuickCollectDaStateChangedStr);
+    connect(cover, &PeredavatorCover::onStatusChanged         , this, &ZbyrMeterListMedium::onQuickCollectDaStateChangedStr);
+
     connect(cover, &PeredavatorCover::onDasStopped              , this, &ZbyrMeterListMedium::onDasStopped);
-    connect(cover, &PeredavatorCover::onDasStarted              , this, &ZbyrMeterListMedium::onDasStarted);
 
     connect(cover, &PeredavatorCover::ifaceLogStr, this, &ZbyrMeterListMedium::ifaceLogStr);
 
     connect(this, &ZbyrMeterListMedium::startApiAddressator , cover, &PeredavatorCover::startApiAddressator );
     connect(this, &ZbyrMeterListMedium::stopApiAddressator  , cover, &PeredavatorCover::stopApiAddressator  );
     connect(this, &ZbyrMeterListMedium::setDaForwardNI      , cover, &PeredavatorCover::setDaForwardNI      );
-    connect(this, &ZbyrMeterListMedium::setThisIfaceSett    , cover, &PeredavatorCover::setThisIfaceSett    );
+    connect(this, &ZbyrMeterListMedium::setThisIfaceSett    , cover, &PeredavatorCover::setThisIfaceSettSlot    );
     connect(this, &ZbyrMeterListMedium::ifaceLogStrFromZbyrator, cover, &PeredavatorCover::ifaceLogStrFromZbyrator);
+
+
+    //info
+    connect(cover, &PeredavatorCover::showMessage, ucDeviceTreeW, &UCDeviceTreeWatcher::onDirectAccessServiceShowMessage);
+    connect(cover, &PeredavatorCover::onStatusChanged, ucDeviceTreeW, &UCDeviceTreeWatcher::onDirectAccessServiceStatusChanged);
+    connect(cover, &PeredavatorCover::onDasStarted, ucDeviceTreeW, &UCDeviceTreeWatcher::onDirectAccessServiceStateChanged);
+    connect(cover, &PeredavatorCover::append2logDirectAccess, ucDeviceTreeW, &UCDeviceTreeWatcher::onDirectAccessServiceShowMessage);
+
+    connect(ucDeviceTreeW, &UCDeviceTreeWatcher::onSetDaForwardintSettings, cover, &PeredavatorCover::onSetDaForwardintSettings);
+
+
+    connect(this, &ZbyrMeterListMedium::startStopDirectAccessService, cover, &PeredavatorCover::startStopDirectAccessServiceSlot);
+    connect(this, &ZbyrMeterListMedium::setUCDirectAccessServiceParams, cover, &PeredavatorCover::setUCDirectAccessServiceParams);
+
+
+
+    resetStopDirectAccess();
+
 
 
     QTimer::singleShot(555, t, SLOT(start()));
@@ -1037,60 +997,6 @@ void ZbyrMeterListMedium::updateRelayStatuses4meterlistExt(const QMap<QString, U
 
     ucDeviceTreeW->setUCEMeterRelayState(erelay);
 
-//    QVariantHash lastMeterRelay;
-//    const QString mask = dateMask + " hh:mm:ss";
-////    const qint64 currmsec = QDateTime::currentMSecsSinceEpoch();
-//    const QStringList niswithoutsttses = lrelay.meternis;
-
-//    qDebug() << "onElMeterRelayChanged updateRelayStatuses4meterlistExt " << niswithoutsttses.size() << lrelay.hasRequestFromMeterList;
-
-//    if(niswithoutsttses.isEmpty())
-//        return;//nothing to update
-
-//    for(int i = 0, imax = niswithoutsttses.size(); i < imax; i++){
-//        const LastMetersStatusesManager::MyMeterRelayStatus stts = relaysttsmap.value(niswithoutsttses.at(i));
-//        if(!stts.dtLocal.isValid())
-//            continue;
-
-
-//        const qint64 msec = stts.dtLocal.toMSecsSinceEpoch();
-//        QString dt = QDateTime::fromMSecsSinceEpoch(msec).toLocalTime().toString(mask);
-
-//        const QString ni = niswithoutsttses.at(i);
-//        const quint16 mainstts = stts.mainstts;
-//        const quint16 secondarystts = stts.secondarystts;
-
-
-
-//        QVariantMap map;
-//        map.insert("stts", RelayStateHelper::getRelayStatusHuman(mainstts));
-//        map.insert("dt", dt);
-//        map.insert("msec", msec);
-//        map.insert("ico", MeterStateHelper4gui::getRelayIcostr4status(mainstts));
-
-//        map.insert("stts2", RelayStateHelper::getRelayStatusHuman(secondarystts));
-//        map.insert("ico2", MeterStateHelper4gui::getRelayIcostr4status(secondarystts));
-
-
-
-
-//        lastMeterRelay.insert(ni, map);
-
-//    }
-
-
-//    if(true){
-//        QVariantMap map;
-//        map.insert("ico", ":/katynko/svg3/relay-load-unknown.svg");
-//        lastMeterRelay.insert("\r\ndefault\r\n", map);
-//    }
-
-
-//    if(lrelay.lastMeterRelay != lastMeterRelay || lrelay.hasRequestFromMeterList){
-//        lrelay.lastMeterRelay = lastMeterRelay;
-//        lrelay.hasRequestFromMeterList = false;
-//        emit onElMeterRelayChanged(lrelay.lastMeterRelay);
-//    }
 }
 
 //---------------------------------------------------------------------

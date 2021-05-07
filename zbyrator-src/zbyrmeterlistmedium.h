@@ -46,11 +46,8 @@ signals:
     void setWaterMeterSchedulerPageSett(MyListStringList listRows, QVariantMap col2data, QStringList headerH, QStringList header, bool hasHeader);
 
 
-    void setRelayPageSett(MyListStringList listRows, QVariantMap col2data, QStringList headerH, QStringList header, bool hasHeader);
 
-    void setDateTimePageSett(MyListStringList listRows, QVariantMap col2data, QStringList headerH, QStringList header, bool hasHeader);
 
-    void setStatisticOfExchangePageSett(QVariantHash h);
 
     void realoadMeters2meterManager();//if changed NI, model, SN, removed meter, added meter,
 
@@ -105,7 +102,6 @@ signals:
 
     void meterDateTimeDstStatus(QString ni, QDateTime dtLocal, QString stts);
 
-    void waterMeterSchedulerStts(QString ni, QDateTime dtLocal, QString stts, QVariantHash sheduler, QString src);
 
     void reloadSavedSleepProfiles();
 
@@ -153,6 +149,13 @@ signals:
 //to zbyrator
     void reloadIfaceChannels();
 
+
+
+
+    void startStopDirectAccessService(bool start);
+
+    void setUCDirectAccessServiceParams(qint8 mode, quint16 defport);
+
 public slots:
     void onAllMetersSlot(UniversalMeterSettList allMeters);
 
@@ -171,10 +174,10 @@ public slots:
 
     void createDatabaseMedium();
 
-
+    //6.17
     void onAllStatHash(QStringList allstat);
 
-    void onPollCodeChangedStat(QVariantHash hash);
+
 
     void onTaskCanceled(quint8 pollCode, QString ni, qint64 dtFinished, quint8 rez);
 
@@ -188,7 +191,6 @@ public slots:
 
     void command4devSlotLocalSocket(quint16 command, QString args);//pollCode args
 
-    void sendCachedDataAboutRelays(const QStringList &niswithoutsttses);
 
 
     void mWrite2RemoteDev(quint16 command, QVariant dataVar);//from guihelper
@@ -218,12 +220,33 @@ public slots:
 
     void meterRelayStatus(QString ni, QDateTime dtLocal, quint8 mainstts, quint8 secondarystts); //zbyrator-bbb sends it directly, use it for canceled tasks
 
+
+
     //9.31, 9.61
 
 
     void onGetUCSupportedMetersInfo(QString senderName);
 
     void onGetUCWMeterSettings(QString senderName);
+
+
+    //6.60 View tasks of the meter
+    void onCommand2killMeterTasks(QList<quint32> lDecimalTaskIDs, QString senderName);
+
+    void vanishFinishedTasks();//
+
+
+    void onUCWMeterSettingsChanged(UCWMeterSettings settings);
+
+    void waterMeterSchedulerStts(QString ni, QDateTime dtLocal, QString stts, QVariantHash sheduler, QString src);
+
+
+
+    //5.5
+    void onCommandOpenDirectAccess(UCOpenDirectAccessCommand request, QString senderName);
+
+    void resetStopDirectAccess();
+
 
 
 
@@ -235,6 +258,9 @@ private:
         QStringList mainParams; //model version SN
         LastList2pages() {}
     } ;
+
+    QHash<QString,QString> waterNi2sn;
+
 
     void createUcDevTree();
 
@@ -266,11 +292,7 @@ private:
 
     void onElectricitylistOfMeters(const UniversalMeterSettList &activeMeters, const MyNi2model &switchedOffMeters, const bool &checkOffMeters);
 
-    QStringList addRelayRow(const UniversalMeterSett &m);
 
-    QStringList addDateTimeRow(const UniversalMeterSett &m);
-
-    QStringList addWaterProfileRow(const UniversalMeterSett &m);
 
 
     MyListStringList getRowsList(QMap<QString, QStringList> &mapPage, const QStringList &listNiNotchanged, const QMap<QString, QStringList> &mapPageL, const QStringList listNI, const int &rowsCounter);
@@ -291,11 +313,7 @@ private:
     } lastSaveMeterList;
 
 
-    QMap<QString, QStringList> relayPage;
-    QMap<QString, QStringList> dateTimePage;
-    QMap<QString, QStringList> waterSchedulerPage;
 
-    QStringList liststat;
 
 //    QVariantHash lastWaterSleepProfile;
 //    QMap<QString, QString> mapProfLine2profName; do not use it
@@ -307,13 +325,7 @@ private:
 
     bool pbWriteDis;
 
-    struct LastRelayState
-    {
-        QVariantHash lastMeterRelay;
-        QStringList meternis;
-        bool hasRequestFromMeterList;
-        LastRelayState() : hasRequestFromMeterList(false) {}
-    } lrelay;
+
 };
 
 #endif // ZBYRMETERLISTMEDIUM_H

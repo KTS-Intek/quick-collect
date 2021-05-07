@@ -326,7 +326,7 @@ void QcMainWindow::createMeterManager()
     connect(metersListMedium, &ZbyrMeterListMedium::reloadSavedSleepProfiles, zbyrator, &MeterManager::reloadSavedSleepProfiles      );
     connect(metersListMedium, &ZbyrMeterListMedium::reloadSettings, zbyrator, &MeterManager::reloadSettings);
 
-    connect(metersListMedium, SIGNAL(showMess(QString)), this, SLOT(showMess(QString)) );
+    connect(metersListMedium, SIGNAL(showMessage(QString)), this, SLOT(showMessage(QString)) );
 
     connect(zbyrator, SIGNAL(checkThisMeterInfo(UniversalMeterSett)), metersListMedium, SIGNAL(onReloadAllMeters2zbyrator()) );
 
@@ -342,7 +342,7 @@ void QcMainWindow::createMeterManager()
     connect(zbyrator, &MeterManager::onUconStartPoll            , metersListMedium, &ZbyrMeterListMedium::onUconStartPoll           );
     connect(zbyrator, &MeterManager::onReadWriteOperation       , metersListMedium, &ZbyrMeterListMedium::onReadWriteOperation      );
 
-    connect(zbyrator, &MeterManager::onStatisticChanged         , metersListMedium, &ZbyrMeterListMedium::onStatisticChanged        );
+//    connect(zbyrator, &MeterManager::onStatisticChanged         , metersListMedium, &ZbyrMeterListMedium::onStatisticChanged        ); do not use it, everything must work without it
     connect(zbyrator, &MeterManager::onAllStatHash              , metersListMedium, &ZbyrMeterListMedium::onAllStatHash             );
     connect(zbyrator, &MeterManager::onTaskTableChanged         , metersListMedium, &ZbyrMeterListMedium::onTaskTableChanged        );
     connect(zbyrator, &MeterManager::onTaskCanceled             , metersListMedium, &ZbyrMeterListMedium::onTaskCanceled            );
@@ -364,6 +364,8 @@ void QcMainWindow::createMeterManager()
 
     connect(zbyrator, &MeterManager::requestToSwitchIgnoreCycles, metersListMedium, &ZbyrMeterListMedium::requestToSwitchIgnoreCycles);
 
+
+    connect(zbyrator, SIGNAL(onConnectionStateChanged(bool)), metersListMedium, SIGNAL(onTaskTableChanged()));
 
     connect(guiHelper, SIGNAL(mWrite2RemoteDev(quint16,QVariant,QWidget*)), metersListMedium, SLOT(mWrite2RemoteDev(quint16,QVariant)));
 

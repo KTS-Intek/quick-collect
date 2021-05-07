@@ -1,31 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>RelayWdgt</class>
- <widget class="QWidget" name="RelayWdgt">
+ <class>RelayButtonsWdgt</class>
+ <widget class="QWidget" name="RelayButtonsWdgt">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>966</width>
-    <height>719</height>
+    <width>849</width>
+    <height>54</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
-   <property name="leftMargin">
-    <number>0</number>
-   </property>
-   <property name="topMargin">
-    <number>0</number>
-   </property>
-   <property name="rightMargin">
-    <number>0</number>
-   </property>
-   <property name="bottomMargin">
-    <number>0</number>
-   </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QWidget" name="widget" native="true">
      <property name="sizePolicy">
@@ -75,7 +63,7 @@
             <string>Read</string>
            </property>
            <property name="icon">
-            <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
+            <iconset resource="../../../../Matilda-units/gui/image-and-font/res.qrc">
              <normaloff>:/katynko/svg3/relay-load-unknown.svg</normaloff>:/katynko/svg3/relay-load-unknown.svg</iconset>
            </property>
           </widget>
@@ -108,7 +96,7 @@
             <string>Main Load off</string>
            </property>
            <property name="icon">
-            <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
+            <iconset resource="../../../../Matilda-units/gui/image-and-font/res.qrc">
              <normaloff>:/katynko/svg3/relay-load-off.svg</normaloff>:/katynko/svg3/relay-load-off.svg</iconset>
            </property>
           </widget>
@@ -125,7 +113,7 @@
             <string>Main Load on</string>
            </property>
            <property name="icon">
-            <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
+            <iconset resource="../../../../Matilda-units/gui/image-and-font/res.qrc">
              <normaloff>:/katynko/svg3/relay-load-on.svg</normaloff>:/katynko/svg3/relay-load-on.svg</iconset>
            </property>
           </widget>
@@ -158,7 +146,7 @@
             <string>Second Load off</string>
            </property>
            <property name="icon">
-            <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
+            <iconset resource="../../../../Matilda-units/gui/image-and-font/res.qrc">
              <normaloff>:/katynko/svg3/relay-load-off.svg</normaloff>:/katynko/svg3/relay-load-off.svg</iconset>
            </property>
           </widget>
@@ -175,7 +163,7 @@
             <string>Second Load on</string>
            </property>
            <property name="icon">
-            <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
+            <iconset resource="../../../../Matilda-units/gui/image-and-font/res.qrc">
              <normaloff>:/katynko/svg3/relay-load-on.svg</normaloff>:/katynko/svg3/relay-load-on.svg</iconset>
            </property>
           </widget>
@@ -202,180 +190,10 @@
      </layout>
     </widget>
    </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_61">
-     <property name="leftMargin">
-      <number>9</number>
-     </property>
-     <property name="topMargin">
-      <number>0</number>
-     </property>
-     <property name="rightMargin">
-      <number>9</number>
-     </property>
-     <item>
-      <widget class="QToolButton" name="tbShowList">
-       <property name="text">
-        <string>...</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
-         <normaloff>:/katynko/svg2/lc_dbtableedit.svg</normaloff>:/katynko/svg2/lc_dbtableedit.svg</iconset>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-       <property name="checked">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="tbShowMap">
-       <property name="text">
-        <string>...</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
-         <normaloff>:/katynko/svg2/lc_browseview.svg</normaloff>:/katynko/svg2/lc_browseview.svg</iconset>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="Line" name="line">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="tbFilter">
-       <property name="text">
-        <string>...</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
-         <normaloff>:/katynko/svg/view-filter.svg</normaloff>:/katynko/svg/view-filter.svg</iconset>
-       </property>
-       <property name="checkable">
-        <bool>false</bool>
-       </property>
-       <property name="autoRaise">
-        <bool>false</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="cbFilterMode">
-       <property name="currentIndex">
-        <number>0</number>
-       </property>
-       <property name="sizeAdjustPolicy">
-        <enum>QComboBox::AdjustToContents</enum>
-       </property>
-       <item>
-        <property name="text">
-         <string>RegExp</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Whole word</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="leFilter">
-       <property name="placeholderText">
-        <string>Filter</string>
-       </property>
-       <property name="clearButtonEnabled">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <widget class="QStackedWidget" name="stackedWidget">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="currentIndex">
-      <number>0</number>
-     </property>
-     <widget class="QWidget" name="page">
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
-       <item>
-        <widget class="QTableView" name="tvTable">
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="editTriggers">
-          <set>QAbstractItemView::NoEditTriggers</set>
-         </property>
-         <property name="alternatingRowColors">
-          <bool>true</bool>
-         </property>
-         <property name="selectionBehavior">
-          <enum>QAbstractItemView::SelectRows</enum>
-         </property>
-         <property name="sortingEnabled">
-          <bool>true</bool>
-         </property>
-         <property name="cornerButtonEnabled">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="page_2">
-      <layout class="QVBoxLayout" name="verticalLayout_3">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
-       <item>
-        <layout class="QVBoxLayout" name="vlQmlMap"/>
-       </item>
-      </layout>
-     </widget>
-    </widget>
-   </item>
   </layout>
  </widget>
  <resources>
-  <include location="../../../Matilda-units/gui/image-and-font/res.qrc"/>
+  <include location="../../../../Matilda-units/gui/image-and-font/res.qrc"/>
  </resources>
  <connections/>
 </ui>

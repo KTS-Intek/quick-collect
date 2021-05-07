@@ -108,7 +108,7 @@ void UcEmulator::createClassManager()
 //    getPbLogOut()->hide();
 
 
-//    connect(manager, SIGNAL(showMess(QString)), this, SLOT(onCOMMAND2GUIreadySlot()));
+//    connect(manager, SIGNAL(showMessage(QString)), this, SLOT(onCOMMAND2GUIreadySlot()));
 
 
 //    connect(this, &UcEmulator::data2matildaExt, this, &UcEmulator::data2matildaExtSlot);
@@ -119,7 +119,7 @@ void UcEmulator::createClassManager()
 
 //    clientdecoder = new MatildaClient(enableTestFeatures, true, this);//const bool &enableTestFeatures, const bool &ignoreProtocolVersion, QObject *parent = 0);
 ////    clientdecoder->onThreadStarted();
-//    connect(clientdecoder, SIGNAL(showMess(QString)), manager, SIGNAL(showMess(QString)));
+//    connect(clientdecoder, SIGNAL(showMessage(QString)), manager, SIGNAL(showMessage(QString)));
 //    connect(clientdecoder, &MatildaClient::uploadProgress, manager, &ClassManagerProcessor::uploadProgress);
 
 //    connect(gHelper, &GuiHelper::setThisSaveFileName, clientdecoder, &MatildaClient::setThisSaveFileName);
@@ -365,7 +365,7 @@ void UcEmulator::createDecoder()
 void UcEmulator::makeAuthorization()
 {
 //    decoder->authorizeF()
-//    disconnect(manager, SIGNAL(showMess(QString)), gHelper, SLOT(appendShowMessSlot(QString)));
+//    disconnect(manager, SIGNAL(showMessage(QString)), gHelper, SLOT(appendShowMessSlot(QString)));
 //    disconnect(manager, SIGNAL(showMessCritical(QString)), gHelper, SLOT(showMessSlot(QString)));
 
 //    decoder->lastObjSett.tmpStamp = "localhost";
@@ -399,7 +399,7 @@ void UcEmulator::makeAuthorization()
 
 //    qDebug() << "access level " << decoder->accessLevel;
 
-//    connect(manager, SIGNAL(showMess(QString)), gHelper, SLOT(appendShowMessSlot(QString)));
+//    connect(manager, SIGNAL(showMessage(QString)), gHelper, SLOT(appendShowMessSlot(QString)));
 //    connect(manager, SIGNAL(showMessCritical(QString)), gHelper, SLOT(showMessSlot(QString)));
 }
 

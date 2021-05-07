@@ -1,37 +1,48 @@
 #ifndef METERSDATETIME_H
 #define METERSDATETIME_H
 
-#include "gui-src/referencewidgetclass.h"
+///[!] widgets-shared
+#include "gui-src/wdgt/referencewidgetclassgui.h"
 
-namespace Ui {
-class MetersDateTime;
-}
 
-class MetersDateTime : public ReferenceWidgetClass
+///[!] zbyrator-src
+#include "templates/metersdatetimebuttonswdgt.h"
+
+
+class MetersDateTime : public ReferenceWidgetClassGui
 {
     Q_OBJECT
 
 public:
     explicit MetersDateTime(GuiHelper *gHelper, QWidget *parent = 0);
-    ~MetersDateTime();
 
-    QVariant getPageSett4read(bool &ok, QString &mess);
+
+
+    void replaceHeaderRoles4map(QStringList &heaaderroles, int &colKey, int &colPos);
+
+    void updateMapGroupingSettings();
+
+
+    QString updatePageContent(QString &errorStr);
+
+
+
+    MTableFullHouse fromUCPollDeviceSettingsList(const QList<UCPollDeviceSettings> &settings);
+
+
+    QStringList getHeader();
+
+
+
+
+    QStringList getVisibleNIs();
+
+    QStringList getSelectedNIs();
 
 signals:
-    ///map 4 exchange stat
-    void setTableDataExt(const MPrintTableOut &table, const QStringList &header, const int &keycol);
 
-    void setModelHeaderDataRoles(QString columnroles);// list joined with '\n'
-
-    void showThisDeviceKeyValue(QString keyvalue);
-
-    void setDefaultDataFilterSettings(QVariantMap maponeprofile, QString profilename);
-
-
-    void showMapEs(QString lastLang);
-
-
-    void onReloadAllMeters();
+    void updateRelayStatusTmr();
+    void stopTmrRelyaStatusTmr();
 
 
     void command4dev(quint16 command, QVariantMap mapArgs);//pollCode args
@@ -39,7 +50,6 @@ signals:
     void setLastPageId(QString name);
     void lockButtons(bool disable);
 
-    void lockActions(bool disable);
 
 
 public slots:
@@ -47,19 +57,22 @@ public slots:
 
 //    void setPageSett(const MyListStringList &listRows, const QVariantMap &col2data, const QStringList &headerH, const QStringList &header, const bool &hasHeader);
 
-    void onModelChanged();
+
 
     void meterDateTimeDstStatus(QString ni, QDateTime dtLocal, QString stts);
 
 
-    void showThisDev(QString ni);
-    void showContextMenu4thisDev(QString ni);
-    void showThisDevInSource(QString ni);
+    void updateDateTimeDst();
 
-    void onWdgtLock(bool disable);
-    void onButtonLock(bool disable);
 
-    void sendActLock(const bool &isWdgtDisabled, const bool &isButtonDisabled);
+    void onStartOperation(bool selectedOnly, quint8 operation);
+
+
+
+    void onUCEMeterSettingsChanged(UCEMeterSettings settings);
+
+    void onUCWMeterSettingsChanged(UCWMeterSettings settings);
+
 
 private slots:
 
@@ -67,31 +80,44 @@ private slots:
 
 
 
-    void on_tbShowList_clicked();
-
-    void on_tbShowMap_clicked();
 
 
-    void on_tvTable_customContextMenuRequested(const QPoint &pos);
+
+    void onTvTableCustomContextMenuRequested(const QPoint &pos);
 
     void onPbReadAll_clicked();
 
-    void on_pbCorrectionAll_clicked();
 
-    void on_pbRead_clicked();
-
-    void on_pbWrite_clicked();
 
 private:
-    Ui::MetersDateTime *ui;
+    void createTopWidget();
 
     void startOperation(const QStringList &listni, const quint8 &operation);
 
     QList<QAction*> getDateTimeActions();
 
+    struct LastMetersDateTimeDst
+    {
+        qint64 msecpc;
+        QString dtmeterstr;
+        QString dstmeter;
 
-    bool isMapReady;
+        LastMetersDateTimeDst() {}
+    };
+
+    struct LastDateDstUpdate
+    {
+        QHash<QString, LastMetersDateTimeDst > dttable;
+        QStringList checkednis;
+        LastDateDstUpdate() {}
+    } lDateTimeDst;
+
+
+
+
     QString lastDateTimeMask;
+
+    MetersDateTimeButtonsWdgt  *buttonsWidget;
 };
 
 #endif // METERSDATETIME_H

@@ -227,7 +227,7 @@ void DatabaseSettings::createTableDropper()
     connect(d, SIGNAL(operationDone()), this, SLOT(onDataDeletingEnd()));
 
     connect(d, &TableDropper::sendCurrentStatus, this, &DatabaseSettings::sendCurrentStatus);
-    connect(d, &TableDropper::showMess, this, &DatabaseSettings::showMessDropper);
+    connect(d, &TableDropper::showMessage, this, &DatabaseSettings::showMessDropper);
     connect(d, &TableDropper::onTableCountingDone, this, &DatabaseSettings::onTableCountingDone);
     connect(d, &TableDropper::onTableDeletingDone, this, &DatabaseSettings::onTableDeletingDone);
 

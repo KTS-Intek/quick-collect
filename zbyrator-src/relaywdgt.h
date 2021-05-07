@@ -3,39 +3,49 @@
 
 
 ///[!] widgets-shared
-#include "gui-src/referencewidgetclass.h"
+#include "gui-src/wdgt/referencewidgetclassgui.h"
+
+///[!] quick-collect
+#include "zbyrator-src/templates/relaybuttonswdgt.h"
 
 
-namespace Ui {
-class RelayWdgt;
-}
+///[!] widgets-meters
+#include "dataconcetrator-pgs/emeterlistwdgt.h"
 
-class RelayWdgt : public ReferenceWidgetClass
+
+class RelayWdgt : public ReferenceWidgetClassGui
 {
     Q_OBJECT
 
 public:
     explicit RelayWdgt(GuiHelper *gHelper, QWidget *parent = 0);
-    ~RelayWdgt();
 
-    QVariant getPageSett4read(bool &ok, QString &mess);
+    void replaceHeaderRoles4map(QStringList &heaaderroles, int &colKey, int &colPos);
+
+    void updateMapGroupingSettings();
+
+
+    QString updatePageContent(QString &errorStr);
+
+
+    MTableFullHouse fromUCEMeterSettings(const UCEMeterSettings &settings);
+
+
+    QStringList getHeader();
+
+
 
     QStringList getAvRelayStatuses();
 
+    QStringList getSelectedNIs();
+    QStringList getVisibleNIs();
+
 signals:
-    ///map 4 exchange stat
 
-    void setTableDataExt(const MPrintTableOut &table, const QStringList &header, const int &keycol);
+    void updateRelayStatusTmr();
+    void stopTmrRelyaStatusTmr();
 
-    void setModelHeaderDataRoles(QString columnroles);// list joined with '\n'
 
-    void showThisDeviceKeyValue(QString keyvalue);
-
-    void setDefaultDataFilterSettings(QVariantMap maponeprofile, QString profilename);
-
-    void showMapEs(QString lastLang);
-
-    void onReloadAllMeters();
 
     void command4dev(quint16 command, QVariantMap mapArgs);//pollCode args
 
@@ -43,70 +53,65 @@ signals:
     void setLastPageId(QString name);
 
     void lockButtons(bool disable);
-    void lockActions(bool disable);
 
 
 public slots:
     void clearPage();
 
+    void onUCEMeterSettingsChanged(UCEMeterSettings settings);
+
+
+    void onUCEMeterRelayStateChanged(UCEMeterRelayState info);
+
+    void getLastRelayStateSmart(const UCDataState &validator);
+    void getLastRelayState();
+    void updateRelayStatus();
+
 
 //    void setPageSett(const MyListStringList &listRows, const QVariantMap &col2data, const QStringList &headerH, const QStringList &header, const bool &hasHeader);
 
 
-    void onModelChanged();
+
 
 //    void meterRelayStatus(QString ni, QDateTime dtLocal, QString stts, QString stts2, QString icostts, QString icostts2);
     void meterRelayStatus(QString ni, QDateTime dtLocal, quint8 mainstts, quint8 secondarystts);
 
-    void showThisDev(QString ni);
-    void showContextMenu4thisDev(QString ni);
-    void showThisDevInSource(QString ni);
 
 
-    void onWdgtLock(bool disable);
-    void onButtonLock(bool disable);
 
-    void sendActLock(const bool &isWdgtDisabled, const bool &isButtonDisabled);
+//    void onButtonLock(bool disable); what is that ?
+
+
+    void doRelayOperationSelected(const quint8 &operation);
 
 private slots:
 
     void initPage();
 
 
-
-    void on_tbShowList_clicked();
-
-    void on_tbShowMap_clicked();
-
-    void on_tvTable_customContextMenuRequested(const QPoint &pos);
+    void onTvTableCustomContextMenuRequested(const QPoint &pos);
 
 
     void onPbReadAll_clicked();
 
-    void on_pbRead_clicked();
 
-    void on_pbLoadOn_clicked();
-
-    void on_pbLoadOff_clicked();
-
-    void on_pbLoadOff_2_clicked();
-
-    void on_pbLoadOn_2_clicked();
 
 private:
-    Ui::RelayWdgt *ui;
 
-    void doRelayOperationSelected(const quint8 &operation);
+    void createTopWidget();
 
     void doRelayOperation(const QStringList &listni, const quint8 &operation);
 
 
     QList<QAction*> getRelayActions();
 
+//    //this is from EMeterListWdgt
+    EMeterListWdgt::LastRelayUpdate lRelayUpdate;
 
-    bool isMapReady;
+
     QString lastDateTimeMask;
 
+    RelayButtonsWdgt *buttonsWidget;
 };
 
 #endif // RELAYWDGT_H
