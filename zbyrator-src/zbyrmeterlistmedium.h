@@ -33,6 +33,8 @@ public:
 
     UCDeviceTreeWatcher *ucDeviceTreeW;
 
+    UniversalMeterSettList lastAllMeters;
+
     UCDataState getTemplateValidator();
 
     void importGroups2metersFile();
@@ -74,8 +76,7 @@ signals:
 
 
 
-    void onAddMeters(quint8 deviceType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters, bool checkOffMeters);//obsolete
-    void setVirtualMetersSett(NI2vmGSNsett vmsett);
+//    void onAddMeters(quint8 deviceType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters, bool checkOffMeters);//obsolete
 
 
 
@@ -84,7 +85,7 @@ signals:
     void updateHashSn2meter(QHash<QString,QString> hashMeterSn2memo, QHash<QString,QString> hashMeterSn2ni, QHash<QString, ClassManagerMeterInfo::MeterNi2info> hashMeterNi2info, QStringList listnis, quint8 deviceType);
 
 
-    void onAllMeters(UniversalMeterSettList allMeters);
+    void onAllMeters(UniversalMeterSettList allMeters);//it is used by start poll preparation tool
 
     void onStatisticChanged(QString pollCodeStr, QStringList oneRow);
 
@@ -109,19 +110,18 @@ signals:
 
 
 //Database and meterjournal
-    void data2dbMedium(quint16 command, QVariant varData);
+//    void data2dbMedium(quint16 command, QVariant varData);
     void stopReadDatabase();
 
-    void appendDataDatabase(QVariantHash hash);
+//    void appendDataDatabase(QVariantHash hash);
 
-    void appendDataDatabaseMJ(QVariantHash hash);
+//    void appendDataDatabaseMJ(QVariantHash hash);
     void setPbReadEnableDisable(bool disable);
     void setLblWaitTxtDatabase(QString s);
-    void setLblWaitTxtDatabaseMj(QString s);
+//    void setLblWaitTxtDatabaseMj(QString s);
 
 
-    void setDateMask(QString dateMask);
-    void setDotPos(int dotPos);
+
 
 
     void reloadSettings();
@@ -133,10 +133,6 @@ signals:
     void onAboutZigBee(QVariantHash hash);
 
     void relayStatusChanged(QVariantMap map);//to ZbyratorSocket
-
-//    void setWaterPowerCenters(const QVariantList &meters); do not use it
-//    void setElectricityPowerCenters(const QVariantList &meters); do not use it
-
 
     void pbStopAnimateClick();
     void onExternalCommandProcessed();
@@ -155,6 +151,14 @@ signals:
     void startStopDirectAccessService(bool start);
 
     void setUCDirectAccessServiceParams(qint8 mode, quint16 defport);
+
+
+    void onPollStarted(UCSelectFromDB select, QString yourSenderName, QStringList listHeaderDb, quint8 deviceType);
+
+
+//to the poll tabs
+    void onUCLastReceivedDeviceRecordsQuickCollectChanged(UCLastReceivedDeviceRecords records);//connect it to GUI
+
 
 public slots:
     void onAllMetersSlot(UniversalMeterSettList allMeters);
@@ -247,7 +251,10 @@ public slots:
 
     void resetStopDirectAccess();
 
+    void setVirtualMetersSett(NI2vmGSNsett vmsett);
 
+
+    void sendAllMeters();
 
 
 

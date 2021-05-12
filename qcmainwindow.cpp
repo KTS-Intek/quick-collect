@@ -347,7 +347,6 @@ void QcMainWindow::createMeterManager()
     connect(zbyrator, &MeterManager::onTaskTableChanged         , metersListMedium, &ZbyrMeterListMedium::onTaskTableChanged        );
     connect(zbyrator, &MeterManager::onTaskCanceled             , metersListMedium, &ZbyrMeterListMedium::onTaskCanceled            );
     connect(zbyrator, &MeterManager::meterRelayStatus           , metersListMedium, &ZbyrMeterListMedium::meterRelayStatus          );
-    connect(zbyrator, &MeterManager::meterRelayStatus           , metersListMedium, &ZbyrMeterListMedium::add2fileMeterRelayStatus  );
 
     connect(zbyrator, &MeterManager::meterDateTimeDstStatus     , metersListMedium, &ZbyrMeterListMedium::meterDateTimeDstStatus    );
     connect(zbyrator, &MeterManager::waterMeterSchedulerStts    , metersListMedium, &ZbyrMeterListMedium::waterMeterSchedulerStts   );
@@ -383,7 +382,7 @@ void QcMainWindow::createMeterListManager()
 
     connect(metersListMedium, &ZbyrMeterListMedium::setPbReadEnableDisable, guiHelper, &GuiHelper::setPbReadEnableDisableSlot);
 //    connect(metersListMedium, &ZbyrMeterListMedium::updateHashSn2meter, guiHelper, &GuiHelper::updateHashSn2meter);
-    connect(metersListMedium, &ZbyrMeterListMedium::data2dbMedium      , guiHelper, &GuiHelper::updateSettDateMaskAndDotPos);
+//    connect(metersListMedium, &ZbyrMeterListMedium::data2dbMedium      , guiHelper, &GuiHelper::updateSettDateMaskAndDotPos);
 
 //    connect(metersListMedium, &ZbyrMeterListMedium::setElectricityPowerCenters, guiHelper, &GuiHelper::setElectricityPowerCenters);
 //    connect(metersListMedium, &ZbyrMeterListMedium::setWaterPowerCenters, guiHelper, &GuiHelper::setWaterPowerCenters);
@@ -397,8 +396,7 @@ void QcMainWindow::createMeterListManager()
     connect(guiHelper, &GuiHelper::setPbWriteEnableDisable, metersListMedium, &ZbyrMeterListMedium::setPbWriteDis);
     metersListMedium->setPbWriteDis(guiHelper->managerEnDisBttn.pbWriteDis);
 
-    connect(guiHelper, &GuiHelper::setDateMask, metersListMedium, &ZbyrMeterListMedium::setDateMask);
-    connect(guiHelper, &GuiHelper::setDotPos, metersListMedium, &ZbyrMeterListMedium::setDotPos);
+
 
 
     connect(metersListMedium, SIGNAL(setPollSaveSettings(quint16,quint16,bool,bool,bool,qint32,qint32,qint32,bool)), metersListMedium, SIGNAL(reloadIfaceChannels()));
@@ -556,19 +554,19 @@ MatildaConfWidget *QcMainWindow::createPageLog(GuiHelper *gHelper, QWidget *pare
     w->showClearButton(true);
     return w;
 }
-
+//---------------------------------------------------------------------
 MatildaConfWidget *QcMainWindow::createDatabasePage(GuiHelper *gHelper, QWidget *parent)
 {
     DatabaseWdgt4QuickCollect *w = new DatabaseWdgt4QuickCollect(gHelper,  parent);
 
 
-    connect(w, SIGNAL(data2dbMedium(quint16,QVariant)), metersListMedium, SIGNAL(data2dbMedium(quint16,QVariant)) );
+    connect(w, SIGNAL(data2dbMedium(quint16,QVariant)), metersListMedium, SIGNAL(data2dbMedium(quint16,QVariant)) );// do not uset it
     connect(w, &DatabaseWdgt4QuickCollect::stopDbReading, metersListMedium, &ZbyrMeterListMedium::stopReadDatabase);
 
     connect(metersListMedium, SIGNAL(setLblWaitTxtDatabase(QString)), w, SIGNAL(setLblWaitTxtDatabase(QString)));
-    connect(metersListMedium, SIGNAL(appendDataDatabase(QVariantHash)), w, SLOT(setPageSett(QVariantHash)));
+    connect(metersListMedium, SIGNAL(appendDataDatabase(QVariantHash)), w, SLOT(setPageSett(QVariantHash))); //do not use it
 
-    connect(w, &DatabaseWdgt4QuickCollect::pageEndInit, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters2zbyrator);
+    connect(w, &DatabaseWdgt4QuickCollect::pageEndInit, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters2zbyrator);// do not use it
 //    connect(w, &DatabaseWdgt4QuickCollect::onTry2readDb, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters2zbyrator);
 
     connect(this, &QcMainWindow::onRequest2GetDataThese, w, &DatabaseWdgt4QuickCollect::onRequest2pollThese);

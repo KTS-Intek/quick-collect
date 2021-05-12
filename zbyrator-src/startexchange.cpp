@@ -68,11 +68,11 @@ void StartExchange::initPage()
     guiHelper->parentWidget = gHelper->parentWidget;
     connect(guiHelper, SIGNAL(addWdgt2stackWdgt(QWidget*,int,bool,QString,QString)), gHelper, SIGNAL(addWdgt2stackWdgt(QWidget*,int,bool,QString,QString)) );
     connect(guiHelper, SIGNAL(showMessage(QString)), gHelper, SIGNAL(showMessage(QString)));
-    connect(guiHelper, SIGNAL(showMessCritical(QString)), gHelper, SIGNAL(showMessCritical(QString)) );
+    connect(guiHelper, SIGNAL(showMessageCritical(QString)), gHelper, SIGNAL(showMessageCritical(QString)) );
     connect(ui->swDeviceOperations, SIGNAL(currentChanged(int)), this, SLOT(onSwDevicesCurrIndxChanged()) );
     ui->wdgtReadButton->setEnabled(false);
 
-    connect(guiHelper, SIGNAL(showMessExt(QString,int,QVariant)), gHelper, SIGNAL(showMessExt(QString,int,QVariant)));
+    connect(guiHelper, SIGNAL(showMessageExt(QString,int,QVariant)), gHelper, SIGNAL(showMessageExt(QString,int,QVariant)));
 
     //check the next: 'guiHelper or gHelper is here?'
     connect(gHelper, SIGNAL(setPbWriteEnableDisable(bool)), this, SLOT(checkPbReadEnabled()));// ui->pbRead, SLOT(setDisabled(bool)));
@@ -642,9 +642,14 @@ void StartExchange::on_pbRead_clicked()
     if(w){
 //        ui->pbRead->setEnabled(false);
         onCommandStarted();
-        bool ok;
-        QString mess;
+
+        QString message;
+        const QString wname = w->updatePageContent(message);
+        if(wname.isEmpty() && !message.isEmpty())
+            gHelper->showMessageSlot(message);
 //        w->getPageSett4read(ok, mess);
+
+
 
         QTimer::singleShot(555, this, SLOT(checkPbReadEnabled()));
     }
@@ -679,10 +684,11 @@ void StartExchange::onSwDevicesCurrIndxChanged()
     MatildaConfWidget *w = currentMatildaWidget();
 
     if(w){
-        const int readCommand = 0;// w->getReadCommand();
+            w->checkHasReadWriteButtons();
+//        const int readCommand = 0;// w->getReadCommand();
 //        const int writeCommand = w->getWriteCommand();
 
-        ui->wdgtReadButton->setEnabled(readCommand > 0);
+        ui->wdgtReadButton->setEnabled(w->getHasReadButton());// readCommand > 0);
 
     }
 }

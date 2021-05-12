@@ -77,7 +77,16 @@ QStringList StartPagePollV2::getEnrgList4code(const quint8 &code)
             listEnrg.append(QString("T%1_%2").arg(i).arg(l.at(e)));
     }
 //    listEnrg.append("stts");
-    return listEnrg;
+
+
+    QStringList dbpreambule = QString("msec meter_sn meter_ni").split(" ");
+    for(int i = 0, imax = dbpreambule.size(); i < imax && !dbpreambule.isEmpty(); i++){
+        listEnrg.prepend(dbpreambule.takeLast());
+    }
+    listEnrg.append("stts");
+
+    //the keys sequence is important!!!
+    return listEnrg;//data base like keys, do not forget to add msec, ni and sn
 }
 
 
@@ -100,11 +109,13 @@ void StartPagePollV2::createTab(const StartPollTabSettExt &sett)
 
 
     DbDataForm *dbData = createTemplateDataForm(sett);
-    lTempPollSett.lastWdgtActive = lastWdgtAccssbltName;
-    emit onPollStarted(sett.select.pollCode, getEnrgList4code(sett.select.pollCode), gHelper->dateMask, gHelper->dotPos, true);// sett.allowDate2utc);
+    lTempPollSett.lastWdgtActive = lastWdgtAccssbltName ;
+    emit onPollStarted(sett.select, lastWdgtAccssbltName,  getEnrgList4code(sett.select.pollCode), sett.deviceType);// sett.allowDate2utc);
 
+    connect(metersListMedium, &ZbyrMeterListMedium::onUCLastReceivedDeviceRecordsQuickCollectChanged, dbData, &DbDataForm::onUCLastReceivedDeviceRecordsChangedLocal);
 
     //you must create some class that can process data from zbyrator to GUI
+    dbData->setStreamParameters4local(lastWdgtAccssbltName, sett.select.selectionTag);
 
 
     QTimer::singleShot(1, this, SIGNAL(killSelectMeters4poll()));
@@ -137,7 +148,9 @@ bool StartPagePollV2::createObjectsForPollAllMetersMode(const StartPollTabSettEx
 
     SelectMeters4poll *w = new SelectMeters4poll(signalizator, gHelper,  this);
     connect(this, SIGNAL(killSelectMeters4poll()), w, SLOT(deleteLater()) );
-    connect(w, SIGNAL(onReloadAllMeters()), this, SIGNAL(onReloadAllMeters()) );
+//    connect(w, SIGNAL(onReloadAllMeters()), this, SIGNAL(onReloadAllMeters()) );
+    connect(w, &SelectMeters4poll::onReloadAllMeters, metersListMedium, &ZbyrMeterListMedium::sendAllMeters);
+
     connect(w, SIGNAL(command4dev(quint16,QVariantMap)), this, SLOT(command4devSlot(quint16,QVariantMap)));
     connect(this, SIGNAL(command4dev(quint16,QString)), w, SLOT(deleteLater()) );
     connect(this, SIGNAL(command4dev(quint16,QVariantMap)), w, SLOT(deleteLater()) );
@@ -145,18 +158,20 @@ bool StartPagePollV2::createObjectsForPollAllMetersMode(const StartPollTabSettEx
     connect(metersListMedium, SIGNAL(onAllMeters(UniversalMeterSettList)), w, SIGNAL(onAllMeters(UniversalMeterSettList)) );
 
     const QDateTime dtFrom = QDateTime::fromMSecsSinceEpoch(selsett.select.timeRange.msecFrom);// selsett.hashSelSett.value("FromDT").toDateTime();
-    const QDateTime dtTo = QDateTime::fromMSecsSinceEpoch(selsett.select.timeRange.msecTo);// selsett.hashSelSett.value("ToDT").toDateTime();
+    const QDateTime dtTo = (selsett.select.timeRange.msecTo <= selsett.select.timeRange.msecFrom)
+            ? QDateTime() :  QDateTime::fromMSecsSinceEpoch(selsett.select.timeRange.msecTo);// selsett.hashSelSett.value("ToDT").toDateTime();
     const quint8 pollCode = selsett.select.pollCode;
 
 
     switch(lastSelsett.deviceType){
 
     case UC_METER_ELECTRICITY:{
-//        w->setPollSettElectric(dtFrom, dtTo, pollCode, getIgnoreRetries());
+
+        w->setPollSettElectric(dtFrom, dtTo, pollCode, getIgnoreRetries());
         break;}
 
     case UC_METER_WATER      :{
-//        w->setPollSettWater(dtFrom, dtTo, pollCode, lastWtrSett.sendSleepCommand, lastWtrSett.secs, lastWtrSett.checkProfile, getIgnoreRetries());
+        w->setPollSettWater(dtFrom, dtTo, pollCode, lastWtrSett.sendSleepCommand, lastWtrSett.secs, lastWtrSett.checkProfile, getIgnoreRetries());
         break;}
 
     default: qDebug() << "can't set pollSett StartPagePoll lastSelsett.deviceType=" << lastSelsett.deviceType;
@@ -165,6 +180,16 @@ bool StartPagePollV2::createObjectsForPollAllMetersMode(const StartPollTabSettEx
     emit addWdgt2stackWdgt(w, WDGT_TYPE_ZBYR_SELECT_METERS4POLL, true, tr("Select"), ":/katynko/svg/dialog-ok-apply.svg");
 
     return true;
+}
+
+bool StartPagePollV2::getIgnoreRetries()
+{
+    return myLastCbxState.ignoreRetries;
+}
+//---------------------------------------------------------------------------
+void StartPagePollV2::checkHasReadWriteButtons()
+{
+    setHasReadButton(true);
 }
 
 //---------------------------------------------------------------------------
@@ -229,6 +254,14 @@ void StartPagePollV2::addQuickPollPanel()
     connect(startTab, &SelectFromDatabaseTemplateStartTab::setLblWaitTxtDatabase, w, &QuickCollectStartPollParamsWdgt::setLblWaitTxtDatabase);
     connect(w, &QuickCollectStartPollParamsWdgt::onCbxIgnoreRetr, this ,&StartPagePollV2::onCbxIgnoreRetr);
     connect(w, &QuickCollectStartPollParamsWdgt::onCbxOnlyGlobalConnection, this, &StartPagePollV2::onCbxOnlyGlobalConnection);
+
+    connect(w, &QuickCollectStartPollParamsWdgt::onCbxIgnoreRetr, [=](bool checked){
+       myLastCbxState.ignoreRetries = checked;
+    });
+
+    connect(w, &QuickCollectStartPollParamsWdgt::onCbxOnlyGlobalConnection, [=](bool checked){
+       myLastCbxState.useGlobalConnection = checked;
+    });
 
     connect(this, &StartPagePollV2::requestToSwitchIgnoreCycles, w, &QuickCollectStartPollParamsWdgt::requestToSwitchIgnoreCycles);
     QTimer::singleShot(3333, w, SLOT(sendYourCbxStates()));

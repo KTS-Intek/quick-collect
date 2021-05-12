@@ -137,6 +137,8 @@ void ZbyrMeterListMedium::onAllMetersSlot(UniversalMeterSettList allMeters)
     if(allMeters.isEmpty())
         return;
 
+    lastAllMeters = allMeters;
+
     UCEMeterSettings emeter;
     UCWMeterSettings wmeter;
 
@@ -167,9 +169,7 @@ void ZbyrMeterListMedium::onAllMetersSlot(UniversalMeterSettList allMeters)
 
 
 
-    const QList<quint8> lk = map2meters.keys();
-    for(int i = 0, imax = lk.size(); i < imax; i++)
-        emit onAddMeters(lk.at(i), map2meters.value(lk.at(i)), MyNi2model(), true);
+
 
     onElectricitylistOfMeters(allMeters, MyNi2model(), true);
 }
@@ -231,7 +231,7 @@ void ZbyrMeterListMedium::doReloadListOfMeters(quint8 deviceType)
 
 void ZbyrMeterListMedium::onAlistOfMeters(quint8 deviceType, UniversalMeterSettList activeMeters, MyNi2model switchedOffMeters)
 {
-    emit onAddMeters(deviceType, activeMeters, switchedOffMeters, false);
+//    emit onAddMeters(deviceType, activeMeters, switchedOffMeters, false);
     switch (deviceType) {
 
     case UC_METER_ELECTRICITY: onElectricitylistOfMeters(activeMeters, switchedOffMeters, false); break;
@@ -262,19 +262,25 @@ void ZbyrMeterListMedium::createDataCalculator()
     connect(t, SIGNAL(started()), c, SLOT(onThreadStarted()) );
 
 
-    connect(this, &ZbyrMeterListMedium::onAddMeters     , c, &ZbyratorDataCalculation::onAlistOfMeters  );
+//    connect(this, &ZbyrMeterListMedium::onAddMeters     , c, &ZbyratorDataCalculation::onAlistOfMeters  );
     connect(this, &ZbyrMeterListMedium::appendMeterData , c, &ZbyratorDataCalculation::appendMeterData  );
     connect(this, &ZbyrMeterListMedium::onPollStarted   , c, &ZbyratorDataCalculation::onPollStarted    );
     connect(this, &ZbyrMeterListMedium::onUconStartPoll , c, &ZbyratorDataCalculation::onUconStartPoll  );
 
     connect(this, &ZbyrMeterListMedium::onMeterPollCancelled, c, &ZbyratorDataCalculation::onMeterPollCancelled);
 
-    connect(c, &ZbyratorDataCalculation::appendData2model, this, &ZbyrMeterListMedium::appendData2model);
+//    connect(c, &ZbyratorDataCalculation::appendData2model, this, &ZbyrMeterListMedium::appendData2model);
 //    connect(c, &ZbyratorDataCalculation::setLblWaitTxt   , this, &ZbyrMeterListMedium::setLblWaitTxt);
-    connect(c, &ZbyratorDataCalculation::updateHashSn2meter, this, &ZbyrMeterListMedium::updateHashSn2meter);
+//    connect(c, &ZbyratorDataCalculation::updateHashSn2meter, this, &ZbyrMeterListMedium::updateHashSn2meter);
 
 
-    connect(this, &ZbyrMeterListMedium::setVirtualMetersSett, c, &ZbyratorDataCalculation::setVirtualMetersSett);
+    connect(c, &ZbyratorDataCalculation::onUCLastReceivedDeviceRecordsQuickCollectChanged, this, &ZbyrMeterListMedium::onUCLastReceivedDeviceRecordsQuickCollectChanged);
+    // ucDeviceTreeW, &UCDeviceTreeWatcher::setUCLastReceivedDeviceRecords);
+
+    connect(ucDeviceTreeW, &UCDeviceTreeWatcher::onUCEMeterSettingsChanged, c, &ZbyratorDataCalculation::onUCEMeterSettingsChanged);
+    connect(ucDeviceTreeW, &UCDeviceTreeWatcher::onUCWMeterSettingsChanged, c, &ZbyratorDataCalculation::onUCWMeterSettingsChanged);
+
+//    connect(this, &ZbyrMeterListMedium::setVirtualMetersSett, c, &ZbyratorDataCalculation::setVirtualMetersSett);
 
     t->start();
 
@@ -282,9 +288,16 @@ void ZbyrMeterListMedium::createDataCalculator()
 
 void ZbyrMeterListMedium::createDatabaseMedium()
 {
-    ZbyratorDatabaseMedium *m = new ZbyratorDatabaseMedium;
+    //data from data to GUI, UCEmulator
+    ZbyratorDatabaseMedium *m = new ZbyratorDatabaseMedium(ucDeviceTreeW);
+
+
+
     QThread *t = new QThread;
     m->moveToThread(t);
+    t->setObjectName("ZbyratorDatabaseMedium");
+
+
 
     connect(this, &ZbyrMeterListMedium::killAllObjects, m, &ZbyratorDatabaseMedium::kickOffObject);
 
@@ -293,26 +306,25 @@ void ZbyrMeterListMedium::createDatabaseMedium()
     connect(t, SIGNAL(finished()), t, SLOT(deleteLater()));
 
     connect(t, SIGNAL(started()), m, SLOT(onThreadStarted()) );
-    connect(this, &ZbyrMeterListMedium::onAddMeters     , m, &ZbyratorDatabaseMedium::onAlistOfMeters);
+//    connect(this, &ZbyrMeterListMedium::onAddMeters     , m, &ZbyratorDatabaseMedium::onAlistOfMeters);
 
 
-    connect(this, SIGNAL(data2dbMedium(quint16,QVariant)), m, SLOT(data2matilda4inCMD(quint16,QVariant)));
+//    connect(this, SIGNAL(data2dbMedium(quint16,QVariant)), m, SLOT(data2matilda4inCMD(quint16,QVariant)));//do not use it
     connect(this, SIGNAL(stopReadDatabase()), m, SLOT(stopOperationSlot()) );
 
-    connect(this, &ZbyrMeterListMedium::setDateMask, m, &ZbyratorDatabaseMedium::setDateMask);
-    connect(this, &ZbyrMeterListMedium::setDotPos, m, &ZbyratorDatabaseMedium::setDotPos);
 
     connect(m, SIGNAL(setPbReadEnableDisable(bool)), this, SIGNAL(setPbReadEnableDisable(bool)));
 
-    connect(m, SIGNAL(appendDataDatabase(QVariantHash)), this, SIGNAL(appendDataDatabase(QVariantHash)));
-    connect(m, SIGNAL(appendDataDatabaseMJ(QVariantHash)), this, SIGNAL(appendDataDatabaseMJ(QVariantHash)));
+//    connect(m, SIGNAL(appendDataDatabase(QVariantHash)), this, SIGNAL(appendDataDatabase(QVariantHash)));
+//    connect(m, SIGNAL(appendDataDatabaseMJ(QVariantHash)), this, SIGNAL(appendDataDatabaseMJ(QVariantHash)));
 
     connect(m, SIGNAL(setLblWaitTxtDatabase(QString)), this, SIGNAL(setLblWaitTxtDatabase(QString)));
-    connect(m, SIGNAL(setLblWaitTxtDatabaseMj(QString)), this, SIGNAL(setLblWaitTxtDatabaseMj(QString)));
 
-    connect(this, &ZbyrMeterListMedium::setVirtualMetersSett, m, &ZbyratorDatabaseMedium::setVirtualMetersSett);
+//    connect(this, &ZbyrMeterListMedium::setVirtualMetersSett, m, &ZbyratorDatabaseMedium::setVirtualMetersSett); that is not checked
 
-    t->start();
+
+    QTimer::singleShot(999, t, SLOT(start()));
+//    t->start();
 
 
 }
@@ -510,6 +522,7 @@ void ZbyrMeterListMedium::onGetUCEMeterRelayState(QString senderName)
 
 void ZbyrMeterListMedium::meterRelayStatus(QString ni, QDateTime dtLocal, quint8 mainstts, quint8 secondarystts)
 {
+    emit add2fileMeterRelayStatus(ni, dtLocal, mainstts, secondarystts);
     //this method is only for cancelled tasks
 //    if(dtLocal.isValid())
 //        return;//wait until the file is saved,
@@ -687,6 +700,57 @@ void ZbyrMeterListMedium::resetStopDirectAccess()
     }
     emit startStopDirectAccessService(false);
     ucDeviceTreeW->setDirectAccessChannelState(UCDA_CHANNEL_STATE_CLOSED);
+}
+
+//---------------------------------------------------------------------
+
+void ZbyrMeterListMedium::setVirtualMetersSett(NI2vmGSNsett vmsett)
+{
+    const QList<QString> lk = vmsett.keys();
+    UCEVirtualMetersSettings settings;
+
+    settings.validator = getTemplateValidator();
+
+    for(int i = 0, imax = lk.size(); i < imax; i++){
+        const QString ni = lk.at(i);
+        const ZVirtualMeters onemeter = vmsett.value(ni);
+
+
+        QList<QString> gsnl = onemeter.keys();
+        std::sort(gsnl.begin(), gsnl.end());
+
+
+        QVector<UCEOneVirtualMeter> onevml;
+
+        for(int j = 0, jmax = onevml.size(); j < jmax; j++){
+            const QString gsn = gsnl.at(j);
+            UCEOneVirtualMeter onem;
+            onem.gsn = gsn;
+            onem.memo = onemeter.value(gsn).memo;
+            onevml.append(onem);
+        }
+        settings.ni2vmeter.insert(ni, onevml);
+
+//        QString gsn;//<AAAA><BBBB><CCCC>
+//        QString memo;
+
+//        bool isValid;ZVirtualMeters
+//        bool isSinglePhase;
+//        //adresses
+//        qint32 aPhaseAddr;
+//        qint32 bPhaseAddr;
+//        qint32 cPhaseAddr;
+
+
+//        QString memo;
+    }
+
+    ucDeviceTreeW->setUCEVirtualMetersSettings(settings);
+}
+
+void ZbyrMeterListMedium::sendAllMeters()
+{
+    emit onAllMeters(lastAllMeters);
 }
 
 

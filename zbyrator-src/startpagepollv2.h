@@ -37,6 +37,7 @@ public:
 
     bool createObjectsForPollAllMetersMode(const StartPollTabSettExt &selsett, QString &mess);
 
+    bool getIgnoreRetries();
 
 signals:
     void onCbxIgnoreRetr(bool ischecked);
@@ -50,7 +51,7 @@ signals:
 
     void killSelectMeters4poll();
 
-    void onPollStarted(quint8 pollCode, QStringList listEnrg, QString dateMask, int dotPos, bool allowDate2utc);
+    void onPollStarted(UCSelectFromDB select, QString yourSenderName, QStringList listHeaderDb, quint8 deviceType);
 
     void addWdgt2stackWdgt(QWidget *w, const int &wdgtType, bool oneShot, QString actTxt, QString actIco);
 
@@ -62,6 +63,9 @@ signals:
     void command4dev(quint16 command, QVariantMap args);//pollCode args
 
 public slots:
+    void checkHasReadWriteButtons();
+
+
     void disconnectMeFromAppendData();
 
 
@@ -75,9 +79,18 @@ public slots:
     void onCurrentProcessingTabKilledSlot();
 
 
+
 private:
 
     void addQuickPollPanel();
+
+    struct LastCbxState
+    {
+        bool ignoreRetries;
+        bool useGlobalConnection;
+
+        LastCbxState() : ignoreRetries(false), useGlobalConnection(false) {}
+    } myLastCbxState;
 
 
 
