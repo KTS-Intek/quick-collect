@@ -110,6 +110,7 @@ private:
     MatildaConfWidget *createElectricityMeterListWdgt(GuiHelper *gHelper, QWidget *parent = 0);
 
     MatildaConfWidget *createWaterMeterListWdgt(GuiHelper *gHelper, QWidget *parent = 0);
+    MatildaConfWidget *createPulseMeterListWdgt(GuiHelper *gHelper, QWidget *parent = 0);
 
     MatildaConfWidget *createPageLog(GuiHelper *gHelper, QWidget *parent = 0);
 

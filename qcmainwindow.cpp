@@ -35,6 +35,8 @@
 ///[!] widgets-meters
 #include "dataconcetrator-pgs/emeterlistwdgt.h"
 #include "dataconcetrator-pgs/wmeterlistwdgt.h"
+#include "dataconcetrator-pgs/pmeterlistwdgt.h"
+
 #include "dataconcetrator-pgs/src/databasewdgt4quickcollect.h"
 #include "dataconcetrator-pgs/editenergywidget.h"
 
@@ -199,11 +201,12 @@ void QcMainWindow::createOneOfMainWdgt(const QString &tabData, const bool &andAc
     case 0: w = createStartExchangeWdgt(gHelper,  this);  break;
     case 1: w = createElectricityMeterListWdgt(    gHelper,  this); break;
     case 2: w = createWaterMeterListWdgt(    gHelper,  this); break;
+    case 3: w = createPulseMeterListWdgt(    gHelper,  this); break;
 
-    case 3: w = createDatabasePage(       gHelper,  this) ; readCommand = COMMAND_READ_DATABASE; break;  //    l.append( QString("Database") );
+    case 4: w = createDatabasePage(       gHelper,  this) ; readCommand = COMMAND_READ_DATABASE; break;  //    l.append( QString("Database") );
 //    case 4: w = createMeterLogsPage(   gHelper,  this) ; break; //    l.append( QString("Meter logs") );
 //    case 5: w = new KtsConnectWdgt(     gHelper,  this); break;
-    case 4: w = createPageLog(gHelper,  this)  ; break;   //    l.append( QString("State")                   );
+    case 5: w = createPageLog(gHelper,  this)  ; break;   //    l.append( QString("State")                   );
 
     }
 
@@ -543,6 +546,35 @@ MatildaConfWidget *QcMainWindow::createWaterMeterListWdgt(GuiHelper *gHelper, QW
 
     return w;
 
+}
+//---------------------------------------------------------------------
+
+
+MatildaConfWidget *QcMainWindow::createPulseMeterListWdgt(GuiHelper *gHelper, QWidget *parent)
+{
+
+    PMeterListWdgt *w = new PMeterListWdgt(gHelper,  parent);
+
+
+    connect(w, &PMeterListWdgt::onUserChangedTheModel, [=]{
+        QString message;
+        const QString result = w->pushPageContent(message);
+        if(!result.isEmpty() && result != "pmeter"){
+            //it must be updated only once
+            w->setAccessibleName("pmeter");
+            disconnect(gHelper->ucDeviceTreeW, &UCDeviceTreeWatcher::onUCPMeterSettingsChanged, w, &PMeterListWdgt::onUCPMeterSettingsChanged);
+        }
+    });
+
+
+    connect(w, &PMeterListWdgt::onRequest2pollThese, this, &QcMainWindow::onRequest2pollThese);
+    connect(w, &PMeterListWdgt::onRequest2GetDataThese, this, &QcMainWindow::onRequest2GetDataThese);
+    connect(w, &PMeterListWdgt::checkDbPageIsReady, this, &QcMainWindow::checkDbPageIsReady);
+
+    connect(w, SIGNAL(onRequest2pollThese(QStringList,quint8)), this, SLOT(activatePageHome()));
+    connect(w, SIGNAL(onRequest2GetDataThese(QStringList,quint8)), this, SLOT(activatePageDb()));
+
+    return w;
 }
 //---------------------------------------------------------------------
 

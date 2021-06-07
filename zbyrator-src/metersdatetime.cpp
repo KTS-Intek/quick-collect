@@ -208,7 +208,7 @@ void MetersDateTime::updateDateTimeDst()
 
     for( ; i < imax; i++){
 
-        const QString ni = model->item(i, 5)->text();
+        const QString ni = model->item(i, 4)->text();
         if(lDateTimeDst.checkednis.contains(ni))
             continue;
 

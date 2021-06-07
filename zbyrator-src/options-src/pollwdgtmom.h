@@ -23,6 +23,10 @@ public slots:
 
     void saveAllForced();
 
+    void onGetUCMeterPollSettings(QString senderName);
+
+    void onPutUCMeterPollSettings(UCMeterPollSettings settings, QString senderName);//write only
+
 private:
     bool ignoreSave;
 

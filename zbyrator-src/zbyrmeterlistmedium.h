@@ -165,6 +165,10 @@ public slots:
 
     void meterElectricityModelChanged(QVariantList meters);
     void meterWaterModelChanged(QVariantList meters);
+    void meterPulseModelChanged(QVariantList meters);
+
+    void meterModelChanged(const QVariantList &meters, const quint8 &meterType);
+
 
     void onSaveLater();
 
@@ -219,6 +223,8 @@ public slots:
     void onPutUCEMeterSettings(UCEMeterSettings settings, QString senderName);
     void onPutUCWMeterSettings(UCWMeterSettings settings, QString senderName);
 
+    void onPutUCPMeterSettings(UCPMeterSettings settings, QString senderName);
+
 
     void onGetUCEMeterRelayState(QString senderName);
 
@@ -232,6 +238,8 @@ public slots:
     void onGetUCSupportedMetersInfo(QString senderName);
 
     void onGetUCWMeterSettings(QString senderName);
+
+    void onGetUCPMeterSettings(QString senderName);
 
 
     //6.60 View tasks of the meter
@@ -277,6 +285,8 @@ private:
     UCEMeterSettingsOneRow universalMeterSett2emeterSettings(const UniversalMeterSett &m);
 
     UCWMeterSettingsOneRow universalMeterSett2wmeterSettings(const UniversalMeterSett &m);
+
+    UCPMeterSettingsOneRow universalMeterSett2pmeterSettings(const UniversalMeterSett &m);
 
 
     UCPollDeviceSettings universalMeterSett2baseSettings(const UniversalMeterSett &m);

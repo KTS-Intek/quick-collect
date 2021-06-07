@@ -67,6 +67,8 @@
 ///[!] matilda-bbb-clientside
 #include "src/matilda-conf/classmanagerv1.cpp"
 #include "src/matilda-conf/classmanagerv5.h"
+#include "src/matilda-conf/classmanagerv11.h"
+
 
 #include "myucdevicetypes.h"
 #include "moji_defy.h"
@@ -142,6 +144,7 @@ void ZbyrMeterListMedium::onAllMetersSlot(UniversalMeterSettList allMeters)
     UCEMeterSettings emeter;
     UCWMeterSettings wmeter;
 
+    UCPMeterSettings pmeter;
 
     QMap<quint8, UniversalMeterSettList> map2meters;
     for(int i = 0, imax = allMeters.size(); i < imax; i++){
@@ -150,6 +153,8 @@ void ZbyrMeterListMedium::onAllMetersSlot(UniversalMeterSettList allMeters)
         switch(m.deviceType){
         case UC_METER_ELECTRICITY   : emeter.eMeterContainer.append(universalMeterSett2emeterSettings(m))  ; break;
         case UC_METER_WATER         : wmeter.wMeterContainer.append(universalMeterSett2wmeterSettings(m)); break;
+        case UC_METER_PULSE         : pmeter.pMeterContainer.append(universalMeterSett2pmeterSettings(m)); break;
+
         }
 
         if(true){
@@ -162,10 +167,11 @@ void ZbyrMeterListMedium::onAllMetersSlot(UniversalMeterSettList allMeters)
 
 
 
-    emeter.validator = wmeter.validator = getTemplateValidator();
+    emeter.validator = wmeter.validator = pmeter.validator = getTemplateValidator();
 
     ucDeviceTreeW->setUCEMeterSettings(emeter);//first
     ucDeviceTreeW->setUCWMeterSettings(wmeter);//second
+    ucDeviceTreeW->setUCPMeterSettings(pmeter);//second
 
 
 
@@ -178,21 +184,36 @@ void ZbyrMeterListMedium::onAllMetersSlot(UniversalMeterSettList allMeters)
 
 void ZbyrMeterListMedium::meterElectricityModelChanged(QVariantList meters)
 {
-    emit onConfigChanged(MTD_EXT_CUSTOM_COMMAND_2, true);
-    lastSaveMeterList.lastMeterList = meters;
-    lastSaveMeterList.deviceType = UC_METER_ELECTRICITY;
-    emit startTmrSaveLater();
+    meterModelChanged(meters, UC_METER_ELECTRICITY);
+
 
 }
 
+//---------------------------------------------------------------------
+
 void ZbyrMeterListMedium::meterWaterModelChanged(QVariantList meters)
 {
+    meterModelChanged(meters, UC_METER_WATER);
+
+
+}
+
+//---------------------------------------------------------------------
+
+void ZbyrMeterListMedium::meterPulseModelChanged(QVariantList meters)
+{
+    meterModelChanged(meters, UC_METER_PULSE);
+
+
+}
+
+//---------------------------------------------------------------------
+
+void ZbyrMeterListMedium::meterModelChanged(const QVariantList &meters, const quint8 &meterType)
+{
     emit onConfigChanged(MTD_EXT_CUSTOM_COMMAND_2, true);
-
-
-
     lastSaveMeterList.lastMeterList = meters;
-    lastSaveMeterList.deviceType = UC_METER_WATER;
+    lastSaveMeterList.deviceType = meterType;
     emit startTmrSaveLater();
 }
 
@@ -510,6 +531,23 @@ void ZbyrMeterListMedium::onPutUCWMeterSettings(UCWMeterSettings settings, QStri
     meterWaterModelChanged(varl);//the old method looks ok
 }
 
+void ZbyrMeterListMedium::onPutUCPMeterSettings(UCPMeterSettings settings, QString senderName)
+{
+    qDebug() << "ZbyrMeterListMedium::onPutUCPMeterSettings save the pulse meters " << senderName ;
+
+    QStringList errl;
+    const QVariantList varl = ClassManagerV11::fromUCPMeterSettings(settings, errl);
+
+    if(!errl.isEmpty()){
+        qDebug() << "fromUCPMeterSettings " << senderName << errl;
+        emit showMessage(errl.join("<br>"));
+        return;
+    }
+
+    meterPulseModelChanged(varl);//the old method looks ok
+
+}
+
 //---------------------------------------------------------------------
 
 void ZbyrMeterListMedium::onGetUCEMeterRelayState(QString senderName)
@@ -547,11 +585,12 @@ void ZbyrMeterListMedium::onGetUCSupportedMetersInfo(QString senderName)
     Q_UNUSED(senderName);
     UCSupportedMetersInfo emeter = ucDeviceTreeW->getCachedUCSupportedMetersInfoElectricity();
     UCSupportedMetersInfo wmeter = ucDeviceTreeW->getCachedUCSupportedMetersInfoWater();
+    UCSupportedMetersInfo pmeter = ucDeviceTreeW->getCachedUCSupportedMetersInfoPulse();
 
     if(emeter.validator.dtlastupdate.isValid() && wmeter.validator.dtlastupdate.isValid())
         return;
 
-    emeter = wmeter = UCSupportedMetersInfo();//reset all
+    emeter = wmeter = pmeter = UCSupportedMetersInfo();//reset all
 
 
     const MeterPluginInfo info = MeterPluginLoader::loadAboutPlugin(PathsResolver::path2pluginsDir());// hash;
@@ -584,17 +623,19 @@ void ZbyrMeterListMedium::onGetUCSupportedMetersInfo(QString senderName)
 
 
         switch(oneplg.deviceType){
-        case UC_METER_ELECTRICITY: emeter.pluginNames.append(plgname); emeter.pluginParams.insert(plgname, plgparam); break;
-        case UC_METER_WATER: wmeter.pluginNames.append(plgname); wmeter.pluginParams.insert(plgname, plgparam); break;
+        case UC_METER_ELECTRICITY   : emeter.pluginNames.append(plgname); emeter.pluginParams.insert(plgname, plgparam); break;
+        case UC_METER_WATER         : wmeter.pluginNames.append(plgname); wmeter.pluginParams.insert(plgname, plgparam); break;
+        case UC_METER_PULSE         : pmeter.pluginNames.append(plgname); pmeter.pluginParams.insert(plgname, plgparam); break;
 
         }
     }
 
 
-    emeter.validator = wmeter.validator = getTemplateValidator();
+    emeter.validator = wmeter.validator = pmeter.validator = getTemplateValidator();
 
     ucDeviceTreeW->setUCSupportedMetersInfoEMeter(emeter);
     ucDeviceTreeW->setUCSupportedMetersInfoWMeter(wmeter);
+    ucDeviceTreeW->setUCSupportedMetersInfoPMeter(pmeter);
 
 
 }
@@ -604,6 +645,14 @@ void ZbyrMeterListMedium::onGetUCSupportedMetersInfo(QString senderName)
 void ZbyrMeterListMedium::onGetUCWMeterSettings(QString senderName)
 {
     onGetUCEMeterSettings(senderName);//it reloads all meters;
+}
+
+//---------------------------------------------------------------------
+
+void ZbyrMeterListMedium::onGetUCPMeterSettings(QString senderName)
+{
+    onGetUCEMeterSettings(senderName);//it reloads all meters;
+
 }
 
 //---------------------------------------------------------------------
@@ -788,6 +837,11 @@ void ZbyrMeterListMedium::createUcDevTree()
 
     connect(ucDeviceTreeW, &UCDeviceTreeWatcher::onUCWMeterSettingsChanged, this, &ZbyrMeterListMedium::onUCWMeterSettingsChanged);
 
+
+    //
+    connect(ucDeviceTreeW, &UCDeviceTreeWatcher::onGetUCPMeterSettings, this, &ZbyrMeterListMedium::onGetUCPMeterSettings);
+    connect(ucDeviceTreeW, &UCDeviceTreeWatcher::onPutUCPMeterSettings, this, &ZbyrMeterListMedium::onPutUCPMeterSettings);
+
     QTimer::singleShot(3333, this, SIGNAL(reloadSavedSleepProfiles()));//zbyrator starts in 1111 msec, so it must be after
 
 //    connect(ucDeviceTreeW, &UCDeviceTreeWatcher::ongetucs)
@@ -831,7 +885,22 @@ UCWMeterSettingsOneRow ZbyrMeterListMedium::universalMeterSett2wmeterSettings(co
     return onerow;
 
 }
+
 //---------------------------------------------------------------------
+
+UCPMeterSettingsOneRow ZbyrMeterListMedium::universalMeterSett2pmeterSettings(const UniversalMeterSett &m)
+{
+    UCPMeterSettingsOneRow onerow;
+    onerow.baseSettings = universalMeterSett2baseSettings(m);
+    onerow.meterSettings = universalMeterSett2meterSettings(m);
+    onerow.channelsSettings = ClassManagerV11::mapMeterChannelsFromLine(m.enrg);
+
+//    onerow.channelsSettings  sleepProfileLine = m.enrg;
+    return onerow;
+}
+
+//---------------------------------------------------------------------
+
 UCPollDeviceSettings ZbyrMeterListMedium::universalMeterSett2baseSettings(const UniversalMeterSett &m)
 {
 //    QPointF coordinate;
