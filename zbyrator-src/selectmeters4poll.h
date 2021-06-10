@@ -49,6 +49,11 @@ public slots:
 
     void setPollSettWater(const QDateTime &dtFrom, const QDateTime &dtTo, const quint8 &pollCode, const bool &enSleepCommand, const int &go2sleepSeconds, const bool &enCheckSleepProfile, const bool &ignoreRetr);
 
+
+    void setPollSettGas(const QDateTime &dtFrom, const QDateTime &dtTo, const quint8 &pollCode, const bool &ignoreRetr);
+
+    void setPollSettPulse(const QDateTime &dtFrom, const QDateTime &dtTo, const quint8 &pollCode, const bool &ignoreRetr);
+
     void initPage();
 
 

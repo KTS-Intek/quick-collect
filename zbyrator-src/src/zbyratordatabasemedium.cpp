@@ -8,6 +8,8 @@
 #include "src/meter/meterstatehelper.h"
 
 
+#include "definedpollcodes.h"
+
 ZbyratorDatabaseMedium::ZbyratorDatabaseMedium(UCDeviceTreeWatcher *ucDeviceTreeW, QObject *parent) :
     ZbyratorDatabaseMediumBase(ucDeviceTreeW, PathsResolver::defSqliteMediumLocalServerName(), parent)
 {
@@ -28,6 +30,10 @@ void ZbyratorDatabaseMedium::gimmeTheSpecialHeader(quint16 pollCode)
     case POLL_CODE_READ_METER_STATE: header = MeterStateHelper::getMeterStateHeaderKeys(false); break;
 
     case POLL_CODE_WTR_METER_STATE: header = MeterStateHelper::getWaterMeterStateHeaderKeys(false); break;
+
+    case POLL_CODE_GAS_METER_STATE: header = MeterStateHelper::getGasMeterStateHeaderKeys(false); break;
+    case POLL_CODE_PLSS_METER_STATE: header = MeterStateHelper::getPulseMeterStateHeaderKeys(false); break;
+
     }
 
     if(header.isEmpty()){

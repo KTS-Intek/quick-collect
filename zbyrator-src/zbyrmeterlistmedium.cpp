@@ -959,6 +959,9 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
 
     int meterElectricityActive = 0;
     int meterWaterActive = 0;
+
+    int meterGasActive = 0;
+    int meterPulseActive = 0;
 //    QStringList listNiNotchanged;
 
 
@@ -985,6 +988,14 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
         case UC_METER_WATER:{
             meterWaterActive++;
             break;}
+
+        case UC_METER_GAS:{
+            meterGasActive++;
+            break;}
+
+        case UC_METER_PULSE:{
+            meterPulseActive++;
+            break;}
         }
 
     }
@@ -992,7 +1003,7 @@ void ZbyrMeterListMedium::onElectricitylistOfMeters(const UniversalMeterSettList
 
 
 
-    emit onUpdatedSavedList(pollOnMeters, pollOffMeters, meterElectricityActive, meterWaterActive);
+    emit onUpdatedSavedList(pollOnMeters, pollOffMeters, meterElectricityActive, meterWaterActive, meterGasActive, meterPulseActive);
 
 
 

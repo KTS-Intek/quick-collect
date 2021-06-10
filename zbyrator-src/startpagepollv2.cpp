@@ -25,6 +25,10 @@
 #include "src/meter/meterstatehelper.h"
 
 
+///[!] tasks-shared
+#include "src/task/pollcodeshelper.h"
+
+
 
 #include "definedpollcodes.h"
 #include "myucdevicetypes.h"
@@ -47,24 +51,52 @@ QStringList StartPagePollV2::getEnrgList4code(const quint8 &code)
 {
     bool hasTariffs = false;
     QStringList l;
-    switch(code){
-    case POLL_CODE_READ_TOTAL       :
-    case POLL_CODE_READ_END_DAY     :
-    case POLL_CODE_READ_END_MONTH   : hasTariffs = true;
-    case POLL_CODE_READ_POWER       : l = QString("intrvl A+ A- R+ R-").split(" ", QString::SkipEmptyParts); break;
-
-    case POLL_CODE_WTR_METER_STATE  :
-    case POLL_CODE_READ_METER_STATE : l = MeterStateHelper::getEngrKeys4table(); break;// listEnrg = QString("relay,deg,vls,prm").split(","); break;
-    case POLL_CODE_READ_VOLTAGE     : l = QString("UA,UB,UC,IA,IB,IC,PA,PB,PC,QA,QB,QC,cos_fA,cos_fB,cos_fC,F").split(',')  ; break;
-
-    case POLL_CODE_WTR_METER_LOGBOOK:
-    case POLL_CODE_READ_METER_LOGBOOK:
-    case POLL_CODE_MATILDA_EVNTS    : l = QString("model,evnt_code,comment").split(','); break;
 
 
-    case POLL_CODE_WTR_TOTAL        :
-    case POLL_CODE_WTR_END_DAY      :
-    case POLL_CODE_WTR_END_MONTH    : l = TableHeaders::getColDataWaterTotalValues().split(','); break;
+    if(PollCodesHelper::isAlogBookPollCode(code)){
+        l = QString("model,evnt_code,comment").split(',');
+    }else if(PollCodesHelper::isAPeriodConsumptionPollCode(code)){
+
+        if(PollCodesHelper::isEMeterPollCode(code)){
+            l = QString("A+ A- R+ R-").split(" ", QString::SkipEmptyParts);
+        }else if(PollCodesHelper::isWMeterPollCode(code)){
+            qDebug() << "StartPagePollV2::getEnrgList4code(const quint8 &code) no keys for this code " << code;
+        }else if(PollCodesHelper::isGMeterPollCode(code)){
+            qDebug() << "StartPagePollV2::getEnrgList4code(const quint8 &code) no keys for this code " << code;
+
+        }else if(PollCodesHelper::isPMeterPollCode(code)){
+            l.append(QString("chnnl dvlu").split(" ", QString::SkipEmptyParts));
+        }
+
+        l.prepend("intrvl");
+    }else if(PollCodesHelper::isAstatePollCode(code)){
+
+        l = MeterStateHelper::getEngrKeys4table();
+
+    }else if(PollCodesHelper::isItATariffPollCode4eMeter(code)){
+        hasTariffs = true;
+        l = QString("A+ A- R+ R-").split(" ", QString::SkipEmptyParts);
+
+    }else if(PollCodesHelper::isItATariffPollCode4wMeter(code)){
+        l = TableHeaders::getColDataWaterTotalValues().split(',');
+
+    }else if(PollCodesHelper::isItATariffPollCode4pMeter(code)){
+
+        l.append(QString("chnnl tvlu").split(" ", QString::SkipEmptyParts));
+
+
+    }else  if(PollCodesHelper::isAnInstantaneousPollCode(code)){
+        if(PollCodesHelper::isEMeterPollCode(code)){
+            l = QString("UA,UB,UC,IA,IB,IC,PA,PB,PC,QA,QB,QC,cos_fA,cos_fB,cos_fC,F").split(',')  ;
+        }else if(PollCodesHelper::isPMeterPollCode(code)){
+
+            l.append(QString("chnnl ivlu").split(" ", QString::SkipEmptyParts));
+
+        }else{
+            qDebug() << "StartPagePollV2::getEnrgList4code(const quint8 &code) no keys for this code " << code;
+
+        }
+
     }
 
 
@@ -73,7 +105,7 @@ QStringList StartPagePollV2::getEnrgList4code(const quint8 &code)
 
     QStringList listEnrg;
     for(int i = 0, emax = l.size(); i < 5; i++){
-        for(int e = 1; e < emax; e++)//ignore intrvl
+        for(int e = 0; e < emax; e++)
             listEnrg.append(QString("T%1_%2").arg(i).arg(l.at(e)));
     }
 //    listEnrg.append("stts");
@@ -96,7 +128,17 @@ QStringList StartPagePollV2::getEnrgList4code(const quint8 &code)
 MyPollCodeList StartPagePollV2::getLvIconsAndTexts(const int &version)
 {
     Q_UNUSED(version);
-    return DevicePollCodeSelectorHelper::getLvIconsAndTexts(MATILDA_PROTOCOL_VERSION_V5, DEV_POLL_EMULATOR_L2);
+    MyPollCodeList l = DevicePollCodeSelectorHelper::getLvIconsAndTexts(MATILDA_PROTOCOL_VERSION_V11, DEV_POLL_EMULATOR_L2);
+
+    for(int i = 0, imax = l.size(); i < imax; i++){
+        if(l.at(i).code == UC_METER_GAS || l.at(i).code == UC_METER_UNKNOWN){
+            l.removeAt(i); //ignore gas meters
+            imax--;
+        }
+    }
+    return l;
+
+
 }
 
 
@@ -135,7 +177,7 @@ bool StartPagePollV2::canContinueWithTheseSettings(const StartPollTabSettExt &se
 
 //---------------------------------------------------------------------------
 
-bool StartPagePollV2::createObjectsForPollAllMetersMode(const StartPollTabSettExt &selsett, QString &mess)
+bool StartPagePollV2::createObjectsForPollAllMetersMode(const StartPollTabSettExt &selsett, QString &message)
 {
     emit lockPbRead(true);
 
@@ -174,8 +216,17 @@ bool StartPagePollV2::createObjectsForPollAllMetersMode(const StartPollTabSettEx
         w->setPollSettWater(dtFrom, dtTo, pollCode, lastWtrSett.sendSleepCommand, lastWtrSett.secs, lastWtrSett.checkProfile, getIgnoreRetries());
         break;}
 
+//    case UC_METER_GAS      :{
+//        w->setPollSettGas(dtFrom, dtTo, pollCode, getIgnoreRetries());
+//        break;}
+
+    case UC_METER_PULSE      :{
+        w->setPollSettPulse(dtFrom, dtTo, pollCode, getIgnoreRetries());
+        break;}
+
+
     default: qDebug() << "can't set pollSett StartPagePoll lastSelsett.deviceType=" << lastSelsett.deviceType;
-        mess = tr("Couldn't start the poll. The unknown device type '%1'").arg(int(lastSelsett.deviceType)); return false;
+        message = tr("Couldn't start the poll. The unknown device type '%1'").arg(int(lastSelsett.deviceType)); return false;
     }
     emit addWdgt2stackWdgt(w, WDGT_TYPE_ZBYR_SELECT_METERS4POLL, true, tr("Select"), ":/katynko/svg/dialog-ok-apply.svg");
 

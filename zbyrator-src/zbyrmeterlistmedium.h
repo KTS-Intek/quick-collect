@@ -23,7 +23,6 @@
 #include <QLineEdit>
 
 //#include "zbyrator-src/src/ifacesettloader.h"
-//#include "src/matilda-conf/classmanagersharedobjects.h"
 
 class ZbyrMeterListMedium : public GuiIfaceMedium
 {
@@ -66,7 +65,7 @@ signals:
 
 
 
-    void onUpdatedSavedList(int activeMetersSize, int switchedOffMetersSize, int meterElectricityActive, int metersWaterActive);
+    void onUpdatedSavedList(int activeMetersSize, int switchedOffMetersSize, int meterElectricityActive, int metersWaterActive, int meterGasActive, int meterPulseActive);
 
 
 

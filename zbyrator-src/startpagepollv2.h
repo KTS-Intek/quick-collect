@@ -35,7 +35,7 @@ public:
 
     bool canContinueWithTheseSettings(const StartPollTabSettExt &sett);
 
-    bool createObjectsForPollAllMetersMode(const StartPollTabSettExt &selsett, QString &mess);
+    bool createObjectsForPollAllMetersMode(const StartPollTabSettExt &selsett, QString &message);
 
     bool getIgnoreRetries();
 

@@ -67,6 +67,17 @@ void SelectMeters4poll::setPollSettWater(const QDateTime &dtFrom, const QDateTim
     setPollSett(dtFrom, dtTo, pollCode, UC_METER_WATER, enSleepCommand ? go2sleepSeconds : 0, enCheckSleepProfile, ignoreRetr );
 }
 
+void SelectMeters4poll::setPollSettGas(const QDateTime &dtFrom, const QDateTime &dtTo, const quint8 &pollCode, const bool &ignoreRetr)
+{
+    //it can come with a sleep mode, but I'm not sure
+    setPollSett(dtFrom, dtTo, pollCode, UC_METER_GAS, 0, false, ignoreRetr);
+}
+
+void SelectMeters4poll::setPollSettPulse(const QDateTime &dtFrom, const QDateTime &dtTo, const quint8 &pollCode, const bool &ignoreRetr)
+{
+    setPollSett(dtFrom, dtTo, pollCode, UC_METER_PULSE, 0, false, ignoreRetr);
+}
+
 
 void SelectMeters4poll::initPage()
 {

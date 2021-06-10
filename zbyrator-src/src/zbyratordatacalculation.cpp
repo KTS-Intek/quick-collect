@@ -22,6 +22,12 @@
 #include "zbyrator-src/protocol5togui.h"
 
 
+
+///[!] tasks-shared
+#include "src/task/pollcodeshelper.h"
+
+
+
 #include <QJsonObject>
 #include <QJsonDocument>
 
@@ -88,7 +94,15 @@ ZbyratorDataCalculation::ZbyratorDataCalculation(QObject *parent) : ZbyratorData
 QStringList ZbyratorDataCalculation::getHeader4specialPollCode(const int &code)
 {
     QStringList columnList;
-    columnList = (code == POLL_CODE_READ_METER_STATE) ? MeterStateHelper::getMeterStateHeaderKeys(false) : MeterStateHelper::getWaterMeterStateHeaderKeys(false);
+
+    switch(code){
+    case POLL_CODE_READ_METER_STATE: columnList = MeterStateHelper::getMeterStateHeaderKeys(false); break;
+    case POLL_CODE_WTR_METER_STATE: columnList = MeterStateHelper::getWaterMeterStateHeaderKeys(false); break;
+    case POLL_CODE_GAS_METER_STATE: columnList = MeterStateHelper::getGasMeterStateHeaderKeys(false); break;
+    case POLL_CODE_PLSS_METER_STATE: columnList = MeterStateHelper::getPulseMeterStateHeaderKeys(false); break;
+
+    }
+
 //            columnList.removeFirst();
     columnList.replace(0, "msec");
     return columnList;
@@ -124,13 +138,12 @@ void ZbyratorDataCalculation::onMeterPollCancelled(QString ni, QString stts, qin
     const QDateTime dt = QDateTime::fromMSecsSinceEpoch(msec);
 
     qint64 msecMinus = 0;
-    switch(myPollParams.select.pollCode){
-    case POLL_CODE_WTR_END_DAY      :
-    case POLL_CODE_WTR_END_MONTH    :
 
-    case POLL_CODE_READ_END_DAY     :
-    case POLL_CODE_READ_END_MONTH   : msecMinus = (qint64)dt.toLocalTime().offsetFromUtc() * 1000;
+    if(PollCodesHelper::isEO_D_M_PollCode(myPollParams.select.pollCode)){
+        msecMinus = (qint64)dt.toLocalTime().offsetFromUtc() * 1000;
     }
+
+
     QHash<QString,QString> h;
     h.insert("msec", QString::number(dt.toUTC().toMSecsSinceEpoch() - msecMinus));
     h.insert("stts", stts);
