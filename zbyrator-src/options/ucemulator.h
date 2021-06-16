@@ -20,6 +20,7 @@
 
 ///[!] matilda-bbb-clientside
 //#include "src/matilda/classmanagerprocessor.h"
+#include "src/matilda/classmanager.h"
 #include "src/matilda/matildaclient.h"
 
 
@@ -30,10 +31,12 @@ class UcEmulator : public StartDevWdgt4ucon
     Q_OBJECT
 
 public:
-    explicit UcEmulator(const bool &enableTestFeatures, GuiSett4all *gSett4all, QWidget *parent = 0);
+    explicit UcEmulator(const bool &enableTestFeatures, GuiSett4all *gSett4all, UCDeviceTreeWatcher *ucDeviceTreeW, QWidget *parent = 0);
     ~UcEmulator();
     CachedWriteSett socketcache;
     bool enableTestFeatures;
+
+    UCDeviceTreeWatcher *ucDeviceTreeW;
 
     MatildaClient *clientdecoder;
 
@@ -44,11 +47,11 @@ public:
 
     int getDefProtocolVersion();
 
-    void createDashBoardWidget();
+//    void createDashBoardWidget();
 
-    QScrollArea *getDashBoardScrollArea();
+//    QScrollArea *getDashBoardScrollArea();
 
-    MatildaConfWidget *getDashBoardWidget();
+//    MatildaConfWidget *getDashBoardWidget();
 
     void createClassManager();
 
@@ -115,6 +118,9 @@ public slots:
     void saveSettings(int block, QVariantHash hash);
 
 
+
+    void onSendThisCommandNowSlot(const quint16 &command, const QVariant &dataVar, const bool &itHasAnswer);//do not forge to connect to signal
+
 private slots:
     void activatePage();
 
@@ -127,8 +133,8 @@ private slots:
 
     void mWriteLater();
 private:
-    SmplPteWdgt *dashBoardW;
-    QScrollArea *dashBoardSa;
+//    SmplPteWdgt *dashBoardW;
+//    QScrollArea *dashBoardSa;
 
     DecodeMatildaProtocolWithJSON *decoder;
 
@@ -136,10 +142,14 @@ private:
     {
         QList<quint16> command;
         QVariantList varData;
+        QList<bool> itHasAnswer;
+
         MyWriteLater() {}
     } writelater;
 
 //    ClassManagerProcessor *manager;
+
+    ClassManager *cManager;
 
 };
 

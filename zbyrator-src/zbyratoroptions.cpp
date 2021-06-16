@@ -95,7 +95,7 @@ void ZbyratorOptions::addThisWdgt2stack(const int &row, const QString &pageName,
 //         gHelper->parentWidget = ui->stackedWidget;
 //        gHelper->lDevInfo = this->gHelper->lDevInfo;
 
-        UcEmulator *e = new UcEmulator(gHelper->guiSett->enableTestFeatures, gHelper->guiSett,  this);
+        UcEmulator *e = new UcEmulator(gHelper->guiSett->enableTestFeatures, gHelper->guiSett, gHelper->ucDeviceTreeW,  this);
         connect(e, &UcEmulator::reloadSettings2ucEmulator, this, &ZbyratorOptions::reloadSettings2ucEmulator);
         connect(e, &UcEmulator::command2extension           , this, &ZbyratorOptions::command2extension);
         e->setWindowTitle(pageName);

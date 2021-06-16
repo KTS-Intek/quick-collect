@@ -25,12 +25,13 @@
 #include "moji_defy.h"
 #include "matildausertypes.h"
 
-UcEmulator::UcEmulator(const bool &enableTestFeatures, GuiSett4all *gSett4all, QWidget *parent) :
-    StartDevWdgt4ucon(true, gSett4all,  parent), enableTestFeatures(enableTestFeatures)
+UcEmulator::UcEmulator(const bool &enableTestFeatures, GuiSett4all *gSett4all, UCDeviceTreeWatcher *ucDeviceTreeW, QWidget *parent) :
+    StartDevWdgt4ucon(true, gSett4all,  parent), enableTestFeatures(enableTestFeatures), ucDeviceTreeW(ucDeviceTreeW)
 
 {
 
     activatePageLater();
+//    gHelper->ucDeviceTreeW = ucDeviceTreeW;
 }
 
 UcEmulator::~UcEmulator()
@@ -54,44 +55,82 @@ int UcEmulator::getDefProtocolVersion()
     return MATILDA_PROTOCOL_VERSION_V10;
 }
 
-void UcEmulator::createDashBoardWidget()
-{
-//    protocolVersion(getDefProtocolVersion());
-    dashBoardW = new SmplPteWdgt("Events", true, true, gHelper, false, this);
-    dashBoardSa = StackWidgetHelper::addWdgtWithScrollArea(this, dashBoardW, "dashboard");
+//void UcEmulator::createDashBoardWidget()
+//{
+////    protocolVersion(getDefProtocolVersion());
+//    dashBoardW = new SmplPteWdgt("Events", true, true, gHelper, false, this);
+//    dashBoardSa = StackWidgetHelper::addWdgtWithScrollArea(this, dashBoardW, "dashboard");
 
-//    connect(gHelper, SIGNAL(appendShowMess(QString)), dashBoardW, SLOT(appendPteText(QString)));
+////    connect(gHelper, SIGNAL(appendShowMess(QString)), dashBoardW, SLOT(appendPteText(QString)));
 
-    connect(this, SIGNAL(killMyChild()), dashBoardW, SLOT(deleteLater()) );
+//    connect(this, SIGNAL(killMyChild()), dashBoardW, SLOT(deleteLater()) );
 
-    connect(this, SIGNAL(appendShowMess(QString)), dashBoardW, SLOT(appendHtml(QString)));
+//    connect(this, SIGNAL(appendShowMess(QString)), dashBoardW, SLOT(appendHtml(QString)));
 
 
-    QTimer *t = new QTimer(this);
-    t->setSingleShot(true);
-    t->setInterval(222);
-    connect(this, SIGNAL(startRealodSettLater()), t, SLOT(start()));
-    connect(t, SIGNAL(timeout()), this, SIGNAL(reloadSettings2ucEmulator()));
+//    QTimer *t = new QTimer(this);
+//    t->setSingleShot(true);
+//    t->setInterval(222);
+//    connect(this, SIGNAL(startRealodSettLater()), t, SLOT(start()));
+//    connect(t, SIGNAL(timeout()), this, SIGNAL(reloadSettings2ucEmulator()));
 
-//    connect(dashBoardW, SIGNAL(setLblWaitTxt(QString)), this, SIGNAL(setLblWaitTxt(QString)));
-}
+////    connect(dashBoardW, SIGNAL(setLblWaitTxt(QString)), this, SIGNAL(setLblWaitTxt(QString)));
+//}
 
-QScrollArea *UcEmulator::getDashBoardScrollArea()
-{
-    return dashBoardSa;
+//QScrollArea *UcEmulator::getDashBoardScrollArea()
+//{
+//    return dashBoardSa;
 
-}
+//}
 
-MatildaConfWidget *UcEmulator::getDashBoardWidget()
-{
-    return dashBoardW;
+//MatildaConfWidget *UcEmulator::getDashBoardWidget()
+//{
+//    return dashBoardW;
 
-}
+//}
 
 void UcEmulator::createClassManager()
 {
     createDecoder();
 
+
+    DashBoardWdgt *dashBoardW = qobject_cast<DashBoardWdgt*>(getDashBoardWidget());
+    if(dashBoardW){
+        dashBoardW->activateEmulatorMode();
+    }
+
+    cManager = new ClassManager(ucDeviceTreeW, this);
+
+    ucDeviceTreeW->setAccessLevel(MTD_USER_ADMIN);
+    onAccessLevelChanged(MTD_USER_ADMIN);
+
+
+
+
+
+//    connect(this, &UcConnect::conn2thisDevice   , cManager, &ClassManager::connectToThisDevice  );
+//    connect(this, SIGNAL(conn2lastDev())        , cManager, SLOT(conn2lastDev())                );
+//    connect(this, SIGNAL(kickMe())              , cManager, SLOT(kickMe())                      );
+    connect(this, SIGNAL(closeConnection())     , cManager, SIGNAL(closeConnection())                  );
+
+    connect(cManager, &ClassManager::onErrorsHappened, this, &UcEmulator::onErrorsHappened);
+
+    connect(cManager, &ClassManager::onYouCanSelectDevice, this, &UcEmulator::onYouCanSelectDevice);
+
+    connect(cManager, &ClassManager::add2systemLog, this ,&UcEmulator::appendShowMessagePlain);//add2systemLog);
+
+//    connect(cManager, &ClassManager::onClassManagerIsReady, this, &UcEmulator::onLibraryIsReady);
+//    connect(cManager, SIGNAL(destroyed(QObject*)), this, SLOT(deleteLater()));
+    cManager->initializeClassManager();
+
+
+    disconnect(cManager, &ClassManager::onSendThisCommandNow, cManager, &ClassManager::onSendThisCommandNowSlot);
+
+    connect(cManager, &ClassManager::onSendThisCommandNow, this, &UcEmulator::onSendThisCommandNowSlot);
+
+    connect(ucDeviceTreeW, &UCDeviceTreeWatcher::onLastFinishedSenderNameChanged, this, &StartDevWdgt4ucon::onThisPNameDone);
+
+//    createClassManagerExt(ucDeviceTreeW);
 //    manager = new ClassManagerProcessor(enableTestFeatures, this);
 //    manager->initObjects();
 //    manager->accessLevel = MTD_USER_ADMIN;
@@ -104,8 +143,8 @@ void UcEmulator::createClassManager()
 //    connect(manager, &ClassManagerProcessor::onOperationNError, this, &UcEmulator::onOperationNError);
 
 
-//    getPbLogin()->hide();
-//    getPbLogOut()->hide();
+    getPbLogin()->hide();
+    getPbLogOut()->hide();
 
 
 //    connect(manager, SIGNAL(showMessage(QString)), this, SLOT(onCOMMAND2GUIreadySlot()));
@@ -200,6 +239,9 @@ void UcEmulator::disconnLater(qint64 msec)
 
 void UcEmulator::mWriteToSocket(const QVariant &s_data, const quint16 &s_command)
 {
+    //to cManager
+
+    cManager->decodeUCdata(s_command, s_data);
 //    if(clientdecoder->isBackupsCommand(s_command)){
 //        FunctionRezult sresult;
 //        switch(s_command){
@@ -281,9 +323,30 @@ void UcEmulator::saveSettings(int block, QVariantHash hash)
     }
 }
 
+void UcEmulator::onSendThisCommandNowSlot(const quint16 &command, const QVariant &dataVar, const bool &itHasAnswer)
+{
+//use mWriteLater, to write with a delay, it is necessary to emulate delays
+
+
+    const bool restartTmr = writelater.command.isEmpty();
+
+    writelater.command.append(command);
+    writelater.varData.append(dataVar);
+    writelater.itHasAnswer.append(itHasAnswer);
+
+    if(restartTmr)
+        QTimer::singleShot(111, this, SLOT(mWriteLater()));
+
+
+
+
+}
+
 void UcEmulator::activatePage()
 {
     initializeClassManager();
+
+    gHelper->ucDeviceTreeW = this->ucDeviceTreeW;// new UCDeviceTreeWatcher(gHelper->guiSett->enableTestFeatures, true, this); //it must be created
 
     getStackedWdgt()->setCurrentIndex(1);
     devTypeChanged(getDefDevType(), getDefProtocolVersion());// defaultDevType, defaultProtocolVersion);
@@ -338,7 +401,7 @@ void UcEmulator::createDecoder()
 //    connect(decoder, &DecodeMatildaProtocolWithJSON::writeThisDataJSON      , this, &UcEmulator::mWrite2SocketJSON);
 //    connect(decoder, &DecodeMatildaProtocolWithJSON::sendDirectAccessData, this, &UcEmulator::m)
 //    connect(decoder, &DecodeMatildaProtocolWithJSON::daSocketClosed, )
-    connect(decoder, &DecodeMatildaProtocolWithJSON::writeThisData          , this, &UcEmulator::mWriteToSocket);
+    connect(decoder, &DecodeMatildaProtocolWithJSON::writeThisData          , this, &UcEmulator::mWriteToSocket);//to cManager
     connect(decoder, &DecodeMatildaProtocolWithJSON::disconnLater           , this, &UcEmulator::disconnLater);
 
 
@@ -364,38 +427,38 @@ void UcEmulator::createDecoder()
 
 void UcEmulator::makeAuthorization()
 {
-//    decoder->authorizeF()
+//    decoder->authorizeF();
 //    disconnect(manager, SIGNAL(showMessage(QString)), gHelper, SLOT(appendShowMessSlot(QString)));
 //    disconnect(manager, SIGNAL(showMessCritical(QString)), gHelper, SLOT(showMessSlot(QString)));
 
-//    decoder->lastObjSett.tmpStamp = "localhost";
+    decoder->lastObjSett.tmpStamp = "localhost";
 
-//    const QVariantHash savedHash = SettLoader4matilda().loadOneSett(SETT_SOME_SETT).toHash();
+    const QVariantHash savedHash = SettLoader4matilda().loadOneSett(SETT_SOME_SETT).toHash();
 
-//    const QString leftPartOfKey = "root";
-//    const QString l = QString("%1_l").arg(leftPartOfKey);
-//    const QString p = QString("%1_p").arg(leftPartOfKey);
-//    const QCryptographicHash::Algorithm defhash = MatildaProtocolCore::getDefAlgorithm();
-
-
-//    const QByteArray lh = (savedHash.value(l).toByteArray().isEmpty()) ?  QCryptographicHash::hash("admin", defhash) : savedHash.value(l).toByteArray();
-//    const QByteArray ph = (savedHash.value(p).toByteArray().isEmpty()) ?  QCryptographicHash::hash(QByteArray(""), defhash) : savedHash.value(p).toByteArray();
-
-//    MatildaProtocolCore::calclLoginHash(lh, ph, decoder->lastObjSett.tmpStamp, defhash);
+    const QString leftPartOfKey = "root";
+    const QString l = QString("%1_l").arg(leftPartOfKey);
+    const QString p = QString("%1_p").arg(leftPartOfKey);
+    const QCryptographicHash::Algorithm defhash = MatildaProtocolCore::getDefAlgorithm();
 
 
+    const QByteArray lh = (savedHash.value(l).toByteArray().isEmpty()) ?  QCryptographicHash::hash("admin", defhash) : savedHash.value(l).toByteArray();
+    const QByteArray ph = (savedHash.value(p).toByteArray().isEmpty()) ?  QCryptographicHash::hash(QByteArray(""), defhash) : savedHash.value(p).toByteArray();
+
+    MatildaProtocolCore::calclLoginHash(lh, ph, decoder->lastObjSett.tmpStamp, defhash);
 
 
-//    QVariantHash hash;
-//    hash.insert("QDS", QString::number(QDataStream::Qt_5_6));
-//    hash.insert("version", MATILDA_PROTOCOL_VERSION_V10);
 
-//    hash.insert("hsh", MatildaProtocolCore::calclLoginHash(lh, ph, decoder->lastObjSett.tmpStamp, defhash).toBase64());//QString(QCryptographicHash::hash(lh + "\n" + decoder->lastObjSett.tmpStamp + "\n" + ph, QCryptographicHash::Keccak_256).toBase64()));
 
-//    bool doAfter;
-//    const FunctionRezultJSON r = decoder->onCOMMAND_AUTHORIZE_JSON(hash, doAfter);
+    QVariantHash hash;
+    hash.insert("QDS", QString::number(QDataStream::Qt_5_6));
+    hash.insert("version", MATILDA_PROTOCOL_VERSION_V10);
 
-//    qDebug() << "rez " << r.s_data << r.s_data;
+    hash.insert("hsh", MatildaProtocolCore::calclLoginHash(lh, ph, decoder->lastObjSett.tmpStamp, defhash).toBase64());//QString(QCryptographicHash::hash(lh + "\n" + decoder->lastObjSett.tmpStamp + "\n" + ph, QCryptographicHash::Keccak_256).toBase64()));
+
+    bool doAfter;
+    const FunctionRezultJSON r = decoder->onCOMMAND_AUTHORIZE_JSON(hash, doAfter);
+
+    qDebug() << "rez " << r.s_data << r.s_data;
 
 //    qDebug() << "access level " << decoder->accessLevel;
 
@@ -411,11 +474,19 @@ void UcEmulator::mWriteLater()
 
 
 
-
-
-        decoder->decodeReadData(writelater.varData.takeFirst(), writelater.command.takeFirst());
+        const quint16 command =  writelater.command.takeFirst();
+        const bool itHasAnswer = writelater.itHasAnswer.takeFirst();
+        decoder->decodeReadData(writelater.varData.takeFirst(), command);
         if(!writelater.command.isEmpty())
             QTimer::singleShot(111, this, SLOT(mWriteLater()));
+
+
+            const qint64 bytes = 1;
+
+        //    decoder->decodeReadData(dataVar, command);
+        if(bytes > 0 && !itHasAnswer){
+            cManager-> markCurrentTaskAsDoneOk(command);
+        }
     }
 
 }
