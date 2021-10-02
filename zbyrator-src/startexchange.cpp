@@ -60,7 +60,6 @@ void StartExchange::initPage()
 
     guiHelper->initObj();
     guiHelper->guiSett = gHelper->guiSett;
-    guiHelper->lDevInfo = gHelper->lDevInfo;
     guiHelper->ucDeviceTreeW = gHelper->ucDeviceTreeW;
 //    guiHelper->cacheHelper = gHelper->cacheHelper;
 
@@ -137,6 +136,8 @@ void StartExchange::initPage()
 
 //        connect(this, &StartExchange::mIfaceLog, w, &IfaceIndicationWdgt::mIfaceLog);
         connect(metersListMedium, &ZbyrMeterListMedium::ifaceLogStrFromZbyrator, w, &IfaceIndicationWdgt::appendLogLines);
+        connect(metersListMedium, &ZbyrMeterListMedium::ifaceLogStrFromDA, w, &IfaceIndicationWdgt::appendLogLines);
+
     }
 
     if(true){

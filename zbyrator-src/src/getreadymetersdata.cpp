@@ -154,6 +154,9 @@ void GetReadyMetersData::doCalculation(const OneProfileSett &oneprofile)
                 const MissingData md = dbProcessingHelper->getMissingData(MyUcmMeters::selectTheseNi(meters, listNi4poll), pollCode, pollDtMemo.fullTableName, oneprofile.glbn, -1, true);
                 listNi4poll = md.niWithMissingData;
 
+                if(!md.niWithMissingSN.isEmpty())
+                    listNi4poll.append(md.niWithMissingSN);
+
 
             }
 
@@ -167,6 +170,9 @@ void GetReadyMetersData::doCalculation(const OneProfileSett &oneprofile)
             return;
         const MissingData md = MeterSchedulerHelper::getMetersWithSupportedPollCode(dbProcessingHelper, MyUcmMeters::selectTheseNi(meters, listNi4poll), pollCode);
        listNi4poll = md.niWithMissingData;
+
+       if(!md.niWithMissingSN.isEmpty())
+           listNi4poll.append(md.niWithMissingSN);
 
 
     }

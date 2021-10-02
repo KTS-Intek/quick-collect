@@ -117,7 +117,7 @@ void UcEmulator::createClassManager()
 
     connect(cManager, &ClassManager::onYouCanSelectDevice, this, &UcEmulator::onYouCanSelectDevice);
 
-    connect(cManager, &ClassManager::add2systemLog, this ,&UcEmulator::appendShowMessagePlain);//add2systemLog);
+    connect(cManager, &ClassManager::add2systemLog, this ,&UcEmulator::add2systemLog);// appendShowMessagePlain);//add2systemLog);
 
 //    connect(cManager, &ClassManager::onClassManagerIsReady, this, &UcEmulator::onLibraryIsReady);
 //    connect(cManager, SIGNAL(destroyed(QObject*)), this, SLOT(deleteLater()));
@@ -291,12 +291,7 @@ void UcEmulator::onDisconnExt(const bool &allowdecoder)
 
 }
 
-void UcEmulator::onCOMMAND2GUIreadySlot()
-{
-//    setPbReadDisabled(false) ;
-//    setPbWriteDisabled(false);
 
-}
 
 void UcEmulator::saveSettings(int block, QVariantHash hash)
 {
@@ -355,7 +350,6 @@ void UcEmulator::activatePage()
 
 //    authrizeAccess(MTD_USER_ADMIN);
 
-    connect(this, SIGNAL(onCOMMAND2GUIready()), this, SLOT(onCOMMAND2GUIreadySlot()));
 }
 
 void UcEmulator::createDecoderLater()
@@ -481,7 +475,7 @@ void UcEmulator::mWriteLater()
             QTimer::singleShot(111, this, SLOT(mWriteLater()));
 
 
-            const qint64 bytes = 1;
+        const qint64 bytes = 1;
 
         //    decoder->decodeReadData(dataVar, command);
         if(bytes > 0 && !itHasAnswer){

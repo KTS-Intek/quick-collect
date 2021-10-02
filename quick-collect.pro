@@ -50,7 +50,7 @@ DEFINES += DISABLE_WATCHDOG_TIMER
 DEFINES += DISABLE_PROC_MANAGER
 
 #appversion.cpp
-VERSION = 1.1.5
+VERSION = 1.2.0
 
 DEFINES += APPLCTN_NAME=\\\"quick-collect\\\"
 DEFINES += "MYAPPNAME=\"\\\"Quick Collect\\\"\""
@@ -69,6 +69,9 @@ DEFINES += IS_USESTARTDEV
 
 #tells sqlite-server to use IPC for configuration
 DEFINES += ENBL_IPC_4_CONFIG
+
+DEFINES += ENABLE_SETTLOADER4MATILDA
+
 
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.

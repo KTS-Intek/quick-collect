@@ -113,7 +113,7 @@ public slots:
     void onDisconnByDecoder();
     void onDisconnExt(const bool &allowdecoder);
 
-    void onCOMMAND2GUIreadySlot();
+
 
     void saveSettings(int block, QVariantHash hash);
 

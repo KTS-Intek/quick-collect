@@ -340,6 +340,9 @@ void QcMainWindow::createMeterManager()
     connect(zbyrator, &MeterManager::ifaceLogStr                , metersListMedium, &ZbyrMeterListMedium::ifaceLogStr               );
     connect(zbyrator, &MeterManager::ifaceLogStrNonBuf    , metersListMedium, &ZbyrMeterListMedium::ifaceLogStrFromZbyrator               );
 
+    //    connect(metersListMedium, &ZbyrMeterListMedium::ifaceLogStr, w, &SmplPteWdgt::appendPteText);
+
+
     connect(zbyrator, &MeterManager::appendMeterData            , metersListMedium, &ZbyrMeterListMedium::appendMeterData           );
     connect(zbyrator, &MeterManager::onConnectionStateChanged   , metersListMedium, &ZbyrMeterListMedium::onConnectionStateChanged  );
     connect(zbyrator, &MeterManager::onUconStartPoll            , metersListMedium, &ZbyrMeterListMedium::onUconStartPoll           );
@@ -369,7 +372,7 @@ void QcMainWindow::createMeterManager()
 
     connect(zbyrator, SIGNAL(onConnectionStateChanged(bool)), metersListMedium, SIGNAL(onTaskTableChanged()));
 
-    connect(guiHelper, SIGNAL(mWrite2RemoteDev(quint16,QVariant,QWidget*)), metersListMedium, SLOT(mWrite2RemoteDev(quint16,QVariant)));
+//    connect(guiHelper, SIGNAL(mWrite2RemoteDev(quint16,QVariant,QWidget*)), metersListMedium, SLOT(mWrite2RemoteDev(quint16,QVariant)));
 
     metersListMedium->importGroups2metersFile();
     QTimer::singleShot(1111, thread, SLOT(start()) );
@@ -477,7 +480,7 @@ MatildaConfWidget *QcMainWindow::createStartExchangeWdgt(GuiHelper *gHelper, QWi
 
     connect(w, SIGNAL(openEditMacProfileWdgt(bool,QLineEdit*)), this, SLOT(openEditMacProfileWdgt(bool,QLineEdit*)));
 
-    connect(this, &QcMainWindow::appendShowMess, w, &StartExchange::appendShowMessagePlain);
+    connect(this, &QcMainWindow::appendShowMessage, w, &StartExchange::appendShowMessagePlain);
     connect(this, &QcMainWindow::appendShowMessagePlain, w, &StartExchange::appendShowMessagePlain);
 
     connect(this, &QcMainWindow::onRequest2pollThese, w, &StartExchange::onRequest2pollThese);

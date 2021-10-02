@@ -1,6 +1,5 @@
 #include "pollwdgtmom.h"
 #include "src/nongui/settloader.h"
-#include "zbyrator-src/settloader4matildaemulator.h"
 #include "src/matilda/settloader4matilda.h"
 
 ///[!] matilda-bbb-serverside-shared
@@ -67,8 +66,7 @@ void PollWdgtMom::onGetUCMeterPollSettings(QString senderName)
     const UCMeterPollSettings settings = ClassManagerV1::fromHash2UCMeterPollSettings(h, pollWdgt->gHelper->ucDeviceTreeW->getProtocolVersion());
 
     pollWdgt->gHelper->ucDeviceTreeW->setUCMeterPollSettings(settings);
-//     pollWdgt->setPageSett( h.isEmpty() ? SettLoader4matildaEmulator::defaultPollWdgtSett() : h );
-    QTimer::singleShot(333, this, SLOT(unlockIgnore()));
+   QTimer::singleShot(333, this, SLOT(unlockIgnore()));
 }
 
 void PollWdgtMom::onPutUCMeterPollSettings(UCMeterPollSettings settings, QString senderName)

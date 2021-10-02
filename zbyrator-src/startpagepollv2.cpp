@@ -10,7 +10,7 @@
 
 ///[!] dataprocessing
 #include "src/matilda/devicepollcodeselectorhelper.h"
-#include "src/matilda/viewdatahelper.h"
+//#include "src/matilda/viewdatahelper.h"
 
 
 ///[!] widgets-shared
@@ -23,6 +23,7 @@
 
 ///[!] zbyrator-shared
 #include "src/meter/meterstatehelper.h"
+#include "src/meter/pollenergyhelper.h"
 
 
 ///[!] tasks-shared
@@ -49,65 +50,65 @@ StartPagePollV2::StartPagePollV2(GuiHelper *gHelper, QWidget *parent) : StartQui
 //---------------------------------------------------------------------------
 QStringList StartPagePollV2::getEnrgList4code(const quint8 &code)
 {
-    bool hasTariffs = false;
-    QStringList l;
+//    bool hasTariffs = false;
+//    QStringList l = PollEnergyHelper::defValEnergyKeys(code);
 
 
-    if(PollCodesHelper::isAlogBookPollCode(code)){
-        l = QString("model,evnt_code,comment").split(',');
-    }else if(PollCodesHelper::isAPeriodConsumptionPollCode(code)){
+//    if(PollCodesHelper::isAlogBookPollCode(code)){
+//        l = QString("model,evnt_code,comment").split(',');
+//    }else if(PollCodesHelper::isAPeriodConsumptionPollCode(code)){
 
-        if(PollCodesHelper::isEMeterPollCode(code)){
-            l = QString("A+ A- R+ R-").split(" ", QString::SkipEmptyParts);
-        }else if(PollCodesHelper::isWMeterPollCode(code)){
-            qDebug() << "StartPagePollV2::getEnrgList4code(const quint8 &code) no keys for this code " << code;
-        }else if(PollCodesHelper::isGMeterPollCode(code)){
-            qDebug() << "StartPagePollV2::getEnrgList4code(const quint8 &code) no keys for this code " << code;
+//        if(PollCodesHelper::isEMeterPollCode(code)){
+//            l = QString("A+ A- R+ R-").split(" ", QString::SkipEmptyParts);
+//        }else if(PollCodesHelper::isWMeterPollCode(code)){
+//            qDebug() << "StartPagePollV2::getEnrgList4code(const quint8 &code) no keys for this code " << code;
+//        }else if(PollCodesHelper::isGMeterPollCode(code)){
+//            qDebug() << "StartPagePollV2::getEnrgList4code(const quint8 &code) no keys for this code " << code;
 
-        }else if(PollCodesHelper::isPMeterPollCode(code)){
-            l.append(QString("chnnl dvlu").split(" ", QString::SkipEmptyParts));
-        }
+//        }else if(PollCodesHelper::isPMeterPollCode(code)){
+//            l.append(QString("chnnl dvlu").split(" ", QString::SkipEmptyParts));
+//        }
 
-        l.prepend("intrvl");
-    }else if(PollCodesHelper::isAstatePollCode(code)){
+//        l.prepend("intrvl");
+//    }else if(PollCodesHelper::isAstatePollCode(code)){
 
-        l = MeterStateHelper::getEngrKeys4table();
+//        l = MeterStateHelper::getEngrKeys4table();
 
-    }else if(PollCodesHelper::isItATariffPollCode4eMeter(code)){
-        hasTariffs = true;
-        l = QString("A+ A- R+ R-").split(" ", QString::SkipEmptyParts);
+//    }else if(PollCodesHelper::isItATariffPollCode4eMeter(code)){
+//        hasTariffs = true;
+//        l = QString("A+ A- R+ R-").split(" ", QString::SkipEmptyParts);
 
-    }else if(PollCodesHelper::isItATariffPollCode4wMeter(code)){
-        l = TableHeaders::getColDataWaterTotalValues().split(',');
+//    }else if(PollCodesHelper::isItATariffPollCode4wMeter(code)){
+//        l = PollEnergyHelper::getco:: TableHeaders::getColDataWaterTotalValues().split(',');
 
-    }else if(PollCodesHelper::isItATariffPollCode4pMeter(code)){
+//    }else if(PollCodesHelper::isItATariffPollCode4pMeter(code)){
 
-        l.append(QString("chnnl tvlu").split(" ", QString::SkipEmptyParts));
-
-
-    }else  if(PollCodesHelper::isAnInstantaneousPollCode(code)){
-        if(PollCodesHelper::isEMeterPollCode(code)){
-            l = QString("UA,UB,UC,IA,IB,IC,PA,PB,PC,QA,QB,QC,cos_fA,cos_fB,cos_fC,F").split(',')  ;
-        }else if(PollCodesHelper::isPMeterPollCode(code)){
-
-            l.append(QString("chnnl ivlu").split(" ", QString::SkipEmptyParts));
-
-        }else{
-            qDebug() << "StartPagePollV2::getEnrgList4code(const quint8 &code) no keys for this code " << code;
-
-        }
-
-    }
+//        l.append(QString("chnnl tvlu").split(" ", QString::SkipEmptyParts));
 
 
-    if(!hasTariffs)
-        return l;
+//    }else  if(PollCodesHelper::isAnInstantaneousPollCode(code)){
+//        if(PollCodesHelper::isEMeterPollCode(code)){
+//            l = QString("UA,UB,UC,IA,IB,IC,PA,PB,PC,QA,QB,QC,cos_fA,cos_fB,cos_fC,F").split(',')  ;
+//        }else if(PollCodesHelper::isPMeterPollCode(code)){
 
-    QStringList listEnrg;
-    for(int i = 0, emax = l.size(); i < 5; i++){
-        for(int e = 0; e < emax; e++)
-            listEnrg.append(QString("T%1_%2").arg(i).arg(l.at(e)));
-    }
+//            l.append(QString("chnnl ivlu").split(" ", QString::SkipEmptyParts));
+
+//        }else{
+//            qDebug() << "StartPagePollV2::getEnrgList4code(const quint8 &code) no keys for this code " << code;
+
+//        }
+
+//    }
+
+
+//    if(!hasTariffs)
+//        return l;
+
+    QStringList listEnrg = PollEnergyHelper::defValEnergyKeys(code);
+//    for(int i = 0, emax = l.size(); i < 5; i++){
+//        for(int e = 0; e < emax; e++)
+//            listEnrg.append(QString("T%1_%2").arg(i).arg(l.at(e)));
+//    }
 //    listEnrg.append("stts");
 
 
