@@ -17,8 +17,10 @@
 #include "dataconcentrator-pgs/dbdataform.h"
 
 
+
 ///[!] widgets-meters
 #include "dataconcetrator-pgs/templates/quickcollectstartpollparamswdgt.h"
+#include "dataconcetrator-pgs/src/databasewdgtv3.h"
 
 
 ///[!] zbyrator-shared
@@ -158,8 +160,12 @@ void StartPagePollV2::createTab(const StartPollTabSettExt &sett)
     connect(metersListMedium, &ZbyrMeterListMedium::onUCLastReceivedDeviceRecordsQuickCollectChanged, dbData, &DbDataForm::onUCLastReceivedDeviceRecordsChangedLocal);
 
     //you must create some class that can process data from zbyrator to GUI
-    dbData->setStreamParameters4local(lastWdgtAccssbltName, sett.select.selectionTag);
+//    dbData->setStreamParameters4local(lastWdgtAccssbltName, sett.select.selectionTag);
 
+
+    const MyLastSelectParamsV3 settext = DatabaseWdgtV3::fromStartPollTabSettExt(sett);
+
+    dbData->setStreamParametersV3local(settext, lastWdgtAccssbltName);
 
     QTimer::singleShot(1, this, SIGNAL(killSelectMeters4poll()));
 

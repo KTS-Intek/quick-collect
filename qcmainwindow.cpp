@@ -386,6 +386,10 @@ void QcMainWindow::createMeterListManager()
 
     guiHelper->ucDeviceTreeW = metersListMedium->ucDeviceTreeW;
 
+    metersListMedium->activateEmul2DeviceType();
+//    systeminfo.appv
+
+
     connect(metersListMedium, &ZbyrMeterListMedium::setPbReadEnableDisable, guiHelper, &GuiHelper::setPbReadEnableDisableSlot);
 //    connect(metersListMedium, &ZbyrMeterListMedium::updateHashSn2meter, guiHelper, &GuiHelper::updateHashSn2meter);
 //    connect(metersListMedium, &ZbyrMeterListMedium::data2dbMedium      , guiHelper, &GuiHelper::updateSettDateMaskAndDotPos);
@@ -595,11 +599,13 @@ MatildaConfWidget *QcMainWindow::createDatabasePage(GuiHelper *gHelper, QWidget 
     DatabaseWdgt4QuickCollect *w = new DatabaseWdgt4QuickCollect(gHelper,  parent);
 
 
-    connect(w, SIGNAL(data2dbMedium(quint16,QVariant)), metersListMedium, SIGNAL(data2dbMedium(quint16,QVariant)) );// do not uset it
+//    connect(w, SIGNAL(data2dbMedium(quint16,QVariant)), metersListMedium, SIGNAL(data2dbMedium(quint16,QVariant)) );// do not uset it
+
+
     connect(w, &DatabaseWdgt4QuickCollect::stopDbReading, metersListMedium, &ZbyrMeterListMedium::stopReadDatabase);
 
     connect(metersListMedium, SIGNAL(setLblWaitTxtDatabase(QString)), w, SIGNAL(setLblWaitTxtDatabase(QString)));
-    connect(metersListMedium, SIGNAL(appendDataDatabase(QVariantHash)), w, SLOT(setPageSett(QVariantHash))); //do not use it
+//    connect(metersListMedium, SIGNAL(appendDataDatabase(QVariantHash)), w, SLOT(setPageSett(QVariantHash))); //do not use it
 
     connect(w, &DatabaseWdgt4QuickCollect::pageEndInit, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters2zbyrator);// do not use it
 //    connect(w, &DatabaseWdgt4QuickCollect::onTry2readDb, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters2zbyrator);

@@ -130,6 +130,18 @@ void ZbyrMeterListMedium::resetVariables4pollStarted()
 
 }
 
+void ZbyrMeterListMedium::activateEmul2DeviceType()
+{
+
+
+    auto systeminfo = ucDeviceTreeW->getCachedUCSystemInfo();
+    systeminfo.devType = DEV_POLL_EMULATOR_L2;
+    systeminfo.SN = "EMUL";
+    systeminfo.validator.dtlastupdate = QDateTime::currentDateTimeUtc();
+    systeminfo.validator.allDataIsReceived = true;
+    ucDeviceTreeW->setUCSystemInfo(systeminfo);
+}
+
 
 
 //---------------------------------------------------------------------

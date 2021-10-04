@@ -41,6 +41,9 @@ public:
     LastMetersStatusesManager *metersStatusManager;
 
     void resetVariables4pollStarted();
+
+    void activateEmul2DeviceType();
+
 signals:
 
 
