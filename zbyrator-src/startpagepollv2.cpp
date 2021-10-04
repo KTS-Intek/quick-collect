@@ -32,6 +32,10 @@
 #include "src/task/pollcodeshelper.h"
 
 
+///[!] guisett-shared-core
+#include "src/nongui/settloader.h"
+
+
 
 #include "definedpollcodes.h"
 #include "myucdevicetypes.h"
@@ -169,6 +173,7 @@ void StartPagePollV2::createTab(const StartPollTabSettExt &sett)
 
     QTimer::singleShot(1, this, SIGNAL(killSelectMeters4poll()));
 
+    QTimer::singleShot(111, this, SLOT(saveCurrentDevSelectSett()));
 
 }
 
@@ -240,6 +245,48 @@ bool StartPagePollV2::createObjectsForPollAllMetersMode(const StartPollTabSettEx
     return true;
 }
 
+OneDevicePollCodes StartPagePollV2::getDeviceSelectSett4adev(const int &devtype)
+{
+    OneDevicePollCodes codes;
+
+    bool isUnknownDevType = false;
+    switch(devtype){
+    case UC_METER_ELECTRICITY   : codes = DevicePollCodeSelectorHelper::getElectricityMetersSelectSett(false)   ; break;
+    case UC_METER_WATER         : codes = DevicePollCodeSelectorHelper::getWaterMetersSelectSett()              ; break;
+    case UC_METER_GAS           : codes = DevicePollCodeSelectorHelper::getGasMetersSelectSett()                ; break;
+    case UC_METER_PULSE         : codes = DevicePollCodeSelectorHelper::getPulseMetersSelectSett()              ; break;
+    case UC_METER_UNKNOWN       : codes = DevicePollCodeSelectorHelper::getAllDevicesSelectSett()               ; break;
+    default: isUnknownDevType = true; break;
+    }
+///home/hello_zb/My_Prog/Qt5_progs/TESTS/Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.h
+///
+///
+    if(!isUnknownDevType){
+
+        const QString objectid = "EMULQP";// gHelper->ucDeviceTreeW->getCachedUCAboutDeviceSettings().objectId;
+        if(objectid.isEmpty()){
+            return PollCodesOperations::fromVariantHash(SettLoader().loadSett(SETT_PAGES_DB_SELSETTLST).toHash(), codes);
+        }
+
+
+        const QVariantHash oneobjid = SettLoader().loadSett(SETT_PAGES_DB_SELSETT).toHash().value(objectid).toHash();
+        if(oneobjid.isEmpty())
+            return PollCodesOperations::fromVariantHash(SettLoader().loadSett(SETT_PAGES_DB_SELSETTLST).toHash(), codes);
+
+
+        return PollCodesOperations::fromVariantHash(oneobjid, codes);
+
+//        return codes;
+    }
+
+    codes.currentPollCode = 0;
+    codes.pollcodesetts.insert(0, OnePollCodeSett());
+    codes.pollcodesnames.append(PollCodeName2data("name", 0, "iconstr"));
+    //    codes.datetimesett = SelectDateTimeSett() is is already ready for using
+
+    return codes;
+}
+
 bool StartPagePollV2::getIgnoreRetries()
 {
     return myLastCbxState.ignoreRetries;
@@ -298,6 +345,26 @@ void StartPagePollV2::onCurrentProcessingTabKilledSlot()
     emit killCurrentTask();
 
 
+}
+
+void StartPagePollV2::saveCurrentDevSelectSett()
+{
+    const auto onedev = getCurrentDevOneDevicePollCodes();
+
+    const QVariantHash h = PollCodesOperations::fromOneDevicePollCodes(onedev);
+
+    SettLoader().saveSett(SETT_PAGES_DB_SELSETTLST, h);
+
+    const QString objectid = "EMULQP";// gHelper->ucDeviceTreeW->getCachedUCAboutDeviceSettings().objectId;
+
+    if(!objectid.isEmpty()){
+        QVariantHash manyobjects = SettLoader().loadSett(SETT_PAGES_DB_SELSETT).toHash();
+        manyobjects.insert(objectid, h);
+        SettLoader().saveSett(SETT_PAGES_DB_SELSETT, manyobjects);
+    }
+
+
+    hideLblMessage();
 }
 
 //---------------------------------------------------------------------------

@@ -37,6 +37,8 @@ public:
 
     bool createObjectsForPollAllMetersMode(const StartPollTabSettExt &selsett, QString &message);
 
+    OneDevicePollCodes getDeviceSelectSett4adev(const int &devtype);
+
     bool getIgnoreRetries();
 
 signals:
@@ -79,6 +81,7 @@ public slots:
     void onCurrentProcessingTabKilledSlot();
 
 
+    void saveCurrentDevSelectSett();
 
 private:
 
