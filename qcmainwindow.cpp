@@ -263,7 +263,7 @@ void QcMainWindow::createZbyrProcManager()
     //It is for the sqlite-medium module
     ZbyratorProcessManager *m = new ZbyratorProcessManager;
     QThread *t = new QThread;
-
+t->setObjectName("ZbyratorProcessManager");
     m->moveToThread(t);
 
 //    connect(this, &QcMainWindow::destroyed, m, &ZbyratorProcessManager::deleteLater);
@@ -427,6 +427,7 @@ void QcMainWindow::createMatildaBBBcover()
             ;
     MatildaBBBcover *c = new MatildaBBBcover(nameStr, verbose);
     QThread *t = new QThread;
+    t->setObjectName("MatildaBBBcover");
     c->moveToThread(t);
 
 //    connect(this, SIGNAL(destroyed(QObject*)), c, SLOT(deleteLater()));
@@ -449,6 +450,7 @@ void QcMainWindow::createOneInstanceChecker()
     setEnabled(false);
     OneInstanceWatcher *watcher = new OneInstanceWatcher("ktsintek.com.ua.zbyrator", "kts-intek.com.ua");
     QThread *t = new QThread;
+    t->setObjectName("OneInstanceWatcher");
     watcher->moveToThread(t);
 
     connect(this, &QcMainWindow::receivedKillSignal, watcher, &OneInstanceWatcher::kickOffAllObjects);
@@ -492,6 +494,8 @@ MatildaConfWidget *QcMainWindow::createStartExchangeWdgt(GuiHelper *gHelper, QWi
 
     connect(w, SIGNAL(pageReady()), this, SIGNAL(initDone()));
     connect(w, &StartExchange::onRequest2GetDataThese, this, &QcMainWindow::onRequest2GetDataThese);
+
+    connect(this, &QcMainWindow::receivedKillSignal, w, &StartExchange::receivedKillSignal);
 
     return w;
 }
@@ -615,6 +619,8 @@ MatildaConfWidget *QcMainWindow::createDatabasePage(GuiHelper *gHelper, QWidget 
     connect(w, &DatabaseWdgt4QuickCollect::onRequest2GetDataTheseFromDb, this, &QcMainWindow::onRequest2GetDataThese);//get date
     connect(w, &DatabaseWdgt4QuickCollect::onRequest2pollTheseFromDb, this, &QcMainWindow::onRequest2pollThese );//start a new poll
 
+
+    connect(this, &QcMainWindow::receivedKillSignal, w, &DatabaseWdgt4QuickCollect::kickOffAll);
 
 //    connect(w, &DatabaseWdgtV2::onRequest2pollTheseFromDb, [=](QStringList nis, quint8 metertype){
 //        qDebug() << "onRequest2pollTheseFromDb QcMainWindow " << metertype << nis ;

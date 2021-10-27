@@ -64,6 +64,8 @@ signals:
     void onRequest2pollThese(QStringList nis, quint8 metertype);
     void onRequest2GetDataThese(QStringList nis, quint8 metertype);
 
+    void receivedKillSignal();//use it when application is closing
+
 private slots:
 
     void on_tbIfaceSett_clicked();

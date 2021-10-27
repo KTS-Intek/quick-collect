@@ -171,6 +171,8 @@ void StartPagePollV2::createTab(const StartPollTabSettExt &sett)
 
     dbData->setStreamParametersV3local(settext, lastWdgtAccssbltName);
 
+    connect(this, &StartPagePollV2::kickOffAll, dbData, &DbDataForm::kickOffAll);
+
     QTimer::singleShot(1, this, SIGNAL(killSelectMeters4poll()));
 
     QTimer::singleShot(111, this, SLOT(saveCurrentDevSelectSett()));

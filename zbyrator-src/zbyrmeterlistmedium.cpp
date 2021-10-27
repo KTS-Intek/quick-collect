@@ -284,6 +284,7 @@ void ZbyrMeterListMedium::createDataCalculator()
 {
     ZbyratorDataCalculation *c = new ZbyratorDataCalculation;
     QThread *t = new QThread;
+    t->setObjectName("ZbyratorDataCalculation");
     c->moveToThread(t);
 
 //    connect(this, SIGNAL(destroyed(QObject*)), t, SLOT(quit()) );
@@ -327,6 +328,7 @@ void ZbyrMeterListMedium::createDatabaseMedium()
 
 
     QThread *t = new QThread;
+
     m->moveToThread(t);
     t->setObjectName("ZbyratorDatabaseMedium");
 
@@ -1049,6 +1051,7 @@ void ZbyrMeterListMedium::createLocalSocketObject()
 
     extSocket->initializeSocket(MTD_EXT_NAME_ZBYRATOR);
     QThread *extSocketThrd = new QThread;
+    extSocketThrd->setObjectName("ZbyratorSocket");
 
     extSocket->moveToThread(extSocketThrd);
 
@@ -1085,6 +1088,7 @@ void ZbyrMeterListMedium::createPeredavatorEmbeeManager()
     PeredavatorCover *cover = new PeredavatorCover;
     QThread *t = new QThread;
 
+    t->setObjectName("PeredavatorCover");
     cover->moveToThread(t);
 
     connect(this, &ZbyrMeterListMedium::killAllObjects, cover, &PeredavatorCover::kickOffAllObjects);

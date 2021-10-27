@@ -216,6 +216,7 @@ void DatabaseSettings::createTableDropper()
 {
     TableDropper *d = new TableDropper;
     QThread *t = new QThread;
+    t->setObjectName("TableDropper");
 
     d->moveToThread(t);
     connect(t, SIGNAL(started()), d, SLOT(onThreadStarted()));
@@ -246,7 +247,7 @@ void DatabaseSettings::createDbLimitAndClient()
     DbClientCover *cover = new DbClientCover;
 
     QThread *t = new QThread;
-
+    t->setObjectName("DbClientCover");
     cover->moveToThread(t);
 
     connect(this, SIGNAL(destroyed(QObject*)), cover, SLOT(deleteLater()));

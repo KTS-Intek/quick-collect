@@ -312,6 +312,8 @@ MatildaConfWidget *StartExchange::createStartPagePoll(GuiHelper *gHelper, QWidge
     connect(w, &StartPagePollV2::onRequest2GetDataTheseFromDb, this, &StartExchange::onRequest2GetDataThese);
     connect(w, &StartPagePollV2::onRequest2pollTheseFromDb, this, &StartExchange::onRequest2pollThese);
 
+    connect(this, &StartExchange::receivedKillSignal, w, &StartPagePollV2::kickOffAll);
+
     return w;
 }
 //-----------------------------------------------------------------------------------------------
@@ -337,7 +339,7 @@ MatildaConfWidget *StartExchange::createRelayWdgt(GuiHelper *gHelper, QWidget *p
     RelayWdgt *w = new RelayWdgt(gHelper,  parent);
 //    connect(metersListMedium, &ZbyrMeterListMedium::setRelayPageSett, w, &RelayWdgt::setp);
 
-    connect(metersListMedium, SIGNAL(setRelayPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)), w, SLOT(setPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)) );
+//    connect(metersListMedium, SIGNAL(setRelayPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)), w, SLOT(setPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)) );
 //    connect(metersListMedium, &ZbyrMeterListMedium::meterRelayStatus, w, &RelayWdgt::meterRelayStatus);
 
     connect(w, &RelayWdgt::setLastPageId, metersListMedium, &ZbyrMeterListMedium::setLastPageId);
@@ -400,7 +402,7 @@ MatildaConfWidget *StartExchange::createZbyratorTaskWdgt(GuiHelper *gHelper, QWi
     t->setObjectName("ZbyratorTasksMediumT");
 
     m->moveToThread(t);
-    connect(this, SIGNAL(destroyed(QObject*)), m, SLOT(deleteLater()));
+    connect(this, SIGNAL(receivedKillSignal()), m, SLOT(deleteLater()));
     connect(m, SIGNAL(destroyed(QObject*)), t, SLOT(quit()) );
     connect(t, SIGNAL(finished()), t, SLOT(deleteLater()) );
     connect(t, SIGNAL(started()), m, SLOT(onThreadStarted()) );

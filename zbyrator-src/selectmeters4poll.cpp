@@ -92,6 +92,7 @@ void SelectMeters4poll::initPage()
 
     GetReadyMetersData *d = new GetReadyMetersData;
     QThread *t = new QThread;
+    t->setObjectName("GetReadyMetersData");
     d->setPollSett(lPollSett.dtFrom, lPollSett.dtTo, lPollSett.pollCode, lPollSett.deviceType);
 
     d->moveToThread(t);
