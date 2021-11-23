@@ -28,7 +28,7 @@ class ZbyrMeterListMedium : public GuiIfaceMedium
 {
     Q_OBJECT
 public:
-    explicit ZbyrMeterListMedium(QObject *parent = nullptr);
+    explicit ZbyrMeterListMedium(const bool &verboseMode, QObject *parent = nullptr);
 
     UCDeviceTreeWatcher *ucDeviceTreeW;
 

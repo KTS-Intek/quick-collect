@@ -27,7 +27,7 @@ class QcMainWindow : public MainIfaceMedium
     Q_OBJECT
 
 public:
-    explicit QcMainWindow(const QFont &font4log, const int &defFontPointSize, QWidget *parent = nullptr);
+    explicit QcMainWindow(const QFont &font4log, const int &defFontPointSize, const bool &verboseMode, QWidget *parent = nullptr);
     ~QcMainWindow();
 
 

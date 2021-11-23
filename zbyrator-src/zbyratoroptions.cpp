@@ -154,6 +154,8 @@ MatildaConfWidget *ZbyratorOptions::createOptionsWdgt()
     disconnect(p, SIGNAL(clicked(bool)), w, SLOT(deleteLater()));
     connect(p, SIGNAL(clicked(bool)), w, SLOT(loadSettPageOptions()));
 
+    connect(w, SIGNAL(destroyed(QObject*)), gHelper, SLOT(updateSettDateMaskAndDotPos()));
+
     return w;
 }
 

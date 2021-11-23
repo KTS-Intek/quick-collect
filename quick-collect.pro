@@ -50,12 +50,12 @@ DEFINES += DISABLE_WATCHDOG_TIMER
 DEFINES += DISABLE_PROC_MANAGER
 
 #appversion.cpp
-VERSION = 1.2.0
+VERSION = 1.2.1
 
 DEFINES += APPLCTN_NAME=\\\"quick-collect\\\"
 DEFINES += "MYAPPNAME=\"\\\"Quick Collect\\\"\""
 DEFINES += "MYAPPOWNER=\"\\\"KTS Intek Ltd\\\"\""
-DEFINES += "MYAPPOWNERSITE=\"\\\"http://kts-intek.com\\\"\""
+DEFINES += "MYAPPOWNERSITE=\"\\\"https://kts-intek.com\\\"\""
 
 #defines that disable some modules, that I don't want to use
 DEFINES += DISABLEVPNMANAGER

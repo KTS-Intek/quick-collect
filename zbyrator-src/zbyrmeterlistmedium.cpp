@@ -75,7 +75,7 @@
 
 //---------------------------------------------------------------------
 
-ZbyrMeterListMedium::ZbyrMeterListMedium(QObject *parent) : GuiIfaceMedium(parent)
+ZbyrMeterListMedium::ZbyrMeterListMedium(const bool &verboseMode, QObject *parent) : GuiIfaceMedium(verboseMode, parent)
 {
     QTimer *t = new QTimer(this);
     t->setSingleShot(true);
@@ -607,7 +607,7 @@ void ZbyrMeterListMedium::onGetUCSupportedMetersInfo(QString senderName)
     emeter = wmeter = pmeter = UCSupportedMetersInfo();//reset all
 
 
-    const MeterPluginInfo info = MeterPluginLoader::loadAboutPlugin(PathsResolver::path2pluginsDir());// hash;
+    const MeterPluginInfo info = MeterPluginLoader::loadAboutPlugin(PathsResolver::path2pluginsDir(), verboseMode );// hash;
 
     for(int i = 0, imax = info.allModels.size(); i < imax; i++){
 
@@ -1044,7 +1044,6 @@ void ZbyrMeterListMedium::createLocalSocketObject()
 {
 
 
-    const bool verboseMode = false;
     const bool activeDbgMessages = false;
     ZbyratorSocket *extSocket = new ZbyratorSocket(verboseMode);
     extSocket->activeDbgMessages = activeDbgMessages;
@@ -1085,7 +1084,7 @@ void ZbyrMeterListMedium::createLocalSocketObject()
 
 void ZbyrMeterListMedium::createPeredavatorEmbeeManager()
 {
-    PeredavatorCover *cover = new PeredavatorCover;
+    PeredavatorCover *cover = new PeredavatorCover(verboseMode);
     QThread *t = new QThread;
 
     t->setObjectName("PeredavatorCover");

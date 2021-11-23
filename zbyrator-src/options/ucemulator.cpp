@@ -99,7 +99,7 @@ void UcEmulator::createClassManager()
         dashBoardW->activateEmulatorMode();
     }
 
-    cManager = new ClassManager(ucDeviceTreeW, this);
+    cManager = new ClassManager(ucDeviceTreeW, gHelper->verboseMode, this);
 
     ucDeviceTreeW->setAccessLevel(MTD_USER_ADMIN);
     onAccessLevelChanged(MTD_USER_ADMIN);

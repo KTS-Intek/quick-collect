@@ -56,7 +56,7 @@ StartExchange::~StartExchange()
 void StartExchange::initPage()
 {
 
-    guiHelper = new GuiHelper(this);
+    guiHelper = new GuiHelper(gHelper->verboseMode, this);
 
     guiHelper->initObj();
     guiHelper->guiSett = gHelper->guiSett;

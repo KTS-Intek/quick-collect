@@ -60,8 +60,8 @@
 
 
 
-QcMainWindow::QcMainWindow(const QFont &font4log, const int &defFontPointSize,  QWidget *parent) :
-    MainIfaceMedium(font4log, defFontPointSize, parent),
+QcMainWindow::QcMainWindow(const QFont &font4log, const int &defFontPointSize, const bool &verboseMode, QWidget *parent) :
+    MainIfaceMedium(font4log, defFontPointSize, verboseMode, parent),
     ui(new Ui::QcMainWindow)
 {
     ui->setupUi(this);
@@ -81,7 +81,7 @@ void QcMainWindow::initPage()
 {
     lastToolBar = ui->mainToolBar;
     ui->statusBar->hide();
-    createGuiHelper(ui->stackedWidget, 12, MATILDA_PROTOCOL_VERSION);
+    createGuiHelper(ui->stackedWidget, guiSett->verboseMode);// 12, MATILDA_PROTOCOL_VERSION);
     createStackWidgetHelper();
     createAppOutLog();
 
@@ -97,6 +97,7 @@ void QcMainWindow::initPage()
     connect(this, SIGNAL(onRequest2GetDataThese(QStringList,quint8)), this, SLOT(activatePageDb()));
 
 
+    QTimer::singleShot(999, this, SLOT(activatePageHome()));
 
 }
 
@@ -130,7 +131,7 @@ void QcMainWindow::continueCreatingObjects()
 
     connect(ui->actionExit, SIGNAL(triggered(bool)), this, SLOT(close()));
 
-    ui->menuHelp->insertAction(ui->actionAbout, new ActionMaintanenance(this));
+    ui->menuHelp->insertAction(ui->actionAbout, new ActionMaintanenance(guiHelper->verboseMode, this));
     setEnabled(true);
 
     checkProxySettLater();
@@ -148,7 +149,7 @@ void QcMainWindow::onAppIsKilling()
 #ifdef Q_OS_LINUX
     QTimer::singleShot(1111, this, SLOT(allow2closeTheWindowAndClose()));
 #else
-    QTimer::singleShot(5555, this, SLOT(allow2closeTheWindowAndClose()));
+    QTimer::singleShot(2555, this, SLOT(allow2closeTheWindowAndClose()));
 #endif
 }
 
@@ -178,7 +179,7 @@ void QcMainWindow::activatePageHome()
 void QcMainWindow::checkProxySett()
 {
     if(!guiHelper->isProxyOk()){
-        emit showMessage(tr("You must setup the proxy"));
+        showMessage(tr("You must setup the proxy"));
         return;
     }
 }
@@ -284,7 +285,7 @@ t->setObjectName("ZbyratorProcessManager");
 void QcMainWindow::createMeterManager()
 {
 //it is a part of zbyrator-bbb
-    MeterManager *zbyrator = new MeterManager(QString(), true, ZbyrConnSett());
+    MeterManager *zbyrator = new MeterManager(QString(), guiSett->verboseMode, ZbyrConnSett());
 
     QThread *thread = new QThread;
     thread->setObjectName("MeterManager");
@@ -382,13 +383,15 @@ void QcMainWindow::createMeterManager()
 void QcMainWindow::createMeterListManager()
 {
     //it is a joint point between GUI and zbyrator-bbb
-    metersListMedium = new ZbyrMeterListMedium(this);
+    metersListMedium = new ZbyrMeterListMedium(guiHelper->verboseMode, this);
 
     guiHelper->ucDeviceTreeW = metersListMedium->ucDeviceTreeW;
 
     metersListMedium->activateEmul2DeviceType();
-//    systeminfo.appv
 
+    //    systeminfo.appv
+
+    connect(this, &QcMainWindow::receivedKillSignal, metersListMedium, &ZbyrMeterListMedium::killAllObjects);
 
     connect(metersListMedium, &ZbyrMeterListMedium::setPbReadEnableDisable, guiHelper, &GuiHelper::setPbReadEnableDisableSlot);
 //    connect(metersListMedium, &ZbyrMeterListMedium::updateHashSn2meter, guiHelper, &GuiHelper::updateHashSn2meter);
@@ -418,20 +421,15 @@ void QcMainWindow::createMeterListManager()
 void QcMainWindow::createMatildaBBBcover()
 {
     const QString nameStr = "Matilda";
-    const bool verbose =
-        #ifdef Q_OS_LINUX
-            true
-        #else
-            false
-        #endif
-            ;
+    const bool verbose = guiSett->verboseMode;
+
     MatildaBBBcover *c = new MatildaBBBcover(nameStr, verbose);
     QThread *t = new QThread;
     t->setObjectName("MatildaBBBcover");
     c->moveToThread(t);
 
 //    connect(this, SIGNAL(destroyed(QObject*)), c, SLOT(deleteLater()));
-    connect(this, &QcMainWindow::receivedKillSignal, c, &MatildaBBBcover::itIsTime2kickOff);
+    connect(this, &QcMainWindow::receivedKillSignal, c, &MatildaBBBcover::itIsTime2kickOffWithDelay);
 
     connect(this, &QcMainWindow::command2extensionBBB, c, &MatildaBBBcover::command2extension);
     connect(c, SIGNAL(destroyed(QObject*)), t, SLOT(quit()));
@@ -448,7 +446,7 @@ void QcMainWindow::createMatildaBBBcover()
 void QcMainWindow::createOneInstanceChecker()
 {
     setEnabled(false);
-    OneInstanceWatcher *watcher = new OneInstanceWatcher("ktsintek.com.ua.zbyrator", "kts-intek.com.ua");
+    OneInstanceWatcher *watcher = new OneInstanceWatcher("ktsintek.com.ua.zbyrator", "kts-intek.com.ua", guiHelper->verboseMode);
     QThread *t = new QThread;
     t->setObjectName("OneInstanceWatcher");
     watcher->moveToThread(t);
