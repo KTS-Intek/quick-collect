@@ -1,5 +1,4 @@
 #include "selectmeters4poll.h"
-#include "ui_selectmeters4poll.h"
 
 #include <QShortcut>
 #include <QKeySequence>
@@ -19,6 +18,8 @@
 #include "myucdevicetypes.h"
 
 
+//----------------------------------------------------------------------------------------------
+
 GetDataFromDbDoneSignalizator::GetDataFromDbDoneSignalizator(QObject *parent) : QObject(parent)
 {
     connect(this, SIGNAL(onDbSelectorKickedOff()), this, SLOT(deleteLater()));
@@ -26,22 +27,25 @@ GetDataFromDbDoneSignalizator::GetDataFromDbDoneSignalizator(QObject *parent) : 
 }
 
 
+//----------------------------------------------------------------------------------------------
+
 
 SelectMeters4poll::SelectMeters4poll(GetDataFromDbDoneSignalizator *signalizator, GuiHelper *gHelper, QWidget *parent) :
 
-    ReferenceWidgetClass(gHelper,  parent), signalizator(signalizator),
-    ui(new Ui::SelectMeters4poll)
+    ReferenceWidgetClassGui(gHelper,  parent), signalizator(signalizator)
 {
-    ui->setupUi(this);
-    connect(ui->pbCancel, SIGNAL(clicked(bool)), this, SLOT(deleteLater()) );
+    topWdgt = new SelectMeters4pollTopWdgt(this);
+    getVLayoutMain()->insertWidget(0, topWdgt);
+
+    connect(topWdgt->getPbCancel(), SIGNAL(clicked(bool)), this, SLOT(deleteLater()) );
+
     connect(new QShortcut(QKeySequence::Cancel, this), SIGNAL(activated()), this, SLOT(deleteLater()) );
 
+    hidePbAdd();
 }
 
-SelectMeters4poll::~SelectMeters4poll()
-{
-    delete ui;
-}
+
+//----------------------------------------------------------------------------------------------
 
 void SelectMeters4poll::setPollSett(const QDateTime &dtFrom, const QDateTime &dtTo, const quint8 &pollCode, const quint8 &deviceType, const int &go2sleepSeconds, const bool &enCheckSleepProfile, const bool &ignoreRetr)
 {
@@ -55,11 +59,15 @@ void SelectMeters4poll::setPollSett(const QDateTime &dtFrom, const QDateTime &dt
     lPollSett.ignoreRetr = ignoreRetr;
 }
 
+//----------------------------------------------------------------------------------------------
+
 void SelectMeters4poll::setPollSettElectric(const QDateTime &dtFrom, const QDateTime &dtTo
                                             , const quint8 &pollCode, const bool &ignoreRetr)
 {
     setPollSett(dtFrom, dtTo, pollCode, UC_METER_ELECTRICITY, 0, false, ignoreRetr);
 }
+
+//----------------------------------------------------------------------------------------------
 
 void SelectMeters4poll::setPollSettWater(const QDateTime &dtFrom, const QDateTime &dtTo, const quint8 &pollCode
                                          , const bool &enSleepCommand, const int &go2sleepSeconds, const bool &enCheckSleepProfile, const bool &ignoreRetr)
@@ -67,27 +75,40 @@ void SelectMeters4poll::setPollSettWater(const QDateTime &dtFrom, const QDateTim
     setPollSett(dtFrom, dtTo, pollCode, UC_METER_WATER, enSleepCommand ? go2sleepSeconds : 0, enCheckSleepProfile, ignoreRetr );
 }
 
+//----------------------------------------------------------------------------------------------
+
 void SelectMeters4poll::setPollSettGas(const QDateTime &dtFrom, const QDateTime &dtTo, const quint8 &pollCode, const bool &ignoreRetr)
 {
     //it can come with a sleep mode, but I'm not sure
     setPollSett(dtFrom, dtTo, pollCode, UC_METER_GAS, 0, false, ignoreRetr);
 }
 
+//----------------------------------------------------------------------------------------------
+
 void SelectMeters4poll::setPollSettPulse(const QDateTime &dtFrom, const QDateTime &dtTo, const quint8 &pollCode, const bool &ignoreRetr)
 {
     setPollSett(dtFrom, dtTo, pollCode, UC_METER_PULSE, 0, false, ignoreRetr);
 }
 
+//----------------------------------------------------------------------------------------------
 
 void SelectMeters4poll::initPage()
 {
-    setupObjects(0, ui->tvTable, ui->tbFilter, ui->cbFilterMode, ui->leFilter, SETT_FILTERS_ZBYR_SELMTRS);
+    createModelsV2("SelectMeters4poll", true);
+    connectMessageSignal();
+    allow2useDefaultContextMenu(true);
+
+    connect(lastTv, &QTableView::doubleClicked, this, &SelectMeters4poll::ontvTable_doubleClicked);
+
+
+
+//    setupObjects(0, ui->tvTable, ui->tbFilter, ui->cbFilterMode, ui->leFilter, SETT_FILTERS_ZBYR_SELMTRS);
 //    connect(this, SIGNAL(openContextMenu(QPoint)), this, SLOT(on_tvTable_customContextMenuRequested(QPoint)));
-    StandardItemModelHelper::setModelHorizontalHeaderItems(model, QStringList());
+//    StandardItemModelHelper::setModelHorizontalHeaderItems(model, QStringList());
 
 
     SelectionChecker *tmr = new SelectionChecker(this);
-    tmr->setWatchTable(ui->tvTable, ui->pbSelected);
+    tmr->setWatchTable(lastTv, topWdgt->getPbSelected());
 //    setHasDataFromRemoteDevice();
 
     GetReadyMetersData *d = new GetReadyMetersData;
@@ -100,7 +121,7 @@ void SelectMeters4poll::initPage()
     connect(signalizator, &GetDataFromDbDoneSignalizator::stopDbSelector, d, &GetReadyMetersData::stopAllDirect, Qt::DirectConnection);
     connect(t, SIGNAL(destroyed(QObject*)), signalizator, SIGNAL(onDbSelectorKickedOff()));
 
-    connect(ui->pbCancel, SIGNAL(clicked(bool)), d, SLOT(stopAllDirect()), Qt::DirectConnection);
+    connect(topWdgt->getPbCancel(), SIGNAL(clicked(bool)), d, SLOT(stopAllDirect()), Qt::DirectConnection);
     connect(this, SIGNAL(destroyed(QObject*)), d, SLOT(stopAllDirect()), Qt::DirectConnection);
     connect(d, SIGNAL(destroyed(QObject*)), t, SLOT(quit()));
     connect(t, SIGNAL(finished()), t, SLOT(deleteLater()) );
@@ -108,17 +129,49 @@ void SelectMeters4poll::initPage()
     connect(t, SIGNAL(started()), d, SLOT(onThreadStarted()) );
     connect(t, SIGNAL(started()), this, SIGNAL(onReloadAllMeters()) );
 
-    connect(d, SIGNAL(allMeters2selectWdgt(MyListStringList,QVariantMap,QStringList,QStringList,bool)), this, SLOT(setPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)));
+
+    connect(d, &GetReadyMetersData::allMeters2selectWdgtV2, this, &SelectMeters4poll::allMeters2selectWdgtV2);
+//    connect(d, SIGNAL(allMeters2selectWdgt(MyListStringList,QVariantMap,QStringList,QStringList,bool)), this, SLOT(setPageSett(MyListStringList,QVariantMap,QStringList,QStringList,bool)));
     connect(d, SIGNAL(onProcessingEnds(QStringList)), this, SLOT(onProcessingEnds(QStringList)));
 
     connect(this, SIGNAL(onAllMeters(UniversalMeterSettList)), d, SLOT(setMetersList(UniversalMeterSettList)));
 
     t->start();
 
-    ui->cbxIgnoreExistingData->setChecked(SettLoader::loadSett(SETT_ZBRTR_IGNOREEXISTING, true).toBool());
+    topWdgt->getCbxIgnoreExistingData()->setChecked(SettLoader::loadSett(SETT_ZBRTR_IGNOREEXISTING, true).toBool());
 
-//    emit onPageCanReceiveData();
+
+    connect(topWdgt->getPbCheckedOn(), SIGNAL(clicked(bool)), this, SLOT(onpbCheckedOn_clicked()));
+    connect(topWdgt->getPbPollAll(), SIGNAL(clicked(bool)), this, SLOT(onpbPollAll_clicked()));
+    connect(topWdgt->getPbSelected(), SIGNAL(clicked(bool)), this, SLOT(onpbSelected_clicked()));
+    //    emit onPageCanReceiveData();
 }
+
+//----------------------------------------------------------------------------------------------
+
+void SelectMeters4poll::allMeters2selectWdgtV2(MPrintTableOut table, QStringList humanHeader, QStringList listGrpsHuman)
+{
+    setTableData4amodelExt6woValidator(table, humanHeader);
+    listGrpsHuman.prepend("");
+
+    disconnect(topWdgt->getCbxGroups(), SIGNAL(currentIndexChanged(QString)), this, SLOT(onCbxGroups_currentIndexChanged(QString)));
+    proxy_model->setSpecFilter(5, "+");
+    topWdgt->getCbxGroups()->clear();
+    topWdgt->getCbxGroups()->addItems(listGrpsHuman);
+    topWdgt->getCbxGroups()->setCurrentIndex(-1);
+    connect(topWdgt->getCbxGroups(), SIGNAL(currentIndexChanged(QString)), this, SLOT(onCbxGroups_currentIndexChanged(QString)));
+    topWdgt->getCbxGroups()->setCurrentIndex(0);
+
+
+    const bool enableBnts = !table.isEmpty();
+
+    topWdgt->getPbCheckedOn()->setEnabled(enableBnts);
+    topWdgt->getPbPollAll()->setEnabled(enableBnts);
+
+
+}
+
+//----------------------------------------------------------------------------------------------
 
 //void SelectMeters4poll::setPageSett(const MyListStringList &listRows, const QVariantMap &col2data, const QStringList &headerH, const QStringList &header, const bool &hasHeader)
 //{
@@ -154,9 +207,11 @@ void SelectMeters4poll::initPage()
 //    emit resizeTv2content(ui->tvTable);
 //}
 
+//----------------------------------------------------------------------------------------------
+
 void SelectMeters4poll::onProcessingEnds(QStringList listMissingData)
 {//    //tr("Meter;NI;Memo;Poll;Has data").split(";"));
-    ui->lblDatabase->hide();
+    topWdgt->getLblDatabase()->hide();
     for(int i = 0, imax = model->rowCount(); i < imax; i++){
          if(listMissingData.contains(model->item(i,1)->text())){
             listMissingData.removeOne(model->item(i,1)->text());
@@ -169,7 +224,9 @@ void SelectMeters4poll::onProcessingEnds(QStringList listMissingData)
     }
 }
 
-void SelectMeters4poll::on_pbPollAll_clicked()
+//----------------------------------------------------------------------------------------------
+
+void SelectMeters4poll::onpbPollAll_clicked()
 {
     QStringList l;
     for(int i = 0, imax = proxy_model->rowCount(); i < imax; i++){
@@ -182,13 +239,15 @@ void SelectMeters4poll::on_pbPollAll_clicked()
     sendStartPoll(l);
 }
 
+//----------------------------------------------------------------------------------------------
+
 void SelectMeters4poll::sendStartPoll(const QStringList &listni)
 {
     if(listni.isEmpty())
         return;
 
     QString mess;
-    const QVariantMap map = QuickPollHelper::createPollMap(listni, lPollSett.dtTo, lPollSett.dtFrom, ui->cbxIgnoreExistingData->isChecked()
+    const QVariantMap map = QuickPollHelper::createPollMap(listni, lPollSett.dtTo, lPollSett.dtFrom, topWdgt->getCbxIgnoreExistingData()->isChecked()
                                                            , lPollSett.go2sleepSeconds, lPollSett.enCheckSleepProfile, lPollSett.ignoreRetr, mess);
 
     if(map.isEmpty())
@@ -196,17 +255,21 @@ void SelectMeters4poll::sendStartPoll(const QStringList &listni)
 
 
     emit command4dev(lPollSett.pollCode, map);
-    SettLoader::saveSett(SETT_ZBRTR_IGNOREEXISTING, ui->cbxIgnoreExistingData->isChecked());
+    SettLoader::saveSett(SETT_ZBRTR_IGNOREEXISTING, topWdgt->getCbxIgnoreExistingData()->isChecked());
 
     QTimer::singleShot(11, this, SLOT(deleteLater()) );
 }
 
-void SelectMeters4poll::on_pbSelected_clicked()
+//----------------------------------------------------------------------------------------------
+
+void SelectMeters4poll::onpbSelected_clicked()
 {
-    sendStartPoll(TableViewHelper::getSelectedRowsText(ui->tvTable, 1));
+    sendStartPoll(TableViewHelper::getSelectedRowsText(lastTv, 1));
 }
 
-void SelectMeters4poll::on_pbCheckedOn_clicked()
+//----------------------------------------------------------------------------------------------
+
+void SelectMeters4poll::onpbCheckedOn_clicked()
 {
     QStringList l;
     for(int i = 0, imax = proxy_model->rowCount(); i < imax; i++){
@@ -220,6 +283,7 @@ void SelectMeters4poll::on_pbCheckedOn_clicked()
     sendStartPoll(l);
 }
 
+//----------------------------------------------------------------------------------------------
 
 void SelectMeters4poll::onCbxGroups_currentIndexChanged(const QString &arg1)
 {
@@ -227,12 +291,18 @@ void SelectMeters4poll::onCbxGroups_currentIndexChanged(const QString &arg1)
 
 }
 
-void SelectMeters4poll::on_tvTable_doubleClicked(const QModelIndex &index)
+//----------------------------------------------------------------------------------------------
+
+void SelectMeters4poll::ontvTable_doubleClicked(const QModelIndex &index)
 {
     if(index.isValid()){
-        ui->pbSelected->setEnabled(true);
-        ui->pbSelected->animateClick();
+        topWdgt->getPbSelected()->setEnabled(true);
+        topWdgt->getPbSelected()->animateClick();
+//        ui->pbSelected->setEnabled(true);
+//        ui->pbSelected->animateClick();
 
     }
 
 }
+
+//----------------------------------------------------------------------------------------------

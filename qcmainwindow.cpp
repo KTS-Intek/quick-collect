@@ -97,7 +97,7 @@ void QcMainWindow::initPage()
     connect(this, SIGNAL(onRequest2GetDataThese(QStringList,quint8)), this, SLOT(activatePageDb()));
 
 
-    QTimer::singleShot(999, this, SLOT(activatePageHome()));
+    QTimer::singleShot(999, this, SLOT(activatePageHomeSmart()));
 
 }
 
@@ -182,6 +182,18 @@ void QcMainWindow::checkProxySett()
         showMessage(tr("You must setup the proxy"));
         return;
     }
+}
+
+void QcMainWindow::activatePageHomeSmart()
+{
+    //weak computers are unable to show home page from the first attempt
+    activatePageHome();
+
+    if(ui->stackedWidget->count() < 0 || ui->stackedWidget->currentWidget()->accessibleName().isEmpty()){
+        QTimer::singleShot(999, this, SLOT(activatePageHomeSmart()));
+
+    }
+
 }
 
 
@@ -373,7 +385,6 @@ void QcMainWindow::createMeterManager()
 
     connect(zbyrator, SIGNAL(onConnectionStateChanged(bool)), metersListMedium, SIGNAL(onTaskTableChanged()));
 
-//    connect(guiHelper, SIGNAL(mWrite2RemoteDev(quint16,QVariant,QWidget*)), metersListMedium, SLOT(mWrite2RemoteDev(quint16,QVariant)));
 
     metersListMedium->importGroups2metersFile();
     QTimer::singleShot(1111, thread, SLOT(start()) );

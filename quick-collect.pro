@@ -50,7 +50,7 @@ DEFINES += DISABLE_WATCHDOG_TIMER
 DEFINES += DISABLE_PROC_MANAGER
 
 #appversion.cpp
-VERSION = 1.2.1
+VERSION = 1.2.2
 
 DEFINES += APPLCTN_NAME=\\\"quick-collect\\\"
 DEFINES += "MYAPPNAME=\"\\\"Quick Collect\\\"\""
@@ -159,6 +159,7 @@ SOURCES += \
     zbyrator-src/checkconnectiontoolwdgt.cpp \
     zbyrator-src/templates/metersdatetimebuttonswdgt.cpp \
     zbyrator-src/templates/relaybuttonswdgt.cpp \
+    zbyrator-src/templates/selectmeters4polltopwdgt.cpp \
     zbyrator-src/templates/watersleepschedulermombuttonswdgt.cpp \
     zbyrator-src/zbyratorservice.cpp \
     zbyrator-src/zbyrmeterlistmedium.cpp \
@@ -188,6 +189,7 @@ HEADERS += \
     zbyrator-src/checkconnectiontoolwdgt.h \
     zbyrator-src/templates/metersdatetimebuttonswdgt.h \
     zbyrator-src/templates/relaybuttonswdgt.h \
+    zbyrator-src/templates/selectmeters4polltopwdgt.h \
     zbyrator-src/templates/watersleepschedulermombuttonswdgt.h \
     zbyrator-src/zbyratorservice.h \
     zbyrator-src/zbyrmeterlistmedium.h \
@@ -215,13 +217,13 @@ FORMS += \
     zbyrator-src/checkconnectiontoolwdgt.ui \
     zbyrator-src/templates/metersdatetimebuttonswdgt.ui \
     zbyrator-src/templates/relaybuttonswdgt.ui \
+    zbyrator-src/templates/selectmeters4polltopwdgt.ui \
     zbyrator-src/templates/watersleepschedulermombuttonswdgt.ui \
     zbyrator-src/zbyratorservice.ui \
     zbyrator-src/zbyratoroptions.ui \
     zbyrator-src/options/databasesettings.ui \
     zbyrator-src/options/ucemulator.ui \
-    zbyrator-src/options/ktsconnectmode.ui \
-    zbyrator-src/selectmeters4poll.ui
+    zbyrator-src/options/ktsconnectmode.ui
 
 
 

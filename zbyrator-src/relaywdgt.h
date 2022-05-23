@@ -84,6 +84,11 @@ public slots:
 
     void doRelayOperationSelected(const quint8 &operation);
 
+
+    //9.31
+    void onCommandEMeterRelayOperations(quint8 operation, QStringList nis, QString senderName);
+
+
 private slots:
 
     void initPage();

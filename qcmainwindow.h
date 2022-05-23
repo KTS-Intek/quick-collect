@@ -65,6 +65,7 @@ public slots:
     void activatePageHome();
     void checkProxySett();
 
+    void activatePageHomeSmart();
 
 private slots:
 

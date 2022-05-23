@@ -161,6 +161,9 @@ void StartPagePollV2::createTab(const StartPollTabSettExt &sett)
     lTempPollSett.lastWdgtActive = lastWdgtAccssbltName ;
     emit onPollStarted(sett.select, lastWdgtAccssbltName,  getEnrgList4code(sett.select.pollCode), sett.deviceType);// sett.allowDate2utc);
 
+    connect(dbData, &DbDataForm::onRequest2pollThese, this, &StartPagePollV2::onRequest2pollTheseFromDb);
+    connect(dbData, &DbDataForm::onRequest2GetDataThese, this, &StartPagePollV2::onRequest2GetDataTheseFromDb);
+
     connect(metersListMedium, &ZbyrMeterListMedium::onUCLastReceivedDeviceRecordsQuickCollectChanged, dbData, &DbDataForm::onUCLastReceivedDeviceRecordsChangedLocal);
 
     //you must create some class that can process data from zbyrator to GUI
@@ -392,6 +395,7 @@ void StartPagePollV2::addQuickPollPanel()
 
     connect(this, &StartPagePollV2::requestToSwitchIgnoreCycles, w, &QuickCollectStartPollParamsWdgt::requestToSwitchIgnoreCycles);
     QTimer::singleShot(3333, w, SLOT(sendYourCbxStates()));
+
 
 }
 

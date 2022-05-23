@@ -22,6 +22,7 @@ public:
 
     bool localPbReadLocker;
     bool lockByCommandTmp;
+    bool hasRelayWdgt; //it allows to switch relay from emeter page
 
     ZbyrMeterListMedium *metersListMedium;
 
@@ -123,6 +124,8 @@ private:
 
     QString lastWdgtAccessibleName;
     QString lastWdgtAccessibleNameInProcess;
+
+
 
 };
 

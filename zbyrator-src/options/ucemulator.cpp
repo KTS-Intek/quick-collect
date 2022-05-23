@@ -364,8 +364,8 @@ void UcEmulator::createDecoder()
 
     decoder = new DecodeMatildaProtocolWithJSON(PathsResolver::defSqliteMediumLocalServerName(), socketcache.verboseMode, this);
 
-    connect(decoder, &DecodeMatildaProtocolWithJSON::addThisIPToBlackList   , this, &UcEmulator::addThisIPToBlackList );
-    connect(decoder, &DecodeMatildaProtocolWithJSON::removeThisIpFromBlackList, this, &UcEmulator::removeThisIpFromBlackList);
+//    connect(decoder, &DecodeMatildaProtocolWithJSON::addThisIPToBlackList   , this, &UcEmulator::addThisIPToBlackList );
+//    connect(decoder, &DecodeMatildaProtocolWithJSON::removeThisIpFromBlackList, this, &UcEmulator::removeThisIpFromBlackList);
     connect(decoder, &DecodeMatildaProtocolWithJSON::addError2Log           , this, &UcEmulator::addError2Log         );
     connect(decoder, &DecodeMatildaProtocolWithJSON::setIneedMoreTime       , this, &UcEmulator::setIneedMoreTime     );
     connect(decoder, &DecodeMatildaProtocolWithJSON::command2extension      , this, &UcEmulator::command2extension    );

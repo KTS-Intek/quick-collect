@@ -2,10 +2,16 @@
 #define SELECTMETERS4POLL_H
 
 ///[!] widgets-shared
-#include "gui-src/referencewidgetclass.h"
+#include "gui-src/wdgt/referencewidgetclassgui.h"
+
 
 ///[!] tasks-types
 #include "src/zbyrator-v2/zbyratordatatypehelper.h"
+
+
+///[!] quick-collect
+#include "templates/selectmeters4polltopwdgt.h"
+
 
 class   GetDataFromDbDoneSignalizator : public QObject
 {
@@ -21,17 +27,13 @@ signals:
 
 };
 
-namespace Ui {
-class SelectMeters4poll;
-}
 
-class SelectMeters4poll : public ReferenceWidgetClass
+class SelectMeters4poll : public ReferenceWidgetClassGui
 {
     Q_OBJECT
 
 public:
     explicit SelectMeters4poll(GetDataFromDbDoneSignalizator *signalizator, GuiHelper *gHelper, QWidget *parent = nullptr);
-    ~SelectMeters4poll();
 
     GetDataFromDbDoneSignalizator *signalizator;
 signals:
@@ -56,23 +58,24 @@ public slots:
 
     void initPage();
 
+    void allMeters2selectWdgtV2(MPrintTableOut table, QStringList humanHeader, QStringList listGrpsHuman);
 
 //    void setPageSett(const MyListStringList &listRows, const QVariantMap &col2data, const QStringList &headerH, const QStringList &header, const bool &hasHeader);
 
     void onProcessingEnds(QStringList listMissingData);
 
 private slots:
-    void on_pbPollAll_clicked();
+    void onpbPollAll_clicked();
 
 
 
-    void on_pbSelected_clicked();
+    void onpbSelected_clicked();
 
-    void on_pbCheckedOn_clicked();
+    void onpbCheckedOn_clicked();
 
     void onCbxGroups_currentIndexChanged(const QString &arg1);
 
-    void on_tvTable_doubleClicked(const QModelIndex &index);
+    void ontvTable_doubleClicked(const QModelIndex &index);
 
 private:
     void sendStartPoll(const QStringList &listni);
@@ -88,7 +91,7 @@ private:
         bool ignoreRetr;
     } lPollSett;
 
-    Ui::SelectMeters4poll *ui;
+    SelectMeters4pollTopWdgt *topWdgt;
 };
 
 

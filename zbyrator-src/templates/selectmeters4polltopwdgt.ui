@@ -1,31 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SelectMeters4poll</class>
- <widget class="QWidget" name="SelectMeters4poll">
+ <class>SelectMeters4pollTopWdgt</class>
+ <widget class="QWidget" name="SelectMeters4pollTopWdgt">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>577</width>
-    <height>254</height>
+    <width>638</width>
+    <height>100</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <property name="leftMargin">
-    <number>3</number>
-   </property>
-   <property name="topMargin">
-    <number>3</number>
-   </property>
-   <property name="rightMargin">
-    <number>0</number>
-   </property>
-   <property name="bottomMargin">
-    <number>0</number>
-   </property>
    <item>
     <widget class="QLabel" name="lblDatabase">
      <property name="text">
@@ -53,7 +41,7 @@
         <string>All visible</string>
        </property>
        <property name="icon">
-        <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
+        <iconset resource="../../../../Matilda-units/gui/image-and-font/res.qrc">
          <normaloff>:/katynko/svg/table.svg</normaloff>:/katynko/svg/table.svg</iconset>
        </property>
       </widget>
@@ -67,7 +55,7 @@
         <string>Selected</string>
        </property>
        <property name="icon">
-        <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
+        <iconset resource="../../../../Matilda-units/gui/image-and-font/res.qrc">
          <normaloff>:/katynko/svg2/sx12452-all.svg</normaloff>:/katynko/svg2/sx12452-all.svg</iconset>
        </property>
       </widget>
@@ -81,7 +69,7 @@
         <string>Checked &quot;On&quot;</string>
        </property>
        <property name="icon">
-        <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
+        <iconset resource="../../../../Matilda-units/gui/image-and-font/res.qrc">
          <normaloff>:/katynko/svg/flag-red.svg</normaloff>:/katynko/svg/flag-red.svg</iconset>
        </property>
       </widget>
@@ -92,7 +80,7 @@
         <string>Cancel</string>
        </property>
        <property name="icon">
-        <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
+        <iconset resource="../../../../Matilda-units/gui/image-and-font/res.qrc">
          <normaloff>:/katynko/svg/edit-delete.svg</normaloff>:/katynko/svg/edit-delete.svg</iconset>
        </property>
       </widget>
@@ -145,94 +133,10 @@
      </property>
     </widget>
    </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_61">
-     <property name="leftMargin">
-      <number>9</number>
-     </property>
-     <property name="topMargin">
-      <number>0</number>
-     </property>
-     <property name="rightMargin">
-      <number>9</number>
-     </property>
-     <item>
-      <widget class="QToolButton" name="tbFilter">
-       <property name="text">
-        <string>...</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../../../Matilda-units/gui/image-and-font/res.qrc">
-         <normaloff>:/katynko/svg/view-filter.svg</normaloff>:/katynko/svg/view-filter.svg</iconset>
-       </property>
-       <property name="checkable">
-        <bool>false</bool>
-       </property>
-       <property name="autoRaise">
-        <bool>false</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="cbFilterMode">
-       <property name="currentIndex">
-        <number>0</number>
-       </property>
-       <property name="sizeAdjustPolicy">
-        <enum>QComboBox::AdjustToContents</enum>
-       </property>
-       <item>
-        <property name="text">
-         <string>RegExp</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Whole word</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="leFilter">
-       <property name="placeholderText">
-        <string>Filter</string>
-       </property>
-       <property name="clearButtonEnabled">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <widget class="QTableView" name="tvTable">
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
-     </property>
-     <property name="editTriggers">
-      <set>QAbstractItemView::NoEditTriggers</set>
-     </property>
-     <property name="alternatingRowColors">
-      <bool>true</bool>
-     </property>
-     <property name="selectionBehavior">
-      <enum>QAbstractItemView::SelectRows</enum>
-     </property>
-     <property name="sortingEnabled">
-      <bool>true</bool>
-     </property>
-     <property name="cornerButtonEnabled">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
   </layout>
  </widget>
  <resources>
-  <include location="../../../Matilda-units/gui/image-and-font/res.qrc"/>
+  <include location="../../../../Matilda-units/gui/image-and-font/res.qrc"/>
  </resources>
  <connections/>
 </ui>

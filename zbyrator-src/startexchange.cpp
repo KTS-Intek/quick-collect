@@ -44,6 +44,8 @@ StartExchange::StartExchange(GuiHelper *gHelper, QWidget *parent) :
     localPbReadLocker = false;
     ui->trDevOperation->setEnabled(false);
 
+    hasRelayWdgt = false;
+
 
 }
 //-----------------------------------------------------------------------------------------------
@@ -161,10 +163,13 @@ void StartExchange::initPage()
 //-----------------------------------------------------------------------------------------------
 void StartExchange::unlockWdgts()
 {
+    //it calls from initPage
     ui->trDevOperation->setEnabled(true);
-    const QString named = lastWdgtAccessibleName;
+//    const QString named = lastWdgtAccessibleName;
     lastWdgtAccessibleName.clear();
-    showWdgtByNameData(named);
+//    showWdgtByNameData(named);
+    activateStartPollWdgt();
+
     updateScrollAreaHeight();
 }
 //-----------------------------------------------------------------------------------------------
@@ -336,6 +341,7 @@ MatildaConfWidget *StartExchange::createWaterSleepSchedulerWdgt(GuiHelper *gHelp
 //-----------------------------------------------------------------------------------------------
 MatildaConfWidget *StartExchange::createRelayWdgt(GuiHelper *gHelper, QWidget *parent)
 {
+    hasRelayWdgt = true;
     RelayWdgt *w = new RelayWdgt(gHelper,  parent);
 //    connect(metersListMedium, &ZbyrMeterListMedium::setRelayPageSett, w, &RelayWdgt::setp);
 
@@ -561,18 +567,17 @@ void StartExchange::addWdgt2devStack(const QString &realPageName, const QString 
 
     MatildaConfWidget *w = 0;
 
-    bool hasReadButton = false;
     const int row = chListData.indexOf(realPageName);
     switch(row){
-    case 0: w = createStartPagePoll(            guiHelper, this); hasReadButton = true; break;
-    case 1: w = createWaterSleepSchedulerWdgt(  guiHelper, this); hasReadButton = true; break;
+    case 0: w = createStartPagePoll(            guiHelper, this); break;
+    case 1: w = createWaterSleepSchedulerWdgt(  guiHelper, this); break;
 
-    case 2: w = createRelayWdgt(                guiHelper, this); hasReadButton = true; break;
+    case 2: w = createRelayWdgt(                guiHelper, this); break;
 
     case 3: w = createZbyratorTaskWdgt(         guiHelper, this); break;
     case 4: w = createStatisticWdgt(            guiHelper, this); break;
 
-    case 5: w = createMetersDateTime(           guiHelper, this); hasReadButton = true; break;
+    case 5: w = createMetersDateTime(           guiHelper, this); break;
     case 6: w = new SetMeterAddress(            guiHelper, this); break;
 
     case 7: w = new CheckConnectionToolWdgt(    guiHelper, this); break;
@@ -698,8 +703,15 @@ void StartExchange::onSwDevicesCurrIndxChanged()
 
 void StartExchange::activateStartPollWdgt()
 {
+    if(!hasRelayWdgt){
+        showWdgtByNameData("Relay");
+        lastWdgtAccessibleName.clear();
+    }
+
     if(lastWdgtAccessibleName == "Poll")
         return;
+
+
     lastWdgtAccessibleName = "Poll";
     showLastWdgt();
 

@@ -17,6 +17,9 @@
 
 #include "classmanagertypes.h"
 
+
+#include "medium4modelsdatatypes.h"
+
 class GetReadyMetersData : public QObject
 {
     Q_OBJECT
@@ -28,7 +31,8 @@ public:
 signals:
     void appendMess(QString mess);
 
-    void allMeters2selectWdgt(MyListStringList listRows, QVariantMap col2data, QStringList headerH, QStringList header, bool hasHeader);
+//    void allMeters2selectWdgt(MyListStringList listRows, QVariantMap col2data, QStringList headerH, QStringList header, bool hasHeader);
+    void allMeters2selectWdgtV2(MPrintTableOut table, QStringList humanHeader, QStringList listGrpsHuman);
 
     void onProcessingEnds(QStringList listMissingData);
 

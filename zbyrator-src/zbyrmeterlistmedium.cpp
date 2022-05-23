@@ -124,9 +124,14 @@ void ZbyrMeterListMedium::resetVariables4pollStarted()
 {
     if(pageModeUpdated){
         pageModeUpdated = false;
+        if(lastPageMode != 0)
+            emit onPollStarted(UCSelectFromDB(), "", QStringList(), UC_METER_UNKNOWN);
+
         return;
     }
     lastPageMode = -1;//reset
+
+
 
 }
 
@@ -140,6 +145,7 @@ void ZbyrMeterListMedium::activateEmul2DeviceType()
     systeminfo.validator.dtlastupdate = QDateTime::currentDateTimeUtc();
     systeminfo.validator.allDataIsReceived = true;
     ucDeviceTreeW->setUCSystemInfo(systeminfo);
+
 }
 
 
@@ -163,7 +169,7 @@ void ZbyrMeterListMedium::onAllMetersSlot(UniversalMeterSettList allMeters)
         const UniversalMeterSett m = allMeters.at(i);
 
         switch(m.deviceType){
-        case UC_METER_ELECTRICITY   : emeter.eMeterContainer.append(universalMeterSett2emeterSettings(m))  ; break;
+        case UC_METER_ELECTRICITY   : emeter.eMeterContainer.append(universalMeterSett2emeterSettings(m)); break;
         case UC_METER_WATER         : wmeter.wMeterContainer.append(universalMeterSett2wmeterSettings(m)); break;
         case UC_METER_PULSE         : pmeter.pMeterContainer.append(universalMeterSett2pmeterSettings(m)); break;
 
@@ -180,6 +186,10 @@ void ZbyrMeterListMedium::onAllMetersSlot(UniversalMeterSettList allMeters)
 
 
     emeter.validator = wmeter.validator = pmeter.validator = getTemplateValidator();
+
+    emeter.eMeterIndexator = updateIndexator4emeter(emeter.eMeterContainer);
+    wmeter.wMeterIndexator = updateIndexator4wmeter(wmeter.wMeterContainer);
+    pmeter.pMeterIndexator = updateIndexator4pmeter(pmeter.pMeterContainer);
 
     ucDeviceTreeW->setUCEMeterSettings(emeter);//first
     ucDeviceTreeW->setUCWMeterSettings(wmeter);//second
@@ -438,41 +448,6 @@ void ZbyrMeterListMedium::command4devSlotLocalSocket(quint16 command, QString ar
 
 }
 
-//---------------------------------------------------------------------
-void ZbyrMeterListMedium::mWrite2RemoteDev(quint16 command, QVariant dataVar)
-{
-    switch(command){
-    case COMMAND_WRITE_ELMTRRELAY_OPERATION:{
-        if(pbWriteDis)
-            return;
-
-        const QStringList listni = dataVar.toHash().value("nis").toStringList();
-        if(listni.isEmpty()){
-            emit showMessage(tr("no meters"));
-            return;
-        }
-        const int operation = dataVar.toHash().value("mode").toInt();
-        QString mess;
-        const QVariantMap map = QuickPollHelper::createPollMap4relay(listni, operation, mess);
-
-        if(map.isEmpty())
-            return;
-
-        setLastPageId("Relay");
-
-        command4devSlot(POLL_CODE_RELAY_OPERATIONS, map);
-
-        break;}//realy operations, main relay
-    case COMMAND_READ_ELMTRRELAY_TABLE:{
-
-        //        emit startTmrUpdateRelayStatuses(111);
-
-        break;} //send last realy statuses
-    }
-
-    qDebug() << "onElMeterRelayChanged mWrite2RemoteDev "  << command;
-
-}
 
 //---------------------------------------------------------------------
 void ZbyrMeterListMedium::updateRelayStatuses4meterlist()
@@ -817,6 +792,8 @@ void ZbyrMeterListMedium::sendAllMeters()
 }
 
 
+
+
 //---------------------------------------------------------------------
 
 void ZbyrMeterListMedium::createUcDevTree()
@@ -911,6 +888,51 @@ UCPMeterSettingsOneRow ZbyrMeterListMedium::universalMeterSett2pmeterSettings(co
 
 //    onerow.channelsSettings  sleepProfileLine = m.enrg;
     return onerow;
+}
+
+void ZbyrMeterListMedium::insertIndexatorValuesSmart(const UCPollDeviceSettings &baseSettings, const int &indx, UCPollDeviceInfoIndexator &devIndexator)
+{
+    if(!baseSettings.ni.isEmpty())
+        devIndexator.ni2index.insert(baseSettings.ni, indx);
+
+    if(!baseSettings.sn.isEmpty())
+        devIndexator.sn2index.insert(baseSettings.sn, indx);
+}
+
+//---------------------------------------------------------------------
+
+UCPollDeviceInfoIndexator ZbyrMeterListMedium::updateIndexator4emeter(const UCEMeterSettingsTable &emeter)
+{
+    UCPollDeviceInfoIndexator devIndexator;
+
+    for(int i = 0, imax = emeter.size(); i < imax; i++)
+        insertIndexatorValuesSmart(emeter.at(i).baseSettings, i, devIndexator);
+
+
+    return devIndexator;
+
+}
+
+//---------------------------------------------------------------------
+
+UCPollDeviceInfoIndexator ZbyrMeterListMedium::updateIndexator4wmeter(const UCWMeterSettingsTable &wmeter)
+{
+    UCPollDeviceInfoIndexator devIndexator;
+    for(int i = 0, imax = wmeter.size(); i < imax; i++)
+        insertIndexatorValuesSmart(wmeter.at(i).baseSettings, i, devIndexator);
+
+    return devIndexator;
+}
+
+//---------------------------------------------------------------------
+
+UCPollDeviceInfoIndexator ZbyrMeterListMedium::updateIndexator4pmeter(const UCPMeterSettingsTable &pmeter)
+{
+    UCPollDeviceInfoIndexator devIndexator;
+
+    for(int i = 0, imax = pmeter.size(); i < imax; i++)
+        insertIndexatorValuesSmart(pmeter.at(i).baseSettings, i, devIndexator);
+    return devIndexator;
 }
 
 //---------------------------------------------------------------------

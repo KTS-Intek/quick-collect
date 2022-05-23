@@ -162,6 +162,7 @@ signals:
     void onUCLastReceivedDeviceRecordsQuickCollectChanged(UCLastReceivedDeviceRecords records);//connect it to GUI
 
 
+
 public slots:
     void onAllMetersSlot(UniversalMeterSettList allMeters);
 
@@ -202,8 +203,6 @@ public slots:
     void command4devSlotLocalSocket(quint16 command, QString args);//pollCode args
 
 
-
-    void mWrite2RemoteDev(quint16 command, QVariant dataVar);//from guihelper
 
 
 
@@ -267,7 +266,6 @@ public slots:
     void sendAllMeters();
 
 
-
 private:
     struct LastList2pages
     {
@@ -289,6 +287,15 @@ private:
     UCWMeterSettingsOneRow universalMeterSett2wmeterSettings(const UniversalMeterSett &m);
 
     UCPMeterSettingsOneRow universalMeterSett2pmeterSettings(const UniversalMeterSett &m);
+
+
+    void insertIndexatorValuesSmart(const UCPollDeviceSettings &baseSettings, const int &indx, UCPollDeviceInfoIndexator &devIndexator);
+
+    UCPollDeviceInfoIndexator updateIndexator4emeter(const UCEMeterSettingsTable &emeter);
+
+    UCPollDeviceInfoIndexator updateIndexator4wmeter(const UCWMeterSettingsTable &wmeter);
+
+    UCPollDeviceInfoIndexator updateIndexator4pmeter(const UCPMeterSettingsTable &pmeter);
 
 
     UCPollDeviceSettings universalMeterSett2baseSettings(const UniversalMeterSett &m);

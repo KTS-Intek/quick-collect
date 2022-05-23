@@ -64,6 +64,7 @@ signals:
 
     void command4dev(quint16 command, QVariantMap args);//pollCode args
 
+
 public slots:
     void checkHasReadWriteButtons();
 

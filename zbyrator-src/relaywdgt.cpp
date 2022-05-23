@@ -348,6 +348,13 @@ void RelayWdgt::doRelayOperationSelected(const quint8 &operation)
     doRelayOperation(getSelectedNIs(), operation);
 }
 
+void RelayWdgt::onCommandEMeterRelayOperations(quint8 operation, QStringList nis, QString senderName)
+{
+    if(senderName.isEmpty())
+        return;
+    doRelayOperation(nis, operation);
+}
+
 
 void RelayWdgt::initPage()
 {
@@ -372,6 +379,7 @@ void RelayWdgt::initPage()
     connect(gHelper->ucDeviceTreeW, &UCDeviceTreeWatcher::onUCEMeterRelayStateChanged, this, &RelayWdgt::onUCEMeterRelayStateChanged);
     connect(gHelper->ucDeviceTreeW, &UCDeviceTreeWatcher::onUCEMeterSettingsChanged, this, &RelayWdgt::onUCEMeterSettingsChanged);
 
+    connect(gHelper->ucDeviceTreeW, &UCDeviceTreeWatcher::onCommandEMeterRelayOperations, this, &RelayWdgt::onCommandEMeterRelayOperations);
 
     QString m;
     if(gHelper->ucDeviceTreeW->getCachedUCEMeterSettings().validator.dtlastupdate.isValid())
@@ -423,8 +431,10 @@ void RelayWdgt::createTopWidget()
 
 void RelayWdgt::doRelayOperation(const QStringList &listni, const quint8 &operation)
 {
-    if(gHelper->managerEnDisBttn.pbWriteDis)
+    if(gHelper->managerEnDisBttn.pbWriteDis){
+        gHelper->showMessageSlot(tr("Dismissed. Another task is processing"));
         return;
+    }
 
     if(listni.isEmpty()){
         gHelper->showMessageSlot(tr("no meters"));

@@ -209,56 +209,66 @@ bool GetReadyMetersData::checkDbIsOpen()
 
 void GetReadyMetersData::addAllMeters2table()
 {
+    QMap<QString,QString> nipwr2memo;//caching must be for all meters, event with poll on = false
+
     const quint8 deviceType = meterTypeFromPollCode(lPollSett.pollCode);
     if(true){
         UniversalMeterSettList list;
 
         for(int i = 0, imax = meters.size(); i < imax; i++){
-            if(meters.at(i).deviceType == deviceType && meters.at(i).pollEnbl)
-                list.append(meters.at(i));
+            if(meters.at(i).deviceType == deviceType || deviceType == UC_METER_UNKNOWN){
+
+                if(meters.at(i).powerin == "+")
+                    nipwr2memo.insert(meters.at(i).ni, meters.at(i).memo);
+
+                if(meters.at(i).pollEnbl)
+                    list.append(meters.at(i));
+            }
         }
 
         meters = list;
     }
     //tr("Meter;NI;Memo;Poll;Has data").split(";"));
 
-    QStringList powergroups;
-    MyListStringList list;
+    MPrintTableOut table;
 
-    QMap<QString,QString> nipwr2memo;
+
+    QStringList powergroups;
+//    MyListStringList list;
+
     for(int i = 0, imax = meters.size(); i < imax; i++){
         const UniversalMeterSett m = meters.at(i);
         QStringList l;
-        l.append(m.version.isEmpty() ? m.model : QString("%1, %2").arg(m.model).arg(m.version));
+        l.append(m.version.isEmpty() ? m.model : QString("%1, %2").arg(m.model, m.version));
 //        l.append(m.sn);
         l.append(m.ni);
         l.append(m.memo);
         l.append("-");//poll no
         l.append("?");//has data ? - unknown, + - has all data, ! - not all
 
-        if(m.powerin == "+")
-            nipwr2memo.insert(m.ni, m.memo);
+
         const QString group = (m.powerin == "+") ? m.ni : m.powerin;
         if(!group.isEmpty() && !powergroups.contains(group))
             powergroups.append(group);
 
-
         l.append(group);
-        list.append(l);
+
+        table.append(l);
     }
     const QStringList header = tr("Meter;NI;Memo;Poll;Has data;Group").split(";");
 
-    QVariantMap mapgrps;
-    mapgrps.insert("\r\ngroups\r\n", powergroups);
+//    QVariantMap mapgrps;
+//    mapgrps.insert("\r\ngroups\r\n", powergroups);
 
     QStringList powergroupsext;
     for(int i = 0, imax = powergroups.size(); i < imax; i++){
-        powergroupsext.append(QString("%1 - %2").arg(powergroups.at(i)).arg(nipwr2memo.value(powergroups.at(i), " ")));
+        powergroupsext.append(QString("%1 - %2").arg(powergroups.at(i), nipwr2memo.value(powergroups.at(i), " ")));
     }
 
-    mapgrps.insert("\r\ngroupsext\r\n", powergroupsext);
+//    mapgrps.insert("\r\ngroupsext\r\n", powergroupsext);
 
-    emit allMeters2selectWdgt(list, mapgrps, header, header, true);
+//    emit allMeters2selectWdgt(list, mapgrps, header, header, true);
+    emit allMeters2selectWdgtV2(table, header, powergroupsext);// list, mapgrps, header, header, true);
 
 }
 
