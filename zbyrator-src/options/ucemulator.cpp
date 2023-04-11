@@ -374,7 +374,7 @@ void UcEmulator::createDecoder()
 
 
     //other
-    connect(decoder, &DecodeMatildaProtocolWithJSON::command4dev            , this, &UcEmulator::command4dev          );
+    connect(decoder, &DecodeMatildaProtocolWithJSON::command4devStrZbyrator            , this, &UcEmulator::command4dev          );
 
     connect(decoder, &DecodeMatildaProtocolWithJSON::reloadSErverSett       , this, &UcEmulator::reloadSErverSett     );
     connect(decoder, &DecodeMatildaProtocolWithJSON::reloadMacSett          , this, &UcEmulator::reloadMacSett        );

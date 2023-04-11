@@ -227,7 +227,7 @@ public slots:
     void onPutUCPMeterSettings(UCPMeterSettings settings, QString senderName);
 
 
-    void onGetUCEMeterRelayState(QString senderName);
+    void onGetUCEMeterRelayState(QStringList devIds, QString senderName);
 
     void meterRelayStatus(QString ni, QDateTime dtLocal, quint8 mainstts, quint8 secondarystts); //zbyrator-bbb sends it directly, use it for canceled tasks
 

@@ -211,7 +211,7 @@ bool StartPagePollV2::createObjectsForPollAllMetersMode(const StartPollTabSettEx
     connect(w, &SelectMeters4poll::onReloadAllMeters, metersListMedium, &ZbyrMeterListMedium::sendAllMeters);
 
     connect(w, SIGNAL(command4dev(quint16,QVariantMap)), this, SLOT(command4devSlot(quint16,QVariantMap)));
-    connect(this, SIGNAL(command4dev(quint16,QString)), w, SLOT(deleteLater()) );
+//    connect(this, SIGNAL(command4dev(quint16,QString)), w, SLOT(deleteLater()) );
     connect(this, SIGNAL(command4dev(quint16,QVariantMap)), w, SLOT(deleteLater()) );
 
     connect(metersListMedium, SIGNAL(onAllMeters(UniversalMeterSettList)), w, SIGNAL(onAllMeters(UniversalMeterSettList)) );

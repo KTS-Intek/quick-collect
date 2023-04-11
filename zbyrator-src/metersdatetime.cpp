@@ -198,7 +198,7 @@ void MetersDateTime::meterDateTimeDstStatus(QString ni, QDateTime dtLocal, QStri
 void MetersDateTime::updateDateTimeDst()
 {
 
-    QTime time;
+    QElapsedTimer time;
     time.start();
     QStringList nichanged;
 

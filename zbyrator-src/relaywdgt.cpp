@@ -221,7 +221,7 @@ void RelayWdgt::updateRelayStatus()
 {
 
 
-    QTime time;
+    QElapsedTimer time;
     time.start();
     QStringList nichanged;
 
@@ -452,7 +452,9 @@ void RelayWdgt::doRelayOperation(const QStringList &listni, const quint8 &operat
 
     emit setLastPageId(accessibleName());
 
-    emit command4dev(POLL_CODE_RELAY_OPERATIONS, map);
+    emit command4devStr(POLL_CODE_RELAY_OPERATIONS, QString("-ns %1 -operation %2")
+                        .arg(map.value("-ns").toStringList().join(" ")).arg(map.value("-operation").toString()));
+//    emit command4dev(POLL_CODE_RELAY_OPERATIONS, map);
 
 }
 

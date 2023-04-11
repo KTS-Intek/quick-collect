@@ -151,7 +151,7 @@ void StartExchange::initPage()
         QTimer::singleShot(2222, metersListMedium, SLOT(sendMeIfaceSett()));
     }
 
-    connect(metersListMedium, SIGNAL(command4dev(quint16,QString)), this, SLOT(onCommandStarted()));
+    connect(metersListMedium, SIGNAL(command4devStr(quint16,QString)), this, SLOT(onCommandStarted()));
     connect(metersListMedium, SIGNAL(command4dev(quint16,QVariantMap)), this, SLOT(onCommandStarted()));
 
     connect(this, SIGNAL(onRequest2pollThese(QStringList,quint8)), this, SLOT(activateStartPollWdgt()));
@@ -217,7 +217,13 @@ void StartExchange::updateScrollAreaHeight()
 
 void StartExchange::appendShowMessagePlain(QString m)
 {
-    const QString s = m.split("\n", QString::SkipEmptyParts).last();
+    const QString s = m.split("\n",
+                                                                                              #if QT_VERSION >= QT_VERSION_CHECK(5, 13, 0)
+                                                                                                  Qt::SkipEmptyParts
+                                                                                              #else
+                                                                                                  QString::SkipEmptyParts
+                                                                                              #endif
+                                                                                                      ).last();
 
     if(!s.isEmpty()){
         const QStringList l = s.split(": ");
@@ -300,8 +306,12 @@ MatildaConfWidget *StartExchange::createStartPagePoll(GuiHelper *gHelper, QWidge
 
     connect(w, &StartPagePollV2::onPollStarted    , metersListMedium, &ZbyrMeterListMedium::onPollStarted     );
 
-    connect(w, SIGNAL(command4dev(quint16,QString))    , metersListMedium, SLOT(command4devSlot(quint16,QString)) );
-    connect(w, SIGNAL(command4dev(quint16,QVariantMap)), metersListMedium, SLOT(command4devSlot(quint16,QVariantMap)) );
+//    connect(w, &StartPagePollV2)
+
+//    connect(w, SIGNAL(command4dev(quint16,QString))    , metersListMedium, SLOT(command4devStrSlot(quint16,QString)) );
+    connect(w, &StartPagePollV2::command4devStr, metersListMedium, &ZbyrMeterListMedium::command4devStrSlot);
+    connect(w, &StartPagePollV2::command4dev, metersListMedium, &ZbyrMeterListMedium::command4devSlot);
+
     connect(w, &StartPagePollV2::addWdgt2stackWdgt, this, &StartExchange::addWdgt2stackWdgt);
     connect(this, &StartExchange::lockButtons, w, &StartPagePollV2::lockButtons);
 
@@ -349,7 +359,10 @@ MatildaConfWidget *StartExchange::createRelayWdgt(GuiHelper *gHelper, QWidget *p
 //    connect(metersListMedium, &ZbyrMeterListMedium::meterRelayStatus, w, &RelayWdgt::meterRelayStatus);
 
     connect(w, &RelayWdgt::setLastPageId, metersListMedium, &ZbyrMeterListMedium::setLastPageId);
-    connect(w, SIGNAL(command4dev(quint16,QVariantMap)), metersListMedium, SLOT(command4devSlot(quint16,QVariantMap)) );
+//    connect(w, SIGNAL(command4dev(quint16,QVariantMap)), metersListMedium, SLOT(command4devSlot(quint16,QVariantMap)) );
+    connect(w, &RelayWdgt::command4dev, metersListMedium, &ZbyrMeterListMedium::command4devSlot);
+    connect(w, &RelayWdgt::command4devStr, metersListMedium, &ZbyrMeterListMedium::command4devStrSlot);
+
     connect(this, SIGNAL(lockButtons(bool)), w, SIGNAL(lockButtons(bool)));
     return w;
 }

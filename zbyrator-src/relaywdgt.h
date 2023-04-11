@@ -46,6 +46,8 @@ signals:
     void stopTmrRelyaStatusTmr();
 
 
+    void command4devStr(quint16 command, QString args);//pollCode args
+
 
     void command4dev(quint16 command, QVariantMap mapArgs);//pollCode args
 

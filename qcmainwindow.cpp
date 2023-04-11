@@ -320,9 +320,8 @@ void QcMainWindow::createMeterManager()
 //    connect(zbyrator, &MeterManager::onAboutZigBee          , extSocket, &ZbyratorSocket::sendAboutZigBeeModem      );
 
 
-    connect(metersListMedium, SIGNAL(command4dev(quint16,QString))    , zbyrator, SIGNAL(command4devStr(quint16,QString)) );
-    connect(metersListMedium, SIGNAL(command4dev(quint16,QVariantMap)), zbyrator, SIGNAL(command4dev(quint16,QVariantMap)) );
-
+    connect(metersListMedium, &ZbyrMeterListMedium::command4devStr, zbyrator, &MeterManager::command4devStr);
+    connect(metersListMedium, &ZbyrMeterListMedium::command4dev, zbyrator, &MeterManager::command4dev);
 
 
     connect(metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters2zbyrator, zbyrator, &MeterManager::onReloadAllMetersIgnoreOff    );

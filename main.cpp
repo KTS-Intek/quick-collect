@@ -1,7 +1,7 @@
 #include "qcmainwindow.h"
 #include <QApplication>
 
-#include "guisett-shared-src/appfontloader.h"
+#include "guisett-shared-core/appfontloader.h"
 
 
 int main(int argc, char *argv[])

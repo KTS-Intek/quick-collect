@@ -259,7 +259,7 @@ void ZbyrMeterListMedium::onSaveLater()
 //    doReloadListOfMeters(UC_METER_UNKNOWN);
     emit onReloadAllMeters2zbyrator();
 
-    onGetUCEMeterRelayState("ZbyrMeterListMedium::onSaveLater");
+    onGetUCEMeterRelayState(QStringList(), "ZbyrMeterListMedium::onSaveLater");
 }
 
 
@@ -444,7 +444,7 @@ void ZbyrMeterListMedium::command4devSlotLocalSocket(quint16 command, QString ar
     }
     emit onExternalCommandProcessed();
 
-    command4devSlot(command, args);
+    command4devStrSlot(command, args);
 
 }
 
@@ -539,9 +539,11 @@ void ZbyrMeterListMedium::onPutUCPMeterSettings(UCPMeterSettings settings, QStri
 
 //---------------------------------------------------------------------
 
-void ZbyrMeterListMedium::onGetUCEMeterRelayState(QString senderName)
+void ZbyrMeterListMedium::onGetUCEMeterRelayState(QStringList devIds, QString senderName)
 {
+    Q_UNUSED(devIds);
     Q_UNUSED(senderName);
+
     QTimer::singleShot(111, this, SLOT(updateRelayStatuses4meterlist()));
 }
 

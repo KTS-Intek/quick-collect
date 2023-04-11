@@ -369,8 +369,36 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/addeditlampwdgt.cpp" line="164"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/addeditlampwdgt.cpp" line="171"/>
         <source>Some led power supplies can&apos;t start with power less than 50%</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AddEditM2MHttpApiksWdgt</name>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/editors/addeditm2mhttpapikswdgt.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/editors/addeditm2mhttpapikswdgt.ui" line="20"/>
+        <source>API Key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/editors/addeditm2mhttpapikswdgt.ui" line="45"/>
+        <source>Enable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/editors/addeditm2mhttpapikswdgt.ui" line="59"/>
+        <source>M2M Profile Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/editors/addeditm2mhttpapikswdgt.ui" line="82"/>
+        <source>Memo</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -518,33 +546,33 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="389"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="393"/>
         <source>NI [meter model]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="584"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="588"/>
         <source>Profile for NI %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="617"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="621"/>
         <source>&lt;b&gt;Meter address &apos;%1&apos;&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="621"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="625"/>
         <source>There is a meter with this NI</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="711"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="715"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="721"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="725"/>
         <source>Auto detection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="713"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="723"/>
         <source>Device &apos;%1&apos;, Supported models &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -741,33 +769,33 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/addeditpmeterlistwdgtwdgt.cpp" line="422"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/addeditpmeterlistwdgtwdgt.cpp" line="427"/>
         <source>NI [meter model]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/addeditpmeterlistwdgtwdgt.cpp" line="496"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/addeditpmeterlistwdgtwdgt.cpp" line="501"/>
         <source>The maximum channel count is &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/addeditpmeterlistwdgtwdgt.cpp" line="526"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/addeditpmeterlistwdgtwdgt.cpp" line="531"/>
         <source>Channel %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/addeditpmeterlistwdgtwdgt.cpp" line="608"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/addeditpmeterlistwdgtwdgt.cpp" line="613"/>
         <source>&lt;b&gt;Meter address &apos;%1&apos;&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/addeditpmeterlistwdgtwdgt.cpp" line="720"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/addeditpmeterlistwdgtwdgt.cpp" line="724"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/addeditpmeterlistwdgtwdgt.cpp" line="731"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/addeditpmeterlistwdgtwdgt.cpp" line="735"/>
         <source>Auto detection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/addeditpmeterlistwdgtwdgt.cpp" line="722"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/addeditpmeterlistwdgtwdgt.cpp" line="733"/>
         <source>Device &apos;%1&apos;, Supported models &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1003,74 +1031,81 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="22"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="366"/>
         <source>Administrator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="29"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="216"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="384"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="373"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="420"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="512"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="51"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="238"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="406"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="89"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="154"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="260"/>
         <source>Login</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="80"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="230"/>
         <source>Current password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="125"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="267"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="435"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="56"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="128"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="141"/>
         <source>New password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="157"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="312"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="480"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="26"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="115"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="204"/>
         <source>Confirm password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="189"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="357"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="525"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="39"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="187"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="243"/>
         <source>Change</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="209"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="280"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="389"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="400"/>
+        <source>Test</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="413"/>
         <source>Operator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="344"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="512"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="555"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="76"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="496"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="588"/>
         <source>Show</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="377"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="505"/>
         <source>Guest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.cpp" line="71"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.cpp" line="72"/>
         <source>Login is empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.cpp" line="74"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.cpp" line="75"/>
         <source>New password is not confirmed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1239,7 +1274,7 @@
     <name>BackupWdgt</name>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="103"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="482"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="483"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1259,81 +1294,81 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="214"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="215"/>
         <source>The name is invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="217"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="218"/>
         <source>There is nothing to backup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="221"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="222"/>
         <source>bad access level</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="244"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="245"/>
         <source>Name is invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="247"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="248"/>
         <source>There are no modules to backup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="296"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="297"/>
         <source>There is no data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="323"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="324"/>
         <source>%1 - %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="449"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="450"/>
         <source>Save a backup file to a local drive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="483"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="484"/>
         <source>Would you like to delete&lt;br&gt;&apos;%1&apos;&lt;br&gt;from the remote device?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="537"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="538"/>
         <source>Version is invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="265"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="450"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="266"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="451"/>
         <source>UC Backup Files(*.matildabf);;All files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="264"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="265"/>
         <source>Open a UC backup file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="378"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="395"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="379"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="396"/>
         <source>Data is not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="336"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="423"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="337"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="424"/>
         <source>The versnion is invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="340"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="427"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="341"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="428"/>
         <source>Couldn&apos;t open the file: %1&lt;br&gt;Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1781,17 +1816,17 @@
 <context>
     <name>ClassManager</name>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/classmanager.cpp" line="711"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/classmanager.cpp" line="730"/>
         <source>Connecting to %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/classmanager.cpp" line="721"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/classmanager.cpp" line="740"/>
         <source>Failed to establish a connection to %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/classmanager.cpp" line="725"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/classmanager.cpp" line="744"/>
         <source>Connection works to %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1817,38 +1852,47 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="1546"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="1547"/>
         <source>Device software is already up to date.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="1775"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="1776"/>
         <source>Unknown error code &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="3434"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="3436"/>
         <source>The file is not readable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="3478"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="3480"/>
         <source>Main applications</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="3500"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="3502"/>
         <source>Main scripts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="3553"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="3555"/>
         <source>The file is broken</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="3692"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="3694"/>
         <source>Missing arguments</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ClassManagerV11</name>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv11.cpp" line="1309"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv11.cpp" line="1325"/>
+        <source>There is nothing to change</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3065,100 +3109,100 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="37"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="419"/>
         <source>Read All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="48"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="430"/>
         <source>Clear Log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="62"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="444"/>
         <source>Reset Exchange</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="76"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="458"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="105"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="32"/>
         <source>Exchange</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="111"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="210"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="38"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="137"/>
         <source>Received</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="121"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="48"/>
         <source>Last</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="144"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="323"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="71"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="250"/>
         <source>Received w/o compressing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="154"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="164"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="200"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="81"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="91"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="127"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="147"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="170"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="190"/>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="220"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="243"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="263"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="293"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="333"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="353"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="433"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="260"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="280"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="360"/>
         <source>-</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="190"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="253"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="117"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="180"/>
         <source>Transmitted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="273"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="313"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="200"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="240"/>
         <source>Transmitted w/o compressing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="283"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="210"/>
         <source>Compressing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="303"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="230"/>
         <source>Total</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="343"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="270"/>
         <source>Saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="393"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="320"/>
         <source>About the device</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="421"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="348"/>
         <source>Last Operation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="459"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="386"/>
         <source>Log</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4581,27 +4625,27 @@
 <context>
     <name>DecodeMatildaProtocolV11</name>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv11.cpp" line="347"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv11.cpp" line="367"/>
         <source>bad &apos;i&apos;, %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv11.cpp" line="446"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv11.cpp" line="466"/>
         <source>can&apos;t save settings: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv11.cpp" line="514"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv11.cpp" line="660"/>
         <source>can&apos;t save meters: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv11.cpp" line="553"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv11.cpp" line="717"/>
         <source>bad hsh, %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv11.cpp" line="561"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv11.cpp" line="725"/>
         <source>nothing to hash</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4717,7 +4761,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolwithjson.cpp" line="1469"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolwithjson.cpp" line="1472"/>
         <source>You must update the command list.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5489,17 +5533,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="330"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="329"/>
         <source>Main relay state is %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="332"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="331"/>
         <source>Secondary relay state is %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="335"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="334"/>
         <source>Updated: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5529,88 +5573,88 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="709"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="710"/>
         <source>There is no data from the remote device.&lt;br&gt;If you continue, the meter list in the remote device may be lost. Do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="715"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="716"/>
         <source>Import meters from</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="901"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="917"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="902"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="918"/>
         <source>&apos;%1&apos; is invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="901"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="902"/>
         <source>Model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="908"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="909"/>
         <source>&apos;%1&apos; is empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="917"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="918"/>
         <source>Energy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="944"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="945"/>
         <source>The maximum number of meters is reached</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="946"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="947"/>
         <source>The maximum number of meters is &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="948"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="949"/>
         <source>The number of the meters is &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1041"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1042"/>
         <source>There is nothing to write</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1097"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1098"/>
         <source>Relay</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1101"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1102"/>
         <source>Show the last state</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1118"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1119"/>
         <source>Read state</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1124"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1125"/>
         <source>Main Load ON</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1130"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1131"/>
         <source>Main Cut OFF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1144"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1145"/>
         <source>Secondary Load ON</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1150"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1151"/>
         <source>Secondary Cut OFF</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6541,22 +6585,22 @@
 <context>
     <name>FireflyTaskManagerSett</name>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/fireflytaskmanagersett.cpp" line="65"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/fireflytaskmanagersett.cpp" line="73"/>
         <source>relay device</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/fireflytaskmanagersett.cpp" line="66"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/fireflytaskmanagersett.cpp" line="74"/>
         <source>LCU groups</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/fireflytaskmanagersett.cpp" line="67"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/fireflytaskmanagersett.cpp" line="75"/>
         <source>lamp control unit LCU</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/fireflytaskmanagersett.cpp" line="69"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/fireflytaskmanagersett.cpp" line="77"/>
         <source>other</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6999,7 +7043,7 @@ The USSD number can be entered on the page 13.10
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="zbyrator-src/src/getreadymetersdata.cpp" line="249"/>
+        <location filename="zbyrator-src/src/getreadymetersdata.cpp" line="258"/>
         <source>Meter;NI;Memo;Poll;Has data;Group</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7451,49 +7495,49 @@ The USSD number can be entered on the page 13.10
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="190"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="206"/>
         <source>Delete %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="191"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="207"/>
         <source>This will delete these %1 directly from the remote device.&lt;br&gt;Would you like to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="131"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="166"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="147"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="182"/>
         <source>Print selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="131"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="159"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="147"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="175"/>
         <source>Print all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="140"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="156"/>
         <source>Print</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="156"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="172"/>
         <source>Print QR</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="181"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="197"/>
         <source>Generate a QR code (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="252"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="268"/>
         <source>Object is invalid(</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="246"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="262"/>
         <source>Done)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7600,13 +7644,28 @@ The USSD number can be entered on the page 13.10
 <context>
     <name>IPAccessManager</name>
     <message>
-        <location filename="../../Matilda-units/matilda-base/MatildaIO/matilda-bbb-src/shared/ipaccessmanager.cpp" line="273"/>
+        <location filename="../../Matilda-units/matilda-base/MatildaIO/matilda-bbb-src/shared/ipaccessmanager.cpp" line="312"/>
         <source>Changed configuration, allowallowIpList %1, blockThisIp %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-base/MatildaIO/matilda-bbb-src/shared/ipaccessmanager.cpp" line="283"/>
+        <location filename="../../Matilda-units/matilda-base/MatildaIO/matilda-bbb-src/shared/ipaccessmanager.cpp" line="322"/>
         <source>This IP &apos;%1&apos; is added to the temporary block list </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-base/MatildaIO/matilda-bbb-src/shared/ipaccessmanager.cpp" line="369"/>
+        <source>DDOS is detected, %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-base/MatildaIO/matilda-bbb-src/shared/ipaccessmanager.cpp" line="371"/>
+        <source>DDOS mode is going to be disabled, %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-base/MatildaIO/matilda-bbb-src/shared/ipaccessmanager.cpp" line="387"/>
+        <source>DDOS mode is disabled</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9460,95 +9519,95 @@ ends at		%2 %3</source>
 <context>
     <name>LedLampListWidget</name>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="824"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="825"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1193"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="830"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="831"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1199"/>
         <source>Off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="826"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="832"/>
         <source>Do not change</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="656"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="662"/>
         <source>Import led lamps from the file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="656"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="680"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="662"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="686"/>
         <source>Smart Lamp Settings(*.ledl)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="785"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="791"/>
         <source>bad parameters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1517"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1523"/>
         <source>Selected: read the state</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1523"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1529"/>
         <source>Selected: activate the beacon mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1450"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1456"/>
         <source>Settings: Export to the file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1455"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1461"/>
         <source>Settings: Import from the file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1462"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1468"/>
         <source>LCUs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1470"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1476"/>
         <source>Selected: Poll On</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1476"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1482"/>
         <source>Selected: Poll Off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1499"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1505"/>
         <source>Database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1148"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1154"/>
         <source>Delete LCUs from the remote device</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1149"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1155"/>
         <source>Do you really want to delete these LCUs from the remote device?&lt;br&gt;This will delete these LCUs directly from the remote device.&lt;br&gt;Would you like to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1193"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1199"/>
         <source>Power [%]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1224"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1230"/>
         <source>Kill tasks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1225"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1231"/>
         <source>Would you like to &apos;%1&apos;?&lt;br&gt;It applies only for tasks that created externally (manually).</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9558,152 +9617,152 @@ ends at		%2 %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="565"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="571"/>
         <source>&apos;%1&apos; is empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="570"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="576"/>
         <source>The lamp NI is invalid because of its length</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="573"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="579"/>
         <source>The Group ID is invalid, it must be between &apos;0&apos; and &apos;127&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="577"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="583"/>
         <source>The maximum number of LCU is reached</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="579"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="585"/>
         <source>The maximum number of LCU is &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="581"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="587"/>
         <source>The count of the LCUs is &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="679"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="685"/>
         <source>Export LCUs to file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1142"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1148"/>
         <source>The maximum size is %1. LCUs count is %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1285"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1291"/>
         <source>There are no LCUs(</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1290"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1296"/>
         <source>This action is not allowed(</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1302"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1308"/>
         <source>Remote device (for selected only)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1306"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1312"/>
         <source>Insert to the remote device</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1312"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1318"/>
         <source>Insert to the remote device with Poll On</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1318"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1324"/>
         <source>Insert to the remote list device Poll Off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1325"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1331"/>
         <source>Delete from the remote list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1337"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1343"/>
         <source>Temporary operations (for selected only)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1345"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1351"/>
         <source>Dimm the lamps &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1351"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1357"/>
         <source>Dimm the groups &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1366"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1372"/>
         <source>Dimm the lamp with NI &apos;%1&apos;%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1366"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1372"/>
         <source>, &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1374"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1380"/>
         <source>Dimm the group with ID &apos;%1&apos;, %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1374"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1380"/>
         <source>&apos;%1&apos; lamps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1374"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1380"/>
         <source>&apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1381"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1387"/>
         <source>Cancel the lamp dimming</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1384"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1390"/>
         <source>Cancel the group dimming</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1399"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1405"/>
         <source>Temporary schedule</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1404"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1410"/>
         <source>Set temporary schedule for selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1410"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1416"/>
         <source>Reset temporary schedule for selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1415"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1421"/>
         <source>Reset temporary schedule for all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1432"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1438"/>
         <source>The maximum size is %1. The count of LCUs is %2.&lt;br&gt;%3 LCUs will be omitted</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9846,6 +9905,131 @@ ends at		%2 %3</source>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mbackuplistselector.cpp" line="85"/>
         <source>Select mode: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>M2MHttpApiksWdgt</name>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpapikswdgt.cpp" line="36"/>
+        <source>API Key;Enabled;M2M Profile Name;Memo;Check status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpapikswdgt.cpp" line="91"/>
+        <source>ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpapikswdgt.cpp" line="91"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpapikswdgt.cpp" line="173"/>
+        <source>M2M Profile Name is not valid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpapikswdgt.cpp" line="166"/>
+        <source>API Key is empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpapikswdgt.cpp" line="170"/>
+        <source>M2M Profile Name cannot be empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>M2MHttpGeneralWdgt</name>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="20"/>
+        <source>Main</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="39"/>
+        <source>Max. request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="46"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="151"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="218"/>
+        <source>[msec]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="53"/>
+        <source>Read timeout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="60"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="104"/>
+        <source>[bytes]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="67"/>
+        <source>Port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="74"/>
+        <source>Max. multipart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="134"/>
+        <source>UC keep alive</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="161"/>
+        <source>Threads</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="167"/>
+        <source>Minimum</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="194"/>
+        <source>Maximum</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="211"/>
+        <source>Clean up interval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="241"/>
+        <source>SSL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="247"/>
+        <source>Directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="268"/>
+        <source>Certificate File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="282"/>
+        <source>Key File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.cpp" line="34"/>
+        <source>bad dataTag</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10207,12 +10391,12 @@ ends at		%2 %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/m2m-connection/matildaactiveclientsocket.cpp" line="513"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/m2m-connection/matildaactiveclientsocket.cpp" line="514"/>
         <source>One disconnect: %1, %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/m2m-connection/matildaactiveclientsocket.cpp" line="515"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/m2m-connection/matildaactiveclientsocket.cpp" line="516"/>
         <source>One disconnect: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10253,133 +10437,133 @@ ends at		%2 %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="641"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="655"/>
         <source>Can&apos;t open the meter list. %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="676"/>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="693"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="690"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="707"/>
         <source>Couldn&apos;t save the meter list. Error: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="970"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="984"/>
         <source>Couldn&apos;t save poll schedule. Error: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="976"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="990"/>
         <source>Can&apos;t open poll schedule. Error: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1095"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1109"/>
         <source>Bad timezone &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1101"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1115"/>
         <source>Couldn&apos;t set the timezone: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1325"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1339"/>
         <source>Couldn&apos;t save the LED list. Error: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1336"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1350"/>
         <source>Couldn&apos;t save the LED Group Schedule. Error: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1659"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1673"/>
         <source>$ovpn : %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1676"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1690"/>
         <source>Can&apos;t remove old OVPN</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1693"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1707"/>
         <source>Couldn&apos;t save all OVPN</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1736"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1750"/>
         <source>$eth : can&apos;t save the file, %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1752"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1766"/>
         <source>Can&apos;t open the water meter file. %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1768"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1782"/>
         <source>Couldn&apos;t save the water meter file. Error: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1798"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1812"/>
         <source>Can&apos;t open the water schedule settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1824"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1838"/>
         <source>$%1 : can&apos;t save the file, %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1847"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1861"/>
         <source>Can&apos;t open the poll task table settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1878"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1892"/>
         <source>Can&apos;t open the firefly task table settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1909"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1923"/>
         <source>Couldn&apos;t open the meter poll channel settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1931"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1945"/>
         <source>Couldn&apos;t open the saved m2m profiles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1955"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1969"/>
         <source>Couldn&apos;t open the interface settings for meter groups</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1977"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1991"/>
         <source>Couldn&apos;t open the interface settings for meter channels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1999"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2013"/>
         <source>Couldn&apos;t open the tcp medium server settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2021"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2035"/>
         <source>Couldn&apos;t open the GSM notification settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2523"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2575"/>
         <source>File: %1 is not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2611"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2663"/>
         <source>Version is invalid</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10389,17 +10573,17 @@ ends at		%2 %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1120"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1134"/>
         <source>Couldn&apos;t save the ntp settings: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2252"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2298"/>
         <source>Data is not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2620"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2672"/>
         <source>Data was not found</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10417,12 +10601,12 @@ ends at		%2 %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/matildaclient.cpp" line="715"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/matildaclient.cpp" line="720"/>
         <source>Searching for %1...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/matildaclient.cpp" line="481"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/matildaclient.cpp" line="486"/>
         <source>Incorrect data was received</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10455,8 +10639,48 @@ ends at		%2 %3</source>
 <context>
     <name>MatildaConfHelper</name>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared/matilda-conf/matildaconfhelper.cpp" line="54"/>
+        <location filename="../../Matilda-units/gui/guisett-shared/matilda-conf/matildaconfhelper.cpp" line="57"/>
         <source>Unknown day profile: %1&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared/matilda-conf/matildaconfhelper.cpp" line="244"/>
+        <source>Commerical, from 0 to +65°C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared/matilda-conf/matildaconfhelper.cpp" line="245"/>
+        <source>Commerical, from 0 to +65°C, GSM modem</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared/matilda-conf/matildaconfhelper.cpp" line="246"/>
+        <source>Commerical, from 0 to +65°C, Embee modem</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared/matilda-conf/matildaconfhelper.cpp" line="247"/>
+        <source>Commerical, from 0 to +65°C, GSM and Embee modems</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared/matilda-conf/matildaconfhelper.cpp" line="251"/>
+        <source>Industrial, from -40 to +85°C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared/matilda-conf/matildaconfhelper.cpp" line="252"/>
+        <source>Industrial, from -40 to +85°C, GSM modem</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared/matilda-conf/matildaconfhelper.cpp" line="253"/>
+        <source>Industrial, from -40 to +85°C, Embee modem</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared/matilda-conf/matildaconfhelper.cpp" line="254"/>
+        <source>Industrial, from -40 to +85°C, GSM and Embee modems</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10507,534 +10731,559 @@ ends at		%2 %3</source>
     <name>MatildaDeviceTree</name>
     <message>
         <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="159"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1483"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1549"/>
         <source>Info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="160"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1403"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1469"/>
         <source>Commands</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="161"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1484"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1550"/>
         <source>Poll data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="162"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1490"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1556"/>
         <source>Network settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="163"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1491"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1557"/>
         <source>General settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="164"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1485"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1551"/>
         <source>Prepaid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="165"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1488"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1554"/>
         <source>Smart lighting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="166"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1492"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1558"/>
         <source>M2M Service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="167"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1493"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1559"/>
         <source>Application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="854"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="891"/>
         <source>Connection Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="855"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="892"/>
         <source>Backup Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="856"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="893"/>
         <source>Show Connections</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="857"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="894"/>
         <source>Show Backups</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="860"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="897"/>
         <source>SNTP Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="861"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="898"/>
         <source>SNTP IP history</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="862"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="899"/>
         <source>SNTP Events</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="863"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="900"/>
         <source>SNTP Error Log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="864"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="901"/>
         <source>SNTP Warning Log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="903"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="946"/>
         <source>Report</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="929"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="972"/>
         <source>Ethernet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="930"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="973"/>
         <source>OpenVPN profiles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="931"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="974"/>
         <source>OpenVPN state</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="932"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="975"/>
         <source>Temporary schedule</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="964"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1007"/>
         <source>View tasks of the meters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="965"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1411"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1008"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1477"/>
         <source>Meters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="966"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1009"/>
         <source>Last active profiles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="967"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1010"/>
         <source>Staff accounts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="968"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1412"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1011"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1478"/>
         <source>Schedule</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="969"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1012"/>
         <source>Meter task table settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1011"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1054"/>
         <source>Database IP Rules</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1013"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1056"/>
         <source>Lamps task table settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1014"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1057"/>
         <source>Rescue schedules</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1015"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1058"/>
         <source>Search for LCU</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1016"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1059"/>
         <source>Schedule state</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1018"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1061"/>
         <source>Proxy settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1062"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1105"/>
         <source>Meter exchange</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1065"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1108"/>
         <source>Poll channels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1068"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1111"/>
         <source>Saved M2M profiles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1069"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1112"/>
         <source>Group interface settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1070"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1113"/>
         <source>Channel interface settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1118"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1161"/>
         <source>TCP Medium Server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1119"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1162"/>
         <source>GSM Notifications</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1120"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1163"/>
         <source>GSM Commands Log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1121"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1164"/>
         <source>TCP Server Medium Logs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1124"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1167"/>
         <source>TCP/ZigBee Service Log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1125"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1168"/>
         <source>TCP/ZigBee Service State</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1126"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1169"/>
         <source>UC Service State</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1128"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1171"/>
         <source>Quick Direct access logs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1129"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1172"/>
         <source>Real View Advanced</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1172"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1215"/>
         <source>Energy monitors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1173"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1216"/>
         <source>Database limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1174"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1217"/>
         <source>Database logs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1237"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1496"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1286"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1562"/>
         <source>Pulse meters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1239"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1288"/>
         <source>Pulse Schedule</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1240"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1289"/>
         <source>Pulse Real View Advanced</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1244"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1293"/>
         <source>Serial Port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1245"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1294"/>
         <source>Tcp Service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1246"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1295"/>
         <source>General Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1247"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1296"/>
         <source>Devices table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1248"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1297"/>
         <source>Interface Logs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1250"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1299"/>
         <source>502 Service State</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1375"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1302"/>
+        <source>Http API keys</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1303"/>
+        <source>Http General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1304"/>
+        <source>Http Events</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1305"/>
+        <source>Http Service History</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1307"/>
+        <source>M2M Events</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1441"/>
         <source>About object</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1376"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1442"/>
         <source>Date and time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1377"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1443"/>
         <source>State</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1378"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1444"/>
         <source>Quick Direct Access</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1392"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1458"/>
         <source>Exchange of the meters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1380"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1446"/>
         <source>System</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1381"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1447"/>
         <source>Network interfaces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1382"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1448"/>
         <source>Running processes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1391"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1457"/>
         <source>Supported meters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1383"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1449"/>
         <source>Main events</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1393"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1459"/>
         <source>Poll events of the meters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1384"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1450"/>
         <source>GSM/PPP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1385"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1451"/>
         <source>TCP settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1386"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1452"/>
         <source>ZigBee</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1387"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1453"/>
         <source>Packet manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1388"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1454"/>
         <source>Stream of the coordinator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1389"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1455"/>
         <source>Log of the coordinator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1394"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1460"/>
         <source>Poll errors of the meters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1395"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1461"/>
         <source>Poll warnings of the meters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1397"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1463"/>
         <source>Simple BASH</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1399"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1465"/>
         <source>Direct access service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1400"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1466"/>
         <source>Direct access client</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1401"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1467"/>
         <source>M2M client</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1404"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1470"/>
         <source>Authorization</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1406"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1472"/>
         <source>Accessibility</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1408"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1474"/>
         <source>Backup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1409"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1475"/>
         <source>Poll of the meters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1410"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1476"/>
         <source>Forwarding table of the meters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1413"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1479"/>
         <source>Database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1414"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1480"/>
         <source>Logs of meters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1415"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1481"/>
         <source>Hash summ</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1418"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1484"/>
         <source>IP Route</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1419"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1485"/>
         <source>PPP supervisor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1422"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1488"/>
         <source>Lights</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1423"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1489"/>
         <source>Schedule for groups</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1425"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1491"/>
         <source>Tasks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1426"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1492"/>
         <source>Relay</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1427"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1493"/>
         <source>Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1249"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1429"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1298"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1495"/>
         <source>Events</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1430"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1496"/>
         <source>Errors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1431"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1497"/>
         <source>Warnings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1486"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1552"/>
         <source>Electricity meter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1487"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1553"/>
         <source>Water meters</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11640,17 +11889,17 @@ ends at		%2 %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/meterlistwdgt.cpp" line="1088"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/meterlistwdgt.cpp" line="1101"/>
         <source>The maximum size is %1. The count of devices is %2.&lt;br&gt;%3 devices will be omitted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/meterlistwdgt.cpp" line="1102"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/meterlistwdgt.cpp" line="1115"/>
         <source>The maximum size is %1. The count of meters is %2.&lt;br&gt;%3 meters will be omitted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/meterlistwdgt.cpp" line="1046"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/meterlistwdgt.cpp" line="1059"/>
         <source>Max size is %1. Meter count is %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11894,8 +12143,8 @@ ends at		%2 %3</source>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="33"/>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="150"/>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="154"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="218"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="219"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="231"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="232"/>
         <source>opened</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11924,20 +12173,11 @@ ends at		%2 %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="35"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="176"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="186"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="188"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="342"/>
-        <source>begining</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="36"/>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="177"/>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="187"/>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="189"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="343"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="356"/>
         <source>end</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11988,10 +12228,10 @@ ends at		%2 %3</source>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="100"/>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="102"/>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="114"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="222"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="223"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="224"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="366"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="214"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="235"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="236"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="237"/>
         <source>on</source>
         <translation type="unfinished"></translation>
     </message>
@@ -12002,10 +12242,10 @@ ends at		%2 %3</source>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="101"/>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="103"/>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="115"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="226"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="227"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="228"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="367"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="215"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="239"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="240"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="241"/>
         <source>off</source>
         <translation type="unfinished"></translation>
     </message>
@@ -12074,9 +12314,9 @@ ends at		%2 %3</source>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="62"/>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="66"/>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="67"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="215"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="216"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="217"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="228"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="229"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="230"/>
         <source>overvoltage</source>
         <translation type="unfinished"></translation>
     </message>
@@ -12106,8 +12346,8 @@ ends at		%2 %3</source>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="86"/>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="89"/>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="91"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="328"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="331"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="341"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="344"/>
         <source>waiting for normal</source>
         <translation type="unfinished"></translation>
     </message>
@@ -12118,9 +12358,9 @@ ends at		%2 %3</source>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="64"/>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="68"/>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="69"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="211"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="212"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="213"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="224"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="225"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="226"/>
         <source>undervoltage</source>
         <translation type="unfinished"></translation>
     </message>
@@ -12494,7 +12734,7 @@ ends at		%2 %3</source>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="151"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="219"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="232"/>
         <source>Terminal box was %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -12616,452 +12856,502 @@ ends at		%2 %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="209"/>
+        <source>Simple program error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="210"/>
+        <source>Fatal program error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="211"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="212"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="213"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="215"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="216"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="217"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="222"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="223"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="224"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="226"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="227"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="228"/>
-        <source>Voltage L%1 was %2</source>
+        <source>Illegarl operation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="218"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="219"/>
+        <source>Relay: load off %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="218"/>
+        <source>high voltage</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="219"/>
+        <source>low voltage</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="220"/>
+        <source>Relay: load off, %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="220"/>
+        <source>security</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="224"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="225"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="226"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="228"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="229"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="230"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="235"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="236"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="237"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="239"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="240"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="241"/>
+        <source>Voltage L%1 was %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="231"/>
         <source>Meter cover was %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="230"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="243"/>
         <source>Phases connection was wrong</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="233"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="246"/>
         <source>Power was too high</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="236"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="249"/>
         <source>Magnetic field was detected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="239"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="252"/>
         <source>Temperature is ok</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="242"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="255"/>
         <source>Access was locked</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="243"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="256"/>
         <source>Magic button was pressed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="249"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="262"/>
         <source>Configuration changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="258"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="271"/>
         <source>Reset with data loss</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="259"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="272"/>
         <source>Reset without data loss</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="261"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="274"/>
         <source>No connection to neutral</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="264"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="277"/>
         <source>Changed parameters, register</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="265"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="278"/>
         <source>Changed parameters, communication port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="271"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="284"/>
         <source>Changed the minimum time between invoicig</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="272"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="285"/>
         <source>Changed the period for the load profile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="273"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="286"/>
         <source>Changed the synchronization</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="274"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="287"/>
         <source>Change program name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="276"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="289"/>
         <source>ACIN1 state changed to on</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="277"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="290"/>
         <source>ACIN1 state changed to off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="278"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="291"/>
         <source>ACIN2 state changed to on</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="279"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="292"/>
         <source>ACIN2 changed to off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="283"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="296"/>
         <source>Changed duration of voltage sags and swells</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="284"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="297"/>
         <source>Changed the limit of the power outage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="285"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="298"/>
         <source>Changing rated voltage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="286"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="299"/>
         <source>Changing the upper limit of the permissible voltage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="287"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="300"/>
         <source>Changeing the lower limit of the permissible voltage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="288"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="301"/>
         <source>Changing voltage value incicating lack of voltage (assumed 50%Un)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="291"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="304"/>
         <source>Password take the factory default settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="292"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="305"/>
         <source>Parameters take the factory default settings and billing and consumption/energy export profiles are reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="297"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="310"/>
         <source>Firmware - change</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="302"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="315"/>
         <source>Clock synchronization performed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="311"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="312"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="313"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="314"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="315"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="316"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="317"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="318"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="319"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="324"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="325"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="326"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="327"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="328"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="329"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="330"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="331"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="332"/>
         <source>Voltage sag of %1% Un L%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="320"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="321"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="322"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="333"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="334"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="335"/>
         <source>Voltage swell of %1% Un L%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="323"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="324"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="325"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="336"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="337"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="338"/>
         <source>Voltage return to an acceptable value L%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="328"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="341"/>
         <source>Over current in neutral, %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="329"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="342"/>
         <source>Current IN returned to an acceptable value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="331"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="344"/>
         <source>Revers current detected at least in one of phases, %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="332"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="345"/>
         <source>No reverse current</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="342"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="343"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="355"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="356"/>
         <source>Detection of phase and zero replacement: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="349"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="362"/>
         <source>Terminal cover opened in security suspend mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="355"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="368"/>
         <source>End communication PLC port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="356"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="369"/>
         <source>Begin communication PLC port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="357"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="370"/>
         <source>End communication Optical port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="358"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="371"/>
         <source>Begin communication Optical port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="359"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="372"/>
         <source>End communication Ethernet port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="360"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="373"/>
         <source>Begin communication Ethernet port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="361"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="374"/>
         <source>End communication 3GPP port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="362"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="375"/>
         <source>Begin communication 3GPP port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="366"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="367"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="214"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="215"/>
         <source>Secondary Relay: load %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="381"/>
-        <source>All</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="382"/>
-        <source>Other</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="383"/>
-        <source>Meter case open</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="384"/>
-        <source>Terminal box open</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="385"/>
-        <source>Bat. Low</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="386"/>
-        <source>EEPROM Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="387"/>
-        <source>Magnet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="388"/>
-        <source>Hardware</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="389"/>
-        <source>Access</source>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="35"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="176"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="186"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="188"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="355"/>
+        <source>beginning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="390"/>
-        <source>Relay</source>
+        <source>All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="391"/>
-        <source>Internal error</source>
+        <source>Other</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="392"/>
-        <source>Time corrected</source>
+        <source>Meter case open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="393"/>
-        <source>Time need to correct</source>
+        <source>Terminal box open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="394"/>
+        <source>Bat. Low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="395"/>
-        <source>Unknown protocol</source>
+        <source>EEPROM Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="396"/>
-        <source>No events for this day</source>
+        <source>Magnet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="397"/>
-        <source>Meter done</source>
+        <source>Hardware</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="398"/>
+        <source>Access</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="399"/>
-        <source>Voltage</source>
+        <source>Relay</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="400"/>
-        <source>Changed configuration</source>
+        <source>Internal error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="401"/>
-        <source>Climate</source>
+        <source>Time corrected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="402"/>
-        <source>Metering</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="403"/>
-        <source>DST state</source>
+        <source>Time need to correct</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="404"/>
-        <source>On/Off</source>
+        <source>Unknown protocol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="405"/>
-        <source>Parameters fault</source>
+        <source>No events for this day</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="407"/>
-        <source>Billing</source>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="406"/>
+        <source>Meter done</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="408"/>
-        <source>Module open</source>
+        <source>Voltage</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="409"/>
+        <source>Changed configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="410"/>
+        <source>Climate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="411"/>
+        <source>Metering</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="412"/>
+        <source>DST state</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="413"/>
+        <source>On/Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="414"/>
+        <source>Parameters fault</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="416"/>
+        <source>Billing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="417"/>
+        <source>Module open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="425"/>
         <source>System event</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="419"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="428"/>
         <source>Need to correct time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="420"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="429"/>
         <source>Correct time: error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="421"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="430"/>
         <source>Correct time: done</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="422"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="431"/>
         <source>Invalid argument</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="489"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="498"/>
         <source>Period is closed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="576"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="585"/>
         <source>Time,Amount,Balance,Currency,Meter,Villa,Values [cost/kWh],Who,ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="666"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="675"/>
         <source>Load Off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="666"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="675"/>
         <source>Load On</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="687"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="696"/>
         <source>Unconfirmed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -14208,37 +14498,37 @@ if it is empty - any connection is allowed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterlistwdgt.cpp" line="609"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterlistwdgt.cpp" line="608"/>
         <source>&apos;%1&apos; is invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterlistwdgt.cpp" line="609"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterlistwdgt.cpp" line="608"/>
         <source>Model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterlistwdgt.cpp" line="614"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterlistwdgt.cpp" line="613"/>
         <source>&apos;%1&apos; is empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterlistwdgt.cpp" line="631"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterlistwdgt.cpp" line="630"/>
         <source>The maximum number of meters is reached</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterlistwdgt.cpp" line="633"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterlistwdgt.cpp" line="632"/>
         <source>The maximum number of meters is &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterlistwdgt.cpp" line="635"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterlistwdgt.cpp" line="634"/>
         <source>The number of the meters is &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterlistwdgt.cpp" line="670"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterlistwdgt.cpp" line="669"/>
         <source>There is nothing to write</source>
         <translation type="unfinished"></translation>
     </message>
@@ -14428,38 +14718,68 @@ To enable a real  view profile enable the same regular profile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="35"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="50"/>
         <source>There is no data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="47"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="62"/>
         <source>Upgrade,Name,Version,Type,Size [bytes]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="90"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="74"/>
+        <source>Upgrade file is not loaded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="112"/>
         <source>Open an upgrade file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="90"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="112"/>
         <source>UC Upgrade Files (*.matildauf);;All files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="164"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="201"/>
         <source>executable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="165"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="202"/>
         <source>library</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="166"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="203"/>
         <source>unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="233"/>
+        <source>The connected device is not supported</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="246"/>
+        <source>&lt;h2&gt;You need to upgrade the software&lt;/h2&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="251"/>
+        <source>&lt;h3&gt;It looks like the software is up to date&lt;/h3&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="253"/>
+        <source>&lt;h3&gt;The file contains older software than the UC&lt;/h3&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="260"/>
+        <source>It looks like something went wrong. Please, check the software version manually</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -14476,17 +14796,17 @@ To enable a real  view profile enable the same regular profile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagermodes.cpp" line="29"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagermodes.cpp" line="34"/>
         <source>there is no file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagermodes.cpp" line="40"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagermodes.cpp" line="45"/>
         <source>Compressed %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagermodes.cpp" line="41"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagermodes.cpp" line="46"/>
         <source>Size on the disk %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -15479,7 +15799,7 @@ Keys
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="578"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="582"/>
         <source>The tariff list is empty</source>
         <translation type="unfinished"></translation>
     </message>
@@ -16272,6 +16592,11 @@ Keys
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/printersetupwdgt.ui" line="776"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Text&lt;br/&gt;$eui64 = EUI64&lt;br/&gt;$ni = NI&lt;br/&gt;$lcuni = NI from EUI64&lt;br/&gt;$date = current date&lt;br/&gt;$model = model&lt;br&gt;$smplText=generated text&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/printersetupwdgt.ui" line="830"/>
         <source>Custom position [px]</source>
         <translation type="unfinished"></translation>
@@ -16334,11 +16659,6 @@ Keys
     <message>
         <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/printersetupwdgt.ui" line="523"/>
         <source>Brightness</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/printersetupwdgt.ui" line="776"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Text&lt;br/&gt;$eui64 = EUI64&lt;br/&gt;$ni = NI&lt;br/&gt;$lcuni = NI from EUI64&lt;br/&gt;$date = current date&lt;br/&gt;$model = model&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -16420,42 +16740,42 @@ ID:$eui64</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/printersetupwdgt.cpp" line="346"/>
+        <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/printersetupwdgt.cpp" line="349"/>
         <source>Save as</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/printersetupwdgt.cpp" line="403"/>
+        <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/printersetupwdgt.cpp" line="406"/>
         <source>PNG image(*.png)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/printersetupwdgt.cpp" line="404"/>
+        <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/printersetupwdgt.cpp" line="407"/>
         <source>JPG image(*.jpg *.jpeg)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/printersetupwdgt.cpp" line="405"/>
+        <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/printersetupwdgt.cpp" line="408"/>
         <source>BMP image(*.bmp)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/printersetupwdgt.cpp" line="406"/>
+        <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/printersetupwdgt.cpp" line="409"/>
         <source>PPM image(*.ppm)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/printersetupwdgt.cpp" line="407"/>
+        <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/printersetupwdgt.cpp" line="410"/>
         <source>XBM image(*.xbm)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/printersetupwdgt.cpp" line="408"/>
+        <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/printersetupwdgt.cpp" line="411"/>
         <source>XPM image(*.xpm)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/printersetupwdgt.cpp" line="416"/>
+        <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/printersetupwdgt.cpp" line="419"/>
         <source>Get a background image</source>
         <translation type="unfinished"></translation>
     </message>
@@ -16496,22 +16816,22 @@ ID:$eui64</source>
 <context>
     <name>ProcesManager</name>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/procesmanager.cpp" line="444"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/procesmanager.cpp" line="446"/>
         <source>-</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/procesmanager.cpp" line="537"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/procesmanager.cpp" line="544"/>
         <source>PPPD manager is %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/procesmanager.cpp" line="537"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/procesmanager.cpp" line="544"/>
         <source>disabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/procesmanager.cpp" line="537"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/procesmanager.cpp" line="544"/>
         <source>enabled</source>
         <translation type="unfinished"></translation>
     </message>
@@ -16530,12 +16850,12 @@ ID:$eui64</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/processmanagerbase.cpp" line="355"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/processmanagerbase.cpp" line="356"/>
         <source>Time was updated from M2M Server %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/processmanagerbase.cpp" line="374"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/processmanagerbase.cpp" line="375"/>
         <source>the device is going to reboot</source>
         <translation type="unfinished"></translation>
     </message>
@@ -16972,12 +17292,12 @@ ID:$eui64</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qcmainwindow.cpp" line="592"/>
+        <location filename="qcmainwindow.cpp" line="603"/>
         <source>Log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qcmainwindow.cpp" line="691"/>
+        <location filename="qcmainwindow.cpp" line="702"/>
         <source>Proxy</source>
         <translation type="unfinished"></translation>
     </message>
@@ -17819,7 +18139,12 @@ ID:$eui64</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="zbyrator-src/relaywdgt.cpp" line="430"/>
+        <location filename="zbyrator-src/relaywdgt.cpp" line="435"/>
+        <source>Dismissed. Another task is processing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="zbyrator-src/relaywdgt.cpp" line="440"/>
         <source>no meters</source>
         <translation type="unfinished"></translation>
     </message>
@@ -19294,68 +19619,51 @@ To enable a real  view profile enable the same regular profile</source>
 <context>
     <name>SelectMeters4poll</name>
     <message>
-        <location filename="zbyrator-src/selectmeters4poll.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="zbyrator-src/selectmeters4poll.ui" line="53"/>
-        <source>All visible</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="zbyrator-src/selectmeters4poll.ui" line="162"/>
-        <source>...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="zbyrator-src/selectmeters4poll.ui" line="186"/>
-        <source>RegExp</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="zbyrator-src/selectmeters4poll.ui" line="191"/>
-        <source>Whole word</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="zbyrator-src/selectmeters4poll.ui" line="199"/>
-        <source>Filter</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="zbyrator-src/selectmeters4poll.ui" line="32"/>
-        <source>Database: processing...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="zbyrator-src/selectmeters4poll.ui" line="144"/>
-        <source>Ignore existing data</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="zbyrator-src/selectmeters4poll.ui" line="67"/>
-        <source>Selected</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="zbyrator-src/selectmeters4poll.ui" line="81"/>
-        <source>Checked &quot;On&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="zbyrator-src/selectmeters4poll.ui" line="92"/>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="zbyrator-src/selectmeters4poll.cpp" line="164"/>
+        <location filename="zbyrator-src/selectmeters4poll.cpp" line="219"/>
         <source>not all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="zbyrator-src/selectmeters4poll.cpp" line="167"/>
+        <location filename="zbyrator-src/selectmeters4poll.cpp" line="222"/>
         <source>all</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SelectMeters4pollTopWdgt</name>
+    <message>
+        <location filename="zbyrator-src/templates/selectmeters4polltopwdgt.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="zbyrator-src/templates/selectmeters4polltopwdgt.ui" line="20"/>
+        <source>Database: processing...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="zbyrator-src/templates/selectmeters4polltopwdgt.ui" line="41"/>
+        <source>All visible</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="zbyrator-src/templates/selectmeters4polltopwdgt.ui" line="55"/>
+        <source>Selected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="zbyrator-src/templates/selectmeters4polltopwdgt.ui" line="69"/>
+        <source>Checked &quot;On&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="zbyrator-src/templates/selectmeters4polltopwdgt.ui" line="80"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="zbyrator-src/templates/selectmeters4polltopwdgt.ui" line="132"/>
+        <source>Ignore existing data</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -19842,52 +20150,52 @@ To enable a real  view profile enable the same regular profile</source>
 <context>
     <name>SettLoader</name>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/settloader.cpp" line="341"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/settloader.cpp" line="344"/>
         <source>All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/settloader.cpp" line="406"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/settloader.cpp" line="409"/>
         <source>YYYY MM DD;DD MM YYYY;MM DD YYYY</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/settloader.cpp" line="428"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/settloader.cpp" line="431"/>
         <source>h:mm:ss (hour 0 to 23 or 1 to 12 if AM/PM display)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/settloader.cpp" line="431"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/settloader.cpp" line="434"/>
         <source>h:m:s (hour 0 to 23 or 1 to 12 if AM/PM display)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/settloader.cpp" line="434"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/settloader.cpp" line="437"/>
         <source>h:mm:ss (hour 1 to 12 AM/PM display)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/settloader.cpp" line="437"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/settloader.cpp" line="440"/>
         <source>h:m:s (hour 1 to 12 AM/PM display)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/settloader.cpp" line="441"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/settloader.cpp" line="444"/>
         <source>hh:mm:ss (hour 00 to 23 or 01 to 12 if AM/PM display)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/settloader.cpp" line="446"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/settloader.cpp" line="449"/>
         <source>h:mm:ss (hour 0 to 23, even with AM/PM display)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/settloader.cpp" line="449"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/settloader.cpp" line="452"/>
         <source>h:m:s (hour 0 to 23, even with AM/PM display)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/settloader.cpp" line="452"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/settloader.cpp" line="455"/>
         <source>hh:mm:ss (hour 00 to 23, even with AM/PM display)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -20887,7 +21195,7 @@ Available arguments:
 <context>
     <name>StartDevWdgt</name>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt.cpp" line="185"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt.cpp" line="184"/>
         <source>0;New item;Coordinate</source>
         <translation type="unfinished"></translation>
     </message>
@@ -20895,97 +21203,97 @@ Available arguments:
 <context>
     <name>StartDevWdgt4ucon</name>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="259"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="263"/>
         <source>System info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="261"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="265"/>
         <source>Running process</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="262"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="266"/>
         <source>Application events</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="269"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="273"/>
         <source>Serial port log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="271"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="275"/>
         <source>Plugins for meters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="274"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="278"/>
         <source>Poll events</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="277"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="281"/>
         <source>Poll errors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="278"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="282"/>
         <source>Poll warnings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="327"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="331"/>
         <source>Events</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="328"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="332"/>
         <source>Errors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="329"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="333"/>
         <source>Warnings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="343"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="347"/>
         <source>SNTP Events</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="344"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="348"/>
         <source>SNTP Errors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="345"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="349"/>
         <source>SNTP Warnings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="420"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="424"/>
         <source>Database logs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="437"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="441"/>
         <source>Modbus Events</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="526"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="536"/>
         <source>About Connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="656"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="666"/>
         <source>Device</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="699"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="709"/>
         <source>Device message: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -21228,12 +21536,12 @@ Available arguments:
     </message>
     <message>
         <location filename="zbyrator-src/startexchange.ui" line="224"/>
-        <location filename="zbyrator-src/startexchange.cpp" line="261"/>
+        <location filename="zbyrator-src/startexchange.cpp" line="266"/>
         <source>Interface</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="zbyrator-src/startexchange.cpp" line="366"/>
+        <location filename="zbyrator-src/startexchange.cpp" line="372"/>
         <source>Global interface settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -21306,12 +21614,12 @@ Available arguments:
 <context>
     <name>StartPagePollV2</name>
     <message>
-        <location filename="zbyrator-src/startpagepollv2.cpp" line="245"/>
+        <location filename="zbyrator-src/startpagepollv2.cpp" line="248"/>
         <source>Select</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="zbyrator-src/startpagepollv2.cpp" line="243"/>
+        <location filename="zbyrator-src/startpagepollv2.cpp" line="246"/>
         <source>Couldn&apos;t start the poll. The unknown device type &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -23268,6 +23576,34 @@ if it is empty - any connection is allowed</source>
     </message>
 </context>
 <context>
+    <name>UCLabelCreatorWdgt</name>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/info-pgs/uclabelcreatorwdgt.ui" line="20"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/info-pgs/uclabelcreatorwdgt.ui" line="53"/>
+        <source>Print</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/info-pgs/uclabelcreatorwdgt.ui" line="83"/>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/info-pgs/uclabelcreatorwdgt.ui" line="107"/>
+        <source>yyyy/MM/dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/info-pgs/uclabelcreatorwdgt.ui" line="117"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>UCStateWdgt</name>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/info-pgs/ucstatewdgt.ui" line="14"/>
@@ -23888,47 +24224,47 @@ if it is empty - any connection is allowed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/wmeterlistwdgt.cpp" line="539"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/wmeterlistwdgt.cpp" line="538"/>
         <source>There is no data from the remote device.&lt;br&gt;If you continue, the meter list in the remote device may be lost. Do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/wmeterlistwdgt.cpp" line="545"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/wmeterlistwdgt.cpp" line="544"/>
         <source>Import meters from</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/wmeterlistwdgt.cpp" line="577"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/wmeterlistwdgt.cpp" line="576"/>
         <source>&apos;%1&apos; is invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/wmeterlistwdgt.cpp" line="577"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/wmeterlistwdgt.cpp" line="576"/>
         <source>Model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/wmeterlistwdgt.cpp" line="584"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/wmeterlistwdgt.cpp" line="583"/>
         <source>&apos;%1&apos; is empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/wmeterlistwdgt.cpp" line="602"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/wmeterlistwdgt.cpp" line="601"/>
         <source>The maximum number of meters is reached</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/wmeterlistwdgt.cpp" line="604"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/wmeterlistwdgt.cpp" line="603"/>
         <source>The maximum number of meters is &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/wmeterlistwdgt.cpp" line="606"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/wmeterlistwdgt.cpp" line="605"/>
         <source>The number of the meters is &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/wmeterlistwdgt.cpp" line="687"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/wmeterlistwdgt.cpp" line="686"/>
         <source>There is nothing to write</source>
         <translation type="unfinished"></translation>
     </message>
@@ -24268,14 +24604,9 @@ if it is empty - any connection is allowed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="zbyrator-src/zbyrmeterlistmedium.cpp" line="392"/>
+        <location filename="zbyrator-src/zbyrmeterlistmedium.cpp" line="402"/>
         <source>%3: IN: %1, one task removed, result is %2</source>
         <oldsource>%3: NI: %1, one task removed, rezult is %2</oldsource>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="zbyrator-src/zbyrmeterlistmedium.cpp" line="451"/>
-        <source>no meters</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -24382,22 +24713,22 @@ if it is empty - any connection is allowed</source>
 <context>
     <name>ZbyratorTaskManagerSett</name>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/zbyratortaskmanagersett.cpp" line="60"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/zbyratortaskmanagersett.cpp" line="65"/>
         <source>Electricity meter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/zbyratortaskmanagersett.cpp" line="61"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/zbyratortaskmanagersett.cpp" line="66"/>
         <source>Water meter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/zbyratortaskmanagersett.cpp" line="62"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/zbyratortaskmanagersett.cpp" line="67"/>
         <source>Pulse meter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/zbyratortaskmanagersett.cpp" line="63"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/zbyratortaskmanagersett.cpp" line="68"/>
         <source>Other</source>
         <translation type="unfinished"></translation>
     </message>
