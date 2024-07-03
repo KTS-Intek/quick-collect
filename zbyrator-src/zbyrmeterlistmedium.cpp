@@ -96,6 +96,13 @@ ZbyrMeterListMedium::ZbyrMeterListMedium(const bool &verboseMode, QObject *paren
 
     pageModeUpdated = false;
 
+    QTimer *reloadSettTmr = new QTimer(this);
+    reloadSettTmr->setSingleShot(true);
+    reloadSettTmr->setInterval(1111);
+
+    connect(this, SIGNAL(reloadAllMeters2zbyratorLtr(int)), reloadSettTmr, SLOT(start(int)));
+    connect(reloadSettTmr, &QTimer::timeout, this, &ZbyrMeterListMedium::onReloadAllMeters2zbyrator);
+
 
     QTimer::singleShot(3333, this, SLOT(createPeredavatorEmbeeManagerLater()));
 
@@ -135,6 +142,8 @@ void ZbyrMeterListMedium::resetVariables4pollStarted()
 
 }
 
+//---------------------------------------------------------------------
+
 void ZbyrMeterListMedium::activateEmul2DeviceType()
 {
 
@@ -146,6 +155,16 @@ void ZbyrMeterListMedium::activateEmul2DeviceType()
     systeminfo.validator.allDataIsReceived = true;
     ucDeviceTreeW->setUCSystemInfo(systeminfo);
 
+}
+
+//---------------------------------------------------------------------
+
+void ZbyrMeterListMedium::checkThisMeterInfo(UniversalMeterSett oneMeter)
+{
+
+    emit onThisMeterTypeSettingsAreGoing2reload(oneMeter.deviceType);
+//    QTimer::singleShot(111, this, SIGNAL(onReloadAllMeters2zbyrator()));
+    emit reloadAllMeters2zbyratorLtr(1111);
 }
 
 
@@ -257,7 +276,8 @@ void ZbyrMeterListMedium::onSaveLater()
 
 //    doReloadListOfElectricityMeters();
 //    doReloadListOfMeters(UC_METER_UNKNOWN);
-    emit onReloadAllMeters2zbyrator();
+//    emit onReloadAllMeters2zbyrator();
+    emit reloadAllMeters2zbyratorLtr(1);
 
     onGetUCEMeterRelayState(QStringList(), "ZbyrMeterListMedium::onSaveLater");
 }
@@ -425,8 +445,15 @@ void ZbyrMeterListMedium::setLastPageId(QString accsblName)
 void ZbyrMeterListMedium::onReloadAllZbyratorSettingsLocalSocket()
 {
     mapMeters2pages.insert("Scheduler for water meters", LastList2pages());
-    emit onReloadAllMeters2zbyrator();
+//    emit onReloadAllMeters2zbyrator();
+    emit reloadAllMeters2zbyratorLtr(1);
     emit reloadSavedSleepProfiles();
+
+}
+
+void ZbyrMeterListMedium::onSomePage4metersReady()
+{
+    emit reloadAllMeters2zbyratorLtr(111);
 
 }
 //---------------------------------------------------------------------
@@ -484,7 +511,8 @@ void ZbyrMeterListMedium::onGetUCEMeterSettings(QString senderName)
 {
 //    Q_UNUSED(senderName);
     onGetUCSupportedMetersInfo(senderName);
-    QTimer::singleShot(111, this, SIGNAL(onReloadAllMeters2zbyrator()));
+//    QTimer::singleShot(111, this, SIGNAL(onReloadAllMeters2zbyrator()));
+    emit reloadAllMeters2zbyratorLtr(1111);
 }
 
 //---------------------------------------------------------------------

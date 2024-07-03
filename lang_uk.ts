@@ -153,7 +153,7 @@
 <context>
     <name>Add2dbHelper</name>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/meter/add2dbhelper.cpp" line="197"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/meter/add2dbhelper.cpp" line="223"/>
         <source>ok</source>
         <translation>ок</translation>
     </message>
@@ -431,27 +431,27 @@
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/editors/addeditm2mhttpapikswdgt.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Форма</translation>
+        <translation>Форма</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/editors/addeditm2mhttpapikswdgt.ui" line="20"/>
         <source>API Key</source>
-        <translation type="unfinished"></translation>
+        <translation>API Ключ</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/editors/addeditm2mhttpapikswdgt.ui" line="45"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/editors/addeditm2mhttpapikswdgt.ui" line="41"/>
         <source>Enable</source>
-        <translation type="unfinished">Активувати</translation>
+        <translation>Активувати</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/editors/addeditm2mhttpapikswdgt.ui" line="59"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/editors/addeditm2mhttpapikswdgt.ui" line="55"/>
         <source>M2M Profile Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Назва М2М Профілю</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/editors/addeditm2mhttpapikswdgt.ui" line="82"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/editors/addeditm2mhttpapikswdgt.ui" line="78"/>
         <source>Memo</source>
-        <translation type="unfinished">Пам&apos;ятка</translation>
+        <translation>Пам&apos;ятка</translation>
     </message>
 </context>
 <context>
@@ -757,33 +757,33 @@
         <translation>Профіль</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="393"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="399"/>
         <source>NI [meter model]</source>
         <translation>NI [модель лічильника]</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="588"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="594"/>
         <source>Profile for NI %1</source>
         <translation>Профіль для NI %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="621"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="627"/>
         <source>&lt;b&gt;Meter address &apos;%1&apos;&lt;/b&gt;</source>
         <translation>&lt;b&gt;Адреса лічильника &apos;%1&apos;&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="625"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="631"/>
         <source>There is a meter with this NI</source>
         <translation>Є лічильник з таким NI</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="721"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="725"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="727"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="731"/>
         <source>Auto detection</source>
         <translation>Автоматично</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="723"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/addeditmeterwdgt.cpp" line="729"/>
         <source>Device &apos;%1&apos;, Supported models &apos;%2&apos;</source>
         <translation>Пристрій &apos;%1&apos;, Підтримувані моделі &apos;%2&apos;</translation>
     </message>
@@ -1078,29 +1078,28 @@
 <context>
     <name>AddPollData2dbObject</name>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/addpolldata2dbobject.cpp" line="630"/>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/addpolldata2dbobject.cpp" line="637"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/addpolldata2dbobject.cpp" line="676"/>
         <source>bad poll code for virtual meters %1</source>
         <translation>поганий код опитування для віртуальних лічильників %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/addpolldata2dbobject.cpp" line="924"/>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/addpolldata2dbobject.cpp" line="947"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/addpolldata2dbobject.cpp" line="979"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/addpolldata2dbobject.cpp" line="1002"/>
         <source>ok)</source>
         <translation>ок)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/addpolldata2dbobject.cpp" line="947"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/addpolldata2dbobject.cpp" line="1002"/>
         <source>ok</source>
         <translation>ок</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/addpolldata2dbobject.cpp" line="1046"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/addpolldata2dbobject.cpp" line="1106"/>
         <source>Access error</source>
         <translation>Помилка доступу</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/addpolldata2dbobject.cpp" line="1049"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/addpolldata2dbobject.cpp" line="1109"/>
         <source>wrong time</source>
         <translation>хибний час</translation>
     </message>
@@ -1318,7 +1317,7 @@
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="389"/>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="400"/>
         <source>Test</source>
-        <translation type="unfinished">Перевірити</translation>
+        <translation>Перевірити</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/authorizationwdgt.ui" line="413"/>
@@ -1359,7 +1358,7 @@
 <context>
     <name>BackupGuiHelper</name>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="122"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="134"/>
         <source>Meter List;Direct Access Service;Direct Access Client;UC Service;M2M Client;About Object;Poll Schedule;Poll Settings;GSM;Authorization;Time Settings;Forward Table;ZigBee;TCP</source>
         <translation>Список Лічильників;Сервіс Прямого Доступу;Клієнт Прямого Доступу;Сервіс УК;Клієнт М2М;Про Об&apos;єкт;Налаштування Розкладу;Налаштування Опитування;GSM;Авторизація;Налаштування Часу;Таблиця Переадресації;ZigBee;TCP</translation>
     </message>
@@ -1368,154 +1367,214 @@
         <translation type="vanished">IP Маршрути;Наглядач PPP;Лампи;Розклад для ламп;Налаштуванян Реле;Режими</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="126"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="138"/>
         <source>IP Route;PPP Supervisor;Lamps;Schedule for the lamps;Relay Settings;Mode;Temporary schedules</source>
         <translation>IP Маршрути;Наглядач PPP;Лампи;Розклад для ламп;Налаштуванян Реле;Режими;Тимчасові розклади</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="130"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="142"/>
         <source>UC Service;M2M Client;About Object;GSM;Authorization;Time Settings;TCP;IP Route;PPP Supervisor;SNTP Service;M2M Service Connection;M2M Service Backup</source>
         <translation>Сервіс УК;М2М Клієнт;Про Об&apos;єкт;GSM;Авторизація;Налаштування Часу;TCP;IP Route;Наглядач PPP;SNTP Сервіс;M2M З&apos;єднання Сервісу;M2M Сервіс Бекапи</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="136"/>
         <source>OpenVPN profiles;Ethernet</source>
-        <translation>OpenVPN профілі;Ethernet</translation>
+        <translation type="vanished">OpenVPN профілі;Ethernet</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="140"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="148"/>
+        <source>OpenVPN profiles;Network interfaces ( Ethernet, Wi-Fi) </source>
+        <translation>OpenVPN профілі;Мережеві інтерфейси ( Ethernet, Wi-Fi) </translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="152"/>
         <source>Water meters</source>
         <translation>Лічильники води</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="140"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="152"/>
         <source>Water meters last profile</source>
         <translation>Останній профіль лічильників води</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="140"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="152"/>
         <source>Water schedule</source>
         <translation>Розклад ліч. води</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="140"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="152"/>
         <source>Poll task table</source>
         <translation>Таблиця завдань опитування</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="140"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="152"/>
         <source>Staff accounts</source>
         <translation>Акаунти персоналу</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="144"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="156"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="171"/>
         <source>Saved M2M profiles</source>
         <translation>Збережені профілі М2М</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="144"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="156"/>
         <source>Meter group interface settings</source>
         <translation>Налаштування зв&apos;язку групи лічильників</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="144"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="156"/>
         <source>Meter channels interface settings</source>
         <translation>Налаштування зв&apos;язку каналів лічильників</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="144"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="156"/>
         <source>Meter poll channels</source>
         <translation>Канали опитування лічильників</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="147"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="159"/>
         <source>TCP Server Medium</source>
         <translation>TCP Сервер Посередник</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="147"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="159"/>
         <source>GSM Notifications</source>
         <translation>GSM Повідомлення</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="147"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="159"/>
         <source>DB IP Rules</source>
         <translation>Правила БД для IP</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="147"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="159"/>
         <source>Electricity meters Real View</source>
         <translation>Лічильники електроенергії Real View</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="150"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="162"/>
         <source>Energy monitors</source>
         <translation>Енергомонітори</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="150"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="162"/>
         <source>DB Limits</source>
         <translation>Ліміти бази даних</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="154"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="166"/>
         <source>Pulse Meters</source>
         <translation>Лічильники імпульсів</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="154"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="166"/>
         <source>Pulse Meters Schedule</source>
         <translation>Розклад лічильників імпульсів</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="154"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="166"/>
         <source>Pulse Meters Real View</source>
         <translation>Лічильники імпульсів Real View</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="155"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="167"/>
         <source>Modbus UART</source>
         <translation>Modbus UART</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="155"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="167"/>
         <source>Modbus TCP</source>
         <translation>Modbus TCP</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="155"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="167"/>
         <source>Modbus General</source>
         <translation>Modbus Загальне</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="155"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="167"/>
         <source>Modbus Devices</source>
         <translation>Modbus Пристрої</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="176"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="183"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="172"/>
+        <source>Http API Keys</source>
+        <translation>Http API Keys</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="172"/>
+        <source>Http General</source>
+        <translation>Http General</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="177"/>
+        <source>Individual Schedules for electricity</source>
+        <translation>Індивідуальні Розклади для е/е</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="177"/>
+        <source>Individual Schedules for water</source>
+        <translation>Індивідуальні Розклади для води</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="177"/>
+        <source>Individual Schedules for pulse meters</source>
+        <translation>Індивідуальні Розклади для імпульсів</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="178"/>
+        <source>Electricity meters with individual schedules</source>
+        <translation>Лічильники е/е з індивідуальним розкладом</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="178"/>
+        <source>Water meters with individual schedules</source>
+        <translation>Лічильники води з індивідуальним розкладом</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="178"/>
+        <source>Pulse meters with individual schedules</source>
+        <translation>Лічильники імпульсів з індивідуальним розкладом</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="179"/>
+        <source>Event manager rules</source>
+        <translation>Правила менеджера подій</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="179"/>
+        <source>Event manager profiles</source>
+        <translation>Профілі менеджера подій</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="179"/>
+        <source>Wi-Fi authorization</source>
+        <translation>Wi-Fi налаштування</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="201"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="208"/>
         <source>Empty</source>
         <translation>Порожній</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="188"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="198"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="203"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="208"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="213"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="223"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="228"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="233"/>
         <source>Bare</source>
         <translation>Порожній</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="188"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="198"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="203"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="208"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="213"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="223"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="228"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="233"/>
         <source>Has data</source>
         <translation>Має дані</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="193"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/backupguihelper.cpp" line="218"/>
         <source>it has %1 item(s)</source>
         <translation>це містить %1 елемен(тів)</translation>
     </message>
@@ -1532,7 +1591,7 @@
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="103"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="483"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="478"/>
         <source>Delete</source>
         <translation>Видалити</translation>
     </message>
@@ -1612,58 +1671,58 @@
         <translation>Зберегти</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="215"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="210"/>
         <source>The name is invalid</source>
         <translation>Ця назва недійсна</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="218"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="213"/>
         <source>There is nothing to backup</source>
         <translation>Нема чого бекапити</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="222"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="217"/>
         <source>bad access level</source>
         <translation>поганий рівень доступу</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="245"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="240"/>
         <source>Name is invalid</source>
         <translation>Назва недійсна</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="248"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="243"/>
         <source>There are no modules to backup</source>
         <translation>Нема модулів для бекапу</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="297"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="292"/>
         <source>There is no data</source>
         <translation>Нема даних</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="324"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="319"/>
         <source>%1 - %2</source>
         <translation>%1 - %2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="450"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="445"/>
         <source>Save a backup file to a local drive</source>
         <translation>Зберегти файл резервної копії на локальному диску</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="484"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="479"/>
         <source>Would you like to delete&lt;br&gt;&apos;%1&apos;&lt;br&gt;from the remote device?</source>
         <translation>Ви дійсно хочете видалити:&lt;br&gt;&apos;%1&apos;&lt;br&gt;з віддаленого пристрою?</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="538"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="533"/>
         <source>Version is invalid</source>
         <translation>Версія недійсна</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="266"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="451"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="261"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="446"/>
         <source>UC Backup Files(*.matildabf);;All files (*)</source>
         <translation>УК Файли Резервної Копії (*.matildabf);;Всі Файли (*)</translation>
     </message>
@@ -1676,13 +1735,13 @@
         <translation type="vanished">Версія є хибною</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="265"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="260"/>
         <source>Open a UC backup file</source>
         <translation>Відкрити файл резервних налаштувань УК</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="379"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="396"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="374"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="391"/>
         <source>Data is not found</source>
         <translation>Дані не знайдено</translation>
     </message>
@@ -1695,14 +1754,14 @@
         <translation type="vanished">Версія %1 не підтримується</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="337"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="424"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="332"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="419"/>
         <source>The versnion is invalid</source>
         <translation>Версія є хибною</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="341"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="428"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="336"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/app-pgs/backupwdgt.cpp" line="423"/>
         <source>Couldn&apos;t open the file: %1&lt;br&gt;Error: %2</source>
         <translation>Не вдалося відкрити файл: %1 &lt;br&gt; Помилка: %2</translation>
     </message>
@@ -1917,7 +1976,7 @@
         <translation>Карта</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/BaseMapPage.qml" line="327"/>
+        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/BaseMapPage.qml" line="331"/>
         <source>Your position</source>
         <translation>Ваше розташування</translation>
     </message>
@@ -2237,17 +2296,17 @@
         <translation type="vanished">Очікування: -</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/classmanager.cpp" line="730"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/classmanager.cpp" line="802"/>
         <source>Connecting to %1</source>
         <translation>З&apos;єднання до %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/classmanager.cpp" line="740"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/classmanager.cpp" line="812"/>
         <source>Failed to establish a connection to %1</source>
         <translation>Помилка встановлення з&apos;єднання з %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/classmanager.cpp" line="744"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/classmanager.cpp" line="816"/>
         <source>Connection works to %1</source>
         <translation>З&apos;єдання працює з %1</translation>
     </message>
@@ -2489,47 +2548,47 @@
 <context>
     <name>ClassManagerV1</name>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="1439"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="1602"/>
         <source>The device uses a newer version of the exchange protocol.&lt;br&gt;Supported version is %1.&lt;br&gt;Device uses %2.&lt;br&gt;Try to update your software.</source>
         <translation>Цей пристрій використовує новішу версію протоколу обміну.&lt;br&gt;Підтримувана версія %1.&lt;br&gt;Пристрій використовує - %2.&lt;br&gt;Спробуйте оновити своє ПЗ.</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="1447"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="1610"/>
         <source>The remote device has closed the connection</source>
         <translation>Віддалений пристрій закрив з&apos;єднання</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="1547"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="1710"/>
         <source>Device software is already up to date.</source>
         <translation>ПЗ пристрою не потребує оновлення.</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="1776"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="1941"/>
         <source>Unknown error code &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="3436"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="3660"/>
         <source>The file is not readable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="3480"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="3704"/>
         <source>Main applications</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="3502"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="3726"/>
         <source>Main scripts</source>
         <translation type="unfinished">Скрипти</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="3555"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="3779"/>
         <source>The file is broken</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="3694"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv1.cpp" line="3918"/>
         <source>Missing arguments</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2537,8 +2596,8 @@
 <context>
     <name>ClassManagerV11</name>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv11.cpp" line="1309"/>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv11.cpp" line="1325"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv11.cpp" line="1327"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv11.cpp" line="1343"/>
         <source>There is nothing to change</source>
         <translation type="unfinished">Змінювати нічого</translation>
     </message>
@@ -2546,67 +2605,67 @@
 <context>
     <name>ClassManagerV2</name>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="1131"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="1149"/>
         <source>Bad profiles &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="1157"/>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="1218"/>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="1397"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="1175"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="1236"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="1415"/>
         <source>Bad group id &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="1182"/>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="1263"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="1200"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="1281"/>
         <source>Group &apos;%1&apos;, bad profile name &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="1193"/>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="1281"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="1211"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="1299"/>
         <source>Group &apos;%1&apos;, bad settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="1394"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="1412"/>
         <source>Bad ni &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="1456"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="1474"/>
         <source>Service Connection: Host field is invalid(&lt;br&gt;</source>
         <translation type="unfinished">Сервісне З&apos;єднання: поле Хосту є не правильним(&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="1459"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="1477"/>
         <source>Data Connection: Host field is invalid(&lt;br&gt;</source>
         <translation type="unfinished">З&apos;єднання Даних: поле Хосту є не правильним(&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="1462"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="1480"/>
         <source>Data Connection: Port count field is invalid(&lt;br&gt;</source>
         <translation type="unfinished">З&apos;єднання Даних: поле К-ть Портів є не правильним(&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="2088"/>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="2105"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="2112"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="2129"/>
         <source>Data is not found</source>
         <translation type="unfinished">Дані не знайдено</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="2151"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="2175"/>
         <source>The versnion is invalid</source>
         <translation type="unfinished">Версія є хибною</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="2155"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="2179"/>
         <source>Couldn&apos;t open the file: %1&lt;br&gt;Error: %2</source>
         <translation type="unfinished">Не вдалося відкрити файл: %1 &lt;br&gt; Помилка: %2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="2427"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv2.cpp" line="2451"/>
         <source>ID is empty</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2700,18 +2759,18 @@
         <translation type="unfinished">auth файл не підтримується віддаленим пристроєм(</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv4.cpp" line="601"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv4.cpp" line="613"/>
         <source>Trying to deploy the OVPN file with %1 file</source>
         <translation type="unfinished">Намагаюсь вивантажити OVPN файл з %1 файлом</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv4.cpp" line="614"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv4.cpp" line="626"/>
         <source>There is nothing to delete</source>
         <translation type="unfinished">Нічого видаляти</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv4.cpp" line="663"/>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv4.cpp" line="676"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv4.cpp" line="675"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv4.cpp" line="688"/>
         <source>Missing data</source>
         <translation>Відсутні дані</translation>
     </message>
@@ -2731,32 +2790,32 @@
         <translation type="vanished">Читання стану реле лічильників</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv5.cpp" line="1286"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv5.cpp" line="1322"/>
         <source>The task was added to the queue</source>
         <translation>Завдання було додано до черги</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv5.cpp" line="1287"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv5.cpp" line="1323"/>
         <source>Something went wrong(.&lt;br&gt;Try again later</source>
         <translation>Щось пішло не так(.&lt;br&gt;Спробуйте ще раз пізніше</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv5.cpp" line="1288"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv5.cpp" line="1324"/>
         <source>An unknown status was received</source>
         <translation>Отримано невідомий статус</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv5.cpp" line="1395"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv5.cpp" line="1435"/>
         <source>Missing arguments</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv5.cpp" line="1554"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv5.cpp" line="1588"/>
         <source>NI list can&apos;t be empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv5.cpp" line="1558"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv5.cpp" line="1592"/>
         <source>Unknown operation &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2836,13 +2895,13 @@
         <translation type="vanished">невідомий статус %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv6.cpp" line="855"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv6.cpp" line="879"/>
         <source>Missing arguments</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv6.cpp" line="1068"/>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv6.cpp" line="1080"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv6.cpp" line="1092"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda-conf/classmanagerv6.cpp" line="1104"/>
         <source>Missing data</source>
         <translation>Відсутні дані</translation>
     </message>
@@ -2863,7 +2922,7 @@
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/network-pgs/clientsettdailyprofileswdgt.cpp" line="30"/>
         <source>Name;Schedule</source>
-        <translation type="unfinished">Назва;Розклад</translation>
+        <translation>Назва;Розклад</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/network-pgs/clientsettdailyprofileswdgt.cpp" line="67"/>
@@ -2883,12 +2942,12 @@
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/network-pgs/clientsettdailyprofileswdgt.cpp" line="161"/>
         <source>Name is empty&lt;br&gt;</source>
-        <translation type="unfinished">Назва є пустою&lt;br&gt;</translation>
+        <translation>Назва є пустою&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/network-pgs/clientsettdailyprofileswdgt.cpp" line="164"/>
         <source>All days disabled&lt;br&gt;</source>
-        <translation type="unfinished">Усі дні деактивовано&lt;br&gt;</translation>
+        <translation>Усі дні деактивовано&lt;br&gt;</translation>
     </message>
 </context>
 <context>
@@ -3141,7 +3200,7 @@
 <context>
     <name>Conf2modem</name>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="257"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="262"/>
         <source>Network reset</source>
         <translation>Перезапуск мережі</translation>
     </message>
@@ -3154,12 +3213,12 @@
         <translation type="vanished">Перезапуск мережі...</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="652"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="675"/>
         <source>Unknown error (</source>
         <translation>Невідома помилка (</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="747"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="770"/>
         <source>API enbl=%1, prtt=%2, rtr=%3</source>
         <translation></translation>
     </message>
@@ -3168,124 +3227,124 @@
         <translation type="vanished">Не вдається увійти в командний режим.</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="151"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="154"/>
         <source>%1, entering the command mode</source>
         <translation>%1, вхід в командний режим</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="283"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="288"/>
         <source>Reset the modem</source>
         <translation>Скидання модема</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="290"/>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="297"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="295"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="302"/>
         <source>Factory settings</source>
         <translation>Заводські налаштування</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="299"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="304"/>
         <source>Received a bad value(</source>
         <translation>Отримано погане значення(</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="320"/>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="331"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="325"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="336"/>
         <source>Reading the modem</source>
         <translation>Зчитування модема</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="353"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="358"/>
         <source>Node discovery</source>
         <translation>Пошук вузлів</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="361"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="366"/>
         <source>Node Discovery Tool doesn&apos;t support RS485</source>
         <translation>Інструмент Пошуку Вузлів не підтримує роботу через RS485</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="382"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="387"/>
         <source>The modem is not a coordinator</source>
         <translation>Модем не є координатором</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="479"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="484"/>
         <source>Exiting the command mode, result is &apos;%1&apos;</source>
         <translation>Вихід із командного режиму - &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="553"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="564"/>
         <source>Device %1 was found</source>
         <translation>Пристрій %1 знайдено</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="556"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="567"/>
         <source>The answer len is not valid</source>
         <translation>Довжина відповіді недійсна</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="558"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="569"/>
         <source>Bad answer was detected</source>
         <translation>Виявлено погану відповідь</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="598"/>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="766"/>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="824"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="615"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="789"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="847"/>
         <source>Couldn&apos;t enter the command mode(</source>
         <translation>Не можу зайти в командний режим(</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="637"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="660"/>
         <source>atfr 510 &apos;%1&apos;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="705"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="728"/>
         <source>%1, connection test</source>
         <translation>%1, тест з&apos;єднання</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="752"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="775"/>
         <source>API enbl=%1, prtt=%2, rtr=%3 isCoordinatorFreeWithRead</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="1052"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="1081"/>
         <source>The %1 mode was %2.</source>
         <translation>Режим %1 був %2.</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="1100"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="1129"/>
         <source>The API mode was activated</source>
         <translation>API режим було активовано</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="1108"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="1137"/>
         <source>Couldn&apos;t activate the API mode, isCoordinatorConfigReady=%1, interface &apos;%2&apos;</source>
         <translation>Не можу активувати API режим, isCoordinatorConfigReady=%1, interface &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="767"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="790"/>
         <source>API enbl=%1, prtt=%2, rtr=%3 !enterCommandMode</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="781"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="804"/>
         <source>for wasOk4atfr =%1, stopAll=%2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="799"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="822"/>
         <source>!for wasOk4atfr =%1, stopAll=%2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="869"/>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="928"/>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="1025"/>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="1045"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="892"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="951"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="1054"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="1074"/>
         <source>Couldn&apos;t set up the modem</source>
         <translation>Не можу налаштувати модем</translation>
     </message>
@@ -3294,17 +3353,17 @@
         <translation type="vanished">Режим %1 %2.</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="1616"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="1669"/>
         <source>Couldn&apos;t change the NI</source>
         <translation>Не можу змінити NI</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="1713"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="1766"/>
         <source>Waiting for the network readiness...</source>
         <translation>Очікування готовності мережі...</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="1791"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="1844"/>
         <source>Applying new network settings</source>
         <translation>Застосування нових параметрів мережі</translation>
     </message>
@@ -3313,12 +3372,12 @@
         <translation type="vanished">Вихід із командного режиму - &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="506"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="517"/>
         <source>Changing the configuration</source>
         <translation>Зміна конфігурації</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="584"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="601"/>
         <source>Executing &apos;%1&apos;</source>
         <translation>Виконання &apos;%1&apos;</translation>
     </message>
@@ -3327,38 +3386,38 @@
         <translation type="vanished">Не можу зайти в командний режим(</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="625"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="648"/>
         <source>The command &apos;%1&apos; failed</source>
         <translation>Команда &apos;%1&apos; не виконана</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="634"/>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="644"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="657"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="667"/>
         <source>Done &apos;%1&apos;</source>
         <translation>Виконно &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="708"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="731"/>
         <source>Reading &apos;%1&apos;</source>
         <translation>Читання: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="724"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="747"/>
         <source>Command &apos;%1&apos; failed</source>
         <translation>Команда &apos;%1&apos; не виконана</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="727"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="750"/>
         <source>%1, exiting the command mode</source>
         <translation>%1, входжу з командного режиму</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="759"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="782"/>
         <source>API enbl=%1, prtt=%2, rtr=%3 !isConnectionWorking</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="857"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="880"/>
         <source>Checking the %1 mode.</source>
         <translation>Перевірка %1 режиму.</translation>
     </message>
@@ -3367,12 +3426,12 @@
         <translation type="vanished">Не вдається налаштувати модем.</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="936"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="959"/>
         <source>Enabling the %1 mode.</source>
         <translation>Активація %1 режиму.</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="950"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="973"/>
         <source>Disabling the %1 mode.</source>
         <translation>Деактивація %1 режиму.</translation>
     </message>
@@ -3381,7 +3440,7 @@
         <translation type="vanished">Режим API активовано</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="1609"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="1662"/>
         <source>bad operator</source>
         <translation>поганий оператор</translation>
     </message>
@@ -3390,12 +3449,12 @@
         <translation type="vanished">не можу змінити NI</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="1667"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="1720"/>
         <source>Checking the configuration...</source>
         <translation>Перевірка конфігурації...</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="1708"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="1761"/>
         <source>Writing the configuration</source>
         <translation>Запис конфігурації</translation>
     </message>
@@ -3404,7 +3463,7 @@
         <translation type="vanished">Очікування на готовність мережі...</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="1730"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="1783"/>
         <source>Exiting the command mode</source>
         <translation>Вихід з командного режиму</translation>
     </message>
@@ -3413,7 +3472,7 @@
         <translation type="vanished">Застосування нових параметрів мережі</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="1883"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conf2modem.cpp" line="1936"/>
         <source>Applying new NI</source>
         <translation>Збереження NI</translation>
     </message>
@@ -3528,17 +3587,17 @@
         <translation>Перевірки UART-у вимкнені</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conn2modem.cpp" line="1042"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conn2modem.cpp" line="1044"/>
         <source>Exchange error, counter: %1, can reset the coordinator: %2</source>
         <translation>Помилка обміну, разів: %1, дозвіл на скидання координатора: %2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conn2modem.cpp" line="1053"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conn2modem.cpp" line="1055"/>
         <source>Exchange error, resetting the coordinator</source>
         <translation>Помилка обміну, скидання координатора</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conn2modem.cpp" line="1062"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conn2modem.cpp" line="1064"/>
         <source>Exchange error, killing the TcpToEmbee service</source>
         <translation>Помилка обміну, перезапуск TcpToEmbee сервісу</translation>
     </message>
@@ -3565,7 +3624,7 @@
         <translation type="vanished">Не можу активувати API режим, рази: %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conn2modem.cpp" line="1073"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/conn2modem.cpp" line="1075"/>
         <source>Connection to the remote device has been closed</source>
         <translation>З&apos;єднання до віддаленого пристрою було закрито</translation>
     </message>
@@ -3888,58 +3947,58 @@
         <translation>Не вдалося зберегти ці налаштування(&lt;br&gt;%1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="726"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="732"/>
         <source>The MAC address is invalid(</source>
         <translation>MAC-адреса недійсна(</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="729"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="735"/>
         <source>The Object ID is empty(</source>
         <translation>ІД Об&apos;єкту є порожнім(</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="733"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="739"/>
         <source>The M2M address is not found(</source>
         <translation>Адреса M2M не знайдена(</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="737"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="743"/>
         <source>The host address is not found(</source>
         <translation>Адресу хосту не знайдено(</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="755"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="761"/>
         <source>Open a file</source>
         <translation>Відкрити файл</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="755"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="859"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="761"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="871"/>
         <source>Plain text(*.txt);;All files (*)</source>
         <translation>Звичайний текст (*.txt);;Усі файли (*)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="808"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="820"/>
         <source>Unknown data type(</source>
         <translation>Невідомий тип даних(</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="811"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="823"/>
         <source>The content is invalid(</source>
         <translation>Невідомий контент(</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="855"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="867"/>
         <source>Save as</source>
         <translation>Зберегти як</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="868"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="880"/>
         <source>Done)</source>
         <translation>Виконано)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="872"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="884"/>
         <source>Couldn&apos;t save the file.&lt;br&gt;%1</source>
         <translation>Не вдалося зберегти файл.&lt;br&gt;%1</translation>
     </message>
@@ -3948,22 +4007,22 @@
         <translation type="vanished">Помилка збереження файлу.&lt;br&gt;%1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="920"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="932"/>
         <source>Apply</source>
         <translation>Застосувати</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="1016"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="1028"/>
         <source>The serial port is not found(</source>
         <translation>Послідовний порт не знайдено(</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="1040"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="1052"/>
         <source>Connection settings is not valid(</source>
         <translation>Налаштування з&apos;єднання є хибними(</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="1148"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/connectsettwdgt.cpp" line="1160"/>
         <source>Drop event</source>
         <translation></translation>
     </message>
@@ -4108,6 +4167,11 @@
         <translation>Форма</translation>
     </message>
     <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="320"/>
+        <source>Device</source>
+        <translation>Пристрій</translation>
+    </message>
+    <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="419"/>
         <source>Read All</source>
         <translation>Зчитати все</translation>
@@ -4191,9 +4255,8 @@
         <translation>Збережено</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="320"/>
         <source>About the device</source>
-        <translation>Про Пристрій</translation>
+        <translation type="vanished">Про Пристрій</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.ui" line="348"/>
@@ -4210,37 +4273,37 @@
         <translation type="vanished"> [байт]</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.cpp" line="114"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.cpp" line="127"/>
         <source>Command %1, </source>
         <translation>Команда %1, </translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.cpp" line="222"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.cpp" line="38"/>
         <source>SN %1</source>
         <translation>S/N %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.cpp" line="224"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.cpp" line="40"/>
         <source>Protocol %1</source>
         <translation>Протокол %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.cpp" line="225"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.cpp" line="41"/>
         <source>Build %1</source>
         <translation>Зібрано: %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.cpp" line="226"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.cpp" line="42"/>
         <source>Version %1</source>
         <translation>Версія %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.cpp" line="227"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.cpp" line="43"/>
         <source>Device %1</source>
         <translation>Пристрій %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.cpp" line="288"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/dashboardwdgt.cpp" line="292"/>
         <source>Operation is aborted, %1</source>
         <translation>Операція перервана, %1</translation>
     </message>
@@ -4491,42 +4554,42 @@
 <context>
     <name>DatabaseStreamProcessorBase</name>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/dataprocessing/databasestreamprocessorbase.cpp" line="541"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/dataprocessing/databasestreamprocessorbase.cpp" line="553"/>
         <source>no generation</source>
         <translation>нема генерації</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/dataprocessing/databasestreamprocessorbase.cpp" line="544"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/dataprocessing/databasestreamprocessorbase.cpp" line="556"/>
         <source>bad generation value</source>
         <translation>погане значення генерації</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/dataprocessing/databasestreamprocessorbase.cpp" line="547"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/dataprocessing/databasestreamprocessorbase.cpp" line="559"/>
         <source>check generation meters</source>
         <translation>перевірте лічильники генерації</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/dataprocessing/databasestreamprocessorbase.cpp" line="558"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/dataprocessing/databasestreamprocessorbase.cpp" line="570"/>
         <source>no meters</source>
         <translation>нема лічильників</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/dataprocessing/databasestreamprocessorbase.cpp" line="561"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/dataprocessing/databasestreamprocessorbase.cpp" line="573"/>
         <source>no good data</source>
         <translation>немає хороших даних</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/dataprocessing/databasestreamprocessorbase.cpp" line="563"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/dataprocessing/databasestreamprocessorbase.cpp" line="575"/>
         <source>some meters don&apos;t have good data</source>
         <translation>деякі лічильники не мають хороших даних</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/dataprocessing/databasestreamprocessorbase.cpp" line="568"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/dataprocessing/databasestreamprocessorbase.cpp" line="580"/>
         <source>records duplication</source>
         <translation>дублювання записів</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/dataprocessing/databasestreamprocessorbase.cpp" line="570"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/dataprocessing/databasestreamprocessorbase.cpp" line="582"/>
         <source>%1 - ok values</source>
         <translation>%1 - нормальних значень</translation>
     </message>
@@ -4683,57 +4746,57 @@
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/datetimewdgt.cpp" line="341"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/datetimewdgt.cpp" line="444"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/datetimewdgt.cpp" line="456"/>
         <source>Time zone is %1</source>
         <translation>Часовий пояс - %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/datetimewdgt.cpp" line="359"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/datetimewdgt.cpp" line="371"/>
         <source>UC UTC time zone</source>
         <translation>Часовий пояс UC UTC</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/datetimewdgt.cpp" line="360"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/datetimewdgt.cpp" line="372"/>
         <source>UC &apos;%1&apos; time zone</source>
         <translation>Часовий пояс UC &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/datetimewdgt.cpp" line="362"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/datetimewdgt.cpp" line="374"/>
         <source>&apos;%1&apos; time zone</source>
         <translation>Часовий пояс &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/datetimewdgt.cpp" line="384"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/datetimewdgt.cpp" line="396"/>
         <source>Time synchronization over NTP protocol is %1</source>
         <translation>Синхронізація часу по протоколу NTP %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/datetimewdgt.cpp" line="385"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/datetimewdgt.cpp" line="397"/>
         <source>enabled</source>
         <translation>увімкнено</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/datetimewdgt.cpp" line="385"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/datetimewdgt.cpp" line="397"/>
         <source>disabled</source>
         <translation>вимкнено</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/datetimewdgt.cpp" line="401"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/datetimewdgt.cpp" line="413"/>
         <source>Device time is %1</source>
         <translation>Час пристрою - %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/datetimewdgt.cpp" line="401"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/datetimewdgt.cpp" line="413"/>
         <source>ok</source>
         <translation>ок</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/datetimewdgt.cpp" line="403"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/datetimewdgt.cpp" line="415"/>
         <source>Time difference is %1 [sec]</source>
         <translation>Різниця в часі становить %1 [сек]</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/datetimewdgt.cpp" line="411"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/datetimewdgt.cpp" line="423"/>
         <source>timedatectl</source>
         <translation></translation>
     </message>
@@ -4833,7 +4896,7 @@
         <translation>Вимк. NTP</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/datetimewdgt.cpp" line="415"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/datetimewdgt.cpp" line="427"/>
         <source>NTP servers</source>
         <translation>Сервери NTP</translation>
     </message>
@@ -5381,9 +5444,9 @@
     <name>DbDataFormV3</name>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/dbv3pgs/dbdataformv3.cpp" line="125"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/dbv3pgs/dbdataformv3.cpp" line="794"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/dbv3pgs/dbdataformv3.cpp" line="823"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/dbv3pgs/dbdataformv3.cpp" line="850"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/dbv3pgs/dbdataformv3.cpp" line="800"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/dbv3pgs/dbdataformv3.cpp" line="829"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/dbv3pgs/dbdataformv3.cpp" line="856"/>
         <source>Data</source>
         <translation>Дані</translation>
     </message>
@@ -5401,42 +5464,42 @@
         <translation>Все</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/dbv3pgs/dbdataformv3.cpp" line="728"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/dbv3pgs/dbdataformv3.cpp" line="734"/>
         <source> vs </source>
         <translation> з </translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/dbv3pgs/dbdataformv3.cpp" line="795"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/dbv3pgs/dbdataformv3.cpp" line="801"/>
         <source>Water meter data</source>
         <translation>Дані лічильника води</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/dbv3pgs/dbdataformv3.cpp" line="824"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/dbv3pgs/dbdataformv3.cpp" line="830"/>
         <source>Gas meter data</source>
         <translation>Дані лічильника газу</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/dbv3pgs/dbdataformv3.cpp" line="851"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/dbv3pgs/dbdataformv3.cpp" line="857"/>
         <source>Pulse meter data</source>
         <translation>Дані лічильника імпульсів</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/dbv3pgs/dbdataformv3.cpp" line="969"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/dbv3pgs/dbdataformv3.cpp" line="975"/>
         <source>Dashboard</source>
         <translation>Інформаційна панель</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/dbv3pgs/dbdataformv3.cpp" line="995"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/dbv3pgs/dbdataformv3.cpp" line="1001"/>
         <source>Heat map</source>
         <translation>Теплова карта</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/dbv3pgs/dbdataformv3.cpp" line="1012"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/dbv3pgs/dbdataformv3.cpp" line="1018"/>
         <source>Source data &apos;%1&apos;</source>
         <translation>Вихідні дані &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/dbv3pgs/dbdataformv3.cpp" line="1126"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/dbv3pgs/dbdataformv3.cpp" line="1132"/>
         <source>&apos;%1&apos;, Period %2 - %3</source>
         <translation>&apos;%1&apos;, Період %2 - %3</translation>
     </message>
@@ -5558,12 +5621,12 @@
         <translation>Перші значення періоду</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/dbv3pgs/dbdataformv3datashowactions.cpp" line="175"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/dbv3pgs/dbdataformv3datashowactions.cpp" line="177"/>
         <source>Object generation/consumption of the period</source>
         <translation>Генерація/споживання об’єкта за період</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/dbv3pgs/dbdataformv3datashowactions.cpp" line="177"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/dbv3pgs/dbdataformv3datashowactions.cpp" line="179"/>
         <source>Calculate balance of the period</source>
         <translation>Розрахувати баланс за період</translation>
     </message>
@@ -6116,28 +6179,28 @@
 <context>
     <name>DecodeMatildaProtocol</name>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="149"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="150"/>
         <source>Channel &apos;%1&apos; - couldn&apos;t find %2</source>
         <translation>Канал &apos;%1&apos; - не вдалося знайти %2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="280"/>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="1181"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="281"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="1237"/>
         <source>Unknown command: %1. Ignoring...</source>
         <translation>Невідома команда: %1. Ігнорую...</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="1624"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="1680"/>
         <source>Meter List Size: invalid value</source>
         <translation>Список лічильників, Розмір: не правильне значення</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="2187"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="2261"/>
         <source>You must update the command list.</source>
         <translation>Необхідно оновити список команд.</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="2287"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="2361"/>
         <source>%1 Connection between %2 and %3 was established</source>
         <translation>%1 З&apos;єднання між %2 і %3 було утворено</translation>
     </message>
@@ -6146,28 +6209,76 @@
         <translation type="vanished">З&apos;єднання між %1 і %2 утворено</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="2347"/>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="2530"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="2424"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="2614"/>
         <source>hash check failded sha1 r=%1, c=%2; md5 r=%3 c=%4</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="2363"/>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="2545"/>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="3031"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="2440"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="2629"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="3118"/>
         <source>indx != file.size. (%1 != %2)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="2386"/>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="2562"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="2463"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="2646"/>
         <source>hash check failded sha1all r=%1, c=%2; md5all r=%3 c=%4</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="3078"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocol.cpp" line="3165"/>
         <source>the fileName is invalid: %1</source>
         <translation></translation>
+    </message>
+</context>
+<context>
+    <name>DecodeMatildaProtocolBase</name>
+    <message>
+        <location filename="../../Matilda-units/matilda-base/matilda-bbb-shared/src/protocolprocessors/decodematildaprotocolbase.cpp" line="46"/>
+        <source>not authorized</source>
+        <translation>не авторизовано</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-base/matilda-bbb-shared/src/protocolprocessors/decodematildaprotocolbase.cpp" line="47"/>
+        <source>admin</source>
+        <translation>адмін</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-base/matilda-bbb-shared/src/protocolprocessors/decodematildaprotocolbase.cpp" line="48"/>
+        <source>operator</source>
+        <translation>оператор</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-base/matilda-bbb-shared/src/protocolprocessors/decodematildaprotocolbase.cpp" line="49"/>
+        <source>guest</source>
+        <translation>гість</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-base/matilda-bbb-shared/src/protocolprocessors/decodematildaprotocolbase.cpp" line="50"/>
+        <source>backup</source>
+        <translation>резервні копії</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-base/matilda-bbb-shared/src/protocolprocessors/decodematildaprotocolbase.cpp" line="51"/>
+        <source>temporary user</source>
+        <translation>тимчасовий користувач</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-base/matilda-bbb-shared/src/protocolprocessors/decodematildaprotocolbase.cpp" line="52"/>
+        <source>p2p user</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-base/matilda-bbb-shared/src/protocolprocessors/decodematildaprotocolbase.cpp" line="53"/>
+        <source>staff</source>
+        <translation>персонал</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-base/matilda-bbb-shared/src/protocolprocessors/decodematildaprotocolbase.cpp" line="54"/>
+        <source>unknown - %1</source>
+        <translation>невідомо - %1</translation>
     </message>
 </context>
 <context>
@@ -6183,25 +6294,80 @@
         <translation>помилка збереження налаштувань: %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv11.cpp" line="660"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv11.cpp" line="672"/>
         <source>can&apos;t save meters: %1</source>
         <translation>помилка збереження лічильників: %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv11.cpp" line="717"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv11.cpp" line="729"/>
         <source>bad hsh, %1</source>
         <translation>поганий hsh, %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv11.cpp" line="725"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv11.cpp" line="737"/>
         <source>nothing to hash</source>
         <translation>відсутні дані для хешу</translation>
     </message>
 </context>
 <context>
+    <name>DecodeMatildaProtocolV12</name>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv12.cpp" line="713"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv12.cpp" line="915"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv12.cpp" line="1035"/>
+        <source>File is not downloaded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv12.cpp" line="720"/>
+        <source>File is bad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv12.cpp" line="731"/>
+        <source>New version is available %1, current version is %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv12.cpp" line="741"/>
+        <source>There is nothing to update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv12.cpp" line="897"/>
+        <source>Hash file is not downloaded, %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv12.cpp" line="932"/>
+        <source>Hash check failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv12.cpp" line="970"/>
+        <source>Update check failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv12.cpp" line="977"/>
+        <source>Software is updated, I&apos;m going to reboot...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv12.cpp" line="1047"/>
+        <source>File is not a good archive, last version is restored</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv12.cpp" line="1053"/>
+        <source>Root certificates were updated</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>DecodeMatildaProtocolV2</name>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv2.cpp" line="1161"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv2.cpp" line="1227"/>
         <source>List Size: invalid value</source>
         <translation>Розмір Списку: хибне значення</translation>
     </message>
@@ -6217,38 +6383,38 @@
         <translation type="vanished">нема що змінювати, &apos;s&apos; порожнє</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv5.cpp" line="363"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv5.cpp" line="393"/>
         <source>Request to cancel selected tasks created. Count: %1</source>
         <translation>Запит на скасування виділених завдянь створено. Кількість: %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv5.cpp" line="419"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv5.cpp" line="449"/>
         <source>bad &apos;i&apos;, %1</source>
         <translation>поганий &apos;i&apos;, %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv5.cpp" line="749"/>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv5.cpp" line="781"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv5.cpp" line="785"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv5.cpp" line="817"/>
         <source>can&apos;t save settings: %1</source>
         <translation>помилка збереження налаштувань: %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv5.cpp" line="982"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv5.cpp" line="1050"/>
         <source>can&apos;t save meters: %1</source>
         <translation>помилка збереження лічильників: %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv5.cpp" line="1025"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv5.cpp" line="1093"/>
         <source>can&apos;t save settings</source>
         <translation>помилка збереження налаштувань</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv5.cpp" line="1065"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv5.cpp" line="1133"/>
         <source>bad hsh, %1</source>
         <translation>поганий hsh, %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv5.cpp" line="1073"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv5.cpp" line="1141"/>
         <source>nothing to hash</source>
         <translation>відсутні дані для хешу</translation>
     </message>
@@ -6256,7 +6422,7 @@
 <context>
     <name>DecodeMatildaProtocolV6</name>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv6.cpp" line="895"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv6.cpp" line="925"/>
         <source>The nesessary keys were not found</source>
         <translation>Необхідні ключі не знайдено</translation>
     </message>
@@ -6265,23 +6431,23 @@
         <translation type="vanished">Необхідний ключ не знайдено</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv6.cpp" line="921"/>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv6.cpp" line="972"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv6.cpp" line="951"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv6.cpp" line="1008"/>
         <source>The necessary key was not found</source>
         <translation>Необхідний ключ не знайдено</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv6.cpp" line="933"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv6.cpp" line="963"/>
         <source>Something went wrong: %1</source>
         <translation>Щось пішло не так: %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv6.cpp" line="1048"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv6.cpp" line="1084"/>
         <source>the confirmation was not received</source>
         <translation>підтвердження не отримано</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv6.cpp" line="1370"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolv6.cpp" line="1430"/>
         <source>can&apos;t save settings: %1</source>
         <translation>помилка збереження налаштувань: %1</translation>
     </message>
@@ -6321,7 +6487,7 @@
         <translation>Невідома команда: %1. Ігнорую...</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolwithjson.cpp" line="1472"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/decoders/decodematildaprotocolwithjson.cpp" line="1475"/>
         <source>You must update the command list.</source>
         <translation>Необхідно оновити список команд.</translation>
     </message>
@@ -6734,7 +6900,7 @@
 <context>
     <name>DeviceScheduler</name>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/schedule/devicescheduler.cpp" line="314"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/schedule/devicescheduler.cpp" line="321"/>
         <source>can&apos;t start the poll. %1</source>
         <translation>не можу почати опитування. %1</translation>
     </message>
@@ -6785,6 +6951,58 @@
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/info-pgs/devicetasks.cpp" line="188"/>
         <source>There are no tasks(</source>
         <translation>Завдань не знайдено(</translation>
+    </message>
+</context>
+<context>
+    <name>DevicesSchedulesEditor</name>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/devicesscheduleseditor.cpp" line="36"/>
+        <source>Device address</source>
+        <translation>Адреса пристрою</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/devicesscheduleseditor.cpp" line="39"/>
+        <source>Schedule</source>
+        <translation>Розклад</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/devicesscheduleseditor.cpp" line="43"/>
+        <source>Device</source>
+        <translation>Пристрій</translation>
+    </message>
+</context>
+<context>
+    <name>DevicesSchedulesWdgt</name>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/devicesscheduleswdgt.cpp" line="16"/>
+        <source>Device address;Schedule name;Status;Device</source>
+        <translation>Адреса пристрою;Назва розкладу;Статус;Пристрій</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/devicesscheduleswdgt.cpp" line="27"/>
+        <source>OK</source>
+        <translation>Гаразд</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/devicesscheduleswdgt.cpp" line="27"/>
+        <source>bad schedule</source>
+        <translation>поганий розклад</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/devicesscheduleswdgt.cpp" line="170"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/devicesscheduleswdgt.cpp" line="174"/>
+        <source>%1 is invalid</source>
+        <translation>%1 недійсна</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/devicesscheduleswdgt.cpp" line="170"/>
+        <source>Device address</source>
+        <translation>Адреса пристрою</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/devicesscheduleswdgt.cpp" line="174"/>
+        <source>Schedule</source>
+        <translation>Розклад</translation>
     </message>
 </context>
 <context>
@@ -6851,20 +7069,20 @@
         <translation type="vanished">Помилка запуску TCP сервера. Помилка: %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/directaccesmatildaservice.cpp" line="59"/>
         <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/directaccesmatildaservice.cpp" line="64"/>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/directaccesmatildaservice.cpp" line="68"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/directaccesmatildaservice.cpp" line="69"/>
         <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/directaccesmatildaservice.cpp" line="73"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/directaccesmatildaservice.cpp" line="78"/>
         <source>It couldn&apos;t start server. Error: %1</source>
         <translation>Помилка запуску TCP сервера. Помилка: %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/directaccesmatildaservice.cpp" line="118"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/directaccesmatildaservice.cpp" line="123"/>
         <source>State: listening, Port: %1, Clients: %2</source>
         <translation>Стан: слухає, Порт: %1, Клієнтів: %2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/directaccesmatildaservice.cpp" line="120"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/directaccesmatildaservice.cpp" line="125"/>
         <source>State: closed</source>
         <translation>Стан: закрито</translation>
     </message>
@@ -6925,7 +7143,12 @@
         <translation>Порт за замовчуванням</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/global-pgs/directaccessviamatilda.ui" line="286"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/global-pgs/directaccessviamatilda.ui" line="203"/>
+        <source>Even parity, 7 Data and 1 Stop bits</source>
+        <translation>Біт Парності, 7 даних і 1 стоп-біт</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/global-pgs/directaccessviamatilda.ui" line="293"/>
         <source>Here you can open access to the coordinator through the current connection</source>
         <translation>Тут ви можете відкрити доступ до координатора через існуюче з&apos;єднання</translation>
     </message>
@@ -6984,13 +7207,13 @@
         <translation>Тільки локальний IPv6</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/global-pgs/directaccessviamatilda.cpp" line="124"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/global-pgs/directaccessviamatilda.cpp" line="141"/>
         <source>State: Closed</source>
         <translation>Стан: Закрито</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/global-pgs/directaccessviamatilda.ui" line="250"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/global-pgs/directaccessviamatilda.cpp" line="171"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/global-pgs/directaccessviamatilda.ui" line="257"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/global-pgs/directaccessviamatilda.cpp" line="189"/>
         <source>Open</source>
         <translation>Відкрити</translation>
     </message>
@@ -7012,38 +7235,38 @@
         <translation type="vanished">Основний канал буде використано</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/global-pgs/directaccessviamatilda.cpp" line="75"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/global-pgs/directaccessviamatilda.cpp" line="81"/>
         <source>The list of IP addresses</source>
         <translation>Список IP адрес</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/global-pgs/directaccessviamatilda.cpp" line="79"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/global-pgs/directaccessviamatilda.cpp" line="85"/>
         <source>IP addresses</source>
         <translation>IP адреси</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/global-pgs/directaccessviamatilda.cpp" line="88"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/global-pgs/directaccessviamatilda.cpp" line="94"/>
         <source>Terminal</source>
         <translation>Термінал</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/global-pgs/directaccessviamatilda.cpp" line="94"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/global-pgs/directaccessviamatilda.cpp" line="98"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/global-pgs/directaccessviamatilda.cpp" line="100"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/global-pgs/directaccessviamatilda.cpp" line="104"/>
         <source>Log</source>
         <translation>Лог</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/global-pgs/directaccessviamatilda.cpp" line="105"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/global-pgs/directaccessviamatilda.cpp" line="111"/>
         <source>Forwarding</source>
         <translation>Переадресація</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/global-pgs/directaccessviamatilda.cpp" line="171"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/global-pgs/directaccessviamatilda.cpp" line="189"/>
         <source>Close</source>
         <translation>Закрити</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/global-pgs/directaccessviamatilda.cpp" line="178"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/global-pgs/directaccessviamatilda.cpp" line="196"/>
         <source>Port &apos;%1&apos;</source>
         <translation>Порт &apos;%1&apos;</translation>
     </message>
@@ -7143,6 +7366,77 @@
     </message>
 </context>
 <context>
+    <name>EIndividualSchedulesEditor</name>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/eindividualscheduleseditor.cpp" line="11"/>
+        <source>Add as External task</source>
+        <translation>Додати як Зовнішнє завдання</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/eindividualscheduleseditor.cpp" line="37"/>
+        <source>Schedule name</source>
+        <translation>Назва розкладу</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/eindividualscheduleseditor.cpp" line="40"/>
+        <source>It defines schedule modes</source>
+        <translation>Це визначає режими розкладу</translation>
+    </message>
+</context>
+<context>
+    <name>EIndividualSchedulesWdgt</name>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/eindividualscheduleswdgt.cpp" line="101"/>
+        <source>Current values</source>
+        <translation>Поточні показники</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/eindividualscheduleswdgt.cpp" line="102"/>
+        <source>End of day</source>
+        <translation>На кінець доби</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/eindividualscheduleswdgt.cpp" line="103"/>
+        <source>End of month</source>
+        <translation>На кінець місяця</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/eindividualscheduleswdgt.cpp" line="104"/>
+        <source>Power</source>
+        <translation>Потужність</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/eindividualscheduleswdgt.cpp" line="106"/>
+        <source>Voltage</source>
+        <translation>Напруга</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/eindividualscheduleswdgt.cpp" line="107"/>
+        <source>Meter Log</source>
+        <translation>Журнал Лічильників</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/eindividualscheduleswdgt.cpp" line="109"/>
+        <source>State</source>
+        <translation>Стан</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/eindividualscheduleswdgt.cpp" line="111"/>
+        <source>Total RV</source>
+        <translation>Поточні показники RV</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/eindividualscheduleswdgt.cpp" line="113"/>
+        <source>Instantaneous RV</source>
+        <translation>Миттєві значення RV</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/eindividualscheduleswdgt.cpp" line="115"/>
+        <source>State RV</source>
+        <translation>Стан RV</translation>
+    </message>
+</context>
+<context>
     <name>EMeterListWdgt</name>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="128"/>
@@ -7170,113 +7464,113 @@
         <translation>Оновлено: %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="661"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="697"/>
         <source>bad argument(</source>
         <translation>поганий аргумент(</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="666"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="702"/>
         <source>Confirmation</source>
         <translation>Підтвердження</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="666"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="702"/>
         <source>Would you like to %1 for selected meters?</source>
         <translation>Ви хочете %1 для виділених лічильників?</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="667"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="703"/>
         <source>switch off load</source>
         <translation>вимкнути навантаження</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="667"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="703"/>
         <source>switch on load</source>
         <translation>увімкнути навантаження</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="710"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="746"/>
         <source>There is no data from the remote device.&lt;br&gt;If you continue, the meter list in the remote device may be lost. Do you want to continue?</source>
         <translation>Відсутні дані від віддаленого пристрою.&lt;br&gt;Якщо ви продовжите, список лічильників на віддаленому пристрої може бути втрачено. Ви дійсно бажаєте продовжити?</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="716"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="752"/>
         <source>Import meters from</source>
         <translation>Імпортувати лічильники з</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="902"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="918"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="938"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="954"/>
         <source>&apos;%1&apos; is invalid</source>
         <translation>&apos;%1&apos; є недійсним</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="902"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="938"/>
         <source>Model</source>
         <translation>Модель</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="909"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="945"/>
         <source>&apos;%1&apos; is empty</source>
         <translation>&apos;%1&apos; порожній</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="918"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="954"/>
         <source>Energy</source>
         <translation>Енергія</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="945"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="981"/>
         <source>The maximum number of meters is reached</source>
         <translation>Досягнуто максимальної кількості лічильників</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="947"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="983"/>
         <source>The maximum number of meters is &apos;%1&apos;</source>
         <translation>Максимальна кількість лічильників - &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="949"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="985"/>
         <source>The number of the meters is &apos;%1&apos;</source>
         <translation>Кількість лічильників &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1042"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1078"/>
         <source>There is nothing to write</source>
         <translation>Нема чого записувати</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1098"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1134"/>
         <source>Relay</source>
         <translation>Реле</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1102"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1138"/>
         <source>Show the last state</source>
         <translation>Показати останній стан</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1119"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1155"/>
         <source>Read state</source>
         <translation>Зчитати стан</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1125"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1161"/>
         <source>Main Load ON</source>
         <translation>Основне Замкнути</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1131"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1167"/>
         <source>Main Cut OFF</source>
         <translation>Основне Розімкнути</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1145"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1181"/>
         <source>Secondary Load ON</source>
         <translation>Додаткове Замкнути</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1151"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/emeterlistwdgt.cpp" line="1187"/>
         <source>Secondary Cut OFF</source>
         <translation>Додаткове Розімкнути</translation>
     </message>
@@ -7528,6 +7822,144 @@
     <message>
         <source>NI</source>
         <translation type="vanished">NI</translation>
+    </message>
+</context>
+<context>
+    <name>EventManagerRulesEdit</name>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/eventmanagerrulesedit.cpp" line="74"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/eventmanagerrulesedit.cpp" line="87"/>
+        <source>System</source>
+        <translation>Система</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/eventmanagerrulesedit.cpp" line="101"/>
+        <source>Unlimited</source>
+        <translation>Необмежено</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/eventmanagerrulesedit.cpp" line="117"/>
+        <source>Name</source>
+        <translation>Назва</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/eventmanagerrulesedit.cpp" line="121"/>
+        <source>Poll code</source>
+        <translation>Код опитування</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/eventmanagerrulesedit.cpp" line="126"/>
+        <source>Counter</source>
+        <translation>Лічильник</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/eventmanagerrulesedit.cpp" line="128"/>
+        <source>It limits executions when the rule is accepted multiple times</source>
+        <translation>Це обмежує виконання, коли правило приймається кілька разів</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/eventmanagerrulesedit.cpp" line="131"/>
+        <source>Disable</source>
+        <translation>Вимкнути</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/eventmanagerrulesedit.cpp" line="135"/>
+        <source>Rule</source>
+        <translation>Правило</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/eventmanagerrulesedit.cpp" line="139"/>
+        <source>Commands</source>
+        <translation>Команди</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/eventmanagerrulesedit.cpp" line="164"/>
+        <source>Min args: %1</source>
+        <translation>Мін. аргументів: %1</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/eventmanagerrulesedit.cpp" line="164"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/eventmanagerrulesedit.cpp" line="165"/>
+        <source>unlim</source>
+        <translation>н.о.</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/eventmanagerrulesedit.cpp" line="165"/>
+        <source>Max args: %2</source>
+        <translation>Макс. аргументів: %1</translation>
+    </message>
+</context>
+<context>
+    <name>EventManagerRulesWdgt</name>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/eventmanagerruleswdgt.cpp" line="53"/>
+        <source>Name;Poll Code;Counter;Disable;Rule line;Commands</source>
+        <translation>Ім&apos;я;Код Опитування;Ліміт;Вимкнути;Рядок правила;Команди</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/eventmanagerruleswdgt.cpp" line="103"/>
+        <source>Unlimited</source>
+        <translation>Необмежено</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/eventmanagerruleswdgt.cpp" line="104"/>
+        <source>Disable</source>
+        <translation>Вимкнути</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/eventmanagerruleswdgt.cpp" line="104"/>
+        <source>Enable</source>
+        <translation>Активувати</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/eventmanagerruleswdgt.cpp" line="262"/>
+        <source>Bad name</source>
+        <translation>Погане ім&apos;я</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/eventmanagerruleswdgt.cpp" line="265"/>
+        <source>Bad rule</source>
+        <translation>Погане правило</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/eventmanagerruleswdgt.cpp" line="268"/>
+        <source>Bad commands</source>
+        <translation>Погані команди</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/eventmanagerruleswdgt.cpp" line="371"/>
+        <source>Reset counters of the selected rules</source>
+        <translation>Скинути лічильники вибраних правил</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/eventmanagerruleswdgt.cpp" line="377"/>
+        <source>Execute this rule</source>
+        <translation>Виконати це правило</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/eventmanagerruleswdgt.cpp" line="383"/>
+        <source>Remote device: Insert these rules</source>
+        <translation>Віддалений пристрій: Вставити ці правила</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/eventmanagerruleswdgt.cpp" line="388"/>
+        <source>Remote device: Remove these rules</source>
+        <translation>Віддалений пристрій: Видалити ці правила</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/eventmanagerruleswdgt.cpp" line="449"/>
+        <source>There is nothing to write</source>
+        <translation>Нема чого записувати</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/eventmanagerruleswdgt.cpp" line="464"/>
+        <source>Delete rules from the remote device</source>
+        <translation>Видалити правила з віддаленого пристрою</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/eventmanagerruleswdgt.cpp" line="465"/>
+        <source>Do you really want to delete these rules from the remote device?&lt;br&gt;This will delete these rules directly from the remote device.&lt;br&gt;Would you like to continue?</source>
+        <translation>Ви дійсно хочете видалити ці правила з віддаленого пристрою?&lt;br&gt;Це видалить ці правила безпосередньо з віддаленого пристрою.&lt;br&gt;Продовжити?</translation>
     </message>
 </context>
 <context>
@@ -7860,7 +8292,7 @@
         <translation>ІД групи недійсний (</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/fireflyrelaysett.cpp" line="356"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/fireflyrelaysett.cpp" line="357"/>
         <source>There is no data from the remote device about supported device types.&lt;br&gt;Please receive this data</source>
         <translation>З віддаленого пристрою немає даних про підтримувані типи пристроїв. &lt;br&gt; Отримайте ці дані</translation>
     </message>
@@ -8212,17 +8644,17 @@
         <translation type="vanished">Файл збережено)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/meters-shared/firefly-src/fireflyimportexportsettings.cpp" line="95"/>
+        <location filename="../../Matilda-units/gui/meters-shared/firefly-src/fireflyimportexportsettings.cpp" line="101"/>
         <source>Identical NIs were found:&lt;br&gt;%1</source>
         <translation>Знайдено ідентичні NI-ки:&lt;br&gt;%1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/meters-shared/firefly-src/fireflyimportexportsettings.cpp" line="140"/>
+        <location filename="../../Matilda-units/gui/meters-shared/firefly-src/fireflyimportexportsettings.cpp" line="152"/>
         <source>The file was saved)</source>
         <translation>Файл збережено)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/meters-shared/firefly-src/fireflyimportexportsettings.cpp" line="142"/>
+        <location filename="../../Matilda-units/gui/meters-shared/firefly-src/fireflyimportexportsettings.cpp" line="154"/>
         <source>Couldn&apos;t save the file.&lt;br&gt;%1</source>
         <translation>Не вдалося зберегти файл.&lt;br&gt;%1</translation>
     </message>
@@ -8239,12 +8671,12 @@
         <translation>Невідома команда: %1, args: %2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/firefly/firefly-shared/firefly-v2-src/fireflyquickpollhelper.cpp" line="84"/>
+        <location filename="../../Matilda-units/firefly/firefly-shared/firefly-v2-src/fireflyquickpollhelper.cpp" line="90"/>
         <source>Unknown command name: %1, args: %2</source>
         <translation>Невідома назва команди: %1, args: %2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/firefly/firefly-shared/firefly-v2-src/fireflyquickpollhelper.cpp" line="131"/>
+        <location filename="../../Matilda-units/firefly/firefly-shared/firefly-v2-src/fireflyquickpollhelper.cpp" line="137"/>
         <source>Devices good: %1</source>
         <translation>Підходящі пристрої: %1</translation>
     </message>
@@ -8430,22 +8862,22 @@
 <context>
     <name>FireflyTaskManagerSett</name>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/fireflytaskmanagersett.cpp" line="73"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/fireflytaskmanagersett.cpp" line="86"/>
         <source>relay device</source>
         <translation>пристрій реле</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/fireflytaskmanagersett.cpp" line="74"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/fireflytaskmanagersett.cpp" line="87"/>
         <source>LCU groups</source>
         <translation>LCU групи</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/fireflytaskmanagersett.cpp" line="75"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/fireflytaskmanagersett.cpp" line="88"/>
         <source>lamp control unit LCU</source>
         <translation>блок керування світильником LCU</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/fireflytaskmanagersett.cpp" line="77"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/fireflytaskmanagersett.cpp" line="90"/>
         <source>other</source>
         <translation>інше</translation>
     </message>
@@ -8706,26 +9138,31 @@ $sunset - момент коли верхній край сонця зникає 
         <translation>Адреса Лічильника;Адреса Модема (NI)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/forwardpgs.cpp" line="257"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/forwardpgs.cpp" line="264"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/forwardpgs.cpp" line="110"/>
+        <source>Device</source>
+        <translation>Пристрій</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/forwardpgs.cpp" line="284"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/forwardpgs.cpp" line="291"/>
         <source>%1 is invalid: bad HEX value</source>
         <translation>%1 недійсний: неправильне значення HEX</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/forwardpgs.cpp" line="257"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/forwardpgs.cpp" line="268"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/forwardpgs.cpp" line="284"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/forwardpgs.cpp" line="295"/>
         <source>Meter address</source>
         <translation>Адреса лічильника</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/forwardpgs.cpp" line="264"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/forwardpgs.cpp" line="271"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/forwardpgs.cpp" line="291"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/forwardpgs.cpp" line="298"/>
         <source>Modem address</source>
         <translation>Адреса модему</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/forwardpgs.cpp" line="268"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/forwardpgs.cpp" line="271"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/forwardpgs.cpp" line="295"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/forwardpgs.cpp" line="298"/>
         <source>%1 is invalid</source>
         <translation>%1 недійсна</translation>
     </message>
@@ -8786,7 +9223,7 @@ $sunset - момент коли верхній край сонця зникає 
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/gsmnotificationswdgt.ui" line="113"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/gsmnotificationswdgt.cpp" line="211"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/gsmnotificationswdgt.cpp" line="223"/>
         <source>Low balance</source>
         <translation>Низький баланс</translation>
     </message>
@@ -8858,17 +9295,17 @@ The USSD number can be entered on the page 13.10
         <translation type="vanished">У списку контактів SMS були дублікати</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/gsmnotificationswdgt.cpp" line="212"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/gsmnotificationswdgt.cpp" line="224"/>
         <source>Recharged</source>
         <translation>Поповнено</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/gsmnotificationswdgt.cpp" line="213"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/gsmnotificationswdgt.cpp" line="225"/>
         <source>unknown</source>
         <translation>невідомо</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/gsmnotificationswdgt.cpp" line="132"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/gsmnotificationswdgt.cpp" line="144"/>
         <source>SMS</source>
         <translation>СМС</translation>
     </message>
@@ -8883,12 +9320,12 @@ The USSD number can be entered on the page 13.10
         <translation>погана міткаДаних</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/gsmnotificationswdgt.cpp" line="133"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/gsmnotificationswdgt.cpp" line="145"/>
         <source>Call</source>
         <translation>Дзвінок</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/gsmnotificationswdgt.cpp" line="340"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/gsmnotificationswdgt.cpp" line="352"/>
         <source>Low balance;Balance was recharged</source>
         <translation>Низький баланс;Поповнення</translation>
     </message>
@@ -9510,37 +9947,32 @@ The USSD number can be entered on the page 13.10
         <translation>Віджет</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="99"/>
         <source>PDF files (*.pdf)</source>
-        <translation>PDF файли (*.pdf)</translation>
+        <translation type="vanished">PDF файли (*.pdf)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="100"/>
         <source>HTML files (*.html)</source>
-        <translation>HTML файли (*.html)</translation>
+        <translation type="vanished">HTML файли (*.html)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="101"/>
         <source>CSV files (*.csv)</source>
-        <translation>CSV файли (*.csv)</translation>
+        <translation type="vanished">CSV файли (*.csv)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="102"/>
         <source>OpenDocument Format files (*.odf)</source>
-        <translation>OpenDocument Format файли (*.odf)</translation>
+        <translation type="vanished">OpenDocument Format файли (*.odf)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="106"/>
         <source>All files (*)</source>
-        <translation>Усі файли</translation>
+        <translation type="vanished">Усі файли</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="206"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="173"/>
         <source>Delete %1</source>
         <translation>Видалити %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="207"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="174"/>
         <source>This will delete these %1 directly from the remote device.&lt;br&gt;Would you like to continue?</source>
         <translation>Це видалить %1 з віддаленогно пристрою.&lt;br&gt;Ви б хотіли продовжити?</translation>
     </message>
@@ -9553,24 +9985,24 @@ The USSD number can be entered on the page 13.10
         <translation type="vanished">OpenDocument Формат</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="147"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="182"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="114"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="149"/>
         <source>Print selected</source>
         <translation>Друкувати виділене</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="147"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="175"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="114"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="142"/>
         <source>Print all</source>
         <translation>Друкувати все</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="156"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="123"/>
         <source>Print</source>
         <translation>Друк</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="172"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="139"/>
         <source>Print QR</source>
         <translation>Друк QR</translation>
     </message>
@@ -9607,7 +10039,7 @@ The USSD number can be entered on the page 13.10
         <translation type="vanished">Копіювати виділене як звичайний текст</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="197"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="164"/>
         <source>Generate a QR code (%1)</source>
         <translation>Згенерувати QR код (%1)</translation>
     </message>
@@ -9640,7 +10072,7 @@ The USSD number can be entered on the page 13.10
         <translation type="vanished">Видалити Все</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="268"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="241"/>
         <source>Object is invalid(</source>
         <translation>Об&apos;єкт недійсний(</translation>
     </message>
@@ -9653,7 +10085,7 @@ The USSD number can be entered on the page 13.10
         <translation type="vanished">Об&apos;єкт недійсний(</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="262"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/guihelper.cpp" line="235"/>
         <source>Done)</source>
         <translation>Виконано)</translation>
     </message>
@@ -9701,14 +10133,12 @@ The USSD number can be entered on the page 13.10
         <translation type="vanished">Ви б хотіли видалити:&lt;br&gt;%1&lt;br&gt;з віддаленого пристрою?</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared/guisett-shared-src/guihelpercore.cpp" line="490"/>
         <source>Proxy settings are the same</source>
-        <translation>Налаштування проксі ті самі</translation>
+        <translation type="vanished">Налаштування проксі ті самі</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared/guisett-shared-src/guihelpercore.cpp" line="496"/>
         <source>Proxy settings has been updated</source>
-        <translation>Налаштування проксі було оновлено</translation>
+        <translation type="vanished">Налаштування проксі було оновлено</translation>
     </message>
     <message>
         <source>Proxy settings is the same</source>
@@ -9717,6 +10147,44 @@ The USSD number can be entered on the page 13.10
     <message>
         <source>Proxy settings was updated</source>
         <translation type="vanished">Налаштування проксі оновлено</translation>
+    </message>
+</context>
+<context>
+    <name>GuiHelperCoreNGui</name>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/guisett-shared-core/guihelpercorengui.cpp" line="400"/>
+        <source>PDF files (*.pdf)</source>
+        <translation>PDF файли (*.pdf)</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/guisett-shared-core/guihelpercorengui.cpp" line="401"/>
+        <source>HTML files (*.html)</source>
+        <translation>HTML файли (*.html)</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/guisett-shared-core/guihelpercorengui.cpp" line="402"/>
+        <source>CSV files (*.csv)</source>
+        <translation>CSV файли (*.csv)</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/guisett-shared-core/guihelpercorengui.cpp" line="403"/>
+        <source>OpenDocument Format files (*.odf)</source>
+        <translation>OpenDocument Format файли (*.odf)</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/guisett-shared-core/guihelpercorengui.cpp" line="407"/>
+        <source>All files (*)</source>
+        <translation>Усі файли</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/guisett-shared-core/guihelpercorengui.cpp" line="491"/>
+        <source>Proxy settings are the same</source>
+        <translation>Налаштування проксі ті самі</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/guisett-shared-core/guihelpercorengui.cpp" line="497"/>
+        <source>Proxy settings has been updated</source>
+        <translation>Налаштування проксі було оновлено</translation>
     </message>
 </context>
 <context>
@@ -9764,12 +10232,12 @@ The USSD number can be entered on the page 13.10
         <translation type="vanished">Не вдалося знайти послідовний порт</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared/guisett-shared-src/guiifacemediumcore.cpp" line="148"/>
+        <location filename="../../Matilda-units/gui/guisett-shared/guisett-shared-src/guiifacemediumcore.cpp" line="154"/>
         <source>Couldn&apos;t find %1</source>
         <translation>Не вдалося знайти %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared/guisett-shared-src/guiifacemediumcore.cpp" line="359"/>
+        <location filename="../../Matilda-units/gui/guisett-shared/guisett-shared-src/guiifacemediumcore.cpp" line="365"/>
         <source>This action is not allowed</source>
         <translation>Ця дія не дозволена</translation>
     </message>
@@ -9847,29 +10315,44 @@ The USSD number can be entered on the page 13.10
 <context>
     <name>IPAccessManager</name>
     <message>
-        <location filename="../../Matilda-units/matilda-base/MatildaIO/matilda-bbb-src/shared/ipaccessmanager.cpp" line="312"/>
         <source>Changed configuration, allowallowIpList %1, blockThisIp %2</source>
-        <translation>Змінено параметри, allowallowIpList %1, blockThisIp %2</translation>
+        <translation type="vanished">Змінено параметри, allowallowIpList %1, blockThisIp %2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-base/MatildaIO/matilda-bbb-src/shared/ipaccessmanager.cpp" line="322"/>
+        <location filename="../../Matilda-units/matilda-base/MatildaIO/matilda-bbb-src/shared/ipaccessmanager.cpp" line="109"/>
+        <location filename="../../Matilda-units/matilda-base/MatildaIO/matilda-bbb-src/shared/ipaccessmanager.cpp" line="123"/>
+        <source>Friendly IP blocked, %1</source>
+        <translation>Дружній IP заблоковано, %1</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-base/MatildaIO/matilda-bbb-src/shared/ipaccessmanager.cpp" line="343"/>
+        <source>Changed configuration, allowallowIpList %1, blockThisIp %2, friendlyIpList %3</source>
+        <translation>Змінено конфігурацію, allowallowIpList %1, blockThisIp %2, friendlyIpList %3</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-base/MatildaIO/matilda-bbb-src/shared/ipaccessmanager.cpp" line="353"/>
         <source>This IP &apos;%1&apos; is added to the temporary block list </source>
         <translation>Цей IP &apos;%1&apos; додано до списку тимчасового блокування </translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-base/MatildaIO/matilda-bbb-src/shared/ipaccessmanager.cpp" line="369"/>
+        <location filename="../../Matilda-units/matilda-base/MatildaIO/matilda-bbb-src/shared/ipaccessmanager.cpp" line="372"/>
+        <source>Friendly IP added, %1</source>
+        <translation>Дружній IP додано, %1</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-base/MatildaIO/matilda-bbb-src/shared/ipaccessmanager.cpp" line="438"/>
         <source>DDOS is detected, %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Виявлено DDOS, %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-base/MatildaIO/matilda-bbb-src/shared/ipaccessmanager.cpp" line="371"/>
+        <location filename="../../Matilda-units/matilda-base/MatildaIO/matilda-bbb-src/shared/ipaccessmanager.cpp" line="440"/>
         <source>DDOS mode is going to be disabled, %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Режим DDOS буде вимкнено, %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-base/MatildaIO/matilda-bbb-src/shared/ipaccessmanager.cpp" line="387"/>
+        <location filename="../../Matilda-units/matilda-base/MatildaIO/matilda-bbb-src/shared/ipaccessmanager.cpp" line="456"/>
         <source>DDOS mode is disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Режим DDOS вимкнено</translation>
     </message>
 </context>
 <context>
@@ -9926,6 +10409,35 @@ The USSD number can be entered on the page 13.10
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/template-pgs/ipadresstesterdlg.cpp" line="13"/>
         <source>IP Address tester</source>
         <translation>Тестер IP -адрес</translation>
+    </message>
+</context>
+<context>
+    <name>IPBlockCheckerWdgt</name>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/ipblockcheckerwdgt.ui" line="14"/>
+        <source>Form</source>
+        <translation>Форма</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/ipblockcheckerwdgt.ui" line="23"/>
+        <source>Reset</source>
+        <translation>Скинути</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/ipblockcheckerwdgt.ui" line="34"/>
+        <source>Test</source>
+        <translation>Перевірити</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/ipblockcheckerwdgt.cpp" line="31"/>
+        <source>IP Blocker</source>
+        <translation>Блокувальник IP</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/ipblockcheckerwdgt.cpp" line="59"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/ipblockcheckerwdgt.cpp" line="72"/>
+        <source>IP is empty</source>
+        <translation>IP порожній</translation>
     </message>
 </context>
 <context>
@@ -10254,34 +10766,123 @@ The USSD number can be entered on the page 13.10
 <context>
     <name>IfaceSupervisor</name>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/ifacesupervisor.cpp" line="193"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/ifacesupervisor.cpp" line="208"/>
         <source>Iface Supervisor: Reboot timer timeout. Time to reboot 5 sec </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/ifacesupervisor.cpp" line="234"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/ifacesupervisor.cpp" line="430"/>
+        <source>Iface Supervisor: reset eth0, %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/ifacesupervisor.cpp" line="519"/>
         <source>Iface Supervisor: ping %1 ok</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/ifacesupervisor.cpp" line="241"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/ifacesupervisor.cpp" line="380"/>
         <source>Iface Supervisor: ping %1 ok, restarting the reboot timer</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/ifacesupervisor.cpp" line="253"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/ifacesupervisor.cpp" line="399"/>
         <source>Iface Supervisor: pingRetr &gt; maxRetr (%1 &gt;= %2). Time to reboot 5 sec </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/ifacesupervisor.cpp" line="257"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/ifacesupervisor.cpp" line="408"/>
         <source>Iface Supervisor: ping %1 no answer(</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/ifacesupervisor.cpp" line="326"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/ifacesupervisor.cpp" line="362"/>
         <source>IfaceSupervisor: IP list is empty(</source>
         <translation></translation>
+    </message>
+</context>
+<context>
+    <name>ImportExportSettingsWdgt</name>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/main-pgs/importexportsettingswdgt.ui" line="14"/>
+        <source>Form</source>
+        <translation>Форма</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/main-pgs/importexportsettingswdgt.ui" line="20"/>
+        <source>Close</source>
+        <translation>Закрити</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/main-pgs/importexportsettingswdgt.ui" line="27"/>
+        <source>Export</source>
+        <translation>Експорт</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/main-pgs/importexportsettingswdgt.ui" line="34"/>
+        <source>Apply</source>
+        <translation>Застосувати</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/main-pgs/importexportsettingswdgt.ui" line="41"/>
+        <source>Import</source>
+        <translation>Імпорт</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/main-pgs/importexportsettingswdgt.cpp" line="45"/>
+        <source>Settings</source>
+        <translation>Налаштування</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/main-pgs/importexportsettingswdgt.cpp" line="83"/>
+        <source>Current Settings
+</source>
+        <translation>Поточні Налаштування
+</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/main-pgs/importexportsettingswdgt.cpp" line="94"/>
+        <source>Done</source>
+        <translation>Виконано</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/main-pgs/importexportsettingswdgt.cpp" line="97"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/main-pgs/importexportsettingswdgt.cpp" line="100"/>
+        <source>Failed, %1</source>
+        <translation>Провал, %1</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/main-pgs/importexportsettingswdgt.cpp" line="114"/>
+        <source>Save as</source>
+        <translation>Зберегти як</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/main-pgs/importexportsettingswdgt.cpp" line="115"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/main-pgs/importexportsettingswdgt.cpp" line="136"/>
+        <source>UCon Settings(*.ucsettings)</source>
+        <translation>Налаштування ЮКон(*.ucsettings)</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/main-pgs/importexportsettingswdgt.cpp" line="135"/>
+        <source>Open</source>
+        <translation>Відкрити</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/main-pgs/importexportsettingswdgt.cpp" line="151"/>
+        <source>File %1
+</source>
+        <translation>Файл %1
+</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/main-pgs/importexportsettingswdgt.cpp" line="156"/>
+        <source>No data</source>
+        <translation>Нема даних</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/main-pgs/importexportsettingswdgt.cpp" line="167"/>
+        <source>Restart the application to apply all the settings</source>
+        <translation>Перезапустити програму щоб застосувати усі налаштування</translation>
     </message>
 </context>
 <context>
@@ -10402,7 +11003,7 @@ The USSD number can be entered on the page 13.10
         <translation>інше</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="980"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1004"/>
         <source>Meters start at row</source>
         <translation>Лічильники починаються з рядка</translation>
     </message>
@@ -10574,7 +11175,7 @@ The USSD number can be entered on the page 13.10
         <translation>Усі Файли (*)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="212"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="236"/>
         <source>Column %1</source>
         <translation>Колонка %1</translation>
     </message>
@@ -10583,163 +11184,163 @@ The USSD number can be entered on the page 13.10
         <translation type="vanished">Має бути як мінімум один розділювач</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="400"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="424"/>
         <source>No separator was selected</source>
         <translation>Не вибрано розділювача</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="423"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="442"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="462"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="490"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="522"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="562"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="595"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="615"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="648"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="447"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="466"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="486"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="514"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="546"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="586"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="619"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="639"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="672"/>
         <source>%1: the column is invalid(</source>
         <translation>%1: стовпець недійсний(</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="423"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="431"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="447"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="455"/>
         <source>SN</source>
         <translation>Серійний Номер</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="442"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="450"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1091"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="466"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="474"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1115"/>
         <source>NI</source>
         <translation>NI</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="462"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="470"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="486"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="494"/>
         <source>Model</source>
         <translation>Модель</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="490"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="497"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="514"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="521"/>
         <source>Password</source>
         <translation>Пароль</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="522"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="530"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="546"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="554"/>
         <source>Energy</source>
         <translation>Енергія</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="562"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="568"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="586"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="592"/>
         <source>Sleep profile</source>
         <translation>Профіль сну</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="595"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="603"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="619"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="627"/>
         <source>Tariff</source>
         <translation>Тарифів</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="615"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="623"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="639"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="647"/>
         <source>Coordinate</source>
         <translation>Координата</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="648"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="661"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="672"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="685"/>
         <source>Memo</source>
         <translation>Пам&apos;ятка</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="692"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="716"/>
         <source>UC Backup File: %1</source>
         <translation>УК Файл Резервної Копії: %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="698"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="722"/>
         <source>Meter List File: %1</source>
         <translation>Список Лічильників: %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="732"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="756"/>
         <source>Unknown MIME type(</source>
         <oldsource>A file mime type is unknown(</oldsource>
         <translation>Невідомий тип MIME(</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="890"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="934"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="914"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="958"/>
         <source>The document is empty or corrupted(</source>
         <translation>Документ порожній або пошкоджений(</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="907"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="931"/>
         <source>Select Document Sheet</source>
         <translation>Оберіть Аркуш Документу</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="968"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="992"/>
         <source>&lt;System default&gt;</source>
         <translation>&lt;Системний&gt;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="971"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="995"/>
         <source>Select Text Codec</source>
         <translation>Оберіть Текстовий Кодек</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="989"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1013"/>
         <source>Select a column with meter serial numbers&lt;br&gt;(if &apos;-1&apos; does not exist)</source>
         <translation>Виберіть стовпець із серійними номерами лічильників&lt;br&gt;(якщо &apos;-1&apos; не існує)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1010"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1034"/>
         <source>Select a column with meter models&lt;br&gt;(if &apos;-1&apos; does not exist)</source>
         <translation>Виберіть стовпець з моделями лічильників&lt;br&gt;(якщо &apos;-1&apos; не існує)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1029"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1053"/>
         <source>Select a column with passwords&lt;br&gt;(if &apos;-1&apos; does not exist)</source>
         <translation>Виберіть стовпець з паролями&lt;br&gt;(якщо &apos;-1&apos; не існує)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1038"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1062"/>
         <source>Select a column with energy&lt;br&gt;(if &apos;-1&apos; does not exist)</source>
         <translation>Виберіть стовпчик з енергією&lt;br&gt;(якщо &apos;-1&apos; не існує)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1049"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1073"/>
         <source>Select a column with sleep profiles&lt;br&gt;(if &apos;-1&apos; does not exist)</source>
         <translation>Виберіть стовпець із профілями сну&lt;br&gt;(якщо &apos;-1&apos; не існує)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1060"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1084"/>
         <source>Select a column with tariffs&lt;br&gt;(if &apos;-1&apos; does not exist)</source>
         <translation>Виберіть стовпець з тарифами&lt;br&gt;(якщо &apos;-1&apos; не існує)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1073"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1097"/>
         <source>Select a column with coordinates&lt;br&gt;(if &apos;-1&apos; does not exist)</source>
         <translation>Виберіть стовпчик з координатами &lt;br&gt; (якщо &apos;-1&apos; не існує)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1080"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1104"/>
         <source>Select a column with memos&lt;br&gt;(if &apos;-1&apos; does not exist)</source>
         <translation>Виберіть стовпець із пам&apos;ятками &lt;br&gt; (якщо &apos;-1&apos; не існує)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1278"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1302"/>
         <source>The count of the imported meters is %1</source>
         <translation>Кількість імпортованих лічильників становить %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1282"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1307"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1306"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1331"/>
         <source>There is nothing to import(</source>
         <translation>Нема чого імпортувати (</translation>
     </message>
@@ -10748,7 +11349,7 @@ The USSD number can be entered on the page 13.10
         <translation type="vanished">Виберіть стовпець із серійними номерами лічильників&lt;br&gt;(якщо &apos;-1&apos; не існує)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1000"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1024"/>
         <source>Select a column with meter addresses (NI)</source>
         <translation>Виберіть стовпець із адресами лічильників (NI)</translation>
     </message>
@@ -10765,9 +11366,9 @@ The USSD number can be entered on the page 13.10
         <translation type="vanished">Виберіть стовпчик з енергією&lt;br&gt;(якщо &apos;-1&apos; не існує)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1039"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1050"/>
         <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1063"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1074"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1087"/>
         <source>Use these settings</source>
         <translation>Використати ці налаштування</translation>
     </message>
@@ -10788,7 +11389,7 @@ The USSD number can be entered on the page 13.10
         <translation type="vanished">Виберіть стовпець із пам&apos;ятками &lt;br&gt; (якщо &apos;-1&apos; не існує)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1190"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1214"/>
         <source>The file with invalid NIs was saved</source>
         <translation>Файл з не правильними NI збережено</translation>
     </message>
@@ -10797,15 +11398,15 @@ The USSD number can be entered on the page 13.10
         <translation type="vanished">Кількість імпортованих лічильників становить %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1303"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1327"/>
         <source>The count of imported items is %1</source>
         <translation>Кількість імпортованих елементів %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1625"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1631"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1687"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1693"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1649"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1655"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1711"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1717"/>
         <source>Couldn&apos;t find a meter address (NI)</source>
         <translation>Не вдалося знайти адресу лічильника (NI)</translation>
     </message>
@@ -10814,13 +11415,13 @@ The USSD number can be entered on the page 13.10
         <translation type="vanished">Не вдається знайти адресу лічильника (NI)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1655"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1717"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1679"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1741"/>
         <source>The NI column is is invalid(</source>
         <translation>Колонка NI недійсна (</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1853"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1883"/>
         <source>not saved*</source>
         <translation>не збережено*</translation>
     </message>
@@ -10837,7 +11438,7 @@ The USSD number can be entered on the page 13.10
         <translation type="vanished">Виберіть колонку з моделлю лічильника&lt;br&gt;(якщо -1 то відсутня)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1021"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1045"/>
         <source>Meter models from file To model</source>
         <translation>Моделі лічильника з файлу До моделі</translation>
     </message>
@@ -10869,7 +11470,7 @@ The USSD number can be entered on the page 13.10
         <translation type="vanished">Виберіть стовпець з пам&apos;яткою &lt;br&gt; (якщо -1 - не існує)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1081"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1105"/>
         <source>Select memo columns count</source>
         <translation>Виберіть кількість колонок для пам&apos;ятки</translation>
     </message>
@@ -10882,22 +11483,22 @@ The USSD number can be entered on the page 13.10
         <translation type="vanished">недійсні ni</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1174"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1198"/>
         <source>CSV (*.csv)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1174"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1198"/>
         <source>Save meters with invalid NIs</source>
         <translation>Зберегти лічильники з недійсними NI</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1174"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1198"/>
         <source>invalid NIs</source>
         <translation>недійсні NI</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1190"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importfromfilewdgt.cpp" line="1214"/>
         <source>%1&lt;br&gt;Do you want to open this file?</source>
         <translation>%1 &lt;br&gt; Ви хочете відкрити цей файл?</translation>
     </message>
@@ -10946,6 +11547,44 @@ The USSD number can be entered on the page 13.10
         <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/import-from-file/importmemowdgt.ui" line="55"/>
         <source>Action2</source>
         <translation></translation>
+    </message>
+</context>
+<context>
+    <name>IndividualSchedulesWdgt</name>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/individualscheduleswdgt.cpp" line="17"/>
+        <source>Schedule name;As external;Mode;Settings line</source>
+        <translation>Назва розкладу; Як зовнішній; Режим; Рядок налаштувань</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/individualscheduleswdgt.cpp" line="40"/>
+        <source>Allow to be in the Default, when this is not active</source>
+        <translation>Дозволити бути в Основному, коли це неактивно</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/individualscheduleswdgt.cpp" line="41"/>
+        <source>Allow to be in the Default</source>
+        <translation>Дозволити бути в Основному</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/individualscheduleswdgt.cpp" line="42"/>
+        <source>Remove from the Default</source>
+        <translation>Видалити з Основного</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/individualscheduleswdgt.cpp" line="135"/>
+        <source>Nothing is active</source>
+        <translation>Ніщо не активне</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/individualscheduleswdgt.cpp" line="187"/>
+        <source>Schedule name is empty</source>
+        <translation>Назва розкладу порожня</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/individualscheduleswdgt.cpp" line="190"/>
+        <source>No settings</source>
+        <translation>Налаштувань немає</translation>
     </message>
 </context>
 <context>
@@ -11139,7 +11778,7 @@ It has a limited period of validity.
         <translation>Профіль яскравості порожній</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/instantpower4lamps.cpp" line="581"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/instantpower4lamps.cpp" line="587"/>
         <source>Group %1, valid %2</source>
         <translation>Група %1, дійсна %2</translation>
     </message>
@@ -12151,13 +12790,13 @@ It has a limited period of validity.
         <translation>опитування вимк</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/lcudataprocessor.cpp" line="312"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/lcudataprocessor.cpp" line="318"/>
         <source>bad consumption</source>
         <translation>погане споживання</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/lcudataprocessor.cpp" line="328"/>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/lcudataprocessor.cpp" line="385"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/lcudataprocessor.cpp" line="334"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/lcudataprocessor.cpp" line="391"/>
         <source>ok, lamp consumption was not checked</source>
         <translation>ок, споживання світильника не перевірено</translation>
     </message>
@@ -12166,7 +12805,7 @@ It has a limited period of validity.
         <translation type="vanished">ок, споживання світильника не перевірено</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/lcudataprocessor.cpp" line="370"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-clientside/src/matilda/lcudataprocessor.cpp" line="376"/>
         <source>ok</source>
         <translation>ок</translation>
     </message>
@@ -12801,14 +13440,14 @@ ends at		%2 %3</source>
         <translation type="vanished">Ви дійсно бажаєте очистити список ламп?</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="830"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="831"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1199"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="835"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="836"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1243"/>
         <source>Off</source>
         <translation>Вимкнути</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="832"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="837"/>
         <source>Do not change</source>
         <translation>Не змінювати</translation>
     </message>
@@ -12861,13 +13500,13 @@ ends at		%2 %3</source>
         <translation type="vanished">Лампа з NI &apos;%1&apos; уже є.&lt;br&gt;Ви б хотіли замінити?</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="662"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="667"/>
         <source>Import led lamps from the file</source>
         <translation>Імпортувати led лампи з файлу</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="662"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="686"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="667"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="691"/>
         <source>Smart Lamp Settings(*.ledl)</source>
         <translation>Налаштування Розумних Ламп(*.ledl)</translation>
     </message>
@@ -12884,7 +13523,7 @@ ends at		%2 %3</source>
         <translation type="vanished">Чи хотіли б ви &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="791"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="796"/>
         <source>bad parameters</source>
         <translation>погані параметри</translation>
     </message>
@@ -12893,12 +13532,12 @@ ends at		%2 %3</source>
         <translation type="vanished">Змінити</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1523"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1567"/>
         <source>Selected: read the state</source>
         <translation>Виділене: зчитати стан</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1529"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1573"/>
         <source>Selected: activate the beacon mode</source>
         <translation>Виділене: активуати режим маячка</translation>
     </message>
@@ -12915,27 +13554,27 @@ ends at		%2 %3</source>
         <translation type="vanished">Світильники</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1456"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1500"/>
         <source>Settings: Export to the file</source>
         <translation>Налаштування: Експортувати до файлу</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1461"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1505"/>
         <source>Settings: Import from the file</source>
         <translation>Налаштування: Імпортувати з файлу</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1468"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1512"/>
         <source>LCUs</source>
         <translation>Контролери світла</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1476"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1520"/>
         <source>Selected: Poll On</source>
         <translation>Виділене: Увімк. Опитування</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1482"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1526"/>
         <source>Selected: Poll Off</source>
         <translation>Виділене: Вимк. Опитування</translation>
     </message>
@@ -12944,7 +13583,7 @@ ends at		%2 %3</source>
         <translation type="vanished">Видалити виділене</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1505"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1549"/>
         <source>Database</source>
         <translation>База даних</translation>
     </message>
@@ -12953,27 +13592,27 @@ ends at		%2 %3</source>
         <translation type="vanished">Макс. розмір %1. Кількість LCU %2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1154"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1198"/>
         <source>Delete LCUs from the remote device</source>
         <translation>Видалити LCU з віддаленого пристрою</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1155"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1199"/>
         <source>Do you really want to delete these LCUs from the remote device?&lt;br&gt;This will delete these LCUs directly from the remote device.&lt;br&gt;Would you like to continue?</source>
         <translation>Ви дійсно бажаєте видалити ці LCU зі списку?&lt;br&gt;Це видалить LCU безпосередньо з віддаленого списку на пристрої.&lt;br&gt;Ви б хотіли продовжити?</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1199"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1243"/>
         <source>Power [%]</source>
         <translation>Потужність [%]</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1230"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1274"/>
         <source>Kill tasks</source>
         <translation>Вбити завдання</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1231"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1275"/>
         <source>Would you like to &apos;%1&apos;?&lt;br&gt;It applies only for tasks that created externally (manually).</source>
         <translation>Ви б хотіли &apos;%1&apos;?&lt;br&gt;Це буде застосовано до завдань що були створені ззовні (в ручному режимі).</translation>
     </message>
@@ -12982,157 +13621,162 @@ ends at		%2 %3</source>
         <translation type="vanished">Ламп нема(</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="153"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="158"/>
         <source>Model,NI,Group,Last Exchange,Last Answer,Power [%],Power [W],Voltage [V], Ampers [A],Uptime,Start Power [%],NA Power [%],Tna [sec],Coordinate,Poll On/Off,Street,Memo,Message</source>
         <translation>Модель,NI,Група,Останній Обмін,Остання відповідь,Потужність [%],Потужність [Вт],Напруга [В],Ампери [А],Час роботи,Стартова Потужність [%],NA Потужність [%],Tna [сек],Координата,Опитування Увм/Вимк,Вулиця,Пам&apos;ятка,Повідомлення</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="571"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="576"/>
         <source>&apos;%1&apos; is empty</source>
         <translation>&apos;%1&apos; порожній</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="576"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="581"/>
         <source>The lamp NI is invalid because of its length</source>
         <translation>NI світильника недійсний через його довжину</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="579"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="584"/>
         <source>The Group ID is invalid, it must be between &apos;0&apos; and &apos;127&apos;</source>
         <translation>ІД групи недійсний, він повинен бути від &apos;0&apos; до &apos;127&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="583"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="588"/>
         <source>The maximum number of LCU is reached</source>
         <translation>Досягнуто максимальної кількості контролерів</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="585"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="590"/>
         <source>The maximum number of LCU is &apos;%1&apos;</source>
         <translation>Максимальна кількість контролерів - &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="587"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="592"/>
         <source>The count of the LCUs is &apos;%1&apos;</source>
         <translation>Кількість контролерів становить &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="685"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="690"/>
         <source>Export LCUs to file</source>
         <translation>Експортуйте контролери світла до файлу</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1148"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="853"/>
+        <source>There is nothing to write</source>
+        <translation>Нема чого записувати</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1192"/>
         <source>The maximum size is %1. LCUs count is %2</source>
         <translation>Максимальний розмір - %1. Кількість контролерів становить %2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1291"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1335"/>
         <source>There are no LCUs(</source>
         <translation>Світильників немає (</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1296"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1340"/>
         <source>This action is not allowed(</source>
         <translation>Не дозволено(</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1308"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1352"/>
         <source>Remote device (for selected only)</source>
         <translation>Віддалений пристрій (вибране тільки)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1312"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1356"/>
         <source>Insert to the remote device</source>
         <translation>Приєднати до віддаленого пристрою</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1318"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1362"/>
         <source>Insert to the remote device with Poll On</source>
         <translation>Приєднати до віддаленого пристрою з Увім. опитуванням</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1324"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1368"/>
         <source>Insert to the remote list device Poll Off</source>
         <translation>Приєднати до віддаленого пристрою з Вимк. опитуванням</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1331"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1375"/>
         <source>Delete from the remote list</source>
         <translation>Видали з віддаленого списку</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1343"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1387"/>
         <source>Temporary operations (for selected only)</source>
         <translation>Тимчасові операції (тільки виділені)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1351"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1395"/>
         <source>Dimm the lamps &apos;%1&apos;</source>
         <translation>Яскравість світильників &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1357"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1401"/>
         <source>Dimm the groups &apos;%1&apos;</source>
         <translation>Яскравість груп &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1372"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1416"/>
         <source>Dimm the lamp with NI &apos;%1&apos;%2</source>
         <translation>Яскравість світильника з NI &apos;%1&apos;%2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1372"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1416"/>
         <source>, &apos;%1&apos;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1380"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1424"/>
         <source>Dimm the group with ID &apos;%1&apos;, %2</source>
         <translation>Яскравість групи з ІД &apos;%1&apos;, %2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1380"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1424"/>
         <source>&apos;%1&apos; lamps</source>
         <translation>&apos;%1&apos; світильників</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1380"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1424"/>
         <source>&apos;%1&apos;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1387"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1431"/>
         <source>Cancel the lamp dimming</source>
         <translation>Відмінити зміну яскравості для світильників</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1390"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1434"/>
         <source>Cancel the group dimming</source>
         <translation>Відмінити зміну яскравості для груп</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1405"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1449"/>
         <source>Temporary schedule</source>
         <translation>Тимчасовий розклад</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1410"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1454"/>
         <source>Set temporary schedule for selected</source>
         <translation>Задати тимчасовий розклад для виділених</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1416"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1460"/>
         <source>Reset temporary schedule for selected</source>
         <translation>Скинути тимчасовий розклад для виділених</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1421"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1465"/>
         <source>Reset temporary schedule for all</source>
         <translation>Скинути тимчасовий розклад для всіх</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1438"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/firefly-pgs/ledlamplistwidget.cpp" line="1482"/>
         <source>The maximum size is %1. The count of LCUs is %2.&lt;br&gt;%3 LCUs will be omitted</source>
         <translation>Максимальний розмір - %1. Кількість LCU становить %2. &lt;br&gt; %3 LCU буде проігноровано</translation>
     </message>
@@ -13287,28 +13931,28 @@ ends at		%2 %3</source>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpapikswdgt.cpp" line="36"/>
         <source>API Key;Enabled;M2M Profile Name;Memo;Check status</source>
-        <translation type="unfinished"></translation>
+        <translation>Ключ API; Увімкнено; Ім’я профілю M2M; Пам’ятка; Статус</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpapikswdgt.cpp" line="91"/>
         <source>ok</source>
-        <translation type="unfinished">ок</translation>
+        <translation>ок</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpapikswdgt.cpp" line="91"/>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpapikswdgt.cpp" line="173"/>
         <source>M2M Profile Name is not valid</source>
-        <translation type="unfinished"></translation>
+        <translation>Ім&apos;я профілю M2M недійсне</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpapikswdgt.cpp" line="166"/>
         <source>API Key is empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Ключ API порожній</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpapikswdgt.cpp" line="170"/>
         <source>M2M Profile Name cannot be empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Назва профілю M2M не може бути пустою</translation>
     </message>
 </context>
 <context>
@@ -13316,95 +13960,95 @@ ends at		%2 %3</source>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Форма</translation>
+        <translation>Форма</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="20"/>
         <source>Main</source>
-        <translation type="unfinished">Основне</translation>
+        <translation>Основне</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="39"/>
         <source>Max. request</source>
-        <translation type="unfinished"></translation>
+        <translation>Макс. запит</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="46"/>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="151"/>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="218"/>
         <source>[msec]</source>
-        <translation type="unfinished">[мсек]</translation>
+        <translation>[мсек]</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="53"/>
         <source>Read timeout</source>
-        <translation type="unfinished">Тайм -аут читання</translation>
+        <translation>Тайм -аут читання</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="60"/>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="104"/>
         <source>[bytes]</source>
-        <translation type="unfinished"></translation>
+        <translation>[байт]</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="67"/>
         <source>Port</source>
-        <translation type="unfinished">Порт</translation>
+        <translation>Порт</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="74"/>
         <source>Max. multipart</source>
-        <translation type="unfinished"></translation>
+        <translation>Макс. багаточастинний</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="134"/>
         <source>UC keep alive</source>
-        <translation type="unfinished"></translation>
+        <translation>UC keep alive</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="161"/>
         <source>Threads</source>
-        <translation type="unfinished"></translation>
+        <translation>Потоків</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="167"/>
         <source>Minimum</source>
-        <translation type="unfinished">Мінімум</translation>
+        <translation>Мінімум</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="194"/>
         <source>Maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимум</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="211"/>
         <source>Clean up interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Інтервал очищення</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="241"/>
         <source>SSL</source>
-        <translation type="unfinished"></translation>
+        <translation>SSL</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="247"/>
         <source>Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Директорія</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="268"/>
         <source>Certificate File</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл Сертифікату</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.ui" line="282"/>
         <source>Key File</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл Ключа</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/m2m-service/m2mhttpgeneralwdgt.cpp" line="34"/>
         <source>bad dataTag</source>
-        <translation type="unfinished">погана міткаДаних</translation>
+        <translation>погана міткаДаних</translation>
     </message>
 </context>
 <context>
@@ -13973,22 +14617,22 @@ ends at		%2 %3</source>
 <context>
     <name>MatildaActiveClientSocket</name>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/m2m-connection/matildaactiveclientsocket.cpp" line="169"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/m2m-connection/matildaactiveclientsocket.cpp" line="175"/>
         <source>Host: %1, Connecting...</source>
         <translation>Хост: %1, З’єдання...</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/m2m-connection/matildaactiveclientsocket.cpp" line="243"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/m2m-connection/matildaactiveclientsocket.cpp" line="249"/>
         <source>Connected to %1</source>
         <translation>З&apos;єднанно до %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/m2m-connection/matildaactiveclientsocket.cpp" line="514"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/m2m-connection/matildaactiveclientsocket.cpp" line="527"/>
         <source>One disconnect: %1, %2</source>
         <translation>Один від&apos;єднавсь: %1, %2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/m2m-connection/matildaactiveclientsocket.cpp" line="516"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/m2m-connection/matildaactiveclientsocket.cpp" line="529"/>
         <source>One disconnect: %1</source>
         <translation>Один від&apos;єднавсь: %1</translation>
     </message>
@@ -14010,7 +14654,7 @@ ends at		%2 %3</source>
     <message>
         <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="149"/>
         <source>$%1 : no saved settings</source>
-        <translation type="unfinished"></translation>
+        <translation>$%1 : відсутні збережені налаштування</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="198"/>
@@ -14030,136 +14674,141 @@ ends at		%2 %3</source>
     <message>
         <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="250"/>
         <source>bad keys %1</source>
-        <translation type="unfinished"></translation>
+        <translation>погані ключі %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="655"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="708"/>
         <source>Can&apos;t open the meter list. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Помилка відкриття списку лічильників. %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="690"/>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="707"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="743"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="761"/>
         <source>Couldn&apos;t save the meter list. Error: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не вдалося зберегти список лічильників. Помилка: %1.</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="984"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1040"/>
         <source>Couldn&apos;t save poll schedule. Error: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не вдалося зберегти розклад опитування. Помилка: %1.</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="990"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1046"/>
         <source>Can&apos;t open poll schedule. Error: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Помилка відкриття розкладу опитування. Помилка: %1.</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1109"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1166"/>
         <source>Bad timezone &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Поганий Часовий пояс &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1115"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1172"/>
         <source>Couldn&apos;t set the timezone: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Помилка задання часового поясу: %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1339"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1397"/>
         <source>Couldn&apos;t save the LED list. Error: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не вдалося зберегти список світлодіодів. Помилка: %1.</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1350"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1408"/>
         <source>Couldn&apos;t save the LED Group Schedule. Error: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Помилка збереження розкладу груп LCU. Помилка: %1.</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1673"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1755"/>
         <source>$ovpn : %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1690"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1772"/>
         <source>Can&apos;t remove old OVPN</source>
-        <translation type="unfinished"></translation>
+        <translation>Не можу видалити старий OVPN</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1707"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1789"/>
         <source>Couldn&apos;t save all OVPN</source>
-        <translation type="unfinished"></translation>
+        <translation>Не вдалося зберегти усі OVPN</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1750"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1832"/>
         <source>$eth : can&apos;t save the file, %1</source>
-        <translation type="unfinished"></translation>
+        <translation>$eth : помилка збереження файлу, %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1766"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1848"/>
         <source>Can&apos;t open the water meter file. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Помилка відкриття списку лічильників води. %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1782"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1864"/>
         <source>Couldn&apos;t save the water meter file. Error: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не вдалося зберегти файл лічильників води. Помилка: %1.</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1812"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1894"/>
         <source>Can&apos;t open the water schedule settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Помилка відкриття розкладу лічильників води</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1838"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1920"/>
         <source>$%1 : can&apos;t save the file, %2</source>
-        <translation type="unfinished"></translation>
+        <translation>$%1 : помилка збереження файлу, %2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1861"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1943"/>
         <source>Can&apos;t open the poll task table settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Помилка відкриття налаштувань таблиці завдань</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1892"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1974"/>
         <source>Can&apos;t open the firefly task table settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Помилка відкриття налаштувань таблиці завдань firefly&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1923"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2005"/>
         <source>Couldn&apos;t open the meter poll channel settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1945"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2027"/>
         <source>Couldn&apos;t open the saved m2m profiles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1969"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2051"/>
         <source>Couldn&apos;t open the interface settings for meter groups</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1991"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2073"/>
         <source>Couldn&apos;t open the interface settings for meter channels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2013"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2095"/>
         <source>Couldn&apos;t open the tcp medium server settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2035"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2117"/>
         <source>Couldn&apos;t open the GSM notification settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2575"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2517"/>
+        <source>$wfnet : can&apos;t save the file, %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2869"/>
         <source>File: %1 is not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2663"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2961"/>
         <source>Version is invalid</source>
         <translation>Версія недійсна</translation>
     </message>
@@ -14241,7 +14890,7 @@ ends at		%2 %3</source>
         <translation type="vanished">Помилка задання часового поясу: %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1134"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="1192"/>
         <source>Couldn&apos;t save the ntp settings: %1</source>
         <translation>Не вдалося зберегти налаштування ntp: %1</translation>
     </message>
@@ -14306,7 +14955,7 @@ ends at		%2 %3</source>
         <translation type="vanished">Помилка відкриття налаштувань віртуальних лічильників&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2298"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2549"/>
         <source>Data is not found</source>
         <translation>Дані не знайдено</translation>
     </message>
@@ -14319,7 +14968,7 @@ ends at		%2 %3</source>
         <translation type="vanished">Версій не правильна</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2672"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/settings/matildabackuphelper.cpp" line="2970"/>
         <source>Data was not found</source>
         <translation>Дані не знайдено</translation>
     </message>
@@ -14538,37 +15187,37 @@ ends at		%2 %3</source>
     <message>
         <location filename="../../Matilda-units/gui/guisett-shared/matilda-conf/matildaconfhelper.cpp" line="244"/>
         <source>Commerical, from 0 to +65°C</source>
-        <translation type="unfinished"></translation>
+        <translation>Commerical, from 0 to +65°C</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/guisett-shared/matilda-conf/matildaconfhelper.cpp" line="245"/>
         <source>Commerical, from 0 to +65°C, GSM modem</source>
-        <translation type="unfinished"></translation>
+        <translation>Commerical, from 0 to +65°C, GSM modem</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/guisett-shared/matilda-conf/matildaconfhelper.cpp" line="246"/>
         <source>Commerical, from 0 to +65°C, Embee modem</source>
-        <translation type="unfinished"></translation>
+        <translation>Commerical, from 0 to +65°C, Embee modem</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/guisett-shared/matilda-conf/matildaconfhelper.cpp" line="247"/>
         <source>Commerical, from 0 to +65°C, GSM and Embee modems</source>
-        <translation type="unfinished"></translation>
+        <translation>Commerical, from 0 to +65°C, GSM and Embee modems</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/guisett-shared/matilda-conf/matildaconfhelper.cpp" line="251"/>
         <source>Industrial, from -40 to +85°C</source>
-        <translation type="unfinished"></translation>
+        <translation>Industrial, from -40 to +85°C</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/guisett-shared/matilda-conf/matildaconfhelper.cpp" line="252"/>
         <source>Industrial, from -40 to +85°C, GSM modem</source>
-        <translation type="unfinished"></translation>
+        <translation>Industrial, from -40 to +85°C, GSM modem</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/guisett-shared/matilda-conf/matildaconfhelper.cpp" line="253"/>
         <source>Industrial, from -40 to +85°C, Embee modem</source>
-        <translation type="unfinished"></translation>
+        <translation>Industrial, from -40 to +85°C, Embee modem</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/guisett-shared/matilda-conf/matildaconfhelper.cpp" line="254"/>
@@ -14599,37 +15248,37 @@ ends at		%2 %3</source>
         <translation type="vanished">%1 [ %2 ] тому</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/matildaconfwidget.cpp" line="31"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/matildaconfwidget.cpp" line="36"/>
         <source>%1 [%2] ago</source>
         <translation>%1 [ %2] тому</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/matildaconfwidget.cpp" line="346"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/matildaconfwidget.cpp" line="377"/>
         <source>&lt;i&gt;Last update: %1&lt;/i&gt;</source>
         <translation>&lt;i&gt;Останнє оновлення: %1&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/matildaconfwidget.cpp" line="353"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/matildaconfwidget.cpp" line="384"/>
         <source>&lt;i&gt;Last update: %1, it was %2&lt;/i&gt;</source>
         <translation>&lt;i&gt;Останнє оновлення: %1, це було %2&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/matildaconfwidget.cpp" line="359"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/matildaconfwidget.cpp" line="390"/>
         <source>&lt;font color=red&gt;&lt;h3&gt;Press &apos;Save &amp; Apply&apos; to save and apply the settings in the remote device&lt;/h3&gt;&lt;/font&gt;</source>
         <translation>&lt;font color=red&gt;&lt;h3&gt;Натисніть &apos;Зберегти &amp; Застосувати&apos;, щоб зберегти та застосувати налаштування на віддаленому пристрої&lt;/h3&gt;&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/matildaconfwidget.cpp" line="373"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/matildaconfwidget.cpp" line="404"/>
         <source>&lt;font color=red&gt;This page is going to be updated&lt;/font&gt;</source>
         <translation>&lt;font color=red&gt;Цю сторінку буде оновлено&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/matildaconfwidget.cpp" line="379"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/matildaconfwidget.cpp" line="410"/>
         <source>&lt;font color=red&gt;This page is updating&lt;/font&gt;</source>
         <translation>&lt;font color=red&gt;Ця сторінка оновлюється&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/matildaconfwidget.cpp" line="481"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/matildaconfwidget.cpp" line="513"/>
         <source>&lt;i&gt;Error code: %1, message %2&lt;/i&gt;</source>
         <translation>&lt;i&gt; Код помилки: %1, повідомлення %2 &lt;/i&gt;</translation>
     </message>
@@ -14638,7 +15287,7 @@ ends at		%2 %3</source>
         <translation type="vanished">&lt;font color=red&gt;&lt;h3&gt;Натисніть &apos;Зберегти&apos;, щоб зберегти налаштування в пам&apos;яті віддаленого пристрою&lt;/h3&gt;&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/matildaconfwidget.cpp" line="366"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/matildaconfwidget.cpp" line="397"/>
         <source>&lt;font color=red&gt;Press &apos;Read&apos; to update the page&lt;/font&gt;</source>
         <translation>&lt;font color=red&gt;Натисніть &apos;Зчитати&apos;, щоб оновити сторінку&lt;/font&gt;</translation>
     </message>
@@ -14646,173 +15295,173 @@ ends at		%2 %3</source>
 <context>
     <name>MatildaDeviceTree</name>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="159"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1549"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="161"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1704"/>
         <source>Info</source>
         <translation>Інформація</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="160"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1469"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="162"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1623"/>
         <source>Commands</source>
         <translation>Команди</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="161"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1550"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="163"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1705"/>
         <source>Poll data</source>
         <translation>Дані опитування</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="162"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1556"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="164"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1711"/>
         <source>Network settings</source>
         <translation>Мережеві налаштування</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="163"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1557"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="165"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1712"/>
         <source>General settings</source>
         <translation>Загальні налаштування</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="164"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1551"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="166"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1706"/>
         <source>Prepaid</source>
         <translation>Передоплата</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="165"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1554"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="167"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1709"/>
         <source>Smart lighting</source>
         <translation>Розумне освітлення</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="166"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1558"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="168"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1713"/>
         <source>M2M Service</source>
         <translation>M2M Сервіс</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="167"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1559"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="169"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1714"/>
         <source>Application</source>
         <translation>ПЗ</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="891"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="942"/>
         <source>Connection Settings</source>
         <translation>Налаштування З&apos;єднання</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="892"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="943"/>
         <source>Backup Settings</source>
         <translation>Налаштування Бекапів</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="893"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="944"/>
         <source>Show Connections</source>
         <translation>Показати З&apos;єднання</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="894"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="945"/>
         <source>Show Backups</source>
         <translation>Показати Бекапи</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="897"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="948"/>
         <source>SNTP Settings</source>
         <translation>SNTP Налаштування</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="898"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="949"/>
         <source>SNTP IP history</source>
         <translation>SNTP IP історія</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="899"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="950"/>
         <source>SNTP Events</source>
         <translation>SNTP Події</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="900"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="951"/>
         <source>SNTP Error Log</source>
         <translation>SNTP Помилки</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="901"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="952"/>
         <source>SNTP Warning Log</source>
         <translation>SNTP Попередження</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="946"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="997"/>
         <source>Report</source>
         <translation>Звіт</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="972"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1023"/>
         <source>Ethernet</source>
         <translation>Ethernet</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="973"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1024"/>
         <source>OpenVPN profiles</source>
         <translation>OpenVPN профілі</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="974"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1025"/>
         <source>OpenVPN state</source>
         <translation>Стан OpenVPN</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="975"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1026"/>
         <source>Temporary schedule</source>
         <translation>Тимчасовий розклад</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1007"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1058"/>
         <source>View tasks of the meters</source>
         <translation>Переглянути завдання лічильників</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1008"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1477"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1059"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1631"/>
         <source>Meters</source>
         <translation>Лічильники</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1009"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1060"/>
         <source>Last active profiles</source>
         <translation>Останній активний профіль</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1010"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1061"/>
         <source>Staff accounts</source>
         <translation>Акаунти персоналу</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1011"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1478"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1062"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1632"/>
         <source>Schedule</source>
         <translation>Розклад</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1012"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1063"/>
         <source>Meter task table settings</source>
         <translation>Налаштування таблиці завдань лічильників</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1054"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1105"/>
         <source>Database IP Rules</source>
         <translation>Правила БД для IP</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1056"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1107"/>
         <source>Lamps task table settings</source>
         <translation>Налаштування таблиці завдань освітлення</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1057"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1108"/>
         <source>Rescue schedules</source>
         <translation>Аварійні розклади</translation>
     </message>
@@ -14821,389 +15470,430 @@ ends at		%2 %3</source>
         <translation type="vanished">Пошук світильників</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1058"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1109"/>
         <source>Search for LCU</source>
         <translation>Пошук світильників</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1059"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1110"/>
         <source>Schedule state</source>
         <translation>Стан розкладу</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1061"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1112"/>
         <source>Proxy settings</source>
         <translation>Налаштування проксі</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1441"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1595"/>
         <source>About object</source>
         <translation>Про об&apos;єкт</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1442"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1596"/>
         <source>Date and time</source>
         <translation>Дата і час</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1443"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1597"/>
         <source>State</source>
         <translation>Стан</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1444"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1598"/>
         <source>Quick Direct Access</source>
         <translation>Швидкий Прямий Доступ</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1458"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1612"/>
         <source>Exchange of the meters</source>
         <translation>Статистика обміну з лічильниками</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1446"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1600"/>
         <source>System</source>
         <translation>Система</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1447"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1601"/>
         <source>Network interfaces</source>
         <translation>Мережеві інтерфейси</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1448"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1602"/>
         <source>Running processes</source>
         <translation>Запущені процеси</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1457"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1611"/>
         <source>Supported meters</source>
         <translation>Підтримувані лічильники</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1449"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1603"/>
         <source>Main events</source>
         <translation>Основні події</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1459"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1613"/>
         <source>Poll events of the meters</source>
         <translation>Події опитування лічильників</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1450"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1604"/>
         <source>GSM/PPP</source>
         <translation>GSM/PPP</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1105"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1156"/>
         <source>Meter exchange</source>
         <translation>Обмін лічильників</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1108"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1159"/>
         <source>Poll channels</source>
         <translation>Канали опитування</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1111"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1162"/>
         <source>Saved M2M profiles</source>
         <translation>Збережені профілі М2М</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1112"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1163"/>
         <source>Group interface settings</source>
         <translation>Налаштування інтерфейсів груп</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1113"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1164"/>
         <source>Channel interface settings</source>
         <translation>Налаштування інтерфейсів каналів</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1161"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1212"/>
         <source>TCP Medium Server</source>
         <translation>TCP Сервер Посередник</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1162"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1213"/>
         <source>GSM Notifications</source>
         <translation>GSM Повідомлення</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1163"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1214"/>
         <source>GSM Commands Log</source>
         <translation>Лог команд GSM</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1164"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1215"/>
         <source>TCP Server Medium Logs</source>
         <translation>Лог TCP Сервера Посередника</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1167"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1218"/>
         <source>TCP/ZigBee Service Log</source>
         <translation>Лог TCP/ZigBee Сервісу</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1168"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1219"/>
         <source>TCP/ZigBee Service State</source>
         <translation>Стан TCP/ZigBee Сервісу</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1169"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1220"/>
         <source>UC Service State</source>
         <translation>Стан UC сервісу</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1171"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1222"/>
         <source>Quick Direct access logs</source>
         <translation>Лог Швидкого прямого доступу</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1172"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1223"/>
         <source>Real View Advanced</source>
         <translation>Real View Розширено</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1215"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1266"/>
         <source>Energy monitors</source>
         <translation>Енергомонітори</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1216"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1267"/>
         <source>Database limits</source>
         <translation>Ліміти бази даних</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1217"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1268"/>
         <source>Database logs</source>
         <translation>Логи бази даних</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1286"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1562"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1337"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1717"/>
         <source>Pulse meters</source>
         <translation>Лічильники імпульсів</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1288"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1339"/>
         <source>Pulse Schedule</source>
         <translation>Розклад Лічильників Імпульсів</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1289"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1340"/>
         <source>Pulse Real View Advanced</source>
         <translation>Лічильники імпульсів Real View Розширено</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1293"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1344"/>
         <source>Serial Port</source>
         <translation>Послідовний Порт</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1294"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1345"/>
         <source>Tcp Service</source>
         <translation>TCP Сервіс</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1295"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1346"/>
         <source>General Settings</source>
         <translation>Загальні Налаштування</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1296"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1347"/>
         <source>Devices table</source>
         <translation>Таблиця пристроїв</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1297"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1348"/>
         <source>Interface Logs</source>
         <translation>Лог Інтерфейсу</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1299"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1350"/>
         <source>502 Service State</source>
         <translation>Стан Сервісу 502</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1302"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1353"/>
         <source>Http API keys</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1303"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1354"/>
         <source>Http General</source>
-        <translation type="unfinished"></translation>
+        <translation>Http General</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1304"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1355"/>
         <source>Http Events</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1305"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1356"/>
         <source>Http Service History</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1307"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1358"/>
         <source>M2M Events</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1451"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1441"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1445"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1449"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1456"/>
+        <source>Individual Schedules</source>
+        <translation>Індивідуальні Розклади</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1442"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1446"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1450"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1457"/>
+        <source>Meter and Schedules</source>
+        <translation>Лічильники і Розклади</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1452"/>
+        <source>Events Manager</source>
+        <translation>Менеджер Подій</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1459"/>
+        <source>Data holder log</source>
+        <translation>Лог тримача даних</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1461"/>
+        <source>Wi-Fi settings</source>
+        <translation>Wi-Fi налаштування</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1462"/>
+        <source>IP Blockers</source>
+        <translation>Блокувальники IP</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1463"/>
+        <source>Event Messenger Profiles</source>
+        <translation>Профілі Менеджера Подій</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1605"/>
         <source>TCP settings</source>
         <translation>налаштувань TCP</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1452"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1606"/>
         <source>ZigBee</source>
         <translation>ZigBee</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1453"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1607"/>
         <source>Packet manager</source>
         <translation>Пакетний менеджер</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1454"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1608"/>
         <source>Stream of the coordinator</source>
         <translation>Потік з координатора</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1455"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1609"/>
         <source>Log of the coordinator</source>
         <translation>Лог координатора</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1460"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1614"/>
         <source>Poll errors of the meters</source>
         <translation>Помилки при опитуванні лічильників</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1461"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1615"/>
         <source>Poll warnings of the meters</source>
         <translation>Попередження при опитуванні лічильників</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1463"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1617"/>
         <source>Simple BASH</source>
         <translation>Простий BASH</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1465"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1619"/>
         <source>Direct access service</source>
         <translation>Сервіс Прямого Доступу</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1466"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1620"/>
         <source>Direct access client</source>
         <translation>Клієнт прямого доступу</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1467"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1621"/>
         <source>M2M client</source>
         <translation>М2М клієнт</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1470"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1624"/>
         <source>Authorization</source>
         <translation>Авторизація</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1472"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1626"/>
         <source>Accessibility</source>
         <translation>Доступ</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1474"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1628"/>
         <source>Backup</source>
         <translation>Резервна копія</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1475"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1629"/>
         <source>Poll of the meters</source>
         <translation>Опитування лічильників</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1476"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1630"/>
         <source>Forwarding table of the meters</source>
         <translation>Таблиця переадресації лічильників</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1479"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1633"/>
         <source>Database</source>
         <translation>Показники</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1480"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1634"/>
         <source>Logs of meters</source>
         <translation>Журнали Лічильників</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1481"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1635"/>
         <source>Hash summ</source>
         <translation>Хеш сума</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1484"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1638"/>
         <source>IP Route</source>
         <translation>IP Маршрут</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1485"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1639"/>
         <source>PPP supervisor</source>
         <translation>Наглядач PPP</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1488"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1642"/>
         <source>Lights</source>
         <translation>Світильники</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1489"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1643"/>
         <source>Schedule for groups</source>
         <translation>Розклад груп</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1491"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1645"/>
         <source>Tasks</source>
         <translation>Завдання</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1492"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1646"/>
         <source>Relay</source>
         <translation>Реле</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1493"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1647"/>
         <source>Mode</source>
         <translation>Режим</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1298"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1495"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1349"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1649"/>
         <source>Events</source>
         <translation>Події</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1496"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1650"/>
         <source>Errors</source>
         <translation>Помилки</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1497"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1651"/>
         <source>Warnings</source>
         <translation>Попередження</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1552"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1707"/>
         <source>Electricity meter</source>
         <translation>Лічильник електроенергії</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1553"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-ucon/guisett-shared-ucon/matilda-conf/matildadevicetree.cpp" line="1708"/>
         <source>Water meters</source>
         <translation>Лічильники води</translation>
     </message>
@@ -15642,6 +16332,67 @@ ends at		%2 %3</source>
     </message>
 </context>
 <context>
+    <name>MessengerProfileEditor</name>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/messengerprofileeditor.cpp" line="14"/>
+        <source>Alphanumeric and underscores</source>
+        <translation>Буквено-цифровий і підкреслення</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/messengerprofileeditor.cpp" line="16"/>
+        <source>telegram: &lt;bot api key&gt;&lt;space&gt;&lt;chat_id&gt;</source>
+        <translation>telegram: &lt;bot api key&gt;&lt;пробіл&gt;&lt;chat_id&gt;</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/messengerprofileeditor.cpp" line="41"/>
+        <source>Telegram</source>
+        <translation>Телеграм</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/messengerprofileeditor.cpp" line="74"/>
+        <source>Name</source>
+        <translation type="unfinished">Назва</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/messengerprofileeditor.cpp" line="78"/>
+        <source>Сode</source>
+        <translation>Код</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/messengerprofileeditor.cpp" line="86"/>
+        <source>Arguments</source>
+        <translation type="unfinished">Аргументи</translation>
+    </message>
+</context>
+<context>
+    <name>MessengerSettingsWdgt</name>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/messengersettingswdgt.cpp" line="41"/>
+        <source>Name;Type;Arguments</source>
+        <translation>Ім&apos;я;Тип;Аргументи</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/messengersettingswdgt.cpp" line="212"/>
+        <source>Bad name</source>
+        <translation>Погане ім&apos;я</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/messengersettingswdgt.cpp" line="215"/>
+        <source>Bad arguments</source>
+        <translation>Погані аргументи</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/messengersettingswdgt.cpp" line="218"/>
+        <source>Bad type</source>
+        <translation>Поганий тип</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/messengersettingswdgt.cpp" line="333"/>
+        <source>Send a test message</source>
+        <translation>Надіслати тестове повідомлення</translation>
+    </message>
+</context>
+<context>
     <name>MeterJournalForm</name>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/meterjournalform.ui" line="14"/>
@@ -15795,7 +16546,7 @@ ends at		%2 %3</source>
         <translation type="vanished">Імпортувати лічильники з</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/meterlistwdgt.cpp" line="655"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/meterlistwdgt.cpp" line="654"/>
         <source>Input meter</source>
         <translation>Вхідний лічильник</translation>
     </message>
@@ -15840,18 +16591,18 @@ ends at		%2 %3</source>
         <translation type="vanished">S/N</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/meterlistwdgt.cpp" line="723"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/meterlistwdgt.cpp" line="722"/>
         <source>Import meters from the file</source>
         <translation>Імпортувати лічильники з файлу</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/meterlistwdgt.cpp" line="723"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/meterlistwdgt.cpp" line="750"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/meterlistwdgt.cpp" line="722"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/meterlistwdgt.cpp" line="749"/>
         <source>Meter Settings(*.meter)</source>
         <translation>Налаштування Лічильників(*.meter)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/meterlistwdgt.cpp" line="750"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/meterlistwdgt.cpp" line="749"/>
         <source>Export meters to the file</source>
         <translation>Експортувати лічильники до файлу</translation>
     </message>
@@ -16024,12 +16775,12 @@ ends at		%2 %3</source>
         <translation>Видали з віддаленого списку</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/meterlistwdgt.cpp" line="805"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/meterlistwdgt.cpp" line="804"/>
         <source>There are no meters</source>
         <translation>Лічильників немає</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/meterlistwdgt.cpp" line="1101"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/meterlistwdgt.cpp" line="1100"/>
         <source>The maximum size is %1. The count of devices is %2.&lt;br&gt;%3 devices will be omitted</source>
         <translation>Максимальний розмір - %1. Кількість пристроїв становить %2. &lt;br&gt; %3 пристроїв буде проігноровано</translation>
     </message>
@@ -16058,7 +16809,7 @@ ends at		%2 %3</source>
         <translation type="vanished">Останнє оновлення: %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/meterlistwdgt.cpp" line="1115"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/meterlistwdgt.cpp" line="1114"/>
         <source>The maximum size is %1. The count of meters is %2.&lt;br&gt;%3 meters will be omitted</source>
         <translation>Максимальний розмір - %1. Кількість лічильників становить %2. &lt;br&gt; %3 лічильників буде проігноровано</translation>
     </message>
@@ -16087,7 +16838,7 @@ ends at		%2 %3</source>
         <translation type="vanished">Макс. розмір 50 лічильників. К-ть лічильників %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/meterlistwdgt.cpp" line="1059"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/meterlistwdgt.cpp" line="1058"/>
         <source>Max size is %1. Meter count is %2</source>
         <translation>Макс. розмір %1. К-ть лічильників %2</translation>
     </message>
@@ -16115,57 +16866,57 @@ ends at		%2 %3</source>
         <translation type="vanished">Тимчасові Інтерфейси: каналів=%1, NI*=%2, груп*=%3</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/metermanager.cpp" line="470"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/metermanager.cpp" line="486"/>
         <source>Default pollchannel was changed %1</source>
         <translation>Канал опитування по замовчуванню було змінено %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/metermanager.cpp" line="538"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/metermanager.cpp" line="556"/>
         <source>Virtual meters errors: %1</source>
         <translation>Помилки Віртуальні лічильників: %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/metermanager.cpp" line="552"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/metermanager.cpp" line="571"/>
         <source>Temporary Interfaces: channels=%1, NI*=%2, groups*=%3, default=%4</source>
         <translation>Тимчасові Інтерфейси: каналів=%1, NI*=%2, груп*=%3, default=%4</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/metermanager.cpp" line="613"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/metermanager.cpp" line="632"/>
         <source>Channel &apos;%1&apos; - couldn&apos;t find %2</source>
         <translation>Канал &apos;%1&apos; - не вдалося знайти %2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/metermanager.cpp" line="860"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/metermanager.cpp" line="881"/>
         <source>The signal for restart: delay is 5 minutes.</source>
         <translation>Сигнал для перезапуску: затримка становить 5 хвилин.</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/metermanager.cpp" line="867"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/metermanager.cpp" line="888"/>
         <source>Poll settings: reloading...</source>
         <translation>Налаштування опитування: перезавантаження...</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/metermanager.cpp" line="878"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/metermanager.cpp" line="899"/>
         <source>Schedule: reloading...</source>
         <translation>Графік: перезавантаження...</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/metermanager.cpp" line="897"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/metermanager.cpp" line="918"/>
         <source>The signal for restart: delay is 3 seconds</source>
         <translation>Сигнал для перезапуску: затримка 3 секунди</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/metermanager.cpp" line="911"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/metermanager.cpp" line="932"/>
         <source>Settings: reloading...</source>
         <translation>Налаштування: перезавантаження...</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/metermanager.cpp" line="922"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/metermanager.cpp" line="943"/>
         <source>Blocking the database. Time: 5 minutes.</source>
         <translation>Блокування бази даних. Час: 5 хвилин.</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/metermanager.cpp" line="925"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/metermanager.cpp" line="946"/>
         <source>The database has been unlocked</source>
         <oldsource>Unblock the database.</oldsource>
         <translation>База даних була розблокована</translation>
@@ -16300,37 +17051,37 @@ ends at		%2 %3</source>
 <context>
     <name>MeterScheduleTemplate</name>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/meterscheduletemplate.cpp" line="45"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/meterscheduletemplate.cpp" line="52"/>
         <source>second</source>
         <translation>секунда</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/meterscheduletemplate.cpp" line="47"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/meterscheduletemplate.cpp" line="54"/>
         <source>minute</source>
         <translation>хвилина</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/meterscheduletemplate.cpp" line="48"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/meterscheduletemplate.cpp" line="55"/>
         <source>hour</source>
         <translation>години</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/meterscheduletemplate.cpp" line="49"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/meterscheduletemplate.cpp" line="56"/>
         <source>day</source>
         <translation>день</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/meterscheduletemplate.cpp" line="50"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/meterscheduletemplate.cpp" line="57"/>
         <source>month</source>
         <translation>місяць</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/meterscheduletemplate.cpp" line="51"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/meterscheduletemplate.cpp" line="58"/>
         <source>week</source>
         <translation>тиждень</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/meterscheduletemplate.cpp" line="67"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/templates/meterscheduletemplate.cpp" line="74"/>
         <source>unit is &apos;%1&apos;</source>
         <translation>одиниця &apos;%1&apos;</translation>
     </message>
@@ -16338,20 +17089,25 @@ ends at		%2 %3</source>
 <context>
     <name>MeterScheduler</name>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/meterscheduler.cpp" line="357"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/meterscheduler.cpp" line="752"/>
         <source>ok</source>
         <translation>ок</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/meterscheduler.cpp" line="494"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/meterscheduler.cpp" line="899"/>
         <source>saved</source>
         <translation>збережено</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/meterscheduler.cpp" line="656"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/meterscheduler.cpp" line="1062"/>
         <source>can&apos;t start the poll. %1</source>
         <oldsource>can&apos;t start poll. %1</oldsource>
         <translation>не можу почати опитування. %1</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/meterscheduler.cpp" line="1969"/>
+        <source>Ignoring profile %1, the DB is not ready</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -17123,27 +17879,27 @@ ends at		%2 %3</source>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="218"/>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="219"/>
         <source>Relay: load off %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Реле: нав-ня вимкнено %1</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="218"/>
         <source>high voltage</source>
-        <translation type="unfinished"></translation>
+        <translation>висока напруга</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="219"/>
         <source>low voltage</source>
-        <translation type="unfinished"></translation>
+        <translation>низька напруга</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="220"/>
         <source>Relay: load off, %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Реле: нав-ня увімкнено %1</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="220"/>
         <source>security</source>
-        <translation type="unfinished"></translation>
+        <translation>захист</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="224"/>
@@ -17427,7 +18183,7 @@ ends at		%2 %3</source>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="188"/>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="355"/>
         <source>beginning</source>
-        <translation type="unfinished"></translation>
+        <translation>початок</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="390"/>
@@ -17590,17 +18346,17 @@ ends at		%2 %3</source>
         <translation>Час,Сума,Баланс,Валюта,Лічильник,Будинок,Значення [ціна/(кВт/год)],Хто,ІД</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="675"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="681"/>
         <source>Load Off</source>
         <translation>Навантаження Вимкнено</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="675"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="681"/>
         <source>Load On</source>
         <translation>Навантаження Увімкнено</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="696"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/metersdatafilter.cpp" line="702"/>
         <source>Unconfirmed</source>
         <translation>Непідтверджений</translation>
     </message>
@@ -17815,6 +18571,11 @@ ends at		%2 %3</source>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/modbus-pgs/modbusforwardingtableeditorwdgt.ui" line="127"/>
         <source>Additional ID</source>
         <translation>Додатковий ІД</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/modbus-pgs/modbusforwardingtableeditorwdgt.ui" line="144"/>
+        <source>ID from task table</source>
+        <translation>ID із таблиці завдань</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/modbus-pgs/modbusforwardingtableeditorwdgt.cpp" line="119"/>
@@ -18045,9 +18806,47 @@ if it is empty - any connection is allowed</source>
         <translation>Режим не встановлено</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/modbus-pgs/modbustcpsettingswdgt.cpp" line="106"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/modbus-pgs/modbustcpsettingswdgt.cpp" line="112"/>
         <source>Disable,RTU,TCP,RTU and TCP</source>
         <translation>Вимкнути, RTU, TCP, RTU і TCP</translation>
+    </message>
+</context>
+<context>
+    <name>MyLinesInterpretator</name>
+    <message>
+        <location filename="../../Matilda-units/matilda-base/MatildaIO/conditions-checker/mylinesinterpretator.cpp" line="68"/>
+        <source>Bad arguments count, argsLen = %1, max = %2</source>
+        <translation>Кількість неправильних аргументів, argsLen = %1, max = %2</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-base/MatildaIO/conditions-checker/mylinesinterpretator.cpp" line="73"/>
+        <source>Bad arguments count, argsLen = %1, min = %2</source>
+        <translation>Кількість неправильних аргументів, argsLen = %1, min = %2</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-base/MatildaIO/conditions-checker/mylinesinterpretator.cpp" line="81"/>
+        <source>Bad argument type, line %1</source>
+        <translation>Неправильний тип аргументу, рядок %1</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-base/MatildaIO/conditions-checker/mylinesinterpretator.cpp" line="111"/>
+        <source>Failed to process the method %1</source>
+        <translation>Не вдалося обробити метод %1</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-base/MatildaIO/conditions-checker/mylinesinterpretator.cpp" line="250"/>
+        <source>The method &apos;%1&apos; has no end</source>
+        <translation>Метод &apos;%1&apos; не має кінця</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-base/MatildaIO/conditions-checker/mylinesinterpretator.cpp" line="274"/>
+        <source>Bad method %1</source>
+        <translation>Поганий метод %1</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-base/MatildaIO/conditions-checker/mylinesinterpretator.cpp" line="283"/>
+        <source>Bad rule line</source>
+        <translation>Поганий рядок правила</translation>
     </message>
 </context>
 <context>
@@ -18076,46 +18875,46 @@ if it is empty - any connection is allowed</source>
 <context>
     <name>MyMapComponent</name>
     <message>
-        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/MyMapComponent.qml" line="150"/>
-        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/MyMapComponent.qml" line="154"/>
+        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/MyMapComponent.qml" line="167"/>
+        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/MyMapComponent.qml" line="171"/>
         <source>Map zoom is %1&lt;br&gt;%2</source>
         <translation>Масштаб карти %1&lt;br&gt;%2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/MyMapComponent.qml" line="152"/>
-        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/MyMapComponent.qml" line="156"/>
+        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/MyMapComponent.qml" line="169"/>
+        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/MyMapComponent.qml" line="173"/>
         <source>Change to %1</source>
         <translation>Змінити на %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/MyMapComponent.qml" line="152"/>
+        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/MyMapComponent.qml" line="169"/>
         <source>It is the minimum zoom level</source>
         <translation>Це мінімальний масштаб</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/MyMapComponent.qml" line="156"/>
+        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/MyMapComponent.qml" line="173"/>
         <source>It is the maximum zoom level</source>
         <translation>Це максимальний масштаб</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/MyMapComponent.qml" line="158"/>
+        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/MyMapComponent.qml" line="175"/>
         <source>Map&lt;br&gt;Tilt %1, %2&lt;br&gt;Bearing %3, %4&lt;br&gt;FoV %5, %6</source>
         <translation>Карта&lt;br&gt;Нахил %1, %2&lt;br&gt;Обертання %3, %4&lt;br&gt;Поле огляду %5, %6</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/MyMapComponent.qml" line="159"/>
-        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/MyMapComponent.qml" line="160"/>
-        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/MyMapComponent.qml" line="161"/>
+        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/MyMapComponent.qml" line="176"/>
+        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/MyMapComponent.qml" line="177"/>
+        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/MyMapComponent.qml" line="178"/>
         <source>minimum is %1, maximum is %2</source>
         <translation>мінімум %1, максимум %2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/MyMapComponent.qml" line="389"/>
+        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/MyMapComponent.qml" line="391"/>
         <source>Coordinate is %1, %2&lt;br&gt;%3</source>
         <translation>Координата %1, %2&lt;br&gt;%3</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/MyMapComponent.qml" line="391"/>
+        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/MyMapComponent.qml" line="393"/>
         <source>The distance to the previous point is %1</source>
         <translation>Відстань до попередньої точки %1</translation>
     </message>
@@ -18182,7 +18981,7 @@ if it is empty - any connection is allowed</source>
 <context>
     <name>MyMapViewer</name>
     <message>
-        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/MyMapViewer.qml" line="256"/>
+        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/MyMapViewer.qml" line="381"/>
         <source>Your position</source>
         <translation>Ваше розташування</translation>
     </message>
@@ -18190,7 +18989,7 @@ if it is empty - any connection is allowed</source>
 <context>
     <name>MyMapViewerHelper</name>
     <message>
-        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/js-components/MyMapViewerHelper.qml" line="169"/>
+        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qml/js-components/MyMapViewerHelper.qml" line="170"/>
         <source>Can&apos;t create the map object&lt;br&gt;%1</source>
         <translation>Не можу створити об&apos;єкт карти&lt;br&gt;%1</translation>
     </message>
@@ -18799,32 +19598,32 @@ if it is empty - any connection is allowed</source>
         <translation>Відміна</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/dataconcentrator-pgs/osbbexportdialog.cpp" line="25"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/dataconcentrator-pgs/osbbexportdialog.cpp" line="27"/>
         <source>Export settings</source>
         <translation>Налаштування експорту</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/dataconcentrator-pgs/osbbexportdialog.cpp" line="51"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/dataconcentrator-pgs/osbbexportdialog.cpp" line="53"/>
         <source>Nothing to import</source>
         <translation>Нічого імпортувати</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/dataconcentrator-pgs/osbbexportdialog.cpp" line="56"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/dataconcentrator-pgs/osbbexportdialog.cpp" line="58"/>
         <source>A column with NI was not found</source>
         <translation>Не знайдено стовпця з NI</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/dataconcentrator-pgs/osbbexportdialog.cpp" line="72"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/dataconcentrator-pgs/osbbexportdialog.cpp" line="74"/>
         <source>There is no data to import</source>
         <translation>Немає даних для імпорту</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/dataconcentrator-pgs/osbbexportdialog.cpp" line="194"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/dataconcentrator-pgs/osbbexportdialog.cpp" line="203"/>
         <source>Starting...</source>
         <translation>Запуск...</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/dataconcentrator-pgs/osbbexportdialog.cpp" line="196"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/dataconcentrator-pgs/osbbexportdialog.cpp" line="205"/>
         <source>Saved %1 rows</source>
         <translation>Збережено %1 рядків</translation>
     </message>
@@ -18842,6 +19641,77 @@ if it is empty - any connection is allowed</source>
     <message>
         <source>Try to select other provider</source>
         <translation type="vanished">Спробуйте вибрати іншого провайдера</translation>
+    </message>
+</context>
+<context>
+    <name>PIndividualSchedulesEditor</name>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/pindividualscheduleseditor.cpp" line="12"/>
+        <source>Add as External task</source>
+        <translation>Додати як Зовнішнє завдання</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/pindividualscheduleseditor.cpp" line="37"/>
+        <source>Schedule name</source>
+        <translation>Назва розкладу</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/pindividualscheduleseditor.cpp" line="40"/>
+        <source>It defines schedule modes</source>
+        <translation>Це визначає режими розкладу</translation>
+    </message>
+</context>
+<context>
+    <name>PIndividualSchedulesWdgt</name>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pindividualscheduleswdgt.cpp" line="101"/>
+        <source>Current values</source>
+        <translation type="unfinished">Поточні показники</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pindividualscheduleswdgt.cpp" line="102"/>
+        <source>End of day</source>
+        <translation>На кінець доби</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pindividualscheduleswdgt.cpp" line="103"/>
+        <source>End of month</source>
+        <translation>На кінець місяця</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pindividualscheduleswdgt.cpp" line="104"/>
+        <source>Power</source>
+        <translation type="unfinished">Потужність</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pindividualscheduleswdgt.cpp" line="106"/>
+        <source>Voltage</source>
+        <translation type="unfinished">Напруга</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pindividualscheduleswdgt.cpp" line="107"/>
+        <source>Meter Log</source>
+        <translation type="unfinished">Журнал Лічильників</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pindividualscheduleswdgt.cpp" line="109"/>
+        <source>State</source>
+        <translation type="unfinished">Стан</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pindividualscheduleswdgt.cpp" line="111"/>
+        <source>Total RV</source>
+        <translation>Поточні показники RV</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pindividualscheduleswdgt.cpp" line="113"/>
+        <source>Instantaneous RV</source>
+        <translation>Миттєві значення RV</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pindividualscheduleswdgt.cpp" line="115"/>
+        <source>State RV</source>
+        <translation>Стан RV</translation>
     </message>
 </context>
 <context>
@@ -19023,124 +19893,207 @@ To enable a real  view profile enable the same regular profile</source>
         <translation>Глибина [діб] (для профілю На Кінець Місяця: [місяців])</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterschedulewdgt.cpp" line="42"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterschedulewdgt.cpp" line="23"/>
         <source>bad dataTag</source>
         <translation>погана міткаДаних</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterschedulewdgt.cpp" line="72"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterschedulewdgt.cpp" line="80"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterschedulewdgt.cpp" line="53"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterschedulewdgt.cpp" line="61"/>
         <source>Some values from &apos;%1&apos; profiles have the same priority</source>
         <translation>Деякі значення з профілів &apos;%1&apos; мають однаковий пріоритет</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterschedulewdgt.cpp" line="72"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterschedulewdgt.cpp" line="53"/>
         <source>Regular</source>
         <translation>Звичайний</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterschedulewdgt.cpp" line="73"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterschedulewdgt.cpp" line="81"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterschedulewdgt.cpp" line="54"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterschedulewdgt.cpp" line="62"/>
         <source>Please, fill the fields: Priority, with unique values.</source>
         <translation>Будь ласка, заповніть поля: Пріоритет унікальними значеннями.</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterschedulewdgt.cpp" line="80"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterschedulewdgt.cpp" line="61"/>
         <source>Real view</source>
         <translation>Real view</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterschedulewdgt.cpp" line="88"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterschedulewdgt.cpp" line="69"/>
         <source>The list of days of the week is empty!</source>
         <translation>Список днів тижня порожній!</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterschedulewdgt.cpp" line="89"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterschedulewdgt.cpp" line="70"/>
         <source>Please, select at least one day</source>
         <translation>Виберіть принаймні один день</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterschedulewdgt.cpp" line="132"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterschedulewdgt.cpp" line="113"/>
         <source>Enable Poll: days of the week</source>
         <translation>Увмк. Опитування: Дні Тижня</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterschedulewdgt.cpp" line="138"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/pmeterschedulewdgt.cpp" line="119"/>
         <source>Enable Poll: The time interval</source>
         <translation>Увмк. Опитування: Часовий Інтервал</translation>
     </message>
 </context>
 <context>
+    <name>PacketManagerCommandsWdgt</name>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagercommandswdgt.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished">Форма</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagercommandswdgt.ui" line="20"/>
+        <source>Cloud commands</source>
+        <translation>Хмарні команди</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagercommandswdgt.ui" line="26"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagercommandswdgt.ui" line="201"/>
+        <source>Update certificates</source>
+        <translation>Оновити сертифікати</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagercommandswdgt.ui" line="33"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagercommandswdgt.ui" line="141"/>
+        <source>Software Updates</source>
+        <translation>Оновлення ПЗ</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagercommandswdgt.ui" line="40"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagercommandswdgt.ui" line="88"/>
+        <source>Check Updates</source>
+        <translation>Перевірити оновлення</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagercommandswdgt.ui" line="69"/>
+        <source>Use this application&apos;s default settings, 
+if checked - this application&apos;s default settings are used, 
+if not - the remote device default settings are used</source>
+        <translation>Використовувати налаштування цієї програми за замовчуванням,
+якщо позначено - використовуються налаштування цієї програми за замовчуванням,
+якщо ні – використовуються стандартні налаштування віддаленого пристрою</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagercommandswdgt.ui" line="94"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagercommandswdgt.ui" line="147"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagercommandswdgt.ui" line="207"/>
+        <source>Repository</source>
+        <translation>Репозиторій</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagercommandswdgt.ui" line="101"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagercommandswdgt.ui" line="154"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagercommandswdgt.ui" line="167"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagercommandswdgt.ui" line="214"/>
+        <source>If it is empty, default is used</source>
+        <translation>Якщо порожній, використовується за замовчуванням</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagercommandswdgt.ui" line="104"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagercommandswdgt.ui" line="157"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagercommandswdgt.ui" line="170"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagercommandswdgt.ui" line="217"/>
+        <source>Address</source>
+        <translation type="unfinished">Адреса</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagercommandswdgt.ui" line="180"/>
+        <source>Hash</source>
+        <translation>Хеш</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagercommandswdgt.ui" line="227"/>
+        <source>Certificate check</source>
+        <translation>Перевірка сертифікатів</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagercommandswdgt.ui" line="234"/>
+        <source>Ignore</source>
+        <translation type="unfinished">Ігнорувати</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagercommandswdgt.ui" line="261"/>
+        <source>Advanced</source>
+        <translation>Розширено</translation>
+    </message>
+</context>
+<context>
     <name>PacketManagerGui</name>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="22"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="27"/>
         <source>File</source>
         <translation>Файл</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="50"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="57"/>
         <source>There is no data</source>
         <translation>Нема даних</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="62"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="69"/>
         <source>Upgrade,Name,Version,Type,Size [bytes]</source>
         <translation>Оновити,Назва,Версія,Тип,Розмір [байт]</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="74"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="81"/>
         <source>Upgrade file is not loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл оновлення не завантажено</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="112"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="144"/>
         <source>Open an upgrade file</source>
         <translation>Відкрити файл оновлення</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="112"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="144"/>
         <source>UC Upgrade Files (*.matildauf);;All files (*)</source>
         <translation>УК Файли для Оновлення (*.matildauf);;Усі Файли (*)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="201"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="233"/>
         <source>executable</source>
         <translation>виконувані файли</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="202"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="234"/>
         <source>library</source>
         <translation>бібліотека</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="203"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="235"/>
         <source>unknown</source>
         <translation>невідомо</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="233"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="265"/>
         <source>The connected device is not supported</source>
-        <translation type="unfinished"></translation>
+        <translation>Підключений пристрій не підтримується</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="246"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="278"/>
         <source>&lt;h2&gt;You need to upgrade the software&lt;/h2&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h2&gt;Вам потрібно оновити програмне забезпечення&lt;/h2&gt;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="251"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="283"/>
         <source>&lt;h3&gt;It looks like the software is up to date&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Схоже, програмне забезпечення оновлено&lt;/h3&gt;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="253"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="285"/>
         <source>&lt;h3&gt;The file contains older software than the UC&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Файл містить старіше програмне забезпечення, ніж UC&lt;/h3&gt;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="260"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagergui.cpp" line="292"/>
         <source>It looks like something went wrong. Please, check the software version manually</source>
-        <translation type="unfinished"></translation>
+        <translation>Схоже, щось пішло не так. Будь ласка, перевірте версію програмного забезпечення вручну</translation>
     </message>
 </context>
 <context>
@@ -19282,17 +20235,17 @@ To enable a real  view profile enable the same regular profile</source>
         <translation>Скрипти</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagerwdgt.cpp" line="221"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagerwdgt.cpp" line="222"/>
         <source>shared library</source>
         <translation>спільні бібліотеки</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagerwdgt.cpp" line="276"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagerwdgt.cpp" line="277"/>
         <source>Total compressed size: %1 byte</source>
         <translation>Загальний розмір стисненим: %1 байт</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagerwdgt.cpp" line="277"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/app-pgs/packetmanagerwdgt.cpp" line="278"/>
         <source>Total uncomressed size: %1 byte</source>
         <translation>Загальний розмір не стисненим: %1 байт</translation>
     </message>
@@ -19590,7 +20543,7 @@ To enable a real  view profile enable the same regular profile</source>
     <message>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="224"/>
         <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="229"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="280"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="286"/>
         <source>Voltage</source>
         <translation type="unfinished">Напруга</translation>
     </message>
@@ -19616,286 +20569,286 @@ To enable a real  view profile enable the same regular profile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="250"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="256"/>
         <source>Sum %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="253"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="259"/>
         <source>Tariff %1 %2</source>
         <translation type="unfinished">Тариф %1 %2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="264"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="270"/>
         <source>Neutral;L1;L2;L3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="265"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="271"/>
         <source>Total;L1;L2;L3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="267"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="273"/>
         <source>Current;Voltage;Active Power;Reactive power generated;Reactive power consumed;Power coefitient</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="283"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="289"/>
         <source>Prepaid balance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="289"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="295"/>
         <source>Display test</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="290"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="296"/>
         <source>Date</source>
         <translation type="unfinished">Дата</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="291"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="297"/>
         <source>Time</source>
         <translation type="unfinished">Час</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="303"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="309"/>
         <source>Auto scroll</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="304"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="310"/>
         <source>Auto scroll interval</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="305"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="311"/>
         <source>Enabled display</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="316"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="322"/>
         <source>Voltage MAX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="317"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="323"/>
         <source>Voltage MIN</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="319"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="325"/>
         <source>Current MAX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="321"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="327"/>
         <source>Power T1 MAX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="322"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="328"/>
         <source>Power T2 MAX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="323"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="329"/>
         <source>Power T3 MAX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="324"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="330"/>
         <source>Power T4 MAX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="326"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="332"/>
         <source>Reactive Power T1 MAX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="327"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="333"/>
         <source>Reactive Power T2 MAX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="328"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="334"/>
         <source>Reactive Power T3 MAX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="329"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="335"/>
         <source>Reactive Power T4 MAX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="331"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="337"/>
         <source>Power averaging interval</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="333"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="339"/>
         <source>Frequency MAX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="334"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="340"/>
         <source>Frequency MIN</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="336"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="342"/>
         <source>Power factor MIN</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="338"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="344"/>
         <source>Power calculation mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="342"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="343"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="348"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="349"/>
         <source>V</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="345"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="351"/>
         <source>A</source>
         <translation type="unfinished">A</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="347"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="348"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="349"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="350"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="353"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="354"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="355"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="356"/>
         <source>W</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="352"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="353"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="354"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="355"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="358"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="359"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="360"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="361"/>
         <source>var</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="357"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="363"/>
         <source>sec</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="359"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="360"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="365"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="366"/>
         <source>Hz</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="376"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="382"/>
         <source>State</source>
         <translation type="unfinished">Стан</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="377"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="383"/>
         <source>Warning</source>
         <translation>Попередження</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="378"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="384"/>
         <source>Main relay Load ON</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="379"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="385"/>
         <source>Main relay Load OFF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="380"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="386"/>
         <source>Secondary relay Load ON</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="381"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="387"/>
         <source>Secondary relay Load OFF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="390"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="396"/>
         <source>Main relay - state is Load ON</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="391"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="397"/>
         <source>Secondary relay - state is Load ON</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="392"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="398"/>
         <source>Main relay - state is Load OFF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="393"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="399"/>
         <source>Secondary relay - state is Load OFF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="419"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="431"/>
         <source>there are no settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="480"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="492"/>
         <source>there are some settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="484"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="496"/>
         <source>Turning on &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="485"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="497"/>
         <source>Turning off &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="522"/>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="646"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="540"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="670"/>
         <source>%1 - %2</source>
         <translation>%1 - %2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="552"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="570"/>
         <source>DST - %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="552"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="570"/>
         <source>Enabled</source>
         <translation>Активовано</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="552"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="570"/>
         <source>Disabled</source>
         <translation type="unfinished">Деактивовано</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="553"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="571"/>
         <source>ST - &apos;%1&apos;, NT - &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="598"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="616"/>
         <source>Average</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="598"/>
+        <location filename="../../Matilda-units/gui/dataprocessing/src/datafilters/helpers/paremetryzatordata2userreadable.cpp" line="616"/>
         <source>Instantenous</source>
         <translation type="unfinished"></translation>
     </message>
@@ -20050,7 +21003,7 @@ To enable a real  view profile enable the same regular profile</source>
         <translation>Назва файлу не задана</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/files/plaintextfile.cpp" line="98"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/files/plaintextfile.cpp" line="104"/>
         <source>Couldn&apos;t open the file(&lt;br&gt;Error: %1</source>
         <translation>Помилка відкриття файлу(&lt;br&gt;Помилка: %1</translation>
     </message>
@@ -20114,72 +21067,72 @@ Keys
 <context>
     <name>PollCodesOperations</name>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="45"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="54"/>
         <source>Active import,Active export,Reactive import,Reactive export</source>
         <translation>Активна імпорт,Активана експорт,Реактивна імпорт,Реактивна експорт</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="50"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="59"/>
         <source>Voltage,Current,Active Power,Reactive Power,Power factor</source>
         <translation>Напруга,Струм,Активна Потужність,Реактивна Потужність,cos φ</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="51"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="60"/>
         <source>L1,L2,L3</source>
         <translation>L1,L2,L3</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="56"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="65"/>
         <source>Frequency</source>
         <translation>Частота</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="64"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="73"/>
         <source>%1 [%2]</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="296"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="305"/>
         <source>&lt;%1&gt; %2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="330"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="339"/>
         <source>Sum</source>
         <translation>Сума</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="332"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="341"/>
         <source>Tariff %1</source>
         <translation>Тариф %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="345"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="354"/>
         <source>Minutes</source>
         <translation>Хвилин</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="346"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="355"/>
         <source>Hours</source>
         <translation>Годин</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="347"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="356"/>
         <source>Days</source>
         <translation>Днів</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="348"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="357"/>
         <source>Month</source>
         <translation>На Кінець Місяця</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="349"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="358"/>
         <source>unknown coefficient &apos;%1&apos;</source>
         <translation>невідомий коефіцієнт &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="582"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="591"/>
         <source>The tariff list is empty</source>
         <translation>Список тарифів порожній</translation>
     </message>
@@ -20188,18 +21141,18 @@ Keys
         <translation type="vanished">невідомий коефіцієнт &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="351"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="360"/>
         <source>&apos;%1&apos; %2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="379"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="472"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="388"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="481"/>
         <source>The time interval is incorrect.&lt;br&gt;</source>
         <translation>Часовий інтервал хибний.&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="410"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/pollcodesoperations.cpp" line="419"/>
         <source>Couldn&apos;t calculte the date.&lt;br&gt;</source>
         <translation>Не можу вирахувати дату.&lt;br&gt;</translation>
     </message>
@@ -20215,17 +21168,17 @@ Keys
 <context>
     <name>PollStatisticHelper</name>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/shared/pollstatistichelper.cpp" line="52"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/shared/pollstatistichelper.cpp" line="56"/>
         <source>Total: %1, ok: %2 (%3), error: %4 (%5%), elapsed: %6 (%7)</source>
         <translation>Заг.: %1, ок: %2 (%3), помилки: %4 (%5%), минуло: %6 (%7)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/shared/pollstatistichelper.cpp" line="281"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/shared/pollstatistichelper.cpp" line="361"/>
         <source>Start poll: %1</source>
         <translation>Запуск опитування: %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/shared/pollstatistichelper.cpp" line="457"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/shared/pollstatistichelper.cpp" line="541"/>
         <source>%1, cycle: %2</source>
         <translation>%1, цикл: %2</translation>
     </message>
@@ -20424,22 +21377,22 @@ Keys
 <context>
     <name>PppSupervisor</name>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppsupervisor.cpp" line="192"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppsupervisor.cpp" line="222"/>
         <source>PPPD Supervisor: ping %1 ok</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppsupervisor.cpp" line="196"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppsupervisor.cpp" line="226"/>
         <source>PPPD Supervisor: pingRetr &gt; maxRetr (%1 &gt;= %2) </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppsupervisor.cpp" line="200"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppsupervisor.cpp" line="230"/>
         <source>PPPD Supervisor: ping %1 no answer(</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppsupervisor.cpp" line="206"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppsupervisor.cpp" line="236"/>
         <source>PPPD Supervisor: IP list is empty(</source>
         <translation></translation>
     </message>
@@ -20576,73 +21529,73 @@ Keys
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="594"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="608"/>
         <source>PPP0 ip-up script started</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="676"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="690"/>
         <source>Couldn&apos;t reset the GSM modem(</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="829"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="843"/>
         <source>PPP0 Connect script failed</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="835"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="849"/>
         <source>Process %1: &apos;%2&apos;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="881"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="895"/>
         <source>killing the child process</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="987"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="1001"/>
         <source>Settings were updated</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="1184"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="1198"/>
         <source>isPPPDallowed check: isPrimary %1, isOnline %2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="1200"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="1214"/>
         <source>The GSM should be enabled</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="1213"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="1227"/>
         <source>The GSM should be disabled</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="1238"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="1252"/>
         <source>updating the GSM settings</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="1464"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="529"/>
         <source>Failed to start %1, error %2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="1497"/>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="1527"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="1512"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="1542"/>
         <source>Failed to reset the GSM modem, error %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="1497"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="1512"/>
         <source>the application name is not specified</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="1518"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/pppdprocmanagerbase.cpp" line="1533"/>
         <source>Reset the GSM modem, fast mode is %1, forced %2, counter %3</source>
         <translation></translation>
     </message>
@@ -20772,60 +21725,60 @@ Keys
 <context>
     <name>PrettyGsmHL8518values</name>
     <message>
-        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="107"/>
+        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="112"/>
         <source>Modem is not pending for any password)</source>
         <translation>Модем не очікує жодного пароля)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="109"/>
-        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="110"/>
-        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="112"/>
-        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="113"/>
+        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="114"/>
+        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="115"/>
+        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="117"/>
+        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="118"/>
         <source>Modem is waiting for %1 to be given!</source>
         <translation>Модем чекає, поки видадуть %1!</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="115"/>
+        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="120"/>
         <source>Modem is waiting for the network personalization password to be given!</source>
         <translation>Модем очікує на введення пароля персоналізації мережі!</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="116"/>
+        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="121"/>
         <source>Modem is waiting network personalization unblocking password to be given!</source>
         <translation>Модем чекає, коли буде надано пароль для розблокування персоналізації мережі!</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="118"/>
+        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="123"/>
         <source>Modem is waiting network subset personalization password to be given!</source>
         <translation>Модем очікує на введення пароля персоналізації підмножини мережі!</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="119"/>
+        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="124"/>
         <source>Modem is waiting network subset personalization unblocking password to be given!</source>
         <translation>Модем чекає, коли буде надано пароль для розблокування персоналізації підмножини мережі!</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="121"/>
+        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="126"/>
         <source>Modem is waiting service provider personalization password to be given!</source>
         <translation>Модем чекає, коли буде надано пароль персоналізації постачальника послуг!</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="122"/>
+        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="127"/>
         <source>Modem is waiting service provider personalization unblocking password to be given!</source>
         <translation>Модем чекає на розблокування пароля персоналізації постачальника послуг!</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="124"/>
+        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="129"/>
         <source>Modem is waiting corporate personalization password to be given!</source>
         <translation>Модем очікує на введення пароля корпоративної персоналізації!</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="125"/>
+        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="130"/>
         <source>Modem is waiting corporate personalization unblocking password to be given!</source>
         <translation>Модем чекає на розблокування корпоративної персоналізації!</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="127"/>
+        <location filename="../../Matilda-units/matilda-base/type-converter/src/shared/prettygsmhl8518values.cpp" line="132"/>
         <source>Modem is in unknown state!</source>
         <translation>Модем у невідомому стані!</translation>
     </message>
@@ -20858,17 +21811,17 @@ Keys
         <translation>Картинки(*.png *.jpg *.bmp *.ppm *.xbm *.xpm)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/previewimagewdgt.cpp" line="186"/>
+        <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/previewimagewdgt.cpp" line="188"/>
         <source>Image</source>
         <translation>Зображення</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/previewimagewdgt.cpp" line="186"/>
+        <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/previewimagewdgt.cpp" line="188"/>
         <source>Done)</source>
         <translation>Виконано)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/previewimagewdgt.cpp" line="187"/>
+        <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/previewimagewdgt.cpp" line="189"/>
         <source>Couldn&apos;t save the image</source>
         <translation>Не вдалося зберегти зображення</translation>
     </message>
@@ -21101,7 +22054,7 @@ Keys
     <message>
         <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/printersetupwdgt.ui" line="776"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Text&lt;br/&gt;$eui64 = EUI64&lt;br/&gt;$ni = NI&lt;br/&gt;$lcuni = NI from EUI64&lt;br/&gt;$date = current date&lt;br/&gt;$model = model&lt;br&gt;$smplText=generated text&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Text&lt;br/&gt;$eui64 = EUI64&lt;br/&gt;$ni = NI&lt;br/&gt;$lcuni = NI з EUI64&lt;br/&gt;$date = поточна дата&lt;br/&gt;$model = модель&lt;br&gt;$smplText=згенерований текст&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../Matilda-units/printer/printer-widgets/print-pgs/printersetupwdgt.ui" line="830"/>
@@ -21343,22 +22296,22 @@ ID:$eui64</source>
         <translation type="vanished">Відсутнє живлення для GSM модема. Основне джерело є %1, USB є %2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/procesmanager.cpp" line="446"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/procesmanager.cpp" line="457"/>
         <source>-</source>
         <translation>-</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/procesmanager.cpp" line="544"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/procesmanager.cpp" line="555"/>
         <source>PPPD manager is %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/procesmanager.cpp" line="544"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/procesmanager.cpp" line="555"/>
         <source>disabled</source>
         <translation>вимкнено</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/procesmanager.cpp" line="544"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/procesmanager.cpp" line="555"/>
         <source>enabled</source>
         <translation>увімкнено</translation>
     </message>
@@ -21374,31 +22327,36 @@ ID:$eui64</source>
         <translation type="vanished">увімкнено</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/processmanagerbase.cpp" line="107"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/processmanagerbase.cpp" line="108"/>
         <source>-------------------starting------------------
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/processmanagerbase.cpp" line="219"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/processmanagerbase.cpp" line="222"/>
         <source>There is no answer from matilda-bbb</source>
         <translation>Від matilda-bbb не отримано відповіді</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/processmanagerbase.cpp" line="356"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/processmanagerbase.cpp" line="366"/>
         <source>Time was updated from M2M Server %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/processmanagerbase.cpp" line="375"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/processmanagerbase.cpp" line="385"/>
         <source>the device is going to reboot</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/processmanagerbase.cpp" line="580"/>
+        <source>Fixed factory settings script</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Protocol5toGUI</name>
     <message>
-        <location filename="../../Matilda-units/gui/meters-shared/zbyrator-src/protocol5togui.cpp" line="101"/>
+        <location filename="../../Matilda-units/gui/meters-shared/zbyrator-src/protocol5togui.cpp" line="113"/>
         <source>not saved*</source>
         <translation>не збережено*</translation>
     </message>
@@ -21608,7 +22566,7 @@ ID:$eui64</source>
 <context>
     <name>PushButtonV2</name>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/src/matilda-conf-wdgt/pushbuttonv2.cpp" line="91"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/src/matilda-conf-wdgt/pushbuttonv2.cpp" line="110"/>
         <source>%1 (%2)</source>
         <translation>%1 (%2)</translation>
     </message>
@@ -21668,22 +22626,22 @@ ID:$eui64</source>
         <translation type="vanished">невідомо</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmetershelper.cpp" line="259"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmetershelper.cpp" line="260"/>
         <source>error</source>
         <translation>помилка</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmetershelper.cpp" line="270"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmetershelper.cpp" line="271"/>
         <source>%1, %2 s</source>
         <translation>%1, %2 сек</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmetershelper.cpp" line="270"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmetershelper.cpp" line="271"/>
         <source>Can&apos;t decode meter date</source>
         <translation>Помилка декодування дати лічильника</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmetershelper.cpp" line="274"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmetershelper.cpp" line="275"/>
         <source>Only time correction!</source>
         <translation>Тільки корекція часу!</translation>
     </message>
@@ -21697,7 +22655,7 @@ ID:$eui64</source>
     </message>
     <message>
         <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/classmanagerhelper.cpp" line="446"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/classmanagerhelper.cpp" line="489"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/classmanagerhelper.cpp" line="495"/>
         <source>Bad columns(</source>
         <translation>Погані стовпці(</translation>
     </message>
@@ -21878,17 +22836,17 @@ ID:$eui64</source>
         <translation type="vanished">Сканувати</translation>
     </message>
     <message>
-        <location filename="qcmainwindow.cpp" line="182"/>
+        <location filename="qcmainwindow.cpp" line="183"/>
         <source>You must setup the proxy</source>
         <translation>Ви мусите внести налаштування проксі</translation>
     </message>
     <message>
-        <location filename="qcmainwindow.cpp" line="603"/>
+        <location filename="qcmainwindow.cpp" line="629"/>
         <source>Log</source>
         <translation>Лог</translation>
     </message>
     <message>
-        <location filename="qcmainwindow.cpp" line="702"/>
+        <location filename="qcmainwindow.cpp" line="728"/>
         <source>Proxy</source>
         <translation>Проксі</translation>
     </message>
@@ -21939,12 +22897,12 @@ ID:$eui64</source>
 <context>
     <name>QmlBaseManager</name>
     <message>
-        <location filename="../../Matilda-units/gui/qml-gui-core/qmlgui-helper-src/qmlbasemanager.cpp" line="81"/>
+        <location filename="../../Matilda-units/gui/qml-gui-core/qmlgui-helper-src/qmlbasemanager.cpp" line="87"/>
         <source>Unknown data type(</source>
         <translation>Невідомий тип даних(</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/qml-gui-core/qmlgui-helper-src/qmlbasemanager.cpp" line="84"/>
+        <location filename="../../Matilda-units/gui/qml-gui-core/qmlgui-helper-src/qmlbasemanager.cpp" line="90"/>
         <source>The content is invalid(</source>
         <translation>Невідомий контент(</translation>
     </message>
@@ -21952,12 +22910,12 @@ ID:$eui64</source>
 <context>
     <name>QmlGeo2cppMedium</name>
     <message>
-        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qmlgeo2cppmedium.cpp" line="228"/>
+        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qmlgeo2cppmedium.cpp" line="238"/>
         <source>Universal Communicator</source>
         <translation>Універсальний Комунікатор</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qmlgeo2cppmedium.cpp" line="229"/>
+        <location filename="../../Matilda-units/maps/qml-geo/qml-geo-v2/qmlgeo2cppmedium.cpp" line="239"/>
         <source>Universal Communicator&lt;br&gt;S/N: %1&lt;br&gt;</source>
         <translation>Універсальний Комунікатор&lt;br&gt;S/N: %1&lt;br&gt;</translation>
     </message>
@@ -22097,195 +23055,195 @@ ID:$eui64</source>
         <translation>Ця команда не підтримується: %1, args: %2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="72"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="83"/>
         <source>Unknown command name: %1, args: %2</source>
         <translation>Невідоме ім&apos;я команди: %1, аргументи: %2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="213"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="232"/>
         <source>Meters good: %1, pollDtGood: %2</source>
         <translation>Лічильники ок: %1, pollDtGood: %2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="237"/>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="286"/>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="351"/>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="384"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="262"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="311"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="376"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="409"/>
         <source>no meters</source>
         <translation>нема лічильників</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="544"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="569"/>
         <source>End Of the Month</source>
         <translation>На Кінець Місяця</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="545"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="570"/>
         <source>End Of the Day</source>
         <translation>На Кінець Доби</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="546"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="571"/>
         <source>Current Meter Values</source>
         <translation>Поточні показники</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="547"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="572"/>
         <source>Power</source>
         <translation>Потужність</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="548"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="573"/>
         <source>Voltage</source>
         <translation>Напруга</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="549"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="574"/>
         <source>Logs of meters</source>
         <translation>Журнали Лічильників</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="550"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="575"/>
         <source>Current Meter State</source>
         <translation>Поточні показники</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="552"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="577"/>
         <source>Relay operations</source>
         <translation>Операції з реле</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="553"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="578"/>
         <source>Read date and time</source>
         <translation>Зчитування дати і часу</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="554"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="579"/>
         <source>Write date and time</source>
         <translation>Запис дати і часу</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="556"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="581"/>
         <source>Read parametrization profile</source>
         <translation>Прочитати профіль параметризації</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="557"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="582"/>
         <source>Write parametrization profile</source>
         <translation>Записати профіль параметризації</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="559"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="584"/>
         <source>Current water meter values</source>
         <translation>Поточні показники водоміра</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="560"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="585"/>
         <source>Water: values at the end of the day</source>
         <translation>Вода: на кінець доби</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="561"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="586"/>
         <source>Water: logbook</source>
         <translation>Вода: журнал лічильників</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="562"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="587"/>
         <source>Water: state</source>
         <translation>Вода: стан лічильника</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="563"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="588"/>
         <source>Water: schedule</source>
         <translation>Вода: профіль сну</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="564"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="589"/>
         <source>Water: write a schedule</source>
         <translation>Вода: запис профілю сну</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="567"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="592"/>
         <source>Current gas meter values</source>
         <translation>Поточні значення лічильників газу</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="568"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="593"/>
         <source>Gas: values at the end of the day</source>
         <translation>Газ: значення на кінець дня</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="569"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="594"/>
         <source>Gas: logbook</source>
         <translation>Газ: журнал</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="570"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="595"/>
         <source>Gas: state</source>
         <translation>Газ: стан</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="571"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="596"/>
         <source>Gas: period</source>
         <translation>Газ: період</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="572"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="597"/>
         <source>Gas: instantaneous</source>
         <translation>Газ: миттєві</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="573"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="598"/>
         <source>Gas: values at the end of the month</source>
         <translation>Газ: значення на кінець місяця</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="577"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="602"/>
         <source>Current pulse meter values</source>
         <translation>Поточні значення лічильника імпульсів</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="578"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="603"/>
         <source>Pulses: values at the end of the day</source>
         <translation>Пульсометр: значення на кінець дня</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="579"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="604"/>
         <source>Pulses: logbook</source>
         <translation>Пульсометр: журнал</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="580"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="605"/>
         <source>Pulses: state</source>
         <translation>Пульсометр: стан</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="581"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="606"/>
         <source>Pulses: period</source>
         <translation>Пульсометр: період</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="582"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="607"/>
         <source>Pulses: instantaneous</source>
         <translation>Пульсометр: миттєві</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="583"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="608"/>
         <source>Pulses: values at the end of the month</source>
         <translation>Пульсометр: значення на кінець місяця</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="586"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="611"/>
         <source>Network reset: ATNR 5 </source>
         <translation>Скидання мережі: ATNR 5</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="587"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="612"/>
         <source>Kill priority tasks</source>
         <translation>Завершити пріоритетні завдання</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="589"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-shared/src/zbyrator-v2/quickpollhelper.cpp" line="614"/>
         <source>Modem command %1</source>
         <translation>Команда модему %1</translation>
     </message>
@@ -22502,12 +23460,12 @@ ID:$eui64</source>
 <context>
     <name>RealViewSettOneTabEditor</name>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/src/realviewsettonetabeditor.cpp" line="37"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/src/realviewsettonetabeditor.cpp" line="39"/>
         <source>NI</source>
         <translation>NI</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/src/realviewsettonetabeditor.cpp" line="42"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/src/realviewsettonetabeditor.cpp" line="44"/>
         <source>The NI of the device</source>
         <translation>NI пристрою</translation>
     </message>
@@ -22533,6 +23491,11 @@ ID:$eui64</source>
         <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/wdgt/referenceaddeditwdgt.ui" line="132"/>
         <source>Advanced</source>
         <translation>Інструменти</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/wdgt/referenceaddeditwdgt.ui" line="159"/>
+        <source>Ignore Warnings</source>
+        <translation>Ігнорувати Попередження</translation>
     </message>
 </context>
 <context>
@@ -22562,7 +23525,7 @@ ID:$eui64</source>
         <translation type="vanished">Все слово</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="1572"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="1578"/>
         <source>Filter</source>
         <translation>Фільтр</translation>
     </message>
@@ -22570,7 +23533,7 @@ ID:$eui64</source>
         <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="368"/>
         <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="505"/>
         <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="673"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="1615"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="1621"/>
         <source>Export all to</source>
         <translation>Експортувати все до</translation>
     </message>
@@ -22593,7 +23556,7 @@ ID:$eui64</source>
         <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="374"/>
         <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="511"/>
         <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="679"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="1624"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="1630"/>
         <source>Export selected to</source>
         <translation>Експортувати виділене до</translation>
     </message>
@@ -22698,67 +23661,67 @@ ID:$eui64</source>
         <translation>Додати нема чого</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="1401"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="1407"/>
         <source>Done)</source>
         <translation>Виконано)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="1407"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="1413"/>
         <source>bad object &apos;a&apos;</source>
         <translation>поганий об&apos;єкт &apos;а&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="1453"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="1459"/>
         <source>%1&lt;br&gt;Would you like to open the file?</source>
         <translation>%1&lt;br&gt;Ви бажаєте відкрити цей файл?</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="1556"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="1562"/>
         <source>Partial</source>
         <translation>Частковий</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="1557"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="1563"/>
         <source>Complete</source>
         <translation>Повний</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="1668"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="1674"/>
         <source>Context menu</source>
         <translation>Контекстне меню</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="1702"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="1708"/>
         <source>Show/hide a widget</source>
         <translation>Показати/сховати віджет</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="1909"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="1915"/>
         <source>Columns to show</source>
         <translation>Стовпці для показу</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="1968"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="1993"/>
         <source>The data can&apos;t be inserted into an empty model</source>
         <translation>Дані не можна вставити в порожню модель</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="2049"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="2082"/>
         <source>Table size is &apos;%1&apos;</source>
         <translation>Розмір таблиці &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="2050"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="2083"/>
         <source>Allowed size is &apos;%1&apos;</source>
         <translation>Дозволений розмір &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="2051"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="2084"/>
         <source>Ignored rows are &apos;%1&apos;</source>
         <translation>Ігноровані рядки - &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="2131"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/referencewidgetclass.cpp" line="2164"/>
         <source>Columns for the filter</source>
         <translation>Стовпці для фільтра</translation>
     </message>
@@ -22830,6 +23793,14 @@ ID:$eui64</source>
         <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/gui-src/wdgt/referencewidgetclassgui.cpp" line="880"/>
         <source>Show the table</source>
         <translation>Показати таблицю</translation>
+    </message>
+</context>
+<context>
+    <name>RegularLocalServer</name>
+    <message>
+        <location filename="../../Matilda-units/ipc/localsockets/localservers/regularlocalserver.cpp" line="97"/>
+        <source>Data holder server is ready</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -23786,22 +24757,22 @@ ID:$eui64</source>
         <translation type="vanished">Пріоритет: повтор значень.&lt;br&gt;Будь ласка заповніть поля пріоритету унікальними значеннями.</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedule4water.cpp" line="54"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedule4water.cpp" line="34"/>
         <source>bad dataTag</source>
         <translation>погана міткаДаних</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedule4water.cpp" line="95"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedule4water.cpp" line="75"/>
         <source>Some values from &apos;%1&apos; profiles have the same priority</source>
         <translation>Деякі значення з профілів &apos;%1&apos; мають однаковий пріоритет</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedule4water.cpp" line="95"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedule4water.cpp" line="75"/>
         <source>Regular</source>
         <translation>Звичайний</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedule4water.cpp" line="96"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedule4water.cpp" line="76"/>
         <source>Please, fill the fields: Priority, with unique values.</source>
         <translation>Будь ласка, заповніть поля: Пріоритет унікальними значеннями.</translation>
     </message>
@@ -24096,44 +25067,44 @@ ID:$eui64</source>
         <translation type="vanished">Деякі значення з Real View профілів мають однаковий пріоритет. &lt;br&gt; Будь ласка, заповніть поля: Пріоритет унікальними значеннями.</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedulewdgt.cpp" line="57"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedulewdgt.cpp" line="34"/>
         <source>bad dataTag</source>
         <translation>погана міткаДаних</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedulewdgt.cpp" line="95"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedulewdgt.cpp" line="104"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedulewdgt.cpp" line="74"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedulewdgt.cpp" line="83"/>
         <source>Some values from &apos;%1&apos; profiles have the same priority</source>
         <translation>Деякі значення з профілів &apos;%1&apos; мають однаковий пріоритет</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedulewdgt.cpp" line="95"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedulewdgt.cpp" line="74"/>
         <source>Regular</source>
         <translation>Звичайний</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedulewdgt.cpp" line="96"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedulewdgt.cpp" line="105"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedulewdgt.cpp" line="75"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedulewdgt.cpp" line="84"/>
         <source>Please, fill the fields: Priority, with unique values.</source>
         <translation>Будь ласка, заповніть поля: Пріоритет унікальними значеннями.</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedulewdgt.cpp" line="104"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedulewdgt.cpp" line="83"/>
         <source>Real view</source>
         <translation>Real view</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedulewdgt.cpp" line="112"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedulewdgt.cpp" line="91"/>
         <source>The list of days of the week is empty!</source>
         <translation>Список днів тижня порожній!</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedulewdgt.cpp" line="113"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedulewdgt.cpp" line="92"/>
         <source>Please, select at least one day</source>
         <translation>Виберіть принаймні один день</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedulewdgt.cpp" line="165"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedulewdgt.cpp" line="144"/>
         <source>Enable Poll: The time interval</source>
         <translation>Увмк. Опитування: Часовий Інтервал</translation>
     </message>
@@ -24208,7 +25179,7 @@ To enable a real  view profile enable the same regular profile</source>
         <translation type="vanished">Дні тижня: значення не знайдено!</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedulewdgt.cpp" line="159"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/schedulewdgt.cpp" line="138"/>
         <source>Enable Poll: days of the week</source>
         <translation>Увмк. Опитування: Дні Тижня</translation>
     </message>
@@ -24991,7 +25962,7 @@ To enable a real  view profile enable the same regular profile</source>
         <translation type="vanished">Перезапустити мережу</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/selectstartoperationpage.cpp" line="214"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/selectstartoperationpage.cpp" line="226"/>
         <source>Date and time;NI;Operation</source>
         <translation>Дата і час;NI;Операція</translation>
     </message>
@@ -25175,7 +26146,7 @@ To enable a real  view profile enable the same regular profile</source>
         <translation type="vanished">Не можливо відкрити послідовний порт %1.&lt;br&gt;%2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/embeddedtools/src/serial2tcpperedavator.cpp" line="149"/>
+        <location filename="../../Matilda-units/ifaces/ifaces/src/emb/serial2tcpperedavator.cpp" line="149"/>
         <source>Couldn&apos;t open the serial port %1.&lt;br&gt;%2</source>
         <translation>Не можливо відкрити послідовний порт %1.&lt;br&gt;%2</translation>
     </message>
@@ -25473,6 +26444,11 @@ To enable a real  view profile enable the same regular profile</source>
         <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/settloader.cpp" line="455"/>
         <source>hh:mm:ss (hour 00 to 23, even with AM/PM display)</source>
         <translation>гг:хх:сс (години 00 до 23, навіть при системних AM/PM)</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/settloader.cpp" line="539"/>
+        <source>Bad application name, appName=%1, settings appName=%2</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -27813,378 +28789,379 @@ To enable a real  view profile enable the same regular profile</source>
 <context>
     <name>ShowMessageHelperCore</name>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="75"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="89"/>
         <source>kWh kWh kvarh kvarh</source>
         <translation>кВт/г кВт/г квар/г квар/г</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="77"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="91"/>
         <source>A+;A-;R+;R-</source>
         <translation>Активна спожита - A+;Активна віддана - A-;Реактивна спожита - R+;Реактивна віддана - R-</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="87"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="101"/>
         <source>∑T %1 [%2]</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="89"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="103"/>
         <source>T%1 %2 [%3]</source>
         <translation>Тариф %1 %2 [%3]</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="96"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="110"/>
         <source>%1 [L]</source>
         <translation>%1 [Л]</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="99"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="113"/>
         <source>Frequency [Hz];Event code;Comment;Date and time;Serial Number;Meter Addres;Meter model;Interval;Memo</source>
         <translation>Частота [Гц];Код події;Примітки;Дата і час;Серійний Номер;Адреса Лічильника;Модель лічильника;Інтервал;Пам&apos;ятка</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="102"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="116"/>
         <source>Coordinate</source>
         <translation>Координата</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="105"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="119"/>
         <source>Modem NI;Model;Poll Code;Time;Messages;Write/Read byte;Elapsed (s);Last retry</source>
         <translation>NI модема;Модель;Код Опитування;Час;К-ть повідомлень;Передано/Отримано байт;Затрачено часу [сек];Останній повтор</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="111"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="125"/>
         <source>U;I;P;Q;Power factor</source>
         <translation>Напруга;Струм;Акт. потужність;Реакт. потужність;cos φ</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="112"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="126"/>
         <source>L1;L2;L3</source>
         <translation>L1;L2;L3</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="113"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="127"/>
         <source>V;A;kW;kvar;</source>
         <translation>В;А;кВт;квар;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="129"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="143"/>
         <source>Relay;Balance;Last recharge;Recharge Balance;Recharge Counter;Values;Parameters</source>
         <translation>Реле;Баланс;Ост. поповнення;Баланс після поповнення;К-ть поповнень;Показники;Параметри</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="132"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="146"/>
         <source>Temperature [%1]</source>
         <translation>Температура [%1]</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="135"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="149"/>
         <source>Status;Time</source>
         <translation>Статус;Час</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="139"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="159"/>
         <source>Meter bat. time [min];Modem bat. time [min];Meter bat. [V]; Modem bat. [V];Water schedule</source>
         <translation>Час бат. лічильника [хв];Час бат. модема [хв];Бат. лічильника [В];Бат. модема [В];Розклад</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="142"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="168"/>
         <source>Device ID;Result;JSON;Model;Device type;Poll code;W/R/S [bytes];Elapsed [secs];Message count;Exchange log;Warn log;Error log;Options</source>
         <translation>ІД Пристрою;Результат;JSON;Модель;Тип пристрою;Код опитування;П/З/Збер [байти];Минуло [сек];Кількість повідомлень;Лог обміну;Лог попереджень;Лог помилок;Опції</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="146"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="178"/>
         <source>Time;Number;Event;Type;Duration;Result</source>
         <translation>Час;Номер;Подія;Тип;Тривалість;Результат</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="150"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="194"/>
         <source>Date and Time;Device ID;Value;Channel</source>
         <translation>Дата та час; ІД пристрою; Значення; Канал</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="153"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="209"/>
         <source>Begin;End;Name</source>
         <translation>Початок; Кінець; Ім&apos;я</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="165"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="227"/>
         <source>Ready;Closing;Closed;Connecting</source>
         <translation>Готовий;Закриття;Закрито;З&apos;єднання</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="175"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="237"/>
         <source>Africa;America;Antarctica;Arctic;Asia;Atlantic;Australia;Europe;Indian;Pacific;UTC</source>
         <translation>Африка;Америка;Антарктида;Арктика;Азія;Атлантика;Австралія;Європа;Індійський;Тихоокеанський;UTC</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="206"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="268"/>
         <source>Abidjan;Accra;Adak;Addis_Ababa;Adelaide;Aden;Algiers;Almaty;Amman;Amsterdam;Anadyr;Anchorage;Andorra;Anguilla;Antananarivo;Antigua;Apia;Aqtau;Aqtobe;Araguaina;Aruba;Ashgabat;Asmara;Astrakhan;Asuncion;Athens;Atikokan;Auckland;Azores;Baghdad;Bahia;Bahia_Banderas;Bahrain;Baku;Bamako;Bangkok;Bangui;Banjul;Barbados;Barnaul;Beirut;Belem;Belgrade;Belize;Berlin;Bermuda;Beulah;Bishkek;Bissau;Blanc-Sablon;Blantyre;Boa_Vista;Bogota;Boise;Bougainville;Bratislava;Brazzaville;Brisbane;Broken_Hill;Brunei;Brussels;Bucharest;Budapest;Buenos_Aires;Bujumbura;Busingen;Cairo;Cambridge_Bay;Campo_Grande;Canary;Cancun;Cape_Verde;Caracas;Casablanca;Casey;Catamarca;Cayenne;Cayman;Center;Ceuta;Chagos;Chatham;Chicago;Chihuahua;Chisinau;Chita;Choibalsan;Christmas;Chuuk;Cocos;Colombo;Comoro;Conakry;Copenhagen;Cordoba;Costa_Rica;Creston;Cuiaba;Curacao;Currie;Dakar;Damascus;Danmarkshavn;Dar_es_Salaam;Darwin;Davis;Dawson;Dawson_Creek;Denver;Detroit;Dhaka;Dili;Djibouti;Dominica;Douala;Dubai;Dublin;DumontDUrville;Dushanbe;Easter;Edmonton;Efate;Eirunepe;El_Aaiun;El_Salvador;Enderbury;Eucla;Fakaofo;Faroe;Fiji;Fort_Nelson;Fortaleza;Freetown;Funafuti;Gaborone;Galapagos;Gambier;Gaza;Gibraltar;Glace_Bay;Godthab;Goose_Bay;Grand_Turk;Grenada;Guadalcanal;Guadeloupe;Guam;Guatemala;Guayaquil;Guernsey;Guyana;Halifax;Harare;Havana;Hebron;Helsinki;Hermosillo;Ho_Chi_Minh;Hobart;Hong_Kong;Honolulu;Hovd;Indianapolis;Inuvik;Iqaluit;Irkutsk;Isle_of_Man;Istanbul;Jakarta;Jamaica;Jayapura;Jersey;Jerusalem;Johannesburg;Johnston;Juba;Jujuy;Juneau;Kabul;Kaliningrad;Kamchatka;Kampala;Karachi;Kathmandu;Kerguelen;Khandyga;Khartoum;Kyiv;Kigali;Kinshasa;Kiritimati;Kirov;Knox;Kolkata;Kosrae;Kralendijk;Krasnoyarsk;Kuala_Lumpur;Kuching;Kuwait;Kwajalein;La_Paz;La_Rioja;Lagos;Libreville;Lima;Lindeman;Lisbon;Ljubljana;Lome;London;Longyearbyen;Lord_Howe;Los_Angeles;Louisville;Lower_Princes;Luanda;Lubumbashi;Lusaka;Luxembourg;Macau;Maceio;Macquarie;Madeira;Madrid;Magadan;Mahe;Majuro;Makassar;Malabo;Maldives;Malta;Managua;Manaus;Manila;Maputo;Marengo;Mariehamn;Marigot;Marquesas;Martinique;Maseru;Matamoros;Mauritius;Mawson;Mayotte;Mazatlan;Mbabane;McMurdo;Melbourne;Mendoza;Menominee;Merida;Metlakatla;Mexico_City;Midway;Minsk;Miquelon;Mogadishu;Monaco;Moncton;Monrovia;Monterrey;Montevideo;Monticello;Montserrat;Moscow;Muscat;Nairobi;Nassau;Nauru;Ndjamena;New_Salem;New_York;Niamey;Nicosia;Nipigon;Niue;Nome;Norfolk;Noronha;Nouakchott;Noumea;Novokuznetsk;Novosibirsk;Ojinaga;Omsk;Oral;Oslo;Ouagadougou;Pago_Pago;Palau;Palmer;Panama;Pangnirtung;Paramaribo;Paris;Perth;Petersburg;Phnom_Penh;Phoenix;Pitcairn;Podgorica;Pohnpei;Pontianak;Port_Moresby;Port_of_Spain;Port-au-Prince;Porto_Velho;Porto-Novo;Prague;Puerto_Rico;Pyongyang;Qatar;Qyzylorda;Rainy_River;Rangoon;Rankin_Inlet;Rarotonga;Recife;Regina;Resolute;Reunion;Reykjavik;Riga;Rio_Branco;Rio_Gallegos;Riyadh;Rome;Rothera;Saipan;Sakhalin;Salta;Samara;Samarkand;San_Juan;San_Luis;San_Marino;Santarem;Santiago;Santo_Domingo;Sao_Paulo;Sao_Tome;Sarajevo;Scoresbysund;Seoul;Shanghai;Simferopol;Singapore;Sitka;Skopje;Sofia;South_Georgia;Srednekolymsk;St_Barthelemy;St_Helena;St_Johns;St_Kitts;St_Lucia;St_Thomas;St_Vincent;Stanley;Stockholm;Swift_Current;Sydney;Syowa;Tahiti;Taipei;Tallinn;Tarawa;Tashkent;Tbilisi;Tegucigalpa;Tehran;Tell_City;Thimphu;Thule;Thunder_Bay;Tijuana;Tirane;Tokyo;Tomsk;Tongatapu;Toronto;Tortola;Tripoli;Troll;Tucuman;Tunis;Ulaanbaatar;Ulyanovsk;Urumqi;Ushuaia;Ust-Nera;Uzhgorod;Vaduz;Vancouver;Vatican;Vevay;Vienna;Vientiane;Vilnius;Vincennes;Vladivostok;Volgograd;Vostok;Wake;Wallis;Warsaw;Whitehorse;Winamac;Windhoek;Winnipeg;Yakutat;Yakutsk;Yekaterinburg;Yellowknife;Yerevan;Zagreb;Zaporozhye;Zurich</source>
         <translation>Абіджан;Акра;Адак;Аддіс-Абеба;Аделаїда;Aden;Алжир;Алмати;Амман;Амстердам;Анадир;Анкоридж;Андорра;Ангілья;Антананаріву;Антигуа;Апіа;Aqtau;Актюбінськ;Арагуаіна;Аруба;Ашхабад;Асмара;Астрахань;Асунсьйон;Афіни;Atikokan;Окленд;Азорські острови;Багдад;Bahia;Bahia Бандерас;Бахрейн;Баку;Бамако;Бангкок;Бангі;Банджульского;Барбадос;Барнаул;Бейрут;Белем;Белград;Беліз;Берлін;Бермудський;Бела;Бішкек;Бісау;Блан-Саблон;Блантайр;Боа-Віста;Богота;Бойсе;Бугенвіль;Братислава;Браззавіль;Брісбен;Брокен-Хілл;Бруней;Брюссель;Бухарест;Будапешт;Буенос-Айрес;Буджумбура;Büsingen;Каїр;Кембридж-Бей;Campo Grande;Canary;Канкун;Кабо-Верде;Каракас;Касабланка;Кейсі;Катамарка;Cayenne;Cayman;Центр;Сеута;Чагос;Chatham;Чикаго;Чіуауа;Кишинів;Чита;Чойбалсан;Різдво;Chuuk;Кокосові;Коломбо;Comoro;Конакрі;Копенгаген;Кордова;Коста-Ріка;Creston;Куяба;Кюрасао;Каррі;Дакар;Дамаск;Данмарксхавн;Дар-ес-Салам;Дарвін;Девіс;Доусон;Доусон-Крік;Денвер;Детройт;Дакка;Ділі;Джібуті;Домініки;Дуала;Дубай;Дублін;DumontDUrville;Душанбе;Великдень;Едмонтон;Efate;Eirunepe;Ель-Аюн;Сальвадор;Ендербері;Eucla;Факаофо;Фарерських;Фіджі;Форт-Нельсон;Форталеза;Фрітаун;Фунафуті;Габороне;Galapagos;Гамбиер;Газа;Гібралтар;Glace Bay;Нук;Гус Бей;Гранд-Терк;Гренада;Гуадалканал;Гваделупа;Гуам;Гватемала;Гуаякіль;Гернсі;Гайана;Halifax;Хараре, Зімбабве;Гавана;Хеврон;Гельсінкі;Ермосільо;Хо Ши Міна;Хобарт;Гонконг;Гонолулу;Ховд;Індіанаполіс;Інувік;Ікалуїт;Іркутськ;Острів Мен;Стамбул;Джакарта;Ямайка;Джаяпура;Джерсі;Єрусалим;Йоганнесбург;Джонстон;Джуба;Жужуй;Джуно;Кабул;Калінінград;Камчатка;Кампала;Карачі;Катманду;Кергелен;Хандига;Хартум;Київ;Кігалі;Кіншаса;Kiritimati;Кіров;Нокс;Калькутта;Kosrae;Kralendijk;Красноярськ;Куала-Лумпур;Кучінг;Кувейт;Кваджалейн;Ла-Пас;Ла-Ріоха;Лагос;Лібревіль;Ліма;Ліндеман;Лісабон;Любляна;Ломе;Лондон;Лонгйір;Лорд-Хау;Лос-Анджелес;Луїсвілл;Нижні Князі;Луанда;Лубумбаши;Лусака;Люксембург;Макао;Масейо;Macquarie;Мадейра;Мадрид;Магадан;Мае;Majuro;Макассар;Малабо;Мальдівські о-ва;Мальта;Манагуа;Манаус;Маніла;Мапуту;Маренго;Мариехамн;Марігот;Маркізькі;Мартініки;Масеру;Матаморос;Маврикій;Моусон;Майотта;Масатлан;Mbabane;Макмердо;Мельбурн;Мендоса;меноміні;Меріда;Метлакатла;Мехіко;Midway;Мінськ;Мікелон;Могадішо;Монако;Монктон;Монровія;Монтеррей;Монтевідео;Монтічелло;Montserrat;Москва;Маскат;Найробі;Nassau;Науру;Нджамена;Нью-Салем;Нью-Йорк;Ніамей;Нікосія;Ніпігон;Ніуе;Нома;Норфолк;Норонья;Нуакшот;Нумеа;Новокузнецьк;Новосибірськ;Ojinaga;Омськ;Оральний;Осло;Уагадугу;Паго-Паго;Палау;Палмер;Панама місто;Pangnirtung;Парамарібо;Париж;Перт;Петербург;Пномпеня;Фенікс;Піткерн;Подгоріца;Понпеї;Pontianak;Порт-Морсбі;Порт Іспанії;Порт-о-Пренс;Порту-Велью;Порто-Ново;Прага;Пуерто-Ріко;Пхеньяна;Катар;Кизилорда;Рейні-Рівер;Рангун;Rankin Inlet;Раротонга;Ресіфі;Regina;Рішучий;Реюньон;Рейк&apos;явік;Рига;Ріо-Бранко;Ріо-Гальєгос;Ер-Ріяд;Рим;Rothera;Сайпан;Сахалін;Сальта;Самара;Самарканд;Сан-Хуан;Сан-Луїс;Сан-Марино;Сантарен;Сантьяго;Санто-Домінго;Сан-Паулу;Сан-Томе;Сараєво;Скоресбісунд;Сеул;Шанхай;Сімферополь;Сінгапур;Сітка;Скоп&apos;є;Софія;Південна Джорджія;Среднеколимськ;Сен-Бартельмі;Святої Єлени;Сент-Джонс;Сент-Кітс;Сент-Люсія;Сент-Томас;Сент-Вінсент;Стенлі;Стокгольм;Swift Current;Сідней;Сіова;Tahiti;Тайбей;Таллінн;Тарава;Ташкент;Тбілісі;Тегусігальпа;Тегеран;Tell City;Тхімпху;Тул;Тандер-Бей;Тіхуана;Тирані;Токіо;Томськ;Tongatapu;Торонто;Тортола;Тріполі;Troll;Тукуман;Туніс;Улан-Батор;Ульяновськ;Урумчі;Ушуайя;Усть-Нера;Ужгород;Вадуц;Ванкувер;Ватикан;Вевей;Відень;В&apos;єнтьян;Вільнюс;Вінсенс;Владивосток;Волгоград;Схід;Wake;Wallis;Варшава;Вайтхорс;Winamac;Віндхук;Winnipeg;Yakutat;Якутськ;Єкатеринбург;Йеллоунайф;Єреван;Загреб;Запоріжжя;Цюріх</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="237"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="299"/>
         <source>Stop All;Network Reset;Meter Journal;Voltage;Power;Current readings;End of day;End of month</source>
         <translation>Зупинити Все;Скинути Мережу;Журнал Лічильників;Напруга;Зріз Потужності;Поточні показники;На кінець доби;На кінець місяця</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="248"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="310"/>
         <source>Custom date and time, mask yyyy-MM-dd hh:mm|Depth interval,|space separeted NI list. Add model: &lt;model&gt;&amp;&lt;NI&gt;. Add password: &lt;NI&gt;@&lt;password&gt;. Add model and password &lt;model&gt;&amp;&lt;NI&gt;@&lt;password&gt;. If meter NI exists in device memory model and password can be omitted.|Max. tariff. By default|Coma separeted energy keys. Default|Ignore existing poll data. Default: not ignored.</source>
         <translation>Своя дата і час, маска рррр-мм-дд гг:хх|Глибина,|список NI, що розділені пробілом. Додати модель: &lt;model&gt;&amp;&lt;NI&gt;. Додати пароль: &lt;NI&gt;@&lt;password&gt;. Додати модель і пароль &lt;model&gt;&amp;&lt;NI&gt;@&lt;password&gt;. Якщо NI уже записано у список лічильників то модель і пароль можна опустити.|Макс. тариф. По замовчуванню|Список ключів енергій, що розділені пробілом. По замовчуванню|Ігнорувати існуючі дані. По замовчуванню: не ігнорувати.</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="259"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="321"/>
         <source>TCP destination host and port, format &lt;IPv4&gt;:&lt;Port&gt; or [&lt;IPv6&gt;]:&lt;Port&gt;, &lt;Port&gt; value can be omitted, default value|Serial port: must be valid port name|Enable async mode. Default: disabled.</source>
         <translation>Використати TCP хост і порт, формат &lt;IPv4&gt;:&lt;Порт&gt; або [&lt;IPv6&gt;]:&lt;Порт&gt;, значення &lt;Порт&gt; може бути опущено, значення по замовчуванню|Послідовний порт: повинно бути реальна назва|Увімкнути режим дозбору. По замовчуванню: вимкнено.</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="274"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="336"/>
         <source>Device|Direct Access|Interface|server:|client:|disabled|enabled|false|true|Running|Poll history|Poll state|Total/Ok/Error/Elapsed|(hh:mm:ss)|RamInfo|Uptime|ZigBee bytes w/r|Not started</source>
         <translation>Пристрій|Прямий Доступ|Інтерфейс|сервер:|клієнт:|деактивовано|активовано|ні|так|Запущено|Історія опитування|Стан опитування|Загально/Опитано/Помилки/Минуло|(гг:хх:сс)|Стан Пам&apos;яті|Час роботи|ЗігБі п/о байт|Не запущено</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="280"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="342"/>
         <source>Direct Access Interface|Peredavator|Zbyrator|Matilda|(d hh:mm:ss)</source>
         <translation>Інтерфейс Прямого Доступу|Передаватор|Збиратор|Матільда|(д гг:мм:сс)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="283"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="345"/>
         <source>Firefly</source>
         <translation>Світлячок</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="289"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="351"/>
         <source>Suspended.|Resume.|Last code: |Waiting for the signal ready. | [s]|Data from: |. model: |Date is invalid. Current date: |Poll code |Checking the coordinator cofiguration.|Couldn&apos;t enter the command mode.|Check API+ mode.|Couldn&apos;t configure the modem.|Enabling API+ mode.|Mode |Network reset</source>
         <translation>Призупинено.|Продовжую.|Останній код: |Очікування на сигнал готовності. | [с]|Дані з: |. модель: |Дата не правильна. Поточна дата: |Код опитування |Перевірка конфігурації координатора.|Помилка входу в командний режим.|Перевірка режиму API+.|Помилка входу в командний режим модема.|Активація режиму API+.|Режим |Скидання мережі</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="301"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="363"/>
         <source>Stopping|Channel|MHz|Network ID|Power level|Type|Coordinator|Updated|ZigBee modem|GSM modem|Band|Operator|Compact GSM|GSM with EGPRS|UTRAN with HSDPA|UTRAN with HSUPA|UTRAN with HSDPA and HSUPA|Not registered|Registered, home network|Not registered, but ME is currently searching a new operator to register to|Registration denied|Unknown|Registered, roaming</source>
         <translation>Зупинка|Канал|МГц|ID мережі|Потужність|Тип|Координатор|Оновлено|ZigBee модем|GSM модем|Смуга|Оператор|Компактний GSM|GSM з EGPRS|UTRAN з HSDPA|UTRAN з HSUPA|UTRAN з HSDPA і HSUPA|Не зареєстровано|Зареєстровано, домашня мережа|Не зареєстровано, але МТ зараз шукає нового оператора для реєстрації|Відмолено в реєстрації|Невідомо|Зареєстровано, роумінг</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="315"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="377"/>
         <source>Poll Device</source>
         <translation>Пристрій Опитування</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="315"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="377"/>
         <source>Modes: meter poll, gate, storage and data transfer</source>
         <translation>Режими: опитування лічильників, шлюз, зберігання і передача даних</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="316"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="378"/>
         <source>Storage Device</source>
         <translation>Пристрій Зберігання</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="316"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="378"/>
         <source>Modes: storage and data transfer</source>
         <translation>Режими: зберігання і передача даних</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="317"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="379"/>
         <source>Gate Device</source>
         <translation>Пристрій Шлюз</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="317"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="379"/>
         <source>Modes: gate</source>
         <translation>Режими: шлюз</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="318"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="380"/>
         <source>M2M Server</source>
         <translation>M2M Сервіс</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="318"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="380"/>
         <source>Modes: switching</source>
         <translation>Режими: комутація</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="320"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="382"/>
         <source>The emulator of Poll Device (Level 0)</source>
         <translation>Емулятор Пристрою Опитування (Рівень 0)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="320"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="382"/>
         <source>Modes: poll, storage and data transfer (stripped down version of the Poll Device)</source>
         <translation>Режими: опитування лічильників, зберігання і передача даних (урізана версія Пристрою Опитування)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="321"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="383"/>
         <source>The emulator of Poll Device (Level 1)</source>
         <translation>Емулятор Пристрою Опитування (Рівень 1)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="321"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="383"/>
         <source>Modes: poll, gateway (via protocol Matilda), storage and and data transfer (stripped down version of the Poll Device)</source>
         <translation>Режими: опитування лічильників, шлюз (через протокол Матільда), зберігання і передача даних (урізана версія Пристрою Опитування)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="322"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="384"/>
         <source>The emulator of Poll Device (Level 2)</source>
         <translation>Емулятор Пристрою Опитування (Рівень 2)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="322"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="384"/>
         <source>Modes: poll, gateway (during service), storage and and data transfer (stripped down version of the Poll Device)</source>
         <translation>Режими: опитування лічильників, шлюз (через окремий сервіс), зберігання і передача даних (урізана версія Пристрою Опитування)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="326"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="388"/>
         <source>Device type: </source>
         <translation>Тип пристрою: </translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="391"/>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="420"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="453"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="482"/>
         <source> L</source>
         <translation> М</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="394"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="456"/>
         <source>%1 Date from %2 to %3 %4</source>
         <translation>%1 Дата з %2 по %3 %4</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="428"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="490"/>
         <source>yyyy</source>
         <translation>рррр</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="428"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="490"/>
         <source>mm</source>
         <translation>мм</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="428"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="490"/>
         <source>dd</source>
         <translation>дд</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="431"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="493"/>
         <source>Profile: %1</source>
         <translation>Профіль: %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="432"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="494"/>
         <source>Date from: %1 %2</source>
         <translation>Дата з: %1 %2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="433"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="495"/>
         <source>Date to: %1 %2</source>
         <translation>Дата по: %1 %2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="434"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="496"/>
         <source>Date mask: %1</source>
         <translation>Маска дати: %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="441"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="503"/>
         <source>UC</source>
         <translation>УК</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="451"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="513"/>
         <source>ND Prepaid</source>
         <translation>ND Передоплата</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="502"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="570"/>
         <source>meter done;No event;Time changed;Unknown event;Access unlocked.;Access denied, key.;Opened;Closed;Magnet ON;Magnet OFF;Time changed;CMD Relay: load on;CMD Realay: load off;Relay: load on;Relay: load off;WDT: restart;RTC ready;RTC error;RTC bat. ok;RTC bat. fault;Relay2: load on;Relay2: load off;Bad EEPROM;Bad FRAM;Relay: hard bad off;Relay: hard on;Relay: hard bad on;Relay: hard off;Relay: load off (high load P);Alternating magnet ON;Alternating magnet OFF</source>
         <translation>лічильник зчитано;Нема подій;Час змінено;Невідома подія;Доступ розблоковано.;Доступ заблоковано, ключ.;Відкрито;Закрито;Виявлено вплив магнітом;Закінчено вплив магнітом;Час змінено;Команда Реле: увмк. навантаження;Команда Реле: вимк. навантаження;Реле: увмк. навантаження;Реле: вимк. навантаження;WDT: перезапуск;RTC готовий;RTC помилка;RTC акум. ок;RTC акум. збій;Реле2: увмк. навантаження;Реле2: вимк. навантаження;Збій EEPROM;Збій FRAM;Реле: вимк. механічно;Реле: увмк. після механічного впливу;Реле: увімк. механічно;Реле: вимк. після механічного впливу;Реле: вимк. навантаження (високе навантаження);Виявлено вплив зм. магн. полем;Закінчення впливу зм. магнітним полем</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="519"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="599"/>
         <source>Meter date;Meter new date</source>
         <translation>Дата лічильника;Оновлена дата лічильника</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="522"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="608"/>
         <source>Correct date: fail</source>
         <translation>Коррекція часу: збій</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="561"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="647"/>
         <source>Database is not open</source>
         <translation>База даних не відкрита</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="562"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="648"/>
         <source>Incorrect request</source>
         <translation>Не правильний запит</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="563"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="649"/>
         <source>Internal error</source>
         <translation>Внутрішня Помилка</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="564"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="650"/>
         <source>Data is not found</source>
         <translation>Дані не знайдено</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="566"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="652"/>
         <source>Table over limit</source>
         <translation>Таблиця перевищує ліміт</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="567"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="653"/>
         <source>Command: %1. Corrupted data</source>
         <translation>Команда: %1. Пошкоджені дані</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="568"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="654"/>
         <source>Command: %1. Duplicating NI</source>
         <translation>Команда: %1. Повтор NI</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="569"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="655"/>
         <source>Command: %1. Duplicating S/N</source>
         <translation>Команда: %1. Повтор S/N</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="570"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="656"/>
         <source>Command: %1. Date is invalid</source>
         <translation>Команда: %1. Дата не правильна</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="571"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="657"/>
         <source>Command: %1. Command is not allowed</source>
         <translation>Команда: %1. Команда не дозволена</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="572"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="658"/>
         <source>Command: %1. Access denied</source>
         <translation>Команда: %1. Відмовлено в доступі</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="573"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="659"/>
         <source>Command: %1. Resourse is busy</source>
         <translation>Команда: %1. Ресурс зайнятий</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="574"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="660"/>
         <source>Direct access was closed</source>
         <translation>Прямий доступ закрито</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="575"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="661"/>
         <source>IP was blocked</source>
         <translation>IP було заблоковано</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="577"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="663"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="665"/>
         <source>Command: %1. Done)</source>
         <translation>Команда: %1. Виконано)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="578"/>
+        <location filename="../../Matilda-units/gui/guisett-shared-core/src/nongui/showmessagehelpercore.cpp" line="666"/>
         <source>Command: %1. Unknown error code &apos;%2&apos;</source>
         <translation>Команда: %1. Невідомий код помилки %2</translation>
     </message>
@@ -28766,14 +29743,70 @@ Available arguments:
         <translation>Форма</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/smplptewdgt.ui" line="39"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/smplptewdgt.ui" line="48"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/smplptewdgt.ui" line="51"/>
         <source>Clear</source>
         <translation>Очистити</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/smplptewdgt.ui" line="46"/>
-        <source>Ctrl+Shift+K</source>
-        <translation></translation>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/smplptewdgt.cpp" line="89"/>
+        <source>Print</source>
+        <translation type="unfinished">Друк</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/smplptewdgt.cpp" line="100"/>
+        <source>Find</source>
+        <translation>Знайти</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/smplptewdgt.cpp" line="109"/>
+        <source>Select All</source>
+        <translation>Вибрати Все</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/smplptewdgt.cpp" line="119"/>
+        <source>Copy</source>
+        <translation type="unfinished">Копіювати</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/smplptewdgt.cpp" line="133"/>
+        <source>Decrease Font Size</source>
+        <translation>Зменшити Розмір Шрифту</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/smplptewdgt.cpp" line="144"/>
+        <source>Default Font Size</source>
+        <translation>Розмір Шрифту По Замовчуванню</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/smplptewdgt.cpp" line="153"/>
+        <source>Increase Font Size</source>
+        <translation>Збільшити Розмір Шрифту</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/smplptewdgt.cpp" line="171"/>
+        <source>Save to a file</source>
+        <translation>Зберегти до файлу</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/smplptewdgt.cpp" line="202"/>
+        <source>The application log</source>
+        <translation>Лог програми</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/smplptewdgt.cpp" line="208"/>
+        <source>Save - %1</source>
+        <translation>Зберегти - %1</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/smplptewdgt.cpp" line="210"/>
+        <source>All files (*)</source>
+        <translation type="unfinished">Усі файли</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/smplptewdgt.cpp" line="217"/>
+        <source>Failed to save the file. %1</source>
+        <translation>Помилка збереження файлу. %1</translation>
     </message>
 </context>
 <context>
@@ -28876,17 +29909,17 @@ Available arguments:
         <translation type="vanished">Ви дійсно хочете очистити всі налаштування акаунтів персоналу?</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/staffaccounts.cpp" line="323"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/staffaccounts.cpp" line="329"/>
         <source>The login field is empty(</source>
         <translation>Поле логін є порожнім(</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/staffaccounts.cpp" line="326"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/staffaccounts.cpp" line="332"/>
         <source>No power centers(</source>
         <translation>Відсутні вводи(</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/staffaccounts.cpp" line="561"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/general-pgs/staffaccounts.cpp" line="568"/>
         <source>Connection settings line</source>
         <translation>Рядок налаштування з&apos;єднання</translation>
     </message>
@@ -29227,97 +30260,96 @@ Available arguments:
 <context>
     <name>StartDevWdgt4ucon</name>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="263"/>
         <source>System info</source>
-        <translation>Інформація про систему</translation>
+        <translation type="vanished">Інформація про систему</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="265"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="280"/>
         <source>Running process</source>
         <translation>Запущені процеси</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="266"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="281"/>
         <source>Application events</source>
         <translation>Події програми</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="273"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="288"/>
         <source>Serial port log</source>
         <translation>Послідовний порт: лог</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="275"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="290"/>
         <source>Plugins for meters</source>
         <translation>Плагіни до лічильників</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="278"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="293"/>
         <source>Poll events</source>
         <translation>Події опитування</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="281"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="296"/>
         <source>Poll errors</source>
         <translation>Помилки опитування</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="282"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="297"/>
         <source>Poll warnings</source>
         <translation>Попередження опитування</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="331"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="346"/>
         <source>Events</source>
         <translation>Події</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="332"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="347"/>
         <source>Errors</source>
         <translation>Помилки</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="333"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="348"/>
         <source>Warnings</source>
         <translation>Попередження</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="347"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="362"/>
         <source>SNTP Events</source>
         <translation>SNTP Події</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="348"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="363"/>
         <source>SNTP Errors</source>
         <translation>SNTP Помилки</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="349"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="364"/>
         <source>SNTP Warnings</source>
         <translation>SNTP Попередження</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="424"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="439"/>
         <source>Database logs</source>
         <translation>Логи бази даних</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="441"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="456"/>
         <source>Modbus Events</source>
         <translation>Події Modbus</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="536"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="571"/>
         <source>About Connection</source>
         <translation>Про З&apos;єднання</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="666"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="701"/>
         <source>Device</source>
         <translation>Пристрій</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="709"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/main-pgs/startdevwdgt4ucon.cpp" line="744"/>
         <source>Device message: %1</source>
         <translation>Повідомлення пристрою: %1</translation>
     </message>
@@ -29331,7 +30363,7 @@ Available arguments:
     </message>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.ui" line="39"/>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="1977"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="2061"/>
         <source>Connecting...</source>
         <translation>З&apos;єднання...</translation>
     </message>
@@ -29441,102 +30473,111 @@ Available arguments:
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="49"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="52"/>
         <source>Get data or settings from the device</source>
         <translation>Отримати дані або налаштування з пристрою</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="213"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="216"/>
         <source>Start</source>
         <translation>Старт</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="505"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="555"/>
         <source>Read</source>
         <translation>Зчитати</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="529"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="579"/>
         <source>%1 - %2</source>
         <translation>%1 - %2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="693"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="743"/>
         <source>Favorites &apos;%1&apos;</source>
         <translation>Улюблене &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="1039"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="1067"/>
         <source>Authorization failed</source>
         <translation>Помилка авторизації</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="1042"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="1070"/>
         <source>Unable to finish the exchange</source>
         <translation>Не вдається завершити обмін</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="1354"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="1388"/>
         <source>Send command result - &apos;%1&apos;,&lt;br&gt;Message: &apos;%2&apos;</source>
         <translation>Надіслати результат команди - &apos;%1&apos;, &lt;br&gt; Повідомлення: &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="1753"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="1824"/>
         <source>There is nothing to paste(</source>
         <translation>Нема чого вставляти (</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="1885"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="1956"/>
         <source>Connection failed(</source>
         <translation>Підключення не вдалося(</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="1910"/>
-        <source>Read;Read every 1 sec;Read every 3 sec;Read every 7 sec;Read every 15 sec;Read every 30 sec;Read every 1 min</source>
-        <translation>Зчитати;Зчитувати кожну 1 сек;Зчитувати кожні 3 сек;Зчитувати кожні 7 сек;Зчитувати кожні 15 сек;Зчитувати кожні 30 сек;Зчитувати кожну 1 хв</translation>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="1986"/>
+        <source>Read;Read every 2 sec;Read every 5 sec;Read every 10 sec;Read every 15 sec;Read every 30 sec;Read every 1 min</source>
+        <translation>Зчитати;Зчитувати кожні 2 сек;Зчитувати кожні 5 сек;Зчитувати кожні 10 сек;Зчитувати кожні 15 сек;Зчитувати кожні 30 сек</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="2170"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="2008"/>
+        <source>Stop loop</source>
+        <translation>Зупинити цикл</translation>
+    </message>
+    <message>
+        <source>Read;Read every 1 sec;Read every 3 sec;Read every 7 sec;Read every 15 sec;Read every 30 sec;Read every 1 min</source>
+        <translation type="vanished">Зчитати;Зчитувати кожну 1 сек;Зчитувати кожні 3 сек;Зчитувати кожні 7 сек;Зчитувати кожні 15 сек;Зчитувати кожні 30 сек;Зчитувати кожну 1 хв</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="2254"/>
         <source>Collapse</source>
         <translation>Згорнути</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="2171"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="2255"/>
         <source>Expand</source>
         <translation>Розгорнути</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="2172"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="2256"/>
         <source>Collapse All</source>
         <translation>Згорнути Все</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="2173"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="2257"/>
         <source>Expand All</source>
         <translation>Розгорнути Все</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="2175"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="2259"/>
         <source>One Expand Mode</source>
         <translation>Режим Одного Розгорнутого</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="2221"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="2305"/>
         <source>Add to the Favorites</source>
         <translation>Додати до Улобленого</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="2229"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="2313"/>
         <source>Remove from the Favorites</source>
         <translation>Видалити з Улюбленого</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="2237"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="2321"/>
         <source>Save as default Favorites</source>
         <translation>Зберегти по замовчуванню для Улюбленого</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="2250"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/startdevwdgtcore.cpp" line="2334"/>
         <source>Switch the view mode</source>
         <translation>Переключити режим перегляду</translation>
     </message>
@@ -29560,12 +30601,12 @@ Available arguments:
     </message>
     <message>
         <location filename="zbyrator-src/startexchange.ui" line="224"/>
-        <location filename="zbyrator-src/startexchange.cpp" line="266"/>
+        <location filename="zbyrator-src/startexchange.cpp" line="272"/>
         <source>Interface</source>
         <translation>Інтерфейс</translation>
     </message>
     <message>
-        <location filename="zbyrator-src/startexchange.cpp" line="372"/>
+        <location filename="zbyrator-src/startexchange.cpp" line="385"/>
         <source>Global interface settings</source>
         <translation>Глобальні налаштування інтерфейсу</translation>
     </message>
@@ -30069,27 +31110,27 @@ Available arguments:
         <translation type="vanished">На Кінець Місяця (Вода)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/info-pgs/statisticofexchangewdgt.cpp" line="86"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/info-pgs/statisticofexchangewdgt.cpp" line="87"/>
         <source>Modem NI;Model;Code;Last exchange;Messages;Write/Read/DB bytes;Elapsed [sec];Last retry;Last answer;Coordinate;Memo</source>
         <translation>NI модема;Модель;Код Опитування;Час;К-ть повідомлень;Передано/Отримано байт;Затрачено часу [сек];Останній повтор;Остання відповідь;Координата;Пам&apos;ятка</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/info-pgs/statisticofexchangewdgt.cpp" line="220"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/info-pgs/statisticofexchangewdgt.cpp" line="221"/>
         <source>Please try again from the meter page</source>
         <translation>Повторіть спробу зі сторінки лічильника</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/info-pgs/statisticofexchangewdgt.cpp" line="226"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/info-pgs/statisticofexchangewdgt.cpp" line="227"/>
         <source>The maximum size is %1. The count of meters is %2.&lt;br&gt;%3 meters will be omitted</source>
         <translation>Максимальний розмір - %1. Кількість лічильників становить %2. &lt;br&gt; %3 лічильників буде проігноровано</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/info-pgs/statisticofexchangewdgt.cpp" line="317"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/info-pgs/statisticofexchangewdgt.cpp" line="318"/>
         <source>Start poll</source>
         <translation>Почати опитування</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/info-pgs/statisticofexchangewdgt.cpp" line="322"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-shared-widgets/info-pgs/statisticofexchangewdgt.cpp" line="323"/>
         <source>Database</source>
         <translation>База даних</translation>
     </message>
@@ -30540,23 +31581,23 @@ Available arguments:
         <translation>Команда: %1. Ресурс зайнятий</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="146"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="148"/>
         <source>Couldn&apos;t connect to remote server.&lt;br&gt;Error: %1</source>
         <translation>Не можу під&apos;єднатись до віддаленого серверу.&lt;br&gt;Помилка: %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="176"/>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="512"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="178"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="514"/>
         <source>Couldn&apos;t connect to the temporary service.&lt;br&gt;Error: %1</source>
         <translation>Не можу під&apos;єднатися до тимчасового сервісу.&lt;br&gt;Помилка: %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="522"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="524"/>
         <source>%1 devices were found</source>
         <translation>Знайдено %1 пристроїв</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="626"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="628"/>
         <source>Connection was closed.</source>
         <translation>З&apos;єднання закрито</translation>
     </message>
@@ -30565,26 +31606,26 @@ Available arguments:
         <translation type="vanished">Не можу під&apos;єднатися до тимчасового сервісу.&lt;br&gt;Помилка: %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="289"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="291"/>
         <source>Unknown device type: %1</source>
         <translation>Невідомий тип пристрою: %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="297"/>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="302"/>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="308"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="299"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="304"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="310"/>
         <source>Hello)</source>
         <translation>Привіт)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="312"/>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="318"/>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="319"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="314"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="320"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="321"/>
         <source>Access error(</source>
         <translation>Помилка доступу(</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="350"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="352"/>
         <source>Access was denied.</source>
         <translation>Відмовлено в доступі.</translation>
     </message>
@@ -30593,19 +31634,19 @@ Available arguments:
         <translation type="vanished">Знайдено %1 пристроїв</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="1069"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="1073"/>
         <source>lamps</source>
         <translation>лампи</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="1129"/>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="1135"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="1133"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="1139"/>
         <source>Total count: %1 lamps, Uploaded: %2 lamps</source>
         <translation>Загальна кількість: %1 ламп, Вивантажено: %2 ламп</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="1232"/>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="1241"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="1236"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="1245"/>
         <source>Total count: %1 %3, Downloaded: %2 %4</source>
         <translation>Загальна кількість: %1 %3, Завантажено: %2 %4</translation>
     </message>
@@ -30614,17 +31655,17 @@ Available arguments:
         <translation type="vanished">Відмовлено в доступі.</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="439"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="441"/>
         <source>Authorization failed.&lt;br&gt;Your IP in block list.&lt;br&gt;&lt;br&gt;Message from device:&lt;br&gt;%1</source>
         <translation>Помилка авторизації.&lt;br&gt;Ваш IP в списку блокування.&lt;br&gt;&lt;br&gt;Повідомлення від пристрою:&lt;br&gt;%1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="445"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="447"/>
         <source>Send authorization request</source>
         <translation>Відправка запиту на авторизацію</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="480"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="482"/>
         <source>Authorization failed(</source>
         <translation>Помилка авторизації(</translation>
     </message>
@@ -30633,7 +31674,7 @@ Available arguments:
         <translation type="vanished">Знайдено %1 пристроїв</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="540"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="542"/>
         <source>Not allowed(</source>
         <translation>Не дозволено(</translation>
     </message>
@@ -30691,11 +31732,12 @@ Available arguments:
     </message>
     <message>
         <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="76"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="77"/>
         <source>Command: %1. Done)</source>
         <translation>Команда: %1. Виконано)</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="77"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="79"/>
         <source>Command: %1. Unknown error. Error code: %2</source>
         <translation>Команда: %1. Невідома помилка. Код помилки: %2</translation>
     </message>
@@ -30704,20 +31746,20 @@ Available arguments:
         <translation type="vanished">Команда: %1. Ресурс зайнято</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="887"/>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="891"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="890"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="894"/>
         <source>. Device: %1</source>
         <translation>. Пристрій: %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="976"/>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="985"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="980"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="989"/>
         <source>Total count: %1 meters, Downloaded: %2 meters</source>
         <translation>Загальна кількість: %1 лічильників, Завантажено: %2 лічильників</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="1051"/>
         <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="1055"/>
+        <location filename="../../Matilda-units/ifaces/m2m-connector/src/m2m-service/svahasocket.cpp" line="1059"/>
         <source>Total count: %1 Meters, Uploaded: %2 Meters</source>
         <translation>Загальна кількість: %1 лічильників, Вивантажено: %2 лічильників</translation>
     </message>
@@ -31100,13 +32142,13 @@ Available arguments:
 <context>
     <name>TaskManagerV3</name>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="748"/>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="1269"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="765"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="1303"/>
         <source>ID: %1, NI: %2, message: stop</source>
         <translation>ІД: %1, NI: %2, повідомлення: зупинка</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="966"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="994"/>
         <source>ID: %1, message: stop</source>
         <translation>ІД: %1, повідомлення: зупинка</translation>
     </message>
@@ -31115,62 +32157,62 @@ Available arguments:
         <translation type="vanished">Погані налаштування тимчасового інтерфейсу для пристрою %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="1094"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="1122"/>
         <source>Killing the task, time overlimit %1, restart counter %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="1154"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="1183"/>
         <source>Bad temporary interface settings for the device %1</source>
         <translation>Погані налаштування тимчасового інтерфейсу для пристрою %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="1292"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="1326"/>
         <source>checkPreparation4pollCode %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="1309"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="1343"/>
         <source>endPreparation4pollCode %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="1325"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="1359"/>
         <source>endPreparation4pollCode by limit %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="1620"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="1655"/>
         <source>Has data in the shared memory: %1</source>
         <translation>Є дані у спільній пам&apos;яті: %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="1623"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="1658"/>
         <source>Has tasks: %1</source>
         <translation>Є завдання: %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="2125"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="2178"/>
         <source>Activating main interface</source>
         <translation>Активація основного інтерфейсу</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="2211"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="2264"/>
         <source>Can&apos;t connect to &apos;%1&apos;, more than %2 times. Restarting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="2214"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="2267"/>
         <source>Can&apos;t connect to &apos;%1&apos;, %2 times. Only one try to restart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="2362"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="2415"/>
         <source>Trying to use temporary interface for %1, ch %2</source>
         <translation>Спроба використати тимчасовий інтерфейс для %1, ch %2</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="2378"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/task/taskmanagerv3.cpp" line="2431"/>
         <source>Trying to use main interface for %1</source>
         <translation>Спроба використати основний інтерфейс для %1</translation>
     </message>
@@ -31792,64 +32834,64 @@ if it is empty - any connection is allowed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="1945"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="1950"/>
         <source>NI: %1, rez: %2, da: %3, prtta: %4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="2032"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="2037"/>
         <source>Interface %1</source>
         <translation>Інтерфейс %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="2273"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="2285"/>
         <source>The limit was reached, the total count is &apos;%1&apos;, the limit is &apos;%2&apos;</source>
         <translation>Ліміт досягнуто, загальна кількість &apos;%1&apos;, ліміт &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="2287"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="2299"/>
         <source>There is more than one modem with the same NI &apos;%1&apos;, EUI64s &apos;%2&apos;</source>
         <translation>Більше ніж один модем з однаковим NI &apos;%1&apos;, EUI64s &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="2297"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="2309"/>
         <source>ignoring NI &apos;%1&apos;, !rule</source>
         <translation>ігнорую NI &apos;%1&apos;, !правило</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="2303"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="2315"/>
         <source>ignoring NI &apos;%1&apos;, !device</source>
         <translation>ігнорую NI &apos;%1&apos;, !пристрій</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="2319"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="2331"/>
         <source>restored</source>
         <translation>відновлено</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="2319"/>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="2419"/>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="2436"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="2331"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="2431"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="2448"/>
         <source>ok</source>
         <translation>ок</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="2333"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="2345"/>
         <source>The limit was reached, the new device count is &apos;%1&apos;, the limit is &apos;%2&apos;</source>
         <translation>Ліміт досягнуто, нових пристроїв &apos;%1&apos;, ліміт &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="2339"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="2351"/>
         <source>This is a new device &apos;%1&apos;, the count of new devices is &apos;%2&apos;</source>
         <translation>Це новий пристрій &apos;%1&apos;, кількість нових пристроїв &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="2436"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="2448"/>
         <source>error</source>
         <translation>помилка</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="2448"/>
+        <location filename="../../Matilda-units/tasks/tasks-core/src/emb/thelordofdevices.cpp" line="2460"/>
         <source>modemOperationDone %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -32034,17 +33076,17 @@ if it is empty - any connection is allowed</source>
         <translation>хибна адреса &apos;%1&apos; &gt; &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmeters.cpp" line="1076"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmeters.cpp" line="1079"/>
         <source>no data</source>
         <translation>нема даних</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmeters.cpp" line="1076"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmeters.cpp" line="1079"/>
         <source>ok</source>
         <translation>ок</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmeters.cpp" line="958"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmeters.cpp" line="961"/>
         <source>There wasn&apos;t any answer from the meter</source>
         <translation>Від лічильника не було відповіді</translation>
     </message>
@@ -32064,47 +33106,47 @@ if it is empty - any connection is allowed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmeters.cpp" line="1030"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmeters.cpp" line="1033"/>
         <source>NI %1, has %2 virtual meters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmeters.cpp" line="1152"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmeters.cpp" line="1155"/>
         <source>Meter address &apos;%1&apos; is over NI &apos;%2&apos;</source>
         <translation>Адреса лічильника &apos;%1&apos; через NI &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmeters.cpp" line="1164"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmeters.cpp" line="1167"/>
         <source>!hardAddrsn, autoHardAddrsn=true, model=%1, ni=%2, forceHrdAddrsn=%3</source>
         <translation>!hardAddrsn, autoHardAddrsn=true, model=%1, ni=%2, forceHrdAddrsn=%3</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmeters.cpp" line="1190"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmeters.cpp" line="1194"/>
         <source>!hardAddrsn, autoHardAddrsn=true, model=%1, ni=%2, thisModelCounter=%3</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmeters.cpp" line="1232"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmeters.cpp" line="1236"/>
         <source>Enabling power management...</source>
         <translation>Активація керування живленням...</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmeters.cpp" line="1236"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmeters.cpp" line="1240"/>
         <source>Power management disabled</source>
         <translation>Керування живленням вимкнено</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmeters.cpp" line="1239"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmeters.cpp" line="1243"/>
         <source>Power management enabled</source>
         <translation>Керування живленням увімкнено</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmeters.cpp" line="1339"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmeters.cpp" line="1343"/>
         <source>Wake up command, model: %1</source>
         <translation>Команда прокидатися, модель: %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmeters.cpp" line="1423"/>
+        <location filename="../../Matilda-units/device-poll/zbyrator-base/src/zbyrator-v2/thelordofmeters.cpp" line="1427"/>
         <source>Go to sleep model: %1, seconds: %2</source>
         <translation>Йди в сон модель: %1, секунд: %2</translation>
     </message>
@@ -32142,16 +33184,26 @@ if it is empty - any connection is allowed</source>
     <name>TimeZonesTV</name>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/timezonestv.cpp" line="66"/>
+        <source>Ukraine</source>
+        <translation>Україна</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/timezonestv.cpp" line="68"/>
+        <source>Glory to Ukraine</source>
+        <translation>Слава Україні</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/timezonestv.cpp" line="76"/>
         <source>Yes</source>
         <translation>Так</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/timezonestv.cpp" line="66"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/timezonestv.cpp" line="76"/>
         <source>No</source>
         <translation>Ні</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/timezonestv.cpp" line="111"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/global-pgs/timezonestv.cpp" line="122"/>
         <source>Area;City;Region;UTC offset;Country;Has DST;Comment;Continent</source>
         <translation>Код;Місто;Регіон;Зміщення;Країна;Має ЛЧ;Коментарій;Континент</translation>
     </message>
@@ -32307,25 +33359,35 @@ if it is empty - any connection is allowed</source>
 <context>
     <name>TwoListsWdgt</name>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/twolistswdgt.ui" line="14"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/twolistswdgt.ui" line="20"/>
         <source>Form</source>
         <translation>Форма</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/twolistswdgt.ui" line="23"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/twolistswdgt.ui" line="29"/>
         <source>Default</source>
         <translation>По замовчуванню</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/twolistswdgt.ui" line="34"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/twolistswdgt.ui" line="40"/>
         <source>Reset</source>
         <translation>Скинути</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/twolistswdgt.ui" line="63"/>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/twolistswdgt.ui" line="238"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/twolistswdgt.ui" line="69"/>
+        <source>Profile</source>
+        <translation type="unfinished">Профіль</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/twolistswdgt.ui" line="76"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/twolistswdgt.ui" line="258"/>
         <source>Filter</source>
         <translation>Фільтр</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/twolistswdgt.ui" line="251"/>
+        <source>Available</source>
+        <translation>Доступно</translation>
     </message>
 </context>
 <context>
@@ -32361,17 +33423,17 @@ if it is empty - any connection is allowed</source>
         <translation>Порт сервера</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/ucdachannelwdgt.cpp" line="51"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/ucdachannelwdgt.cpp" line="62"/>
         <source>Additional channel will be used, channel is %1</source>
         <translation>Буде використаний додатковий канал, канал - %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/ucdachannelwdgt.cpp" line="56"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/ucdachannelwdgt.cpp" line="67"/>
         <source>TCP Medium Server will be used, port is %1</source>
         <translation>Буде використаний TCP Сервер Посередник, порт - %1</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/ucdachannelwdgt.cpp" line="59"/>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-shared/template-pgs/ucdachannelwdgt.cpp" line="70"/>
         <source>Main channel will be used</source>
         <translation>Основний канал буде використано</translation>
     </message>
@@ -32790,30 +33852,37 @@ if it is empty - any connection is allowed</source>
 <context>
     <name>UcLocalServer</name>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/uclocalserver.cpp" line="62"/>
         <source>Coordinator information was updated, %1, %2</source>
-        <translation>Інформація про координатор була оновлена, %1, %2</translation>
+        <translation type="vanished">Інформація про координатор була оновлена, %1, %2</translation>
+    </message>
+</context>
+<context>
+    <name>UcLocalServerSharedMemoryWriter</name>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/uclocalserversharedmemorywriter.cpp" line="77"/>
+        <source>Coordinator information was updated, %1, %2</source>
+        <translation type="unfinished">Інформація про координатор була оновлена, %1, %2</translation>
     </message>
 </context>
 <context>
     <name>UcLocalSocket</name>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/uclocalsocket.cpp" line="68"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/uclocalsocket.cpp" line="73"/>
         <source>IPC kill peredavator-bbb id=%1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/uclocalsocket.cpp" line="81"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/uclocalsocket.cpp" line="90"/>
         <source>Restarting...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/uclocalsocket.cpp" line="82"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/uclocalsocket.cpp" line="91"/>
         <source>Reloading plugins...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/uclocalsocket.cpp" line="83"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/uclocalsocket.cpp" line="92"/>
         <source>Reconnecting to databse...</source>
         <translation></translation>
     </message>
@@ -32910,12 +33979,12 @@ if it is empty - any connection is allowed</source>
 <context>
     <name>UdpBeacon</name>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/udpbeacon.cpp" line="68"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/udpbeacon.cpp" line="71"/>
         <source>Can&apos;t bind.&lt;br&gt;Error: %1.</source>
         <translation>Помилка пов&apos;язання.&lt;br&gt;Помилка: %1.</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/udpbeacon.cpp" line="123"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/udpbeacon.cpp" line="126"/>
         <source>Dnieper,Southern Buh,Dniester,Siversky Donets,Desna,Horyn,Inhulets,Psel,Sluch,Styr,Western Bug,Teteriv,Sula,Inhul,Vorskla,Ros,Oril,Udai,Vovcha,Samara,Khorol,Prut,Prypiat,Uzh,Zbruch,Seret,Stryi,Seim,Aidar,Kalmius,Salhir,Tysa,Vysun,Oster,Luhan,Molochna,Snov,Stokhid,Turia,Oskil,Danube,Ubort,Krynka,Smotrych,Hirsky Tikych,Velyka Vys,Murafa,Irpin,Tiasmyn,Bazavluk,Hnylyi Tikych,Ikva,Chychyklia,Tylihul,Derkul,Stvyha,Velykyi Kuyalnyk,UUU</source>
         <translation>Дніпро,Південний Буг,Дністер,Сіверський Донець,Десна,Горикь,Інгулець,Псел,Случ,Стир,Західний  Буг,Тетерів,Сула,Інгул,Ворскла,Рось,Оріль,Удай,Вовча,Самара,Хорол,Прут,Прип’ять,Уж,Збруч,Серет,Стрий,Сейм,Айдар,Кальміус,Салгір,Тиса,Висунь,Остер,Лугань,Молочна,Снов,Стохід,Турія,Оскіл,Дунай,Уборть,Кринка,Смотрич,Гірський Тікич,Велика Вись,Мурафа,Ірпінь,Тясминь,Базавлук,Гнилий Тікич,Іква,Чичиклія,Тилігул,Деркул,Ствига,Великий Куяльник</translation>
     </message>
@@ -33143,6 +34212,62 @@ if it is empty - any connection is allowed</source>
     </message>
 </context>
 <context>
+    <name>WIndividualSchedulesEditor</name>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/windividualscheduleseditor.cpp" line="11"/>
+        <source>Add as External task</source>
+        <translation>Додати як Зовнішнє завдання</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/windividualscheduleseditor.cpp" line="38"/>
+        <source>Schedule name</source>
+        <translation>Назва розкладу</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/editors/windividualscheduleseditor.cpp" line="41"/>
+        <source>It defines schedule modes</source>
+        <translation>Це визначає режими розкладу</translation>
+    </message>
+</context>
+<context>
+    <name>WIndividualSchedulesWdgt</name>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/windividualscheduleswdgt.cpp" line="80"/>
+        <source>Total</source>
+        <translation type="unfinished">Загально</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/windividualscheduleswdgt.cpp" line="81"/>
+        <source>End of day</source>
+        <translation>На кінець доби</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/windividualscheduleswdgt.cpp" line="82"/>
+        <source>End of month</source>
+        <translation>На кінець місяця</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/windividualscheduleswdgt.cpp" line="83"/>
+        <source>Flow per Interval</source>
+        <translation type="unfinished">Потік за Інтервал</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/windividualscheduleswdgt.cpp" line="85"/>
+        <source>Instant</source>
+        <translation type="unfinished">Миттєві значення</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/windividualscheduleswdgt.cpp" line="86"/>
+        <source>Meter Log</source>
+        <translation type="unfinished">Журнал Лічильників</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/windividualscheduleswdgt.cpp" line="88"/>
+        <source>State</source>
+        <translation type="unfinished">Стан</translation>
+    </message>
+</context>
+<context>
     <name>WMeterListWdgt</name>
     <message>
         <location filename="../../Matilda-units/qtwidgetonly/widgets-meters/dataconcetrator-pgs/wmeterlistwdgt.cpp" line="137"/>
@@ -33224,6 +34349,195 @@ if it is empty - any connection is allowed</source>
         <location filename="../../Matilda-units/gui/qml-gui-core/qml-gui-core/base-templates/Wait4loadingPaneForm.ui.qml" line="56"/>
         <source>Button</source>
         <translation>Кнопка</translation>
+    </message>
+</context>
+<context>
+    <name>WatchDogManager</name>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="120"/>
+        <source>start kicking wdt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="132"/>
+        <source>stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="143"/>
+        <source>loop finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="146"/>
+        <source>failed to kick wdt %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="155"/>
+        <source>restart loop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="181"/>
+        <source>semaphores monitoring...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="194"/>
+        <source>Main service monitoring...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="198"/>
+        <source>Main service down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="204"/>
+        <source>Killing Main service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="215"/>
+        <source>zbyrator-bbb down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="222"/>
+        <source>zbyrator-bbb monitoring...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="229"/>
+        <source>zbyrator-bbb tasks down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="238"/>
+        <source>Killing zbyrator-bbb</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="251"/>
+        <source>firefly-bbb monitoring...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="257"/>
+        <source>firefly-bbb tasks down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="261"/>
+        <source>Killing firefly-bbb</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="271"/>
+        <source>sqlite monitoring...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="275"/>
+        <source>sqlite down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="286"/>
+        <source>Network monitoring...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="292"/>
+        <source>Network check failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="301"/>
+        <source>peredavator-bbb monitoring...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="306"/>
+        <source>peredavator-bbb down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="308"/>
+        <source>Killing peredavator-bbb</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="318"/>
+        <source>too many critical errors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="341"/>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="343"/>
+        <source>semaphore %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="345"/>
+        <source>semaphore ok %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="354"/>
+        <source>semaphores reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="372"/>
+        <source>WDT Manager, </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="507"/>
+        <source>Network init, %4 - %1, %5 - %2, ppp0 - %3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="578"/>
+        <source>%1 ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="583"/>
+        <source>%1 down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="812"/>
+        <source>firefly has LCU %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="819"/>
+        <source>firefly has groups %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="826"/>
+        <source>firefly has tmp groups %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="874"/>
+        <source>check table address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="889"/>
+        <source>table data is not found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-core/matilda-bbb-src/main/watchdogmanager.cpp" line="926"/>
+        <source>zombie task %1 [secs], &apos;%2&apos;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -33577,6 +34891,177 @@ if it is empty - any connection is allowed</source>
     </message>
 </context>
 <context>
+    <name>WiFiManager</name>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/wifimanager.cpp" line="65"/>
+        <source>WiFi Manager init...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/wifimanager.cpp" line="94"/>
+        <source>WiFi Manager, isEnabled=%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/wifimanager.cpp" line="99"/>
+        <source>WiFi Manager, config changed, %1 %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/wifimanager.cpp" line="151"/>
+        <source>WiFi Manager, restart WiFi, %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/wifimanager.cpp" line="188"/>
+        <source>WiFi Manager, bad settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/wifimanager.cpp" line="201"/>
+        <source>WiFi Manager, stop WiFi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/wifimanager.cpp" line="213"/>
+        <source>WiFi Manager, failed to obtaine an IP address, %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/wifimanager.cpp" line="219"/>
+        <source>WiFi Manager, dhclient failed, %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/wifimanager.cpp" line="221"/>
+        <source>dhcp error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/wifimanager.cpp" line="228"/>
+        <source>WiFi Manager, restart done, %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/wifimanager.cpp" line="263"/>
+        <source>WiFi Manager, module is found=%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/wifimanager.cpp" line="275"/>
+        <source>module init...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/wifimanager.cpp" line="279"/>
+        <source>applying new settings...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/wifimanager.cpp" line="287"/>
+        <source>WiFi Manager, isAssociated=%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/wifimanager.cpp" line="299"/>
+        <source>WiFi Manager, failed to find &apos;%1&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/wifimanager.cpp" line="306"/>
+        <source>WiFi Manager, bad scanner, cannot check &apos;%1&apos;, %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/wifimanager.cpp" line="316"/>
+        <source>WiFi Manager, reviving the connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/matilda-bbb/matilda-bbb-serverside-shared/matilda-bbb-src/main/wifimanager.cpp" line="320"/>
+        <source>WiFi Manager, time to disconnect</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>WiFiModuleParams</name>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/wifimoduleparams.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished">Форма</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/wifimoduleparams.ui" line="20"/>
+        <source>Enable</source>
+        <translation type="unfinished">Активувати</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/wifimoduleparams.ui" line="27"/>
+        <source>SSID</source>
+        <translation>SSID</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/wifimoduleparams.ui" line="34"/>
+        <source>Wi-Fi</source>
+        <translation>Wi-Fi</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/wifimoduleparams.ui" line="48"/>
+        <source>Password</source>
+        <translation type="unfinished">Пароль</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/wifimoduleparams.ui" line="80"/>
+        <source>Reset main Wi-Fi</source>
+        <translation>Скинути основний Wi-Fi</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/wifimoduleparams.ui" line="91"/>
+        <source>Restart Wi-Fi</source>
+        <translation>Перезапустити Wi-Fi</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/wifimoduleparams.ui" line="102"/>
+        <source>Update info</source>
+        <translation>Оновити інформацію</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/wifimoduleparams.cpp" line="54"/>
+        <source>bad dataTag</source>
+        <translation type="unfinished">погана міткаДаних</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/wifimoduleparams.cpp" line="91"/>
+        <source>Incorrect Wi-Fi settings</source>
+        <translation>Неправильні налаштування Wi-Fi</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/wifimoduleparams.cpp" line="130"/>
+        <source>Wi-Fi info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/wifimoduleparams.cpp" line="187"/>
+        <source>Main Wi-Fi interface</source>
+        <translation>Основний інтерфейс Wi-Fi</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/wifimoduleparams.cpp" line="191"/>
+        <source>Used Wi-Fi interfaces</source>
+        <translation>Використовувані Wi-Fi інтерфейси</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/wifimoduleparams.cpp" line="195"/>
+        <source>Current state:</source>
+        <translation>Поточний стан:</translation>
+    </message>
+    <message>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/wifimoduleparams.cpp" line="198"/>
+        <source>Available networks:</source>
+        <translation>Доступні мережі:</translation>
+    </message>
+</context>
+<context>
     <name>XlsxFiles</name>
     <message>
         <location filename="../../Matilda-units/gui/guisett-shared-core/files/xlsxfiles.cpp" line="156"/>
@@ -33784,12 +35269,12 @@ if it is empty - any connection is allowed</source>
 <context>
     <name>ZbyrMeterListMedium</name>
     <message>
-        <location filename="zbyrator-src/zbyrmeterlistmedium.cpp" line="118"/>
+        <location filename="zbyrator-src/zbyrmeterlistmedium.cpp" line="125"/>
         <source>Electricity meter groups were imported as electricity power centers</source>
         <translation>Групи лічильників е/е були імпортовані як центри живлення</translation>
     </message>
     <message>
-        <location filename="zbyrator-src/zbyrmeterlistmedium.cpp" line="402"/>
+        <location filename="zbyrator-src/zbyrmeterlistmedium.cpp" line="422"/>
         <source>%3: IN: %1, one task removed, result is %2</source>
         <oldsource>%3: NI: %1, one task removed, rezult is %2</oldsource>
         <translation>%3: NI: %1, одне завдання видалено, результат - %2</translation>
@@ -34291,27 +35776,27 @@ if it is empty - any connection is allowed</source>
         <translation>Швидкість [бод]</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/zigbeewdgt.cpp" line="48"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/zigbeewdgt.cpp" line="50"/>
         <source>bad dataTag</source>
         <translation>погана міткаДаних</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/zigbeewdgt.cpp" line="81"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/zigbeewdgt.cpp" line="83"/>
         <source>bad serial port name</source>
         <translation>неправильна назва послідовного порту</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/zigbeewdgt.cpp" line="86"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/zigbeewdgt.cpp" line="88"/>
         <source>bad serial port speed</source>
         <translation>погана швидкість послідовного порту</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/zigbeewdgt.cpp" line="167"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/zigbeewdgt.cpp" line="171"/>
         <source>&lt;b&gt;%1&lt;b&gt;</source>
         <translation>&lt;b&gt;%1&lt;b&gt;</translation>
     </message>
     <message>
-        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/zigbeewdgt.cpp" line="170"/>
+        <location filename="../../Matilda-units/qtwidgetonly/matilda-conf-widgets/network-pgs/zigbeewdgt.cpp" line="174"/>
         <source>&lt;b&gt;%1&lt;b&gt; (not found!)</source>
         <translation>&lt;b&gt;%1&lt;b&gt; (не знайдено!)</translation>
     </message>

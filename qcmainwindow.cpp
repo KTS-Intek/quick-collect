@@ -91,7 +91,8 @@ void QcMainWindow::initPage()
 
     createToolBar();
     createMeterListManager();
-    createOneInstanceChecker();
+//    createOneInstanceChecker(); for test only
+    QTimer::singleShot(1111, this, SLOT(continueCreatingObjects())); //for test only
 
     connect(this, SIGNAL(onRequest2pollThese(QStringList,quint8)), this, SLOT(activatePageHome()));
     connect(this, SIGNAL(onRequest2GetDataThese(QStringList,quint8)), this, SLOT(activatePageDb()));
@@ -134,8 +135,8 @@ void QcMainWindow::continueCreatingObjects()
     ui->menuHelp->insertAction(ui->actionAbout, new ActionMaintanenance(guiHelper->verboseMode, this));
     setEnabled(true);
 
-    checkProxySettLater();
-    QTimer::singleShot(33333, this, SLOT(createUpdateChecker()));
+//    checkProxySettLater(); for test only
+//    QTimer::singleShot(33333, this, SLOT(createUpdateChecker())); for test only
 
 
 }
@@ -247,6 +248,7 @@ void QcMainWindow::createOneOfMainWdgt(const QString &tabData, const bool &andAc
 //        w->setHasDataFromRemoteDevice();
         w->setupGlobalLblMessage(ui->lblPageMess);
         QWidget *sa = StackWidgetHelper::addWdgtWithScrollArea(this, w, tabData);
+        w->setObjectName(tabData);
         ui->stackedWidget->addWidget(sa);
         if(andActivateIt)
             ui->stackedWidget->setCurrentWidget(sa);
@@ -343,7 +345,8 @@ void QcMainWindow::createMeterManager()
 
     connect(metersListMedium, SIGNAL(showMessage(QString)), this, SLOT(showMessage(QString)) );
 
-    connect(zbyrator, SIGNAL(checkThisMeterInfo(UniversalMeterSett)), metersListMedium, SIGNAL(onReloadAllMeters2zbyrator()) );
+//    connect(zbyrator, SIGNAL(checkThisMeterInfo(UniversalMeterSett)), metersListMedium, SIGNAL(onReloadAllMeters2zbyrator()) );
+    connect(zbyrator, &MeterManager::checkThisMeterInfo, metersListMedium, &ZbyrMeterListMedium::checkThisMeterInfo);
 
     connect(zbyrator, &MeterManager::onAllMeters                , metersListMedium, &ZbyrMeterListMedium::onAllMetersSlot           );
     connect(zbyrator, &MeterManager::onAllMeters                , metersListMedium, &ZbyrMeterListMedium::onAllMeters               );
@@ -525,6 +528,14 @@ MatildaConfWidget *QcMainWindow::createElectricityMeterListWdgt(GuiHelper *gHelp
         }
     });
 
+    connect(metersListMedium, &ZbyrMeterListMedium::onThisMeterTypeSettingsAreGoing2reload, [=](int devType){
+        if(devType == UC_METER_ELECTRICITY && w->accessibleName() == "emeter"){
+            w->setAccessibleName(w->objectName());
+
+            connect(gHelper->ucDeviceTreeW, &UCDeviceTreeWatcher::onUCEMeterSettingsChanged, w, &EMeterListWdgt::onUCEMeterSettingsChanged);
+        }
+    });
+
 
     connect(w, &EMeterListWdgt::onRequest2pollThese, this, &QcMainWindow::onRequest2pollThese);
     connect(w, &EMeterListWdgt::onRequest2GetDataThese, this, &QcMainWindow::onRequest2GetDataThese);
@@ -555,6 +566,14 @@ MatildaConfWidget *QcMainWindow::createWaterMeterListWdgt(GuiHelper *gHelper, QW
         }
     });
 
+    connect(metersListMedium, &ZbyrMeterListMedium::onThisMeterTypeSettingsAreGoing2reload, [=](int devType){
+        if(devType == UC_METER_WATER && w->accessibleName() == "wmeter"){
+            w->setAccessibleName(w->objectName());
+            connect(gHelper->ucDeviceTreeW, &UCDeviceTreeWatcher::onUCWMeterSettingsChanged, w, &WMeterListWdgt::onUCWMeterSettingsChanged);
+        }
+    });
+
+
 
     connect(w, &WMeterListWdgt::onRequest2pollThese, this, &QcMainWindow::onRequest2pollThese);
     connect(w, &WMeterListWdgt::onRequest2GetDataThese, this, &QcMainWindow::onRequest2GetDataThese);
@@ -582,6 +601,14 @@ MatildaConfWidget *QcMainWindow::createPulseMeterListWdgt(GuiHelper *gHelper, QW
             //it must be updated only once
             w->setAccessibleName("pmeter");
             disconnect(gHelper->ucDeviceTreeW, &UCDeviceTreeWatcher::onUCPMeterSettingsChanged, w, &PMeterListWdgt::onUCPMeterSettingsChanged);
+        }
+    });
+
+
+    connect(metersListMedium, &ZbyrMeterListMedium::onThisMeterTypeSettingsAreGoing2reload, [=](int devType){
+        if(devType == UC_METER_PULSE && w->accessibleName() == "pmeter"){
+            w->setAccessibleName(w->objectName());
+            connect(gHelper->ucDeviceTreeW, &UCDeviceTreeWatcher::onUCPMeterSettingsChanged, w, &PMeterListWdgt::onUCPMeterSettingsChanged);
         }
     });
 
@@ -619,7 +646,7 @@ MatildaConfWidget *QcMainWindow::createDatabasePage(GuiHelper *gHelper, QWidget 
     connect(metersListMedium, SIGNAL(setLblWaitTxtDatabase(QString)), w, SIGNAL(setLblWaitTxtDatabase(QString)));
 //    connect(metersListMedium, SIGNAL(appendDataDatabase(QVariantHash)), w, SLOT(setPageSett(QVariantHash))); //do not use it
 
-    connect(w, &DatabaseWdgt4QuickCollect::pageEndInit, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters2zbyrator);// do not use it
+    connect(w, &DatabaseWdgt4QuickCollect::pageEndInit, metersListMedium, &ZbyrMeterListMedium::onSomePage4metersReady);// do not use it
 //    connect(w, &DatabaseWdgt4QuickCollect::onTry2readDb, metersListMedium, &ZbyrMeterListMedium::onReloadAllMeters2zbyrator);
 
     connect(this, &QcMainWindow::onRequest2GetDataThese, w, &DatabaseWdgt4QuickCollect::onRequest2pollThese);

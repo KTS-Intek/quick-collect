@@ -63,6 +63,8 @@ signals:
     //meterlistwdgt
     void onReloadAllMeters2zbyrator();
 
+    void reloadAllMeters2zbyratorLtr(int msec);
+
 
     void sendMeAlistOfMeters(quint8 deviceType);
 
@@ -162,8 +164,11 @@ signals:
     void onUCLastReceivedDeviceRecordsQuickCollectChanged(UCLastReceivedDeviceRecords records);//connect it to GUI
 
 
+    void onThisMeterTypeSettingsAreGoing2reload(int meterType);
 
 public slots:
+    void checkThisMeterInfo(UniversalMeterSett oneMeter);
+
     void onAllMetersSlot(UniversalMeterSettList allMeters);
 
     void meterElectricityModelChanged(QVariantList meters);
@@ -197,6 +202,9 @@ public slots:
 //    void onReloadAllMeters();  do not uset it , it has deviceTree
 
     void onReloadAllZbyratorSettingsLocalSocket();
+
+    void onSomePage4metersReady();
+
 
     void createPeredavatorEmbeeManagerLater();
 
